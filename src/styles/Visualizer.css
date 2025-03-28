@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.input-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.source-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.youtube-input {
+  display: flex;
+  gap: 10px;
+}
+
+.visualizer {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: #000;
+}
+
+.control-panel {
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.effect-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+} 

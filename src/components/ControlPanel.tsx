@@ -1,4 +1,17 @@
 import React from 'react';
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Switch,
+  Slider,
+  Grid,
+  Tooltip,
+  IconButton,
+  FormControlLabel
+} from '@mui/material';
+import { Info } from '@mui/icons-material';
 import { VisualEffect } from '../App';
 
 interface ControlPanelProps {
@@ -7,35 +20,100 @@ interface ControlPanelProps {
   onIntensityChange: (id: string, intensity: number) => void;
 }
 
-const ControlPanel: React.FC<ControlPanelProps> = ({ 
-  effects, 
-  onToggle, 
-  onIntensityChange 
+const ControlPanel: React.FC<ControlPanelProps> = ({
+  effects,
+  onToggle,
+  onIntensityChange
 }) => {
   return (
-    <div className="control-panel">
-      <h2>Visual Effects</h2>
-      {effects.map(effect => (
-        <div key={effect.id} className="effect-control">
-          <label>
-            <input
-              type="checkbox"
-              checked={effect.enabled}
-              onChange={() => onToggle(effect.id)}
-            />
-            {effect.name}
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={effect.intensity * 100}
-            onChange={(e) => onIntensityChange(effect.id, Number(e.target.value) / 100)}
-            disabled={!effect.enabled}
-          />
-        </div>
-      ))}
-    </div>
+    <Box 
+      role="region" 
+      aria-label="Vision condition controls"
+    >
+      <Typography 
+        variant="h6" 
+        gutterBottom
+        id="vision-controls-heading"
+      >
+        Select Vision Conditions
+      </Typography>
+      
+      <Grid container spacing={3}>
+        {effects.map(effect => (
+          <Grid item xs={12} sm={6} key={effect.id}>
+            <Card>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <Typography 
+                    variant="h6" 
+                    component="div"
+                    id={`${effect.id}-label`}
+                  >
+                    {effect.name}
+                  </Typography>
+                  <Tooltip title={effect.description}>
+                    <IconButton 
+                      size="small" 
+                      sx={{ ml: 1 }}
+                      aria-label={`Learn more about ${effect.name}`}
+                    >
+                      <Info />
+                    </IconButton>
+                  </Tooltip>
+                  
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={effect.enabled}
+                        onChange={() => onToggle(effect.id)}
+                        inputProps={{ 
+                          'aria-label': `Toggle ${effect.name}`,
+                          'aria-describedby': `${effect.id}-description`
+                        }}
+                      />
+                    }
+                    label={`Enable ${effect.name}`}
+                    labelPlacement="end"
+                    sx={{ 
+                      ml: 'auto',
+                      '.MuiFormControlLabel-label': { 
+                        position: 'absolute', 
+                        width: '1px', 
+                        height: '1px',
+                        padding: 0,
+                        margin: '-1px',
+                        overflow: 'hidden',
+                        clip: 'rect(0, 0, 0, 0)',
+                        whiteSpace: 'nowrap',
+                        border: 0
+                      }
+                    }}
+                  />
+                </Box>
+                
+                <Box id={`${effect.id}-description`}>
+                  <Typography variant="body2" sx={{ mb: 2 }}>
+                    {effect.description}
+                  </Typography>
+                </Box>
+                
+                <Slider
+                  value={effect.intensity * 100}
+                  onChange={(_, value) => 
+                    onIntensityChange(effect.id, (value as number) / 100)
+                  }
+                  disabled={!effect.enabled}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={value => `${value}%`}
+                  aria-label={`Adjust ${effect.name} intensity`}
+                  aria-valuetext={`${effect.intensity * 100}%`}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 

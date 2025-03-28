@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { VisualEffect, InputSource } from '../App';
+import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -11,6 +12,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -112,22 +115,89 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
     // Update uniforms based on enabled effects and their intensities
   }, [effects]);
 
+  // Helper function to generate a description of active effects
+  const getVisualizerDescription = () => {
+    const activeEffects = effects.filter(e => e.enabled);
+    
+    if (activeEffects.length === 0) {
+      return `Visualization of ${inputSource.type} with no vision conditions applied.`;
+    }
+    
+    const effectsDescription = activeEffects
+      .map(e => `${e.name} at ${Math.round(e.intensity * 100)}% intensity`)
+      .join(', ');
+    
+    return `Visualization of ${inputSource.type} with the following conditions applied: ${effectsDescription}.`;
+  };
+
   return (
-    <div className="visualizer" ref={containerRef}>
-      {inputSource.type === 'webcam' || inputSource.type === 'youtube' ? (
-        <video
-          ref={mediaRef as React.RefObject<HTMLVideoElement>}
-          style={{ display: 'none' }}
-        />
-      ) : (
-        <img
-          ref={mediaRef as React.RefObject<HTMLImageElement>}
-          style={{ display: 'none' }}
-          src={inputSource.url}
-          alt="uploaded content"
-        />
+    <Box className="visualizer-container">
+      {isLoading && (
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            height: '100%' 
+          }}
+          role="status"
+          aria-label="Loading visualization"
+        >
+          <CircularProgress />
+          <Typography sx={{ ml: 2 }}>
+            Loading visualization...
+          </Typography>
+        </Box>
       )}
-    </div>
+      
+      {error && (
+        <Alert 
+          severity="error"
+          aria-live="assertive"
+        >
+          {error}
+        </Alert>
+      )}
+      
+      <div 
+        ref={containerRef}
+        role="img" 
+        aria-label={getVisualizerDescription()}
+      >
+        {inputSource.type === 'webcam' || inputSource.type === 'youtube' ? (
+          <video
+            ref={mediaRef as React.RefObject<HTMLVideoElement>}
+            style={{ display: 'none' }}
+          />
+        ) : (
+          <img
+            ref={mediaRef as React.RefObject<HTMLImageElement>}
+            style={{ display: 'none' }}
+            src={inputSource.url}
+            alt="Uploaded content for visualization"
+          />
+        )}
+      </div>
+      
+      {/* Text description for screen readers */}
+      <Box 
+        className="visualizer-description" 
+        sx={{ 
+          mt: 2,
+          p: 2,
+          border: '1px solid #ddd',
+          borderRadius: 1,
+          backgroundColor: '#f9f9f9'
+        }}
+      >
+        <Typography variant="h6">
+          Visualization Description
+        </Typography>
+        <Typography>
+          {getVisualizerDescription()}
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

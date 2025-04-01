@@ -15,10 +15,10 @@ import {
   useMediaQuery,
   responsiveFontSizes
 } from '@mui/material';
-import Visualizer from './components/Visualizer';
-import ControlPanel from './components/ControlPanel';
-import InputSelector from './components/InputSelector';
-import Footer from './components/Footer';
+import Visualizer from 'components/Visualizer';
+import ControlPanel from 'components/ControlPanel';
+import InputSelector from 'components/InputSelector';
+import Footer from 'components/Footer';
 import './styles/App.css';
 
 let theme = createTheme({
@@ -82,11 +82,109 @@ const App: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [effects, setEffects] = useState<VisualEffect[]>([
     { 
-      id: 'colorBlindness',
-      name: 'Color Blindness',
+      id: 'protanomaly',
+      name: 'Protanomaly (Red-Weak)',
       enabled: false,
       intensity: 1.0,
-      description: 'Simulates how colors appear different or indistinguishable for people with color vision deficiency'
+      description: 'Reduced sensitivity to red light. Red appears darker, and colors containing red look less bright.'
+    },
+    { 
+      id: 'protanopia',
+      name: 'Protanopia (Red-Blind)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Complete inability to see red light. Colors appear as shades of blue and gold, and red may appear as black.'
+    },
+    { 
+      id: 'deuteranomaly',
+      name: 'Deuteranomaly (Green-Weak)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Reduced sensitivity to green light. Most common type, making it hard to tell the difference between reds and greens.'
+    },
+    { 
+      id: 'deuteranopia',
+      name: 'Deuteranopia (Green-Blind)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Complete inability to see green light. Colors appear mostly as blues and golds, with difficulty distinguishing reds and greens.'
+    },
+    { 
+      id: 'tritanomaly',
+      name: 'Tritanomaly (Blue-Weak)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Reduced sensitivity to blue light, making it difficult to distinguish between blue and green, and yellow and red.'
+    },
+    { 
+      id: 'tritanopia',
+      name: 'Tritanopia (Blue-Blind)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Unable to tell the difference between blue and green, purple and red, and yellow and pink. Colors appear less bright.'
+    },
+    { 
+      id: 'monochromacy',
+      name: 'Complete Color Blindness',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Total inability to see any colors. The world appears in shades of gray.'
+    },
+    { 
+      id: 'monochromatic',
+      name: 'Vision Loss (Darkness)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Progressive darkening of vision, simulating various levels of vision loss from partial to complete darkness.'
+    },
+    {
+      id: 'cataracts',
+      name: 'Cataracts',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Clouding of the eye\'s natural lens, causing blurred vision, reduced contrast sensitivity, and increased glare sensitivity. Colors may appear yellowed or faded.'
+    },
+    {
+      id: 'glaucoma',
+      name: 'Glaucoma',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Progressive loss of peripheral vision, creating tunnel vision effect. May also cause blurred vision and difficulty adapting to darkness.'
+    },
+    {
+      id: 'amd',
+      name: 'Age-Related Macular Degeneration',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Loss of central vision while peripheral vision remains intact. May cause distorted vision where straight lines appear wavy.'
+    },
+    {
+      id: 'diabeticRetinopathy',
+      name: 'Diabetic Retinopathy',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Causes floating spots, blurred vision, and dark or empty areas in vision. Can lead to sudden vision changes or loss.'
+    },
+    {
+      id: 'astigmatism',
+      name: 'Astigmatism',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Causes blurred or distorted vision at all distances due to irregular cornea shape. May result in eye strain and difficulty seeing fine details.'
+    },
+    {
+      id: 'retinitisPigmentosa',
+      name: 'Retinitis Pigmentosa',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Progressive loss of peripheral vision and difficulty seeing in low light. Eventually may lead to tunnel vision and night blindness.'
+    },
+    {
+      id: 'stargardt',
+      name: 'Stargardt Disease',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Progressive loss of central vision, causing difficulty with detailed tasks. May also cause color vision problems and sensitivity to light.'
     },
     { 
       id: 'nearSighted',
@@ -117,13 +215,6 @@ const App: React.FC = () => {
       description: 'Constant visual disturbance resembling television static overlaying vision'
     },
     { 
-      id: 'hemianopia',
-      name: 'Hemianopia',
-      enabled: false,
-      intensity: 1.0,
-      description: 'Loss of vision in either the left or right half of the visual field'
-    },
-    { 
       id: 'floaters',
       name: 'Visual Floaters',
       enabled: false,
@@ -136,6 +227,34 @@ const App: React.FC = () => {
       enabled: false,
       intensity: 1.0,
       description: 'Seeing patterns, lights, or shapes that aren\'t physically present'
+    },
+    { 
+      id: 'hemianopiaLeft',
+      name: 'Homonymous Hemianopia (Left-field)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Loss of the left half of the visual field in both eyes. Caused by damage to the right side of the brain\'s visual pathways. May cause difficulty seeing objects to the left and problems with navigation.'
+    },
+    { 
+      id: 'hemianopiaRight',
+      name: 'Homonymous Hemianopia (Right-field)',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Loss of the right half of the visual field in both eyes. Caused by damage to the left side of the brain\'s visual pathways. May cause difficulty seeing objects to the right and problems with navigation.'
+    },
+    { 
+      id: 'quadrantanopia',
+      name: 'Quadrantanopia',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Loss of vision in one quarter (quadrant) of the visual field. Often caused by damage to specific parts of the brain that process vision. Affects spatial awareness and navigation.'
+    },
+    { 
+      id: 'scotoma',
+      name: 'Scotoma',
+      enabled: false,
+      intensity: 1.0,
+      description: 'Blind spot or partial vision loss in an otherwise normal visual field. Appears as a dark or blurry spot in vision. May be caused by various eye conditions, migraines, or neurological disorders.'
     },
   ]);
 

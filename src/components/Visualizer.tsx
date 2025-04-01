@@ -8,6 +8,8 @@ interface VisualizerProps {
   inputSource: InputSource;
 }
 
+const DEMO_VIDEO_ID = 'KOc146R8sws';
+
 const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
@@ -18,46 +20,55 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    setIsLoading(true);
+    setError(null);
+
     // Set up Three.js scene
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
     // Handle different input sources
     const setupMedia = async () => {
-      if (inputSource.type === 'webcam') {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        const video = mediaRef.current as HTMLVideoElement;
-        video.srcObject = stream;
-        video.play();
-        const videoTexture = new THREE.VideoTexture(video);
-        setTexture(videoTexture);
-      } else if (inputSource.type === 'image' && inputSource.url) {
-        const textureLoader = new THREE.TextureLoader();
-        const imageTexture = await textureLoader.loadAsync(inputSource.url);
-        setTexture(imageTexture);
-      } else if (inputSource.type === 'youtube' && inputSource.url) {
-        // Here you would need to implement YouTube video loading
-        // You might want to use a library like react-youtube
-        const video = mediaRef.current as HTMLVideoElement;
-        // Implementation for YouTube video loading...
-        const videoTexture = new THREE.VideoTexture(video);
-        setTexture(videoTexture);
+      try {
+        if (inputSource.type === 'webcam') {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          const video = mediaRef.current as HTMLVideoElement;
+          video.srcObject = stream;
+          await video.play();
+          const videoTexture = new THREE.VideoTexture(video);
+          setTexture(videoTexture);
+        } else if (inputSource.type === 'image' && inputSource.url) {
+          const textureLoader = new THREE.TextureLoader();
+          const imageTexture = await textureLoader.loadAsync(inputSource.url);
+          setTexture(imageTexture);
+        } else if (inputSource.type === 'youtube') {
+          // For YouTube, we'll use CSS filters instead of WebGL textures
+          setTexture(null);
+        }
+        setIsLoading(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load media');
+        setIsLoading(false);
       }
     };
 
     setupMedia();
 
-    // Create geometry and material
+    // Create geometry and material for non-YouTube content
     const geometry = new THREE.PlaneGeometry(2, 2);
     const material = new THREE.ShaderMaterial({
       uniforms: {
         tDiffuse: { value: null },
-        colorBlindnessIntensity: { value: 0.0 },
+        protanopiaIntensity: { value: 0.0 },
+        deuteranopiaIntensity: { value: 0.0 },
+        tritanopiaIntensity: { value: 0.0 },
+        protanomalyIntensity: { value: 0.0 },
+        deuteranomalyIntensity: { value: 0.0 },
+        tritanomalyIntensity: { value: 0.0 },
         blurIntensity: { value: 0.0 },
-        // ... other uniforms
       },
       vertexShader: `
         varying vec2 vUv;
@@ -68,17 +79,105 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
       `,
       fragmentShader: `
         uniform sampler2D tDiffuse;
-        uniform float colorBlindnessIntensity;
+        uniform float protanopiaIntensity;
+        uniform float deuteranopiaIntensity;
+        uniform float tritanopiaIntensity;
+        uniform float protanomalyIntensity;
+        uniform float deuteranomalyIntensity;
+        uniform float tritanomalyIntensity;
         uniform float blurIntensity;
         varying vec2 vUv;
 
+        vec3 applyProtanopia(vec3 color) {
+          return vec3(
+            0.567 * color.r + 0.433 * color.g + 0.000 * color.b,
+            0.558 * color.r + 0.442 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.242 * color.g + 0.758 * color.b
+          );
+        }
+
+        vec3 applyDeuteranopia(vec3 color) {
+          return vec3(
+            0.625 * color.r + 0.375 * color.g + 0.000 * color.b,
+            0.700 * color.r + 0.300 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.300 * color.g + 0.700 * color.b
+          );
+        }
+
+        vec3 applyTritanopia(vec3 color) {
+          return vec3(
+            0.950 * color.r + 0.050 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.433 * color.g + 0.567 * color.b,
+            0.000 * color.r + 0.475 * color.g + 0.525 * color.b
+          );
+        }
+
+        vec3 applyProtanomaly(vec3 color) {
+          return vec3(
+            0.817 * color.r + 0.183 * color.g + 0.000 * color.b,
+            0.333 * color.r + 0.667 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.125 * color.g + 0.875 * color.b
+          );
+        }
+
+        vec3 applyDeuteranomaly(vec3 color) {
+          return vec3(
+            0.800 * color.r + 0.200 * color.g + 0.000 * color.b,
+            0.258 * color.r + 0.742 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.142 * color.g + 0.858 * color.b
+          );
+        }
+
+        vec3 applyTritanomaly(vec3 color) {
+          return vec3(
+            0.967 * color.r + 0.033 * color.g + 0.000 * color.b,
+            0.000 * color.r + 0.733 * color.g + 0.267 * color.b,
+            0.000 * color.r + 0.183 * color.g + 0.817 * color.b
+          );
+        }
+
         void main() {
           vec4 texel = texture2D(tDiffuse, vUv);
+          vec3 color = texel.rgb;
           
-          // Apply effects based on uniforms
-          // Implementation of visual effects...
+          // Apply color blindness effects
+          if (protanopiaIntensity > 0.0) {
+            color = mix(color, applyProtanopia(color), protanopiaIntensity);
+          }
+          if (deuteranopiaIntensity > 0.0) {
+            color = mix(color, applyDeuteranopia(color), deuteranopiaIntensity);
+          }
+          if (tritanopiaIntensity > 0.0) {
+            color = mix(color, applyTritanopia(color), tritanopiaIntensity);
+          }
+          if (protanomalyIntensity > 0.0) {
+            color = mix(color, applyProtanomaly(color), protanomalyIntensity);
+          }
+          if (deuteranomalyIntensity > 0.0) {
+            color = mix(color, applyDeuteranomaly(color), deuteranomalyIntensity);
+          }
+          if (tritanomalyIntensity > 0.0) {
+            color = mix(color, applyTritanomaly(color), tritanomalyIntensity);
+          }
+
+          // Apply blur effect
+          if (blurIntensity > 0.0) {
+            vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
+            vec4 blur = vec4(0.0);
+            float total = 0.0;
+            
+            for(float x = -4.0; x <= 4.0; x++) {
+              for(float y = -4.0; y <= 4.0; y++) {
+                float weight = 1.0 / (1.0 + x * x + y * y);
+                blur += texture2D(tDiffuse, vUv + vec2(x, y) * pixelSize * blurIntensity) * weight;
+                total += weight;
+              }
+            }
+            
+            color = mix(color, blur.rgb, blurIntensity);
+          }
           
-          gl_FragColor = texel;
+          gl_FragColor = vec4(color, texel.a);
         }
       `
     });
@@ -91,6 +190,42 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
       requestAnimationFrame(animate);
       if (texture) {
         material.uniforms.tDiffuse.value = texture;
+        
+        // Update effect uniforms based on current state
+        const protanopia = effects.find(e => e.id === 'protanopia');
+        if (protanopia) {
+          material.uniforms.protanopiaIntensity.value = protanopia.enabled ? protanopia.intensity : 0;
+        }
+
+        const deuteranopia = effects.find(e => e.id === 'deuteranopia');
+        if (deuteranopia) {
+          material.uniforms.deuteranopiaIntensity.value = deuteranopia.enabled ? deuteranopia.intensity : 0;
+        }
+
+        const tritanopia = effects.find(e => e.id === 'tritanopia');
+        if (tritanopia) {
+          material.uniforms.tritanopiaIntensity.value = tritanopia.enabled ? tritanopia.intensity : 0;
+        }
+
+        const protanomaly = effects.find(e => e.id === 'protanomaly');
+        if (protanomaly) {
+          material.uniforms.protanomalyIntensity.value = protanomaly.enabled ? protanomaly.intensity : 0;
+        }
+
+        const deuteranomaly = effects.find(e => e.id === 'deuteranomaly');
+        if (deuteranomaly) {
+          material.uniforms.deuteranomalyIntensity.value = deuteranomaly.enabled ? deuteranomaly.intensity : 0;
+        }
+
+        const tritanomaly = effects.find(e => e.id === 'tritanomaly');
+        if (tritanomaly) {
+          material.uniforms.tritanomalyIntensity.value = tritanomaly.enabled ? tritanomaly.intensity : 0;
+        }
+
+        const nearSighted = effects.find(e => e.id === 'nearSighted');
+        if (nearSighted) {
+          material.uniforms.blurIntensity.value = nearSighted.enabled ? nearSighted.intensity : 0;
+        }
       }
       renderer.render(scene, camera);
     };
@@ -106,14 +241,78 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
         }
       }
       renderer.dispose();
-      containerRef.current?.removeChild(renderer.domElement);
+      if (containerRef.current?.contains(renderer.domElement)) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
     };
-  }, [inputSource]);
+  }, [inputSource, effects]);
 
-  // Update shader uniforms when effects change
-  useEffect(() => {
-    // Update uniforms based on enabled effects and their intensities
-  }, [effects]);
+  // Calculate CSS filters based on effects
+  const getEffectStyles = () => {
+    const style: React.CSSProperties = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      maxWidth: '100%',
+      maxHeight: '100%',
+      width: '100%',
+      height: '100%',
+      objectFit: 'contain'
+    };
+
+    if (inputSource.type === 'youtube') {
+      const protanopia = effects.find(e => e.id === 'protanopia');
+      const deuteranopia = effects.find(e => e.id === 'deuteranopia');
+      const tritanopia = effects.find(e => e.id === 'tritanopia');
+      const protanomaly = effects.find(e => e.id === 'protanomaly');
+      const deuteranomaly = effects.find(e => e.id === 'deuteranomaly');
+      const tritanomaly = effects.find(e => e.id === 'tritanomaly');
+      const nearSighted = effects.find(e => e.id === 'nearSighted');
+      
+      let filters = [];
+      
+      if (protanopia?.enabled) {
+        filters.push(`grayscale(${protanopia.intensity * 0.5})`);
+        filters.push(`sepia(${protanopia.intensity * 0.5})`);
+      }
+      
+      if (deuteranopia?.enabled) {
+        filters.push(`grayscale(${deuteranopia.intensity * 0.5})`);
+        filters.push(`sepia(${deuteranopia.intensity * 0.5})`);
+      }
+      
+      if (tritanopia?.enabled) {
+        filters.push(`grayscale(${tritanopia.intensity * 0.5})`);
+        filters.push(`sepia(${tritanopia.intensity * 0.5})`);
+      }
+      
+      if (protanomaly?.enabled) {
+        filters.push(`grayscale(${protanomaly.intensity * 0.5})`);
+        filters.push(`sepia(${protanomaly.intensity * 0.5})`);
+      }
+      
+      if (deuteranomaly?.enabled) {
+        filters.push(`grayscale(${deuteranomaly.intensity * 0.5})`);
+        filters.push(`sepia(${deuteranomaly.intensity * 0.5})`);
+      }
+      
+      if (tritanomaly?.enabled) {
+        filters.push(`grayscale(${tritanomaly.intensity * 0.5})`);
+        filters.push(`sepia(${tritanomaly.intensity * 0.5})`);
+      }
+      
+      if (nearSighted?.enabled) {
+        filters.push(`blur(${nearSighted.intensity * 10}px)`);
+      }
+      
+      if (filters.length > 0) {
+        style.filter = filters.join(' ');
+      }
+    }
+
+    return style;
+  };
 
   // Helper function to generate a description of active effects
   const getVisualizerDescription = () => {
@@ -131,7 +330,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
   };
 
   return (
-    <Box className="visualizer-container">
+    <Box className="visualizer-container" sx={{ position: 'relative', width: '100%', height: '600px' }}>
       {isLoading && (
         <Box 
           sx={{ 
@@ -163,21 +362,41 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
         ref={containerRef}
         role="img" 
         aria-label={getVisualizerDescription()}
+        style={{ 
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          display: inputSource.type === 'youtube' ? 'none' : 'block'
+        }}
       >
-        {inputSource.type === 'webcam' || inputSource.type === 'youtube' ? (
+        {inputSource.type === 'webcam' ? (
           <video
             ref={mediaRef as React.RefObject<HTMLVideoElement>}
             style={{ display: 'none' }}
           />
-        ) : (
+        ) : inputSource.type === 'image' ? (
           <img
             ref={mediaRef as React.RefObject<HTMLImageElement>}
             style={{ display: 'none' }}
             src={inputSource.url}
             alt="Uploaded content for visualization"
           />
-        )}
+        ) : null}
       </div>
+
+      {inputSource.type === 'youtube' && (
+        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            style={getEffectStyles()}
+            frameBorder="0"
+          />
+        </Box>
+      )}
       
       {/* Text description for screen readers */}
       <Box 

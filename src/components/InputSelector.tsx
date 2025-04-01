@@ -6,8 +6,7 @@ import {
   Typography,
   Grid,
   TextField,
-  Button,
-  VisuallyHidden
+  Button
 } from '@mui/material';
 import {
   Videocam,
@@ -23,7 +22,6 @@ interface InputSelectorProps {
 
 const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceChange }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const youtubeInputRef = useRef<HTMLInputElement>(null);
 
   const inputOptions = [
     {
@@ -41,8 +39,8 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
     {
       type: 'youtube',
       icon: <YouTube sx={{ fontSize: 48 }} aria-hidden="true" />,
-      title: 'YouTube Video',
-      description: 'Enter a YouTube video URL'
+      title: 'Demo Video',
+      description: 'Watch our demo video with applied effects'
     }
   ];
 
@@ -78,9 +76,6 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
               onClick={() => {
                 if (option.type === 'image') {
                   fileInputRef.current?.click();
-                } else if (option.type === 'youtube') {
-                  // Focus on YouTube input
-                  youtubeInputRef.current?.focus();
                 } else {
                   onSourceChange({ type: option.type as InputSource['type'] });
                 }
@@ -95,8 +90,6 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   e.preventDefault();
                   if (option.type === 'image') {
                     fileInputRef.current?.click();
-                  } else if (option.type === 'youtube') {
-                    youtubeInputRef.current?.focus();
                   } else {
                     onSourceChange({ type: option.type as InputSource['type'] });
                   }
@@ -125,76 +118,30 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         ))}
       </Grid>
 
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) {
-            onSourceChange({ 
-              type: 'image', 
-              url: URL.createObjectURL(file) 
-            });
-            // Announce to screen readers
-            const announcement = document.createElement('div');
-            announcement.setAttribute('role', 'status');
-            announcement.setAttribute('aria-live', 'polite');
-            announcement.textContent = `Image ${file.name} loaded successfully`;
-            document.body.appendChild(announcement);
-            setTimeout(() => document.body.removeChild(announcement), 1000);
-          }
-        }}
-        aria-label="Upload an image"
-      />
-
-      {currentSource.type === 'youtube' && (
-        <Box 
-          sx={{ mt: 3 }}
-          role="form"
-          aria-labelledby="youtube-form-label"
-        >
-          <Typography 
-            id="youtube-form-label" 
-            sx={{ mb: 1 }}
-          >
-            Enter YouTube URL:
-          </Typography>
-          <TextField
-            fullWidth
-            label="YouTube Video URL"
-            variant="outlined"
-            placeholder="https://www.youtube.com/watch?v=..."
-            inputRef={youtubeInputRef}
-            aria-label="YouTube video URL"
-            helperText="Paste a YouTube video URL here and click Load Video"
-            InputProps={{
-              endAdornment: (
-                <Button 
-                  variant="contained" 
-                  onClick={() => {
-                    const url = youtubeInputRef.current?.value;
-                    if (url) {
-                      onSourceChange({ type: 'youtube', url });
-                      // Announce to screen readers
-                      const announcement = document.createElement('div');
-                      announcement.setAttribute('role', 'status');
-                      announcement.setAttribute('aria-live', 'polite');
-                      announcement.textContent = 'YouTube video loaded successfully';
-                      document.body.appendChild(announcement);
-                      setTimeout(() => document.body.removeChild(announcement), 1000);
-                    }
-                  }}
-                  aria-label="Load YouTube video"
-                >
-                  Load Video
-                </Button>
-              )
-            }}
-          />
-        </Box>
-      )}
+      <Box sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }}>
+        <input
+          type="file"
+          ref={fileInputRef}
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              onSourceChange({ 
+                type: 'image', 
+                url: URL.createObjectURL(file) 
+              });
+              // Announce to screen readers
+              const announcement = document.createElement('div');
+              announcement.setAttribute('role', 'status');
+              announcement.setAttribute('aria-live', 'polite');
+              announcement.textContent = `Image ${file.name} loaded successfully`;
+              document.body.appendChild(announcement);
+              setTimeout(() => document.body.removeChild(announcement), 1000);
+            }
+          }}
+          aria-label="Upload an image"
+        />
+      </Box>
     </Box>
   );
 };

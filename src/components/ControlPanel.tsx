@@ -13,12 +13,40 @@ import {
 } from '@mui/material';
 import { Info } from '@mui/icons-material';
 import { VisualEffect } from '../App';
+import ConditionPreview from './ConditionPreview';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
   onToggle: (id: string) => void;
   onIntensityChange: (id: string, intensity: number) => void;
 }
+
+// Helper function to check if an effect supports visual preview
+const supportsVisualPreview = (id: string) => {
+  return [
+    'cataracts',
+    'glaucoma',
+    'amd',
+    'diabeticRetinopathy',
+    'astigmatism',
+    'retinitisPigmentosa',
+    'stargardt',
+    'monochromatic'
+  ].includes(id);
+};
+
+// Helper function to check if an effect is a color blindness type
+const isColorBlindnessEffect = (id: string) => {
+  return [
+    'protanopia',
+    'deuteranopia',
+    'tritanopia',
+    'protanomaly',
+    'deuteranomaly',
+    'tritanomaly',
+    'monochromacy'
+  ].includes(id);
+};
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
   effects,
@@ -96,6 +124,15 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     {effect.description}
                   </Typography>
                 </Box>
+
+                {(isColorBlindnessEffect(effect.id) || supportsVisualPreview(effect.id)) && (
+                  <Box sx={{ mb: 2 }}>
+                    <ConditionPreview 
+                      type={effect.id}
+                      intensity={effect.intensity}
+                    />
+                  </Box>
+                )}
                 
                 <Slider
                   value={effect.intensity * 100}

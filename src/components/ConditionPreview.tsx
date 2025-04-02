@@ -112,6 +112,192 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
     return dataUrl;
   };
 
+  // Load the source image only once
+  useEffect(() => {
+    console.log(`Loading image for condition: ${type}`);
+    // Create image element for preloading
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; // Handle CORS
+    img.src = REFERENCE_IMAGE;
+    
+    // Only set the image reference when it's fully loaded
+    img.onload = () => {
+      console.log(`Image loaded successfully for ${type}`);
+      imageRef.current = img;
+      setImageLoaded(true);
+      setDebugMessage(`Image loaded: ${REFERENCE_IMAGE}`);
+      
+      // For non-color transform conditions, we still use the original image
+      if (!isColorTransformCondition(type)) {
+        setImageSrc(REFERENCE_IMAGE);
+      } else {
+        // For color transform conditions, apply the transformation once image is loaded
+        applyColorTransformation();
+      }
+    };
+    
+    img.onerror = (e) => {
+      console.error(`Failed to load the original image for ${type}:`, e);
+      setDebugMessage(`Error loading image: ${e}`);
+      // Try fallback image
+      img.src = '/garden-flowers.jpg';
+    };
+    
+    return () => {
+      // Cleanup
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [type]); // Update when type changes to ensure proper image loading
+
+  // Smooth intensity transitions
+  useEffect(() => {
+    const transitionDuration = 300; // ms
+    const startTime = Date.now();
+    const startIntensity = currentIntensity;
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / transitionDuration, 1);
+      
+      // Easing function for smooth transition
+      const easedProgress = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      setCurrentIntensity(startIntensity + (intensity - startIntensity) * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [intensity]);
+
+  // Apply color transformation when condition type or intensity changes
+  useEffect(() => {
+    if (!isColorTransformCondition(type) || !imageLoaded) return;
+    applyColorTransformation();
+  }, [type, currentIntensity, imageLoaded]);
+
+  // Apply color transformation using canvas and color matrices
+  const applyColorTransformation = () => {
+    if (!canvasRef.current || !imageRef.current || !imageLoaded) {
+      return;
+    }
+    
+    try {
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      if (!ctx) return;
+      
+      // Make sure canvas is sized properly
+      canvas.width = imageRef.current.width || 800;
+      canvas.height = imageRef.current.height || 600;
+      
+      // Clear canvas and draw image
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(imageRef.current, 0, 0, canvas.width, canvas.height);
+      
+      // Store original image data on first run
+      if (!originalImageDataRef.current) {
+        originalImageDataRef.current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      } else {
+        // Restore original image before applying new effects
+        ctx.putImageData(originalImageDataRef.current, 0, 0);
+      }
+      
+      // Get the current image data
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      
+      // Get the appropriate matrix for the condition
+      let matrix;
+      
+      if (type === 'protanopia' || type === 'protanomaly') {
+        matrix = ColorMatrices.protanopia;
+      } else if (type === 'deuteranopia' || type === 'deuteranomaly') {
+        matrix = ColorMatrices.deuteranopia;
+      } else if (type === 'tritanopia' || type === 'tritanomaly') {
+        matrix = ColorMatrices.tritanopia;
+      } else if (type === 'monochromatic') {
+        // For monochromatic, we'll use a grayscale approach with darkening
+        for (let i = 0; i < data.length; i += 4) {
+          const gray = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+          const adjustedGray = gray * (1 - 0.7 * currentIntensity);
+          
+          // Only apply the effect based on the intensity
+          data[i] = data[i] * (1 - currentIntensity) + adjustedGray * currentIntensity;
+          data[i + 1] = data[i + 1] * (1 - currentIntensity) + adjustedGray * currentIntensity;
+          data[i + 2] = data[i + 2] * (1 - currentIntensity) + adjustedGray * currentIntensity;
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+        setImageSrc(canvas.toDataURL('image/jpeg'));
+        return;
+      } else if (type === 'monochromacy') {
+        // Complete grayscale with intensity control
+        for (let i = 0; i < data.length; i += 4) {
+          // Calculate grayscale value using standard luminance formula
+          const gray = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+          
+          // Linear interpolation between original color and grayscale based on intensity
+          data[i] = data[i] * (1 - currentIntensity) + gray * currentIntensity;
+          data[i + 1] = data[i + 1] * (1 - currentIntensity) + gray * currentIntensity;
+          data[i + 2] = data[i + 2] * (1 - currentIntensity) + gray * currentIntensity;
+        }
+        
+        ctx.putImageData(imageData, 0, 0);
+        setImageSrc(canvas.toDataURL('image/jpeg'));
+        return;
+      }
+      
+      if (!matrix) return;
+      
+      // Apply the color matrix transformation based on intensity
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        
+        // Apply the matrix transformation based on intensity
+        const newR = r * (1 - currentIntensity) + 
+          (r * matrix[0] + g * matrix[1] + b * matrix[2]) * currentIntensity;
+        const newG = g * (1 - currentIntensity) + 
+          (r * matrix[5] + g * matrix[6] + b * matrix[7]) * currentIntensity;
+        const newB = b * (1 - currentIntensity) + 
+          (r * matrix[10] + g * matrix[11] + b * matrix[12]) * currentIntensity;
+        
+        data[i] = newR;
+        data[i + 1] = newG;
+        data[i + 2] = newB;
+      }
+      
+      // Apply additional adjustments for -anomaly (partial) versions
+      if (type === 'protanomaly' || type === 'deuteranomaly' || type === 'tritanomaly') {
+        // For -anomaly conditions, reduce the effect to simulate partial color blindness
+        const anomalyFactor = 0.7;
+        for (let i = 0; i < data.length; i += 4) {
+          const origR = originalImageDataRef.current.data[i];
+          const origG = originalImageDataRef.current.data[i + 1];
+          const origB = originalImageDataRef.current.data[i + 2];
+          
+          data[i] = data[i] * anomalyFactor + origR * (1 - anomalyFactor);
+          data[i + 1] = data[i + 1] * anomalyFactor + origG * (1 - anomalyFactor);
+          data[i + 2] = data[i + 2] * anomalyFactor + origB * (1 - anomalyFactor);
+        }
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+      setImageSrc(canvas.toDataURL('image/jpeg'));
+    } catch (err) {
+      console.error("Error during color transformation:", err);
+      // Fall back to using CSS filters in case of error
+      setImageSrc(REFERENCE_IMAGE);
+    }
+  };
+
   // Add a useEffect for dynamic animation of scotoma and other dynamic conditions
   useEffect(() => {
     if (!isDynamicCondition) return;
@@ -139,8 +325,6 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
     };
   }, [type, isDynamicCondition]);
 
-  // Rest of useEffects and functions...
-  
   // Get CSS filter based on condition type and Braille Institute severity scales
   const getFilter = (type: string, intensity: number): string => {
     // Skip filter application for conditions using canvas-based transformation

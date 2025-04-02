@@ -30,6 +30,116 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
+    // Setup animation frame for dynamic effects
+    let animationFrameId: number;
+    
+    // Function to update animated overlays
+    const updateAnimatedOverlays = () => {
+      const scotoma = effects.find(e => e.id === 'scotoma');
+      const visualFloaters = effects.find(e => e.id === 'visualFloaters');
+      
+      if (scotoma?.enabled) {
+        const now = Date.now();
+        const overlayElement = document.getElementById('visual-field-overlay-scotoma');
+        if (overlayElement) {
+          overlayElement.style.background = `
+            radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+              rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
+              rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
+              rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
+              rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
+            )
+          `;
+        }
+      }
+      
+      if (visualFloaters?.enabled) {
+        const now = Date.now();
+        const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
+        
+        if (overlayElement) {
+          // Floater 1 - larger, stringy floater
+          const floaterX1 = 30 + Math.sin(now/2000 * 0.3) * 25 + Math.sin(now/2000 * 0.2) * 10;
+          const floaterY1 = 40 + Math.cos(now/2000 * 0.25) * 20;
+          // Floater 2 - medium, circular floater
+          const floaterX2 = 65 + Math.sin(now/2000 * 0.2 + 1) * 20;
+          const floaterY2 = 50 + Math.cos(now/2000 * 0.3 + 2) * 25;
+          // Floater 3 - small, quick-moving floater
+          const floaterX3 = 50 + Math.sin(now/2000 * 0.4 + 3) * 30;
+          const floaterY3 = 25 + Math.cos(now/2000 * 0.35 + 1) * 15;
+          // Floater 4 - thin, string-like floater
+          const floaterX4 = 45 + Math.sin(now/2000 * 0.15 + 2) * 15;
+          const floaterY4 = 70 + Math.cos(now/2000 * 0.2 + 3) * 10;
+          
+          overlayElement.style.background = `
+            /* String-like floater */
+            radial-gradient(ellipse 25% 8% at ${floaterX1}% ${floaterY1}%, 
+              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+              rgba(0,0,0,${0.85 * visualFloaters.intensity}) 15%,
+              rgba(0,0,0,${0.7 * visualFloaters.intensity}) 40%,
+              rgba(0,0,0,0) 80%
+            ),
+            /* Round floater */
+            radial-gradient(circle 8% at ${floaterX2}% ${floaterY2}%, 
+              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+              rgba(0,0,0,${0.85 * visualFloaters.intensity}) 40%,
+              rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+              rgba(0,0,0,0) 100%
+            ),
+            /* Small dot floater */
+            radial-gradient(circle 4% at ${floaterX3}% ${floaterY3}%, 
+              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+              rgba(0,0,0,${0.9 * visualFloaters.intensity}) 40%,
+              rgba(0,0,0,${0.7 * visualFloaters.intensity}) 70%,
+              rgba(0,0,0,0) 100%
+            ),
+            /* Thin stringy floater */
+            radial-gradient(ellipse 20% 3% at ${floaterX4}% ${floaterY4}%, 
+              rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
+              rgba(0,0,0,${0.8 * visualFloaters.intensity}) 40%,
+              rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+              rgba(0,0,0,0) 100%
+            )
+          `;
+          
+          // Ensure the overlay is visible and properly styled
+          overlayElement.style.mixBlendMode = 'multiply';
+          overlayElement.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
+          overlayElement.style.zIndex = '10';
+          overlayElement.style.pointerEvents = 'none';
+        } else {
+          // If the overlay doesn't exist, try to create it
+          const iframeContainer = document.querySelector('.visualizer-container');
+          if (iframeContainer) {
+            const newOverlay = document.createElement('div');
+            newOverlay.id = 'visual-field-overlay-visualFloaters';
+            newOverlay.style.position = 'absolute';
+            newOverlay.style.top = '0';
+            newOverlay.style.left = '0';
+            newOverlay.style.right = '0';
+            newOverlay.style.bottom = '0';
+            newOverlay.style.pointerEvents = 'none';
+            newOverlay.style.zIndex = '10';
+            newOverlay.style.mixBlendMode = 'multiply';
+            newOverlay.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
+            iframeContainer.appendChild(newOverlay);
+          }
+        }
+      }
+      
+      // Continue animation loop
+      animationFrameId = requestAnimationFrame(updateAnimatedOverlays);
+    };
+    
+    // Start animation if needed
+    const needsAnimation = effects.some(e => 
+      (e.id === 'scotoma' || e.id === 'visualFloaters') && e.enabled
+    );
+    
+    if (needsAnimation) {
+      animationFrameId = requestAnimationFrame(updateAnimatedOverlays);
+    }
+
     // Handle different input sources
     const setupMedia = async () => {
       try {
@@ -240,12 +350,115 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
           stream.getTracks().forEach(track => track.stop());
         }
       }
+      
+      // Cancel animation frame
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      
       renderer.dispose();
       if (containerRef.current?.contains(renderer.domElement)) {
         containerRef.current.removeChild(renderer.domElement);
       }
     };
   }, [inputSource, effects]);
+
+  // Get effect state changes to rerender
+  useEffect(() => {
+    // Check if we need animation
+    const visualFloaters = effects.find(e => e.id === 'visualFloaters');
+    const scotoma = effects.find(e => e.id === 'scotoma');
+    
+    const needsAnimation = 
+      (visualFloaters && visualFloaters.enabled) || 
+      (scotoma && scotoma.enabled);
+    
+    if (needsAnimation) {
+      // Start animation if not already running
+      let animationFrameId: number;
+      
+      const updateAnimatedEffects = () => {
+        // Update Visual Floaters
+        if (visualFloaters?.enabled) {
+          const now = Date.now();
+          const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
+          
+          if (overlayElement) {
+            // Floater 1 - larger, stringy floater
+            const floaterX1 = 30 + Math.sin(now/2000 * 0.3) * 25 + Math.sin(now/2000 * 0.2) * 10;
+            const floaterY1 = 40 + Math.cos(now/2000 * 0.25) * 20;
+            // Floater 2 - medium, circular floater
+            const floaterX2 = 65 + Math.sin(now/2000 * 0.2 + 1) * 20;
+            const floaterY2 = 50 + Math.cos(now/2000 * 0.3 + 2) * 25;
+            // Floater 3 - small, quick-moving floater
+            const floaterX3 = 50 + Math.sin(now/2000 * 0.4 + 3) * 30;
+            const floaterY3 = 25 + Math.cos(now/2000 * 0.35 + 1) * 15;
+            // Floater 4 - thin, string-like floater
+            const floaterX4 = 45 + Math.sin(now/2000 * 0.15 + 2) * 15;
+            const floaterY4 = 70 + Math.cos(now/2000 * 0.2 + 3) * 10;
+            
+            overlayElement.style.background = `
+              /* String-like floater */
+              radial-gradient(ellipse 25% 8% at ${floaterX1}% ${floaterY1}%, 
+                rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+                rgba(0,0,0,${0.85 * visualFloaters.intensity}) 15%,
+                rgba(0,0,0,${0.7 * visualFloaters.intensity}) 40%,
+                rgba(0,0,0,0) 80%
+              ),
+              /* Round floater */
+              radial-gradient(circle 8% at ${floaterX2}% ${floaterY2}%, 
+                rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+                rgba(0,0,0,${0.85 * visualFloaters.intensity}) 40%,
+                rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+                rgba(0,0,0,0) 100%
+              ),
+              /* Small dot floater */
+              radial-gradient(circle 4% at ${floaterX3}% ${floaterY3}%, 
+                rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+                rgba(0,0,0,${0.9 * visualFloaters.intensity}) 40%,
+                rgba(0,0,0,${0.7 * visualFloaters.intensity}) 70%,
+                rgba(0,0,0,0) 100%
+              ),
+              /* Thin stringy floater */
+              radial-gradient(ellipse 20% 3% at ${floaterX4}% ${floaterY4}%, 
+                rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
+                rgba(0,0,0,${0.8 * visualFloaters.intensity}) 40%,
+                rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+                rgba(0,0,0,0) 100%
+              )
+            `;
+            overlayElement.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
+          }
+        }
+        
+        // Update Scotoma
+        if (scotoma?.enabled) {
+          const now = Date.now();
+          const overlayElement = document.getElementById('visual-field-overlay-scotoma');
+          if (overlayElement) {
+            overlayElement.style.background = `
+              radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+                rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
+                rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
+                rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
+                rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
+              )
+            `;
+          }
+        }
+        
+        animationFrameId = requestAnimationFrame(updateAnimatedEffects);
+      };
+      
+      animationFrameId = requestAnimationFrame(updateAnimatedEffects);
+      
+      return () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
+      };
+    }
+  }, [effects]);
 
   // Calculate CSS filters based on effects
   const getEffectStyles = () => {
@@ -318,15 +531,109 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
       const visualAura = effects.find(e => e.id === 'visualAura');
       const visualAuraLeft = effects.find(e => e.id === 'visualAuraLeft');
       const visualAuraRight = effects.find(e => e.id === 'visualAuraRight');
+      const visualFloaters = effects.find(e => e.id === 'visualFloaters');
       
-      // Create overlay container if any field effects are enabled
-      if (quadrantanopia?.enabled || hemianopiaLeft?.enabled || 
-          hemianopiaRight?.enabled || scotoma?.enabled ||
-          visualAura?.enabled || visualAuraLeft?.enabled || 
-          visualAuraRight?.enabled) {
-            
+      // Get the iframe container for adding overlays
+      const iframeContainer = document.querySelector('.visualizer-container');
+      
+      // Remove all existing overlays first
+      const existingOverlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
+      existingOverlays.forEach(overlay => overlay.remove());
+      
+      // Helper function to create and add overlay
+      const createOverlay = (id: string, backgroundStyle: string, blendMode: string, opacity: string) => {
         const overlay = document.createElement('div');
-        overlay.id = 'visual-field-overlay';
+        overlay.id = id;
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.right = '0';
+        overlay.style.bottom = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.zIndex = '10';
+        overlay.style.background = backgroundStyle;
+        overlay.style.mixBlendMode = blendMode;
+        overlay.style.opacity = opacity;
+        
+        if (iframeContainer) {
+          iframeContainer.appendChild(overlay);
+        }
+      };
+      
+      // Create overlays for each enabled effect
+      if (quadrantanopia?.enabled) {
+        createOverlay(
+          'visual-field-overlay-quadrantanopia',
+          `radial-gradient(circle at 0% 100%, 
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) ${Math.max(25, 40 - quadrantanopia.intensity * 20)}%,
+            rgba(0,0,0,${0.95 * quadrantanopia.intensity}) ${Math.max(45, 60 - quadrantanopia.intensity * 20)}%,
+            rgba(0,0,0,${0.95 * quadrantanopia.intensity}) 100%
+          )`,
+          'multiply',
+          Math.min(0.95, quadrantanopia.intensity).toString()
+        );
+      }
+      
+      if (hemianopiaLeft?.enabled) {
+        createOverlay(
+          'visual-field-overlay-hemianopiaLeft',
+          `linear-gradient(to right, 
+            rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 0%, 
+            rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 45%, 
+            rgba(0,0,0,0) 50%
+          )`,
+          'multiply',
+          Math.min(0.95, hemianopiaLeft.intensity).toString()
+        );
+      }
+      
+      if (hemianopiaRight?.enabled) {
+        createOverlay(
+          'visual-field-overlay-hemianopiaRight',
+          `linear-gradient(to left, 
+            rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 0%, 
+            rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 45%, 
+            rgba(0,0,0,0) 50%
+          )`,
+          'multiply',
+          Math.min(0.95, hemianopiaRight.intensity).toString()
+        );
+      }
+      
+      if (scotoma?.enabled) {
+        const now = Date.now();
+        createOverlay(
+          'visual-field-overlay-scotoma',
+          `radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+            rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
+            rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
+            rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
+            rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
+          )`,
+          'multiply',
+          Math.min(0.95, scotoma.intensity).toString()
+        );
+      }
+      
+      if (visualFloaters?.enabled) {
+        const now = Date.now();
+        // Floater 1 - larger, stringy floater
+        const floaterX1 = 30 + Math.sin(now/2000 * 0.3) * 25 + Math.sin(now/2000 * 0.2) * 10;
+        const floaterY1 = 40 + Math.cos(now/2000 * 0.25) * 20;
+        // Floater 2 - medium, circular floater
+        const floaterX2 = 65 + Math.sin(now/2000 * 0.2 + 1) * 20;
+        const floaterY2 = 50 + Math.cos(now/2000 * 0.3 + 2) * 25;
+        // Floater 3 - small, quick-moving floater
+        const floaterX3 = 50 + Math.sin(now/2000 * 0.4 + 3) * 30;
+        const floaterY3 = 25 + Math.cos(now/2000 * 0.35 + 1) * 15;
+        // Floater 4 - thin, string-like floater
+        const floaterX4 = 45 + Math.sin(now/2000 * 0.15 + 2) * 15;
+        const floaterY4 = 70 + Math.cos(now/2000 * 0.2 + 3) * 10;
+        
+        // Create a separate overlay element specifically for visual floaters
+        const overlay = document.createElement('div');
+        overlay.id = 'visual-field-overlay-visualFloaters';
         overlay.style.position = 'absolute';
         overlay.style.top = '0';
         overlay.style.left = '0';
@@ -335,69 +642,47 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
         overlay.style.pointerEvents = 'none';
         overlay.style.zIndex = '10';
         
-        // Apply specific effect styles
-        if (quadrantanopia?.enabled) {
-          overlay.style.background = `
-            radial-gradient(circle at 0% 100%, 
-              rgba(0,0,0,0) 0%,
-              rgba(0,0,0,0) ${Math.max(25, 40 - quadrantanopia.intensity * 20)}%,
-              rgba(0,0,0,${0.95 * quadrantanopia.intensity}) ${Math.max(45, 60 - quadrantanopia.intensity * 20)}%,
-              rgba(0,0,0,${0.95 * quadrantanopia.intensity}) 100%
-            )
-          `;
-          overlay.style.mixBlendMode = 'multiply';
-          overlay.style.opacity = Math.min(0.95, quadrantanopia.intensity).toString();
-        } else if (hemianopiaLeft?.enabled) {
-          overlay.style.background = `
-            linear-gradient(to right, 
-              rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 0%, 
-              rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 45%, 
-              rgba(0,0,0,0) 50%
-            )
-          `;
-          overlay.style.mixBlendMode = 'multiply';
-          overlay.style.opacity = Math.min(0.95, hemianopiaLeft.intensity).toString();
-        } else if (hemianopiaRight?.enabled) {
-          overlay.style.background = `
-            linear-gradient(to left, 
-              rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 0%, 
-              rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 45%, 
-              rgba(0,0,0,0) 50%
-            )
-          `;
-          overlay.style.mixBlendMode = 'multiply';
-          overlay.style.opacity = Math.min(0.95, hemianopiaRight.intensity).toString();
-        } else if (scotoma?.enabled) {
-          const now = Date.now();
-          overlay.style.background = `
-            radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
-              rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
-              rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
-              rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
-              rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
-            )
-          `;
-          overlay.style.mixBlendMode = 'multiply';
-          overlay.style.opacity = Math.min(0.95, scotoma.intensity).toString();
-        }
+        // Set specific styles for visual floaters
+        overlay.style.background = `
+          /* String-like floater */
+          radial-gradient(ellipse 25% 8% at ${floaterX1}% ${floaterY1}%, 
+            rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+            rgba(0,0,0,${0.85 * visualFloaters.intensity}) 15%,
+            rgba(0,0,0,${0.7 * visualFloaters.intensity}) 40%,
+            rgba(0,0,0,0) 80%
+          ),
+          /* Round floater */
+          radial-gradient(circle 8% at ${floaterX2}% ${floaterY2}%, 
+            rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+            rgba(0,0,0,${0.85 * visualFloaters.intensity}) 40%,
+            rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+            rgba(0,0,0,0) 100%
+          ),
+          /* Small dot floater */
+          radial-gradient(circle 4% at ${floaterX3}% ${floaterY3}%, 
+            rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+            rgba(0,0,0,${0.9 * visualFloaters.intensity}) 40%,
+            rgba(0,0,0,${0.7 * visualFloaters.intensity}) 70%,
+            rgba(0,0,0,0) 100%
+          ),
+          /* Thin stringy floater */
+          radial-gradient(ellipse 20% 3% at ${floaterX4}% ${floaterY4}%, 
+            rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
+            rgba(0,0,0,${0.8 * visualFloaters.intensity}) 40%,
+            rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
+            rgba(0,0,0,0) 100%
+          )
+        `;
+        overlay.style.mixBlendMode = 'multiply';
+        overlay.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
         
         // Add overlay to the iframe container
-        const iframeContainer = document.querySelector('.visualizer-container');
         if (iframeContainer) {
-          // Remove any existing overlay
-          const existingOverlay = document.getElementById('visual-field-overlay');
-          if (existingOverlay) {
-            existingOverlay.remove();
-          }
           iframeContainer.appendChild(overlay);
         }
-      } else {
-        // Remove overlay if no effects are enabled
-        const existingOverlay = document.getElementById('visual-field-overlay');
-        if (existingOverlay) {
-          existingOverlay.remove();
-        }
       }
+      
+      // Handle additional visual effects here for visualAura, visualAuraLeft, visualAuraRight
     }
 
     return style;

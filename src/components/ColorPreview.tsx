@@ -1,15 +1,20 @@
 import React from 'react';
 import { Box, Paper, Typography, Tooltip } from '@mui/material';
+import { ConditionType } from './ConditionPreview';
 
 interface ColorPreviewProps {
-  type: 'protanopia' | 'deuteranopia' | 'tritanopia' | 'protanomaly' | 'deuteranomaly' | 'tritanomaly' | 
-        'monochromacy' | 'monochromatic' | 'cataracts' | 'glaucoma' | 'amd' | 'diabeticRetinopathy' | 
-        'astigmatism' | 'retinitisPigmentosa' | 'stargardt';
+  type: ConditionType;
   intensity: number;
 }
 
+// Default normal and affected colors to use for conditions without specific transforms
+const defaultColors = {
+  normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+  affected: ['#8A8A8A', '#8A8A8A', '#8A8A8A', '#8A8A8A', '#8A8A8A', '#8A8A8A'] // Desaturated/grayed out
+};
+
 // Color transformation matrices for different types of color blindness and vision conditions
-const colorTransforms = {
+const colorTransforms: Record<ConditionType, { normal: string[]; affected: string[] }> = {
   // Existing color blindness transformations
   protanopia: {
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
@@ -70,7 +75,64 @@ const colorTransforms = {
   },
   stargardt: {
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
-    affected: ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000'] // Central vision loss similar to AMD
+    affected: ['#7c746a', '#b5a98c', '#8c99a3', '#a89088', '#7e8c76', '#b59ba6'] 
+  },
+  // Add missing conditions with reasonable defaults
+  hemianopiaLeft: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  hemianopiaRight: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  quadrantanopia: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  scotoma: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#555555', '#555555', '#555555', '#555555', '#555555', '#555555'] // Darkened spots
+  },
+  visualAura: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'] // Brightened
+  },
+  visualAuraLeft: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'] // Brightened
+  },
+  visualAuraRight: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'] // Brightened
+  },
+  visualSnow: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#DDDDDD', '#DDDDDD', '#DDDDDD', '#DDDDDD', '#DDDDDD', '#DDDDDD'] // Light noise
+  },
+  visualFloaters: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#CCCCCC', '#CCCCCC', '#CCCCCC', '#CCCCCC', '#CCCCCC', '#CCCCCC'] // Partial obscured
+  },
+  hallucinations: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FF80FF', '#80FFFF', '#FFFF80', '#FF8080', '#80FF80', '#8080FF'] // Strange colors
+  },
+  nearSighted: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#BB5555', '#55BB55', '#5555BB', '#BBBB55', '#BB55BB', '#55BBBB'] // Blurred distant
+  },
+  farSighted: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#BB5555', '#55BB55', '#5555BB', '#BBBB55', '#BB55BB', '#55BBBB'] // Blurred close
+  },
+  diplopiaMonocular: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF']
+  },
+  diplopiaBinocular: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF']
   }
 };
 
@@ -85,7 +147,8 @@ const colorNames = [
 ];
 
 const ColorPreview: React.FC<ColorPreviewProps> = ({ type, intensity }) => {
-  const colors = colorTransforms[type];
+  // Use default colors if no specific transform exists for this type
+  const colors: { normal: string[]; affected: string[] } = colorTransforms[type] || defaultColors;
   
   // Helper function to interpolate between two colors
   const interpolateColor = (color1: string, color2: string, factor: number) => {
@@ -110,13 +173,24 @@ const ColorPreview: React.FC<ColorPreviewProps> = ({ type, intensity }) => {
       case 'monochromatic':
         return `rgba(0, 0, 0, ${intensity})`;
       case 'amd':
-      case 'stargardt':
         // Central vision loss - creates a gradient from normal to black
         return `linear-gradient(rgba(0,0,0,${intensity}), ${normalColor})`;
+      case 'stargardt':
+        // Stargardt Disease - central vision loss with color distortion
+        // At maximum intensity, shows severe but not complete vision loss
+        return `linear-gradient(
+          rgba(0,0,0,${Math.min(intensity * 0.9, 0.85)}), 
+          rgba(255, 230, 180, ${Math.min(intensity * 0.3, 0.28)}), 
+          ${affectedColor}
+        )`;
       case 'glaucoma':
-      case 'retinitisPigmentosa':
         // Peripheral vision loss - darker towards edges
         return `radial-gradient(circle at center, ${normalColor}, ${affectedColor})`;
+      case 'retinitisPigmentosa':
+        // Peripheral vision loss with a tunnel view effect, cap at 90% intensity
+        const limitedIntensity = Math.min(intensity, 0.9);
+        const adjustedAffectedColor = interpolateColor(normalColor, affectedColor, limitedIntensity);
+        return `radial-gradient(circle at center, ${normalColor}, ${adjustedAffectedColor})`;
       default:
         return interpolateColor(normalColor, affectedColor, intensity);
     }
@@ -137,7 +211,7 @@ const ColorPreview: React.FC<ColorPreviewProps> = ({ type, intensity }) => {
         justifyContent: 'space-between',
         gap: 1
       }}>
-        {colors.normal.map((normalColor, index) => {
+        {colors.normal.map((normalColor: string, index: number) => {
           const affectedColor = colors.affected[index];
           const currentColor = getAffectedColor(normalColor, affectedColor, type, intensity);
           

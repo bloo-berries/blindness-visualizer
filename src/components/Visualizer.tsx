@@ -309,6 +309,95 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
       if (filters.length > 0) {
         style.filter = filters.join(' ');
       }
+      
+      // Add visual field effects with overlays
+      const quadrantanopia = effects.find(e => e.id === 'quadrantanopia');
+      const hemianopiaLeft = effects.find(e => e.id === 'hemianopiaLeft');
+      const hemianopiaRight = effects.find(e => e.id === 'hemianopiaRight');
+      const scotoma = effects.find(e => e.id === 'scotoma');
+      const visualAura = effects.find(e => e.id === 'visualAura');
+      const visualAuraLeft = effects.find(e => e.id === 'visualAuraLeft');
+      const visualAuraRight = effects.find(e => e.id === 'visualAuraRight');
+      
+      // Create overlay container if any field effects are enabled
+      if (quadrantanopia?.enabled || hemianopiaLeft?.enabled || 
+          hemianopiaRight?.enabled || scotoma?.enabled ||
+          visualAura?.enabled || visualAuraLeft?.enabled || 
+          visualAuraRight?.enabled) {
+            
+        const overlay = document.createElement('div');
+        overlay.id = 'visual-field-overlay';
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.right = '0';
+        overlay.style.bottom = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.zIndex = '10';
+        
+        // Apply specific effect styles
+        if (quadrantanopia?.enabled) {
+          overlay.style.background = `
+            radial-gradient(circle at 0% 100%, 
+              rgba(0,0,0,0) 0%,
+              rgba(0,0,0,0) ${Math.max(25, 40 - quadrantanopia.intensity * 20)}%,
+              rgba(0,0,0,${0.95 * quadrantanopia.intensity}) ${Math.max(45, 60 - quadrantanopia.intensity * 20)}%,
+              rgba(0,0,0,${0.95 * quadrantanopia.intensity}) 100%
+            )
+          `;
+          overlay.style.mixBlendMode = 'multiply';
+          overlay.style.opacity = Math.min(0.95, quadrantanopia.intensity).toString();
+        } else if (hemianopiaLeft?.enabled) {
+          overlay.style.background = `
+            linear-gradient(to right, 
+              rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 0%, 
+              rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 45%, 
+              rgba(0,0,0,0) 50%
+            )
+          `;
+          overlay.style.mixBlendMode = 'multiply';
+          overlay.style.opacity = Math.min(0.95, hemianopiaLeft.intensity).toString();
+        } else if (hemianopiaRight?.enabled) {
+          overlay.style.background = `
+            linear-gradient(to left, 
+              rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 0%, 
+              rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 45%, 
+              rgba(0,0,0,0) 50%
+            )
+          `;
+          overlay.style.mixBlendMode = 'multiply';
+          overlay.style.opacity = Math.min(0.95, hemianopiaRight.intensity).toString();
+        } else if (scotoma?.enabled) {
+          const now = Date.now();
+          overlay.style.background = `
+            radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+              rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
+              rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
+              rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
+              rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
+            )
+          `;
+          overlay.style.mixBlendMode = 'multiply';
+          overlay.style.opacity = Math.min(0.95, scotoma.intensity).toString();
+        }
+        
+        // Add overlay to the iframe container
+        const iframeContainer = document.querySelector('.visualizer-container');
+        if (iframeContainer) {
+          // Remove any existing overlay
+          const existingOverlay = document.getElementById('visual-field-overlay');
+          if (existingOverlay) {
+            existingOverlay.remove();
+          }
+          iframeContainer.appendChild(overlay);
+        }
+      } else {
+        // Remove overlay if no effects are enabled
+        const existingOverlay = document.getElementById('visual-field-overlay');
+        if (existingOverlay) {
+          existingOverlay.remove();
+        }
+      }
     }
 
     return style;

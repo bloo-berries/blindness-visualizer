@@ -1,17 +1,31 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Box, Paper, SxProps, Theme } from '@mui/material';
 import ColorPreview from './ColorPreview';
 
+// Define and export the condition type
+export type ConditionType = 'protanopia' | 'deuteranopia' | 'tritanopia' | 'protanomaly' | 'deuteranomaly' | 'tritanomaly' | 
+      'monochromacy' | 'monochromatic' | 'cataracts' | 'glaucoma' | 'amd' | 'diabeticRetinopathy' | 
+      'astigmatism' | 'retinitisPigmentosa' | 'stargardt' | 'hemianopiaLeft' | 'hemianopiaRight' | 
+      'quadrantanopia' | 'scotoma' | 'visualAura' | 'visualAuraLeft' | 'visualAuraRight' | 'visualSnow' | 'visualFloaters' | 'hallucinations' |
+      'nearSighted' | 'farSighted' | 'diplopiaMonocular' | 'diplopiaBinocular';
+
 interface ConditionPreviewProps {
-  type: string;
+  type: ConditionType;
   intensity: number;
 }
 
 // Using a local image to avoid CORS issues
 const REFERENCE_IMAGE = '/garden-fallback.jpg'; // Swapped to use the former fallback as primary
 
-// Visual aura animation frames
+// Update visual aura overlay with a more accurate representation
 const VISUAL_AURA_OVERLAY = 'https://upload.wikimedia.org/wikipedia/commons/1/13/Migraine-aura-aka-scintillating-scotoma-anecdoteal-depiction.png';
+// We'll create CSS-based overlays for left and right auras instead of using external GIFs
+// New specific overlays for left and right auras
+const VISUAL_AURA_LEFT_OVERLAY = '/aura-left.gif'; // This path will be created later
+const VISUAL_AURA_RIGHT_OVERLAY = '/aura-right.gif'; // This path will be created later
+
+// Canvas size for visual snow animation
+const SNOW_CANVAS_SIZE = 256;
 
 // Helper function to check if condition should show color preview
 const shouldShowColorPreview = (type: string): boolean => {
@@ -21,11 +35,16 @@ const shouldShowColorPreview = (type: string): boolean => {
     'glaucoma',
     'stargardt',
     'visualAura',
+    'visualSnow',
     'astigmatism',
     'hemianopiaLeft',
     'hemianopiaRight',
     'quadrantanopia',
-    'scotoma'
+    'visualFloaters',
+    'hallucinations',
+    'scotoma',
+    'nearSighted',
+    'farSighted'
   ].includes(type);
 };
 
@@ -71,6 +90,8 @@ const ColorMatrices = {
 
 const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) => {
   const [auraPhase, setAuraPhase] = useState(0);
+  const [snowPhase, setSnowPhase] = useState(0);
+  const [visualSnowDataUrl, setVisualSnowDataUrl] = useState<string | null>(null);
   const [currentIntensity, setCurrentIntensity] = useState(intensity);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -80,6 +101,16 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
   const originalImageDataRef = useRef<ImageData | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const snowCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Indicate that these types need dynamic animation
+  const isDynamicCondition = ['scotoma', 'visualAuraLeft', 'visualAuraRight', 'visualAura', 'visualSnow', 'diabeticRetinopathy'].includes(type);
+
+  // Add a visual snow background pattern directly in the component
+  const getVisualSnowPattern = (intensity: number) => {
+    const dataUrl = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.8'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='22' cy='17' r='0.8'/%3E%3Ccircle cx='34' cy='10' r='0.9'/%3E%3Ccircle cx='48' cy='15' r='0.8'/%3E%3Ccircle cx='68' cy='18' r='0.7'/%3E%3Ccircle cx='86' cy='14' r='0.9'/%3E%3Ccircle cx='15' cy='27' r='0.6'/%3E%3Ccircle cx='28' cy='32' r='0.9'/%3E%3Ccircle cx='40' cy='28' r='0.7'/%3E%3Ccircle cx='55' cy='34' r='0.8'/%3E%3Ccircle cx='75' cy='28' r='0.7'/%3E%3Ccircle cx='88' cy='25' r='0.9'/%3E%3Ccircle cx='10' cy='45' r='1'/%3E%3Ccircle cx='25' cy='48' r='0.8'/%3E%3Ccircle cx='36' cy='42' r='0.9'/%3E%3Ccircle cx='50' cy='48' r='0.8'/%3E%3Ccircle cx='65' cy='42' r='0.7'/%3E%3Ccircle cx='80' cy='45' r='0.9'/%3E%3Ccircle cx='12' cy='65' r='0.7'/%3E%3Ccircle cx='30' cy='65' r='0.9'/%3E%3Ccircle cx='44' cy='60' r='0.7'/%3E%3Ccircle cx='58' cy='68' r='0.8'/%3E%3Ccircle cx='70' cy='62' r='0.7'/%3E%3Ccircle cx='86' cy='65' r='0.9'/%3E%3Ccircle cx='10' cy='80' r='1'/%3E%3Ccircle cx='25' cy='82' r='0.8'/%3E%3Ccircle cx='42' cy='82' r='0.9'/%3E%3Ccircle cx='55' cy='80' r='0.8'/%3E%3Ccircle cx='70' cy='82' r='0.7'/%3E%3Ccircle cx='88' cy='78' r='0.9'/%3E%3C/g%3E%3C/svg%3E")`;
+    return dataUrl;
+  };
 
   // Load the source image only once
   useEffect(() => {
@@ -267,6 +298,64 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
     }
   };
 
+  // Generate visual snow texture
+  const generateVisualSnowTexture = useCallback(() => {
+    if (!snowCanvasRef.current) return;
+    
+    const canvas = snowCanvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, SNOW_CANVAS_SIZE, SNOW_CANVAS_SIZE);
+    
+    // Create random noise pattern - enhanced for higher intensities
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, SNOW_CANVAS_SIZE, SNOW_CANVAS_SIZE);
+    
+    // Control density and appearance with intensity
+    // Base values that increase with intensity
+    const intensityFactor = Math.min(Math.max(currentIntensity, 0), 1);
+    const baseDotDensity = 0.3 + (intensityFactor * 0.3); // Higher density at higher intensity
+    const dotDensity = baseDotDensity + Math.sin(snowPhase) * 0.05;
+    const dotSize = 1.5 + (intensityFactor * 1.5); // Bigger dots at higher intensity
+    const dotSpacing = Math.max(1, 3 - intensityFactor * 1.5); // Closer dots at higher intensity
+    
+    // Add white/light gray dots with intensity-based opacity
+    const dotOpacity = 0.8 + (intensityFactor * 0.2); // Higher contrast dots at higher intensity
+    ctx.fillStyle = `rgba(255, 255, 255, ${dotOpacity})`;
+    
+    for (let y = 0; y < SNOW_CANVAS_SIZE; y += dotSpacing) {
+      for (let x = 0; x < SNOW_CANVAS_SIZE; x += dotSpacing) {
+        // Random chance to draw a dot, influenced by the phase and intensity
+        if (Math.random() < dotDensity) {
+          const jitterX = Math.random() * 2;
+          const jitterY = Math.random() * 2;
+          ctx.fillRect(x + jitterX, y + jitterY, dotSize, dotSize);
+        }
+      }
+    }
+    
+    // For higher intensities, add a second layer of larger, more sparse dots
+    if (intensityFactor > 0.5) {
+      ctx.fillStyle = `rgba(255, 255, 255, ${0.5 + intensityFactor * 0.3})`;
+      const largerDotDensity = 0.05 + (intensityFactor - 0.5) * 0.15; // Gradually increase with intensity
+      const largerDotSize = 2.5 + (intensityFactor * 2); // Bigger dots at higher intensity
+      
+      for (let y = 0; y < SNOW_CANVAS_SIZE; y += 6) {
+        for (let x = 0; x < SNOW_CANVAS_SIZE; x += 6) {
+          if (Math.random() < largerDotDensity) {
+            const jitterX = Math.random() * 3;
+            const jitterY = Math.random() * 3;
+            ctx.fillRect(x + jitterX, y + jitterY, largerDotSize, largerDotSize);
+          }
+        }
+      }
+    }
+    
+    setVisualSnowDataUrl(canvas.toDataURL('image/png'));
+  }, [snowPhase, currentIntensity]);
+
   // Optimized visual aura animation
   useEffect(() => {
     if (type === 'visualAura') {
@@ -288,10 +377,43 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
     }
   }, [type]);
 
+  // Visual snow animation
+  useEffect(() => {
+    if (type === 'visualSnow') {
+      let frameId: number;
+      let lastTime = Date.now();
+      // Adjust frame interval based on intensity - faster animation at higher intensities
+      const intensityFactor = Math.min(Math.max(intensity, 0), 1);
+      const frameInterval = Math.max(20, 50 - (intensityFactor * 30)); // ms - faster animation for higher intensity
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - lastTime;
+        if (elapsed >= frameInterval) {
+          // Faster phase changes at higher intensities
+          const phaseIncrement = 0.2 + (intensityFactor * 0.3);
+          setSnowPhase(prev => (prev + phaseIncrement) % (Math.PI * 2));
+          lastTime = currentTime;
+        }
+        frameId = requestAnimationFrame(animate);
+      };
+
+      frameId = requestAnimationFrame(animate);
+      return () => cancelAnimationFrame(frameId);
+    }
+  }, [type, intensity]);
+
+  // Generate visual snow texture when phase changes
+  useEffect(() => {
+    if (type === 'visualSnow') {
+      console.log('Generating visual snow texture, phase:', snowPhase);
+      generateVisualSnowTexture();
+    }
+  }, [type, snowPhase, generateVisualSnowTexture]);
+
   // Add animation for dynamic conditions (scotoma, visual aura, etc.)
   useEffect(() => {
     // Check if the condition type requires continuous animation
-    if (['scotoma', 'visualAura', 'diabeticRetinopathy'].includes(type)) {
+    if (['scotoma', 'visualAura', 'visualSnow', 'diabeticRetinopathy'].includes(type)) {
       const animate = () => {
         // Force a re-render to update animated overlay positions
         setCurrentIntensity(prev => {
@@ -348,12 +470,12 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           saturate(${100 + i * 20}%)
         `;
       case 'stargardt':
-        // Enhanced Stargardt Disease simulation with more severe central vision loss
+        // Enhanced Stargardt disease with more accurate central scotoma and preserved peripheral vision
         return `
           brightness(${100 - i * 70}%) 
-          contrast(${100 + i * 30}%)
+          contrast(${100 + i * 20}%)
           blur(${i * 3}px)
-          saturate(${100 - i * 50}%)
+          saturate(${100 - i * 70}%)
         `;
       case 'diabeticRetinopathy':
         // More realistic dark spots with enhanced contrast
@@ -373,29 +495,84 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           hue-rotate(${i * 5}deg)
         `;
       case 'retinitisPigmentosa':
-        // Enhanced peripheral vision loss with progressing to near-complete blindness
+        // Enhanced peripheral vision loss with progressing to severe tunnel vision
+        // Cap at 90% effect to avoid complete vision loss at maximum intensity
+        const effectIntensity = Math.min(i, 0.9);
         return `
-          brightness(${100 - i * 90}%) 
-          contrast(${100 + i * 50}%)
-          saturate(${100 - i * 80}%)
+          brightness(${100 - effectIntensity * 80}%) 
+          contrast(${100 + effectIntensity * 50}%)
+          saturate(${100 - effectIntensity * 70}%)
         `;
       case 'visualAura':
-        // Enhanced scintillating scotoma effect
+        // Enhanced scintillating scotoma animation (legacy support)
         return `
           brightness(${100 + Math.sin(auraPhase) * 15}%) 
           contrast(${100 + Math.cos(auraPhase) * 25}%)
           hue-rotate(${auraPhase * 30}deg)
           saturate(${100 + Math.sin(auraPhase) * 20}%)
         `;
+      case 'visualAuraLeft':
+        // Left-sided visual aura using CSS zigzag patterns
+        return `
+          linear-gradient(45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 60px, 
+            transparent 60px
+          ),
+          linear-gradient(-45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 60px, 
+            transparent 60px
+          )
+        `;
+      case 'visualAuraRight':
+        // Right-sided visual aura using CSS zigzag patterns
+        return `
+          linear-gradient(45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 60px, 
+            transparent 60px
+          ),
+          linear-gradient(-45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 60px, 
+            transparent 60px
+          )
+        `;
       case 'hemianopiaLeft':
+        // Left half field loss
+        return `
+          brightness(${100 - i * 20}%) 
+          contrast(${100 - i * 10}%)
+        `;
       case 'hemianopiaRight':
-        // Hemianopia filter effects - slight darkening and reduced contrast
+        // Right half field loss
         return `
           brightness(${100 - i * 20}%) 
           contrast(${100 - i * 10}%)
         `;
       case 'quadrantanopia':
-        // Quadrantanopia filter effects - similar to hemianopia but less intense
+        // Upper right quadrant loss (most common form)
         return `
           brightness(${100 - i * 15}%) 
           contrast(${100 - i * 5}%)
@@ -406,6 +583,28 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           brightness(${100 - i * 20}%) 
           contrast(${100 + i * 10}%)
           blur(${i * 1}px)
+        `;
+      case 'visualSnow':
+        // Visual snow effect with stronger intensity-based adjustments
+        return `
+          brightness(${100 + i * 10}%) 
+          contrast(${100 + i * 20}%)
+          saturate(${100 - i * 15}%)
+          url('/noise-pattern.svg#noise')
+        `;
+      case 'diplopiaMonocular':
+        // Monocular diplopia - ghosting effect in one eye
+        return `
+          brightness(${100 + i * 10}%) 
+          contrast(${100 + i * 15}%)
+          saturate(${100 + i * 10}%)
+        `;
+      case 'diplopiaBinocular':
+        // Binocular diplopia - double vision effect
+        return `
+          brightness(${100 + i * 5}%) 
+          contrast(${100 + i * 10}%)
+          saturate(${100 + i * 5}%)
         `;
       default:
         return '';
@@ -441,17 +640,21 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           mixBlendMode: 'multiply'
         };
       case 'stargardt':
-        // Enhanced Stargardt disease with more severe central vision loss progressing to near-complete blindness
+        // Enhanced Stargardt disease with more accurate central scotoma and preserved peripheral vision
+        // At maximum intensity (100%), shows severe vision loss comparable to 95% intensity
         return {
           ...baseStyle,
           background: `
             radial-gradient(circle at center, 
-              rgba(0,0,0,${0.95 * i}) ${Math.max(0, 20 - i * 5)}%, 
-              rgba(0,0,0,${0.85 * i}) ${Math.max(25, 50 - i * 10)}%,
-              rgba(0,0,0,${0.5 * i}) ${Math.max(50, 80 - i * 10)}%,
-              rgba(0,0,0,0) 95%
+              rgba(0,0,0,${0.95 * i}) ${Math.max(0, 10 - i * 5)}%, 
+              rgba(0,0,0,${0.9 * i}) ${Math.max(10, 20 - i * 10)}%,
+              rgba(0,0,0,${0.85 * i}) ${Math.max(20, 40 - i * 20)}%,
+              rgba(0,0,0,${0.8 * i}) ${Math.max(40, 70 - i * 30)}%,
+              rgba(0,0,0,${Math.min(0.7 * i, 0.67)}) 80%
             )
           `,
+          // Add a slight yellow/brown tint to simulate the color distortion commonly seen in Stargardt
+          boxShadow: `inset 0 0 ${100 * i}px ${50 * i}px rgba(255, 230, 180, ${0.3 * i})`,
           mixBlendMode: 'multiply'
         };
       case 'glaucoma':
@@ -467,15 +670,17 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           mixBlendMode: 'multiply'
         };
       case 'retinitisPigmentosa':
-        // Enhanced peripheral vision loss with extreme narrowing at high intensities - near complete blindness at 100%
+        // Enhanced peripheral vision loss with severe tunnel vision but some central vision preserved
+        // Cap at 90% effect to avoid near-complete blackout at maximum intensity
+        const tunnelIntensity = Math.min(i, 0.9);
         return {
           ...baseStyle,
           background: `
             radial-gradient(circle at center, 
-              rgba(0,0,0,0) ${Math.max(0, 20 - i * 18)}%, 
-              rgba(0,0,0,${0.8 * i}) ${Math.max(5, 25 - i * 20)}%,
-              rgba(0,0,0,${0.95 * i}) ${Math.max(10, 35 - i * 20)}%,
-              rgba(0,0,0,${0.98 * i}) 100%
+              rgba(0,0,0,0) ${Math.max(0, 20 - tunnelIntensity * 18)}%, 
+              rgba(0,0,0,${0.8 * tunnelIntensity}) ${Math.max(5, 25 - tunnelIntensity * 20)}%,
+              rgba(0,0,0,${0.9 * tunnelIntensity}) ${Math.max(10, 35 - tunnelIntensity * 20)}%,
+              rgba(0,0,0,${0.92 * tunnelIntensity}) 100%
             )
           `,
           mixBlendMode: 'multiply'
@@ -535,15 +740,80 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           mixBlendMode: 'multiply'
         };
       case 'visualAura':
-        // Enhanced scintillating scotoma animation
+        // Enhanced scintillating scotoma animation (legacy support)
         return {
           ...baseStyle,
           background: `url(${VISUAL_AURA_OVERLAY})`,
           backgroundSize: 'cover',
           opacity: i * 0.7,
           animation: 'scintillate 2s infinite',
+          mixBlendMode: 'screen'
+        };
+      case 'visualAuraLeft':
+        // Left-sided visual aura using CSS zigzag patterns
+        return {
+          ...baseStyle,
+          background: `
+            linear-gradient(45deg, 
+              transparent 15px, 
+              rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 15px, 
+              rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 30px, 
+              transparent 30px, 
+              transparent 45px,
+              rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 45px, 
+              rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 60px, 
+              transparent 60px
+            ),
+            linear-gradient(-45deg, 
+              transparent 15px, 
+              rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 15px, 
+              rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 30px, 
+              transparent 30px, 
+              transparent 45px,
+              rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 45px, 
+              rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 60px, 
+              transparent 60px
+            )`,
+          backgroundSize: '60px 60px',
+          backgroundPosition: 'left center',
+          backgroundRepeat: 'repeat-y',
+          clipPath: 'polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)',
+          opacity: 0.9,
           mixBlendMode: 'screen',
-          transform: `rotate(${auraPhase * 30}deg) scale(${1 + Math.sin(auraPhase) * 0.08})`
+          animation: 'scintillateLeft 5s infinite'
+        };
+      case 'visualAuraRight':
+        // Right-sided visual aura using CSS zigzag patterns
+        return {
+          ...baseStyle,
+          background: `
+          linear-gradient(45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.5 * i * (1 + Math.sin(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.7 * i * (1 + Math.sin(auraPhase))}) 60px, 
+            transparent 60px
+          ),
+          linear-gradient(-45deg, 
+            transparent 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 15px, 
+            rgba(255, 255, 255, ${0.6 * i * (1 + Math.cos(auraPhase))}) 30px, 
+            transparent 30px, 
+            transparent 45px,
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 45px, 
+            rgba(255, 255, 255, ${0.8 * i * (1 + Math.cos(auraPhase))}) 60px, 
+            transparent 60px
+          )`,
+          backgroundSize: '60px 60px',
+          backgroundPosition: 'right center',
+          backgroundRepeat: 'repeat-y',
+          clipPath: 'polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)',
+          opacity: 0.9,
+          mixBlendMode: 'screen',
+          animation: 'scintillateRight 5s infinite'
         };
       case 'astigmatism':
         // Enhanced astigmatism simulation with light streaking, starburst, and lens flare effects
@@ -656,6 +926,53 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           mixBlendMode: 'multiply',
           opacity: Math.min(0.95, i) // Limit maximum opacity to allow some visibility
         };
+      case 'visualSnow':
+        // Enhanced visual snow overlay using SVG-based noise pattern with intensity-based parameters
+        // Dynamically adjust the fractalNoise parameters based on intensity
+        const baseFreq = 0.65 + (i * 0.2); // Increase noise frequency with intensity
+        const numOctaves = Math.round(3 + (i * 2)); // More noise detail at higher intensities
+        const snowOpacity = 0.7 + (i * 0.25); // More visible at higher intensities (max 0.95)
+        
+        return {
+          ...baseStyle,
+          background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='${baseFreq}' numOctaves='${numOctaves}' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px 200px',
+          opacity: Math.min(snowOpacity, 0.95), // Cap at 0.95 for visibility
+          mixBlendMode: i > 0.6 ? 'soft-light' : 'overlay', // Stronger blend mode at higher intensities
+          animation: 'visualSnowAnimation 15s linear infinite',
+          // Add a second layer of noise for higher intensities
+          ...(i > 0.5 && {
+            boxShadow: `inset 0 0 0 2000px rgba(255, 255, 255, ${0.1 * i})`,
+          })
+        };
+      case 'diplopiaMonocular':
+        // Monocular diplopia - ghosting effect with slight offset
+        return {
+          ...baseStyle,
+          background: `
+            linear-gradient(
+              rgba(255, 255, 255, ${0.3 * i}),
+              rgba(255, 255, 255, ${0.3 * i})
+            )
+          `,
+          transform: `translateX(${i * 10}px)`,
+          mixBlendMode: 'screen',
+          opacity: Math.min(0.7, i)
+        };
+      case 'diplopiaBinocular':
+        // Binocular diplopia - double vision with horizontal separation
+        return {
+          ...baseStyle,
+          background: `
+            linear-gradient(
+              rgba(255, 255, 255, ${0.4 * i}),
+              rgba(255, 255, 255, ${0.4 * i})
+            )
+          `,
+          transform: `translateX(${i * 20}px)`,
+          mixBlendMode: 'screen',
+          opacity: Math.min(0.8, i)
+        };
       default:
         return baseStyle;
     }
@@ -663,7 +980,6 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
 
   // Memoize filter and overlay styles to prevent unnecessary recalculations, 
   // but allow dynamic updates for animated conditions
-  const isDynamicCondition = ['scotoma', 'visualAura', 'diabeticRetinopathy'].includes(type);
   const filterStyle = React.useMemo(
     () => getFilter(type, currentIntensity), 
     [type, currentIntensity, isDynamicCondition ? Date.now() : null]
@@ -688,6 +1004,13 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           '0%': { filter: 'hue-rotate(0deg) brightness(1)' },
           '50%': { filter: 'hue-rotate(180deg) brightness(1.2)' },
           '100%': { filter: 'hue-rotate(360deg) brightness(1)' }
+        },
+        '@keyframes visualSnowAnimation': {
+          '0%': { backgroundPosition: '0% 0%', opacity: 1 },
+          '25%': { backgroundPosition: '100% 0%', opacity: 1.05 },
+          '50%': { backgroundPosition: '100% 100%', opacity: 1 },
+          '75%': { backgroundPosition: '0% 100%', opacity: 0.95 },
+          '100%': { backgroundPosition: '0% 0%', opacity: 1 }
         }
       }}
     >
@@ -701,6 +1024,14 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
       <canvas 
         ref={canvasRef} 
         style={{ display: 'none' }} 
+      />
+      
+      {/* Hidden canvas for visual snow generation */}
+      <canvas
+        ref={snowCanvasRef}
+        width={SNOW_CANVAS_SIZE}
+        height={SNOW_CANVAS_SIZE}
+        style={{ display: 'none' }}
       />
 
       <Box 
@@ -775,13 +1106,6 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           />
         )}
       </Box>
-
-      {/* Debug output - Only displayed during development */}
-      {debugMessage && (
-        <Box sx={{ mt: 1, fontSize: '10px', color: 'text.secondary' }}>
-          {debugMessage}
-        </Box>
-      )}
     </Paper>
   );
 };

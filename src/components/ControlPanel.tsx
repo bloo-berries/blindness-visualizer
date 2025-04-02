@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
-  Card,
-  CardContent,
   Typography,
   Switch,
   Slider,
-  Grid,
+  Paper,
   Tooltip,
   IconButton,
   FormControlLabel,
-  Button
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Chip
 } from '@mui/material';
-import { Info } from '@mui/icons-material';
+import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../App';
 import ConditionPreview, { ConditionType } from './ConditionPreview';
 
@@ -22,69 +27,6 @@ interface ControlPanelProps {
   onIntensityChange: (id: string, intensity: number) => void;
   onDeselectAll: () => void;
 }
-
-// Helper function to check if an effect supports visual preview
-const supportsVisualPreview = (id: string) => {
-  // All conditions should show a preview
-  return true;
-  
-  // Previously limited to:
-  // return [
-  //   'cataracts',
-  //   'glaucoma',
-  //   'amd',
-  //   'diabeticRetinopathy',
-  //   'astigmatism',
-  //   'retinitisPigmentosa',
-  //   'stargardt',
-  //   'monochromatic'
-  // ].includes(id);
-};
-
-// Helper function to check if an effect is a color blindness type
-const isColorBlindnessEffect = (id: string) => {
-  return [
-    'protanopia',
-    'deuteranopia',
-    'tritanopia',
-    'protanomaly',
-    'deuteranomaly',
-    'tritanomaly',
-    'monochromacy'
-  ].includes(id);
-};
-
-const conditionDescriptions: Record<ConditionType, string> = {
-  protanopia: "Red color blindness - inability to perceive red light",
-  deuteranopia: "Green color blindness - inability to perceive green light",
-  tritanopia: "Blue color blindness - inability to perceive blue light",
-  protanomaly: "Red color weakness - reduced ability to perceive red light",
-  deuteranomaly: "Green color weakness - reduced ability to perceive green light",
-  tritanomaly: "Blue color weakness - reduced ability to perceive blue light",
-  monochromacy: "Complete color blindness - seeing only in shades of gray",
-  monochromatic: "Partial color blindness - seeing only in shades of one color",
-  cataracts: "Clouding of the eye's lens, causing blurry vision and glare sensitivity",
-  glaucoma: "Damage to the optic nerve, leading to peripheral vision loss",
-  amd: "Age-related macular degeneration - central vision loss",
-  diabeticRetinopathy: "Diabetes-related damage to the retina's blood vessels",
-  astigmatism: "Irregular corneal shape causing blurred vision at all distances",
-  retinitisPigmentosa: "Genetic disorder causing progressive vision loss",
-  stargardt: "Genetic disorder causing central vision loss",
-  hemianopiaLeft: "Loss of the left half of the visual field",
-  hemianopiaRight: "Loss of the right half of the visual field",
-  quadrantanopia: "Loss of a quarter of the visual field",
-  scotoma: "Blind spot in the visual field",
-  visualAura: "Legacy visual disturbances often associated with migraines",
-  visualAuraLeft: "Visual disturbances with zigzag patterns in the left visual field, often preceding migraines. Appears as shimmering lights that may expand from the center toward the left periphery.",
-  visualAuraRight: "Visual disturbances with zigzag patterns in the right visual field, often preceding migraines. Appears as shimmering lights that may expand from the center toward the right periphery.",
-  visualSnow: "Static-like visual disturbance across the entire visual field",
-  visualFloaters: "Small spots or strands floating in the visual field",
-  hallucinations: "Seeing things that aren't there",
-  nearSighted: "Difficulty seeing distant objects clearly",
-  farSighted: "Difficulty seeing nearby objects clearly",
-  diplopiaMonocular: "Monocular diplopia (double vision in one eye) - A condition where you see double images with one eye closed. This is often caused by eye conditions like astigmatism, cataracts, or corneal irregularities.",
-  diplopiaBinocular: "Binocular diplopia (double vision in both eyes) - A condition where you see double images only when both eyes are open. This is often caused by misalignment of the eyes or neurological conditions."
-};
 
 const conditionCategories: Record<string, ConditionType[]> = {
   "Visual Field Loss": ['hemianopiaLeft', 'hemianopiaRight', 'quadrantanopia', 'scotoma'],
@@ -109,6 +51,37 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     return { category, effects: categoryEffects };
   }).filter(({ effects }) => effects.length > 0);
 
+  // State for highlighted effect in the list (for UI indication)
+  const [highlightedEffect, setHighlightedEffect] = useState<VisualEffect | null>(
+    effects.find(effect => effect.enabled) || null
+  );
+
+  // Get all enabled effects for the combined preview
+  const enabledEffects = effects.filter(effect => effect.enabled);
+
+  // Handler for when an effect is clicked in the list
+  const handleEffectClick = (effect: VisualEffect) => {
+    setHighlightedEffect(effect);
+  };
+
+  // Handler that combines toggling and highlighting an effect
+  const handleToggleAndSelect = (effect: VisualEffect, e: React.SyntheticEvent) => {
+    // Stop propagation to prevent triggering the ListItem click
+    e.stopPropagation();
+    
+    // Toggle the effect
+    onToggle(effect.id);
+    
+    // If we're enabling an effect, highlight it
+    const isCurrentlyEnabled = effect.enabled;
+    if (!isCurrentlyEnabled) {
+      setHighlightedEffect(effect);
+    } 
+  };
+
+  // Get enabled effects count for display
+  const enabledEffectsCount = enabledEffects.length;
+
   return (
     <Box 
       role="region" 
@@ -131,101 +104,207 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
         </Button>
       </Box>
       
-      {effectsByCategory.map(({ category, effects }) => (
-        <Box key={category} sx={{ mb: 4 }}>
-          <Typography 
-            variant="h6" 
-            component="h3"
-            sx={{ mb: 2, fontWeight: 'bold', fontSize: '1.3rem' }}
-            id={`${category.toLowerCase().replace(/\s+/g, '-')}-heading`}
-          >
-            {category}
-          </Typography>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+        {/* Left side: List of vision conditions */}
+        <Box sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '400px', md: '600px' } }}>
+          {enabledEffectsCount > 0 && (
+            <Chip 
+              label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
+              color="primary"
+              sx={{ mb: 2 }}
+            />
+          )}
           
-          <Grid container spacing={3}>
-            {effects.map(effect => (
-              <Grid item xs={12} sm={6} key={effect.id}>
-                <Card>
-                  <CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Typography 
-                        variant="h6" 
-                        component="div"
-                        id={`${effect.id}-label`}
-                      >
-                        {effect.name}
-                      </Typography>
-                      <Tooltip title={effect.description}>
-                        <IconButton 
-                          size="small" 
-                          sx={{ ml: 1 }}
-                          aria-label={`Learn more about ${effect.name}`}
-                        >
-                          <Info />
-                        </IconButton>
-                      </Tooltip>
-                      
-                      <FormControlLabel
-                        control={
-                          <Switch
-                            checked={effect.enabled}
-                            onChange={() => onToggle(effect.id)}
-                            inputProps={{ 
-                              'aria-label': `Toggle ${effect.name}`,
-                              'aria-describedby': `${effect.id}-description`
-                            }}
-                          />
-                        }
-                        label={`Enable ${effect.name}`}
-                        labelPlacement="end"
+          {effectsByCategory.map(({ category, effects }) => (
+            <Accordion key={category} defaultExpanded>
+              <AccordionSummary 
+                expandIcon={<ExpandMore />}
+                aria-controls={`${category}-content`}
+                id={`${category}-header`}
+              >
+                <Typography 
+                  variant="subtitle1" 
+                  component="h3"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  {category}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List dense>
+                  {effects.map(effect => (
+                    <React.Fragment key={effect.id}>
+                      <ListItem 
+                        button 
+                        onClick={() => handleEffectClick(effect)}
+                        selected={highlightedEffect?.id === effect.id}
                         sx={{ 
-                          ml: 'auto',
-                          '.MuiFormControlLabel-label': { 
-                            position: 'absolute', 
-                            width: '1px', 
-                            height: '1px',
-                            padding: 0,
-                            margin: '-1px',
-                            overflow: 'hidden',
-                            clip: 'rect(0, 0, 0, 0)',
-                            whiteSpace: 'nowrap',
-                            border: 0
+                          borderRadius: 1,
+                          mb: 1,
+                          bgcolor: effect.enabled ? 'rgba(33, 150, 243, 0.08)' : 'transparent',
+                          '&.Mui-selected': {
+                            bgcolor: 'rgba(33, 150, 243, 0.15)',
                           }
                         }}
-                      />
-                    </Box>
-                    
-                    <Box id={`${effect.id}-description`}>
-                      <Typography variant="body2" sx={{ mb: 2 }}>
-                        {effect.description}
-                      </Typography>
-                    </Box>
-
-                    <Box sx={{ mb: 2 }}>
+                      >
+                        <FormControlLabel
+                          control={
+                            <Switch
+                              checked={effect.enabled}
+                              onChange={(e) => handleToggleAndSelect(effect, e)}
+                              onClick={(e) => e.stopPropagation()}
+                              inputProps={{ 
+                                'aria-label': `Toggle ${effect.name}`,
+                                'aria-describedby': `${effect.id}-description`
+                              }}
+                            />
+                          }
+                          label=""
+                          sx={{ mr: 0 }}
+                        />
+                        <ListItemText 
+                          primary={effect.name}
+                          secondary={
+                            effect.enabled && (
+                              <Slider
+                                size="small"
+                                value={effect.intensity * 100}
+                                onChange={(_, value) => 
+                                  onIntensityChange(effect.id, (value as number) / 100)
+                                }
+                                valueLabelDisplay="auto"
+                                valueLabelFormat={value => `${value}%`}
+                                aria-label={`Adjust ${effect.name} intensity`}
+                                aria-valuetext={`${effect.intensity * 100}%`}
+                                sx={{ mt: 1, width: '90%' }}
+                              />
+                            )
+                          }
+                          secondaryTypographyProps={{
+                            component: 'div'
+                          }}
+                        />
+                        <Tooltip title={effect.description}>
+                          <IconButton 
+                            size="small"
+                            aria-label={`Learn more about ${effect.name}`}
+                          >
+                            <Info />
+                          </IconButton>
+                        </Tooltip>
+                      </ListItem>
+                    </React.Fragment>
+                  ))}
+                </List>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
+        
+        {/* Right side: Preview image */}
+        <Box 
+          sx={{ 
+            flex: '1', 
+            position: 'sticky', 
+            top: 24,
+            display: 'flex', 
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
+          <Paper 
+            elevation={3} 
+            sx={{ 
+              p: 2, 
+              width: '100%', 
+              height: '100%', 
+              minHeight: '400px',
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              {enabledEffectsCount > 0 
+                ? enabledEffectsCount > 1 
+                  ? `Combined Vision Preview (${enabledEffectsCount} conditions)` 
+                  : highlightedEffect?.name || enabledEffects[0].name
+                : 'Vision Preview'
+              }
+            </Typography>
+            
+            {highlightedEffect && (
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                {highlightedEffect.description}
+              </Typography>
+            )}
+            
+            <Box 
+              sx={{ 
+                flex: 1,
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                overflow: 'hidden',
+                borderRadius: 1,
+                position: 'relative'
+              }}
+            >
+              {enabledEffectsCount > 0 ? (
+                <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+                  {/* Base image */}
+                  <Box 
+                    component="img" 
+                    src="/garden-fallback.jpg" 
+                    alt="Base reference image"
+                    sx={{ 
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      borderRadius: 1
+                    }}
+                  />
+                  
+                  {/* Stack all enabled conditions */}
+                  {enabledEffects.map(effect => (
+                    <Box 
+                      key={effect.id}
+                      sx={{ 
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1 + enabledEffects.indexOf(effect)
+                      }}
+                    >
                       <ConditionPreview 
                         type={effect.id as ConditionType}
                         intensity={effect.intensity}
                       />
                     </Box>
-                    
-                    <Slider
-                      value={effect.intensity * 100}
-                      onChange={(_, value) => 
-                        onIntensityChange(effect.id, (value as number) / 100)
-                      }
-                      disabled={!effect.enabled}
-                      valueLabelDisplay="auto"
-                      valueLabelFormat={value => `${value}%`}
-                      aria-label={`Adjust ${effect.name} intensity`}
-                      aria-valuetext={`${effect.intensity * 100}%`}
-                    />
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+                  ))}
+                </Box>
+              ) : (
+                <Box 
+                  component="img" 
+                  src="/garden-fallback.jpg" 
+                  alt="Normal vision reference image"
+                  sx={{ 
+                    maxWidth: '100%', 
+                    maxHeight: '100%', 
+                    objectFit: 'contain',
+                    borderRadius: 1
+                  }}
+                />
+              )}
+            </Box>
+          </Paper>
         </Box>
-      ))}
+      </Box>
     </Box>
   );
 };

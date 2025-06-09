@@ -270,9 +270,9 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
       case 'amd':
         renderStyles.background = `
           radial-gradient(circle at center, 
-            rgba(0,0,0,${0.9 * i}) ${Math.max(0, 15 - i * 10)}%, 
-            rgba(0,0,0,${0.7 * i}) ${Math.max(25, 40 - i * 15)}%,
-            rgba(0,0,0,0) 60%
+            rgba(0,0,0,${0.9 * i * 1.4}) ${Math.max(0, 15 - i * 14)}%, 
+            rgba(0,0,0,${0.7 * i * 1.4}) ${Math.max(25, 40 - i * 21)}%,
+            rgba(0,0,0,0) 84%
           )
         `;
         break;
@@ -420,19 +420,21 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           backgroundColor: 'transparent',
         }}
       >
-        {/* Effect Overlay - Applied for all non-color-transform conditions */}
-        {!isColorTransformCondition(type) && (
-          <Box
-            sx={renderStyles}
-          />
-        )}
-
-        {/* Transformed Image - Only for color transform conditions */}
-        {isColorTransformCondition(type) && imageSrc && (
+        {/* Image and overlay are both absolutely positioned and clipped to this container */}
+        <Box
+          sx={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            borderRadius: 1,
+          }}
+        >
+          {/* Base image always rendered */}
           <Box
             component="img"
-            src={imageSrc}
-            alt={`${type} vision simulation`}
+            src={REFERENCE_IMAGE}
+            alt="Base reference image"
             sx={{
               position: 'absolute',
               top: 0,
@@ -440,11 +442,45 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              zIndex: getLayerPriority(type),
-              mixBlendMode: 'normal',
+              borderRadius: 1,
+              zIndex: 1,
             }}
           />
-        )}
+          {/* Effect Overlay - Applied for all non-color-transform conditions */}
+          {!isColorTransformCondition(type) && (
+            <Box
+              sx={{
+                ...renderStyles,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                overflow: 'hidden',
+                borderRadius: 1,
+                zIndex: 2,
+              }}
+            />
+          )}
+          {/* Transformed Image - Only for color transform conditions */}
+          {isColorTransformCondition(type) && imageSrc && (
+            <Box
+              component="img"
+              src={imageSrc}
+              alt={`${type} vision simulation`}
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: 1,
+                zIndex: 2,
+              }}
+            />
+          )}
+        </Box>
       </Box>
     </Paper>
   );

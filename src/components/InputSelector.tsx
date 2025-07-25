@@ -13,7 +13,7 @@ import {
   Image,
   YouTube
 } from '@mui/icons-material';
-import { InputSource } from '../App';
+import { InputSource } from './VisionSimulator';
 
 interface InputSelectorProps {
   currentSource: InputSource;

@@ -216,6 +216,32 @@ const FamousBlindPeople: React.FC = () => {
     setSelectedPerson(null);
   };
 
+  const handleExperienceSimulation = (personId: string) => {
+    const person = personData[personId];
+    // Map simulation types to actual condition IDs
+    const simulationMap: Record<string, string[]> = {
+      'glaucoma-halos progressive-loss': ['glaucoma', 'cataracts'],
+      'complete-blindness': ['monochromatic'],
+      'tunnel-vision glaucoma-halos': ['glaucoma', 'cataracts'],
+      'progressive-loss tunnel-vision': ['glaucoma', 'monochromatic'],
+      'nmo-blur': ['cataracts', 'astigmatism'],
+      'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'monochromatic'],
+      'central-scotoma metamorphopsia': ['stargardt', 'amd'],
+      'central-scotoma progressive-loss': ['stargardt', 'amd']
+    };
+    
+    const conditions = simulationMap[person.simulation] || ['glaucoma'];
+    
+    // Navigate to simulator with pre-configured conditions
+    navigate('/simulator', { 
+      state: { 
+        preconfiguredConditions: conditions,
+        personName: person.name,
+        personCondition: person.condition
+      }
+    });
+  };
+
   const clearFilters = () => {
     setSearchTerm('');
     setCategoryFilter('');
@@ -227,20 +253,52 @@ const FamousBlindPeople: React.FC = () => {
   };
 
   const getPersonImage = (personId: string) => {
-    // For now, using placeholder images. In a real implementation, you'd import the actual images
-    return `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
+    // Map person IDs to actual image files
+    const imageMap: Record<string, string> = {
+      milton: '/images/people/john-milton.jpg',
+      braille: '/images/people/louis-Braille.jpg',
+      galileo: '/images/people/Galileo-Galilei.jpg',
+      ray: '/images/people/ray-charles.jpg',
+      stevie: '/images/people/stevie-wonder.jpg',
+      helen: '/images/people/hellen-keller.jpg',
+      bocelli: '/images/people/Andrea-Bocelli.jpg',
+      christine: '/images/people/christine-ha.webp',
+      ved: '/images/people/Ved-Mehta.png',
+      erik: '/images/people/Erik-Weihenmayer.webp',
+      marla: '/images/people/Marla-Runyan.webp',
+      mona: '/images/people/Mona-Minkara.webp',
+      joshua: '/images/people/Joshua-Miele.webp',
+      lucy: '/images/people/Lucy-Edwards.webp',
+      paterson: '/images/people/David-Paterson.webp'
+    };
+    
+    return imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
   };
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
-      <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
           Visual Impairment Simulator
         </Typography>
-        <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 6, color: 'text.secondary' }}>
+        <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 3, color: 'text.secondary' }}>
           Famous Blind & Visually Impaired People
+        </Typography>
+        <Typography 
+          variant="body1" 
+          align="center" 
+          sx={{ 
+            mb: 6, 
+            color: 'text.primary',
+            maxWidth: '800px',
+            mx: 'auto',
+            lineHeight: 1.6,
+            fontWeight: 400
+          }}
+        >
+          Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history, from historical figures to contemporary icons.
         </Typography>
 
         {/* Search and Filter Section */}
@@ -425,7 +483,13 @@ const FamousBlindPeople: React.FC = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleCloseDialog}>Close</Button>
-              <Button variant="contained" onClick={handleCloseDialog}>
+              <Button 
+                variant="contained" 
+                onClick={() => {
+                  handleExperienceSimulation(selectedPerson);
+                  handleCloseDialog();
+                }}
+              >
                 Experience Simulation
               </Button>
             </DialogActions>

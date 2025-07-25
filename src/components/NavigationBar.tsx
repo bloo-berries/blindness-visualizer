@@ -46,9 +46,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       position="fixed" 
       elevation={0}
       sx={{
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backgroundColor: '#1e293b',
         backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid #e2e8f0',
+        borderBottom: '1px solid #334155',
         zIndex: 1200,
       }}
     >
@@ -56,21 +56,43 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         <Toolbar sx={{ px: { xs: 0 } }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mr: 3 }}>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                mr: 3,
+                cursor: 'pointer',
+                '&:hover': {
+                  opacity: 0.8,
+                },
+                transition: 'opacity 0.2s ease-in-out'
+              }}
+              onClick={handleHomeClick}
+              role="button"
+              tabIndex={0}
+              aria-label="Navigate to home page"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleHomeClick();
+                }
+              }}
+            >
               <VisibilityIcon 
                 sx={{ 
                   color: 'primary.main', 
-                  fontSize: 28, 
-                  mr: 1 
+                  fontSize: 36, 
+                  mr: 1.5 
                 }} 
               />
               <Typography 
-                variant="h6" 
+                variant="h5" 
                 component="div" 
                 sx={{ 
-                  fontWeight: 700,
-                  color: 'text.primary',
-                  fontSize: '1.25rem'
+                  fontWeight: 800,
+                  color: 'white',
+                  fontSize: '1.5rem',
+                  letterSpacing: '-0.02em'
                 }}
               >
                 VisionSim
@@ -92,13 +114,21 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   key={item.label}
                   color="inherit"
                   sx={{
-                    color: 'text.secondary',
-                    fontWeight: 500,
-                    fontSize: '0.875rem',
+                    color: 'white',
+                    fontWeight: 600,
+                    fontSize: '0.95rem',
+                    textTransform: 'none',
+                    padding: '8px 16px',
+                    borderRadius: '6px',
                     '&:hover': {
-                      color: 'primary.main',
-                      backgroundColor: 'transparent',
-                    }
+                      color: '#60a5fa',
+                      backgroundColor: 'rgba(96, 165, 250, 0.15)',
+                      transform: 'translateY(-1px)',
+                    },
+                    '&:active': {
+                      transform: 'translateY(0)',
+                    },
+                    transition: 'all 0.2s ease-in-out'
                   }}
                 >
                   {item.label}
@@ -145,13 +175,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               size="large"
               sx={{
                 ml: 2,
-                color: 'text.secondary',
+                color: 'white',
                 width: '40px',
                 height: '40px',
                 '&:hover': {
-                  color: 'primary.main',
-                  backgroundColor: 'rgba(30, 58, 138, 0.04)',
+                  color: '#60a5fa',
+                  backgroundColor: 'rgba(96, 165, 250, 0.15)',
+                  transform: 'scale(1.05)',
                 },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
               <GitHubIcon fontSize="medium" />

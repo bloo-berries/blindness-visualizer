@@ -62,29 +62,18 @@ const HomePage: React.FC = () => {
             </Typography>
             <Typography 
               variant="h5" 
-              color="text.secondary" 
+              color="text.primary" 
               sx={{ 
                 maxWidth: '600px', 
                 mx: 'auto',
-                fontWeight: 400,
+                fontWeight: 600,
                 lineHeight: 1.6,
                 mb: 2
               }}
             >
               Experience visual impairments firsthand to build empathy and create more accessible digital experiences
             </Typography>
-            <Typography 
-              variant="body2" 
-              color="text.secondary" 
-              sx={{ 
-                maxWidth: '600px', 
-                mx: 'auto',
-                fontWeight: 400,
-                lineHeight: 1.6
-              }}
-            >
-              Choose your path to explore vision conditions and their impact on daily life
-            </Typography>
+
           </Box>
 
           {/* Main Options */}
@@ -120,10 +109,10 @@ const HomePage: React.FC = () => {
                     </Typography>
                     <Typography 
                       variant="body1" 
-                      color="text.secondary" 
+                      color="text.primary" 
                       sx={{ mb: 3, lineHeight: 1.6 }}
                     >
-                      Experience and understand different vision conditions in real-time using your webcam, uploaded images, or YouTube videos with adjustable intensity levels.
+                      Use your webcam, Upload images, or sample a YouTube video with adjustable visuals.
                     </Typography>
                   </Box>
                   
@@ -132,16 +121,16 @@ const HomePage: React.FC = () => {
                       Features:
                     </Typography>
                     <Box sx={{ textAlign: 'left', maxWidth: '400px', mx: 'auto' }}>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      <Typography variant="body2" color="text.primary" sx={{ mb: 1 }}>
                         • Real-time simulation with webcam, images, or videos
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      <Typography variant="body2" color="text.primary" sx={{ mb: 1 }}>
                         • Multiple vision conditions with adjustable intensity
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      <Typography variant="body2" color="text.primary" sx={{ mb: 1 }}>
                         • Educational tool for healthcare professionals and designers
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="text.primary">
                         • Build empathy for accessibility awareness
                       </Typography>
                     </Box>
@@ -194,32 +183,92 @@ const HomePage: React.FC = () => {
                     >
                       Experience Sight of Famous Blind and Visually Impaired People
                     </Typography>
-                    <Typography 
-                      variant="body1" 
-                      color="text.secondary" 
-                      sx={{ mb: 3, lineHeight: 1.6 }}
-                    >
-                      Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history, from historical figures to contemporary icons.
-                    </Typography>
                   </Box>
                   
+                  {/* Image Preview Grid */}
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="h6" sx={{ fontWeight: 600, mb: 2, color: 'text.primary' }}>
-                      Features:
+                      Featured People:
                     </Typography>
-                    <Box sx={{ textAlign: 'left', maxWidth: '400px', mx: 'auto' }}>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        • Learn about famous blind and visually impaired people
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        • Understand their specific vision conditions
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        • Explore historical and contemporary figures
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        • Gain insights into their achievements and experiences
-                      </Typography>
+                    <Box sx={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'repeat(4, 1fr)', 
+                      gap: 2,
+                      maxWidth: '500px', 
+                      mx: 'auto' 
+                    }}>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '80px', 
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src="/images/people/john-milton.jpg" 
+                          alt="John Milton"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 30%'
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '80px', 
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src="/images/people/stevie-wonder.jpg" 
+                          alt="Stevie Wonder"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 40%'
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '80px', 
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src="/images/people/hellen-keller.jpg" 
+                          alt="Helen Keller"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 35%'
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '80px', 
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src="/images/people/ray-charles.jpg" 
+                          alt="Ray Charles"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 40%'
+                          }}
+                        />
+                      </Box>
                     </Box>
                   </Box>
                 </CardContent>

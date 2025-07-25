@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Container,
   Paper,
@@ -34,11 +34,17 @@ export type InputSource = {
 
 const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
   const [showFixedNav, setShowFixedNav] = useState(true);
   const [inputSource, setInputSource] = useState<InputSource>({
     type: 'youtube',
   });
+  const [preconfiguredPerson, setPreconfiguredPerson] = useState<{
+    name: string;
+    condition: string;
+    conditions: string[];
+  } | null>(null);
   const [effects, setEffects] = useState<VisualEffect[]>([
     { 
       id: 'hemianopiaLeft',
@@ -238,6 +244,30 @@ const VisionSimulator: React.FC = () => {
     }
   ]);
 
+  // Handle pre-configured conditions from famous people page
+  useEffect(() => {
+    if (location.state?.preconfiguredConditions) {
+      const { preconfiguredConditions, personName, personCondition } = location.state;
+      
+      setPreconfiguredPerson({
+        name: personName,
+        condition: personCondition,
+        conditions: preconfiguredConditions
+      });
+
+      // Enable the pre-configured conditions
+      setEffects(prevEffects => 
+        prevEffects.map(effect => ({
+          ...effect,
+          enabled: preconfiguredConditions.includes(effect.id)
+        }))
+      );
+
+      // Skip to the simulation step
+      setActiveStep(2);
+    }
+  }, [location.state]);
+
   const handleToggle = (id: string) => {
     setEffects(effects.map(effect => 
       effect.id === id ? { ...effect, enabled: !effect.enabled } : effect
@@ -401,6 +431,29 @@ const VisionSimulator: React.FC = () => {
           >
             Experience and understand different vision conditions in real-time
           </Typography>
+
+          {preconfiguredPerson && (
+            <Box 
+              sx={{ 
+                mb: 4, 
+                p: 3, 
+                backgroundColor: 'primary.light', 
+                borderRadius: 2,
+                border: '1px solid',
+                borderColor: 'primary.main'
+              }}
+            >
+              <Typography variant="h6" gutterBottom sx={{ color: 'white', fontWeight: 600 }}>
+                Simulating: {preconfiguredPerson.name}
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
+                Condition: {preconfiguredPerson.condition}
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'white' }}>
+                Active simulations: {preconfiguredPerson.conditions.join(', ')}
+              </Typography>
+            </Box>
+          )}
 
           <Stepper 
             activeStep={activeStep} 

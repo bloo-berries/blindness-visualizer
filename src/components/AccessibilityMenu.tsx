@@ -121,18 +121,20 @@ const AccessibilityMenu: React.FC = () => {
           aria-haspopup="true"
           size="large"
           sx={{
-            color: activeFeaturesCount > 0 ? 'primary.main' : 'text.secondary',
+            color: activeFeaturesCount > 0 ? '#60a5fa' : 'white',
             width: '40px',
             height: '40px',
             position: 'relative',
             '&:hover': {
-              color: 'primary.main',
-              backgroundColor: 'rgba(30, 58, 138, 0.04)',
+              color: '#60a5fa',
+              backgroundColor: 'rgba(96, 165, 250, 0.15)',
+              transform: 'scale(1.05)',
             },
             '&.Mui-focusVisible': {
-              outline: '3px solid #1e3a8a',
+              outline: '3px solid #60a5fa',
               outlineOffset: '2px'
-            }
+            },
+            transition: 'all 0.2s ease-in-out'
           }}
         >
           <AccessibilityIcon fontSize="medium" />

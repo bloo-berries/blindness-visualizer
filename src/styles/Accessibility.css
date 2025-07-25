@@ -1,0 +1,532 @@
+/* Accessibility Styles for WCAG 2.1 AA Compliance */
+
+/* High Contrast Mode */
+.high-contrast-mode {
+  --hc-bg: #000000;
+  --hc-text: #ffffff;
+  --hc-primary: #00ffff;
+  --hc-secondary: #ffff00;
+  --hc-border: #ffffff;
+  --hc-focus: #00ffff;
+}
+
+/* Apply high contrast to body and main containers */
+.high-contrast-mode body {
+  background-color: var(--hc-bg) !important;
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .app-container {
+  background-color: var(--hc-bg) !important;
+  color: var(--hc-text) !important;
+}
+
+/* Apply to text elements */
+.high-contrast-mode .MuiTypography-root {
+  color: var(--hc-text) !important;
+}
+
+/* Override any theme color classes that might cause contrast issues */
+.high-contrast-mode .MuiTypography-root[color="text.secondary"] {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiTypography-root[color="text.primary"] {
+  color: var(--hc-text) !important;
+}
+
+/* Ensure all text elements have proper contrast */
+.high-contrast-mode h1,
+.high-contrast-mode h2,
+.high-contrast-mode h3,
+.high-contrast-mode h4,
+.high-contrast-mode h5,
+.high-contrast-mode h6,
+.high-contrast-mode p,
+.high-contrast-mode span,
+.high-contrast-mode div {
+  color: var(--hc-text) !important;
+}
+
+/* Apply to specific Material-UI components */
+.high-contrast-mode .MuiContainer-root {
+  background-color: var(--hc-bg) !important;
+  color: var(--hc-text) !important;
+}
+
+/* Buttons */
+.high-contrast-mode .MuiButton-contained {
+  background-color: var(--hc-primary) !important;
+  color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+}
+
+.high-contrast-mode .MuiButton-outlined {
+  background-color: transparent !important;
+  color: var(--hc-text) !important;
+  border: 2px solid var(--hc-border) !important;
+}
+
+.high-contrast-mode .MuiButton-text {
+  color: var(--hc-text) !important;
+  background-color: transparent !important;
+}
+
+/* Cards and Papers */
+.high-contrast-mode .MuiPaper-root {
+  background-color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiCard-root {
+  background-color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+/* Override any gradient backgrounds in high contrast mode */
+.high-contrast-mode [style*="linear-gradient"] {
+  background: var(--hc-bg) !important;
+}
+
+/* Specifically target common light background colors that cause contrast issues */
+.high-contrast-mode [style*="#f8fafc"],
+.high-contrast-mode [style*="#e2e8f0"],
+.high-contrast-mode [style*="#f1f5f9"] {
+  background-color: var(--hc-bg) !important;
+}
+
+/* Force high contrast for any remaining light backgrounds */
+.high-contrast-mode [style*="background-color: rgb(248, 250, 252)"],
+.high-contrast-mode [style*="background-color: rgb(226, 232, 240)"],
+.high-contrast-mode [style*="background-color: rgb(241, 245, 249)"] {
+  background-color: var(--hc-bg) !important;
+}
+
+/* Ensure all text in cards is visible */
+.high-contrast-mode .MuiCard-root .MuiTypography-root {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"] {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"] {
+  color: var(--hc-text) !important;
+}
+
+/* Card content specific styling */
+.high-contrast-mode .MuiCardContent-root {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiCardContent-root .MuiTypography-root {
+  color: var(--hc-text) !important;
+}
+
+/* Icons in cards should also be visible */
+.high-contrast-mode .MuiCardContent-root .MuiSvgIcon-root {
+  color: var(--hc-text) !important;
+}
+
+/* Navigation */
+.high-contrast-mode .MuiAppBar-root {
+  background-color: var(--hc-bg) !important;
+  border-bottom: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+/* Icons and Icon Buttons */
+.high-contrast-mode .MuiIconButton-root {
+  color: var(--hc-text) !important;
+  background-color: transparent !important;
+}
+
+.high-contrast-mode .MuiIconButton-root:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Switches */
+.high-contrast-mode .MuiSwitch-root .MuiSwitch-track {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .MuiSwitch-root .Mui-checked .MuiSwitch-track {
+  background-color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiSwitch-root .MuiSwitch-thumb {
+  background-color: var(--hc-text) !important;
+}
+
+/* Sliders */
+.high-contrast-mode .MuiSlider-root .MuiSlider-track {
+  background-color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiSlider-root .MuiSlider-rail {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .MuiSlider-root .MuiSlider-thumb {
+  background-color: var(--hc-text) !important;
+  border: 2px solid var(--hc-primary) !important;
+}
+
+/* Menu and Dialog components */
+.high-contrast-mode .MuiMenu-paper {
+  background-color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiDialog-paper {
+  background-color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+/* List items */
+.high-contrast-mode .MuiListItem-root {
+  color: var(--hc-text) !important;
+  background-color: transparent !important;
+}
+
+.high-contrast-mode .MuiListItem-root:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dividers */
+.high-contrast-mode .MuiDivider-root {
+  background-color: var(--hc-border) !important;
+}
+
+/* Chips */
+.high-contrast-mode .MuiChip-root {
+  background-color: transparent !important;
+  color: var(--hc-text) !important;
+  border: 1px solid var(--hc-border) !important;
+}
+
+.high-contrast-mode .MuiChip-root.MuiChip-colorPrimary {
+  background-color: var(--hc-primary) !important;
+  color: var(--hc-bg) !important;
+  border: 1px solid var(--hc-primary) !important;
+}
+
+/* Stepper components */
+.high-contrast-mode .MuiStepLabel-root {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiStepLabel-root.Mui-active {
+  color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiStepLabel-root.Mui-completed {
+  color: var(--hc-primary) !important;
+}
+
+/* Override any stepper label color overrides */
+.high-contrast-mode .MuiStepLabel-label {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiStepLabel-label.Mui-active {
+  color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiStepLabel-label.Mui-completed {
+  color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiStepIcon-root {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .MuiStepIcon-root.Mui-active {
+  color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode .MuiStepIcon-root.Mui-completed {
+  color: var(--hc-primary) !important;
+}
+
+/* Accordion components */
+.high-contrast-mode .MuiAccordion-root {
+  background-color: var(--hc-bg) !important;
+  border: 1px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiAccordionSummary-root {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiAccordionSummary-root:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tooltip */
+.high-contrast-mode .MuiTooltip-tooltip {
+  background-color: var(--hc-bg) !important;
+  color: var(--hc-text) !important;
+  border: 1px solid var(--hc-border) !important;
+}
+
+/* Form controls */
+.high-contrast-mode .MuiFormControlLabel-root {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .MuiFormControlLabel-label {
+  color: var(--hc-text) !important;
+}
+
+/* Links */
+.high-contrast-mode a {
+  color: var(--hc-primary) !important;
+}
+
+.high-contrast-mode a:hover {
+  color: var(--hc-secondary) !important;
+  text-decoration: underline !important;
+}
+
+/* Visualizer specific components */
+.high-contrast-mode .visualizer-container {
+  border: 2px solid var(--hc-border) !important;
+  background-color: var(--hc-bg) !important;
+}
+
+.high-contrast-mode .effect-card {
+  background-color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .effect-card:hover {
+  border-color: var(--hc-primary) !important;
+  background-color: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* Ensure images and videos maintain visibility */
+.high-contrast-mode img,
+.high-contrast-mode video {
+  border: 1px solid var(--hc-border) !important;
+}
+
+/* Note: High contrast mode now uses specific component targeting instead of blanket rules */
+
+/* Large Text Mode - 25% increase */
+.large-text-mode {
+  font-size: 125% !important;
+}
+
+.large-text-mode .MuiTypography-h1 {
+  font-size: 3.125rem !important;
+}
+
+.large-text-mode .MuiTypography-h2 {
+  font-size: 2.5rem !important;
+}
+
+.large-text-mode .MuiTypography-h3 {
+  font-size: 1.875rem !important;
+}
+
+.large-text-mode .MuiTypography-h4 {
+  font-size: 1.5625rem !important;
+}
+
+.large-text-mode .MuiTypography-h5 {
+  font-size: 1.40625rem !important;
+}
+
+.large-text-mode .MuiTypography-h6 {
+  font-size: 1.25rem !important;
+}
+
+.large-text-mode .MuiTypography-body1 {
+  font-size: 1.25rem !important;
+}
+
+.large-text-mode .MuiTypography-body2 {
+  font-size: 1.09375rem !important;
+}
+
+/* Increased Spacing Mode */
+.increased-spacing-mode {
+  line-height: 2 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.increased-spacing-mode .MuiTypography-root {
+  line-height: 2 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.increased-spacing-mode .MuiButton-root {
+  padding: 12px 30px !important;
+  margin: 8px !important;
+}
+
+.increased-spacing-mode .MuiCard-root {
+  padding: 24px !important;
+  margin: 16px 0 !important;
+}
+
+.increased-spacing-mode .MuiListItem-root {
+  padding: 16px !important;
+  margin: 8px 0 !important;
+}
+
+/* Enhanced Focus Indicators */
+.enhanced-focus-mode *:focus {
+  outline: 3px solid #0066cc !important;
+  outline-offset: 3px !important;
+  border-radius: 4px !important;
+}
+
+.enhanced-focus-mode .MuiButton-root:focus {
+  outline: 4px solid #0066cc !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 6px #0066cc !important;
+}
+
+.enhanced-focus-mode .MuiIconButton-root:focus {
+  outline: 4px solid #0066cc !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 6px #0066cc !important;
+}
+
+.enhanced-focus-mode .MuiSwitch-root:focus-within {
+  outline: 4px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+.enhanced-focus-mode .MuiSlider-root:focus-within {
+  outline: 4px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Mode */
+.reduced-motion-mode *,
+.reduced-motion-mode *::before,
+.reduced-motion-mode *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduced-motion-mode .MuiButton-root {
+  transition: none !important;
+}
+
+.reduced-motion-mode .MuiCard-root {
+  transition: none !important;
+}
+
+.reduced-motion-mode .MuiPaper-root {
+  transition: none !important;
+}
+
+/* Combined modes */
+.high-contrast-mode.large-text-mode {
+  font-size: 125% !important;
+}
+
+.high-contrast-mode.increased-spacing-mode {
+  line-height: 2 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.high-contrast-mode.enhanced-focus-mode *:focus {
+  outline: 4px solid var(--hc-focus) !important;
+  outline-offset: 3px !important;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.skip-to-content:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 15px 20px;
+  background: #1e3a8a;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  z-index: 9999;
+}
+
+.high-contrast-mode .skip-to-content:focus {
+  background: var(--hc-primary) !important;
+  color: var(--hc-bg) !important;
+  border: 2px solid var(--hc-border) !important;
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid #1e3a8a;
+  outline-offset: 2px;
+}
+
+.high-contrast-mode *:focus-visible {
+  outline: 4px solid var(--hc-focus) !important;
+  outline-offset: 3px !important;
+}
+
+/* High contrast mode for forced-colors media query */
+@media (forced-colors: active) {
+  .high-contrast-mode {
+    forced-color-adjust: none;
+  }
+  
+  .high-contrast-mode * {
+    forced-color-adjust: none;
+  }
+}
+
+/* Print styles for accessibility */
+@media print {
+  .skip-to-content,
+  .MuiAppBar-root,
+  .MuiButton-root {
+    display: none !important;
+  }
+  
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+} 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { VisualEffect, InputSource } from '../App';
+import { VisualEffect, InputSource } from './VisionSimulator';
 import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 
 interface VisualizerProps {

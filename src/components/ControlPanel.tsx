@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -18,7 +18,7 @@ import {
   Chip
 } from '@mui/material';
 import { Info, ExpandMore } from '@mui/icons-material';
-import { VisualEffect } from '../App';
+import { VisualEffect } from './VisionSimulator';
 import ConditionPreview, { ConditionType } from './ConditionPreview';
 
 interface ControlPanelProps {
@@ -162,6 +162,13 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           label=""
                           sx={{ mr: 0 }}
                         />
+                        <Box 
+                          id={`${effect.id}-description`}
+                          className="sr-only"
+                          aria-live="polite"
+                        >
+                          {effect.description}
+                        </Box>
                         <ListItemText 
                           primary={effect.name}
                           secondary={

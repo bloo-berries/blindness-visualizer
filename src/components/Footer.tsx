@@ -1,49 +1,94 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Link, Divider } from '@mui/material';
+import { Box, Container, Typography, Link, Divider, Dialog, DialogContent } from '@mui/material';
 import AccessibilityStatement from './AccessibilityStatement';
 
 const Footer: React.FC = () => {
   const [accessibilityDialogOpen, setAccessibilityDialogOpen] = useState(false);
   
   return (
-    <Box component="footer" sx={{ mt: 6, py: 3, bgcolor: '#f0f0f0' }}>
+    <Box 
+      component="footer" 
+      sx={{ 
+        mt: 3, 
+        py: 3, 
+        bgcolor: 'grey.50',
+        borderTop: '1px solid #e2e8f0'
+      }}
+    >
       <Container maxWidth="lg">
-        <Divider sx={{ mb: 3 }} />
+        <Divider sx={{ mb: 3, borderColor: '#e2e8f0' }} />
         <Box 
           sx={{ 
             display: 'flex', 
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
-            alignItems: { xs: 'center', sm: 'flex-start' }
+            alignItems: { xs: 'center', sm: 'flex-start' },
+            gap: 2
           }}
         >
-          <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} Vision Condition Visualizer
+          <Typography 
+            variant="body2" 
+            color="text.secondary"
+            sx={{ fontWeight: 500 }}
+          >
+            © {new Date().getFullYear()} VisionSim
           </Typography>
           
-          <Box sx={{ mt: { xs: 2, sm: 0 } }}>
+          <Box sx={{ 
+            display: 'flex', 
+            gap: 3,
+            mt: { xs: 2, sm: 0 } 
+          }}>
             <Link 
               href="#" 
               onClick={(e) => {
                 e.preventDefault();
                 setAccessibilityDialogOpen(true);
               }}
-              sx={{ mr: 3 }}
               aria-label="View accessibility statement"
+              sx={{ 
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 500,
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                }
+              }}
             >
               Accessibility
             </Link>
-            <Link href="https://github.com/bloo-berries/blindness-visualizer" target="_blank" rel="noopener">
+            <Link 
+              href="https://github.com/bloo-berries/blindness-visualizer" 
+              target="_blank" 
+              rel="noopener"
+              sx={{ 
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 500,
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                }
+              }}
+            >
               GitHub
             </Link>
           </Box>
         </Box>
       </Container>
       
-      <AccessibilityStatement 
+      <Dialog 
         open={accessibilityDialogOpen} 
-        onClose={() => setAccessibilityDialogOpen(false)} 
-      />
+        onClose={() => setAccessibilityDialogOpen(false)}
+        maxWidth="md"
+        fullWidth
+        aria-labelledby="accessibility-statement-title"
+      >
+        <DialogContent sx={{ p: 0 }}>
+          <AccessibilityStatement />
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 };

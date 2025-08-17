@@ -13,7 +13,7 @@ import {
   Image,
   YouTube
 } from '@mui/icons-material';
-import { InputSource } from './VisionSimulator';
+import { InputSource } from '../types/visualEffects';
 
 interface InputSelectorProps {
   currentSource: InputSource;
@@ -77,7 +77,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                 if (option.type === 'image') {
                   fileInputRef.current?.click();
                 } else {
-                  onSourceChange({ type: option.type as InputSource['type'] });
+                  onSourceChange({ type: option.type } as InputSource);
                 }
               }}
               role="button"
@@ -91,7 +91,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   if (option.type === 'image') {
                     fileInputRef.current?.click();
                   } else {
-                    onSourceChange({ type: option.type as InputSource['type'] });
+                    onSourceChange({ type: option.type } as InputSource);
                   }
                 }
               }}

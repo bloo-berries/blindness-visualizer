@@ -53,7 +53,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar sx={{ px: { xs: 0 } }}>
+        <Toolbar sx={{ 
+          px: { xs: 0 },
+          minHeight: '80px', // Increased from default
+          py: 2 // Added vertical padding
+        }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
             <Box 
@@ -80,19 +84,22 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               <VisibilityIcon 
                 sx={{ 
-                  color: 'primary.main', 
-                  fontSize: 36, 
-                  mr: 1.5 
+                  color: 'white', // Changed from primary.main to white for better visibility
+                  fontSize: 48, // Increased from 36
+                  mr: 2, // Increased from 1.5
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' // Added drop shadow for better visibility
                 }} 
               />
               <Typography 
-                variant="h5" 
+                variant="h4" // Changed from h5
                 component="div" 
                 sx={{ 
-                  fontWeight: 800,
+                  fontWeight: 900, // Increased from 800
                   color: 'white',
-                  fontSize: '1.5rem',
-                  letterSpacing: '-0.02em'
+                  fontSize: '2.2rem', // Increased from 2rem
+                  letterSpacing: '-0.02em',
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)', // Added text shadow for better visibility
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' // Added drop shadow
                 }}
               >
                 VisionSim
@@ -116,10 +123,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   sx={{
                     color: 'white',
                     fontWeight: 600,
-                    fontSize: '0.95rem',
+                    fontSize: '1.1rem', // Increased from 0.95rem
                     textTransform: 'none',
-                    padding: '8px 16px',
-                    borderRadius: '6px',
+                    padding: '12px 20px', // Increased from 8px 16px
+                    borderRadius: '8px', // Increased from 6px
                     '&:hover': {
                       color: '#60a5fa',
                       backgroundColor: 'rgba(96, 165, 250, 0.15)',
@@ -148,15 +155,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   ml: 2,
                   bgcolor: 'primary.main',
                   color: 'white',
-                  width: '40px',
-                  height: '40px',
+                  width: '50px', // Increased from 40px
+                  height: '50px', // Increased from 40px
                   '&:hover': {
                     bgcolor: 'primary.dark',
                   },
                   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                 }}
               >
-                <HomeIcon fontSize="medium" />
+                <HomeIcon fontSize="large" /> {/* Changed from medium */}
               </IconButton>
             </Tooltip>
           )}
@@ -176,8 +183,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               sx={{
                 ml: 2,
                 color: 'white',
-                width: '40px',
-                height: '40px',
+                width: '50px', // Increased from 40px
+                height: '50px', // Increased from 40px
                 '&:hover': {
                   color: '#60a5fa',
                   backgroundColor: 'rgba(96, 165, 250, 0.15)',
@@ -186,7 +193,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 transition: 'all 0.2s ease-in-out',
               }}
             >
-              <GitHubIcon fontSize="medium" />
+              <GitHubIcon fontSize="large" /> {/* Changed from medium */}
             </IconButton>
           </Tooltip>
         </Toolbar>

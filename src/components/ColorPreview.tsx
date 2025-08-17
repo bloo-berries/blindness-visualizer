@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Paper, Typography, Tooltip } from '@mui/material';
-import { ConditionType } from './ConditionPreview';
+import { ConditionType } from '../types/visualEffects';
 
 interface ColorPreviewProps {
   type: ConditionType;
@@ -86,10 +86,35 @@ const colorTransforms: Record<ConditionType, { normal: string[]; affected: strin
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
     affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
   },
-  quadrantanopia: {
+  quadrantanopiaLeft: {
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
     affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
   },
+  quadrantanopiaRight: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  quadrantanopiaInferior: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  quadrantanopiaSuperior: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  blindnessLeftEye: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  blindnessRightEye: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+  bitemporalHemianopia: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#AA0000', '#00AA00', '#0000AA', '#AAAA00', '#AA00AA', '#00AAAA'] // Darkened
+  },
+
   scotoma: {
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
     affected: ['#555555', '#555555', '#555555', '#555555', '#555555', '#555555'] // Darkened spots
@@ -133,6 +158,14 @@ const colorTransforms: Record<ConditionType, { normal: string[]; affected: strin
   diplopiaBinocular: {
     normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
     affected: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF']
+  },
+  tunnelVision: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#1A0000', '#001A00', '#00001A', '#1A1A00', '#1A001A', '#001A1A'] // Severe peripheral vision loss
+  },
+  aura: {
+    normal: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'],
+    affected: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'] // Bright aura effect
   }
 };
 

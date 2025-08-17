@@ -18,8 +18,9 @@ import {
   Chip
 } from '@mui/material';
 import { Info, ExpandMore } from '@mui/icons-material';
-import { VisualEffect } from './VisionSimulator';
-import ConditionPreview, { ConditionType } from './ConditionPreview';
+import { VisualEffect } from '../types/visualEffects';
+import { ConditionType } from '../types/visualEffects';
+import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
@@ -29,7 +30,7 @@ interface ControlPanelProps {
 }
 
 const conditionCategories: Record<string, ConditionType[]> = {
-  "Visual Field Loss": ['hemianopiaLeft', 'hemianopiaRight', 'quadrantanopia', 'scotoma'],
+  "Visual Field Loss": ['blindnessLeftEye', 'blindnessRightEye', 'hemianopiaLeft', 'hemianopiaRight', 'bitemporalHemianopia', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior', 'scotoma', 'tunnelVision'],
   "Color Vision": ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic'],
   "Eye Conditions": ['cataracts', 'glaucoma', 'astigmatism', 'nearSighted', 'farSighted'],
   "Retinal Disorders": ['amd', 'diabeticRetinopathy', 'retinitisPigmentosa', 'stargardt'],
@@ -172,26 +173,38 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         <ListItemText 
                           primary={effect.name}
                           secondary={
-                            effect.enabled && (
-                              <Slider
-                                size="small"
-                                value={effect.intensity * 100}
-                                onChange={(_, value) => 
-                                  onIntensityChange(effect.id, (value as number) / 100)
-                                }
-                                valueLabelDisplay="auto"
-                                valueLabelFormat={value => `${value}%`}
-                                aria-label={`Adjust ${effect.name} intensity`}
-                                aria-valuetext={`${effect.intensity * 100}%`}
-                                sx={{ mt: 1, width: '90%' }}
-                              />
-                            )
+                            <>
+                              {effect.enabled && (
+                                <Slider
+                                  size="small"
+                                  value={effect.intensity * 100}
+                                  onChange={(_, value) => 
+                                    onIntensityChange(effect.id, (value as number) / 100)
+                                  }
+                                  valueLabelDisplay="auto"
+                                  valueLabelFormat={value => `${value}%`}
+                                  aria-label={`Adjust ${effect.name} intensity`}
+                                  aria-valuetext={`${effect.intensity * 100}%`}
+                                  sx={{ mt: 1, width: '90%' }}
+                                />
+                              )}
+                              {/* Show prevalence for color vision conditions */}
+                              {isColorVisionCondition(effect.id as ConditionType) && (
+                                <Typography variant="caption" sx={{ display: 'block', mt: 0.5, color: 'text.secondary' }}>
+                                  Prevalence: {getColorVisionPrevalence(effect.id as ConditionType)}
+                                </Typography>
+                              )}
+                            </>
                           }
                           secondaryTypographyProps={{
                             component: 'div'
                           }}
                         />
-                        <Tooltip title={effect.description}>
+                        <Tooltip title={
+                          isColorVisionCondition(effect.id as ConditionType) 
+                            ? getColorVisionDescription(effect.id as ConditionType)
+                            : effect.description
+                        }>
                           <IconButton 
                             size="small"
                             aria-label={`Learn more about ${effect.name}`}
@@ -262,7 +275,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   {/* Base image */}
                   <Box 
                     component="img" 
-                    src="/garden-fallback.jpg" 
+                    src="/assets/images/garden.png" 
                     alt="Base reference image"
                     sx={{ 
                       position: 'absolute',
@@ -275,30 +288,197 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     }}
                   />
                   
-                  {/* Stack all enabled conditions */}
-                  {enabledEffects.map(effect => (
-                    <Box 
-                      key={effect.id}
-                      sx={{ 
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: 1 + enabledEffects.indexOf(effect)
-                      }}
-                    >
-                      <ConditionPreview 
-                        type={effect.id as ConditionType}
-                        intensity={effect.intensity}
+                  {/* Stack all enabled conditions as overlays */}
+                  {enabledEffects.map(effect => {
+                    const effectType = effect.id as ConditionType;
+                    const intensity = effect.intensity;
+                    
+                    // Generate overlay styles based on condition type
+                    let overlayStyle: any = {
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      zIndex: 10 + enabledEffects.indexOf(effect),
+                      pointerEvents: 'none'
+                    };
+                    
+                    // Get current time for animated effects
+                    const now = Date.now();
+                    
+                    // Apply specific overlay styles based on condition type
+                    switch (effectType) {
+                      case 'blindnessLeftEye':
+                        overlayStyle.background = `
+                          linear-gradient(to right, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.95 * intensity}) 50%, 
+                            rgba(0,0,0,0) 50%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                      case 'blindnessRightEye':
+                        overlayStyle.background = `
+                          linear-gradient(to left, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.95 * intensity}) 50%, 
+                            rgba(0,0,0,0) 50%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                      case 'bitemporalHemianopia':
+                        overlayStyle.background = `
+                          linear-gradient(to right, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.95 * intensity}) 25%, 
+                            rgba(0,0,0,0) 25%,
+                            rgba(0,0,0,0) 75%,
+                            rgba(0,0,0,${0.95 * intensity}) 75%, 
+                            rgba(0,0,0,${0.95 * intensity}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                      case 'quadrantanopiaRight':
+                        overlayStyle.background = `
+                          radial-gradient(circle at 0% 100%, 
+                            rgba(0,0,0,0) 0%,
+                            rgba(0,0,0,0) ${Math.max(25, 40 - intensity * 20)}%,
+                            rgba(0,0,0,${0.95 * intensity}) ${Math.max(45, 60 - intensity * 20)}%,
+                            rgba(0,0,0,${0.95 * intensity}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                      case 'quadrantanopiaInferior':
+                        overlayStyle.background = `
+                          conic-gradient(from 0deg at 50% 50%, 
+                            rgba(0,0,0,${0.95 * intensity}) 0deg, 
+                            rgba(0,0,0,${0.95 * intensity}) 90deg, 
+                            rgba(0,0,0,0) 90deg, 
+                            rgba(0,0,0,0) 360deg
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                      case 'quadrantanopiaSuperior':
+                        overlayStyle.background = `
+                          conic-gradient(from 0deg at 50% 50%, 
+                            rgba(0,0,0,0) 0deg, 
+                            rgba(0,0,0,0) 90deg, 
+                            rgba(0,0,0,${0.95 * intensity}) 90deg, 
+                            rgba(0,0,0,${0.95 * intensity}) 180deg, 
+                            rgba(0,0,0,0) 180deg, 
+                            rgba(0,0,0,0) 360deg
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+
+                        
+                      case 'scotoma':
+                        const offsetX = 50 + Math.sin(now/2000) * 10;
+                        const offsetY = 50 + Math.cos(now/2000) * 10;
+                        overlayStyle.background = `
+                          radial-gradient(circle at ${offsetX}% ${offsetY}%, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.85 * intensity}) ${Math.max(5, 10 - intensity * 5)}%,
+                            rgba(0,0,0,${0.5 * intensity}) ${Math.max(10, 20 - intensity * 10)}%,
+                            rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 15)}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                        
+                      case 'tunnelVision':
+                        const tunnelRadius = Math.max(10, 80 - intensity * 70);
+                        overlayStyle.background = `
+                          radial-gradient(circle at center, 
+                            rgba(0,0,0,0) 0%,
+                            rgba(0,0,0,0) ${tunnelRadius - 5}%,
+                            rgba(0,0,0,${0.1 * intensity}) ${tunnelRadius}%,
+                            rgba(0,0,0,${0.3 * intensity}) ${tunnelRadius + 5}%,
+                            rgba(0,0,0,${0.6 * intensity}) ${tunnelRadius + 10}%,
+                            rgba(0,0,0,${0.8 * intensity}) ${tunnelRadius + 15}%,
+                            rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 20}%,
+                            rgba(0,0,0,${0.95 * intensity}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                        
+                      case 'hemianopiaLeft':
+                        overlayStyle.background = `
+                          linear-gradient(to right, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.95 * intensity}) 45%, 
+                            rgba(0,0,0,0) 50%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                        
+                      case 'hemianopiaRight':
+                        overlayStyle.background = `
+                          linear-gradient(to left, 
+                            rgba(0,0,0,${0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${0.95 * intensity}) 45%, 
+                            rgba(0,0,0,0) 50%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                        
+                      case 'visualSnow':
+                        const snowPhase = now * 0.001;
+                        const snowIntensity = Math.min(intensity * 0.8, 0.6);
+                        const noiseLayer1 = `
+                          radial-gradient(circle 0.5px at ${20 + Math.sin(snowPhase * 0.1) * 5}% ${30 + Math.cos(snowPhase * 0.1) * 5}%, 
+                            rgba(255,255,255,${snowIntensity * 0.3}) 0%, 
+                            rgba(255,255,255,0) 100%
+                          ),
+                          radial-gradient(circle 0.3px at ${80 + Math.sin(snowPhase * 0.15) * 3}% ${40 + Math.cos(snowPhase * 0.15) * 3}%, 
+                            rgba(255,255,255,${snowIntensity * 0.4}) 0%, 
+                            rgba(255,255,255,0) 100%
+                          )
+                        `;
+                        overlayStyle.background = noiseLayer1;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = snowIntensity;
+                        break;
+                        
+                      default:
+                        // For other conditions, use a simple darkening overlay
+                        overlayStyle.background = `rgba(0,0,0,${intensity * 0.3})`;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = intensity;
+                    }
+                    
+                    return (
+                      <Box 
+                        key={effect.id}
+                        sx={overlayStyle}
                       />
-                    </Box>
-                  ))}
+                    );
+                  })}
                 </Box>
               ) : (
                 <Box 
                   component="img" 
-                  src="/garden-fallback.jpg" 
+                  src="/assets/images/garden.png" 
                   alt="Normal vision reference image"
                   sx={{ 
                     maxWidth: '100%', 

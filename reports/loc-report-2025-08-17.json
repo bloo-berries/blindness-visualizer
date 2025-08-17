@@ -1,0 +1,114 @@
+{
+  "timestamp": "2025-08-17T12:37:29.185Z",
+  "summary": {
+    "totalFiles": 22,
+    "totalLoc": 5018,
+    "averageLoc": 228.0909090909091,
+    "filesOver500": 3,
+    "filesOver300": 6
+  },
+  "largeFiles": [
+    {
+      "file": "src/components/Visualizer.tsx",
+      "loc": 875
+    },
+    {
+      "file": "src/components/ConditionPreview.tsx",
+      "loc": 733
+    },
+    {
+      "file": "src/components/VisionSimulator.tsx",
+      "loc": 515
+    }
+  ],
+  "allFiles": [
+    {
+      "file": "src/components/Visualizer.tsx",
+      "loc": 875
+    },
+    {
+      "file": "src/components/ConditionPreview.tsx",
+      "loc": 733
+    },
+    {
+      "file": "src/components/VisionSimulator.tsx",
+      "loc": 515
+    },
+    {
+      "file": "src/components/ConditionPreviewFixed.tsx",
+      "loc": 394
+    },
+    {
+      "file": "src/components/FamousBlindPeople.tsx",
+      "loc": 341
+    },
+    {
+      "file": "src/components/ControlPanel.tsx",
+      "loc": 330
+    },
+    {
+      "file": "src/components/ColorPreview.tsx",
+      "loc": 267
+    },
+    {
+      "file": "src/components/AccessibilityStatement.tsx",
+      "loc": 263
+    },
+    {
+      "file": "src/components/AccessibilityMenu.tsx",
+      "loc": 249
+    },
+    {
+      "file": "src/components/HomePage.tsx",
+      "loc": 169
+    },
+    {
+      "file": "src/App.tsx",
+      "loc": 157
+    },
+    {
+      "file": "src/contexts/AccessibilityContext.tsx",
+      "loc": 123
+    },
+    {
+      "file": "track-progress.js",
+      "loc": 123
+    },
+    {
+      "file": "src/components/NavigationBar.tsx",
+      "loc": 121
+    },
+    {
+      "file": "src/components/InputSelector.tsx",
+      "loc": 119
+    },
+    {
+      "file": "src/components/Footer.tsx",
+      "loc": 91
+    },
+    {
+      "file": "scan-loc.js",
+      "loc": 38
+    },
+    {
+      "file": "refactor-suggestions.js",
+      "loc": 29
+    },
+    {
+      "file": "src/components/YouTubePlayer.tsx",
+      "loc": 29
+    },
+    {
+      "file": "tests/ControlPanel.test.tsx",
+      "loc": 25
+    },
+    {
+      "file": "src/index.tsx",
+      "loc": 14
+    },
+    {
+      "file": "src/reportWebVitals.ts",
+      "loc": 13
+    }
+  ]
+}

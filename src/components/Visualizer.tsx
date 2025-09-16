@@ -207,7 +207,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
     
     // Start animation if needed
     const needsAnimation = effects.some(e => 
-      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'visualSnow') && e.enabled
+      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'visualSnow' || e.id === 'retinitisPigmentosa') && e.enabled
     );
     
     if (needsAnimation) {
@@ -281,13 +281,28 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
 
   // Get effect state changes to rerender
   useEffect(() => {
+    // Create visual field overlays for YouTube content whenever effects change
+    if (inputSource.type === 'youtube') {
+      console.log('Creating visual field overlays for YouTube content with effects:', effects);
+      
+      // Add a small delay to ensure the iframe is loaded
+      const timer = setTimeout(() => {
+        createVisualFieldOverlays(effects);
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+    
     // Check if we need animation
     const visualFloaters = effects.find(e => e.id === 'visualFloaters');
     const scotoma = effects.find(e => e.id === 'scotoma');
     
+    const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
+    
     const needsAnimation = 
       (visualFloaters && visualFloaters.enabled) || 
-      (scotoma && scotoma.enabled);
+      (scotoma && scotoma.enabled) ||
+      (retinitisPigmentosa && retinitisPigmentosa.enabled);
     
     if (needsAnimation) {
       // Start animation if not already running
@@ -306,7 +321,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
         }
       };
     }
-  }, [effects]);
+  }, [effects, inputSource.type]);
 
   // Calculate CSS filters based on effects
   const getEffectStyles = () => {
@@ -323,21 +338,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
     };
 
     if (inputSource.type === 'youtube') {
-      const protanopia = effects.find(e => e.id === 'protanopia');
-      const deuteranopia = effects.find(e => e.id === 'deuteranopia');
-      const tritanopia = effects.find(e => e.id === 'tritanopia');
-      const protanomaly = effects.find(e => e.id === 'protanomaly');
-      const deuteranomaly = effects.find(e => e.id === 'deuteranomaly');
-      const tritanomaly = effects.find(e => e.id === 'tritanomaly');
-      const nearSighted = effects.find(e => e.id === 'nearSighted');
-      
       const filters = generateCSSFilters(effects);
       if (filters) {
         style.filter = filters;
       }
-      
-      // Create visual field overlays for YouTube content
-      createVisualFieldOverlays(effects);
     }
 
     return style;

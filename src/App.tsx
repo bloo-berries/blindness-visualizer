@@ -9,9 +9,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
-import ColorVisionDemo from './components/ColorVisionDemo';
-import ColorVisionDebug from './components/ColorVisionDebug';
-import ColorVisionTest from './components/ColorVisionTest';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
 import './styles/App.css';
 
@@ -154,9 +151,6 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/simulator" element={<VisionSimulator />} />
             <Route path="/famous-people" element={<FamousBlindPeople />} />
-            <Route path="/color-vision-demo" element={<ColorVisionDemo />} />
-            <Route path="/color-vision-debug" element={<ColorVisionDebug />} />
-            <Route path="/color-vision-test" element={<ColorVisionTest />} />
           </Routes>
         </Router>
       </ThemeProvider>

@@ -113,7 +113,7 @@ export const getRenderStyles = (
   type: ConditionType, 
   intensity: number, 
   auraPhase: number = 0
-): SxProps<Theme> => {
+): SxProps<Theme> | null => {
   // Base styles that are type-safe
   const renderStyles: SxProps<Theme> = {
     position: 'absolute',
@@ -464,8 +464,8 @@ export const getRenderStyles = (
       break;
       
     default:
-      // For other types, use default styles
-      break;
+      // Return null for unsupported types to prevent empty overlays
+      return null;
   }
 
   return renderStyles;

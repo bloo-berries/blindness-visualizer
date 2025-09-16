@@ -362,12 +362,6 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
         }
       }}
     >
-      {/* Hidden canvas for color transformations */}
-      {/* <canvas 
-        ref={canvasRef} 
-        style={{ display: 'none' }} 
-      /> */}
-
       <Box 
         ref={imageContainerRef}
         className={conditionClass}
@@ -400,8 +394,8 @@ const ConditionPreview: React.FC<ConditionPreviewProps> = ({ type, intensity }) 
           />
         )}
 
-        {/* Effect Overlay - Applied for non-color-transform conditions only */}
-        {!isColorTransformCondition(type) && (
+        {/* Effect Overlay - Only render if renderStyles returns non-null */}
+        {!isColorTransformCondition(type) && renderStyles && (
           <Box
             sx={renderStyles}
           />

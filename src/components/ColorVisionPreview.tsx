@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Box, Paper, SxProps, Theme } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { ConditionType } from '../types/visualEffects';
 import { 
   getColorVisionMatrix, 
-  isColorVisionCondition,
-  getColorVisionDescription,
-  getColorVisionPrevalence
+  isColorVisionCondition
 } from '../utils/colorVisionFilters';
 
 interface ColorVisionPreviewProps {
@@ -14,7 +12,7 @@ interface ColorVisionPreviewProps {
 }
 
 // Reference image for color vision simulation
-const REFERENCE_IMAGE = '/assets/images/garden.png';
+const REFERENCE_IMAGE = '/assets/images/garden-fallback.jpg';
 
 const ColorVisionPreview: React.FC<ColorVisionPreviewProps> = ({ type, intensity }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -44,7 +42,7 @@ const ColorVisionPreview: React.FC<ColorVisionPreviewProps> = ({ type, intensity
     };
 
     requestAnimationFrame(animate);
-  }, [intensity]);
+  }, [intensity, currentIntensity]);
 
   // Load the reference image
   useEffect(() => {
@@ -83,7 +81,7 @@ const ColorVisionPreview: React.FC<ColorVisionPreviewProps> = ({ type, intensity
     // Get the matrix for this condition
     const matrix = getColorVisionMatrix(type, currentIntensity);
     
-    // Convert to CSS matrix format
+    // Convert to CSS matrix format (4x5 matrix for CSS filter)
     const cssMatrix = [
       matrix[0], matrix[1], matrix[2], 0, 0,
       matrix[3], matrix[4], matrix[5], 0, 0,

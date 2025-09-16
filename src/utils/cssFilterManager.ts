@@ -1,10 +1,7 @@
 import { VisualEffect } from '../types/visualEffects';
 import { getColorVisionMatrix, isColorVisionCondition } from './colorVisionFilters';
 
-/**
- * Identity matrix for blending
- */
-const IDENTITY_MATRIX = [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0];
+// Identity matrix removed as it was unused
 
 /**
  * Generates CSS filter string for color blindness effects using accurate Machado 2009 matrices

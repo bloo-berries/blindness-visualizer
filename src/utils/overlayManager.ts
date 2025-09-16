@@ -19,12 +19,46 @@ const createOverlay = (
     overlayElement.style.left = '0';
     overlayElement.style.right = '0';
     overlayElement.style.bottom = '0';
-    overlayElement.style.pointerEvents = 'none';
-    overlayElement.style.zIndex = '10';
+            overlayElement.style.width = '100%';
+            overlayElement.style.height = '100%';
+            overlayElement.style.pointerEvents = 'none';
+            overlayElement.style.zIndex = '1000';
     
-    const container = document.querySelector('.visualizer-container');
+    // Try multiple selectors to find the container
+    let container: Element | null = document.querySelector('.visualizer-container');
+    if (!container) {
+      container = document.querySelector('[class*="visualizer"]');
+    }
+    if (!container) {
+      // Look for the iframe's parent container
+      const iframe = document.querySelector('iframe[src*="youtube"]');
+      if (iframe) {
+        container = iframe.parentElement;
+        console.log('Found iframe parent container:', container);
+      }
+    }
+    if (!container) {
+      // Last resort: look for any container with relative positioning
+      container = document.querySelector('[style*="position: relative"]');
+    }
+    
     if (container) {
       container.appendChild(overlayElement);
+      console.log(`Successfully created overlay ${id} in container:`, container);
+    } else {
+      console.warn(`Could not find container for overlay ${id}`);
+      // Try to append to body as fallback
+      document.body.appendChild(overlayElement);
+      console.log(`Fallback: Created overlay ${id} in body`);
+    }
+    
+    // Force the container to have relative positioning if it doesn't
+    if (container && container instanceof HTMLElement) {
+      const computedStyle = window.getComputedStyle(container);
+      if (computedStyle.position === 'static') {
+        container.style.position = 'relative';
+        console.log('Set container position to relative');
+      }
     }
   }
   
@@ -40,6 +74,8 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   // Remove existing overlays first
   const existingOverlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
   existingOverlays.forEach(overlay => overlay.remove());
+  
+  console.log('Creating visual field overlays for effects:', effects);
 
   // Find all visual field effects
   const tunnelVision = effects.find(e => e.id === 'tunnelVision');
@@ -53,6 +89,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   const visualFloaters = effects.find(e => e.id === 'visualFloaters');
   const visualSnow = effects.find(e => e.id === 'visualSnow');
   const aura = effects.find(e => e.id === 'aura');
+  const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
 
   // Create overlays for each enabled effect
   if (tunnelVision?.enabled) {
@@ -268,6 +305,62 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       'screen',
       Math.min(0.8, aura.intensity).toString()
     );
+  }
+
+  if (retinitisPigmentosa?.enabled) {
+    const intensity = retinitisPigmentosa.intensity;
+    
+    console.log('Creating RP overlay with intensity:', intensity);
+    console.log('RP effect found:', retinitisPigmentosa);
+    
+    // At 100% intensity, complete blindness
+    if (intensity >= 1.0) {
+      createOverlay(
+        'visual-field-overlay-retinitisPigmentosa',
+        'rgba(0,0,0,1)',
+        'multiply',
+        '1'
+      );
+    } else {
+      // Much more severe tunnel vision - very narrow central field
+      const tunnelRadius = Math.max(3, 15 - intensity * 12); // From 15% to 3% (very narrow)
+      
+      console.log('RP tunnel radius:', tunnelRadius);
+      
+      // Create a dramatic tunnel vision effect that should be highly visible
+      const backgroundStyle = `radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) ${tunnelRadius}%,
+        rgba(0,0,0,${0.5 * intensity}) ${tunnelRadius + 1}%,
+        rgba(0,0,0,${0.8 * intensity}) ${tunnelRadius + 2}%,
+        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 4}%,
+        rgba(0,0,0,${0.98 * intensity}) 100%
+      )`;
+      
+      console.log('RP background style:', backgroundStyle);
+      console.log('RP tunnel radius:', tunnelRadius);
+      
+      createOverlay(
+        'visual-field-overlay-retinitisPigmentosa',
+        backgroundStyle,
+        'multiply',
+        '1.0'
+      );
+      
+      // Retry mechanism - try again after a short delay
+      setTimeout(() => {
+        const existingOverlay = document.getElementById('visual-field-overlay-retinitisPigmentosa');
+        if (!existingOverlay) {
+          console.log('Retrying RP overlay creation...');
+          createOverlay(
+            'visual-field-overlay-retinitisPigmentosa',
+            backgroundStyle,
+            'multiply',
+            '1.0'
+          );
+        }
+      }, 500);
+    }
   }
 };
 

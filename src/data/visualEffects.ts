@@ -206,7 +206,7 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     name: 'Retinitis Pigmentosa',
     enabled: false,
     intensity: 1.0,
-    description: 'Genetic disorder causing progressive degeneration of the retina. Begins with night blindness and loss of peripheral vision, eventually leading to tunnel vision.'
+    description: 'Progressive genetic disorder causing gradual degeneration of photoreceptor cells in the retina. Creates distinctive tunnel vision with progressive peripheral vision loss, night blindness requiring 10-100x more light, severe light sensitivity and glare issues, color desaturation, and eventual complete blindness at advanced stages. The visual field constricts from normal 180° to 40°, 20°, or less, making navigation extremely challenging.'
   },
   { 
     id: 'stargardt',

@@ -17,6 +17,8 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
       deuteranomalyIntensity: { value: 0.0 },
       tritanomalyIntensity: { value: 0.0 },
       blurIntensity: { value: 0.0 },
+      retinitisPigmentosaIntensity: { value: 0.0 },
+      time: { value: 0.0 },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -34,6 +36,8 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
       uniform float deuteranomalyIntensity;
       uniform float tritanomalyIntensity;
       uniform float blurIntensity;
+      uniform float retinitisPigmentosaIntensity;
+      uniform float time;
       varying vec2 vUv;
 
       vec3 applyProtanopia(vec3 color) {
@@ -84,6 +88,100 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         );
       }
 
+      // Retinitis Pigmentosa effects
+      vec3 applyRetinitisPigmentosa(vec3 color, vec2 uv, float intensity, float time) {
+        // At 100% intensity, complete blindness
+        if (intensity >= 1.0) {
+          return vec3(0.0); // Complete black
+        }
+        
+        // Calculate distance from center for tunnel vision effect
+        vec2 center = vec2(0.5, 0.5);
+        float dist = distance(uv, center);
+        
+        // Create irregular tunnel shape (not perfect circle)
+        vec2 offset = vec2(
+          sin(uv.x * 8.0 + time * 0.2) * 0.03,
+          cos(uv.y * 6.0 + time * 0.15) * 0.02
+        );
+        float irregularDist = distance(uv + offset, center);
+        
+        // Progressive tunnel vision - much more severe constriction
+        float tunnelRadius = 0.12 - intensity * 0.09; // From 0.12 to 0.03 (very narrow)
+        float tunnelEffect = smoothstep(tunnelRadius, tunnelRadius + 0.06, irregularDist);
+        
+        // Heavy peripheral blur and darkening
+        float peripheralBlur = smoothstep(tunnelRadius + 0.03, tunnelRadius + 0.12, irregularDist);
+        float peripheralDarkening = smoothstep(tunnelRadius + 0.01, tunnelRadius + 0.08, irregularDist);
+        
+        // Night blindness - progressively darken the image
+        float nightBlindness = 1.0 - intensity * 0.3;
+        
+        // Color desaturation - more aggressive in peripheral areas
+        float luminance = dot(color, vec3(0.299, 0.587, 0.114));
+        float desaturationAmount = intensity * 0.7 + peripheralBlur * 0.5;
+        vec3 desaturated = mix(color, vec3(luminance), desaturationAmount);
+        
+        // Glare effects - emanating from bright areas
+        float glare = 0.0;
+        if (intensity > 0.1) {
+          // Find bright areas in the image
+          float brightness = dot(color, vec3(0.299, 0.587, 0.114));
+          
+          // Create glare streaks from bright areas
+          if (brightness > 0.6) {
+            vec2 glareDir = normalize(uv - center);
+            float glareDist = distance(uv, center);
+            float glareIntensity = (brightness - 0.6) * 4.0 * intensity;
+            
+            // Create radiating glare streaks
+            float glarePattern = sin(dot(glareDir, vec2(1.0, 0.0)) * 12.0 + time * 2.5) * 
+                                sin(dot(glareDir, vec2(0.0, 1.0)) * 10.0 + time * 2.0);
+            glare = max(0.0, glarePattern - 0.2) * glareIntensity * 
+                   smoothstep(0.0, 0.2, glareDist) * 
+                   smoothstep(0.5, 0.2, glareDist);
+          }
+        }
+        
+        // Apply heavy blur to peripheral areas
+        vec3 blurred = color;
+        if (peripheralBlur > 0.0) {
+          // Enhanced blur approximation
+          vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
+          vec3 blur = vec3(0.0);
+          float total = 0.0;
+          
+          for(float x = -3.0; x <= 3.0; x++) {
+            for(float y = -3.0; y <= 3.0; y++) {
+              float weight = 1.0 / (1.0 + x * x + y * y);
+              blur += texture2D(tDiffuse, vUv + vec2(x, y) * pixelSize * (3.0 + peripheralBlur * 4.0)).rgb * weight;
+              total += weight;
+            }
+          }
+          blurred = blur / total;
+        }
+        
+        // Combine effects
+        vec3 result = mix(desaturated, blurred, peripheralBlur) * nightBlindness;
+        
+        // Apply tunnel vision effect with heavy darkening
+        result = mix(result, vec3(0.0), tunnelEffect * (0.95 + intensity * 0.05));
+        
+        // Add peripheral darkening
+        result = mix(result, vec3(0.0), peripheralDarkening * 0.9);
+        
+        // Add glare on top
+        result = mix(result, vec3(1.0), glare);
+        
+        // At very high intensities (>0.8), further darken everything
+        if (intensity > 0.8) {
+          float finalDarkening = (intensity - 0.8) * 5.0; // 0 to 1.0
+          result = mix(result, vec3(0.0), finalDarkening);
+        }
+        
+        return result;
+      }
+
       void main() {
         vec4 texel = texture2D(tDiffuse, vUv);
         vec3 color = texel.rgb;
@@ -123,6 +221,11 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
           }
           
           color = mix(color, blur.rgb, blurIntensity);
+        }
+
+        // Apply Retinitis Pigmentosa effect
+        if (retinitisPigmentosaIntensity > 0.0) {
+          color = applyRetinitisPigmentosa(color, vUv, retinitisPigmentosaIntensity, time);
         }
         
         gl_FragColor = vec4(color, texel.a);
@@ -176,6 +279,14 @@ export const updateShaderUniforms = (
   if (nearSighted) {
     material.uniforms.blurIntensity.value = nearSighted.enabled ? nearSighted.intensity : 0;
   }
+
+  const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
+  if (retinitisPigmentosa) {
+    material.uniforms.retinitisPigmentosaIntensity.value = retinitisPigmentosa.enabled ? retinitisPigmentosa.intensity : 0;
+  }
+
+  // Update time for animated effects
+  material.uniforms.time.value = performance.now() * 0.001;
 };
 
 /**

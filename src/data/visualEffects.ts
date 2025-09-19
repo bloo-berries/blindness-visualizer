@@ -178,7 +178,7 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     name: 'Glaucoma',
     enabled: false,
     intensity: 1.0,
-    description: 'Damage to the optic nerve, often caused by high eye pressure. Can cause gradual loss of peripheral vision and eventually central vision if untreated.'
+    description: 'A group of eye diseases that damage the optic nerve, typically due to elevated intraocular pressure. Known as the "silent thief of sight" because vision loss occurs gradually and peripherally first. Early stages show small paracentral scotomas, progressing to arc-shaped defects, then tunnel vision, and finally severe constriction. Central vision remains sharp until late stages. Includes blue-yellow color deficits and reduced contrast sensitivity.'
   },
   { 
     id: 'amd',

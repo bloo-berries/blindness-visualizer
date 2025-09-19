@@ -37,6 +37,8 @@ const VisionSimulator: React.FC = () => {
     conditions: string[];
   } | null>(null);
   const [effects, setEffects] = useState<VisualEffect[]>(createDefaultEffects());
+  const [diplopiaSeparation, setDiplopiaSeparation] = useState(1.0);
+  const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
 
 
   // Handle pre-configured conditions from famous people page
@@ -106,6 +108,10 @@ const VisionSimulator: React.FC = () => {
               onToggle={handleToggle}
               onIntensityChange={handleIntensityChange}
               onDeselectAll={handleDeselectAll}
+              diplopiaSeparation={diplopiaSeparation}
+              diplopiaDirection={diplopiaDirection}
+              onDiplopiaSeparationChange={setDiplopiaSeparation}
+              onDiplopiaDirectionChange={setDiplopiaDirection}
             />
           </Box>
         );
@@ -115,6 +121,8 @@ const VisionSimulator: React.FC = () => {
             <Visualizer 
               effects={effects} 
               inputSource={inputSource}
+              diplopiaSeparation={diplopiaSeparation}
+              diplopiaDirection={diplopiaDirection}
             />
           </Box>
         );

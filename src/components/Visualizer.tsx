@@ -12,11 +12,13 @@ import { generateCSSFilters, generateBaseStyles } from '../utils/cssFilterManage
 interface VisualizerProps {
   effects: VisualEffect[];
   inputSource: InputSource;
+  diplopiaSeparation?: number;
+  diplopiaDirection?: number;
 }
 
 const DEMO_VIDEO_ID = 'KOc146R8sws';
 
-const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
+const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
@@ -251,7 +253,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
       if (texture) {
         const material = mesh.material as THREE.ShaderMaterial;
         material.uniforms.tDiffuse.value = texture;
-        updateShaderUniforms(material, effects);
+        updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
       }
       renderer.render(scene, camera);
     };
@@ -277,7 +279,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
         containerRef.current.removeChild(renderer.domElement);
       }
     };
-  }, [inputSource, effects]);
+  }, [inputSource, effects, diplopiaSeparation, diplopiaDirection]);
 
   // Get effect state changes to rerender
   useEffect(() => {
@@ -297,12 +299,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource }) => {
     const visualFloaters = effects.find(e => e.id === 'visualFloaters');
     const scotoma = effects.find(e => e.id === 'scotoma');
     
-    const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
-    
     const needsAnimation = 
       (visualFloaters && visualFloaters.enabled) || 
-      (scotoma && scotoma.enabled) ||
-      (retinitisPigmentosa && retinitisPigmentosa.enabled);
+      (scotoma && scotoma.enabled);
     
     if (needsAnimation) {
       // Start animation if not already running

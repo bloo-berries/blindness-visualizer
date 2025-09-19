@@ -27,6 +27,10 @@ interface ControlPanelProps {
   onToggle: (id: string) => void;
   onIntensityChange: (id: string, intensity: number) => void;
   onDeselectAll: () => void;
+  diplopiaSeparation?: number;
+  diplopiaDirection?: number;
+  onDiplopiaSeparationChange?: (separation: number) => void;
+  onDiplopiaDirectionChange?: (direction: number) => void;
 }
 
 const conditionCategories: Record<string, ConditionType[]> = {
@@ -42,7 +46,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   effects,
   onToggle,
   onIntensityChange,
-  onDeselectAll
+  onDeselectAll,
+  diplopiaSeparation = 1.0,
+  diplopiaDirection = 0.0,
+  onDiplopiaSeparationChange,
+  onDiplopiaDirectionChange
 }) => {
   // Group effects by category
   const effectsByCategory = Object.entries(conditionCategories).map(([category, conditionTypes]) => {
@@ -188,6 +196,64 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                                   sx={{ mt: 1, width: '90%' }}
                                 />
                               )}
+                              {/* Diplopia-specific controls */}
+                              {(effect.id === 'diplopiaMonocular' || effect.id === 'diplopiaBinocular') && effect.enabled && (
+                                <Box sx={{ mt: 2, pl: 1 }}>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary' }}>
+                                    Separation Distance
+                                  </Typography>
+                                  <Slider
+                                    size="small"
+                                    value={diplopiaSeparation * 100}
+                                    onChange={(_, value) => 
+                                      onDiplopiaSeparationChange?.((value as number) / 100)
+                                    }
+                                    valueLabelDisplay="auto"
+                                    valueLabelFormat={value => `${value}%`}
+                                    aria-label="Adjust diplopia separation"
+                                    sx={{ width: '90%', mb: 2 }}
+                                  />
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary' }}>
+                                    Direction
+                                  </Typography>
+                                  <Slider
+                                    size="small"
+                                    value={diplopiaDirection * 100}
+                                    onChange={(_, value) => 
+                                      onDiplopiaDirectionChange?.((value as number) / 100)
+                                    }
+                                    valueLabelDisplay="auto"
+                                    valueLabelFormat={value => {
+                                      const direction = (value as number) / 100;
+                                      if (direction < 0.33) return 'Horizontal';
+                                      if (direction < 0.66) return 'Vertical';
+                                      return 'Diagonal';
+                                    }}
+                                    aria-label="Adjust diplopia direction"
+                                    sx={{ width: '90%' }}
+                                  />
+                                </Box>
+                              )}
+                              {/* Glaucoma-specific information */}
+                              {effect.id === 'glaucoma' && effect.enabled && (
+                                <Box sx={{ mt: 2, pl: 1 }}>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary', fontStyle: 'italic' }}>
+                                    Glaucoma Stages:
+                                  </Typography>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
+                                    • 0-20%: Early - Small paracentral scotomas
+                                  </Typography>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
+                                    • 20-50%: Moderate - Arc-shaped defects
+                                  </Typography>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
+                                    • 50-80%: Advanced - Tunnel vision
+                                  </Typography>
+                                  <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
+                                    • 80-100%: End stage - Severe constriction
+                                  </Typography>
+                                </Box>
+                              )}
                               {/* Show prevalence for color vision conditions */}
                               {isColorVisionCondition(effect.id as ConditionType) && (
                                 <Typography variant="caption" sx={{ display: 'block', mt: 0.5, color: 'text.secondary' }}>
@@ -293,12 +359,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           // Color vision conditions use SVG filters
                           if (isColorVisionCondition(id)) return true;
                           
-                          // Eye conditions, retinal disorders, visual disturbances, and double vision use CSS filters
+                          // Only basic eye conditions use CSS filters - complex effects use shaders or overlays
                           const filterBasedTypes = [
-                            'cataracts', 'glaucoma', 'astigmatism', 'nearSighted', 'farSighted',
-                            'retinitisPigmentosa', 'stargardt',
-                            'visualFloaters', 'hallucinations', 'visualAura', 'visualAuraLeft', 'visualAuraRight',
-                            'diplopiaMonocular', 'diplopiaBinocular'
+                            'cataracts', 'astigmatism', 'nearSighted'
                           ];
                           
                           return filterBasedTypes.includes(id);
@@ -331,40 +394,30 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                             case 'cataracts':
                               return `brightness(${100 + intensity * 15}%) contrast(${100 - intensity * 30}%) sepia(${intensity * 80}%) blur(${intensity * 3}px) hue-rotate(${intensity * 20}deg) saturate(${100 + intensity * 20}%)`;
                             case 'glaucoma':
-                              return `brightness(${100 - intensity * 20}%) contrast(${100 - intensity * 15}%) saturate(${100 - intensity * 10}%) blur(${intensity * 1.5}px)`;
+                              return 'none'; // Handled by shader effects
                             case 'astigmatism':
                               return `blur(${intensity * 2}px) brightness(${100 + intensity * 5}%)`;
                             case 'nearSighted':
                               return `blur(${intensity * 3}px) brightness(${100 + intensity * 3}%)`;
                             case 'farSighted':
-                              return `blur(${intensity * 2.5}px) brightness(${100 + intensity * 2}%)`;
+                              return 'none'; // Handled by overlay effects
                             
-                            // Retinal Disorders
+                            // Retinal Disorders - handled by shaders or overlays
                             case 'amd':
-                              // AMD causes central vision loss - this will be handled by overlay system
-                              return 'none';
                             case 'diabeticRetinopathy':
-                              // Diabetic retinopathy causes multiple visual symptoms - this will be handled by overlay system
-                              return 'none';
                             case 'retinitisPigmentosa':
-                              return `brightness(${100 - intensity * 30}%) contrast(${100 - intensity * 25}%) saturate(${100 - intensity * 20}%)`;
                             case 'stargardt':
-                              return `brightness(${100 - intensity * 20}%) contrast(${100 - intensity * 15}%) saturate(${100 - intensity * 10}%)`;
+                              return 'none';
                             
-                            // Visual Disturbances
+                            // Visual Disturbances - handled by overlays
                             case 'visualFloaters':
-                              return `brightness(${100 + intensity * 3}%) contrast(${100 + intensity * 5}%)`;
                             case 'hallucinations':
-                              return `brightness(${100 + intensity * 10}%) contrast(${100 + intensity * 15}%) saturate(${100 + intensity * 20}%) hue-rotate(${intensity * 30}deg)`;
                             case 'visualAura':
                             case 'visualAuraLeft':
                             case 'visualAuraRight':
-                              return `brightness(${100 + intensity * 5}%) contrast(${100 + intensity * 3}%)`;
+                            case 'visualSnow':
+                              return 'none';
                             
-                            // Double Vision
-                            case 'diplopiaMonocular':
-                            case 'diplopiaBinocular':
-                              return `brightness(${100 + intensity * 5}%) contrast(${100 + intensity * 3}%)`;
                             
                             default:
                               return 'none';
@@ -384,10 +437,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       
                       // Exclude other filter-based conditions (handled by CSS filters on base image)
                       const filterBasedTypes = [
-                        'cataracts', 'glaucoma', 'astigmatism', 'nearSighted', 'farSighted',
-                        'retinitisPigmentosa', 'stargardt',
-                        'visualFloaters', 'hallucinations', 'visualAura', 'visualAuraLeft', 'visualAuraRight',
-                        'diplopiaMonocular', 'diplopiaBinocular'
+                        'cataracts', 'astigmatism', 'nearSighted'
                       ];
                       
                       return !filterBasedTypes.includes(id);
@@ -655,19 +705,119 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         
                       case 'retinitisPigmentosa':
                         // Retinitis Pigmentosa: severe tunnel vision with peripheral loss
-                        const rpTunnelRadius = Math.max(3, 15 - intensity * 12); // Very narrow tunnel
+                        // Based on reference images - irregular, asymmetrical tunnel
+                        const rpTunnelRadius = Math.max(2, 8 - intensity * 6); // Extremely narrow tunnel
                         overlayStyle.background = `
-                          radial-gradient(circle at 50% 50%, 
+                          /* Main elliptical tunnel */
+                          radial-gradient(ellipse 100% 80% at 50% 50%, 
                             rgba(0,0,0,0) 0%,
                             rgba(0,0,0,0) ${rpTunnelRadius}%,
-                            rgba(0,0,0,${0.5 * intensity}) ${rpTunnelRadius + 1}%,
-                            rgba(0,0,0,${0.8 * intensity}) ${rpTunnelRadius + 2}%,
-                            rgba(0,0,0,${0.95 * intensity}) ${rpTunnelRadius + 4}%,
+                            rgba(0,0,0,${0.3 * intensity}) ${rpTunnelRadius + 1}%,
+                            rgba(0,0,0,${0.6 * intensity}) ${rpTunnelRadius + 2}%,
+                            rgba(0,0,0,${0.8 * intensity}) ${rpTunnelRadius + 3}%,
+                            rgba(0,0,0,${0.9 * intensity}) ${rpTunnelRadius + 4}%,
+                            rgba(0,0,0,${0.95 * intensity}) ${rpTunnelRadius + 6}%,
                             rgba(0,0,0,${0.98 * intensity}) 100%
+                          ),
+                          /* Additional peripheral darkening */
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,0) 0%,
+                            rgba(0,0,0,0) ${rpTunnelRadius + 8}%,
+                            rgba(0,0,0,${0.5 * intensity}) ${rpTunnelRadius + 12}%,
+                            rgba(0,0,0,${0.8 * intensity}) ${rpTunnelRadius + 16}%,
+                            rgba(0,0,0,${0.95 * intensity}) 100%
                           )
                         `;
                         overlayStyle.mixBlendMode = 'multiply';
                         overlayStyle.opacity = 1.0;
+                        break;
+                        
+                      case 'glaucoma':
+                        // Glaucoma: complex peripheral vision loss with scotomas
+                        // Start with a base that ensures some effect is always visible
+                        console.log('Creating glaucoma overlay with intensity:', intensity);
+                        let glaucomaBackground = '';
+                        
+                        // Early stage: Small paracentral scotomas (10-20 degrees from center)
+                        if (intensity > 0.1) {
+                          // Superior paracentral scotoma - smoother, more organic edges
+                          const scotoma1Size = Math.max(2, 6 - intensity * 4);
+                          const scotoma1Fade1 = Math.max(6, 12 - intensity * 6);
+                          const scotoma1Fade2 = Math.max(12, 20 - intensity * 8);
+                          const scotoma1End = Math.max(20, 35 - intensity * 15);
+                          
+                          glaucomaBackground += `radial-gradient(ellipse 120% 80% at 65% 40%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.7 * intensity}) ${scotoma1Size}%, rgba(0,0,0,${0.4 * intensity}) ${scotoma1Fade1}%, rgba(0,0,0,${0.2 * intensity}) ${scotoma1Fade2}%, rgba(0,0,0,0) ${scotoma1End}%),`;
+                          
+                          // Inferior paracentral scotoma - smoother, more organic edges
+                          const scotoma2Size = Math.max(1, 4 - intensity * 3);
+                          const scotoma2Fade1 = Math.max(4, 8 - intensity * 4);
+                          const scotoma2Fade2 = Math.max(8, 15 - intensity * 7);
+                          const scotoma2End = Math.max(15, 28 - intensity * 13);
+                          
+                          glaucomaBackground += `radial-gradient(ellipse 100% 90% at 35% 60%, rgba(0,0,0,${0.85 * intensity}) 0%, rgba(0,0,0,${0.6 * intensity}) ${scotoma2Size}%, rgba(0,0,0,${0.35 * intensity}) ${scotoma2Fade1}%, rgba(0,0,0,${0.15 * intensity}) ${scotoma2Fade2}%, rgba(0,0,0,0) ${scotoma2End}%),`;
+                        }
+                        
+                        // Moderate stage: Arc-shaped defects (arcuate scotomas) - smoother transitions
+                        if (intensity > 0.3) {
+                          // Superior arcuate scotoma - smoother, more gradual transitions
+                          glaucomaBackground += `conic-gradient(from 0deg at 50% 50%, rgba(0,0,0,0) 0deg, rgba(0,0,0,0) 50deg, rgba(0,0,0,${0.3 * intensity}) 55deg, rgba(0,0,0,${0.7 * intensity}) 70deg, rgba(0,0,0,${0.9 * intensity}) 85deg, rgba(0,0,0,${0.7 * intensity}) 100deg, rgba(0,0,0,${0.3 * intensity}) 115deg, rgba(0,0,0,0) 130deg, rgba(0,0,0,0) 360deg),`;
+                          
+                          // Inferior arcuate scotoma - smoother, more gradual transitions
+                          glaucomaBackground += `conic-gradient(from 180deg at 50% 50%, rgba(0,0,0,0) 0deg, rgba(0,0,0,0) 50deg, rgba(0,0,0,${0.25 * intensity}) 55deg, rgba(0,0,0,${0.6 * intensity}) 70deg, rgba(0,0,0,${0.85 * intensity}) 85deg, rgba(0,0,0,${0.6 * intensity}) 100deg, rgba(0,0,0,${0.25 * intensity}) 115deg, rgba(0,0,0,0) 130deg, rgba(0,0,0,0) 360deg),`;
+                        }
+                        
+                        // Advanced stage: Peripheral constriction (tunnel vision) - smoother transition
+                        if (intensity > 0.5) {
+                          const tunnelRadius = Math.max(20, 60 - intensity * 50);
+                          const tunnelFadeStart = Math.max(10, tunnelRadius - 15);
+                          const tunnelFadeEnd = Math.max(15, tunnelRadius - 5);
+                          
+                          glaucomaBackground += `radial-gradient(ellipse 110% 100% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${tunnelFadeStart}%, rgba(0,0,0,${0.2 * intensity}) ${tunnelFadeEnd}%, rgba(0,0,0,${0.6 * intensity}) ${tunnelRadius}%, rgba(0,0,0,${0.9 * intensity}) ${tunnelRadius + 5}%, rgba(0,0,0,${0.95 * intensity}) 100%),`;
+                        }
+                        
+                        // End stage: Severe constriction - smoother transition
+                        if (intensity > 0.8) {
+                          const severeRadius = Math.max(5, 20 - (intensity - 0.8) * 15);
+                          const severeFadeStart = Math.max(2, severeRadius - 5);
+                          const severeFadeEnd = Math.max(3, severeRadius - 2);
+                          
+                          glaucomaBackground += `radial-gradient(ellipse 105% 95% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${severeFadeStart}%, rgba(0,0,0,${0.3 * intensity}) ${severeFadeEnd}%, rgba(0,0,0,${0.7 * intensity}) ${severeRadius}%, rgba(0,0,0,${0.95 * intensity}) ${severeRadius + 2}%, rgba(0,0,0,${0.98 * intensity}) 100%),`;
+                        }
+                        
+                        // If no specific stage effects, create a basic peripheral darkening - smoother
+                        if (glaucomaBackground === '') {
+                          const fallbackStart = 80 - intensity * 30;
+                          const fallbackMid = 90 - intensity * 20;
+                          glaucomaBackground = `radial-gradient(ellipse 110% 100% at 50% 50%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${fallbackStart}%, rgba(0,0,0,${0.1 * intensity}) ${fallbackMid - 5}%, rgba(0,0,0,${0.3 * intensity}) ${fallbackMid}%, rgba(0,0,0,${0.5 * intensity}) ${fallbackMid + 5}%, rgba(0,0,0,${0.6 * intensity}) 100%)`;
+                        } else {
+                          // Remove trailing comma
+                          glaucomaBackground = glaucomaBackground.slice(0, -1);
+                        }
+                        
+                        // Ensure we always have some effect visible
+                        if (glaucomaBackground === '') {
+                          glaucomaBackground = `rgba(0,0,0,${intensity * 0.2})`;
+                        }
+                        
+                        console.log('Glaucoma background:', glaucomaBackground);
+                        overlayStyle.background = glaucomaBackground;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        break;
+                        
+                      case 'farSighted':
+                        // Hyperopia: transparent blur on edges, clear center
+                        // Create a transparent overlay that applies blur only to edges
+                        const hyperopiaBlur = intensity * 6;
+                        const clearRadius = 40 - intensity * 10; // Clear area size decreases with intensity
+                        
+                        // Use transparent background with blur filter
+                        overlayStyle.background = 'transparent';
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = 1.0;
+                        overlayStyle.filter = `blur(${hyperopiaBlur}px)`;
+                        // Use clip-path to create a donut shape - blur only the edges
+                        overlayStyle.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${clearRadius}%)`;
                         break;
                         
                       default:

@@ -41,6 +41,8 @@ const generateBlurFilter = (effects: VisualEffect[]): string => {
   return '';
 };
 
+// Note: Glaucoma is now handled by DOM overlays for accurate visual field loss patterns
+
 /**
  * Generates complete CSS filter string for all effects
  */
@@ -58,6 +60,8 @@ export const generateCSSFilters = (effects: VisualEffect[]): string => {
   if (blurFilter) {
     filters.push(blurFilter);
   }
+
+  // Note: Glaucoma is handled by DOM overlays, not CSS filters
 
   return filters.join(' ');
 };

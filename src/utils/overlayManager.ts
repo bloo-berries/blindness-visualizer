@@ -7,7 +7,9 @@ const createOverlay = (
   id: string, 
   backgroundStyle: string, 
   blendMode: string, 
-  opacity: string
+  opacity: string,
+  filter?: string,
+  clipPath?: string
 ): void => {
   let overlayElement = document.getElementById(id);
   
@@ -62,9 +64,15 @@ const createOverlay = (
     }
   }
   
-  overlayElement.style.background = backgroundStyle;
-  overlayElement.style.mixBlendMode = blendMode;
-  overlayElement.style.opacity = opacity;
+    overlayElement.style.background = backgroundStyle;
+    overlayElement.style.mixBlendMode = blendMode;
+    overlayElement.style.opacity = opacity;
+    if (filter) {
+      overlayElement.style.filter = filter;
+    }
+    if (clipPath) {
+      overlayElement.style.clipPath = clipPath;
+    }
 };
 
 /**
@@ -89,7 +97,9 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   const visualFloaters = effects.find(e => e.id === 'visualFloaters');
   const visualSnow = effects.find(e => e.id === 'visualSnow');
   const aura = effects.find(e => e.id === 'aura');
-  const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
+  const glaucoma = effects.find(e => e.id === 'glaucoma');
+  const hyperopia = effects.find(e => e.id === 'farSighted');
+  // Note: retinitisPigmentosa is handled by shader effects, not overlays
 
   // Create overlays for each enabled effect
   if (tunnelVision?.enabled) {
@@ -307,61 +317,118 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     );
   }
 
-  if (retinitisPigmentosa?.enabled) {
-    const intensity = retinitisPigmentosa.intensity;
+  if (glaucoma?.enabled) {
+    const intensity = glaucoma.intensity;
     
-    console.log('Creating RP overlay with intensity:', intensity);
-    console.log('RP effect found:', retinitisPigmentosa);
+    // Create complex glaucoma overlay with multiple scotomas and peripheral loss
+    let glaucomaBackground = '';
     
-    // At 100% intensity, complete blindness
-    if (intensity >= 1.0) {
-      createOverlay(
-        'visual-field-overlay-retinitisPigmentosa',
-        'rgba(0,0,0,1)',
-        'multiply',
-        '1'
-      );
-    } else {
-      // Much more severe tunnel vision - very narrow central field
-      const tunnelRadius = Math.max(3, 15 - intensity * 12); // From 15% to 3% (very narrow)
+    // Early stage: Small paracentral scotomas (10-20 degrees from center)
+    if (intensity > 0.1) {
+      // Superior paracentral scotoma
+      glaucomaBackground += `
+        radial-gradient(circle at 65% 40%, 
+          rgba(0,0,0,${0.95 * intensity}) 0%, 
+          rgba(0,0,0,${0.85 * intensity}) ${Math.max(3, 8 - intensity * 5)}%,
+          rgba(0,0,0,${0.5 * intensity}) ${Math.max(8, 15 - intensity * 7)}%,
+          rgba(0,0,0,0) ${Math.max(15, 25 - intensity * 10)}%
+        ),
+      `;
       
-      console.log('RP tunnel radius:', tunnelRadius);
-      
-      // Create a dramatic tunnel vision effect that should be highly visible
-      const backgroundStyle = `radial-gradient(circle at 50% 50%, 
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) ${tunnelRadius}%,
-        rgba(0,0,0,${0.5 * intensity}) ${tunnelRadius + 1}%,
-        rgba(0,0,0,${0.8 * intensity}) ${tunnelRadius + 2}%,
-        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 4}%,
-        rgba(0,0,0,${0.98 * intensity}) 100%
-      )`;
-      
-      console.log('RP background style:', backgroundStyle);
-      console.log('RP tunnel radius:', tunnelRadius);
-      
-      createOverlay(
-        'visual-field-overlay-retinitisPigmentosa',
-        backgroundStyle,
-        'multiply',
-        '1.0'
-      );
-      
-      // Retry mechanism - try again after a short delay
-      setTimeout(() => {
-        const existingOverlay = document.getElementById('visual-field-overlay-retinitisPigmentosa');
-        if (!existingOverlay) {
-          console.log('Retrying RP overlay creation...');
-          createOverlay(
-            'visual-field-overlay-retinitisPigmentosa',
-            backgroundStyle,
-            'multiply',
-            '1.0'
-          );
-        }
-      }, 500);
+      // Inferior paracentral scotoma
+      glaucomaBackground += `
+        radial-gradient(circle at 35% 60%, 
+          rgba(0,0,0,${0.95 * intensity}) 0%, 
+          rgba(0,0,0,${0.85 * intensity}) ${Math.max(2, 6 - intensity * 4)}%,
+          rgba(0,0,0,${0.5 * intensity}) ${Math.max(6, 12 - intensity * 6)}%,
+          rgba(0,0,0,0) ${Math.max(12, 20 - intensity * 8)}%
+        ),
+      `;
     }
+    
+    // Moderate stage: Arc-shaped defects (arcuate scotomas)
+    if (intensity > 0.3) {
+      // Superior arcuate scotoma
+      glaucomaBackground += `
+        conic-gradient(from 0deg at 50% 50%, 
+          rgba(0,0,0,0) 0deg, 
+          rgba(0,0,0,0) 60deg, 
+          rgba(0,0,0,${0.9 * intensity}) 60deg, 
+          rgba(0,0,0,${0.9 * intensity}) 120deg, 
+          rgba(0,0,0,0) 120deg, 
+          rgba(0,0,0,0) 360deg
+        ),
+      `;
+      
+      // Inferior arcuate scotoma
+      glaucomaBackground += `
+        conic-gradient(from 180deg at 50% 50%, 
+          rgba(0,0,0,0) 0deg, 
+          rgba(0,0,0,0) 60deg, 
+          rgba(0,0,0,${0.85 * intensity}) 60deg, 
+          rgba(0,0,0,${0.85 * intensity}) 120deg, 
+          rgba(0,0,0,0) 120deg, 
+          rgba(0,0,0,0) 360deg
+        ),
+      `;
+    }
+    
+    // Advanced stage: Peripheral constriction (tunnel vision)
+    if (intensity > 0.5) {
+      const tunnelRadius = Math.max(20, 60 - intensity * 50); // From 60% to 20% of screen
+      glaucomaBackground += `
+        radial-gradient(circle at 50% 50%, 
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) ${tunnelRadius - 10}%,
+          rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
+          rgba(0,0,0,${0.95 * intensity}) 100%
+        ),
+      `;
+    }
+    
+    // End stage: Severe constriction
+    if (intensity > 0.8) {
+      const severeRadius = Math.max(5, 20 - (intensity - 0.8) * 15); // Down to 5% of screen
+      glaucomaBackground += `
+        radial-gradient(circle at 50% 50%, 
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) ${severeRadius - 3}%,
+          rgba(0,0,0,${0.98 * intensity}) ${severeRadius}%,
+          rgba(0,0,0,${0.98 * intensity}) 100%
+        ),
+      `;
+    }
+    
+    // Remove trailing comma
+    glaucomaBackground = glaucomaBackground.slice(0, -1);
+    
+    createOverlay(
+      'visual-field-overlay-glaucoma',
+      glaucomaBackground,
+      'multiply',
+      Math.min(0.95, intensity).toString()
+    );
   }
+
+  if (hyperopia?.enabled) {
+    const intensity = hyperopia.intensity;
+    
+    // Hyperopia: transparent blur on edges, clear center
+    const hyperopiaBlur = intensity * 6;
+    const clearRadius = 40 - intensity * 10; // Clear area size decreases with intensity
+    
+    // Use transparent background with blur filter and clip-path to mask center
+    createOverlay(
+      'visual-field-overlay-hyperopia',
+      'transparent',
+      'normal',
+      '1.0',
+      `blur(${hyperopiaBlur}px)`,
+      `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${clearRadius}%)`
+    );
+  }
+
+  // Retinitis Pigmentosa is handled by shader effects, not overlays
 };
 
 /**

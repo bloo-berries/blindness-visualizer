@@ -9,7 +9,7 @@ export const updateAnimatedOverlays = (effects: VisualEffect[]): void => {
   const scotoma = effects.find(e => e.id === 'scotoma');
   const visualFloaters = effects.find(e => e.id === 'visualFloaters');
   const visualSnow = effects.find(e => e.id === 'visualSnow');
-  const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
+  // Note: retinitisPigmentosa is handled by shader effects, not overlays
   
   if (scotoma?.enabled) {
     updateScotomaOverlay(scotoma.intensity);
@@ -23,9 +23,7 @@ export const updateAnimatedOverlays = (effects: VisualEffect[]): void => {
     updateVisualSnowOverlay(visualSnow.intensity);
   }
   
-  if (retinitisPigmentosa?.enabled) {
-    updateRetinitisPigmentosaOverlay(retinitisPigmentosa.intensity);
-  }
+  // Retinitis Pigmentosa is handled by shader effects, not overlays
 };
 
 /**
@@ -135,75 +133,7 @@ const updateVisualSnowOverlay = (intensity: number): void => {
   }
 };
 
-/**
- * Updates the Retinitis Pigmentosa overlay with animated tunnel vision and glare effects
- * 
- * @param intensity - The intensity of the RP effect
- */
-const updateRetinitisPigmentosaOverlay = (intensity: number): void => {
-  const overlayElement = document.getElementById('visual-field-overlay-retinitisPigmentosa');
-  
-  if (overlayElement) {
-    // At 100% intensity, complete blindness
-    if (intensity >= 1.0) {
-      overlayElement.style.background = 'rgba(0,0,0,1)';
-      overlayElement.style.opacity = '1';
-      return;
-    }
-    
-    // Much more severe tunnel vision - very narrow central field
-    const tunnelRadius = Math.max(3, 15 - intensity * 12); // From 15% to 3% (very narrow)
-    
-    // Create a more realistic RP effect with multiple layers
-    let backgroundLayers = '';
-    
-    // Base tunnel with irregular shape and heavy peripheral darkening
-    backgroundLayers += `radial-gradient(ellipse ${tunnelRadius + 2}% ${tunnelRadius}% at 50% 50%, 
-      rgba(0,0,0,0) 0%,
-      rgba(0,0,0,0) ${tunnelRadius - 1}%,
-      rgba(0,0,0,${0.2 * intensity}) ${tunnelRadius}%,
-      rgba(0,0,0,${0.6 * intensity}) ${tunnelRadius + 2}%,
-      rgba(0,0,0,${0.9 * intensity}) ${tunnelRadius + 5}%,
-      rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 8}%,
-      rgba(0,0,0,${0.98 * intensity}) 100%
-    )`;
-    
-    // Add heavy peripheral blur effect using multiple overlapping gradients
-    const blurRadius = tunnelRadius + 8;
-    for (let i = 0; i < 3; i++) {
-      const offset = i * 2;
-      backgroundLayers += `, radial-gradient(circle at ${50 + offset}% ${50 + offset}%, 
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) ${blurRadius + i * 2}%,
-        rgba(0,0,0,${0.3 * intensity}) ${blurRadius + i * 2 + 1}%,
-        rgba(0,0,0,${0.7 * intensity}) ${blurRadius + i * 2 + 3}%,
-        rgba(0,0,0,${0.9 * intensity}) 100%
-      )`;
-    }
-    
-    // Add glare effects from bright areas
-    if (intensity > 0.2) {
-      const glareIntensity = Math.min(0.3, intensity * 0.4);
-      
-      // Multiple glare spots emanating from center
-      for (let i = 0; i < 4; i++) {
-        const angle = (i * 90) % 360;
-        const x = 50 + Math.cos(angle * Math.PI / 180) * 20;
-        const y = 50 + Math.sin(angle * Math.PI / 180) * 20;
-        
-        backgroundLayers += `, radial-gradient(ellipse 20% 5% at ${x}% ${y}%, 
-          rgba(255,255,255,${glareIntensity}) 0%,
-          rgba(255,255,255,${glareIntensity * 0.6}) 30%,
-          rgba(255,255,255,${glareIntensity * 0.2}) 60%,
-          rgba(255,255,255,0) 100%
-        )`;
-      }
-    }
-    
-    overlayElement.style.background = backgroundLayers;
-    overlayElement.style.opacity = '0.95';
-  }
-};
+// Retinitis Pigmentosa is now handled by shader effects, not overlays
 
 /**
  * Creates overlay elements for visual effects

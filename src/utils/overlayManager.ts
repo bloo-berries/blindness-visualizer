@@ -258,35 +258,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     );
   }
 
-  if (visualSnow?.enabled) {
-    const now = Date.now();
-    const snowDensity = Math.floor(visualSnow.intensity * 200);
-    let snowBackground = '';
-    
-    for (let i = 0; i < snowDensity; i++) {
-      const x = (i * 137.5) % 100;
-      const y = (i * 73.3 + now/50) % 100;
-      const size = (i % 3 + 1) * 0.5;
-      const opacity = (0.3 + (i % 4) * 0.2) * visualSnow.intensity;
-      
-      snowBackground += `
-        radial-gradient(circle ${size}px at ${x}% ${y}%, 
-          rgba(255,255,255,${opacity}) 0%, 
-          rgba(255,255,255,0) 100%
-        ),
-      `;
-    }
-    
-    // Remove trailing comma
-    snowBackground = snowBackground.slice(0, -1);
-    
-    createOverlay(
-      'visual-field-overlay-visualSnow',
-      snowBackground,
-      'screen',
-      '1'
-    );
-  }
+  // Visual Snow is now handled by ControlPanel.tsx overlay generation
 
   if (aura?.enabled) {
     const now = Date.now();

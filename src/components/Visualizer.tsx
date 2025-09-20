@@ -138,75 +138,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         }
       }
       
-      if (visualSnow?.enabled) {
-        const now = Date.now();
-        const snowIntensity = Math.min(visualSnow.intensity * 0.8, 0.6);
-        const snowPhase = now * 0.001;
-        
-        const overlayElement = document.getElementById('visual-field-overlay-visualSnow');
-        if (overlayElement) {
-          // Generate multiple layers of noise with different patterns
-          const noiseLayer1 = `
-            radial-gradient(circle 0.5px at ${20 + Math.sin(snowPhase * 0.1) * 5}% ${30 + Math.cos(snowPhase * 0.1) * 5}%, 
-              rgba(255,255,255,${snowIntensity * 0.3}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.3px at ${80 + Math.sin(snowPhase * 0.15) * 3}% ${40 + Math.cos(snowPhase * 0.15) * 3}%, 
-              rgba(255,255,255,${snowIntensity * 0.4}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.4px at ${50 + Math.sin(snowPhase * 0.2) * 4}% ${70 + Math.cos(snowPhase * 0.2) * 4}%, 
-              rgba(255,255,255,${snowIntensity * 0.35}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.2px at ${10 + Math.sin(snowPhase * 0.25) * 2}% ${60 + Math.cos(snowPhase * 0.25) * 2}%, 
-              rgba(255,255,255,${snowIntensity * 0.5}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.6px at ${90 + Math.sin(snowPhase * 0.3) * 6}% ${20 + Math.cos(snowPhase * 0.3) * 6}%, 
-              rgba(255,255,255,${snowIntensity * 0.25}) 0%, 
-              rgba(255,255,255,0) 100%
-            )
-          `;
-          
-          const noiseLayer2 = `
-            radial-gradient(circle 0.4px at ${35 + Math.sin(snowPhase * 0.12) * 4}% ${80 + Math.cos(snowPhase * 0.12) * 4}%, 
-              rgba(255,255,255,${snowIntensity * 0.4}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.3px at ${75 + Math.sin(snowPhase * 0.18) * 3}% ${15 + Math.cos(snowPhase * 0.18) * 3}%, 
-              rgba(255,255,255,${snowIntensity * 0.45}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.5px at ${25 + Math.sin(snowPhase * 0.22) * 5}% ${45 + Math.cos(snowPhase * 0.22) * 5}%, 
-              rgba(255,255,255,${snowIntensity * 0.3}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.2px at ${85 + Math.sin(snowPhase * 0.28) * 2}% ${55 + Math.cos(snowPhase * 0.28) * 2}%, 
-              rgba(255,255,255,${snowIntensity * 0.5}) 0%, 
-              rgba(255,255,255,0) 100%
-            )
-          `;
-          
-          const noiseLayer3 = `
-            radial-gradient(circle 0.3px at ${60 + Math.sin(snowPhase * 0.14) * 3}% ${25 + Math.cos(snowPhase * 0.14) * 3}%, 
-              rgba(255,255,255,${snowIntensity * 0.35}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.4px at ${15 + Math.sin(snowPhase * 0.16) * 4}% ${75 + Math.cos(snowPhase * 0.16) * 4}%, 
-              rgba(255,255,255,${snowIntensity * 0.4}) 0%, 
-              rgba(255,255,255,0) 100%
-            ),
-            radial-gradient(circle 0.2px at ${95 + Math.sin(snowPhase * 0.24) * 2}% ${35 + Math.cos(snowPhase * 0.24) * 2}%, 
-              rgba(255,255,255,${snowIntensity * 0.5}) 0%, 
-              rgba(255,255,255,0) 100%
-            )
-          `;
-          
-          overlayElement.style.background = `${noiseLayer1}, ${noiseLayer2}, ${noiseLayer3}`;
-          overlayElement.style.opacity = snowIntensity.toString();
-        }
-      }
+      // Visual Snow is now handled by ControlPanel.tsx overlay generation
       
       // Continue animation loop
       animationFrameId = requestAnimationFrame(updateOverlays);
@@ -214,7 +146,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     
     // Start animation if needed
     const needsAnimation = effects.some(e => 
-      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'visualSnow' || e.id === 'retinitisPigmentosa') && e.enabled
+      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa') && e.enabled
     );
     
     if (needsAnimation) {

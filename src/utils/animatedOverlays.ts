@@ -8,7 +8,7 @@ import { VisualEffect } from '../types/visualEffects';
 export const updateAnimatedOverlays = (effects: VisualEffect[]): void => {
   const scotoma = effects.find(e => e.id === 'scotoma');
   const visualFloaters = effects.find(e => e.id === 'visualFloaters');
-  const visualSnow = effects.find(e => e.id === 'visualSnow');
+  // Note: visualSnow is now handled by ControlPanel.tsx overlay generation
   // Note: retinitisPigmentosa is handled by shader effects, not overlays
   
   if (scotoma?.enabled) {
@@ -19,10 +19,7 @@ export const updateAnimatedOverlays = (effects: VisualEffect[]): void => {
     updateFloatersOverlay(visualFloaters.intensity);
   }
   
-  if (visualSnow?.enabled) {
-    updateVisualSnowOverlay(visualSnow.intensity);
-  }
-  
+  // Visual Snow is now handled by ControlPanel.tsx overlay generation
   // Retinitis Pigmentosa is handled by shader effects, not overlays
 };
 
@@ -106,32 +103,7 @@ const updateFloatersOverlay = (intensity: number): void => {
   }
 };
 
-/**
- * Updates the visual snow overlay with animated noise
- * 
- * @param intensity - The intensity of the visual snow effect
- */
-const updateVisualSnowOverlay = (intensity: number): void => {
-  const overlayElement = document.getElementById('visual-field-overlay-visualSnow');
-  
-  if (overlayElement) {
-    overlayElement.style.background = `
-      repeating-radial-gradient(
-        circle at 25% 25%,
-        transparent 0,
-        rgba(255, 255, 255, ${0.1 * intensity}) 1px,
-        transparent 2px
-      ),
-      repeating-radial-gradient(
-        circle at 75% 75%,
-        transparent 0,
-        rgba(255, 255, 255, ${0.08 * intensity}) 1px,
-        transparent 3px
-      )
-    `;
-    overlayElement.style.animation = 'visualSnowAnimation 2s infinite';
-  }
-};
+// Visual Snow overlay function removed - now handled by ControlPanel.tsx
 
 // Retinitis Pigmentosa is now handled by shader effects, not overlays
 

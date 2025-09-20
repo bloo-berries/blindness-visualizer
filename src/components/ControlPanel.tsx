@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   Box,
   Typography,
@@ -21,6 +21,7 @@ import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
+import { useAnimatedFloaters } from '../hooks/useAnimatedFloaters';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
@@ -52,29 +53,47 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange
 }) => {
-  // Group effects by category
-  const effectsByCategory = Object.entries(conditionCategories).map(([category, conditionTypes]) => {
-    const categoryEffects = effects.filter(effect => 
-      conditionTypes.includes(effect.id as ConditionType)
-    );
-    return { category, effects: categoryEffects };
-  }).filter(({ effects }) => effects.length > 0);
+  // Create effect lookup map for O(1) access instead of O(n) finds
+  const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
+  const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
+
+  // Group effects by category (memoized to prevent unnecessary recalculations)
+  const effectsByCategory = useMemo(() => 
+    Object.entries(conditionCategories).map(([category, conditionTypes]) => {
+      const categoryEffects = effects.filter(effect => 
+        conditionTypes.includes(effect.id as ConditionType)
+      );
+      return { category, effects: categoryEffects };
+    }).filter(({ effects }) => effects.length > 0),
+    [effects]
+  );
 
   // State for highlighted effect in the list (for UI indication)
   const [highlightedEffect, setHighlightedEffect] = useState<VisualEffect | null>(
     effects.find(effect => effect.enabled) || null
   );
 
-  // Get all enabled effects for the combined preview
-  const enabledEffects = effects.filter(effect => effect.enabled);
+  // Get all enabled effects for the combined preview (memoized)
+  const enabledEffects = useMemo(() => 
+    effects.filter(effect => effect.enabled), 
+    [effects]
+  );
+  
+  // Get visual floaters effect for animation (using optimized lookup)
+  const visualFloatersEffect = getEffect('visualFloaters');
+  const { floaterPattern } = useAnimatedFloaters({
+    intensity: visualFloatersEffect?.intensity || 0,
+    enabled: visualFloatersEffect?.enabled || false,
+    animationSpeed: 1.0
+  });
 
-  // Handler for when an effect is clicked in the list
-  const handleEffectClick = (effect: VisualEffect) => {
+  // Handler for when an effect is clicked in the list (memoized)
+  const handleEffectClick = useCallback((effect: VisualEffect) => {
     setHighlightedEffect(effect);
-  };
+  }, []);
 
-  // Handler that combines toggling and highlighting an effect
-  const handleToggleAndSelect = (effect: VisualEffect, e: React.SyntheticEvent) => {
+  // Handler that combines toggling and highlighting an effect (memoized)
+  const handleToggleAndSelect = useCallback((effect: VisualEffect, e: React.SyntheticEvent) => {
     // Stop propagation to prevent triggering the ListItem click
     e.stopPropagation();
     
@@ -86,7 +105,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     if (!isCurrentlyEnabled) {
       setHighlightedEffect(effect);
     } 
-  };
+  }, [onToggle]);
 
   // Get enabled effects count for display
   const enabledEffectsCount = enabledEffects.length;
@@ -135,10 +154,27 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   filter: brightness(1.05) contrast(1.05) hue-rotate(180deg);
                 }
               }
-          @keyframes hallucinationPulse {
-            0% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.05); }
-            100% { opacity: 0.2; transform: scale(1); }
+          @keyframes hallucinationFade {
+            0% { 
+              opacity: 0.1; 
+              filter: blur(0px) brightness(1.0);
+            }
+            25% { 
+              opacity: 0.4; 
+              filter: blur(0.5px) brightness(1.1);
+            }
+            50% { 
+              opacity: 0.7; 
+              filter: blur(0px) brightness(1.2);
+            }
+            75% { 
+              opacity: 0.3; 
+              filter: blur(0.3px) brightness(0.9);
+            }
+            100% { 
+              opacity: 0.1; 
+              filter: blur(0px) brightness(1.0);
+            }
           }
           @keyframes visualSnowFlicker {
             0% { opacity: 0.2; }
@@ -158,6 +194,28 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             60% { opacity: 0.7; }
             80% { opacity: 0.4; }
             100% { opacity: 0.5; }
+          }
+          @keyframes floaterDrift {
+            0% { 
+              transform: translate(0px, 0px) rotate(0deg);
+              filter: blur(0px);
+            }
+            25% { 
+              transform: translate(2px, -1px) rotate(0.5deg);
+              filter: blur(0.2px);
+            }
+            50% { 
+              transform: translate(-1px, 2px) rotate(-0.3deg);
+              filter: blur(0.1px);
+            }
+            75% { 
+              transform: translate(1px, 1px) rotate(0.2deg);
+              filter: blur(0.3px);
+            }
+            100% { 
+              transform: translate(0px, 0px) rotate(0deg);
+              filter: blur(0px);
+            }
           }
         `}
       </style>
@@ -510,9 +568,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       ];
                       
                       // Exclude diplopia conditions (handled by special overlay effects)
-                      const diplopiaTypes = [
-                        'diplopiaMonocular', 'diplopiaBinocular'
-                      ];
+                      // const diplopiaTypes = [
+                      //   'diplopiaMonocular', 'diplopiaBinocular'
+                      // ];
                       
                       return !filterBasedTypes.includes(id);
                     })
@@ -1210,64 +1268,258 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: Dark shapes that float in the visual field
-                        const floaterTime = Date.now();
-                        const floaterPhase = floaterTime * 0.0005;
-                        const floaterPattern = `
-                          radial-gradient(ellipse 15px 8px at ${30 + Math.sin(floaterPhase * 0.1) * 5}% ${40 + Math.cos(floaterPhase * 0.1) * 5}%, 
-                            rgba(0,0,0,${0.8 * intensity}) 0%, 
-                            rgba(0,0,0,${0.6 * intensity}) 40%,
-                            rgba(0,0,0,${0.3 * intensity}) 70%,
-                            rgba(0,0,0,0) 100%
-                          ),
-                          radial-gradient(circle 8px at ${65 + Math.sin(floaterPhase * 0.15) * 3}% ${50 + Math.cos(floaterPhase * 0.15) * 3}%, 
-                            rgba(0,0,0,${0.7 * intensity}) 0%, 
-                            rgba(0,0,0,${0.5 * intensity}) 50%,
-                            rgba(0,0,0,${0.2 * intensity}) 80%,
-                            rgba(0,0,0,0) 100%
-                          ),
-                          radial-gradient(ellipse 20px 4px at ${50 + Math.sin(floaterPhase * 0.2) * 4}% ${25 + Math.cos(floaterPhase * 0.2) * 4}%, 
-                            rgba(0,0,0,${0.6 * intensity}) 0%, 
-                            rgba(0,0,0,${0.4 * intensity}) 50%,
-                            rgba(0,0,0,${0.1 * intensity}) 80%,
-                            rgba(0,0,0,0) 100%
-                          ),
-                          radial-gradient(circle 5px at ${80 + Math.sin(floaterPhase * 0.25) * 2}% ${70 + Math.cos(floaterPhase * 0.25) * 2}%, 
-                            rgba(0,0,0,${0.9 * intensity}) 0%, 
-                            rgba(0,0,0,${0.6 * intensity}) 60%,
-                            rgba(0,0,0,0) 100%
-                          )
-                        `;
+                        // Visual Floaters: Use animated pattern from hook
                         overlayStyle.background = floaterPattern;
                         overlayStyle.mixBlendMode = 'multiply';
                         overlayStyle.opacity = Math.min(0.8, intensity);
                         break;
                         
                       case 'hallucinations':
-                        // Visual Hallucinations: Random shapes and patterns
-                        const hallucinationTime = Date.now();
-                        const hallucinationPhase = hallucinationTime * 0.001;
-                        const hallucinationPattern = `
-                          radial-gradient(circle 20px at ${20 + Math.sin(hallucinationPhase * 0.1) * 10}% ${30 + Math.cos(hallucinationPhase * 0.1) * 10}%, 
-                            rgba(255,0,0,${0.6 * intensity}) 0%, 
-                            rgba(255,0,0,${0.3 * intensity}) 50%,
-                            rgba(255,0,0,0) 100%
-                          ),
-                          radial-gradient(circle 15px at ${70 + Math.sin(hallucinationPhase * 0.15) * 8}% ${60 + Math.cos(hallucinationPhase * 0.15) * 8}%, 
-                            rgba(0,255,0,${0.5 * intensity}) 0%, 
-                            rgba(0,255,0,${0.25 * intensity}) 50%,
-                            rgba(0,255,0,0) 100%
-                          ),
-                          radial-gradient(circle 25px at ${50 + Math.sin(hallucinationPhase * 0.2) * 12}% ${20 + Math.cos(hallucinationPhase * 0.2) * 12}%, 
-                            rgba(0,0,255,${0.4 * intensity}) 0%, 
-                            rgba(0,0,255,${0.2 * intensity}) 50%,
-                            rgba(0,0,255,0) 100%
+                        // Visual Hallucinations: Realistic-appearing objects and figures that aren't actually there
+                        const hallucinationTime = now * 0.3; // Slower, more realistic movement
+                        const hallucinationIntensity = Math.min(intensity * 1.8, 1.0);
+                        
+                        // Create multiple hallucination elements with realistic characteristics
+                        const hallucinationElements = [];
+                        
+                        // Human-like figures (common hallucination)
+                        for (let i = 0; i < 2 + Math.floor(intensity * 3); i++) {
+                          const figurePhase = (hallucinationTime + i * 2.1) % (2 * Math.PI);
+                          const baseX = 20 + (i * 25) % 60;
+                          const baseY = 30 + (i * 35) % 40;
+                          const x = baseX + Math.sin(figurePhase * 0.05) * 8; // Slow, subtle movement
+                          const y = baseY + Math.cos(figurePhase * 0.03) * 6;
+                          
+                          // Human silhouette with varying opacity
+                          const figureOpacity = 0.3 + Math.sin(figurePhase * 0.1) * 0.2;
+                          hallucinationElements.push(`
+                            radial-gradient(ellipse 15px 25px at ${x}% ${y}%, 
+                              rgba(0,0,0,${figureOpacity * hallucinationIntensity}) 0%, 
+                              rgba(0,0,0,${figureOpacity * 0.6 * hallucinationIntensity}) 40%,
+                              rgba(0,0,0,${figureOpacity * 0.3 * hallucinationIntensity}) 70%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Objects and shapes (furniture, animals, etc.)
+                        for (let i = 0; i < 3 + Math.floor(intensity * 4); i++) {
+                          const objectPhase = (hallucinationTime + i * 1.7) % (2 * Math.PI);
+                          const baseX = 10 + (i * 30) % 70;
+                          const baseY = 20 + (i * 25) % 60;
+                          const x = baseX + Math.sin(objectPhase * 0.08) * 5;
+                          const y = baseY + Math.cos(objectPhase * 0.06) * 4;
+                          
+                          // Various object shapes
+                          const objectTypes = ['circle', 'ellipse', 'polygon'];
+                          const objectType = objectTypes[i % objectTypes.length];
+                          const objectOpacity = 0.2 + Math.sin(objectPhase * 0.12) * 0.15;
+                          const objectSize = 8 + Math.sin(objectPhase * 0.1) * 4;
+                          
+                          if (objectType === 'circle') {
+                            hallucinationElements.push(`
+                              radial-gradient(circle ${objectSize}px at ${x}% ${y}%, 
+                                rgba(100,100,100,${objectOpacity * hallucinationIntensity}) 0%, 
+                                rgba(100,100,100,${objectOpacity * 0.5 * hallucinationIntensity}) 60%,
+                                rgba(100,100,100,0) 100%
+                              )
+                            `);
+                          } else if (objectType === 'ellipse') {
+                            hallucinationElements.push(`
+                              radial-gradient(ellipse ${objectSize}px ${objectSize * 1.5}px at ${x}% ${y}%, 
+                                rgba(80,80,80,${objectOpacity * hallucinationIntensity}) 0%, 
+                                rgba(80,80,80,${objectOpacity * 0.4 * hallucinationIntensity}) 70%,
+                                rgba(80,80,80,0) 100%
+                              )
+                            `);
+                          }
+                        }
+                        
+                        // Floating orbs and lights (common in visual hallucinations)
+                        for (let i = 0; i < 2 + Math.floor(intensity * 2); i++) {
+                          const orbPhase = (hallucinationTime + i * 3.2) % (2 * Math.PI);
+                          const baseX = 15 + (i * 40) % 70;
+                          const baseY = 15 + (i * 30) % 70;
+                          const x = baseX + Math.sin(orbPhase * 0.1) * 12; // More movement
+                          const y = baseY + Math.cos(orbPhase * 0.08) * 10;
+                          
+                          const orbOpacity = 0.4 + Math.sin(orbPhase * 0.15) * 0.3;
+                          const orbSize = 6 + Math.sin(orbPhase * 0.2) * 3;
+                          
+                          // Glowing orb effect
+                          hallucinationElements.push(`
+                            radial-gradient(circle ${orbSize}px at ${x}% ${y}%, 
+                              rgba(255,255,255,${orbOpacity * hallucinationIntensity}) 0%, 
+                              rgba(255,255,200,${orbOpacity * 0.7 * hallucinationIntensity}) 30%,
+                              rgba(255,200,100,${orbOpacity * 0.4 * hallucinationIntensity}) 60%,
+                              rgba(255,255,255,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Shadowy figures in peripheral vision
+                        for (let i = 0; i < 1 + Math.floor(intensity * 2); i++) {
+                          const shadowPhase = (hallucinationTime + i * 1.5) % (2 * Math.PI);
+                          const edgeX = i % 2 === 0 ? 5 + Math.sin(shadowPhase * 0.02) * 3 : 95 - Math.sin(shadowPhase * 0.02) * 3;
+                          const edgeY = 20 + (i * 60) % 60;
+                          
+                          const shadowOpacity = 0.15 + Math.sin(shadowPhase * 0.08) * 0.1;
+                          
+                          hallucinationElements.push(`
+                            radial-gradient(ellipse 20px 40px at ${edgeX}% ${edgeY}%, 
+                              rgba(0,0,0,${shadowOpacity * hallucinationIntensity}) 0%, 
+                              rgba(0,0,0,${shadowOpacity * 0.6 * hallucinationIntensity}) 50%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Scenic elements (water, landscapes, buildings)
+                        for (let i = 0; i < 2 + Math.floor(intensity * 3); i++) {
+                          const scenePhase = (hallucinationTime + i * 0.8) % (2 * Math.PI);
+                          const baseX = 10 + (i * 35) % 80;
+                          const baseY = 40 + (i * 20) % 40;
+                          // const x = baseX + Math.sin(scenePhase * 0.03) * 6;
+                          // const y = baseY + Math.cos(scenePhase * 0.02) * 4;
+                          
+                          const sceneOpacity = 0.1 + Math.sin(scenePhase * 0.06) * 0.08;
+                          // const sceneSize = 25 + Math.sin(scenePhase * 0.05) * 10;
+                          
+                          // Water-like horizontal bands
+                          hallucinationElements.push(`
+                            linear-gradient(0deg, 
+                              rgba(100,150,200,${sceneOpacity * hallucinationIntensity}) 0%, 
+                              rgba(80,120,180,${sceneOpacity * 0.7 * hallucinationIntensity}) 30%,
+                              rgba(60,100,160,${sceneOpacity * 0.5 * hallucinationIntensity}) 60%,
+                              rgba(40,80,140,${sceneOpacity * 0.3 * hallucinationIntensity}) 80%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Architectural elements (buildings, structures)
+                        for (let i = 0; i < 1 + Math.floor(intensity * 2); i++) {
+                          const archPhase = (hallucinationTime + i * 0.6) % (2 * Math.PI);
+                          const baseX = 15 + (i * 50) % 70;
+                          const baseY = 30 + (i * 30) % 50;
+                          // const x = baseX + Math.sin(archPhase * 0.02) * 4;
+                          // const y = baseY + Math.cos(archPhase * 0.03) * 3;
+                          
+                          const archOpacity = 0.12 + Math.sin(archPhase * 0.04) * 0.06;
+                          // const archWidth = 20 + Math.sin(archPhase * 0.03) * 8;
+                          // const archHeight = 30 + Math.sin(archPhase * 0.02) * 12;
+                          
+                          // Rectangular building-like structures
+                          hallucinationElements.push(`
+                            linear-gradient(90deg, 
+                              rgba(120,120,120,${archOpacity * hallucinationIntensity}) 0%, 
+                              rgba(100,100,100,${archOpacity * 0.8 * hallucinationIntensity}) 20%,
+                              rgba(80,80,80,${archOpacity * 0.6 * hallucinationIntensity}) 40%,
+                              rgba(60,60,60,${archOpacity * 0.4 * hallucinationIntensity}) 60%,
+                              rgba(40,40,40,${archOpacity * 0.2 * hallucinationIntensity}) 80%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Animal-like figures (birds, creatures)
+                        for (let i = 0; i < 1 + Math.floor(intensity * 2); i++) {
+                          const animalPhase = (hallucinationTime + i * 2.5) % (2 * Math.PI);
+                          const baseX = 20 + (i * 40) % 60;
+                          const baseY = 15 + (i * 25) % 70;
+                          const x = baseX + Math.sin(animalPhase * 0.08) * 10; // More movement
+                          const y = baseY + Math.cos(animalPhase * 0.06) * 8;
+                          
+                          const animalOpacity = 0.2 + Math.sin(animalPhase * 0.1) * 0.15;
+                          const animalSize = 8 + Math.sin(animalPhase * 0.12) * 4;
+                          
+                          // Bird-like or creature shapes
+                          hallucinationElements.push(`
+                            radial-gradient(ellipse ${animalSize}px ${animalSize * 0.7}px at ${x}% ${y}%, 
+                              rgba(60,60,60,${animalOpacity * hallucinationIntensity}) 0%, 
+                              rgba(40,40,40,${animalOpacity * 0.7 * hallucinationIntensity}) 50%,
+                              rgba(20,20,20,${animalOpacity * 0.4 * hallucinationIntensity}) 80%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Text-like elements (words, letters appearing)
+                        for (let i = 0; i < Math.floor(intensity * 2); i++) {
+                          const textPhase = (hallucinationTime + i * 1.8) % (2 * Math.PI);
+                          const baseX = 30 + (i * 25) % 50;
+                          const baseY = 20 + (i * 35) % 60;
+                          // const x = baseX + Math.sin(textPhase * 0.04) * 5;
+                          // const y = baseY + Math.cos(textPhase * 0.03) * 4;
+                          
+                          const textOpacity = 0.08 + Math.sin(textPhase * 0.05) * 0.05;
+                          // const textWidth = 15 + Math.sin(textPhase * 0.06) * 5;
+                          // const textHeight = 3 + Math.sin(textPhase * 0.04) * 2;
+                          
+                          // Horizontal text-like bars
+                          hallucinationElements.push(`
+                            linear-gradient(0deg, 
+                              rgba(200,200,200,${textOpacity * hallucinationIntensity}) 0%, 
+                              rgba(180,180,180,${textOpacity * 0.8 * hallucinationIntensity}) 30%,
+                              rgba(160,160,160,${textOpacity * 0.6 * hallucinationIntensity}) 60%,
+                              rgba(140,140,140,${textOpacity * 0.4 * hallucinationIntensity}) 80%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        // Distorted faces or partial figures
+                        for (let i = 0; i < 1 + Math.floor(intensity * 1.5); i++) {
+                          const facePhase = (hallucinationTime + i * 1.2) % (2 * Math.PI);
+                          const baseX = 25 + (i * 30) % 50;
+                          const baseY = 25 + (i * 40) % 50;
+                          const x = baseX + Math.sin(facePhase * 0.05) * 6;
+                          const y = baseY + Math.cos(facePhase * 0.04) * 5;
+                          
+                          const faceOpacity = 0.15 + Math.sin(facePhase * 0.08) * 0.1;
+                          const faceSize = 12 + Math.sin(facePhase * 0.07) * 6;
+                          
+                          // Distorted circular face-like shapes
+                          hallucinationElements.push(`
+                            radial-gradient(circle ${faceSize}px at ${x}% ${y}%, 
+                              rgba(150,150,150,${faceOpacity * hallucinationIntensity}) 0%, 
+                              rgba(120,120,120,${faceOpacity * 0.8 * hallucinationIntensity}) 30%,
+                              rgba(90,90,90,${faceOpacity * 0.6 * hallucinationIntensity}) 60%,
+                              rgba(60,60,60,${faceOpacity * 0.4 * hallucinationIntensity}) 80%,
+                              rgba(0,0,0,0) 100%
+                            )
+                          `);
+                        }
+                        
+                        overlayStyle.background = hallucinationElements.join(', ');
+                        overlayStyle.mixBlendMode = 'normal'; // More realistic blending
+                        overlayStyle.opacity = hallucinationIntensity;
+                        overlayStyle.animation = 'hallucinationFade 4s ease-in-out infinite';
+                        break;
+                        
+                      case 'stargardt':
+                        // Stargardt Disease: Central scotoma with color desaturation
+                        // Progressive central vision loss while preserving peripheral vision
+                        const stargardtScotomaRadius = 17 + intensity * 53; // 17% to 70% of screen
+                        const stargardtCenterX = 50; // Center of screen
+                        const stargardtCenterY = 50;
+                        
+                        // Create central scotoma (blind spot) with very dark color - similar to Retinitis Pigmentosa
+                        const stargardtCentralScotoma = `
+                          radial-gradient(circle at ${stargardtCenterX}% ${stargardtCenterY}%, 
+                            rgba(10,10,10,${0.99 * intensity}) 0%, 
+                            rgba(15,15,15,${0.98 * intensity}) ${stargardtScotomaRadius - 5}%,
+                            rgba(20,20,20,${0.95 * intensity}) ${stargardtScotomaRadius}%,
+                            rgba(0,0,0,0) ${stargardtScotomaRadius + 5}%
                           )
                         `;
-                        overlayStyle.background = hallucinationPattern;
-                        overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.6, intensity);
-                        overlayStyle.animation = 'hallucinationPulse 2s ease-in-out infinite';
+                        
+                        overlayStyle.background = stargardtCentralScotoma;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        
+                        // Add color desaturation filter to simulate reduced color perception
+                        overlayStyle.filter = `saturate(${1 - intensity * 0.4})`;
                         break;
                         
                       default:

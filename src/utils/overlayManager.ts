@@ -16,15 +16,10 @@ const createOverlay = (
   if (!overlayElement) {
     overlayElement = document.createElement('div');
     overlayElement.id = id;
-    overlayElement.style.position = 'absolute';
-    overlayElement.style.top = '0';
-    overlayElement.style.left = '0';
-    overlayElement.style.right = '0';
-    overlayElement.style.bottom = '0';
-            overlayElement.style.width = '100%';
-            overlayElement.style.height = '100%';
-            overlayElement.style.pointerEvents = 'none';
-            overlayElement.style.zIndex = '1000';
+    Object.assign(overlayElement.style, {
+      position: 'absolute', top: '0', left: '0', right: '0', bottom: '0',
+      width: '100%', height: '100%', pointerEvents: 'none', zIndex: '1000'
+    });
     
     // Try multiple selectors to find the container
     let container: Element | null = document.querySelector('.visualizer-container');
@@ -64,15 +59,13 @@ const createOverlay = (
     }
   }
   
-    overlayElement.style.background = backgroundStyle;
-    overlayElement.style.mixBlendMode = blendMode;
-    overlayElement.style.opacity = opacity;
-    if (filter) {
-      overlayElement.style.filter = filter;
-    }
-    if (clipPath) {
-      overlayElement.style.clipPath = clipPath;
-    }
+    Object.assign(overlayElement.style, {
+      background: backgroundStyle,
+      mixBlendMode: blendMode,
+      opacity,
+      ...(filter && { filter }),
+      ...(clipPath && { clipPath })
+    });
 };
 
 /**
@@ -80,26 +73,22 @@ const createOverlay = (
  */
 export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   // Remove existing overlays first
-  const existingOverlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
-  existingOverlays.forEach(overlay => overlay.remove());
+  document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
   
   console.log('Creating visual field overlays for effects:', effects);
 
-  // Find all visual field effects
-  const tunnelVision = effects.find(e => e.id === 'tunnelVision');
-  const quadrantanopiaLeft = effects.find(e => e.id === 'quadrantanopiaLeft');
-  const quadrantanopiaRight = effects.find(e => e.id === 'quadrantanopiaRight');
-  const quadrantanopiaInferior = effects.find(e => e.id === 'quadrantanopiaInferior');
-  const quadrantanopiaSuperior = effects.find(e => e.id === 'quadrantanopiaSuperior');
-  const hemianopiaLeft = effects.find(e => e.id === 'hemianopiaLeft');
-  const hemianopiaRight = effects.find(e => e.id === 'hemianopiaRight');
-  const scotoma = effects.find(e => e.id === 'scotoma');
-  const visualFloaters = effects.find(e => e.id === 'visualFloaters');
-  const visualSnow = effects.find(e => e.id === 'visualSnow');
-  const aura = effects.find(e => e.id === 'aura');
-  const glaucoma = effects.find(e => e.id === 'glaucoma');
-  const hyperopia = effects.find(e => e.id === 'farSighted');
-  // Note: retinitisPigmentosa is handled by shader effects, not overlays
+  // Create effect lookup map for O(1) access instead of O(n) finds
+  const effectMap = new Map(effects.map(e => [e.id, e]));
+  const getEffect = (id: string) => effectMap.get(id as any);
+  
+  const [
+    tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
+    hemianopiaLeft, hemianopiaRight, scotoma, visualFloaters, visualSnow, aura, glaucoma
+  ] = [
+    'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
+    'hemianopiaLeft', 'hemianopiaRight', 'scotoma', 'visualFloaters', 'visualSnow', 'aura', 'glaucoma'
+  ].map(getEffect);
+  // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
 
   // Create overlays for each enabled effect
   if (tunnelVision?.enabled) {
@@ -410,23 +399,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     );
   }
 
-  if (hyperopia?.enabled) {
-    const intensity = hyperopia.intensity;
-    
-    // Hyperopia: transparent blur on edges, clear center
-    const hyperopiaBlur = intensity * 6;
-    const clearRadius = 40 - intensity * 10; // Clear area size decreases with intensity
-    
-    // Use transparent background with blur filter and clip-path to mask center
-    createOverlay(
-      'visual-field-overlay-hyperopia',
-      'transparent',
-      'normal',
-      '1.0',
-      `blur(${hyperopiaBlur}px)`,
-      `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${clearRadius}%)`
-    );
-  }
+  // Hyperopia is now handled by CSS filters (like Myopia), not DOM overlays
+
+  // Diplopia effects are handled by WebGL shaders, not DOM overlays
+  // This ensures consistent diplopia rendering across all content types
 
   // Retinitis Pigmentosa is handled by shader effects, not overlays
 };
@@ -437,4 +413,6 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
 export const removeVisualFieldOverlays = (): void => {
   const overlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
   overlays.forEach(overlay => overlay.remove());
+  
+  // Diplopia effects are now handled by WebGL shaders, no DOM cleanup needed
 };

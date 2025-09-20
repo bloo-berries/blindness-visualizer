@@ -7,7 +7,7 @@ import { getColorVisionMatrix, isColorVisionCondition } from './colorVisionFilte
  * Generates CSS filter string for color blindness effects using accurate Machado 2009 matrices
  */
 const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
-  // Find the first enabled color vision condition
+  // Find the first enabled color vision condition using more efficient approach
   const colorVisionEffect = effects.find(e => isColorVisionCondition(e.id) && e.enabled);
   
   if (!colorVisionEffect) {
@@ -30,40 +30,30 @@ const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
 };
 
 /**
- * Generates blur filter for nearsightedness
+ * Generates blur filter for nearsightedness and farsightedness
  */
 const generateBlurFilter = (effects: VisualEffect[]): string => {
-  const nearSighted = effects.find(e => e.id === 'nearSighted');
-  if (nearSighted?.enabled) {
-    const blurAmount = nearSighted.intensity * 10; // Scale blur from 0-10px
-    return `blur(${blurAmount}px)`;
-  }
-  return '';
+  // More efficient: check specific IDs directly
+  const nearSighted = effects.find(e => e.id === 'nearSighted' && e.enabled);
+  const farSighted = effects.find(e => e.id === 'farSighted' && e.enabled);
+  const blurEffect = nearSighted || farSighted;
+  return blurEffect ? `blur(${blurEffect.intensity * 10}px)` : '';
 };
+
+// Diplopia effects are now handled by the getDiplopiaOverlay function in Visualizer.tsx
+// This provides true double vision effects using iframe duplication instead of CSS filters
 
 // Note: Glaucoma is now handled by DOM overlays for accurate visual field loss patterns
 
 /**
  * Generates complete CSS filter string for all effects
  */
-export const generateCSSFilters = (effects: VisualEffect[]): string => {
-  const filters: string[] = [];
-
-  // Add color blindness filter
-  const colorFilter = generateColorBlindnessFilter(effects);
-  if (colorFilter) {
-    filters.push(colorFilter);
-  }
-
-  // Add blur filter
-  const blurFilter = generateBlurFilter(effects);
-  if (blurFilter) {
-    filters.push(blurFilter);
-  }
-
+export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: number = 1.0, diplopiaDirection: number = 0.0): string => {
+  return [generateColorBlindnessFilter(effects), generateBlurFilter(effects)]
+    .filter(Boolean)
+    .join(' ');
+  // Note: Diplopia is handled by separate overlay system, not CSS filters
   // Note: Glaucoma is handled by DOM overlays, not CSS filters
-
-  return filters.join(' ');
 };
 
 /**

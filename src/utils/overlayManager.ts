@@ -27,7 +27,7 @@ const createOverlay = (
       container = document.querySelector('[class*="visualizer"]');
     }
     if (!container) {
-      // Look for the iframe's parent container
+      // Look for the iframe's parent container (for YouTube content)
       const iframe = document.querySelector('iframe[src*="youtube"]');
       if (iframe) {
         container = iframe.parentElement;
@@ -35,7 +35,15 @@ const createOverlay = (
       }
     }
     if (!container) {
-      // Last resort: look for any container with relative positioning
+      // Look for the Three.js canvas container (for image/webcam content)
+      const canvas = document.querySelector('canvas');
+      if (canvas) {
+        container = canvas.parentElement;
+        console.log('Found canvas parent container:', container);
+      }
+    }
+    if (!container) {
+      // Look for any container with relative positioning
       container = document.querySelector('[style*="position: relative"]');
     }
     
@@ -76,6 +84,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
   
   console.log('Creating visual field overlays for effects:', effects);
+  console.log('Current input source type:', document.querySelector('iframe[src*="youtube"]') ? 'youtube' : 'image/webcam');
 
   // Create effect lookup map for O(1) access instead of O(n) finds
   const effectMap = new Map(effects.map(e => [e.id, e]));
@@ -83,10 +92,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
-    hemianopiaLeft, hemianopiaRight, scotoma, visualFloaters, visualSnow, aura, glaucoma
+    hemianopiaLeft, hemianopiaRight, scotoma, visualFloaters, visualSnow, aura, glaucoma, stargardt
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
-    'hemianopiaLeft', 'hemianopiaRight', 'scotoma', 'visualFloaters', 'visualSnow', 'aura', 'glaucoma'
+    'hemianopiaLeft', 'hemianopiaRight', 'scotoma', 'visualFloaters', 'visualSnow', 'aura', 'glaucoma', 'stargardt'
   ].map(getEffect);
   // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
 
@@ -208,51 +217,126 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
 
   if (visualFloaters?.enabled) {
     const now = Date.now();
-    // Floater 1 - larger, stringy floater
-    const floaterX1 = 30 + Math.sin(now/2000 * 0.3) * 25 + Math.sin(now/2000 * 0.2) * 10;
-    const floaterY1 = 40 + Math.cos(now/2000 * 0.25) * 20;
-    // Floater 2 - medium, circular floater
-    const floaterX2 = 65 + Math.sin(now/2000 * 0.2 + 1) * 20;
-    const floaterY2 = 50 + Math.cos(now/2000 * 0.3 + 2) * 25;
-    // Floater 3 - small, quick-moving floater
-    const floaterX3 = 50 + Math.sin(now/2000 * 0.4 + 3) * 30;
-    const floaterY3 = 25 + Math.cos(now/2000 * 0.35 + 1) * 15;
-    // Floater 4 - thin, string-like floater
-    const floaterX4 = 45 + Math.sin(now/2000 * 0.15 + 2) * 15;
-    const floaterY4 = 70 + Math.cos(now/2000 * 0.2 + 3) * 10;
+    const time = now * 0.001; // Convert to seconds
+    
+    // Determine severity level based on intensity
+    const severity = visualFloaters.intensity < 0.3 ? 'mild' : visualFloaters.intensity < 0.7 ? 'moderate' : 'severe';
+    
+    let floaterPattern: string;
+    
+    if (severity === 'mild') {
+      // Mild: 1-2 small floaters, only noticed in specific conditions
+      // Cobweb/string floater - most common type, often in superior field due to gravity
+      const cobwebX = 35 + Math.sin(time * 0.1) * 15 + Math.sin(time * 0.05) * 8;
+      const cobwebY = 35 + Math.cos(time * 0.08) * 12; // Slightly higher due to gravity settling
+      
+      floaterPattern = `
+        radial-gradient(ellipse 20% 6% at ${cobwebX}% ${cobwebY}%, 
+          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 20%,
+          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 50%,
+          rgba(0,0,0,0) 80%
+        )
+      `;
+      
+    } else if (severity === 'moderate') {
+      // Moderate: Multiple floaters of various types
+      // Cobweb/string floater with lag behind eye movement - often in superior field
+      const cobwebX = 30 + Math.sin(time * 0.12) * 20 + Math.sin(time * 0.06) * 10;
+      const cobwebY = 35 + Math.cos(time * 0.1) * 15; // Gravity bias toward superior field
+      const dotX = 60 + Math.sin(time * 0.15 + 1.5) * 18;
+      const dotY = 50 + Math.cos(time * 0.12 + 2) * 20; // More central distribution
+      const ringX = 50 + Math.sin(time * 0.08 + 3) * 12;
+      const ringY = 25 + Math.cos(time * 0.1 + 1) * 8; // Superior field bias
+      
+      floaterPattern = `
+        /* Cobweb/string floater */
+        radial-gradient(ellipse 25% 8% at ${cobwebX}% ${cobwebY}%, 
+          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 25%,
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 60%,
+          rgba(0,0,0,0) 85%
+        ),
+        /* Dot/spot floater */
+        radial-gradient(circle 6% at ${dotX}% ${dotY}%, 
+          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 50%,
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 80%,
+          rgba(0,0,0,0) 100%
+        ),
+        /* Ring floater (Weiss Ring) */
+        radial-gradient(ellipse 15% 12% at ${ringX}% ${ringY}%, 
+          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 30%,
+          rgba(0,0,0,${0.2 * visualFloaters.intensity}) 60%,
+          rgba(0,0,0,0) 90%
+        )
+      `;
+      
+    } else {
+      // Severe: Numerous large floaters, constant visual obstruction
+      // Multiple cobweb/string floaters - superior field bias due to gravity
+      const cobweb1X = 25 + Math.sin(time * 0.1) * 22 + Math.sin(time * 0.05) * 12;
+      const cobweb1Y = 30 + Math.cos(time * 0.08) * 18; // Superior field
+      const cobweb2X = 70 + Math.sin(time * 0.12 + 2) * 20;
+      const cobweb2Y = 35 + Math.cos(time * 0.1 + 1.5) * 15; // Superior field
+      const dot1X = 45 + Math.sin(time * 0.15 + 1) * 25;
+      const dot1Y = 50 + Math.cos(time * 0.12 + 2.5) * 20; // Central
+      const dot2X = 80 + Math.sin(time * 0.18 + 3) * 15;
+      const dot2Y = 70 + Math.cos(time * 0.14 + 1.8) * 12; // Peripheral
+      const ringX = 50 + Math.sin(time * 0.08 + 4) * 15;
+      const ringY = 25 + Math.cos(time * 0.1 + 2.2) * 10; // Superior field
+      const cloudX = 40 + Math.sin(time * 0.06 + 1.2) * 18;
+      const cloudY = 60 + Math.cos(time * 0.08 + 2.8) * 12; // More central
+      
+      floaterPattern = `
+        /* Cobweb/string floater 1 */
+        radial-gradient(ellipse 30% 10% at ${cobweb1X}% ${cobweb1Y}%, 
+          rgba(0,0,0,${0.85 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 20%,
+          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 50%,
+          rgba(0,0,0,0) 80%
+        ),
+        /* Cobweb/string floater 2 */
+        radial-gradient(ellipse 25% 8% at ${cobweb2X}% ${cobweb2Y}%, 
+          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 25%,
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 60%,
+          rgba(0,0,0,0) 85%
+        ),
+        /* Dot/spot floater 1 */
+        radial-gradient(circle 8% at ${dot1X}% ${dot1Y}%, 
+          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 50%,
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 80%,
+          rgba(0,0,0,0) 100%
+        ),
+        /* Dot/spot floater 2 */
+        radial-gradient(circle 5% at ${dot2X}% ${dot2Y}%, 
+          rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 60%,
+          rgba(0,0,0,0) 100%
+        ),
+        /* Ring floater (Weiss Ring) */
+        radial-gradient(ellipse 18% 15% at ${ringX}% ${ringY}%, 
+          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 30%,
+          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 60%,
+          rgba(0,0,0,0) 90%
+        ),
+        /* Cloud/sheet floater */
+        radial-gradient(ellipse 35% 20% at ${cloudX}% ${cloudY}%, 
+          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 0%, 
+          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 40%,
+          rgba(0,0,0,${0.2 * visualFloaters.intensity}) 70%,
+          rgba(0,0,0,0) 100%
+        )
+      `;
+    }
 
     createOverlay(
       'visual-field-overlay-visualFloaters',
-      `
-        /* String-like floater */
-        radial-gradient(ellipse 25% 8% at ${floaterX1}% ${floaterY1}%, 
-          rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.85 * visualFloaters.intensity}) 15%,
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 40%,
-          rgba(0,0,0,0) 80%
-        ),
-        /* Round floater */
-        radial-gradient(circle 8% at ${floaterX2}% ${floaterY2}%, 
-          rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.85 * visualFloaters.intensity}) 40%,
-          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
-          rgba(0,0,0,0) 100%
-        ),
-        /* Small dot floater */
-        radial-gradient(circle 4% at ${floaterX3}% ${floaterY3}%, 
-          rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 40%,
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 70%,
-          rgba(0,0,0,0) 100%
-        ),
-        /* Thin stringy floater */
-        radial-gradient(ellipse 20% 3% at ${floaterX4}% ${floaterY4}%, 
-          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 40%,
-          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
-          rgba(0,0,0,0) 100%
-        )
-      `,
+      floaterPattern,
       'multiply',
       Math.min(0.98, visualFloaters.intensity).toString()
     );
@@ -368,6 +452,24 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       glaucomaBackground,
       'multiply',
       Math.min(0.95, intensity).toString()
+    );
+  }
+
+  if (stargardt?.enabled) {
+    const intensity = stargardt.intensity;
+    const scotomaRadius = 17 + intensity * 53; // 17% to 70% of screen
+    
+    createOverlay(
+      'visual-field-overlay-stargardt',
+      `radial-gradient(circle at 50% 50%, 
+        rgba(10,10,10,${0.99 * intensity}) 0%, 
+        rgba(15,15,15,${0.98 * intensity}) ${scotomaRadius - 5}%,
+        rgba(20,20,20,${0.95 * intensity}) ${scotomaRadius}%,
+        rgba(0,0,0,0) ${scotomaRadius + 5}%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      `saturate(${1 - intensity * 0.4})` // Color desaturation
     );
   }
 

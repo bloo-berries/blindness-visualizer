@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert } from '@mui/material';
 import { generateEffectsDescription } from '../utils/effectsDescription';
-import { createSceneManager, handleResize, createTextureFromMedia } from '../utils/threeSceneManager';
+import { createSceneManager } from '../utils/threeSceneManager';
 import { updateAnimatedOverlays } from '../utils/animatedOverlays';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
-import { createVisualFieldOverlays, removeVisualFieldOverlays } from '../utils/overlayManager';
-import { generateCSSFilters, generateBaseStyles } from '../utils/cssFilterManager';
+import { createVisualFieldOverlays } from '../utils/overlayManager';
+import { generateCSSFilters } from '../utils/cssFilterManager';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -25,6 +25,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Helper function to avoid repeated effects.find() calls
+  const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
+
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -40,9 +43,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     
     // Function to update animated overlays using utility
     const updateOverlays = () => {
-      const scotoma = effects.find(e => e.id === 'scotoma');
-      const visualFloaters = effects.find(e => e.id === 'visualFloaters');
-      const visualSnow = effects.find(e => e.id === 'visualSnow');
+      // Cache effect lookups to avoid repeated finds
+      const effectMap = new Map(effects.map(e => [e.id, e]));
+      const scotoma = effectMap.get('scotoma');
+      const visualFloaters = effectMap.get('visualFloaters');
+      const visualSnow = effectMap.get('visualSnow');
       
       if (scotoma?.enabled) {
         const now = Date.now();
@@ -262,10 +267,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // Cleanup
     return () => {
       if (inputSource.type === 'webcam') {
-        const video = mediaRef.current as HTMLVideoElement;
-        const stream = video.srcObject as MediaStream;
-        if (stream) {
-          stream.getTracks().forEach(track => track.stop());
+        const currentMediaRef = mediaRef.current;
+        if (currentMediaRef) {
+          const video = currentMediaRef as HTMLVideoElement;
+          const stream = video.srcObject as MediaStream;
+          if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+          }
         }
       }
       
@@ -274,30 +282,41 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         cancelAnimationFrame(animationFrameId);
       }
       
-      renderer.dispose();
-      if (containerRef.current?.contains(renderer.domElement)) {
-        containerRef.current.removeChild(renderer.domElement);
-      }
+      // Use the dispose function from scene manager
+      dispose();
     };
-  }, [inputSource, effects, diplopiaSeparation, diplopiaDirection]);
+  }, [inputSource]); // Only recreate scene when input source changes
+
+  // Update shader uniforms when effects change (separate from scene creation)
+  useEffect(() => {
+    // Shader uniforms are updated in the animation loop, no need for separate effect
+    // This prevents unnecessary re-renders and potential recursion
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [effects, diplopiaSeparation, diplopiaDirection, texture]);
 
   // Get effect state changes to rerender
   useEffect(() => {
     // Create visual field overlays for YouTube content whenever effects change
     if (inputSource.type === 'youtube') {
-      console.log('Creating visual field overlays for YouTube content with effects:', effects);
+      // For YouTube content, only create overlays for non-diplopia effects
+      // Diplopia effects are handled by the getDiplopiaOverlay function
+      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
       
-      // Add a small delay to ensure the iframe is loaded
-      const timer = setTimeout(() => {
-        createVisualFieldOverlays(effects);
-      }, 100);
-      
-      return () => clearTimeout(timer);
+      if (nonDiplopiaEffects.some(e => e.enabled)) {
+        console.log('Creating visual field overlays for YouTube content with non-diplopia effects:', nonDiplopiaEffects);
+        
+        // Add a small delay to ensure the iframe is loaded
+        const timer = setTimeout(() => {
+          createVisualFieldOverlays(nonDiplopiaEffects);
+        }, 100);
+        
+        return () => clearTimeout(timer);
+      }
     }
     
     // Check if we need animation
-    const visualFloaters = effects.find(e => e.id === 'visualFloaters');
-    const scotoma = effects.find(e => e.id === 'scotoma');
+    const visualFloaters = getEffect('visualFloaters');
+    const scotoma = getEffect('scotoma');
     
     const needsAnimation = 
       (visualFloaters && visualFloaters.enabled) || 
@@ -320,36 +339,68 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         }
       };
     }
-  }, [effects, inputSource.type]);
+  }, [effects, inputSource.type, getEffect]);
 
   // Calculate CSS filters based on effects
   const getEffectStyles = () => {
-    const style: React.CSSProperties = {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      width: '100%',
-      height: '100%',
-      objectFit: 'contain'
+    const baseStyle: React.CSSProperties = {
+      position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+      maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain'
     };
 
     if (inputSource.type === 'youtube') {
-      const filters = generateCSSFilters(effects);
-      if (filters) {
-        style.filter = filters;
-      }
+      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
+      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+      return filters ? { ...baseStyle, filter: filters } : baseStyle;
     }
 
-    return style;
+    return baseStyle;
   };
 
-  // Helper function to generate a description of active effects
-  const getVisualizerDescription = () => {
-    return generateEffectsDescription(effects, inputSource);
+  // Create diplopia overlay for YouTube content
+  const getDiplopiaOverlay = () => {
+    if (inputSource.type !== 'youtube') return null;
+
+    const diplopiaMonocular = getEffect('diplopiaMonocular');
+    const diplopiaBinocular = getEffect('diplopiaBinocular');
+    const diplopia = diplopiaMonocular?.enabled ? diplopiaMonocular : diplopiaBinocular;
+    
+    if (!diplopia) return null;
+
+    // Calculate offset based on direction
+    const baseOffset = diplopia.intensity * (diplopiaMonocular?.enabled ? 15 : 20);
+    const totalOffset = baseOffset * diplopiaSeparation;
+    const [offsetX, offsetY] = diplopiaDirection < 0.33 
+      ? [totalOffset, 0] 
+      : diplopiaDirection < 0.66 
+        ? [0, totalOffset * 0.5] 
+        : [totalOffset * 0.7, totalOffset * 0.35];
+
+    const iframeProps: React.IframeHTMLAttributes<HTMLIFrameElement> = {
+      width: "100%",
+      height: "100%",
+      src: `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`,
+      title: `YouTube video player (${diplopiaMonocular?.enabled ? 'ghost' : 'second image'}) - ${Math.random().toString(36).substr(2, 9)}`,
+      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+      style: { width: "100%", height: "100%", border: "none", pointerEvents: "none" },
+      frameBorder: "0"
+    };
+
+    return (
+      <div style={{
+        position: 'absolute', top: '50%', left: '50%',
+        transform: `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`,
+        width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1001,
+        opacity: diplopiaMonocular?.enabled ? 0.3 + diplopia.intensity * 0.2 : 0.5,
+        filter: diplopiaMonocular?.enabled ? 'blur(2px)' : undefined,
+        mixBlendMode: diplopiaMonocular?.enabled ? 'multiply' : undefined
+      }}>
+        <iframe {...iframeProps} />
+      </div>
+    );
   };
+
+  const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
   return (
     <Box className="visualizer-container" sx={{ 
@@ -419,15 +470,22 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
       {inputSource.type === 'youtube' && (
         <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            style={getEffectStyles()}
-            frameBorder="0"
-          />
+          <div style={getEffectStyles()}>
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none'
+              }}
+              frameBorder="0"
+            />
+          </div>
+          {getDiplopiaOverlay()}
         </Box>
       )}
       

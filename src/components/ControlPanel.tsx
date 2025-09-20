@@ -400,7 +400,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                             case 'nearSighted':
                               return `blur(${intensity * 3}px) brightness(${100 + intensity * 3}%)`;
                             case 'farSighted':
-                              return 'none'; // Handled by overlay effects
+                              return `blur(${intensity * 3}px) brightness(${100 + intensity * 3}%)`;
                             
                             // Retinal Disorders - handled by shaders or overlays
                             case 'amd':
@@ -437,7 +437,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       
                       // Exclude other filter-based conditions (handled by CSS filters on base image)
                       const filterBasedTypes = [
-                        'cataracts', 'astigmatism', 'nearSighted'
+                        'cataracts', 'astigmatism', 'nearSighted', 'farSighted'
+                      ];
+                      
+                      // Exclude diplopia conditions (handled by special overlay effects)
+                      const diplopiaTypes = [
+                        'diplopiaMonocular', 'diplopiaBinocular'
                       ];
                       
                       return !filterBasedTypes.includes(id);
@@ -806,18 +811,35 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'farSighted':
-                        // Hyperopia: transparent blur on edges, clear center
-                        // Create a transparent overlay that applies blur only to edges
-                        const hyperopiaBlur = intensity * 6;
-                        const clearRadius = 40 - intensity * 10; // Clear area size decreases with intensity
+                        // Hyperopia: handled by CSS filters like Myopia, no special overlay needed
+                        return null;
                         
-                        // Use transparent background with blur filter
+                      case 'diplopiaMonocular':
+                        // Monocular Diplopia: Create a ghost image effect
+                        const monocularOffset = intensity * 8; // Small offset for ghost image
                         overlayStyle.background = 'transparent';
                         overlayStyle.mixBlendMode = 'normal';
-                        overlayStyle.opacity = 1.0;
-                        overlayStyle.filter = `blur(${hyperopiaBlur}px)`;
-                        // Use clip-path to create a donut shape - blur only the edges
-                        overlayStyle.clipPath = `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${clearRadius}%, ${100-clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${100-clearRadius}%, ${clearRadius}% ${clearRadius}%)`;
+                        overlayStyle.opacity = 0.3 + intensity * 0.2; // Semi-transparent ghost
+                        overlayStyle.filter = 'blur(2px)'; // Slight blur for ghost image
+                        overlayStyle.transform = `translate(${monocularOffset}px, ${monocularOffset * 0.5}px)`;
+                        overlayStyle.backgroundImage = 'url(/assets/images/garden.png)';
+                        overlayStyle.backgroundSize = 'cover';
+                        overlayStyle.backgroundPosition = 'center';
+                        overlayStyle.backgroundRepeat = 'no-repeat';
+                        break;
+                        
+                      case 'diplopiaBinocular':
+                        // Binocular Diplopia: Create a second clear image
+                        const binocularOffset = intensity * 15; // Larger offset for separate image
+                        overlayStyle.background = 'transparent';
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = 0.5; // More opaque than monocular
+                        overlayStyle.filter = 'none'; // No blur for clear second image
+                        overlayStyle.transform = `translate(${binocularOffset}px, 0px)`;
+                        overlayStyle.backgroundImage = 'url(/assets/images/garden.png)';
+                        overlayStyle.backgroundSize = 'cover';
+                        overlayStyle.backgroundPosition = 'center';
+                        overlayStyle.backgroundRepeat = 'no-repeat';
                         break;
                         
                       default:

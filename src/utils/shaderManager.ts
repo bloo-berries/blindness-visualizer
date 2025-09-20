@@ -78,27 +78,118 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         );
       }
 
-      vec3 applyProtanomaly(vec3 color) {
+      vec3 applyProtanomaly(vec3 color, float intensity) {
+        // Protanomaly severity matrices with improved scaling
+        float t = intensity;
+        
+        // Apply exponential scaling for more pronounced effects
+        float scaledIntensity = t * t * (3.0 - 2.0 * t); // Smooth step function
+        
+        // Normal vision matrix (identity)
+        vec3 normalR = vec3(1.000, 0.000, 0.000);
+        vec3 normalG = vec3(0.000, 1.000, 0.000);
+        vec3 normalB = vec3(0.000, 0.000, 1.000);
+        
+        // Protanopia matrix (complete red blindness)
+        vec3 protanopiaR = vec3(0.567, 0.433, 0.000);
+        vec3 protanopiaG = vec3(0.558, 0.442, 0.000);
+        vec3 protanopiaB = vec3(0.000, 0.242, 0.758);
+        
+        // Interpolate between normal and protanopia with improved scaling
+        vec3 r = mix(normalR, protanopiaR, scaledIntensity);
+        vec3 g = mix(normalG, protanopiaG, scaledIntensity);
+        vec3 b = mix(normalB, protanopiaB, scaledIntensity);
+        
         return vec3(
-          0.817 * color.r + 0.183 * color.g + 0.000 * color.b,
-          0.333 * color.r + 0.667 * color.g + 0.000 * color.b,
-          0.000 * color.r + 0.125 * color.g + 0.875 * color.b
+          dot(color, r),
+          dot(color, g),
+          dot(color, b)
         );
       }
 
-      vec3 applyDeuteranomaly(vec3 color) {
+      vec3 applyDeuteranomaly(vec3 color, float intensity) {
+        // Deuteranomaly severity matrices with improved scaling
+        float t = intensity;
+        
+        // Apply exponential scaling for more pronounced effects
+        float scaledIntensity = t * t * (3.0 - 2.0 * t); // Smooth step function
+        
+        // Normal vision matrix (identity)
+        vec3 normalR = vec3(1.000, 0.000, 0.000);
+        vec3 normalG = vec3(0.000, 1.000, 0.000);
+        vec3 normalB = vec3(0.000, 0.000, 1.000);
+        
+        // Deuteranopia matrix (complete green blindness)
+        vec3 deuteranopiaR = vec3(0.625, 0.375, 0.000);
+        vec3 deuteranopiaG = vec3(0.700, 0.300, 0.000);
+        vec3 deuteranopiaB = vec3(0.000, 0.300, 0.700);
+        
+        // Interpolate between normal and deuteranopia with improved scaling
+        vec3 r = mix(normalR, deuteranopiaR, scaledIntensity);
+        vec3 g = mix(normalG, deuteranopiaG, scaledIntensity);
+        vec3 b = mix(normalB, deuteranopiaB, scaledIntensity);
+        
         return vec3(
-          0.800 * color.r + 0.200 * color.g + 0.000 * color.b,
-          0.258 * color.r + 0.742 * color.g + 0.000 * color.b,
-          0.000 * color.r + 0.142 * color.g + 0.858 * color.b
+          dot(color, r),
+          dot(color, g),
+          dot(color, b)
         );
       }
 
-      vec3 applyTritanomaly(vec3 color) {
+      vec3 applyTritanomaly(vec3 color, float intensity) {
+        // Tritanomaly severity matrices matching CSS filter implementation
+        // Use more aggressive scaling for better visual impact
+        float t = intensity;
+        
+        // Apply exponential scaling to make higher intensities more pronounced
+        float scaledIntensity = t * t * (3.0 - 2.0 * t); // Smooth step function for better scaling
+        
+        // Normal vision matrix (identity)
+        vec3 normalR = vec3(1.000, 0.000, 0.000);
+        vec3 normalG = vec3(0.000, 1.000, 0.000);
+        vec3 normalB = vec3(0.000, 0.000, 1.000);
+        
+        // Mild tritanomaly (0.3 intensity equivalent)
+        vec3 mildR = vec3(0.900, 0.100, 0.000);
+        vec3 mildG = vec3(0.000, 0.800, 0.200);
+        vec3 mildB = vec3(0.000, 0.200, 0.800);
+        
+        // Moderate tritanomaly (0.6 intensity equivalent)
+        vec3 moderateR = vec3(0.950, 0.050, 0.000);
+        vec3 moderateG = vec3(0.000, 0.600, 0.400);
+        vec3 moderateB = vec3(0.000, 0.400, 0.600);
+        
+        // Severe tritanomaly/tritanopia (1.0 intensity)
+        vec3 severeR = vec3(0.950, 0.050, 0.000);
+        vec3 severeG = vec3(0.000, 0.433, 0.567);
+        vec3 severeB = vec3(0.000, 0.475, 0.525);
+        
+        // Multi-stage interpolation for more pronounced effects
+        vec3 r, g, b;
+        if (scaledIntensity < 0.33) {
+          // Interpolate between normal and mild
+          float localT = scaledIntensity / 0.33;
+          r = mix(normalR, mildR, localT);
+          g = mix(normalG, mildG, localT);
+          b = mix(normalB, mildB, localT);
+        } else if (scaledIntensity < 0.66) {
+          // Interpolate between mild and moderate
+          float localT = (scaledIntensity - 0.33) / 0.33;
+          r = mix(mildR, moderateR, localT);
+          g = mix(mildG, moderateG, localT);
+          b = mix(mildB, moderateB, localT);
+        } else {
+          // Interpolate between moderate and severe
+          float localT = (scaledIntensity - 0.66) / 0.34;
+          r = mix(moderateR, severeR, localT);
+          g = mix(moderateG, severeG, localT);
+          b = mix(moderateB, severeB, localT);
+        }
+        
         return vec3(
-          0.967 * color.r + 0.033 * color.g + 0.000 * color.b,
-          0.000 * color.r + 0.733 * color.g + 0.267 * color.b,
-          0.000 * color.r + 0.183 * color.g + 0.817 * color.b
+          dot(color, r),
+          dot(color, g),
+          dot(color, b)
         );
       }
 
@@ -453,13 +544,13 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
           color = mix(color, applyTritanopia(color), tritanopiaIntensity);
         }
         if (protanomalyIntensity > 0.0) {
-          color = mix(color, applyProtanomaly(color), protanomalyIntensity);
+          color = applyProtanomaly(color, protanomalyIntensity);
         }
         if (deuteranomalyIntensity > 0.0) {
-          color = mix(color, applyDeuteranomaly(color), deuteranomalyIntensity);
+          color = applyDeuteranomaly(color, deuteranomalyIntensity);
         }
         if (tritanomalyIntensity > 0.0) {
-          color = mix(color, applyTritanomaly(color), tritanomalyIntensity);
+          color = applyTritanomaly(color, tritanomalyIntensity);
         }
 
         // Note: Blur effects are now handled by dedicated myopia and hyperopia functions
@@ -519,73 +610,31 @@ export const updateShaderUniforms = (
   diplopiaSeparation: number = 1.0,
   diplopiaDirection: number = 0.0
 ): void => {
+  // Create effect lookup map for O(1) access instead of O(n) finds
+  const effectMap = new Map(effects.map(e => [e.id, e]));
+  
+  // Helper function to update uniform values
+  const updateUniform = (effectId: string, uniformName: string) => {
+    const effect = effectMap.get(effectId as any);
+    if (effect) {
+      material.uniforms[uniformName].value = effect.enabled ? effect.intensity : 0;
+    }
+  };
+
   // Update effect uniforms based on current state
-  const protanopia = effects.find(e => e.id === 'protanopia');
-  if (protanopia) {
-    material.uniforms.protanopiaIntensity.value = protanopia.enabled ? protanopia.intensity : 0;
-  }
-
-  const deuteranopia = effects.find(e => e.id === 'deuteranopia');
-  if (deuteranopia) {
-    material.uniforms.deuteranopiaIntensity.value = deuteranopia.enabled ? deuteranopia.intensity : 0;
-  }
-
-  const tritanopia = effects.find(e => e.id === 'tritanopia');
-  if (tritanopia) {
-    material.uniforms.tritanopiaIntensity.value = tritanopia.enabled ? tritanopia.intensity : 0;
-  }
-
-  const protanomaly = effects.find(e => e.id === 'protanomaly');
-  if (protanomaly) {
-    material.uniforms.protanomalyIntensity.value = protanomaly.enabled ? protanomaly.intensity : 0;
-  }
-
-  const deuteranomaly = effects.find(e => e.id === 'deuteranomaly');
-  if (deuteranomaly) {
-    material.uniforms.deuteranomalyIntensity.value = deuteranomaly.enabled ? deuteranomaly.intensity : 0;
-  }
-
-  const tritanomaly = effects.find(e => e.id === 'tritanomaly');
-  if (tritanomaly) {
-    material.uniforms.tritanomalyIntensity.value = tritanomaly.enabled ? tritanomaly.intensity : 0;
-  }
-
-  // Note: Myopia and Hyperopia are now handled by dedicated uniforms
-
-  const retinitisPigmentosa = effects.find(e => e.id === 'retinitisPigmentosa');
-  if (retinitisPigmentosa) {
-    material.uniforms.retinitisPigmentosaIntensity.value = retinitisPigmentosa.enabled ? retinitisPigmentosa.intensity : 0;
-  }
-
-  const diplopiaMonocular = effects.find(e => e.id === 'diplopiaMonocular');
-  if (diplopiaMonocular) {
-    material.uniforms.diplopiaMonocularIntensity.value = diplopiaMonocular.enabled ? diplopiaMonocular.intensity : 0;
-  }
-
-  const diplopiaBinocular = effects.find(e => e.id === 'diplopiaBinocular');
-  if (diplopiaBinocular) {
-    material.uniforms.diplopiaBinocularIntensity.value = diplopiaBinocular.enabled ? diplopiaBinocular.intensity : 0;
-  }
-
-  const stargardt = effects.find(e => e.id === 'stargardt');
-  if (stargardt) {
-    material.uniforms.stargardtIntensity.value = stargardt.enabled ? stargardt.intensity : 0;
-  }
-
-  const amd = effects.find(e => e.id === 'amd');
-  if (amd) {
-    material.uniforms.amdIntensity.value = amd.enabled ? amd.intensity : 0;
-  }
-
-  const diabeticRetinopathy = effects.find(e => e.id === 'diabeticRetinopathy');
-  if (diabeticRetinopathy) {
-    material.uniforms.diabeticRetinopathyIntensity.value = diabeticRetinopathy.enabled ? diabeticRetinopathy.intensity : 0;
-  }
-
-  const glaucoma = effects.find(e => e.id === 'glaucoma');
-  if (glaucoma) {
-    material.uniforms.glaucomaIntensity.value = glaucoma.enabled ? glaucoma.intensity : 0;
-  }
+  updateUniform('protanopia', 'protanopiaIntensity');
+  updateUniform('deuteranopia', 'deuteranopiaIntensity');
+  updateUniform('tritanopia', 'tritanopiaIntensity');
+  updateUniform('protanomaly', 'protanomalyIntensity');
+  updateUniform('deuteranomaly', 'deuteranomalyIntensity');
+  updateUniform('tritanomaly', 'tritanomalyIntensity');
+  updateUniform('retinitisPigmentosa', 'retinitisPigmentosaIntensity');
+  updateUniform('diplopiaMonocular', 'diplopiaMonocularIntensity');
+  updateUniform('diplopiaBinocular', 'diplopiaBinocularIntensity');
+  updateUniform('stargardt', 'stargardtIntensity');
+  updateUniform('amd', 'amdIntensity');
+  updateUniform('diabeticRetinopathy', 'diabeticRetinopathyIntensity');
+  updateUniform('glaucoma', 'glaucomaIntensity');
 
   // Note: Myopia and Hyperopia are now handled by CSS filters
 

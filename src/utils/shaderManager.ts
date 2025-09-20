@@ -339,7 +339,7 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         float dist = distance(uv, center);
         
         // Central scotoma - progressive loss of central vision
-        float scotomaRadius = 0.1 + intensity * 0.2; // 10% to 30% of screen
+        float scotomaRadius = 0.17 + intensity * 0.53; // 17% to 70% of screen
         
         // Create central blind spot
         float scotomaEffect = smoothstep(scotomaRadius - 0.05, scotomaRadius + 0.05, dist);
@@ -349,8 +349,11 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         float desaturationAmount = intensity * 0.4;
         vec3 desaturated = mix(color, vec3(luminance), desaturationAmount);
         
-        // Apply central vision loss
-        return mix(vec3(0.0), desaturated, scotomaEffect);
+        // Apply central vision loss with very dark color - similar to Retinitis Pigmentosa
+        vec3 veryDark = vec3(0.04, 0.04, 0.04); // Very dark color (10,10,10 in RGB)
+        // Make the scotoma much more opaque by reducing the mix factor
+        float opaqueEffect = smoothstep(scotomaRadius - 0.02, scotomaRadius + 0.02, dist);
+        return mix(veryDark, desaturated, opaqueEffect);
       }
 
       // Age-Related Macular Degeneration (AMD) effects

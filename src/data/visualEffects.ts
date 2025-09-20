@@ -98,10 +98,10 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   },
   { 
     id: 'visualFloaters',
-    name: 'Visual Floaters',
+    name: 'Visual Floaters (Myodesopsia)',
     enabled: false,
     intensity: 1.0,
-    description: 'Small, dark shapes that appear to float in the visual field. Caused by tiny clumps of gel or cells inside the vitreous. Common with age but can indicate retinal problems.'
+    description: 'Shadows cast on the retina by debris floating in the vitreous humor. Includes cobweb/string floaters, dots/spots, ring floaters (Weiss Ring), and cloud/sheet floaters. Move with eye movement but lag behind, following fluid dynamics. Most visible against bright backgrounds, can interfere with reading and detailed tasks.'
   },
   { 
     id: 'hallucinations',

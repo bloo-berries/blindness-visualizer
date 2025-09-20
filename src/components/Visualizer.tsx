@@ -69,49 +69,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
         
         if (overlayElement) {
-          // Floater 1 - larger, stringy floater
-          const floaterX1 = 30 + Math.sin(now/2000 * 0.3) * 25 + Math.sin(now/2000 * 0.2) * 10;
-          const floaterY1 = 40 + Math.cos(now/2000 * 0.25) * 20;
-          // Floater 2 - medium, circular floater
-          const floaterX2 = 65 + Math.sin(now/2000 * 0.2 + 1) * 20;
-          const floaterY2 = 50 + Math.cos(now/2000 * 0.3 + 2) * 25;
-          // Floater 3 - small, quick-moving floater
-          const floaterX3 = 50 + Math.sin(now/2000 * 0.4 + 3) * 30;
-          const floaterY3 = 25 + Math.cos(now/2000 * 0.35 + 1) * 15;
-          // Floater 4 - thin, string-like floater
-          const floaterX4 = 45 + Math.sin(now/2000 * 0.15 + 2) * 15;
-          const floaterY4 = 70 + Math.cos(now/2000 * 0.2 + 3) * 10;
-          
-          overlayElement.style.background = `
-            /* String-like floater */
-            radial-gradient(ellipse 25% 8% at ${floaterX1}% ${floaterY1}%, 
-              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-              rgba(0,0,0,${0.85 * visualFloaters.intensity}) 15%,
-              rgba(0,0,0,${0.7 * visualFloaters.intensity}) 40%,
-              rgba(0,0,0,0) 80%
-            ),
-            /* Round floater */
-            radial-gradient(circle 8% at ${floaterX2}% ${floaterY2}%, 
-              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-              rgba(0,0,0,${0.85 * visualFloaters.intensity}) 40%,
-              rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
-              rgba(0,0,0,0) 100%
-            ),
-            /* Small dot floater */
-            radial-gradient(circle 4% at ${floaterX3}% ${floaterY3}%, 
-              rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-              rgba(0,0,0,${0.9 * visualFloaters.intensity}) 40%,
-              rgba(0,0,0,${0.7 * visualFloaters.intensity}) 70%,
-              rgba(0,0,0,0) 100%
-            ),
-            /* Thin stringy floater */
-            radial-gradient(ellipse 20% 3% at ${floaterX4}% ${floaterY4}%, 
-              rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
-              rgba(0,0,0,${0.8 * visualFloaters.intensity}) 40%,
-              rgba(0,0,0,${0.6 * visualFloaters.intensity}) 70%,
-              rgba(0,0,0,0) 100%
-            )
-          `;
+          // Use the improved floater patterns from animatedOverlays utility
+          updateAnimatedOverlays([visualFloaters]);
           
           // Ensure the overlay is visible and properly styled
           overlayElement.style.mixBlendMode = 'multiply';
@@ -144,12 +103,12 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       animationFrameId = requestAnimationFrame(updateOverlays);
     };
     
-    // Start animation if needed
+    // Start animation if needed (for all content types that support overlays)
     const needsAnimation = effects.some(e => 
       (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa') && e.enabled
     );
     
-    if (needsAnimation) {
+    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
       animationFrameId = requestAnimationFrame(updateOverlays);
     }
 
@@ -228,16 +187,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   // Get effect state changes to rerender
   useEffect(() => {
-    // Create visual field overlays for YouTube content whenever effects change
-    if (inputSource.type === 'youtube') {
-      // For YouTube content, only create overlays for non-diplopia effects
+    // Create visual field overlays for YouTube and image content whenever effects change
+    if (inputSource.type === 'youtube' || inputSource.type === 'image') {
+      // For YouTube and image content, only create overlays for non-diplopia effects
       // Diplopia effects are handled by the getDiplopiaOverlay function
       const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
       
       if (nonDiplopiaEffects.some(e => e.enabled)) {
-        console.log('Creating visual field overlays for YouTube content with non-diplopia effects:', nonDiplopiaEffects);
+        console.log(`Creating visual field overlays for ${inputSource.type} content with non-diplopia effects:`, nonDiplopiaEffects);
         
-        // Add a small delay to ensure the iframe is loaded
+        // Add a small delay to ensure the content is loaded
         const timer = setTimeout(() => {
           createVisualFieldOverlays(nonDiplopiaEffects);
         }, 100);
@@ -246,7 +205,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       }
     }
     
-    // Check if we need animation
+    // Check if we need animation (for overlay-based effects)
     const visualFloaters = getEffect('visualFloaters');
     const scotoma = getEffect('scotoma');
     
@@ -254,7 +213,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       (visualFloaters && visualFloaters.enabled) || 
       (scotoma && scotoma.enabled);
     
-    if (needsAnimation) {
+    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
       // Start animation if not already running
       let animationFrameId: number;
       

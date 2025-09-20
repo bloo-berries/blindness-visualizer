@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Container,
@@ -65,21 +65,25 @@ const VisionSimulator: React.FC = () => {
     }
   }, [location.state]);
 
-  const handleToggle = (id: string) => {
-    setEffects(effects.map(effect => 
-      effect.id === id ? { ...effect, enabled: !effect.enabled } : effect
-    ));
-  };
+  const handleToggle = useCallback((id: string) => {
+    setEffects(prevEffects => 
+      prevEffects.map(effect => 
+        effect.id === id ? { ...effect, enabled: !effect.enabled } : effect
+      )
+    );
+  }, []);
 
-  const handleDeselectAll = () => {
-    setEffects(effects.map(effect => ({ ...effect, enabled: false })));
-  };
+  const handleDeselectAll = useCallback(() => {
+    setEffects(prevEffects => prevEffects.map(effect => ({ ...effect, enabled: false })));
+  }, []);
 
-  const handleIntensityChange = (id: string, intensity: number) => {
-    setEffects(effects.map(effect =>
-      effect.id === id ? { ...effect, intensity } : effect
-    ));
-  };
+  const handleIntensityChange = useCallback((id: string, intensity: number) => {
+    setEffects(prevEffects => 
+      prevEffects.map(effect =>
+        effect.id === id ? { ...effect, intensity } : effect
+      )
+    );
+  }, []);
 
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);

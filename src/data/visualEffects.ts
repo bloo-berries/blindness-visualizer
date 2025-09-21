@@ -763,14 +763,17 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   }
 ];
 
+// Create a Map for O(1) lookup performance
+const EFFECT_MAP = new Map(VISUAL_EFFECTS.map(effect => [effect.id, effect]));
+
 /**
- * Gets a visual effect by its ID
+ * Gets a visual effect by its ID with O(1) performance
  * 
  * @param id - The effect ID to find
  * @returns The visual effect or undefined if not found
  */
 export const getVisualEffectById = (id: ConditionType): VisualEffect | undefined => {
-  return VISUAL_EFFECTS.find(effect => effect.id === id);
+  return EFFECT_MAP.get(id);
 };
 
 /**

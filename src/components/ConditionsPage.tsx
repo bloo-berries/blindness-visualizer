@@ -4,8 +4,6 @@ import {
   Container, 
   Typography, 
   Box, 
-  Card, 
-  CardContent, 
   Grid, 
   TextField, 
   FormControl, 
@@ -17,13 +15,13 @@ import {
   AccordionSummary,
   AccordionDetails,
   Chip,
-  Divider,
   List,
   ListItem,
   ListItemText,
   ListItemIcon,
   IconButton,
-  Tooltip
+  Tooltip,
+  Divider
 } from '@mui/material';
 import { 
   ExpandMore as ExpandMoreIcon,
@@ -37,7 +35,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import { VISUAL_EFFECTS } from '../data/visualEffects';
+// Note: VISUAL_EFFECTS import removed as it's not currently used
 import '../styles/Conditions.css';
 
 interface ConditionCategory {

@@ -1,5 +1,6 @@
 import { VisualEffect } from '../types/visualEffects';
 import { getColorVisionMatrix, isColorVisionCondition } from './colorVisionFilters';
+import { getFirstEnabledEffect } from './effectLookup';
 
 // Identity matrix removed as it was unused
 
@@ -7,8 +8,8 @@ import { getColorVisionMatrix, isColorVisionCondition } from './colorVisionFilte
  * Generates CSS filter string for color blindness effects using accurate Machado 2009 matrices
  */
 const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
-  // Find the first enabled color vision condition using more efficient approach
-  const colorVisionEffect = effects.find(e => isColorVisionCondition(e.id) && e.enabled);
+  // Find the first enabled color vision condition using optimized lookup
+  const colorVisionEffect = getFirstEnabledEffect(effects, e => isColorVisionCondition(e.id));
   
   if (!colorVisionEffect) {
     return '';

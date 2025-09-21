@@ -12,12 +12,10 @@ import {
   ListItemIcon,
   ListItemText,
   Chip,
-  Divider,
   Paper
 } from '@mui/material';
 import { 
   ExpandMore as ExpandMoreIcon,
-  QuestionAnswer as QuestionAnswerIcon,
   Visibility as VisibilityIcon,
   Smartphone as SmartphoneIcon,
   Home as HomeIcon,

@@ -11,6 +11,7 @@ import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
 import ConditionsPage from './components/ConditionsPage';
 import FAQPage from './components/FAQPage';
+import AboutPage from './components/AboutPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
 import './styles/App.css';
 
@@ -155,6 +156,7 @@ const App: React.FC = () => {
             <Route path="/famous-people" element={<FamousBlindPeople />} />
             <Route path="/conditions" element={<ConditionsPage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </Router>
       </ThemeProvider>

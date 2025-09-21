@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
-import { Download, Save } from '@mui/icons-material';
+import { Download } from '@mui/icons-material';
 import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
 import { updateAnimatedOverlays } from '../utils/animatedOverlays';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
 import { createVisualFieldOverlays } from '../utils/overlayManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
-import { DEMO_VIDEO_ID, YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
-import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayUtils';
+import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
+import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayManager';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
 
 interface VisualizerProps {
@@ -18,9 +18,11 @@ interface VisualizerProps {
   inputSource: InputSource;
   diplopiaSeparation?: number;
   diplopiaDirection?: number;
+  personName?: string;
+  personCondition?: string;
 }
 
-const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0 }) => {
+const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -30,9 +32,17 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [showComparison, setShowComparison] = useState(false);
 
   // Helper function to avoid repeated effects.find() calls
   const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
+
+  // Enable comparison mode for famous people
+  useEffect(() => {
+    if (personName && personCondition) {
+      setShowComparison(true);
+    }
+  }, [personName, personCondition]);
 
   // Retry camera access
   const handleRetryCamera = useCallback(() => {
@@ -102,7 +112,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       const effectMap = new Map(effects.map(e => [e.id, e]));
       const scotoma = effectMap.get('scotoma');
       const visualFloaters = effectMap.get('visualFloaters');
-      const visualSnow = effectMap.get('visualSnow');
       
       if (scotoma?.enabled) {
         const now = Date.now();
@@ -120,7 +129,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       }
       
       if (visualFloaters?.enabled) {
-        const now = Date.now();
         const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
         
         if (overlayElement) {
@@ -366,6 +374,151 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
+  // Render comparison view for famous people
+  if (showComparison && personName && personCondition) {
+    return (
+      <Box className="comparison-container" sx={{ 
+        position: 'relative', 
+        width: '100%', 
+        height: '100%',
+        minHeight: '400px',
+        backgroundColor: '#000',
+        overflow: 'hidden'
+      }}>
+        {/* Comparison Header */}
+        <Box sx={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          right: 0, 
+          zIndex: 1000,
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          color: 'white',
+          padding: '8px 16px',
+          textAlign: 'center'
+        }}>
+          <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+            {personName} - {personCondition}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+            Side-by-side comparison: Original video (left) vs. Vision simulation (right)
+          </Typography>
+        </Box>
+
+        {/* Left side - Original video */}
+        <Box sx={{ 
+          position: 'absolute',
+          left: 0,
+          top: '60px',
+          width: '50%',
+          height: 'calc(100% - 60px)',
+          borderRight: '2px solid #fff'
+        }}>
+          <Box sx={{ 
+            position: 'absolute', 
+            top: '10px', 
+            left: '10px', 
+            zIndex: 1001,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
+          }}>
+            Simulation
+          </Box>
+          <div style={getEffectStyles()}>
+            {inputSource.type === 'youtube' ? (
+              <iframe
+                {...YOUTUBE_IFRAME_PROPS}
+                src={YOUTUBE_EMBED_URL}
+                title="Vision simulation"
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              <Box sx={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#333',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white'
+              }}>
+                <Typography>Visualization would appear here</Typography>
+              </Box>
+            )}
+          </div>
+          {getDiplopiaOverlay()}
+        </Box>
+
+        {/* Right side - Visualization */}
+        <Box sx={{ 
+          position: 'absolute',
+          right: 0,
+          top: '60px',
+          width: '50%',
+          height: 'calc(100% - 60px)'
+        }}>
+          <Box sx={{ 
+            position: 'absolute', 
+            top: '10px', 
+            right: '10px', 
+            zIndex: 1001,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
+          }}>
+            Original
+          </Box>
+          {inputSource.type === 'youtube' ? (
+            <iframe
+              {...YOUTUBE_IFRAME_PROPS}
+              src={YOUTUBE_EMBED_URL}
+              title="Original YouTube video"
+              style={{ width: '100%', height: '100%' }}
+            />
+          ) : (
+            <Box sx={{ 
+              width: '100%', 
+              height: '100%', 
+              backgroundColor: '#333',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white'
+            }}>
+              <Typography>Original content would appear here</Typography>
+            </Box>
+          )}
+        </Box>
+
+        {/* Toggle button */}
+        <Box sx={{ 
+          position: 'absolute', 
+          bottom: '20px', 
+          left: '50%', 
+          transform: 'translateX(-50%)',
+          zIndex: 1000
+        }}>
+          <Button
+            variant="contained"
+            onClick={() => setShowComparison(false)}
+            sx={{ 
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              color: 'white',
+              '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
+            }}
+          >
+            View Full Simulation
+          </Button>
+        </Box>
+      </Box>
+    );
+  }
+
   return (
     <Box className="visualizer-container" sx={{ 
       position: 'relative', 
@@ -493,18 +646,30 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           <Typography variant="h6">
             Visualization Description
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={isSaving ? <CircularProgress size={20} /> : <Download />}
-            onClick={handleSaveScreenshot}
-            disabled={isSaving || isLoading}
-            className="save-button"
-            sx={{ minWidth: 140 }}
-            title="Save your vision simulation result (Ctrl+S or Cmd+S)"
-          >
-            {isSaving ? 'Saving...' : 'Save Result'}
-          </Button>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            {personName && personCondition && !showComparison && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => setShowComparison(true)}
+                disabled={isLoading}
+              >
+                Show Comparison
+              </Button>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={isSaving ? <CircularProgress size={20} /> : <Download />}
+              onClick={handleSaveScreenshot}
+              disabled={isSaving || isLoading}
+              className="save-button"
+              sx={{ minWidth: 140 }}
+              title="Save your vision simulation result (Ctrl+S or Cmd+S)"
+            >
+              {isSaving ? 'Saving...' : 'Save Result'}
+            </Button>
+          </Box>
         </Box>
         <Typography>
           {getVisualizerDescription()}

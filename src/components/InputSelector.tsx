@@ -5,8 +5,6 @@ import {
   CardContent,
   Typography,
   Grid,
-  TextField,
-  Button,
   Chip
 } from '@mui/material';
 import {
@@ -51,7 +49,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
 
   return (
     <Box 
-      sx={{ py: 2 }}
+      sx={{ py: 1 }}
       role="region"
       aria-labelledby="input-selector-heading"
     >
@@ -59,11 +57,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         variant="h6" 
         gutterBottom
         id="input-selector-heading"
+        sx={{ mb: 2 }}
       >
         Choose Your Input Source
       </Typography>
       
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {/* Demo Video - Large, centered option */}
         {inputOptions
           .filter(option => option.type === 'youtube')
@@ -82,7 +81,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   border: currentSource.type === option.type ? 2 : 0,
                   borderColor: 'primary.main',
                   backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
-                  maxWidth: '600px',
+                  maxWidth: '500px',
                   mx: 'auto'
                 }}
                 onClick={() => {
@@ -114,22 +113,22 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   }
                 }}
               >
-                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 4 }}>
-                  <Box sx={{ fontSize: '64px', mb: 2 }}>
+                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 2 }}>
+                  <Box sx={{ fontSize: '48px', mb: 1 }}>
                     {option.icon}
                   </Box>
                   <Typography 
-                    variant="h5" 
+                    variant="h6" 
                     component="div" 
-                    sx={{ mt: 2, fontWeight: 600 }}
+                    sx={{ mt: 1, fontWeight: 600 }}
                   >
                     {option.title}
                   </Typography>
                   <Typography 
-                    variant="body1" 
+                    variant="body2" 
                     color="text.secondary"
                     id={`${option.type}-description`}
-                    sx={{ mt: 1, fontSize: '1.1rem' }}
+                    sx={{ mt: 0.5, fontSize: '0.9rem' }}
                   >
                     {option.description}
                   </Typography>
@@ -158,7 +157,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         
         {/* Other options - Side by side */}
         <Grid item xs={12}>
-          <Grid container spacing={3} justifyContent="center">
+          <Grid container spacing={2} justifyContent="center">
             {inputOptions
               .filter(option => option.type !== 'youtube')
               .map((option) => (
@@ -206,14 +205,14 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                       }
                     }}
                   >
-                    <CardContent sx={{ textAlign: 'center', position: 'relative', p: 3 }}>
-                      <Box sx={{ fontSize: '48px', mb: 1 }}>
+                    <CardContent sx={{ textAlign: 'center', position: 'relative', p: 2 }}>
+                      <Box sx={{ fontSize: '40px', mb: 1 }}>
                         {option.icon}
                       </Box>
                       <Typography 
-                        variant="h6" 
+                        variant="subtitle1" 
                         component="div" 
-                        sx={{ mt: 2 }}
+                        sx={{ mt: 1, fontWeight: 600 }}
                       >
                         {option.title}
                       </Typography>
@@ -221,11 +220,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                         variant="body2" 
                         color="text.secondary"
                         id={`${option.type}-description`}
+                        sx={{ fontSize: '0.85rem' }}
                       >
                         {option.description}
                       </Typography>
                       {option.isPremium && (
-                        <Box sx={{ mt: 2 }}>
+                        <Box sx={{ mt: 1 }}>
                           <Chip
                             icon={<Star />}
                             label="Coming Soon: Premium Feature"
@@ -233,10 +233,10 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                             variant="outlined"
                             sx={{
                               fontWeight: 'bold',
-                              fontSize: '0.75rem',
-                              height: '24px',
+                              fontSize: '0.7rem',
+                              height: '20px',
                               '& .MuiChip-icon': {
-                                fontSize: '16px'
+                                fontSize: '14px'
                               }
                             }}
                           />

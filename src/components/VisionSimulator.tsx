@@ -118,6 +118,13 @@ const VisionSimulator: React.FC = () => {
       return;
     }
     setInputSource(source);
+    
+    // Auto-advance to next step when Demo Video is selected
+    if (source.type === 'youtube') {
+      setTimeout(() => {
+        setActiveStep(1);
+      }, 300); // Small delay for better UX
+    }
   }, []);
 
   const getStepContent = (step: number) => {
@@ -154,6 +161,8 @@ const VisionSimulator: React.FC = () => {
               inputSource={inputSource}
               diplopiaSeparation={diplopiaSeparation}
               diplopiaDirection={diplopiaDirection}
+              personName={preconfiguredPerson?.name}
+              personCondition={preconfiguredPerson?.condition}
             />
           </Box>
         );
@@ -214,7 +223,7 @@ const VisionSimulator: React.FC = () => {
       </a>
       <Container 
         maxWidth="lg" 
-        sx={{ py: 3, pt: 8 }}
+        sx={{ py: 2, pt: 6 }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"
@@ -223,7 +232,7 @@ const VisionSimulator: React.FC = () => {
         <Paper 
           elevation={0} 
           sx={{ 
-            p: 4, 
+            p: 3, 
             borderRadius: 3,
             border: '1px solid #e2e8f0',
             backgroundColor: 'background.paper'
@@ -232,7 +241,7 @@ const VisionSimulator: React.FC = () => {
           tabIndex={0}
         >
           <Typography 
-            variant="h3" 
+            variant="h4" 
             component="h1" 
             gutterBottom 
             align="center"
@@ -269,8 +278,8 @@ const VisionSimulator: React.FC = () => {
           {preconfiguredPerson && (
             <Box 
               sx={{ 
-                mb: 4, 
-                p: 3, 
+                mb: 2, 
+                p: 2, 
                 backgroundColor: 'primary.light', 
                 borderRadius: 2,
                 border: '1px solid',
@@ -292,14 +301,18 @@ const VisionSimulator: React.FC = () => {
 
           {/* Video playing message for all visualizations */}
           <Box sx={{ 
-            mb: 4, 
-            p: 2, 
+            mb: 2, 
+            p: 1.5, 
             backgroundColor: '#e3f2fd', 
             borderRadius: 1, 
             border: '1px solid #2196f3',
             textAlign: 'center'
           }}>
-            <Typography variant="body2" sx={{ color: '#1976d2', fontWeight: 500 }}>
+            <Typography 
+              variant="body2" 
+              className="video-info-text"
+              sx={{ color: '#1976d2', fontWeight: 500 }}
+            >
               📹 Although you may not be able to see a video, a video is actively playing behind this blindness visualization.
             </Typography>
           </Box>
@@ -307,7 +320,7 @@ const VisionSimulator: React.FC = () => {
           <Stepper 
             activeStep={activeStep} 
             sx={{ 
-              my: 4,
+              my: 2,
               '& .MuiStepLabel-root .Mui-completed': {
                 color: 'primary.main',
               },

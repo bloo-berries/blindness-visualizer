@@ -48,6 +48,154 @@
   color: var(--hc-text) !important;
 }
 
+/* Specific styling for video info text in high contrast mode */
+.high-contrast-mode .video-info-text {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Specific styling for personal journey section in high contrast mode */
+.high-contrast-mode .personal-journey-section {
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .personal-journey-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .personal-journey-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .personal-journey-highlight {
+  color: #000000 !important;
+  background-color: #ffff00 !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Specific styling for conditions stats text in high contrast mode */
+.high-contrast-mode .conditions-stats {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Specific styling for conditions glossary text elements in high contrast mode */
+.high-contrast-mode .condition-category-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .condition-category-subtitle {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .condition-name {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .condition-description {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .condition-related-chip {
+  color: #000000 !important;
+  background-color: #ffff00 !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .conditions-info-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .conditions-info-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .conditions-empty-state {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 16px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Specific styling for FAQ page text elements in high contrast mode */
+.high-contrast-mode .faq-info-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .faq-info-text {
+  color: #000000 !important;
+}
+
+/* Specific styling for famous people simulation type elements in high contrast mode */
+.high-contrast-mode .simulation-type-label {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .simulation-type-chip {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .simulation-type-chip .MuiChip-label {
+  color: #000000 !important;
+}
+
+/* Homepage text styling with maximum specificity for high contrast mode */
+.high-contrast-mode .homepage-card-title,
+.high-contrast-mode .homepage-card-title.MuiTypography-root,
+.high-contrast-mode .homepage-card-title.MuiTypography-h4,
+.high-contrast-mode .MuiTypography-h4.homepage-card-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .homepage-card-description,
+.high-contrast-mode .homepage-card-description.MuiTypography-root,
+.high-contrast-mode .homepage-card-description.MuiTypography-body1,
+.high-contrast-mode .MuiTypography-body1.homepage-card-description {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .homepage-features-title,
+.high-contrast-mode .homepage-features-title.MuiTypography-root,
+.high-contrast-mode .homepage-features-title.MuiTypography-h6,
+.high-contrast-mode .MuiTypography-h6.homepage-features-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .homepage-feature-item,
+.high-contrast-mode .homepage-feature-item.MuiTypography-root,
+.high-contrast-mode .homepage-feature-item.MuiTypography-body2,
+.high-contrast-mode .MuiTypography-body2.homepage-feature-item {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .homepage-featured-title,
+.high-contrast-mode .homepage-featured-title.MuiTypography-root,
+.high-contrast-mode .homepage-featured-title.MuiTypography-h6,
+.high-contrast-mode .MuiTypography-h6.homepage-featured-title {
+  color: #000000 !important;
+}
+
+/* Even more specific selectors */
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-card-title,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-card-description,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-features-title,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-feature-item,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-featured-title {
+  color: #000000 !important;
+}
+
 /* Apply to specific Material-UI components */
 .high-contrast-mode .MuiContainer-root {
   background-color: var(--hc-bg) !important;

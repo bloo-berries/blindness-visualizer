@@ -11,6 +11,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -27,15 +28,18 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
 
   const handleHomeClick = () => {
     if (onHomeClick) {
       onHomeClick();
+    } else {
+      navigate('/');
     }
   };
 
   const navItems = [
-    { label: 'About', href: '#about' },
+    { label: 'About', href: '/about' },
     { label: 'Conditions Glossary', href: '/conditions' },
     { label: 'FAQ', href: '/faq' }
   ];
@@ -119,15 +123,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <Button
                   key={item.label}
                   color="inherit"
-                  component={item.href.startsWith('/') ? 'a' : 'button'}
-                  href={item.href.startsWith('/') ? item.href : undefined}
-                  onClick={item.href.startsWith('/') ? undefined : () => {
-                    // Handle anchor links
-                    const element = document.querySelector(item.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
+                  component="a"
+                  href={item.href}
                   sx={{
                     color: 'white',
                     fontWeight: 600,

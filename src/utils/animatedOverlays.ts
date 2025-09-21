@@ -1,5 +1,78 @@
 import { VisualEffect } from '../types/visualEffects';
-import { isVisualFieldLossCondition, getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+
+// Animation helper interfaces and utilities
+export interface AnimationParams {
+  time: number;
+  intensity: number;
+  baseX?: number;
+  baseY?: number;
+  amplitude?: number;
+  frequency?: number;
+  phase?: number;
+}
+
+export interface PositionResult {
+  x: number;
+  y: number;
+  opacity: number;
+  rotation?: number;
+  scale?: number;
+}
+
+/**
+ * Generates animated position using sine/cosine waves
+ */
+export const generateAnimatedPosition = (params: AnimationParams): PositionResult => {
+  const {
+    time,
+    intensity,
+    baseX = 50,
+    baseY = 50,
+    amplitude = 10,
+    frequency = 0.1,
+    phase = 0
+  } = params;
+
+  const x = baseX + Math.sin(time * frequency + phase) * amplitude;
+  const y = baseY + Math.cos(time * frequency * 0.8 + phase) * amplitude * 0.7;
+  const opacity = Math.max(0.1, Math.min(1.0, intensity * (0.7 + Math.sin(time * 0.05) * 0.3)));
+  const rotation = Math.sin(time * 0.03 + phase) * 5;
+  const scale = 1.0 + Math.sin(time * 0.02 + phase) * 0.1;
+
+  return { x, y, opacity, rotation, scale };
+};
+
+/**
+ * Generates severity-based configuration for effects
+ */
+export const getSeverityConfig = (intensity: number) => {
+  if (intensity < 0.3) {
+    return {
+      level: 'mild' as const,
+      floaterCount: 1,
+      maxOpacity: 0.7,
+      maxSize: 20,
+      animationSpeed: 0.1
+    };
+  } else if (intensity < 0.7) {
+    return {
+      level: 'moderate' as const,
+      floaterCount: 3,
+      maxOpacity: 0.8,
+      maxSize: 25,
+      animationSpeed: 0.12
+    };
+  } else {
+    return {
+      level: 'severe' as const,
+      floaterCount: 6,
+      maxOpacity: 0.9,
+      maxSize: 30,
+      animationSpeed: 0.15
+    };
+  }
+};
 
 /**
  * Updates animated overlays for visual effects like scotoma and floaters

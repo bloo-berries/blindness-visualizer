@@ -1,6 +1,53 @@
 import { VisualEffect } from '../types/visualEffects';
-import { isVisualFieldLossCondition, getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { createEffectMap, getEffectById } from './effectLookup';
 import { CONTAINER_SELECTORS } from './appConstants';
+
+/**
+ * Creates a simple overlay element with consistent styling
+ * @param id - The ID for the overlay element
+ * @param container - The container element to append to
+ * @param additionalStyles - Additional styles to apply
+ * @returns The created overlay element
+ */
+export const createSimpleOverlay = (
+  id: string,
+  container: HTMLElement,
+  additionalStyles: React.CSSProperties = {}
+): HTMLElement => {
+  const overlay = document.createElement('div');
+  overlay.id = id;
+  
+  Object.assign(overlay.style, {
+    ...OVERLAY_BASE_STYLES,
+    zIndex: Z_INDEX.ANIMATED.toString(),
+    ...additionalStyles
+  });
+  
+  container.appendChild(overlay);
+  return overlay;
+};
+
+/**
+ * Finds the appropriate container for overlays
+ * @returns The container element or null if not found
+ */
+export const findOverlayContainer = (): HTMLElement | null => {
+  const selectors = [
+    '.visualizer-container',
+    '[class*="visualizer"]',
+    '[style*="position: relative"]'
+  ];
+  
+  for (const selector of selectors) {
+    const element = document.querySelector(selector);
+    if (element && element instanceof HTMLElement) {
+      return element;
+    }
+  }
+  
+  return null;
+};
 
 /**
  * Creates a visual field overlay element with specified styles
@@ -93,18 +140,18 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   console.log('Current input source type:', document.querySelector('iframe[src*="youtube"]') ? 'youtube' : 'image/webcam');
 
   // Create effect lookup map for O(1) access instead of O(n) finds
-  const effectMap = new Map(effects.map(e => [e.id, e]));
-  const getEffect = (id: string) => effectMap.get(id as any);
+  const effectMap = createEffectMap(effects);
+  const getEffect = (id: string) => getEffectById(effectMap, id);
   
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
     hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
-    visualFloaters, visualSnow, aura, glaucoma, stargardt,
-    miltonGlaucomaHalos, miltonProgressiveVignetting, miltonScotomas, miltonRetinalDetachment, 
-    miltonPhotophobia, miltonTemporalFieldLoss, miltonProgressiveBlindness, completeBlindness,
+    visualFloaters, aura, glaucoma, stargardt,
+    miltonProgressiveVignetting, miltonRetinalDetachment, 
+    miltonPhotophobia, miltonTemporalFieldLoss, completeBlindness,
     galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression,
     vedCompleteBlindness, vedSpatialAwareness, vedEchoLocation, vedAirFlowSensors, vedProximityRadar, vedTemperatureMapping,
-    christineNMOBlur, christineSteamyMirror, christineLightScatter, christineFogOverlay, christineFluctuatingVision, christineNMOComplete,
+    christineSteamyMirror, christineLightScatter, christineFogOverlay, christineFluctuatingVision, christineNMOComplete,
     lucyFrostedGlass, lucyHeavyBlur, lucyDesaturation, lucyLightDiffusion, lucyTextureOverlay, lucyCompleteVision,
     davidLeftEyeBlindness, davidRightEyeGlaucoma, davidHemisphericVision, davidCompleteVision,
     erikRetinoschisisIslands, erikIslandFragmentation, erikProgressiveLoss, erikCompleteBlindness, erikScanningBehavior, erikCognitiveLoad,
@@ -112,12 +159,12 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
-    'visualFloaters', 'visualSnow', 'aura', 'glaucoma', 'stargardt',
-    'miltonGlaucomaHalos', 'miltonProgressiveVignetting', 'miltonScotomas', 'miltonRetinalDetachment',
-    'miltonPhotophobia', 'miltonTemporalFieldLoss', 'miltonProgressiveBlindness', 'completeBlindness',
+    'visualFloaters', 'aura', 'glaucoma', 'stargardt',
+    'miltonProgressiveVignetting', 'miltonRetinalDetachment',
+    'miltonPhotophobia', 'miltonTemporalFieldLoss', 'completeBlindness',
     'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression',
     'vedCompleteBlindness', 'vedSpatialAwareness', 'vedEchoLocation', 'vedAirFlowSensors', 'vedProximityRadar', 'vedTemperatureMapping',
-    'christineNMOBlur', 'christineSteamyMirror', 'christineLightScatter', 'christineFogOverlay', 'christineFluctuatingVision', 'christineNMOComplete',
+    'christineSteamyMirror', 'christineLightScatter', 'christineFogOverlay', 'christineFluctuatingVision', 'christineNMOComplete',
     'lucyFrostedGlass', 'lucyHeavyBlur', 'lucyDesaturation', 'lucyLightDiffusion', 'lucyTextureOverlay', 'lucyCompleteVision',
     'davidLeftEyeBlindness', 'davidRightEyeGlaucoma', 'davidHemisphericVision', 'davidCompleteVision',
     'erikRetinoschisisIslands', 'erikIslandFragmentation', 'erikProgressiveLoss', 'erikCompleteBlindness', 'erikScanningBehavior', 'erikCognitiveLoad',
@@ -1210,7 +1257,6 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   const minkaraPhotophobia = effects.find(e => e.id === 'minkaraPhotophobia' && e.enabled);
   const minkaraAchromatopsia = effects.find(e => e.id === 'minkaraAchromatopsia' && e.enabled);
   const minkaraNightBlindness = effects.find(e => e.id === 'minkaraNightBlindness' && e.enabled);
-  const minkaraProgressiveTimeline = effects.find(e => e.id === 'minkaraProgressiveTimeline' && e.enabled);
   const minkaraChemistryMode = effects.find(e => e.id === 'minkaraChemistryMode' && e.enabled);
 
   // Joshua Miele - Chemical Burn Complete Blindness Effects

@@ -1,4 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
+// Note: Animation helpers are available for future use but not currently implemented
+// import { 
+//   generateAnimatedPosition, 
+//   generateMultiplePositions, 
+//   generateGravityMovement,
+//   generateNeuroadaptation,
+//   generateLightingFactor,
+//   generateTransformString,
+//   generateRadialGradient,
+//   getSeverityConfig,
+//   type PositionResult 
+// } from '../utils/animationHelpers';
 
 interface FloaterPosition {
   x: number;
@@ -146,7 +158,7 @@ export const useAnimatedFloaters = ({
     if (floaterPositions.length === 0) return '';
 
     return floaterPositions.map((floater, index) => {
-      const { x, y, size, opacity, rotation } = floater;
+      const { x, y, size, opacity } = floater;
       const ellipseSize = size * 0.4; // Make floaters more elliptical
       
       return `

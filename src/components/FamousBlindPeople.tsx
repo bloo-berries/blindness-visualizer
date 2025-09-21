@@ -488,13 +488,14 @@ const FamousBlindPeople: React.FC = () => {
                   </Typography>
                   
                   <Box sx={{ mt: 3 }}>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="h6" gutterBottom className="simulation-type-label">
                       Simulation Type
                     </Typography>
                     <Chip 
                       label={personData[selectedPerson].simulation} 
                       variant="outlined" 
                       color="primary"
+                      className="simulation-type-chip"
                     />
                   </Box>
                 </Grid>

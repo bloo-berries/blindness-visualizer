@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { VisualEffect } from '../types/visualEffects';
+import { createEffectMap, getEffectById } from './effectLookup';
 
 /**
  * Creates a Three.js shader material for color blindness simulation
@@ -426,44 +427,63 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
       vec3 applyDiabeticRetinopathy(vec3 color, vec2 uv, float intensity, float time) {
         if (intensity <= 0.0) return color;
         
-        // Multiple dark spots (microaneurysms and hemorrhages)
+        // First apply overall blur to the entire image
+        float blurAmount = intensity * 0.8;
         vec3 result = color;
-        
-        // Create multiple dark spots across the image
-        for (int i = 0; i < 8; i++) {
-          float spotX = 0.2 + float(i) * 0.1 + sin(time * 0.5 + float(i)) * 0.05;
-          float spotY = 0.3 + float(i) * 0.08 + cos(time * 0.3 + float(i)) * 0.06;
-          float spotSize = 0.02 + intensity * 0.03;
-          
-          float spotDist = distance(uv, vec2(spotX, spotY));
-          float spotEffect = smoothstep(spotSize, spotSize + 0.01, spotDist);
-          
-          // Darken areas with spots
-          result = mix(result * 0.3, result, spotEffect);
-        }
-        
-        // Overall color desaturation
-        float luminance = dot(result, vec3(0.299, 0.587, 0.114));
-        float desaturationAmount = intensity * 0.4;
-        result = mix(result, vec3(luminance), desaturationAmount);
-        
-        // Slight blur effect
-        float blurAmount = intensity * 0.5;
         if (blurAmount > 0.0) {
           vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
           vec3 blurred = vec3(0.0);
           float total = 0.0;
           
-          for(float x = -2.0; x <= 2.0; x++) {
-            for(float y = -2.0; y <= 2.0; y++) {
+          for(float x = -3.0; x <= 3.0; x++) {
+            for(float y = -3.0; y <= 3.0; y++) {
               float weight = 1.0 / (1.0 + x * x + y * y);
               blurred += texture2D(tDiffuse, uv + vec2(x, y) * pixelSize * blurAmount).rgb * weight;
               total += weight;
             }
           }
           blurred /= total;
-          result = mix(result, blurred, blurAmount);
+          result = blurred;
         }
+        
+        // Create large, irregular scotomas (blind spots)
+        float scotomaMask = 1.0;
+        
+        // Large central scotoma - irregular shape
+        vec2 center1 = vec2(0.5, 0.4);
+        float dist1 = distance(uv, center1);
+        float scotoma1 = smoothstep(0.15 + intensity * 0.1, 0.25 + intensity * 0.15, dist1);
+        
+        // Second large scotoma - more irregular
+        vec2 center2 = vec2(0.3, 0.6);
+        float dist2 = distance(uv, center2);
+        float scotoma2 = smoothstep(0.12 + intensity * 0.08, 0.2 + intensity * 0.12, dist2);
+        
+        // Third scotoma - smaller but still significant
+        vec2 center3 = vec2(0.7, 0.3);
+        float dist3 = distance(uv, center3);
+        float scotoma3 = smoothstep(0.08 + intensity * 0.06, 0.15 + intensity * 0.1, dist3);
+        
+        // Additional smaller scotomas for more fragmentation
+        vec2 center4 = vec2(0.2, 0.2);
+        float dist4 = distance(uv, center4);
+        float scotoma4 = smoothstep(0.06 + intensity * 0.04, 0.12 + intensity * 0.08, dist4);
+        
+        vec2 center5 = vec2(0.8, 0.7);
+        float dist5 = distance(uv, center5);
+        float scotoma5 = smoothstep(0.05 + intensity * 0.03, 0.1 + intensity * 0.06, dist5);
+        
+        // Combine all scotomas
+        scotomaMask = min(scotoma1, min(scotoma2, min(scotoma3, min(scotoma4, scotoma5))));
+        
+        // Apply scotomas - make them very dark (almost black)
+        float scotomaIntensity = 1.0 - intensity * 0.9;
+        result = mix(result * 0.05, result, scotomaMask);
+        
+        // Overall color desaturation
+        float luminance = dot(result, vec3(0.299, 0.587, 0.114));
+        float desaturationAmount = intensity * 0.6;
+        result = mix(result, vec3(luminance), desaturationAmount);
         
         return result;
       }
@@ -1180,11 +1200,11 @@ export const updateShaderUniforms = (
   diplopiaDirection: number = 0.0
 ): void => {
   // Create effect lookup map for O(1) access instead of O(n) finds
-  const effectMap = new Map(effects.map(e => [e.id, e]));
+  const effectMap = createEffectMap(effects);
   
   // Helper function to update uniform values
   const updateUniform = (effectId: string, uniformName: string) => {
-    const effect = effectMap.get(effectId as any);
+    const effect = getEffectById(effectMap, effectId);
     if (effect) {
       material.uniforms[uniformName].value = effect.enabled ? effect.intensity : 0;
     }

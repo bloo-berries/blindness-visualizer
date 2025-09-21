@@ -2,6 +2,16 @@
 
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.
 
+## 📸 Site Preview
+
+### Homepage
+![VisionSim Homepage](./docs/assets/images/homepage-preview.png)
+*Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
+
+### About Page  
+![VisionSim About Page](./docs/assets/images/about-page-preview.png)
+*Personal journey and mission statement explaining the tool's purpose and creator's experience*
+
 ## 🎯 Features
 
 ### Vision Condition Simulator

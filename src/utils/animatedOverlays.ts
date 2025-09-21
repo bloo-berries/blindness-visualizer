@@ -1,4 +1,5 @@
 import { VisualEffect } from '../types/visualEffects';
+import { isVisualFieldLossCondition, getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
 
 /**
  * Updates animated overlays for visual effects like scotoma and floaters
@@ -239,15 +240,12 @@ export const createOverlayElement = (
 ): HTMLElement => {
   const overlay = document.createElement('div');
   overlay.id = `visual-field-overlay-${effectId}`;
-  overlay.style.cssText = `
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
-  `;
+  
+  // Apply base styles and z-index
+  Object.assign(overlay.style, {
+    ...OVERLAY_BASE_STYLES,
+    zIndex: getOverlayZIndex(effectId, Z_INDEX.ANIMATED)
+  });
   
   container.appendChild(overlay);
   return overlay;

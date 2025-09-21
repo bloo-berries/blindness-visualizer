@@ -90,7 +90,24 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleBack = () => {
-    setActiveStep((prevStep) => prevStep - 1);
+    // If user came from famous people page and is on step 2 (View Simulation), go back to famous people page
+    // If user came from famous people page and is on step 1 (Select Vision Conditions), go back to famous people page
+    // Otherwise, go to previous step in the simulation flow
+    if (preconfiguredPerson && (activeStep === 2 || activeStep === 1)) {
+      navigate('/famous-people');
+    } else {
+      setActiveStep((prevStep) => prevStep - 1);
+    }
+  };
+
+  const handleFinish = () => {
+    // If user came from famous people page, redirect back there
+    // Otherwise, redirect to homepage
+    if (preconfiguredPerson) {
+      navigate('/famous-people');
+    } else {
+      navigate('/');
+    }
   };
 
   const getStepContent = (step: number) => {
@@ -256,11 +273,26 @@ const VisionSimulator: React.FC = () => {
               <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
                 Condition: {preconfiguredPerson.condition}
               </Typography>
-              <Typography variant="body2" sx={{ color: 'white' }}>
+              {/* Hidden technical details for cleaner UI */}
+              {/* <Typography variant="body2" sx={{ color: 'white' }}>
                 Active simulations: {preconfiguredPerson.conditions.join(', ')}
-              </Typography>
+              </Typography> */}
             </Box>
           )}
+
+          {/* Video playing message for all visualizations */}
+          <Box sx={{ 
+            mb: 4, 
+            p: 2, 
+            backgroundColor: '#e3f2fd', 
+            borderRadius: 1, 
+            border: '1px solid #2196f3',
+            textAlign: 'center'
+          }}>
+            <Typography variant="body2" sx={{ color: '#1976d2', fontWeight: 500 }}>
+              📹 Although you may not be able to see a video, a video is actively playing behind this blindness visualization.
+            </Typography>
+          </Box>
 
           <Stepper 
             activeStep={activeStep} 
@@ -336,8 +368,7 @@ const VisionSimulator: React.FC = () => {
                 </Button>
                 <Button
                   variant="contained"
-                  onClick={handleNext}
-                  disabled={activeStep === steps.length - 1}
+                  onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
                   aria-label={`Go to ${activeStep < steps.length - 1 ? 'next step' : 'finish'}`}
                   size="large"
                 >

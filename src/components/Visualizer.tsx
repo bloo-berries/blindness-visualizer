@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { VisualEffect, InputSource } from '../types/visualEffects';
-import { Box, Typography, CircularProgress, Alert } from '@mui/material';
+import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
+import { Download, Save } from '@mui/icons-material';
 import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
 import { updateAnimatedOverlays } from '../utils/animatedOverlays';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
 import { createVisualFieldOverlays } from '../utils/overlayManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
+import { DEMO_VIDEO_ID, YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
+import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayUtils';
+import { saveVisionSimulation } from '../utils/screenshotCapture';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -16,17 +20,59 @@ interface VisualizerProps {
   diplopiaDirection?: number;
 }
 
-const DEMO_VIDEO_ID = 'KOc146R8sws';
-
 const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   // Helper function to avoid repeated effects.find() calls
   const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
+
+  // Save screenshot handler
+  const handleSaveScreenshot = useCallback(async () => {
+    if (!containerRef.current) {
+      setSaveMessage('Error: Could not find visualizer container');
+      return;
+    }
+
+    setIsSaving(true);
+    setSaveMessage(null);
+
+    try {
+      await saveVisionSimulation(
+        containerRef.current,
+        effects,
+        inputSource.type,
+        diplopiaSeparation,
+        diplopiaDirection
+      );
+      setSaveMessage('Screenshot saved successfully!');
+    } catch (error) {
+      console.error('Failed to save screenshot:', error);
+      setSaveMessage(error instanceof Error ? error.message : 'Failed to save screenshot');
+    } finally {
+      setIsSaving(false);
+    }
+  }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
+
+  // Keyboard shortcut for saving (Ctrl+S or Cmd+S)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+        event.preventDefault();
+        if (!isSaving && !isLoading) {
+          handleSaveScreenshot();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleSaveScreenshot, isSaving, isLoading]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -75,24 +121,17 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           // Ensure the overlay is visible and properly styled
           overlayElement.style.mixBlendMode = 'multiply';
           overlayElement.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
+          // Visual Field Loss conditions get higher z-index (visualFloaters is not a Visual Field Loss condition)
           overlayElement.style.zIndex = '10';
           overlayElement.style.pointerEvents = 'none';
         } else {
           // If the overlay doesn't exist, try to create it
-          const iframeContainer = document.querySelector('.visualizer-container');
-          if (iframeContainer) {
-            const newOverlay = document.createElement('div');
-            newOverlay.id = 'visual-field-overlay-visualFloaters';
-            newOverlay.style.position = 'absolute';
-            newOverlay.style.top = '0';
-            newOverlay.style.left = '0';
-            newOverlay.style.right = '0';
-            newOverlay.style.bottom = '0';
-            newOverlay.style.pointerEvents = 'none';
-            newOverlay.style.zIndex = '10';
-            newOverlay.style.mixBlendMode = 'multiply';
-            newOverlay.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
-            iframeContainer.appendChild(newOverlay);
+          const container = findOverlayContainer();
+          if (container) {
+            createSimpleOverlay('visual-field-overlay-visualFloaters', container, {
+              mixBlendMode: 'multiply',
+              opacity: Math.min(0.98, visualFloaters.intensity).toString()
+            });
           }
         }
       }
@@ -254,7 +293,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
     const diplopiaMonocular = getEffect('diplopiaMonocular');
     const diplopiaBinocular = getEffect('diplopiaBinocular');
-    const diplopia = diplopiaMonocular?.enabled ? diplopiaMonocular : diplopiaBinocular;
+    
+    // Only create diplopia overlay if one of the diplopia conditions is actually enabled
+    const diplopia = diplopiaMonocular?.enabled ? diplopiaMonocular : 
+                     diplopiaBinocular?.enabled ? diplopiaBinocular : null;
     
     if (!diplopia) return null;
 
@@ -268,13 +310,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         : [totalOffset * 0.7, totalOffset * 0.35];
 
     const iframeProps: React.IframeHTMLAttributes<HTMLIFrameElement> = {
-      width: "100%",
-      height: "100%",
-      src: `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`,
+      ...YOUTUBE_IFRAME_PROPS,
+      src: YOUTUBE_EMBED_URL,
       title: `YouTube video player (${diplopiaMonocular?.enabled ? 'ghost' : 'second image'}) - ${Math.random().toString(36).substr(2, 9)}`,
-      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-      style: { width: "100%", height: "100%", border: "none", pointerEvents: "none" },
-      frameBorder: "0"
+      style: { ...YOUTUBE_IFRAME_PROPS.style, pointerEvents: "none" }
     };
 
     return (
@@ -361,26 +400,39 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
       {inputSource.type === 'youtube' && (
         <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+          {/* Message for sighted users about complete blindness simulation */}
+          {effects.some(e => e.id === 'completeBlindness' && e.enabled) && (
+            <Box sx={{ 
+              position: 'absolute', 
+              top: 10, 
+              left: '50%', 
+              transform: 'translateX(-50%)', 
+              zIndex: 1000,
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '14px',
+              textAlign: 'center',
+              maxWidth: '90%'
+            }}>
+              <Typography variant="body2" sx={{ color: 'white', fontWeight: 500 }}>
+                🎵 Audio is playing - The complete blackness you see is the correct visualization of complete blindness
+              </Typography>
+            </Box>
+          )}
           <div style={getEffectStyles()}>
             <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`}
+              {...YOUTUBE_IFRAME_PROPS}
+              src={YOUTUBE_EMBED_URL}
               title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none'
-              }}
-              frameBorder="0"
             />
           </div>
           {getDiplopiaOverlay()}
         </Box>
       )}
       
-      {/* Text description for screen readers */}
+      {/* Save button and description */}
       <Box 
         className="visualizer-description" 
         sx={{ 
@@ -391,13 +443,36 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           backgroundColor: '#f9f9f9'
         }}
       >
-        <Typography variant="h6">
-          Visualization Description
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h6">
+            Visualization Description
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={isSaving ? <CircularProgress size={20} /> : <Download />}
+            onClick={handleSaveScreenshot}
+            disabled={isSaving || isLoading}
+            className="save-button"
+            sx={{ minWidth: 140 }}
+            title="Save your vision simulation result (Ctrl+S or Cmd+S)"
+          >
+            {isSaving ? 'Saving...' : 'Save Result'}
+          </Button>
+        </Box>
         <Typography>
           {getVisualizerDescription()}
         </Typography>
       </Box>
+
+      {/* Save message snackbar */}
+      <Snackbar
+        open={!!saveMessage}
+        autoHideDuration={4000}
+        onClose={() => setSaveMessage(null)}
+        message={saveMessage}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 };

@@ -40,6 +40,66 @@ const generateBlurFilter = (effects: VisualEffect[]): string => {
   return blurEffect ? `blur(${blurEffect.intensity * 10}px)` : '';
 };
 
+/**
+ * Generates CSS filters for Galileo Galilei acute glaucoma effects
+ */
+const generateGalileoFilters = (effects: VisualEffect[]): string => {
+  const galileoEffects = effects.filter(e => 
+    e.id.startsWith('galileo') && e.enabled
+  );
+  
+  if (galileoEffects.length === 0) return '';
+  
+  const filters: string[] = [];
+  
+  // Check for specific Galileo effects
+  const acuteAttack = effects.find(e => e.id === 'galileoAcuteAttackMode' && e.enabled);
+  const chronicProgression = effects.find(e => e.id === 'galileoChronicProgression' && e.enabled);
+  const severeBlurring = effects.find(e => e.id === 'galileoSevereBlurring' && e.enabled);
+  const redEyeEffect = effects.find(e => e.id === 'galileoRedEyeEffect' && e.enabled);
+  const cornealHaziness = effects.find(e => e.id === 'galileoCornealHaziness' && e.enabled);
+  const extremePhotophobia = effects.find(e => e.id === 'galileoExtremePhotophobia' && e.enabled);
+  
+  // Acute Attack Mode combines multiple effects
+  if (acuteAttack) {
+    // Severe blurring
+    filters.push(`blur(${acuteAttack.intensity * 8}px)`);
+    // Red tint from conjunctival injection
+    filters.push(`sepia(${acuteAttack.intensity * 30}%) saturate(${100 + acuteAttack.intensity * 50}%)`);
+    // Corneal haziness (brightness and contrast reduction)
+    filters.push(`brightness(${100 - acuteAttack.intensity * 20}%) contrast(${100 - acuteAttack.intensity * 40}%)`);
+    // Extreme photophobia (brightness increase for bright areas)
+    filters.push(`brightness(${100 + acuteAttack.intensity * 30}%)`);
+  }
+  
+  // Individual effects
+  if (severeBlurring) {
+    filters.push(`blur(${severeBlurring.intensity * 8}px)`);
+  }
+  
+  if (redEyeEffect) {
+    filters.push(`sepia(${redEyeEffect.intensity * 30}%) saturate(${100 + redEyeEffect.intensity * 50}%)`);
+  }
+  
+  if (cornealHaziness) {
+    filters.push(`brightness(${100 - cornealHaziness.intensity * 20}%) contrast(${100 - cornealHaziness.intensity * 40}%)`);
+  }
+  
+  if (extremePhotophobia) {
+    filters.push(`brightness(${100 + extremePhotophobia.intensity * 30}%)`);
+  }
+  
+  // Chronic progression effects (simplified for CSS)
+  if (chronicProgression) {
+    // Progressive darkening and contrast reduction
+    filters.push(`brightness(${100 - chronicProgression.intensity * 30}%) contrast(${100 - chronicProgression.intensity * 50}%)`);
+    // Slight blur for vision deterioration
+    filters.push(`blur(${chronicProgression.intensity * 2}px)`);
+  }
+  
+  return filters.join(' ');
+};
+
 // Diplopia effects are now handled by the getDiplopiaOverlay function in Visualizer.tsx
 // This provides true double vision effects using iframe duplication instead of CSS filters
 
@@ -49,7 +109,7 @@ const generateBlurFilter = (effects: VisualEffect[]): string => {
  * Generates complete CSS filter string for all effects
  */
 export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: number = 1.0, diplopiaDirection: number = 0.0): string => {
-  return [generateColorBlindnessFilter(effects), generateBlurFilter(effects)]
+  return [generateColorBlindnessFilter(effects), generateBlurFilter(effects), generateGalileoFilters(effects)]
     .filter(Boolean)
     .join(' ');
   // Note: Diplopia is handled by separate overlay system, not CSS filters

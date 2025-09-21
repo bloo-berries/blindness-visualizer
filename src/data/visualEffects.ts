@@ -249,6 +249,134 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     enabled: false,
     intensity: 1.0,
     description: 'Loss of peripheral vision while central vision remains. Can be caused by glaucoma, retinitis pigmentosa, or other conditions affecting the retina or optic nerve.'
+  },
+  // John Milton-specific effects for bilateral retinal detachment and secondary glaucoma
+  { 
+    id: 'miltonGlaucomaHalos',
+    name: 'Glaucoma Rainbow Halos (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Prismatic rings of color around light sources (red on outside, violet inside) caused by corneal swelling from glaucoma. Classic symptom of acute angle-closure glaucoma with corneal edema.'
+  },
+  { 
+    id: 'miltonProgressiveVignetting',
+    name: 'Progressive Vignetting (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Progressive darkening from the edges inward, simulating the tunnel vision that develops as peripheral vision is lost. Represents the 7-year progression from age 36 to complete blindness at 43.'
+  },
+  { 
+    id: 'miltonScotomas',
+    name: 'Progressive Scotomas (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Blind spots or dark patches appearing randomly in the visual field. Represents the irregular vision loss patterns from retinal detachment and glaucoma progression.'
+  },
+  { 
+    id: 'miltonRetinalDetachment',
+    name: 'Retinal Detachment Shadows (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Dark shadows or curtains descending from top or sides, representing the retinal detachment that contributed to Milton\'s vision loss. Includes wavy/distorted vision (metamorphopsia).'
+  },
+  { 
+    id: 'miltonPhotophobia',
+    name: 'Extreme Photophobia (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Extreme light sensitivity causing pain and discomfort in normal lighting. Simulates the photophobia that made normal lighting conditions unbearable for Milton.'
+  },
+  { 
+    id: 'miltonTemporalFieldLoss',
+    name: 'Temporal Field Loss (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Vision loss starting from the outer sides (temples) moving inward - like black curtains slowly closing from the periphery. Represents the early stage of Milton\'s glaucoma progression.'
+  },
+  { 
+    id: 'miltonProgressiveBlindness',
+    name: 'Progressive Blindness (Milton)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Milton\'s 7-year progression from partial vision at age 36 to complete blindness at 43. Combines all symptoms with increasing severity over time.'
+  },
+  { 
+    id: 'completeBlindness',
+    name: 'Complete Blindness (No Light Perception)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete absence of light perception - total darkness. Represents conditions like Louis Braille\'s sympathetic ophthalmia, where there is no visual input whatsoever. The person experiences complete blackness with no ability to detect light, shapes, or movement.'
+  },
+  // Galileo Galilei - Acute Angle-Closure Glaucoma Effects
+  { 
+    id: 'galileoAcuteHalos',
+    name: 'Acute Glaucoma Halos (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Intense, vivid prismatic rings around ALL light sources during acute angle-closure glaucoma attacks. Much more pronounced than chronic glaucoma, with pulsating/breathing effects. Red on outside, violet inside, caused by severe corneal edema.'
+  },
+  { 
+    id: 'galileoSevereBlurring',
+    name: 'Severe Blurring (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Sudden dramatic drop in visual acuity during acute attacks, like looking through heavy fog. Visual acuity can drop from 20/20 to 20/200 within minutes during an acute episode.'
+  },
+  { 
+    id: 'galileoRedEyeEffect',
+    name: 'Red Eye Effect (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Reddish tint to vision from conjunctival injection during acute glaucoma attacks. The eye becomes severely inflamed and bloodshot, affecting color perception.'
+  },
+  { 
+    id: 'galileoExtremePhotophobia',
+    name: 'Extreme Photophobia (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Unbearable light sensitivity during acute attacks - even dim lights cause severe pain and discomfort. Normal lighting becomes excruciating and causes white-out effects.'
+  },
+  { 
+    id: 'galileoCornealHaziness',
+    name: 'Corneal Haziness (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Milky white veil over entire visual field from severe corneal edema during acute attacks. Creates a foggy, clouded appearance that obscures all details.'
+  },
+  { 
+    id: 'galileoSectoralDefects',
+    name: 'Sectoral Defects (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Wedge-shaped blind spots typically starting superior-nasal (upper nose-side) after acute attacks. Each attack leaves permanent sectoral damage that never fully recovers.'
+  },
+  { 
+    id: 'galileoArcuateScotomas',
+    name: 'Arcuate Scotomas (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Curved blind areas following nerve fiber patterns, creating arc-shaped defects in the visual field. These develop after multiple acute attacks and follow the anatomical structure of the optic nerve.'
+  },
+  { 
+    id: 'galileoSwissCheeseVision',
+    name: 'Swiss Cheese Vision (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Multiple patchy blind spots throughout the visual field after multiple acute attacks. Creates irregular, scattered vision loss with islands of preserved vision surrounded by blind areas.'
+  },
+  { 
+    id: 'galileoAcuteAttackMode',
+    name: 'Acute Attack Mode (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of an acute angle-closure glaucoma attack with sudden onset. Combines intense halos, severe blurring, red eye effect, extreme photophobia, and corneal haziness in a dramatic, episodic presentation.'
+  },
+  { 
+    id: 'galileoChronicProgression',
+    name: 'Chronic Progression (Galileo)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Progressive deterioration pattern showing cumulative damage from multiple acute attacks. Features stepped rather than smooth deterioration with sectoral defects, arcuate scotomas, and eventual severe tunnel vision.'
   }
 ];
 

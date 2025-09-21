@@ -26,6 +26,25 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
       diabeticRetinopathyIntensity: { value: 0.0 },
       glaucomaIntensity: { value: 0.0 },
       time: { value: 0.0 },
+      // John Milton-specific effects
+      miltonGlaucomaHalosIntensity: { value: 0.0 },
+      miltonProgressiveVignettingIntensity: { value: 0.0 },
+      miltonScotomasIntensity: { value: 0.0 },
+      miltonRetinalDetachmentIntensity: { value: 0.0 },
+      miltonPhotophobiaIntensity: { value: 0.0 },
+      miltonTemporalFieldLossIntensity: { value: 0.0 },
+      miltonProgressiveBlindnessIntensity: { value: 0.0 },
+      // Galileo Galilei-specific effects
+      galileoAcuteHalosIntensity: { value: 0.0 },
+      galileoSevereBlurringIntensity: { value: 0.0 },
+      galileoRedEyeEffectIntensity: { value: 0.0 },
+      galileoExtremePhotophobiaIntensity: { value: 0.0 },
+      galileoCornealHazinessIntensity: { value: 0.0 },
+      galileoSectoralDefectsIntensity: { value: 0.0 },
+      galileoArcuateScotomasIntensity: { value: 0.0 },
+      galileoSwissCheeseVisionIntensity: { value: 0.0 },
+      galileoAcuteAttackModeIntensity: { value: 0.0 },
+      galileoChronicProgressionIntensity: { value: 0.0 },
     },
     vertexShader: `
       varying vec2 vUv;
@@ -52,6 +71,25 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
       uniform float diabeticRetinopathyIntensity;
       uniform float glaucomaIntensity;
       uniform float time;
+      // John Milton-specific effects
+      uniform float miltonGlaucomaHalosIntensity;
+      uniform float miltonProgressiveVignettingIntensity;
+      uniform float miltonScotomasIntensity;
+      uniform float miltonRetinalDetachmentIntensity;
+      uniform float miltonPhotophobiaIntensity;
+      uniform float miltonTemporalFieldLossIntensity;
+      uniform float miltonProgressiveBlindnessIntensity;
+      // Galileo Galilei-specific effects
+      uniform float galileoAcuteHalosIntensity;
+      uniform float galileoSevereBlurringIntensity;
+      uniform float galileoRedEyeEffectIntensity;
+      uniform float galileoExtremePhotophobiaIntensity;
+      uniform float galileoCornealHazinessIntensity;
+      uniform float galileoSectoralDefectsIntensity;
+      uniform float galileoArcuateScotomasIntensity;
+      uniform float galileoSwissCheeseVisionIntensity;
+      uniform float galileoAcuteAttackModeIntensity;
+      uniform float galileoChronicProgressionIntensity;
       varying vec2 vUv;
 
       vec3 applyProtanopia(vec3 color) {
@@ -530,7 +568,480 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         return result;
       }
 
+      // John Milton-specific effects for bilateral retinal detachment and secondary glaucoma
+      
+      // Glaucoma Rainbow Halos - subtle prismatic rings around light sources
+      vec3 applyMiltonGlaucomaHalos(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec3 result = color;
+        
+        // Detect bright areas in the image to create halos around light sources
+        float brightness = dot(color, vec3(0.299, 0.587, 0.114));
+        
+        // Only create halos around bright areas (light sources)
+        if (brightness > 0.4) {
+          // Create multiple halo centers based on bright areas
+          vec2 center1 = vec2(0.5, 0.5); // Center of image
+          vec2 center2 = vec2(0.3, 0.4); // Upper left area
+          vec2 center3 = vec2(0.7, 0.6); // Lower right area
+          
+          // Calculate distances to each potential light source
+          float dist1 = distance(uv, center1);
+          float dist2 = distance(uv, center2);
+          float dist3 = distance(uv, center3);
+          
+          // Create halos around each light source
+          for (int i = 0; i < 3; i++) {
+            vec2 center = i == 0 ? center1 : (i == 1 ? center2 : center3);
+            float dist = i == 0 ? dist1 : (i == 1 ? dist2 : dist3);
+            
+            // Inner halo (violet/blue) - more visible but still subtle
+            float innerHalo = smoothstep(0.08, 0.12, dist) * (1.0 - smoothstep(0.12, 0.16, dist));
+            vec3 innerHaloColor = vec3(0.8, 0.7, 0.9) * 0.3; // Muted violet
+            result = mix(result, result + innerHaloColor, innerHalo * intensity * 0.4);
+            
+            // Middle halo (green) - subtle but visible
+            float middleHalo = smoothstep(0.12, 0.16, dist) * (1.0 - smoothstep(0.16, 0.20, dist));
+            vec3 middleHaloColor = vec3(0.7, 0.8, 0.7) * 0.25; // Muted green
+            result = mix(result, result + middleHaloColor, middleHalo * intensity * 0.3);
+            
+            // Outer halo (red/orange) - subtle outer ring
+            float outerHalo = smoothstep(0.16, 0.20, dist) * (1.0 - smoothstep(0.20, 0.24, dist));
+            vec3 outerHaloColor = vec3(0.9, 0.7, 0.6) * 0.2; // Muted orange
+            result = mix(result, result + outerHaloColor, outerHalo * intensity * 0.25);
+          }
+        }
+        
+        // Add subtle shimmer effect to simulate corneal edema
+        float shimmer = sin(time * 1.5 + uv.x * 10.0 + uv.y * 8.0) * 0.05 * intensity;
+        result += vec3(shimmer * 0.1, shimmer * 0.05, shimmer * 0.15);
+        
+        // Blend the effect more naturally
+        result = mix(color, result, intensity * 0.8);
+        
+        return result;
+      }
+      
+      // Progressive Vignetting - tunnel vision effect
+      vec3 applyMiltonProgressiveVignetting(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec2 center = vec2(0.5, 0.5);
+        float dist = distance(uv, center);
+        
+        // Progressive tunnel vision - more severe than regular glaucoma
+        float tunnelRadius = 0.4 - intensity * 0.35; // From 40% to 5% of screen
+        
+        // Add irregular edges to simulate progressive field loss
+        float angle = atan(uv.y - center.y, uv.x - center.x);
+        float irregularity = sin(angle * 6.0 + time * 0.2) * 0.03 * intensity;
+        tunnelRadius += irregularity;
+        
+        // Create smooth transition from visible to dark
+        float tunnelMask = smoothstep(tunnelRadius, tunnelRadius + 0.08, dist);
+        
+        // Additional darkening for areas further from center
+        float distanceDarkening = smoothstep(tunnelRadius + 0.05, tunnelRadius + 0.15, dist);
+        tunnelMask = min(tunnelMask, 1.0 - distanceDarkening * 0.8);
+        
+        return mix(vec3(0.0), color, tunnelMask);
+      }
+      
+      // Progressive Scotomas - irregular blind spots
+      vec3 applyMiltonScotomas(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec3 result = color;
+        
+        // Create multiple irregular scotomas
+        for (int i = 0; i < 6; i++) {
+          float scotomaX = 0.2 + float(i) * 0.12 + sin(time * 0.3 + float(i)) * 0.08;
+          float scotomaY = 0.3 + float(i) * 0.1 + cos(time * 0.4 + float(i)) * 0.06;
+          float scotomaSize = 0.03 + intensity * 0.04;
+          
+          // Make scotomas irregular in shape
+          vec2 scotomaCenter = vec2(scotomaX, scotomaY);
+          vec2 offset = uv - scotomaCenter;
+          float angle = atan(offset.y, offset.x);
+          float irregularity = sin(angle * 5.0 + time * 0.5) * 0.01;
+          float scotomaDist = length(offset) + irregularity;
+          
+          float scotomaEffect = smoothstep(scotomaSize, scotomaSize + 0.02, scotomaDist);
+          result = mix(vec3(0.0), result, scotomaEffect);
+        }
+        
+        return result;
+      }
+      
+      // Retinal Detachment Shadows - curtain effects
+      vec3 applyMiltonRetinalDetachment(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec3 result = color;
+        
+        // Top curtain effect
+        float topCurtain = smoothstep(0.0, 0.3, uv.y) * (1.0 - smoothstep(0.3, 0.4, uv.y));
+        result = mix(result * 0.2, result, 1.0 - topCurtain * intensity);
+        
+        // Side curtain effects
+        float leftCurtain = smoothstep(0.0, 0.2, uv.x) * (1.0 - smoothstep(0.2, 0.3, uv.x));
+        float rightCurtain = smoothstep(0.7, 0.8, uv.x) * (1.0 - smoothstep(0.8, 1.0, uv.x));
+        
+        result = mix(result * 0.3, result, 1.0 - leftCurtain * intensity * 0.7);
+        result = mix(result * 0.3, result, 1.0 - rightCurtain * intensity * 0.7);
+        
+        // Add wavy distortion (metamorphopsia)
+        if (intensity > 0.3) {
+          vec2 distortion = vec2(
+            sin(uv.y * 10.0 + time * 0.5) * 0.01 * intensity,
+            cos(uv.x * 8.0 + time * 0.3) * 0.008 * intensity
+          );
+          vec3 distortedColor = texture2D(tDiffuse, uv + distortion).rgb;
+          result = mix(result, distortedColor, intensity * 0.3);
+        }
+        
+        return result;
+      }
+      
+      // Extreme Photophobia - overwhelming brightness
+      vec3 applyMiltonPhotophobia(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        // Overwhelming brightness that washes out details
+        vec3 result = color;
+        
+        // Increase overall brightness dramatically
+        result = result * (1.0 + intensity * 2.0);
+        
+        // Add white overlay that increases with intensity
+        float whiteOverlay = intensity * 0.6;
+        result = mix(result, vec3(1.0), whiteOverlay);
+        
+        // Add flickering effect to simulate light sensitivity
+        float flicker = sin(time * 8.0) * 0.1 * intensity;
+        result += vec3(flicker);
+        
+        // Reduce contrast to simulate overwhelming light
+        float contrastReduction = intensity * 0.7;
+        float avgLuminance = 0.8; // High average luminance
+        result = mix(vec3(avgLuminance), result, 1.0 - contrastReduction);
+        
+        return result;
+      }
+      
+      // Temporal Field Loss - side vision loss
+      vec3 applyMiltonTemporalFieldLoss(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec3 result = color;
+        
+        // Left temporal field loss
+        float leftLoss = smoothstep(0.0, 0.2, uv.x) * (1.0 - smoothstep(0.2, 0.3, uv.x));
+        result = mix(vec3(0.0), result, 1.0 - leftLoss * intensity);
+        
+        // Right temporal field loss
+        float rightLoss = smoothstep(0.7, 0.8, uv.x) * (1.0 - smoothstep(0.8, 1.0, uv.x));
+        result = mix(vec3(0.0), result, 1.0 - rightLoss * intensity);
+        
+        // Add gradual progression effect
+        float progression = sin(time * 0.5) * 0.1 + 0.9;
+        result = mix(vec3(0.0), result, progression);
+        
+        return result;
+      }
+      
+      // Progressive Blindness - combines all effects with increasing severity
+      vec3 applyMiltonProgressiveBlindness(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+        
+        vec3 result = color;
+        
+        // Early stage (0.0-0.3): Halos and temporal field loss
+        if (intensity > 0.0) {
+          result = applyMiltonGlaucomaHalos(result, uv, min(intensity * 2.0, 1.0), time);
+          result = applyMiltonTemporalFieldLoss(result, uv, min(intensity * 1.5, 1.0), time);
+        }
+        
+        // Middle stage (0.3-0.7): Scotomas and progressive vignetting
+        if (intensity > 0.3) {
+          result = applyMiltonScotomas(result, uv, (intensity - 0.3) * 2.5, time);
+          result = applyMiltonProgressiveVignetting(result, uv, (intensity - 0.3) * 2.5, time);
+        }
+        
+        // Late stage (0.7-1.0): Retinal detachment and photophobia
+        if (intensity > 0.7) {
+          result = applyMiltonRetinalDetachment(result, uv, (intensity - 0.7) * 3.33, time);
+          result = applyMiltonPhotophobia(result, uv, (intensity - 0.7) * 3.33, time);
+        }
+        
+        // Final stage: Complete blindness
+        if (intensity >= 1.0) {
+          result = vec3(0.0);
+        }
+        
+        return result;
+      }
+
       // Note: Myopia and Hyperopia are now handled by CSS filters for simpler, more straightforward blur effects
+
+      // Galileo Galilei - Acute Angle-Closure Glaucoma Effects
+      vec3 applyGalileoAcuteHalos(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Detect bright areas in the image to create halos around light sources
+        float brightness = dot(color, vec3(0.299, 0.587, 0.114));
+
+        // Only create halos around bright areas (light sources)
+        if (brightness > 0.3) {
+          // Create multiple halo centers based on bright areas
+          vec2 center1 = vec2(0.5, 0.5); // Center of image
+          vec2 center2 = vec2(0.3, 0.4); // Upper left area
+          vec2 center3 = vec2(0.7, 0.6); // Lower right area
+
+          // Create halos around each light source with pulsating effect
+          for (int i = 0; i < 3; i++) {
+            vec2 center = i == 0 ? center1 : (i == 1 ? center2 : center3);
+            float dist = i == 0 ? distance(uv, center1) : (i == 1 ? distance(uv, center2) : distance(uv, center3));
+
+            // Pulsating effect for acute attacks
+            float pulse = 1.0 + 0.3 * sin(time * 3.0 + float(i) * 2.0);
+            float adjustedDist = dist / pulse;
+
+            // Inner halo (violet/blue) - more intense than Milton's
+            float innerHalo = smoothstep(0.06, 0.10, adjustedDist) * (1.0 - smoothstep(0.10, 0.14, adjustedDist));
+            vec3 innerHaloColor = vec3(0.9, 0.8, 1.0) * 0.6; // Bright violet
+            result = mix(result, result + innerHaloColor, innerHalo * intensity * 0.8);
+
+            // Middle halo (green) - more visible
+            float middleHalo = smoothstep(0.10, 0.14, adjustedDist) * (1.0 - smoothstep(0.14, 0.18, adjustedDist));
+            vec3 middleHaloColor = vec3(0.8, 1.0, 0.8) * 0.5; // Bright green
+            result = mix(result, result + middleHaloColor, middleHalo * intensity * 0.7);
+
+            // Outer halo (red/orange) - more pronounced
+            float outerHalo = smoothstep(0.14, 0.18, adjustedDist) * (1.0 - smoothstep(0.18, 0.22, adjustedDist));
+            vec3 outerHaloColor = vec3(1.0, 0.7, 0.6) * 0.4; // Bright orange
+            result = mix(result, result + outerHaloColor, outerHalo * intensity * 0.6);
+          }
+        }
+
+        // Add intense shimmer effect to simulate severe corneal edema
+        float shimmer = sin(time * 2.0 + uv.x * 15.0 + uv.y * 12.0) * 0.1 * intensity;
+        result += vec3(shimmer * 0.2, shimmer * 0.1, shimmer * 0.3);
+
+        // Blend the effect more dramatically for acute attacks
+        result = mix(color, result, intensity * 1.2);
+
+        return result;
+      }
+
+      vec3 applyGalileoSevereBlurring(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        // Severe gaussian blur effect
+        vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
+        vec3 blurred = vec3(0.0);
+        float total = 0.0;
+        
+        float blurRadius = intensity * 8.0; // Much more severe than normal blur
+        
+        for(float x = -blurRadius; x <= blurRadius; x += 1.0) {
+          for(float y = -blurRadius; y <= blurRadius; y += 1.0) {
+            float weight = 1.0 / (1.0 + (x * x + y * y) / (blurRadius * blurRadius));
+            blurred += texture2D(tDiffuse, uv + vec2(x, y) * pixelSize).rgb * weight;
+            total += weight;
+          }
+        }
+        
+        blurred /= total;
+        
+        // Add fog-like overlay
+        vec3 fogColor = vec3(0.8, 0.8, 0.9);
+        float fogAmount = intensity * 0.4;
+        blurred = mix(blurred, fogColor, fogAmount);
+        
+        return mix(color, blurred, intensity);
+      }
+
+      vec3 applyGalileoRedEyeEffect(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        // Red tint overlay from conjunctival injection
+        vec3 redTint = vec3(1.0, 0.7, 0.7);
+        
+        // Add some variation to simulate blood vessels
+        float bloodVesselPattern = sin(uv.x * 20.0 + time * 0.5) * sin(uv.y * 15.0 + time * 0.3) * 0.1;
+        redTint += vec3(bloodVesselPattern * 0.3, 0.0, 0.0);
+        
+        // Apply red tint with varying intensity
+        float tintStrength = intensity * (0.6 + 0.4 * sin(time * 2.0));
+        return mix(color, color * redTint, tintStrength);
+      }
+
+      vec3 applyGalileoExtremePhotophobia(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Brightness threshold for white-out effect
+        float brightness = dot(color, vec3(0.299, 0.587, 0.114));
+        float threshold = 0.4 - intensity * 0.3; // Lower threshold with higher intensity
+        
+        if (brightness > threshold) {
+          // White-out effect for bright areas
+          float whiteOutAmount = (brightness - threshold) / (1.0 - threshold);
+          whiteOutAmount = pow(whiteOutAmount, 2.0); // Exponential increase
+          
+          vec3 whiteOut = vec3(1.0, 1.0, 1.0);
+          result = mix(result, whiteOut, whiteOutAmount * intensity * 0.8);
+        }
+
+        // Add pain indicators (red edges)
+        float edgeDistance = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+        float edgeEffect = smoothstep(0.0, 0.1, edgeDistance);
+        vec3 painColor = vec3(1.0, 0.3, 0.3);
+        result = mix(painColor, result, edgeEffect * (1.0 - intensity * 0.3));
+
+        return result;
+      }
+
+      vec3 applyGalileoCornealHaziness(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        // Milky white veil overlay
+        vec3 hazeColor = vec3(0.95, 0.95, 1.0);
+        
+        // Add some texture to the haze
+        float noise = sin(uv.x * 30.0 + time * 0.5) * sin(uv.y * 25.0 + time * 0.3) * 0.05;
+        hazeColor += vec3(noise);
+        
+        // Varying intensity to simulate corneal edema
+        float hazeIntensity = intensity * (0.7 + 0.3 * sin(time * 1.5));
+        
+        return mix(color, hazeColor, hazeIntensity * 0.6);
+      }
+
+      vec3 applyGalileoSectoralDefects(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Superior-nasal sectoral defect (upper nose-side)
+        vec2 center = vec2(0.3, 0.2); // Upper nasal area
+        float angle = atan(uv.y - center.y, uv.x - center.x);
+        float dist = distance(uv, center);
+        
+        // Create wedge-shaped defect
+        float sectorStart = -1.0; // Start angle
+        float sectorEnd = 0.5;    // End angle
+        float sectorWidth = 1.5;  // Width of the sector
+        
+        if (angle > sectorStart && angle < sectorEnd && dist < sectorWidth) {
+          float sectorEffect = smoothstep(0.0, 0.3, dist) * (1.0 - smoothstep(0.3, sectorWidth, dist));
+          result = mix(vec3(0.0), result, 1.0 - sectorEffect * intensity);
+        }
+
+        return result;
+      }
+
+      vec3 applyGalileoArcuateScotomas(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Create arcuate (arc-shaped) scotomas following nerve fiber patterns
+        for (int i = 0; i < 3; i++) {
+          float arcCenterX = 0.5 + float(i) * 0.2 - 0.2;
+          float arcCenterY = 0.5 + sin(float(i) * 2.0) * 0.1;
+          
+          // Create arc-shaped blind area
+          float arcRadius = 0.2 + float(i) * 0.1;
+          float arcAngle = atan(uv.y - arcCenterY, uv.x - arcCenterX);
+          float arcDist = distance(uv, vec2(arcCenterX, arcCenterY));
+          
+          // Arc shape following nerve fiber pattern
+          float arcStart = -1.0 + float(i) * 0.5;
+          float arcEnd = arcStart + 1.0;
+          
+          if (arcAngle > arcStart && arcAngle < arcEnd && 
+              arcDist > arcRadius - 0.05 && arcDist < arcRadius + 0.05) {
+            float arcEffect = smoothstep(0.0, 0.1, abs(arcDist - arcRadius));
+            result = mix(vec3(0.0), result, 1.0 - arcEffect * intensity * 0.8);
+          }
+        }
+
+        return result;
+      }
+
+      vec3 applyGalileoSwissCheeseVision(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Create multiple irregular blind spots
+        for (int i = 0; i < 12; i++) {
+          float spotX = 0.1 + float(i) * 0.08 + sin(time * 0.2 + float(i)) * 0.05;
+          float spotY = 0.1 + float(i) * 0.07 + cos(time * 0.3 + float(i)) * 0.06;
+          float spotSize = 0.03 + intensity * 0.04;
+          
+          // Make spots irregular in shape
+          float spotDist = distance(uv, vec2(spotX, spotY));
+          float irregularity = sin(atan(uv.y - spotY, uv.x - spotX) * 6.0) * 0.02;
+          spotDist += irregularity;
+          
+          float spotEffect = smoothstep(spotSize, spotSize + 0.01, spotDist);
+          result = mix(vec3(0.0), result, spotEffect);
+        }
+
+        return result;
+      }
+
+      vec3 applyGalileoAcuteAttackMode(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Combine all acute attack symptoms
+        result = applyGalileoAcuteHalos(result, uv, intensity, time);
+        result = applyGalileoSevereBlurring(result, uv, intensity, time);
+        result = applyGalileoRedEyeEffect(result, uv, intensity, time);
+        result = applyGalileoExtremePhotophobia(result, uv, intensity, time);
+        result = applyGalileoCornealHaziness(result, uv, intensity, time);
+
+        return result;
+      }
+
+      vec3 applyGalileoChronicProgression(vec3 color, vec2 uv, float intensity, float time) {
+        if (intensity <= 0.0) return color;
+
+        vec3 result = color;
+
+        // Progressive deterioration with stepped pattern
+        // Early stage (0.0-0.3): Sectoral defects
+        if (intensity > 0.0) {
+          result = applyGalileoSectoralDefects(result, uv, min(intensity * 2.0, 1.0), time);
+        }
+        
+        // Middle stage (0.3-0.6): Arcuate scotomas
+        if (intensity > 0.3) {
+          result = applyGalileoArcuateScotomas(result, uv, (intensity - 0.3) * 3.33, time);
+        }
+        
+        // Late stage (0.6-1.0): Swiss cheese vision and severe tunnel vision
+        if (intensity > 0.6) {
+          result = applyGalileoSwissCheeseVision(result, uv, (intensity - 0.6) * 2.5, time);
+          
+          // Severe tunnel vision
+          float centerDist = distance(uv, vec2(0.5, 0.5));
+          float tunnelRadius = 0.3 - (intensity - 0.6) * 0.25; // Shrinking tunnel
+          float tunnelEffect = smoothstep(tunnelRadius, tunnelRadius + 0.1, centerDist);
+          result = mix(vec3(0.0), result, tunnelEffect);
+        }
+
+        return result;
+      }
 
       void main() {
         vec4 texel = texture2D(tDiffuse, vUv);
@@ -593,6 +1104,61 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
           color = applyGlaucoma(color, vUv, glaucomaIntensity, time);
         }
         
+        // Apply John Milton-specific effects
+        if (miltonGlaucomaHalosIntensity > 0.0) {
+          color = applyMiltonGlaucomaHalos(color, vUv, miltonGlaucomaHalosIntensity, time);
+        }
+        if (miltonProgressiveVignettingIntensity > 0.0) {
+          color = applyMiltonProgressiveVignetting(color, vUv, miltonProgressiveVignettingIntensity, time);
+        }
+        if (miltonScotomasIntensity > 0.0) {
+          color = applyMiltonScotomas(color, vUv, miltonScotomasIntensity, time);
+        }
+        if (miltonRetinalDetachmentIntensity > 0.0) {
+          color = applyMiltonRetinalDetachment(color, vUv, miltonRetinalDetachmentIntensity, time);
+        }
+        if (miltonPhotophobiaIntensity > 0.0) {
+          color = applyMiltonPhotophobia(color, vUv, miltonPhotophobiaIntensity, time);
+        }
+        if (miltonTemporalFieldLossIntensity > 0.0) {
+          color = applyMiltonTemporalFieldLoss(color, vUv, miltonTemporalFieldLossIntensity, time);
+        }
+        if (miltonProgressiveBlindnessIntensity > 0.0) {
+          color = applyMiltonProgressiveBlindness(color, vUv, miltonProgressiveBlindnessIntensity, time);
+        }
+        
+        // Galileo Galilei - Acute Angle-Closure Glaucoma Effects
+        if (galileoAcuteHalosIntensity > 0.0) {
+          color = applyGalileoAcuteHalos(color, vUv, galileoAcuteHalosIntensity, time);
+        }
+        if (galileoSevereBlurringIntensity > 0.0) {
+          color = applyGalileoSevereBlurring(color, vUv, galileoSevereBlurringIntensity, time);
+        }
+        if (galileoRedEyeEffectIntensity > 0.0) {
+          color = applyGalileoRedEyeEffect(color, vUv, galileoRedEyeEffectIntensity, time);
+        }
+        if (galileoExtremePhotophobiaIntensity > 0.0) {
+          color = applyGalileoExtremePhotophobia(color, vUv, galileoExtremePhotophobiaIntensity, time);
+        }
+        if (galileoCornealHazinessIntensity > 0.0) {
+          color = applyGalileoCornealHaziness(color, vUv, galileoCornealHazinessIntensity, time);
+        }
+        if (galileoSectoralDefectsIntensity > 0.0) {
+          color = applyGalileoSectoralDefects(color, vUv, galileoSectoralDefectsIntensity, time);
+        }
+        if (galileoArcuateScotomasIntensity > 0.0) {
+          color = applyGalileoArcuateScotomas(color, vUv, galileoArcuateScotomasIntensity, time);
+        }
+        if (galileoSwissCheeseVisionIntensity > 0.0) {
+          color = applyGalileoSwissCheeseVision(color, vUv, galileoSwissCheeseVisionIntensity, time);
+        }
+        if (galileoAcuteAttackModeIntensity > 0.0) {
+          color = applyGalileoAcuteAttackMode(color, vUv, galileoAcuteAttackModeIntensity, time);
+        }
+        if (galileoChronicProgressionIntensity > 0.0) {
+          color = applyGalileoChronicProgression(color, vUv, galileoChronicProgressionIntensity, time);
+        }
+        
         // Note: Myopia and Hyperopia effects are handled by CSS filters
         
         gl_FragColor = vec4(color, texel.a);
@@ -638,6 +1204,27 @@ export const updateShaderUniforms = (
   updateUniform('amd', 'amdIntensity');
   updateUniform('diabeticRetinopathy', 'diabeticRetinopathyIntensity');
   updateUniform('glaucoma', 'glaucomaIntensity');
+  
+  // Update John Milton-specific effect uniforms
+  updateUniform('miltonGlaucomaHalos', 'miltonGlaucomaHalosIntensity');
+  updateUniform('miltonProgressiveVignetting', 'miltonProgressiveVignettingIntensity');
+  updateUniform('miltonScotomas', 'miltonScotomasIntensity');
+  updateUniform('miltonRetinalDetachment', 'miltonRetinalDetachmentIntensity');
+  updateUniform('miltonPhotophobia', 'miltonPhotophobiaIntensity');
+  updateUniform('miltonTemporalFieldLoss', 'miltonTemporalFieldLossIntensity');
+  updateUniform('miltonProgressiveBlindness', 'miltonProgressiveBlindnessIntensity');
+
+  // Galileo Galilei-specific effects
+  updateUniform('galileoAcuteHalos', 'galileoAcuteHalosIntensity');
+  updateUniform('galileoSevereBlurring', 'galileoSevereBlurringIntensity');
+  updateUniform('galileoRedEyeEffect', 'galileoRedEyeEffectIntensity');
+  updateUniform('galileoExtremePhotophobia', 'galileoExtremePhotophobiaIntensity');
+  updateUniform('galileoCornealHaziness', 'galileoCornealHazinessIntensity');
+  updateUniform('galileoSectoralDefects', 'galileoSectoralDefectsIntensity');
+  updateUniform('galileoArcuateScotomas', 'galileoArcuateScotomasIntensity');
+  updateUniform('galileoSwissCheeseVision', 'galileoSwissCheeseVisionIntensity');
+  updateUniform('galileoAcuteAttackMode', 'galileoAcuteAttackModeIntensity');
+  updateUniform('galileoChronicProgression', 'galileoChronicProgressionIntensity');
 
   // Note: Myopia and Hyperopia are now handled by CSS filters
 

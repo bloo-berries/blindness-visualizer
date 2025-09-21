@@ -1,4 +1,6 @@
 import { VisualEffect } from '../types/visualEffects';
+import { isVisualFieldLossCondition, getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { CONTAINER_SELECTORS } from './appConstants';
 
 /**
  * Creates a visual field overlay element with specified styles
@@ -9,7 +11,8 @@ const createOverlay = (
   blendMode: string, 
   opacity: string,
   filter?: string,
-  clipPath?: string
+  clipPath?: string,
+  conditionId?: string
 ): void => {
   let overlayElement = document.getElementById(id);
   
@@ -17,34 +20,37 @@ const createOverlay = (
     overlayElement = document.createElement('div');
     overlayElement.id = id;
     Object.assign(overlayElement.style, {
-      position: 'absolute', top: '0', left: '0', right: '0', bottom: '0',
-      width: '100%', height: '100%', pointerEvents: 'none', zIndex: '1000'
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex(conditionId || '', Z_INDEX.BASE)
     });
     
     // Try multiple selectors to find the container
-    let container: Element | null = document.querySelector('.visualizer-container');
-    if (!container) {
-      container = document.querySelector('[class*="visualizer"]');
-    }
-    if (!container) {
-      // Look for the iframe's parent container (for YouTube content)
-      const iframe = document.querySelector('iframe[src*="youtube"]');
-      if (iframe) {
-        container = iframe.parentElement;
-        console.log('Found iframe parent container:', container);
+    let container: Element | null = null;
+    
+    for (const selector of CONTAINER_SELECTORS) {
+      if (selector === 'iframe[src*="youtube"]') {
+        // Special handling for iframe - get its parent
+        const iframe = document.querySelector(selector);
+        if (iframe) {
+          container = iframe.parentElement;
+          console.log('Found iframe parent container:', container);
+          break;
+        }
+      } else if (selector === 'canvas') {
+        // Special handling for canvas - get its parent
+        const canvas = document.querySelector(selector);
+        if (canvas) {
+          container = canvas.parentElement;
+          console.log('Found canvas parent container:', container);
+          break;
+        }
+      } else {
+        container = document.querySelector(selector);
+        if (container) {
+          console.log(`Found container with selector: ${selector}`, container);
+          break;
+        }
       }
-    }
-    if (!container) {
-      // Look for the Three.js canvas container (for image/webcam content)
-      const canvas = document.querySelector('canvas');
-      if (canvas) {
-        container = canvas.parentElement;
-        console.log('Found canvas parent container:', container);
-      }
-    }
-    if (!container) {
-      // Look for any container with relative positioning
-      container = document.querySelector('[style*="position: relative"]');
     }
     
     if (container) {
@@ -92,10 +98,18 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
-    hemianopiaLeft, hemianopiaRight, scotoma, visualFloaters, visualSnow, aura, glaucoma, stargardt
+    hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
+    visualFloaters, visualSnow, aura, glaucoma, stargardt,
+    miltonGlaucomaHalos, miltonProgressiveVignetting, miltonScotomas, miltonRetinalDetachment, 
+    miltonPhotophobia, miltonTemporalFieldLoss, miltonProgressiveBlindness, completeBlindness,
+    galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
-    'hemianopiaLeft', 'hemianopiaRight', 'scotoma', 'visualFloaters', 'visualSnow', 'aura', 'glaucoma', 'stargardt'
+    'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
+    'visualFloaters', 'visualSnow', 'aura', 'glaucoma', 'stargardt',
+    'miltonGlaucomaHalos', 'miltonProgressiveVignetting', 'miltonScotomas', 'miltonRetinalDetachment',
+    'miltonPhotophobia', 'miltonTemporalFieldLoss', 'miltonProgressiveBlindness', 'completeBlindness',
+    'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression'
   ].map(getEffect);
   // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
 
@@ -110,7 +124,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,${0.95 * tunnelVision.intensity}) 100%
       )`,
       'multiply',
-      Math.min(0.95, tunnelVision.intensity).toString()
+      Math.min(0.95, tunnelVision.intensity).toString(),
+      undefined,
+      undefined,
+      'tunnelVision'
     );
   }
 
@@ -126,7 +143,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) 360deg
       )`,
       'multiply',
-      Math.min(0.95, quadrantanopiaLeft.intensity).toString()
+      Math.min(0.95, quadrantanopiaLeft.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaLeft'
     );
   }
 
@@ -140,7 +160,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,${0.95 * quadrantanopiaRight.intensity}) 100%
       )`,
       'multiply',
-      Math.min(0.95, quadrantanopiaRight.intensity).toString()
+      Math.min(0.95, quadrantanopiaRight.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaRight'
     );
   }
 
@@ -154,7 +177,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) 360deg
       )`,
       'multiply',
-      Math.min(0.95, quadrantanopiaInferior.intensity).toString()
+      Math.min(0.95, quadrantanopiaInferior.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaInferior'
     );
   }
 
@@ -170,7 +196,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) 360deg
       )`,
       'multiply',
-      Math.min(0.95, quadrantanopiaSuperior.intensity).toString()
+      Math.min(0.95, quadrantanopiaSuperior.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaSuperior'
     );
   }
 
@@ -183,7 +212,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) 50%
       )`,
       'multiply',
-      Math.min(0.95, hemianopiaLeft.intensity).toString()
+      Math.min(0.95, hemianopiaLeft.intensity).toString(),
+      undefined,
+      undefined,
+      'hemianopiaLeft'
     );
   }
 
@@ -196,7 +228,61 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) 50%
       )`,
       'multiply',
-      Math.min(0.95, hemianopiaRight.intensity).toString()
+      Math.min(0.95, hemianopiaRight.intensity).toString(),
+      undefined,
+      undefined,
+      'hemianopiaRight'
+    );
+  }
+
+  if (blindnessLeftEye?.enabled) {
+    createOverlay(
+      'visual-field-overlay-blindnessLeftEye',
+      `linear-gradient(to right, 
+        rgba(0,0,0,${0.95 * blindnessLeftEye.intensity}) 0%, 
+        rgba(0,0,0,${0.95 * blindnessLeftEye.intensity}) 50%, 
+        rgba(0,0,0,0) 50%
+      )`,
+      'multiply',
+      Math.min(0.95, blindnessLeftEye.intensity).toString(),
+      undefined,
+      undefined,
+      'blindnessLeftEye'
+    );
+  }
+
+  if (blindnessRightEye?.enabled) {
+    createOverlay(
+      'visual-field-overlay-blindnessRightEye',
+      `linear-gradient(to left, 
+        rgba(0,0,0,${0.95 * blindnessRightEye.intensity}) 0%, 
+        rgba(0,0,0,${0.95 * blindnessRightEye.intensity}) 50%, 
+        rgba(0,0,0,0) 50%
+      )`,
+      'multiply',
+      Math.min(0.95, blindnessRightEye.intensity).toString(),
+      undefined,
+      undefined,
+      'blindnessRightEye'
+    );
+  }
+
+  if (bitemporalHemianopia?.enabled) {
+    createOverlay(
+      'visual-field-overlay-bitemporalHemianopia',
+      `linear-gradient(to right, 
+        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 0%, 
+        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 25%, 
+        rgba(0,0,0,0) 25%,
+        rgba(0,0,0,0) 75%,
+        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 75%, 
+        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.95, bitemporalHemianopia.intensity).toString(),
+      undefined,
+      undefined,
+      'bitemporalHemianopia'
     );
   }
 
@@ -211,7 +297,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
       )`,
       'multiply',
-      Math.min(0.95, scotoma.intensity).toString()
+      Math.min(0.95, scotoma.intensity).toString(),
+      undefined,
+      undefined,
+      'scotoma'
     );
   }
 
@@ -338,7 +427,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       'visual-field-overlay-visualFloaters',
       floaterPattern,
       'multiply',
-      Math.min(0.98, visualFloaters.intensity).toString()
+      Math.min(0.98, visualFloaters.intensity).toString(),
+      undefined,
+      undefined,
+      'visualFloaters'
     );
   }
 
@@ -358,7 +450,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
         rgba(255,255,255,0) ${auraRadius + 20}%
       )`,
       'screen',
-      Math.min(0.8, aura.intensity).toString()
+      Math.min(0.8, aura.intensity).toString(),
+      undefined,
+      undefined,
+      'aura'
     );
   }
 
@@ -451,7 +546,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       'visual-field-overlay-glaucoma',
       glaucomaBackground,
       'multiply',
-      Math.min(0.95, intensity).toString()
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'glaucoma'
     );
   }
 
@@ -469,7 +567,9 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       )`,
       'multiply',
       Math.min(0.95, intensity).toString(),
-      `saturate(${1 - intensity * 0.4})` // Color desaturation
+      `saturate(${1 - intensity * 0.4})`, // Color desaturation
+      undefined,
+      'stargardt'
     );
   }
 
@@ -479,6 +579,186 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   // This ensures consistent diplopia rendering across all content types
 
   // Retinitis Pigmentosa is handled by shader effects, not overlays
+
+  // John Milton-specific overlays for bilateral retinal detachment and secondary glaucoma
+  
+  if (miltonProgressiveVignetting?.enabled) {
+    const intensity = miltonProgressiveVignetting.intensity;
+    const tunnelRadius = Math.max(5, 40 - intensity * 35); // From 40% to 5% of screen
+    
+    createOverlay(
+      'visual-field-overlay-miltonProgressiveVignetting',
+      `radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) ${tunnelRadius - 5}%,
+        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
+        rgba(0,0,0,${0.95 * intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'miltonProgressiveVignetting'
+    );
+  }
+
+  if (miltonTemporalFieldLoss?.enabled) {
+    const intensity = miltonTemporalFieldLoss.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-miltonTemporalFieldLoss',
+      `linear-gradient(90deg, 
+        rgba(0,0,0,${0.95 * intensity}) 0%,
+        rgba(0,0,0,${0.95 * intensity}) 20%,
+        rgba(0,0,0,0) 30%,
+        rgba(0,0,0,0) 70%,
+        rgba(0,0,0,${0.95 * intensity}) 80%,
+        rgba(0,0,0,${0.95 * intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'miltonTemporalFieldLoss'
+    );
+  }
+
+  if (miltonRetinalDetachment?.enabled) {
+    const intensity = miltonRetinalDetachment.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-miltonRetinalDetachment',
+      `linear-gradient(180deg, 
+        rgba(0,0,0,${0.8 * intensity}) 0%,
+        rgba(0,0,0,${0.8 * intensity}) 30%,
+        rgba(0,0,0,0) 40%,
+        rgba(0,0,0,0) 60%,
+        rgba(0,0,0,${0.6 * intensity}) 70%,
+        rgba(0,0,0,${0.6 * intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.8, intensity).toString(),
+      undefined,
+      undefined,
+      'miltonRetinalDetachment'
+    );
+  }
+
+  if (miltonPhotophobia?.enabled) {
+    const intensity = miltonPhotophobia.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-miltonPhotophobia',
+      `rgba(255,255,255,${0.6 * intensity})`,
+      'screen',
+      Math.min(0.6, intensity).toString(),
+      `brightness(${1 + intensity * 2}) contrast(${1 - intensity * 0.7})`,
+      undefined,
+      'miltonPhotophobia'
+    );
+  }
+
+  // Note: miltonGlaucomaHalos, miltonScotomas, and miltonProgressiveBlindness are handled by shader effects
+
+  // Complete Blindness - total darkness overlay
+  if (completeBlindness?.enabled) {
+    const intensity = completeBlindness.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-completeBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'completeBlindness'
+    );
+  }
+
+  // Galileo Galilei - Acute Angle-Closure Glaucoma Overlays
+  // Sectoral Defects - wedge-shaped blind spots
+  if (galileoSectoralDefects?.enabled) {
+    const intensity = galileoSectoralDefects.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-galileoSectoralDefects',
+      `conic-gradient(from 45deg at 30% 20%, 
+        rgba(0,0,0,${0.9 * intensity}) 0deg, 
+        rgba(0,0,0,${0.9 * intensity}) 90deg, 
+        rgba(0,0,0,0) 90deg, 
+        rgba(0,0,0,0) 360deg
+      )`,
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'galileoSectoralDefects'
+    );
+  }
+
+  // Arcuate Scotomas - curved blind areas
+  if (galileoArcuateScotomas?.enabled) {
+    const intensity = galileoArcuateScotomas.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-galileoArcuateScotomas',
+      `radial-gradient(ellipse 200px 50px at 50% 50%, 
+        rgba(0,0,0,0) 0%, 
+        rgba(0,0,0,0) 40%, 
+        rgba(0,0,0,${0.8 * intensity}) 45%, 
+        rgba(0,0,0,${0.8 * intensity}) 55%, 
+        rgba(0,0,0,0) 60%, 
+        rgba(0,0,0,0) 100%
+      )`,
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'galileoArcuateScotomas'
+    );
+  }
+
+  // Swiss Cheese Vision - multiple irregular blind spots
+  if (galileoSwissCheeseVision?.enabled) {
+    const intensity = galileoSwissCheeseVision.intensity;
+    
+    createOverlay(
+      'visual-field-overlay-galileoSwissCheeseVision',
+      `radial-gradient(circle at 20% 30%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.9 * intensity}) 3%, rgba(0,0,0,0) 3%, rgba(0,0,0,0) 100%),
+       radial-gradient(circle at 60% 20%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.9 * intensity}) 4%, rgba(0,0,0,0) 4%, rgba(0,0,0,0) 100%),
+       radial-gradient(circle at 80% 60%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.9 * intensity}) 3%, rgba(0,0,0,0) 3%, rgba(0,0,0,0) 100%),
+       radial-gradient(circle at 30% 70%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.9 * intensity}) 2%, rgba(0,0,0,0) 2%, rgba(0,0,0,0) 100%),
+       radial-gradient(circle at 70% 80%, rgba(0,0,0,${0.9 * intensity}) 0%, rgba(0,0,0,${0.9 * intensity}) 3%, rgba(0,0,0,0) 3%, rgba(0,0,0,0) 100%)`,
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'galileoSwissCheeseVision'
+    );
+  }
+
+  // Chronic Progression - combines multiple effects
+  if (galileoChronicProgression?.enabled) {
+    const intensity = galileoChronicProgression.intensity;
+    
+    // Progressive tunnel vision
+    const tunnelRadius = Math.max(10, 50 - intensity * 40); // From 50% to 10% of screen
+    
+    createOverlay(
+      'visual-field-overlay-galileoChronicProgression',
+      `radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) ${tunnelRadius - 5}%,
+        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
+        rgba(0,0,0,${0.95 * intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'galileoChronicProgression'
+    );
+  }
 };
 
 /**

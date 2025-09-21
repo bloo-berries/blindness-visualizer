@@ -40,7 +40,25 @@ export type ConditionType =
   | 'cataracts'
   | 'hallucinations'
   | 'diplopiaMonocular'
-  | 'diplopiaBinocular';
+  | 'diplopiaBinocular'
+  | 'miltonGlaucomaHalos'
+  | 'miltonProgressiveVignetting'
+  | 'miltonScotomas'
+  | 'miltonRetinalDetachment'
+  | 'miltonPhotophobia'
+  | 'miltonTemporalFieldLoss'
+  | 'miltonProgressiveBlindness'
+  | 'completeBlindness'
+  | 'galileoAcuteHalos'
+  | 'galileoSevereBlurring'
+  | 'galileoRedEyeEffect'
+  | 'galileoExtremePhotophobia'
+  | 'galileoCornealHaziness'
+  | 'galileoSectoralDefects'
+  | 'galileoArcuateScotomas'
+  | 'galileoSwissCheeseVision'
+  | 'galileoAcuteAttackMode'
+  | 'galileoChronicProgression';
 
 export interface VisualEffect {
   id: ConditionType;

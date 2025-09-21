@@ -53,19 +53,19 @@ const personData: Record<string, PersonData> = {
   },
   galileo: {
     name: "Galileo Galilei",
-    condition: "Angle-Closure Glaucoma",
+    condition: "Acute Angle-Closure Glaucoma",
     years: "1564-1642",
     onset: "Age 68, complete blindness by 72",
-    simulation: "tunnel-vision glaucoma-halos",
-    description: "Galileo suffered from acute angle-closure glaucoma attacks, experiencing severe eye pain, halos around lights, and rapid peripheral vision loss that progressed to complete blindness in his final years."
+    simulation: "acute-glaucoma-attacks",
+    description: "Galileo suffered from acute angle-closure glaucoma attacks with sudden onset symptoms including intense rainbow halos, severe blurring, red eye effects, and extreme photophobia. Each attack caused cumulative damage leading to sectoral defects, arcuate scotomas, and eventual complete blindness."
   },
   ray: {
     name: "Ray Charles",
     condition: "Childhood Glaucoma",
     years: "1930-2004",
     onset: "Ages 4-5, blind by 7",
-    simulation: "progressive-loss tunnel-vision",
-    description: "Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7. His right eye was later removed due to pain."
+    simulation: "complete-blindness",
+    description: "Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7. His right eye was later removed due to pain. He had no light perception in his remaining eye."
   },
   stevie: {
     name: "Stevie Wonder",
@@ -88,8 +88,8 @@ const personData: Record<string, PersonData> = {
     condition: "Congenital Glaucoma + Trauma",
     years: "Born 1958",
     onset: "Congenital, complete at 12",
-    simulation: "progressive-loss complete-blindness",
-    description: "Born with congenital glaucoma, Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness."
+    simulation: "complete-blindness",
+    description: "Born with congenital glaucoma, Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception."
   },
   christine: {
     name: "Christine Ha",
@@ -220,8 +220,9 @@ const FamousBlindPeople: React.FC = () => {
     const person = personData[personId];
     // Map simulation types to actual condition IDs
     const simulationMap: Record<string, string[]> = {
-      'glaucoma-halos progressive-loss': ['glaucoma', 'cataracts'],
-      'complete-blindness': ['monochromatic'],
+      'glaucoma-halos progressive-loss': ['miltonGlaucomaHalos', 'miltonProgressiveVignetting', 'miltonScotomas', 'miltonRetinalDetachment', 'miltonPhotophobia', 'miltonTemporalFieldLoss'],
+      'complete-blindness': ['completeBlindness'],
+      'acute-glaucoma-attacks': ['galileoAcuteAttackMode', 'galileoChronicProgression'],
       'tunnel-vision glaucoma-halos': ['glaucoma', 'cataracts'],
       'progressive-loss tunnel-vision': ['glaucoma', 'monochromatic'],
       'nmo-blur': ['cataracts', 'astigmatism'],

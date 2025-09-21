@@ -40,6 +40,7 @@ const VisionSimulator: React.FC = () => {
   const [effects, setEffects] = useState<VisualEffect[]>(createDefaultEffects());
   const [diplopiaSeparation, setDiplopiaSeparation] = useState(1.0);
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
+  const [showComparison, setShowComparison] = useState(false);
 
 
   // Handle pre-configured conditions from famous people page
@@ -161,8 +162,10 @@ const VisionSimulator: React.FC = () => {
               inputSource={inputSource}
               diplopiaSeparation={diplopiaSeparation}
               diplopiaDirection={diplopiaDirection}
-              personName={preconfiguredPerson?.name}
-              personCondition={preconfiguredPerson?.condition}
+              personName={preconfiguredPerson?.name || "Vision Condition Simulation"}
+              personCondition={preconfiguredPerson?.condition || "Multiple Vision Conditions"}
+              showComparison={showComparison}
+              onToggleComparison={() => setShowComparison(!showComparison)}
             />
           </Box>
         );
@@ -187,26 +190,28 @@ const VisionSimulator: React.FC = () => {
     navigate('/');
   };
 
-  // Add scroll event listener to hide fixed nav when at bottom
+  // Add scroll event listener to keep fixed nav visible
   useEffect(() => {
     const handleScroll = () => {
-      // Check if user is at bottom of page (with small buffer)
-      const bottomThreshold = 50;
-      const isAtBottom = 
-        window.innerHeight + window.scrollY >= 
-        document.documentElement.scrollHeight - bottomThreshold;
-      
-      setShowFixedNav(!isAtBottom);
+      // Always show the fixed navigation to ensure buttons are accessible
+      setShowFixedNav(true);
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
+    // Initial check - always show navigation
+    setShowFixedNav(true);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Auto-enable comparison mode when reaching the final step
+  useEffect(() => {
+    if (activeStep === 2) {
+      setShowComparison(true);
+    }
+  }, [activeStep]);
 
   return (
     <Box className="app-container">
@@ -232,7 +237,8 @@ const VisionSimulator: React.FC = () => {
         <Paper 
           elevation={0} 
           sx={{ 
-            p: 3, 
+            p: 3,
+            pt: 5,
             borderRadius: 3,
             border: '1px solid #e2e8f0',
             backgroundColor: 'background.paper'
@@ -249,7 +255,7 @@ const VisionSimulator: React.FC = () => {
             sx={{ 
               fontWeight: 700,
               color: 'text.primary',
-              mb: 1
+              mb: 3
             }}
           >
             Vision Condition Simulator
@@ -363,11 +369,11 @@ const VisionSimulator: React.FC = () => {
               right: 0,
               padding: '16px 0',
               backgroundColor: 'background.paper',
-              boxShadow: '0px -2px 4px rgba(0,0,0,0.1)',
+              borderTop: '1px solid #e2e8f0',
+              boxShadow: '0px -4px 8px rgba(0,0,0,0.15)',
               zIndex: 1000,
-              opacity: showFixedNav ? 1 : 0,
-              visibility: showFixedNav ? 'visible' : 'hidden',
-              transition: 'opacity 0.3s, visibility 0.3s'
+              opacity: 1,
+              visibility: 'visible'
             }}
           >
             <Container maxWidth="lg">
@@ -410,7 +416,7 @@ const VisionSimulator: React.FC = () => {
           </Box>
           
           {/* Spacer to prevent content from being hidden behind fixed navigation */}
-          <Box sx={{ height: showFixedNav ? '72px' : '0px', mt: showFixedNav ? 3 : 0 }} />
+          <Box sx={{ height: '72px', mt: 3 }} />
         </Paper>
         <Footer />
       </Container>

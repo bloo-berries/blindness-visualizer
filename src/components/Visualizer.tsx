@@ -20,9 +20,11 @@ interface VisualizerProps {
   diplopiaDirection?: number;
   personName?: string;
   personCondition?: string;
+  showComparison?: boolean;
+  onToggleComparison?: () => void;
 }
 
-const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition }) => {
+const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition, showComparison: propShowComparison, onToggleComparison }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -37,12 +39,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   // Helper function to avoid repeated effects.find() calls
   const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
 
-  // Enable comparison mode for famous people
+  // Enable comparison mode for famous people or when explicitly requested
   useEffect(() => {
-    if (personName && personCondition) {
+    if (propShowComparison !== undefined) {
+      // Use explicit prop when provided
+      setShowComparison(propShowComparison);
+    } else if (personName && personCondition) {
+      // Auto-enable for famous people when no explicit prop
       setShowComparison(true);
     }
-  }, [personName, personCondition]);
+  }, [personName, personCondition, propShowComparison]);
 
   // Retry camera access
   const handleRetryCamera = useCallback(() => {
@@ -374,7 +380,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
-  // Render comparison view for famous people
+  // Render comparison view for famous people or general vision simulation
   if (showComparison && personName && personCondition) {
     return (
       <Box className="comparison-container" sx={{ 
@@ -505,7 +511,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         }}>
           <Button
             variant="contained"
-            onClick={() => setShowComparison(false)}
+            onClick={onToggleComparison || (() => setShowComparison(false))}
             sx={{ 
               backgroundColor: 'rgba(0, 0, 0, 0.8)',
               color: 'white',
@@ -647,11 +653,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             Visualization Description
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
-            {personName && personCondition && !showComparison && (
+            {!showComparison && (
               <Button
                 variant="outlined"
                 color="secondary"
-                onClick={() => setShowComparison(true)}
+                onClick={onToggleComparison || (() => setShowComparison(true))}
                 disabled={isLoading}
               >
                 Show Comparison

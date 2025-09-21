@@ -26,21 +26,21 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
   const inputOptions = [
     {
       type: 'webcam',
-      icon: <Videocam sx={{ fontSize: 48 }} aria-hidden="true" />,
+      icon: <Videocam sx={{ fontSize: 36 }} aria-hidden="true" />,
       title: 'Use Camera',
       description: 'Use your device camera to see effects in real-time',
       isPremium: true
     },
     {
       type: 'image',
-      icon: <Image sx={{ fontSize: 48 }} aria-hidden="true" />,
+      icon: <Image sx={{ fontSize: 36 }} aria-hidden="true" />,
       title: 'Upload Image',
       description: 'Upload an image from your device',
       isPremium: false
     },
     {
       type: 'youtube',
-      icon: <YouTube sx={{ fontSize: 48 }} aria-hidden="true" />,
+      icon: <YouTube sx={{ fontSize: 36 }} aria-hidden="true" />,
       title: 'Demo Video',
       description: 'Watch our demo video with applied effects',
       isPremium: false
@@ -49,7 +49,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
 
   return (
     <Box 
-      sx={{ py: 1 }}
+      sx={{ py: 0.5 }}
       role="region"
       aria-labelledby="input-selector-heading"
     >
@@ -57,12 +57,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         variant="h6" 
         gutterBottom
         id="input-selector-heading"
-        sx={{ mb: 2 }}
+        sx={{ mb: 1.5 }}
       >
         Choose Your Input Source
       </Typography>
       
-      <Grid container spacing={2}>
+      <Grid container spacing={1.5}>
         {/* Demo Video - Large, centered option */}
         {inputOptions
           .filter(option => option.type === 'youtube')
@@ -81,7 +81,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   border: currentSource.type === option.type ? 2 : 0,
                   borderColor: 'primary.main',
                   backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
-                  maxWidth: '500px',
+                  maxWidth: '400px',
                   mx: 'auto'
                 }}
                 onClick={() => {
@@ -113,12 +113,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   }
                 }}
               >
-                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 2 }}>
-                  <Box sx={{ fontSize: '48px', mb: 1 }}>
+                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 1.5 }}>
+                  <Box sx={{ fontSize: '36px', mb: 1 }}>
                     {option.icon}
                   </Box>
                   <Typography 
-                    variant="h6" 
+                    variant="subtitle1" 
                     component="div" 
                     sx={{ mt: 1, fontWeight: 600 }}
                   >
@@ -128,12 +128,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                     variant="body2" 
                     color="text.secondary"
                     id={`${option.type}-description`}
-                    sx={{ mt: 0.5, fontSize: '0.9rem' }}
+                    sx={{ mt: 0.5, fontSize: '0.8rem' }}
                   >
                     {option.description}
                   </Typography>
                   {option.isPremium && (
-                    <Box sx={{ mt: 2 }}>
+                    <Box sx={{ mt: 1.5 }}>
                       <Chip
                         icon={<Star />}
                         label="Coming Soon: Premium Feature"
@@ -141,10 +141,10 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                         variant="outlined"
                         sx={{
                           fontWeight: 'bold',
-                          fontSize: '0.75rem',
-                          height: '24px',
+                          fontSize: '0.7rem',
+                          height: '20px',
                           '& .MuiChip-icon': {
-                            fontSize: '16px'
+                            fontSize: '14px'
                           }
                         }}
                       />
@@ -157,7 +157,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         
         {/* Other options - Side by side */}
         <Grid item xs={12}>
-          <Grid container spacing={2} justifyContent="center">
+          <Grid container spacing={1.5} justifyContent="center">
             {inputOptions
               .filter(option => option.type !== 'youtube')
               .map((option) => (
@@ -205,12 +205,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                       }
                     }}
                   >
-                    <CardContent sx={{ textAlign: 'center', position: 'relative', p: 2 }}>
-                      <Box sx={{ fontSize: '40px', mb: 1 }}>
+                    <CardContent sx={{ textAlign: 'center', position: 'relative', p: 1.5 }}>
+                      <Box sx={{ fontSize: '32px', mb: 1 }}>
                         {option.icon}
                       </Box>
                       <Typography 
-                        variant="subtitle1" 
+                        variant="body1" 
                         component="div" 
                         sx={{ mt: 1, fontWeight: 600 }}
                       >
@@ -220,12 +220,12 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                         variant="body2" 
                         color="text.secondary"
                         id={`${option.type}-description`}
-                        sx={{ fontSize: '0.85rem' }}
+                        sx={{ fontSize: '0.75rem' }}
                       >
                         {option.description}
                       </Typography>
                       {option.isPremium && (
-                        <Box sx={{ mt: 1 }}>
+                        <Box sx={{ mt: 0.5 }}>
                           <Chip
                             icon={<Star />}
                             label="Coming Soon: Premium Feature"
@@ -233,10 +233,10 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                             variant="outlined"
                             sx={{
                               fontWeight: 'bold',
-                              fontSize: '0.7rem',
-                              height: '20px',
+                              fontSize: '0.65rem',
+                              height: '18px',
                               '& .MuiChip-icon': {
-                                fontSize: '14px'
+                                fontSize: '12px'
                               }
                             }}
                           />

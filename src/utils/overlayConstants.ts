@@ -13,10 +13,25 @@ export const VISUAL_FIELD_LOSS_CONDITIONS = [
 ];
 
 /**
+ * Visual Disturbance conditions that should appear underneath other conditions
+ */
+export const VISUAL_DISTURBANCE_CONDITIONS = [
+  'aura', 'visualFloaters', 'visualSnow', 'visualHallucinations',
+  'auraLeft', 'auraRight'
+];
+
+/**
  * Determines if a condition is a Visual Field Loss condition
  */
 export const isVisualFieldLossCondition = (conditionId: string): boolean => {
   return VISUAL_FIELD_LOSS_CONDITIONS.includes(conditionId);
+};
+
+/**
+ * Determines if a condition is a Visual Disturbance condition
+ */
+export const isVisualDisturbanceCondition = (conditionId: string): boolean => {
+  return VISUAL_DISTURBANCE_CONDITIONS.includes(conditionId);
 };
 
 /**
@@ -27,7 +42,14 @@ export const isVisualFieldLossCondition = (conditionId: string): boolean => {
  */
 export const getOverlayZIndex = (conditionId: string, baseZIndex: number = 1000): string => {
   // Visual Field Loss conditions get higher z-index to appear on top
-  return isVisualFieldLossCondition(conditionId) ? (baseZIndex + 100).toString() : baseZIndex.toString();
+  if (isVisualFieldLossCondition(conditionId)) {
+    return (baseZIndex + 100).toString();
+  }
+  // Visual Disturbance conditions get lower z-index to appear underneath
+  if (isVisualDisturbanceCondition(conditionId)) {
+    return (baseZIndex - 100).toString();
+  }
+  return baseZIndex.toString();
 };
 
 /**
@@ -50,6 +72,7 @@ export const OVERLAY_BASE_STYLES = {
 export const Z_INDEX = {
   BASE: 1000,
   VISUAL_FIELD_LOSS: 1100,
+  VISUAL_DISTURBANCE: 900,
   DIPLOPIA: 1001,
   ANIMATED: 10,
   ANIMATED_VISUAL_FIELD_LOSS: 110,

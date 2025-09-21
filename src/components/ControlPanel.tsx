@@ -22,6 +22,7 @@ import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
 import { useAnimatedFloaters } from '../hooks/useAnimatedFloaters';
+import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
@@ -585,9 +586,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       left: 0,
                       width: '100%',
                       height: '100%',
-                      zIndex: 10 + enabledEffects.indexOf(effect),
                       pointerEvents: 'none'
                     };
+
+                    // Set z-index based on condition type
+                    if (isVisualDisturbanceCondition(effectType)) {
+                      overlayStyle.zIndex = Z_INDEX.VISUAL_DISTURBANCE; // Visual disturbances appear underneath
+                    } else if (isVisualFieldLossCondition(effectType)) {
+                      overlayStyle.zIndex = Z_INDEX.VISUAL_FIELD_LOSS; // Visual field loss appears on top
+                    } else {
+                      overlayStyle.zIndex = Z_INDEX.BASE + enabledEffects.indexOf(effect); // Default z-index with ordering
+                    }
                     
                     // Get current time for animated effects
                     const now = Date.now();

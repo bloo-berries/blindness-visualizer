@@ -91,20 +91,28 @@ const personData: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Born with congenital glaucoma, Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception."
   },
+  monet: {
+    name: "Claude Monet",
+    condition: "Cataracts",
+    years: "1840-1926",
+    onset: "Age 60s, legally blind by 82",
+    simulation: "cataracts color-distortion",
+    description: "Monet developed cataracts in his 60s, diagnosed in 1912. The cataracts clouded his vision and dramatically altered his color perception, making cool colors like blue and purple difficult to distinguish while accentuating warm tones. He described seeing 'through a fog' and by 1922 was legally blind in his right eye with only 10% vision in his left."
+  },
   christine: {
     name: "Christine Ha",
     condition: "Neuromyelitis Optica (NMO)",
     years: "Born 1979",
     onset: "Age 20, progressive",
-    simulation: "nmo-blur",
-    description: "NMO causes autoimmune attacks on the optic nerves. Christine describes her vision as looking through a 'steamy mirror after a hot shower' - severely blurred with only close-range object recognition within 10-12 inches."
+    simulation: "christine-nmo-complete",
+    description: "NMO causes autoimmune attacks on the optic nerves. Christine describes her vision as looking through a 'steamy mirror after a hot shower' - severely blurred with only close-range object recognition within 10-12 inches. Vision is approximately 20/1000+ with extreme blur, light scatter, and fluctuating effects."
   },
   ved: {
     name: "Ved Mehta",
     condition: "Cerebrospinal Meningitis",
     years: "1934-2021",
     onset: "Age 3 years, 10 months",
-    simulation: "complete-blindness",
+    simulation: "ved-spatial-awareness",
     description: "Meningitis at age 3 resulted in complete bilateral blindness. Ved developed exceptional 'facial vision' using echolocation and air current perception for navigation."
   },
   erik: {
@@ -112,7 +120,7 @@ const personData: Record<string, PersonData> = {
     condition: "Juvenile Retinoschisis",
     years: "Born 1968",
     onset: "Diagnosed at 4, blind by 13",
-    simulation: "peripheral-islands progressive-loss",
+    simulation: "erik-retinoschisis-islands",
     description: "Retinoschisis causes splitting of retinal layers. Erik's vision deteriorated progressively, with isolated 'islands' of vision gradually disappearing until complete blindness at 13. He became the first blind person to summit Mount Everest."
   },
   marla: {
@@ -120,49 +128,49 @@ const personData: Record<string, PersonData> = {
     condition: "Stargardt Disease",
     years: "Born 1969",
     onset: "Age 9, progressive",
-    simulation: "central-scotoma metamorphopsia",
+    simulation: "marla-stargardt-complete",
     description: "Stargardt disease causes progressive macular degeneration. Marla has a large central blind spot with preserved peripheral vision, making it difficult to see faces or read but allowing navigation using side vision. First legally blind athlete in Olympics."
   },
   mona: {
     name: "Dr. Mona Minkara",
-    condition: "Macular Degeneration & Cone-Rod Dystrophy",
-    years: "Contemporary scientist",
-    onset: "Age 7, progressive",
-    simulation: "central-scotoma progressive-loss",
-    description: "Progressive central vision loss that expanded outward, eventually leading to complete blindness. Now a computational chemist pioneering accessible STEM education."
+    condition: "Macular Degeneration + Cone-Rod Dystrophy",
+    years: "Born 1984",
+    onset: "Early childhood, progressive",
+    simulation: "minkara-end-stage-complete",
+    description: "Blind chemist and computational biologist with combined macular degeneration and cone-rod dystrophy. Near-total vision loss affects both central and peripheral vision. Uses sonification and tactile models to conduct groundbreaking molecular dynamics research."
   },
   joshua: {
     name: "Joshua Miele",
     condition: "Chemical Burn Trauma",
     years: "Born 1972",
-    onset: "Age 4",
-    simulation: "complete-blindness",
-    description: "At age 4, Joshua suffered severe chemical burns to his eyes from sulfuric acid, resulting in complete blindness. He became a leading accessibility researcher and advocate."
+    onset: "Age 4, complete blindness",
+    simulation: "joshua-complete-blindness",
+    description: "Complete bilateral blindness from acid attack at age 4. No light perception due to severe corneal scarring and tissue destruction. Now a researcher developing tactile maps, accessible graphics, and sonification tools for blind users."
   },
   lucy: {
     name: "Lucy Edwards",
     condition: "Incontinentia Pigmenti",
     years: "Born 1995",
     onset: "From birth",
-    simulation: "complete-blindness",
-    description: "Born with incontinentia pigmenti, Lucy has been blind from birth. She became a BBC presenter and advocate for disability representation in media."
+    simulation: "lucy-complete-vision",
+    description: "Born with incontinentia pigmenti, Lucy has been blind from birth. Her vision is like looking through thick frosted glass with severe blur, desaturation, and light diffusion. She became a BBC presenter and advocate for disability representation in media."
   },
   paterson: {
     name: "David Paterson",
-    condition: "Infant Infection & Glaucoma",
+    condition: "Optic Nerve Damage & Glaucoma",
     years: "Born 1954",
-    onset: "3 months old",
-    simulation: "complete-blindness",
-    description: "An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye. Glaucoma later caused blindness in his right eye."
+    onset: "Age 3 months, progressive",
+    simulation: "david-hemispheric-vision",
+    description: "An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye. Glaucoma later affected his right eye, creating a unique hemispheric vision loss."
   }
 };
 
 const categories = [
   { name: "Historical Figures", people: ["milton", "braille", "galileo"] },
-  { name: "Musicians & Artists", people: ["ray", "stevie", "bocelli"] },
-  { name: "Writers & Activists", people: ["helen", "ved"] },
+  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua"] },
   { name: "Contemporary Figures", people: ["christine", "lucy", "paterson"] },
-  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua"] }
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli"] },
+  { name: "Writers & Activists", people: ["helen", "ved"] }
 ];
 
 const FamousBlindPeople: React.FC = () => {
@@ -228,7 +236,16 @@ const FamousBlindPeople: React.FC = () => {
       'nmo-blur': ['cataracts', 'astigmatism'],
       'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'monochromatic'],
       'central-scotoma metamorphopsia': ['stargardt', 'amd'],
-      'central-scotoma progressive-loss': ['stargardt', 'amd']
+      'central-scotoma progressive-loss': ['stargardt', 'amd'],
+      'cataracts color-distortion': ['monetCataractsProgression'],
+      'ved-spatial-awareness': ['vedCompleteBlindness', 'vedSpatialAwareness', 'vedEchoLocation', 'vedAirFlowSensors', 'vedProximityRadar', 'vedTemperatureMapping'],
+      'christine-nmo-complete': ['christineNMOComplete'],
+      'lucy-complete-vision': ['lucyCompleteVision'],
+      'david-hemispheric-vision': ['davidCompleteVision'],
+      'erik-retinoschisis-islands': ['erikRetinoschisisIslands', 'erikIslandFragmentation', 'erikProgressiveLoss', 'erikScanningBehavior', 'erikCognitiveLoad'],
+      'marla-stargardt-complete': ['marlaStargardtComplete'],
+      'minkara-end-stage-complete': ['minkaraEndStageComplete', 'minkaraCentralScotoma', 'minkaraRingScotoma', 'minkaraPeripheralIslands', 'minkaraPhotophobia', 'minkaraAchromatopsia', 'minkaraNightBlindness'],
+      'joshua-complete-blindness': ['joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -263,6 +280,7 @@ const FamousBlindPeople: React.FC = () => {
       stevie: '/images/people/stevie-wonder.jpg',
       helen: '/images/people/hellen-keller.jpg',
       bocelli: '/images/people/Andrea-Bocelli.jpg',
+      monet: '/images/people/claude-monet.jpg',
       christine: '/images/people/christine-ha.webp',
       ved: '/images/people/Ved-Mehta.png',
       erik: '/images/people/Erik-Weihenmayer.webp',

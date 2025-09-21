@@ -239,7 +239,7 @@ const FAQPage: React.FC = () => {
               <ListItemIcon>
                 <ColorLensIcon color="primary" />
               </ListItemIcon>
-              <ListItemText primary="Money: Apps like Seeing AI, different folding methods, electronic identifiers" />
+              <ListItemText primary="Money: Apps like Seeing AI, different folding methods, electronic identifiers, and different sizes for different denominations in various countries" />
             </ListItem>
             <ListItem>
               <ListItemIcon>
@@ -301,6 +301,9 @@ const FAQPage: React.FC = () => {
           </List>
           <Typography variant="body1" paragraph sx={{ mt: 2 }}>
             Treatment depends on cause. Some conditions are preventable/treatable, others currently aren't. Research continues on treatments like gene therapy, stem cells, and bionic eyes.
+          </Typography>
+          <Typography variant="body1" paragraph>
+            People can also lose their vision from neurological conditions like trauma or stroke.
           </Typography>
         </Box>
       ),

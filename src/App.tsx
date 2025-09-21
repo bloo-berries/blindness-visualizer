@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
+import ConditionsPage from './components/ConditionsPage';
+import FAQPage from './components/FAQPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
 import './styles/App.css';
 
@@ -151,6 +153,8 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/simulator" element={<VisionSimulator />} />
             <Route path="/famous-people" element={<FamousBlindPeople />} />
+            <Route path="/conditions" element={<ConditionsPage />} />
+            <Route path="/faq" element={<FAQPage />} />
           </Routes>
         </Router>
       </ThemeProvider>

@@ -23,14 +23,23 @@ interface VisualizerProps {
 const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   // Helper function to avoid repeated effects.find() calls
   const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
+
+  // Retry camera access
+  const handleRetryCamera = useCallback(() => {
+    setError(null);
+    setIsLoading(true);
+    setRetryCount(prev => prev + 1);
+  }, []);
 
   // Save screenshot handler
   const handleSaveScreenshot = useCallback(async () => {
@@ -155,23 +164,54 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     const setupMedia = async () => {
       try {
         if (inputSource.type === 'webcam') {
-          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-          const video = mediaRef.current as HTMLVideoElement;
-          video.srcObject = stream;
-          await video.play();
-          const videoTexture = new THREE.VideoTexture(video);
-          setTexture(videoTexture);
+          // Camera feature is disabled - show error message
+          setError('Camera feature is currently disabled. This is a premium feature coming soon.');
+          setIsLoading(false);
+          return;
+          
         } else if (inputSource.type === 'image' && inputSource.url) {
           const textureLoader = new THREE.TextureLoader();
           const imageTexture = await textureLoader.loadAsync(inputSource.url);
           setTexture(imageTexture);
+          setIsLoading(false);
         } else if (inputSource.type === 'youtube') {
           // For YouTube, we'll use CSS filters instead of WebGL textures
           setTexture(null);
+          setIsLoading(false);
         }
-        setIsLoading(false);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load media');
+        console.error('Media setup error:', err);
+        
+        // Provide more specific error messages
+        if (err instanceof Error) {
+          if (err.name === 'NotAllowedError') {
+            setError('Camera access denied. Please allow camera permissions and refresh the page.');
+          } else if (err.name === 'NotFoundError') {
+            setError('No camera found. Please connect a camera and try again.');
+          } else if (err.name === 'NotReadableError') {
+            setError('Camera is already in use by another application. Please close other camera applications and try again.');
+          } else if (err.name === 'OverconstrainedError') {
+            setError('Camera constraints cannot be satisfied. Trying with basic settings...');
+            // Try again with basic constraints
+            try {
+              const basicStream = await navigator.mediaDevices.getUserMedia({ video: true });
+              streamRef.current = basicStream;
+              const video = mediaRef.current as HTMLVideoElement;
+              video.srcObject = basicStream;
+              await video.play();
+              const videoTexture = new THREE.VideoTexture(video);
+              setTexture(videoTexture);
+              setIsLoading(false);
+              return;
+            } catch (basicErr) {
+              setError('Failed to access camera with basic settings. Please check your camera permissions.');
+            }
+          } else {
+            setError(`Camera error: ${err.message}`);
+          }
+        } else {
+          setError('Failed to load media');
+        }
         setIsLoading(false);
       }
     };
@@ -197,14 +237,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // Cleanup
     return () => {
       if (inputSource.type === 'webcam') {
-        const currentMediaRef = mediaRef.current;
-        if (currentMediaRef) {
-          const video = currentMediaRef as HTMLVideoElement;
-          const stream = video.srcObject as MediaStream;
-          if (stream) {
-            stream.getTracks().forEach(track => track.stop());
-          }
-        }
+        // Camera feature is disabled - no cleanup needed
+        return;
       }
       
       // Cancel animation frame
@@ -215,7 +249,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       // Use the dispose function from scene manager
       dispose();
     };
-  }, [inputSource]); // Only recreate scene when input source changes
+  }, [inputSource, retryCount]); // Recreate scene when input source changes or retry is triggered
 
   // Update shader uniforms when effects change (separate from scene creation)
   useEffect(() => {
@@ -367,6 +401,18 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         <Alert 
           severity="error"
           aria-live="assertive"
+          action={
+            inputSource.type === 'webcam' && (
+              <Button 
+                color="inherit" 
+                size="small" 
+                onClick={handleRetryCamera}
+                disabled={isLoading}
+              >
+                Retry
+              </Button>
+            )
+          }
         >
           {error}
         </Alert>

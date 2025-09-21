@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
                       color="text.primary" 
                       sx={{ mb: 3, lineHeight: 1.6 }}
                     >
-                      Use your webcam, Upload images, or sample a YouTube video with adjustable visuals.
+                      Upload images or sample a YouTube video with adjustable visuals. Camera feature coming soon!
                     </Typography>
                   </Box>
                   
@@ -122,7 +122,7 @@ const HomePage: React.FC = () => {
                     </Typography>
                     <Box sx={{ textAlign: 'left', maxWidth: '400px', mx: 'auto' }}>
                       <Typography variant="body2" color="text.primary" sx={{ mb: 1 }}>
-                        • Real-time simulation with webcam, images, or videos
+                        • Real-time simulation with images and videos (camera coming soon)
                       </Typography>
                       <Typography variant="body2" color="text.primary" sx={{ mb: 1 }}>
                         • Multiple vision conditions with adjustable intensity

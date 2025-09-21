@@ -6,12 +6,14 @@ import {
   Typography,
   Grid,
   TextField,
-  Button
+  Button,
+  Chip
 } from '@mui/material';
 import {
   Videocam,
   Image,
-  YouTube
+  YouTube,
+  Star
 } from '@mui/icons-material';
 import { InputSource } from '../types/visualEffects';
 
@@ -27,20 +29,23 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
     {
       type: 'webcam',
       icon: <Videocam sx={{ fontSize: 48 }} aria-hidden="true" />,
-      title: 'Use Webcam',
-      description: 'Use your device camera to see effects in real-time'
+      title: 'Use Camera',
+      description: 'Use your device camera to see effects in real-time',
+      isPremium: true
     },
     {
       type: 'image',
       icon: <Image sx={{ fontSize: 48 }} aria-hidden="true" />,
       title: 'Upload Image',
-      description: 'Upload an image from your device'
+      description: 'Upload an image from your device',
+      isPremium: false
     },
     {
       type: 'youtube',
       icon: <YouTube sx={{ fontSize: 48 }} aria-hidden="true" />,
       title: 'Demo Video',
-      description: 'Watch our demo video with applied effects'
+      description: 'Watch our demo video with applied effects',
+      isPremium: false
     }
   ];
 
@@ -59,63 +64,190 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
       </Typography>
       
       <Grid container spacing={3}>
-        {inputOptions.map((option) => (
-          <Grid item xs={12} sm={4} key={option.type}>
-            <Card 
-              sx={{ 
-                cursor: 'pointer',
-                height: '100%',
-                transition: '0.3s',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: 3
-                },
-                border: currentSource.type === option.type ? 2 : 0,
-                borderColor: 'primary.main'
-              }}
-              onClick={() => {
-                if (option.type === 'image') {
-                  fileInputRef.current?.click();
-                } else {
-                  onSourceChange({ type: option.type } as InputSource);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-pressed={currentSource.type === option.type}
-              aria-label={option.title}
-              aria-describedby={`${option.type}-description`}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
+        {/* Demo Video - Large, centered option */}
+        {inputOptions
+          .filter(option => option.type === 'youtube')
+          .map((option) => (
+            <Grid item xs={12} key={option.type}>
+              <Card 
+                sx={{ 
+                  cursor: option.isPremium ? 'not-allowed' : 'pointer',
+                  height: '100%',
+                  transition: '0.3s',
+                  opacity: option.isPremium ? 0.6 : 1,
+                  '&:hover': {
+                    transform: option.isPremium ? 'none' : 'translateY(-4px)',
+                    boxShadow: option.isPremium ? 1 : 3
+                  },
+                  border: currentSource.type === option.type ? 2 : 0,
+                  borderColor: 'primary.main',
+                  backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
+                  maxWidth: '600px',
+                  mx: 'auto'
+                }}
+                onClick={() => {
+                  if (option.isPremium) {
+                    return; // Do nothing for premium features
+                  }
                   if (option.type === 'image') {
                     fileInputRef.current?.click();
                   } else {
                     onSourceChange({ type: option.type } as InputSource);
                   }
-                }
-              }}
-            >
-              <CardContent sx={{ textAlign: 'center' }}>
-                {option.icon}
-                <Typography 
-                  variant="h6" 
-                  component="div" 
-                  sx={{ mt: 2 }}
-                >
-                  {option.title}
-                </Typography>
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary"
-                  id={`${option.type}-description`}
-                >
-                  {option.description}
-                </Typography>
-              </CardContent>
-            </Card>
+                }}
+                role="button"
+                tabIndex={option.isPremium ? -1 : 0}
+                aria-pressed={currentSource.type === option.type}
+                aria-label={option.isPremium ? `${option.title} (Coming Soon - Premium Feature)` : option.title}
+                aria-describedby={`${option.type}-description`}
+                onKeyDown={(e) => {
+                  if (option.isPremium) {
+                    return; // Do nothing for premium features
+                  }
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (option.type === 'image') {
+                      fileInputRef.current?.click();
+                    } else {
+                      onSourceChange({ type: option.type } as InputSource);
+                    }
+                  }
+                }}
+              >
+                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 4 }}>
+                  <Box sx={{ fontSize: '64px', mb: 2 }}>
+                    {option.icon}
+                  </Box>
+                  <Typography 
+                    variant="h5" 
+                    component="div" 
+                    sx={{ mt: 2, fontWeight: 600 }}
+                  >
+                    {option.title}
+                  </Typography>
+                  <Typography 
+                    variant="body1" 
+                    color="text.secondary"
+                    id={`${option.type}-description`}
+                    sx={{ mt: 1, fontSize: '1.1rem' }}
+                  >
+                    {option.description}
+                  </Typography>
+                  {option.isPremium && (
+                    <Box sx={{ mt: 2 }}>
+                      <Chip
+                        icon={<Star />}
+                        label="Coming Soon: Premium Feature"
+                        color="primary"
+                        variant="outlined"
+                        sx={{
+                          fontWeight: 'bold',
+                          fontSize: '0.75rem',
+                          height: '24px',
+                          '& .MuiChip-icon': {
+                            fontSize: '16px'
+                          }
+                        }}
+                      />
+                    </Box>
+                  )}
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        
+        {/* Other options - Side by side */}
+        <Grid item xs={12}>
+          <Grid container spacing={3} justifyContent="center">
+            {inputOptions
+              .filter(option => option.type !== 'youtube')
+              .map((option) => (
+                <Grid item xs={12} sm={6} md={5} key={option.type}>
+                  <Card 
+                    sx={{ 
+                      cursor: option.isPremium ? 'not-allowed' : 'pointer',
+                      height: '100%',
+                      transition: '0.3s',
+                      opacity: option.isPremium ? 0.6 : 1,
+                      '&:hover': {
+                        transform: option.isPremium ? 'none' : 'translateY(-4px)',
+                        boxShadow: option.isPremium ? 1 : 3
+                      },
+                      border: currentSource.type === option.type ? 2 : 0,
+                      borderColor: 'primary.main',
+                      backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent'
+                    }}
+                    onClick={() => {
+                      if (option.isPremium) {
+                        return; // Do nothing for premium features
+                      }
+                      if (option.type === 'image') {
+                        fileInputRef.current?.click();
+                      } else {
+                        onSourceChange({ type: option.type } as InputSource);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={option.isPremium ? -1 : 0}
+                    aria-pressed={currentSource.type === option.type}
+                    aria-label={option.isPremium ? `${option.title} (Coming Soon - Premium Feature)` : option.title}
+                    aria-describedby={`${option.type}-description`}
+                    onKeyDown={(e) => {
+                      if (option.isPremium) {
+                        return; // Do nothing for premium features
+                      }
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (option.type === 'image') {
+                          fileInputRef.current?.click();
+                        } else {
+                          onSourceChange({ type: option.type } as InputSource);
+                        }
+                      }
+                    }}
+                  >
+                    <CardContent sx={{ textAlign: 'center', position: 'relative', p: 3 }}>
+                      <Box sx={{ fontSize: '48px', mb: 1 }}>
+                        {option.icon}
+                      </Box>
+                      <Typography 
+                        variant="h6" 
+                        component="div" 
+                        sx={{ mt: 2 }}
+                      >
+                        {option.title}
+                      </Typography>
+                      <Typography 
+                        variant="body2" 
+                        color="text.secondary"
+                        id={`${option.type}-description`}
+                      >
+                        {option.description}
+                      </Typography>
+                      {option.isPremium && (
+                        <Box sx={{ mt: 2 }}>
+                          <Chip
+                            icon={<Star />}
+                            label="Coming Soon: Premium Feature"
+                            color="primary"
+                            variant="outlined"
+                            sx={{
+                              fontWeight: 'bold',
+                              fontSize: '0.75rem',
+                              height: '24px',
+                              '& .MuiChip-icon': {
+                                fontSize: '16px'
+                              }
+                            }}
+                          />
+                        </Box>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
-        ))}
+        </Grid>
       </Grid>
 
       <Box sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }}>

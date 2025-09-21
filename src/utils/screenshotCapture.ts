@@ -1,6 +1,6 @@
 /**
  * Screenshot capture utility for saving vision simulation results
- * Handles different content types (YouTube, images, webcam) and includes metadata
+ * Handles different content types (YouTube, images, camera) and includes metadata
  */
 
 import { VisualEffect } from '../types/visualEffects';

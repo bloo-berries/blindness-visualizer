@@ -1,0 +1,245 @@
+/* FAQ Page Styles */
+
+.faq-page {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+
+.faq-accordion {
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 16px !important;
+}
+
+.faq-summary {
+  min-height: 80px !important;
+  padding: 0 24px !important;
+  transition: all 0.3s ease;
+}
+
+.faq-summary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.faq-icon {
+  margin-right: 16px;
+  font-size: 28px !important;
+  opacity: 0.9;
+}
+
+.faq-question {
+  font-weight: 600 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 4px !important;
+}
+
+.faq-details {
+  background: white;
+  padding: 24px !important;
+  border-top: 1px solid #f1f5f9;
+}
+
+.faq-details .MuiTypography-body1 {
+  line-height: 1.6 !important;
+  color: #374151 !important;
+  margin-bottom: 16px !important;
+}
+
+.faq-details .MuiList-root {
+  padding-top: 0 !important;
+}
+
+.faq-details .MuiListItem-root {
+  padding: 8px 0 !important;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.faq-details .MuiListItem-root:last-child {
+  border-bottom: none;
+}
+
+.faq-details .MuiListItemIcon-root {
+  min-width: 40px !important;
+}
+
+.faq-details .MuiListItemText-primary {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  color: #374151 !important;
+}
+
+.faq-info-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 3rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.faq-info-title {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  margin-bottom: 16px !important;
+}
+
+.faq-info-text {
+  color: #475569 !important;
+  line-height: 1.6 !important;
+  margin-bottom: 16px !important;
+}
+
+.faq-info-text strong {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+/* Consistent blue color for all FAQ items */
+.faq-summary {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+}
+
+/* Enhanced focus states for accessibility */
+.faq-accordion:focus-within {
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+  outline: none;
+}
+
+.faq-summary:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: -3px;
+}
+
+/* Animation for accordion expansion */
+.faq-accordion .MuiAccordionDetails-root {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faq-summary {
+    min-height: 60px !important;
+    padding: 0 16px !important;
+  }
+  
+  .faq-details {
+    padding: 16px !important;
+  }
+  
+  .faq-icon {
+    font-size: 24px !important;
+    margin-right: 12px;
+  }
+  
+  .faq-question {
+    font-size: 1rem !important;
+  }
+  
+  .faq-info-box {
+    padding: 1.5rem;
+  }
+}
+
+/* Enhanced chip styling */
+.faq-summary .MuiChip-root {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  height: 20px !important;
+}
+
+/* Improved list styling */
+.faq-details .MuiListItemIcon-root .MuiSvgIcon-root {
+  font-size: 20px !important;
+}
+
+/* Better typography hierarchy */
+.faq-details .MuiTypography-h6 {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+.faq-details .MuiTypography-body1 strong {
+  color: #1e3a8a !important;
+  font-weight: 600 !important;
+}
+
+/* Hover effects for interactive elements */
+.faq-details .MuiListItem-root:hover {
+  background-color: #f8fafc;
+  border-radius: 4px;
+  margin: 0 -8px;
+  padding: 8px !important;
+}
+
+/* Enhanced visual hierarchy */
+.faq-page .MuiTypography-h2 {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700 !important;
+}
+
+/* Improved spacing and layout */
+.faq-page .MuiContainer-root {
+  max-width: 1000px !important;
+}
+
+/* Better contrast for accessibility */
+.faq-details .MuiTypography-body1 {
+  color: #1f2937 !important;
+}
+
+.faq-details .MuiListItemText-primary {
+  color: #374151 !important;
+}
+
+/* Enhanced visual feedback */
+.faq-accordion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Loading state for dynamic content */
+.faq-loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Print styles */
+@media print {
+  .faq-accordion {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .faq-summary {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+  }
+  
+  .faq-details {
+    background: white !important;
+  }
+}

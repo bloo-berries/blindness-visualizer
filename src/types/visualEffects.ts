@@ -69,6 +69,6 @@ export interface VisualEffect {
 }
 
 export type InputSource = 
-  | { type: 'webcam' }
+  | { type: 'webcam' }  // Note: Keeping 'webcam' as the internal type for compatibility
   | { type: 'image'; url: string }
   | { type: 'youtube' };

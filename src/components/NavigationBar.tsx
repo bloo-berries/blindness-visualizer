@@ -36,9 +36,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   const navItems = [
     { label: 'About', href: '#about' },
-    { label: 'Conditions', href: '#conditions' },
-    { label: 'Research', href: '#research' },
-    { label: 'FAQ', href: '#faq' }
+    { label: 'Conditions Glossary', href: '/conditions' },
+    { label: 'FAQ', href: '/faq' }
   ];
 
   return (
@@ -120,6 +119,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <Button
                   key={item.label}
                   color="inherit"
+                  component={item.href.startsWith('/') ? 'a' : 'button'}
+                  href={item.href.startsWith('/') ? item.href : undefined}
+                  onClick={item.href.startsWith('/') ? undefined : () => {
+                    // Handle anchor links
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   sx={{
                     color: 'white',
                     fontWeight: 600,

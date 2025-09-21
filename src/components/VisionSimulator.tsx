@@ -8,7 +8,8 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Button
+  Button,
+  Tooltip
 } from '@mui/material';
 import Visualizer from './Visualizer';
 import ControlPanel from './ControlPanel';
@@ -110,6 +111,15 @@ const VisionSimulator: React.FC = () => {
     }
   };
 
+  const handleSourceChange = useCallback((source: InputSource) => {
+    // Prevent camera access - force to YouTube if someone tries to set webcam
+    if (source.type === 'webcam') {
+      setInputSource({ type: 'youtube' });
+      return;
+    }
+    setInputSource(source);
+  }, []);
+
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
@@ -117,7 +127,7 @@ const VisionSimulator: React.FC = () => {
           <Box sx={{ p: 3 }}>
             <InputSelector 
               currentSource={inputSource}
-              onSourceChange={setInputSource}
+              onSourceChange={handleSourceChange}
             />
           </Box>
         );
@@ -366,14 +376,22 @@ const VisionSimulator: React.FC = () => {
                 >
                   BACK
                 </Button>
-                <Button
-                  variant="contained"
-                  onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
-                  aria-label={`Go to ${activeStep < steps.length - 1 ? 'next step' : 'finish'}`}
-                  size="large"
+                <Tooltip 
+                  title={inputSource.type === 'webcam' && activeStep === 0 ? "Camera feature is coming soon as a premium feature" : ""}
+                  placement="top"
                 >
-                  {activeStep === steps.length - 1 ? 'FINISH' : 'NEXT'}
-                </Button>
+                  <span>
+                    <Button
+                      variant="contained"
+                      onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
+                      aria-label={`Go to ${activeStep < steps.length - 1 ? 'next step' : 'finish'}`}
+                      size="large"
+                      disabled={inputSource.type === 'webcam' && activeStep === 0}
+                    >
+                      {activeStep === steps.length - 1 ? 'FINISH' : 'NEXT'}
+                    </Button>
+                  </span>
+                </Tooltip>
               </Box>
             </Container>
           </Box>

@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/blindness-visualizer/static/css/main.143a2012.css",
-    "main.js": "/blindness-visualizer/static/js/main.18c85cbb.js",
-    "static/js/453.1a7257a1.chunk.js": "/blindness-visualizer/static/js/453.1a7257a1.chunk.js",
-    "index.html": "/blindness-visualizer/index.html",
-    "main.143a2012.css.map": "/blindness-visualizer/static/css/main.143a2012.css.map",
-    "main.18c85cbb.js.map": "/blindness-visualizer/static/js/main.18c85cbb.js.map",
-    "453.1a7257a1.chunk.js.map": "/blindness-visualizer/static/js/453.1a7257a1.chunk.js.map"
+    "main.css": "./static/css/main.143a2012.css",
+    "main.js": "./static/js/main.0fc9cc3c.js",
+    "static/js/453.1a7257a1.chunk.js": "./static/js/453.1a7257a1.chunk.js",
+    "index.html": "./index.html",
+    "main.143a2012.css.map": "./static/css/main.143a2012.css.map",
+    "main.0fc9cc3c.js.map": "./static/js/main.0fc9cc3c.js.map",
+    "453.1a7257a1.chunk.js.map": "./static/js/453.1a7257a1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.143a2012.css",
-    "static/js/main.18c85cbb.js"
+    "static/js/main.0fc9cc3c.js"
   ]
 }

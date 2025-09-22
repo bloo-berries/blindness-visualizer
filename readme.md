@@ -29,6 +29,9 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
   - Refractive errors (Nearsightedness, Farsightedness, Astigmatism)
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
+![Visualization Preview](./public/images/people/Visualization-Preview.png)
+*Real-time vision condition simulation with multiple effects applied*
+
 ### Famous People Educational Section
 - **14 famous individuals** across 5 categories:
   - Historical Figures (John Milton, Louis Braille, Galileo Galilei)
@@ -39,6 +42,9 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Search and filter functionality** by name, condition, or category
 - **Detailed person cards** with medical information and life stories
 - **Direct simulation integration** - experience each person's specific vision condition
+
+![Claude Monet Preview](./public/images/people/Claude-Monet-Preview.png)
+*Example of famous person profile with detailed information and simulation integration*
 
 ### Accessibility Features
 - **Screen reader compatibility**

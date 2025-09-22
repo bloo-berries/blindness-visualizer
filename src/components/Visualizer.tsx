@@ -12,6 +12,7 @@ import { generateCSSFilters } from '../utils/cssFilterManager';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
 import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayManager';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
+import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../utils/performanceOptimizer';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -35,6 +36,12 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
   const [showComparison, setShowComparison] = useState(false);
+
+  // Performance optimization instances
+  const optimizer = useRef(PerformanceOptimizer.getInstance());
+  const effectProcessor = useRef(new EffectProcessor());
+  const overlayManager = useRef(new OverlayManager());
+  const animationManager = useRef(AnimationManager.getInstance());
 
   // Helper function to avoid repeated effects.find() calls
   const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
@@ -109,69 +116,29 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     const sceneManager = createSceneManager(containerRef.current);
     const { scene, camera, renderer, dispose } = sceneManager;
 
-    // Setup animation frame for dynamic effects
-    let animationFrameId: number;
-    
-    // Function to update animated overlays using utility
-    const updateOverlays = () => {
-      // Cache effect lookups to avoid repeated finds
-      const effectMap = new Map(effects.map(e => [e.id, e]));
-      const scotoma = effectMap.get('scotoma');
-      const visualFloaters = effectMap.get('visualFloaters');
-      
-      if (scotoma?.enabled) {
-        const now = Date.now();
-        const overlayElement = document.getElementById('visual-field-overlay-scotoma');
-        if (overlayElement) {
-          overlayElement.style.background = `
-            radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
-              rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
-              rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
-              rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
-              rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
-            )
-          `;
-        }
-      }
-      
-      if (visualFloaters?.enabled) {
-        const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
-        
-        if (overlayElement) {
-          // Use the improved floater patterns from animatedOverlays utility
-          updateAnimatedOverlays([visualFloaters]);
-          
-          // Ensure the overlay is visible and properly styled
-          overlayElement.style.mixBlendMode = 'multiply';
-          overlayElement.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
-          // Visual Field Loss conditions get higher z-index (visualFloaters is not a Visual Field Loss condition)
-          overlayElement.style.zIndex = '10';
-          overlayElement.style.pointerEvents = 'none';
-        } else {
-          // If the overlay doesn't exist, try to create it
-          const container = findOverlayContainer();
-          if (container) {
-            createSimpleOverlay('visual-field-overlay-visualFloaters', container, {
-              mixBlendMode: 'multiply',
-              opacity: Math.min(0.98, visualFloaters.intensity).toString()
-            });
-          }
-        }
-      }
-      
-      // Visual Snow is now handled by ControlPanel.tsx overlay generation
-      
-      // Continue animation loop
-      animationFrameId = requestAnimationFrame(updateOverlays);
-    };
-    
-    // Start animation if needed (for all content types that support overlays)
+    // Optimized animation setup using performance manager
+    const enabledEffectsCount = effects.filter(e => e.enabled).length;
     const needsAnimation = effects.some(e => 
       (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa') && e.enabled
     );
     
+    // Create optimized animation callback
+    const updateOverlays = () => {
+      // Only update if effects have changed
+      const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
+      
+      if (changed && containerRef.current) {
+        // Update overlays efficiently
+        overlayManager.current.updateOverlays(enabledEffects, containerRef.current);
+      }
+      
+      // Update animated overlays
+      overlayManager.current.updateAnimatedOverlays(enabledEffects);
+    };
+    
+    // Add animation callback to unified manager
     if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
-      animationFrameId = requestAnimationFrame(updateOverlays);
+      animationManager.current.addCallback(updateOverlays);
     }
 
     // Handle different input sources
@@ -236,15 +203,31 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     const mesh = createVisualizationMesh();
     scene.add(mesh);
 
-    // Animation loop
+    // Optimized animation loop with performance monitoring
     const animate = () => {
-      requestAnimationFrame(animate);
+      // Monitor performance and throttle if needed
+      optimizer.current.monitorPerformance();
+      
       if (texture) {
         const material = mesh.material as THREE.ShaderMaterial;
         material.uniforms.tDiffuse.value = texture;
-        updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
+        
+        // Only update shader uniforms if effects have changed
+        const { changed } = effectProcessor.current.updateEffects(effects);
+        if (changed) {
+          updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
+        }
       }
+      
       renderer.render(scene, camera);
+      
+      // Use optimal frame rate based on condition count
+      const frameRate = optimizer.current.getOptimalFrameRate(enabledEffectsCount);
+      if (frameRate < 60) {
+        setTimeout(() => requestAnimationFrame(animate), 1000 / frameRate - 16.67);
+      } else {
+        requestAnimationFrame(animate);
+      }
     };
     animate();
 
@@ -255,10 +238,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         return;
       }
       
-      // Cancel animation frame
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
+      // Remove animation callback from unified manager
+      animationManager.current.removeCallback(updateOverlays);
+      
+      // Clear overlays
+      overlayManager.current.clearOverlays();
       
       // Use the dispose function from scene manager
       dispose();
@@ -272,75 +256,68 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effects, diplopiaSeparation, diplopiaDirection, texture]);
 
-  // Get effect state changes to rerender
+  // Optimized effect state changes handling
   useEffect(() => {
-    // Create visual field overlays for YouTube and image content whenever effects change
+    // Only process if effects have actually changed
+    const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
+    
+    if (!changed) return;
+    
+    // Create visual field overlays for YouTube and image content
     if (inputSource.type === 'youtube' || inputSource.type === 'image') {
       // For YouTube and image content, only create overlays for non-diplopia effects
-      // Diplopia effects are handled by the getDiplopiaOverlay function
-      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
+      const nonDiplopiaEffects = enabledEffects.filter(e => 
+        e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+      );
       
-      if (nonDiplopiaEffects.some(e => e.enabled)) {
-        console.log(`Creating visual field overlays for ${inputSource.type} content with non-diplopia effects:`, nonDiplopiaEffects);
-        
-        // Add a small delay to ensure the content is loaded
-        const timer = setTimeout(() => {
-          createVisualFieldOverlays(nonDiplopiaEffects);
-        }, 100);
-        
-        return () => clearTimeout(timer);
+      if (nonDiplopiaEffects.length > 0 && containerRef.current) {
+        // Use optimized overlay manager
+        overlayManager.current.updateOverlays(nonDiplopiaEffects, containerRef.current);
       }
     }
     
     // Check if we need animation (for overlay-based effects)
-    const visualFloaters = getEffect('visualFloaters');
-    const scotoma = getEffect('scotoma');
-    
-    const needsAnimation = 
-      (visualFloaters && visualFloaters.enabled) || 
-      (scotoma && scotoma.enabled);
+    const needsAnimation = enabledEffects.some(e => 
+      e.id === 'visualFloaters' || e.id === 'scotoma'
+    );
     
     if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
-      // Start animation if not already running
-      let animationFrameId: number;
-      
-      const updateAnimatedEffects = () => {
-        updateAnimatedOverlays(effects);
-        animationFrameId = requestAnimationFrame(updateAnimatedEffects);
-      };
-      
-      animationFrameId = requestAnimationFrame(updateAnimatedEffects);
-      
-      return () => {
-        if (animationFrameId) {
-          cancelAnimationFrame(animationFrameId);
-        }
-      };
+      // Animation is now handled by the unified animation manager
+      // No need for separate animation loop here
     }
-  }, [effects, inputSource.type, getEffect]);
+  }, [effects, inputSource.type]);
 
-  // Calculate CSS filters based on effects
-  const getEffectStyles = () => {
+  // Optimized CSS filter calculation with caching
+  const getEffectStyles = useCallback(() => {
     const baseStyle: React.CSSProperties = {
       position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
       maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain'
     };
 
     if (inputSource.type === 'youtube') {
-      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
-      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-      return filters ? { ...baseStyle, filter: filters } : baseStyle;
+      // Use optimized effect processor to get enabled effects
+      const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+      const nonDiplopiaEffects = enabledEffects.filter(e => 
+        e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+      );
+      
+      // Only generate filters if there are effects to process
+      if (nonDiplopiaEffects.length > 0) {
+        const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+        return filters ? { ...baseStyle, filter: filters } : baseStyle;
+      }
     }
 
     return baseStyle;
-  };
+  }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
 
-  // Create diplopia overlay for YouTube content
-  const getDiplopiaOverlay = () => {
+  // Optimized diplopia overlay generation
+  const getDiplopiaOverlay = useCallback(() => {
     if (inputSource.type !== 'youtube') return null;
 
-    const diplopiaMonocular = getEffect('diplopiaMonocular');
-    const diplopiaBinocular = getEffect('diplopiaBinocular');
+    // Use optimized effect processor for faster lookups
+    const diplopiaMonocular = effectProcessor.current.getEffect('diplopiaMonocular');
+    const diplopiaBinocular = effectProcessor.current.getEffect('diplopiaBinocular');
     
     // Only create diplopia overlay if one of the diplopia conditions is actually enabled
     const diplopia = diplopiaMonocular?.enabled ? diplopiaMonocular : 
@@ -376,7 +353,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         <iframe {...iframeProps} title="Vision Simulator" />
       </div>
     );
-  };
+  }, [inputSource.type, diplopiaSeparation, diplopiaDirection, effects]);
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 

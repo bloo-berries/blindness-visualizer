@@ -16,6 +16,7 @@ import ControlPanel from './ControlPanel';
 import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PerformanceMonitor from './PerformanceMonitor';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
@@ -204,6 +205,12 @@ const VisionSimulator: React.FC = () => {
       <NavigationBar 
         showHomeButton={true}
         onHomeClick={handleHomeClick}
+      />
+      
+      {/* Performance Monitor - only show when conditions are active */}
+      <PerformanceMonitor 
+        conditionCount={enabledEffectsCount} 
+        isVisible={activeStep >= 2 && enabledEffectsCount > 0} 
       />
       <a 
         href="#main-content" 

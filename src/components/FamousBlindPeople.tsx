@@ -273,22 +273,22 @@ const FamousBlindPeople: React.FC = () => {
   const getPersonImage = (personId: string) => {
     // Map person IDs to actual image files
     const imageMap: Record<string, string> = {
-      milton: '/images/people/john-milton.jpg',
-      braille: '/images/people/louis-Braille.jpg',
-      galileo: '/images/people/Galileo-Galilei.jpg',
-      ray: '/images/people/ray-charles.jpg',
-      stevie: '/images/people/stevie-wonder.jpg',
-      helen: '/images/people/hellen-keller.jpg',
-      bocelli: '/images/people/Andrea-Bocelli.jpg',
-      monet: '/images/people/claude-monet.jpg',
-      christine: '/images/people/christine-ha.webp',
-      ved: '/images/people/Ved-Mehta.png',
-      erik: '/images/people/Erik-Weihenmayer.webp',
-      marla: '/images/people/Marla-Runyan.webp',
-      mona: '/images/people/Mona-Minkara.webp',
-      joshua: '/images/people/Joshua-Miele.webp',
-      lucy: '/images/people/Lucy-Edwards.webp',
-      paterson: '/images/people/David-Paterson.webp'
+      milton: './images/people/john-milton.jpg',
+      braille: './images/people/louis-Braille.jpg',
+      galileo: './images/people/Galileo-Galilei.jpg',
+      ray: './images/people/ray-charles.jpg',
+      stevie: './images/people/stevie-wonder.jpg',
+      helen: './images/people/hellen-keller.jpg',
+      bocelli: './images/people/Andrea-Bocelli.jpg',
+      monet: './images/people/claude-monet.jpg',
+      christine: './images/people/christine-ha.webp',
+      ved: './images/people/Ved-Mehta.png',
+      erik: './images/people/Erik-Weihenmayer.webp',
+      marla: './images/people/Marla-Runyan.webp',
+      mona: './images/people/Mona-Minkara.webp',
+      joshua: './images/people/Joshua-Miele.webp',
+      lucy: './images/people/Lucy-Edwards.webp',
+      paterson: './images/people/David-Paterson.webp'
     };
     
     return imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;

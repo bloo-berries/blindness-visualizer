@@ -276,7 +276,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/john-milton.jpg" 
+                          src="./images/people/john-milton.jpg" 
                           alt="John Milton"
                           style={{ 
                             width: '100%', 
@@ -294,7 +294,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/stevie-wonder.jpg" 
+                          src="./images/people/stevie-wonder.jpg" 
                           alt="Stevie Wonder"
                           style={{ 
                             width: '100%', 
@@ -312,7 +312,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/hellen-keller.jpg" 
+                          src="./images/people/hellen-keller.jpg" 
                           alt="Helen Keller"
                           style={{ 
                             width: '100%', 
@@ -330,7 +330,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/ray-charles.jpg" 
+                          src="./images/people/ray-charles.jpg" 
                           alt="Ray Charles"
                           style={{ 
                             width: '100%', 

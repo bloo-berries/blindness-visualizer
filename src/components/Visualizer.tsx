@@ -26,8 +26,12 @@ interface VisualizerProps {
 
 const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition, showComparison: propShowComparison, onToggleComparison }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const effectProcessor = useRef(new EffectProcessor());
+  const overlayManager = useRef(new OverlayManager());
+  const animationManager = useRef(AnimationManager.getInstance());
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -255,6 +259,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         return;
       }
       
+      // Clear overlays
+      currentOverlayManager.clearOverlays();
+      
       // Cancel animation frame
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -274,12 +281,32 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   // Get effect state changes to rerender
   useEffect(() => {
+    // Only process if effects have actually changed
+    const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
+    
+    if (!changed) return;
+    
+    // Create visual field overlays for image content only (not YouTube - uses CSS filters instead)
+    if (inputSource.type === 'image') {
+      // For image content, only create overlays for non-diplopia effects
+      const nonDiplopiaEffects = enabledEffects.filter(e => 
+        e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+      );
     // Create visual field overlays for YouTube and image content whenever effects change
     if (inputSource.type === 'youtube' || inputSource.type === 'image') {
       // For YouTube and image content, only create overlays for non-diplopia effects
       // Diplopia effects are handled by the getDiplopiaOverlay function
       const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
       
+      if (nonDiplopiaEffects.length > 0) {
+        // Use optimized overlay manager - use simulation container in comparison mode, main container otherwise
+        const targetContainer = showComparison && simulationContainerRef.current 
+          ? simulationContainerRef.current 
+          : containerRef.current;
+        
+        if (targetContainer) {
+          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
+        }
       if (nonDiplopiaEffects.some(e => e.enabled)) {
         console.log(`Creating visual field overlays for ${inputSource.type} content with non-diplopia effects:`, nonDiplopiaEffects);
         
@@ -300,6 +327,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       (visualFloaters && visualFloaters.enabled) || 
       (scotoma && scotoma.enabled);
     
+    if (needsAnimation && inputSource.type === 'image') {
+      // Animation is now handled by the unified animation manager
+      // No need for separate animation loop here
     if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
       // Start animation if not already running
       let animationFrameId: number;
@@ -407,19 +437,22 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             {personName} - {personCondition}
           </Typography>
           <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            Side-by-side comparison: Original video (left) vs. Vision simulation (right)
+            Side-by-side comparison: Vision simulation (left) vs. Original video (right)
           </Typography>
         </Box>
 
-        {/* Left side - Original video */}
-        <Box sx={{ 
-          position: 'absolute',
-          left: 0,
-          top: '60px',
-          width: '50%',
-          height: 'calc(100% - 60px)',
-          borderRight: '2px solid #fff'
-        }}>
+        {/* Left side - Simulation video */}
+        <Box 
+          ref={simulationContainerRef}
+          sx={{ 
+            position: 'absolute',
+            left: 0,
+            top: '60px',
+            width: '50%',
+            height: 'calc(100% - 60px)',
+            borderRight: '2px solid #fff'
+          }}
+        >
           <Box sx={{ 
             position: 'absolute', 
             top: '10px', 
@@ -458,7 +491,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           {getDiplopiaOverlay()}
         </Box>
 
-        {/* Right side - Visualization */}
+        {/* Right side - Original video */}
         <Box sx={{ 
           position: 'absolute',
           right: 0,

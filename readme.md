@@ -5,11 +5,11 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 📸 Site Preview
 
 ### Homepage
-![VisionSim Homepage](./docs/assets/images/homepage-preview.png)
+![VisionSim Homepage](./src/assets/images/people/VisionSim-Home-Page.png)
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
 ### About Page  
-![VisionSim About Page](./docs/assets/images/about-page-preview.png)
+![VisionSim About Page](./src/assets/images/people/VisionSim-About.png)
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
 ## 🎯 Features

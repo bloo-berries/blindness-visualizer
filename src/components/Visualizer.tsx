@@ -5,12 +5,9 @@ import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui
 import { Download } from '@mui/icons-material';
 import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
-import { updateAnimatedOverlays } from '../utils/animatedOverlays';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
-import { createVisualFieldOverlays } from '../utils/overlayManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
-import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayManager';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../utils/performanceOptimizer';
 
@@ -44,7 +41,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const animationManager = useRef(AnimationManager.getInstance());
 
   // Helper function to avoid repeated effects.find() calls
-  const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
+  // const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
 
   // Enable comparison mode for famous people or when explicitly requested
   useEffect(() => {
@@ -115,6 +112,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // Set up Three.js scene using utility
     const sceneManager = createSceneManager(containerRef.current);
     const { scene, camera, renderer, dispose } = sceneManager;
+
+    // Capture current ref values to avoid stale closure issues in cleanup
+    const currentAnimationManager = animationManager.current;
+    const currentOverlayManager = overlayManager.current;
 
     // Optimized animation setup using performance manager
     const enabledEffectsCount = effects.filter(e => e.enabled).length;
@@ -239,10 +240,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       }
       
       // Remove animation callback from unified manager
-      animationManager.current.removeCallback(updateOverlays);
+      currentAnimationManager.removeCallback(updateOverlays);
       
       // Clear overlays
-      overlayManager.current.clearOverlays();
+      currentOverlayManager.clearOverlays();
       
       // Use the dispose function from scene manager
       dispose();
@@ -353,7 +354,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         <iframe {...iframeProps} title="Vision Simulator" />
       </div>
     );
-  }, [inputSource.type, diplopiaSeparation, diplopiaDirection, effects]);
+  }, [inputSource.type, diplopiaSeparation, diplopiaDirection]);
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 

@@ -54,8 +54,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaDirectionChange
 }) => {
   // Create effect lookup map for O(1) access instead of O(n) finds
-  const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
-  const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
+  // const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
+  // const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
 
   // Group effects by category (memoized to prevent unnecessary recalculations)
   const effectsByCategory = useMemo(() => 
@@ -80,7 +80,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   );
   
   // Get visual floaters effect for animation (using optimized lookup)
-  const visualFloatersEffect = getEffect('visualFloaters');
+  // const visualFloatersEffect = getEffect('visualFloaters');
 
   // Handler for when an effect is clicked in the list (memoized)
   const handleEffectClick = useCallback((effect: VisualEffect) => {

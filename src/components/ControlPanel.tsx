@@ -1525,6 +1525,521 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.filter = `saturate(${1 - intensity * 0.4})`;
                         break;
                         
+                      // John Milton Effects
+                      case 'miltonGlaucomaHalos':
+                        // Milton's rainbow halos around lights
+                        const miltonHaloIntensity = Math.min(intensity * 1.5, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,255,255,${miltonHaloIntensity * 0.3}) 0%, 
+                            rgba(255,0,0,${miltonHaloIntensity * 0.2}) 20%,
+                            rgba(255,255,0,${miltonHaloIntensity * 0.2}) 40%,
+                            rgba(0,255,0,${miltonHaloIntensity * 0.2}) 60%,
+                            rgba(0,255,255,${miltonHaloIntensity * 0.2}) 80%,
+                            rgba(0,0,255,${miltonHaloIntensity * 0.2}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.6, miltonHaloIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'miltonProgressiveVignetting':
+                        // Milton's progressive peripheral vision loss
+                        const miltonVignetteIntensity = Math.min(intensity * 1.3, 1.0);
+                        const miltonVignetteRadius = Math.max(30, 80 - intensity * 50);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,0) 0%, 
+                            rgba(0,0,0,${miltonVignetteIntensity * 0.3}) ${miltonVignetteRadius}%,
+                            rgba(0,0,0,${miltonVignetteIntensity * 0.8}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.9, miltonVignetteIntensity);
+                        break;
+                        
+                      case 'miltonScotomas':
+                        // Milton's scotomas (blind spots)
+                        const miltonScotomaIntensity = Math.min(intensity * 1.4, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 30% 30%, rgba(0,0,0,${miltonScotomaIntensity * 0.9}) 0%, rgba(0,0,0,0) 15%),
+                          radial-gradient(circle at 70% 40%, rgba(0,0,0,${miltonScotomaIntensity * 0.8}) 0%, rgba(0,0,0,0) 12%),
+                          radial-gradient(circle at 60% 70%, rgba(0,0,0,${miltonScotomaIntensity * 0.7}) 0%, rgba(0,0,0,0) 10%)
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, miltonScotomaIntensity);
+                        break;
+                        
+                      case 'miltonRetinalDetachment':
+                        // Milton's retinal detachment effects
+                        const miltonDetachmentIntensity = Math.min(intensity * 1.6, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(45deg, 
+                            rgba(0,0,0,${miltonDetachmentIntensity * 0.6}) 0%, 
+                            rgba(0,0,0,${miltonDetachmentIntensity * 0.3}) 25%,
+                            rgba(0,0,0,${miltonDetachmentIntensity * 0.8}) 50%,
+                            rgba(0,0,0,${miltonDetachmentIntensity * 0.4}) 75%,
+                            rgba(0,0,0,${miltonDetachmentIntensity * 0.7}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, miltonDetachmentIntensity);
+                        break;
+                        
+                      case 'miltonPhotophobia':
+                        // Milton's light sensitivity
+                        const miltonPhotoIntensity = Math.min(intensity * 1.8, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,255,255,${miltonPhotoIntensity * 0.4}) 0%, 
+                            rgba(255,255,255,${miltonPhotoIntensity * 0.2}) 30%,
+                            rgba(255,255,255,${miltonPhotoIntensity * 0.1}) 60%,
+                            rgba(255,255,255,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.5, miltonPhotoIntensity);
+                        break;
+                        
+                      case 'miltonTemporalFieldLoss':
+                        // Milton's temporal field defects
+                        const miltonTemporalIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(0,0,0,${miltonTemporalIntensity * 0.8}) 0%, 
+                            rgba(0,0,0,${miltonTemporalIntensity * 0.4}) 20%,
+                            rgba(0,0,0,0) 40%,
+                            rgba(0,0,0,0) 60%,
+                            rgba(0,0,0,${miltonTemporalIntensity * 0.4}) 80%,
+                            rgba(0,0,0,${miltonTemporalIntensity * 0.8}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, miltonTemporalIntensity);
+                        break;
+                        
+                      // Complete Blindness Effects
+                      case 'completeBlindness':
+                        // Complete absence of light perception - total darkness
+                        overlayStyle.background = 'rgba(0,0,0,1)';
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = 1.0;
+                        break;
+                        
+                      // Galileo Effects
+                      case 'galileoAcuteAttackMode':
+                        // Galileo's acute glaucoma attacks
+                        const galileoAttackIntensity = Math.min(intensity * 2.0, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,0,0,${galileoAttackIntensity * 0.6}) 0%, 
+                            rgba(255,255,0,${galileoAttackIntensity * 0.4}) 30%,
+                            rgba(255,255,255,${galileoAttackIntensity * 0.3}) 60%,
+                            rgba(255,255,255,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.8, galileoAttackIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 0.5s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'galileoChronicProgression':
+                        // Galileo's chronic progression
+                        const galileoChronicIntensity = Math.min(intensity * 1.5, 1.0);
+                        const galileoRadius = Math.max(20, 60 - intensity * 40);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${galileoChronicIntensity * 0.9}) 0%, 
+                            rgba(0,0,0,${galileoChronicIntensity * 0.6}) ${galileoRadius}%,
+                            rgba(0,0,0,${galileoChronicIntensity * 0.3}) ${galileoRadius + 10}%,
+                            rgba(0,0,0,0) ${galileoRadius + 20}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.9, galileoChronicIntensity);
+                        break;
+                        
+                      // Ved Mehta Effects
+                      case 'vedCompleteBlindness':
+                        // Ved's complete blindness from meningitis
+                        overlayStyle.background = 'rgba(0,0,0,1)';
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = 1.0;
+                        break;
+                        
+                      case 'vedSpatialAwareness':
+                        // Ved's spatial awareness visualization
+                        const vedSpatialIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${vedSpatialIntensity * 0.8}) 0%, 
+                            rgba(0,0,0,${vedSpatialIntensity * 0.4}) 30%,
+                            rgba(0,0,0,${vedSpatialIntensity * 0.2}) 60%,
+                            rgba(0,0,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, vedSpatialIntensity);
+                        break;
+                        
+                      case 'vedEchoLocation':
+                        // Ved's echolocation visualization
+                        const vedEchoIntensity = Math.min(intensity * 1.3, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,255,${vedEchoIntensity * 0.3}) 0%, 
+                            rgba(0,0,255,${vedEchoIntensity * 0.1}) 50%,
+                            rgba(0,0,255,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.4, vedEchoIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 1.5s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'vedAirFlowSensors':
+                        // Ved's air flow perception
+                        const vedAirIntensity = Math.min(intensity * 1.1, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(45deg, 
+                            rgba(0,255,0,${vedAirIntensity * 0.2}) 0%, 
+                            rgba(0,255,0,${vedAirIntensity * 0.1}) 50%,
+                            rgba(0,255,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.3, vedAirIntensity);
+                        break;
+                        
+                      case 'vedProximityRadar':
+                        // Ved's proximity detection
+                        const vedProximityIntensity = Math.min(intensity * 1.4, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,255,0,${vedProximityIntensity * 0.4}) 0%, 
+                            rgba(255,255,0,${vedProximityIntensity * 0.2}) 30%,
+                            rgba(255,255,0,0) 60%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.5, vedProximityIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'vedTemperatureMapping':
+                        // Ved's temperature perception
+                        const vedTempIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(255,0,0,${vedTempIntensity * 0.3}) 0%, 
+                            rgba(255,255,0,${vedTempIntensity * 0.2}) 50%,
+                            rgba(0,0,255,${vedTempIntensity * 0.3}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.4, vedTempIntensity);
+                        break;
+                        
+                      // Erik Weihenmayer Effects
+                      case 'erikRetinoschisisIslands':
+                        // Erik's isolated islands of vision
+                        const erikIslandIntensity = Math.min(intensity * 1.5, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 25% 25%, rgba(0,0,0,${erikIslandIntensity * 0.9}) 0%, rgba(0,0,0,0) 8%),
+                          radial-gradient(circle at 75% 30%, rgba(0,0,0,${erikIslandIntensity * 0.8}) 0%, rgba(0,0,0,0) 6%),
+                          radial-gradient(circle at 40% 70%, rgba(0,0,0,${erikIslandIntensity * 0.7}) 0%, rgba(0,0,0,0) 5%),
+                          radial-gradient(circle at 80% 80%, rgba(0,0,0,${erikIslandIntensity * 0.6}) 0%, rgba(0,0,0,0) 4%)
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, erikIslandIntensity);
+                        break;
+                        
+                      case 'erikIslandFragmentation':
+                        // Erik's progressive island fragmentation
+                        const erikFragIntensity = Math.min(intensity * 1.6, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 30% 40%, rgba(0,0,0,${erikFragIntensity * 0.8}) 0%, rgba(0,0,0,0) 10%),
+                          radial-gradient(circle at 70% 60%, rgba(0,0,0,${erikFragIntensity * 0.7}) 0%, rgba(0,0,0,0) 8%),
+                          radial-gradient(circle at 50% 80%, rgba(0,0,0,${erikFragIntensity * 0.6}) 0%, rgba(0,0,0,0) 6%)
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, erikFragIntensity);
+                        break;
+                        
+                      case 'erikProgressiveLoss':
+                        // Erik's progressive vision loss
+                        const erikProgIntensity = Math.min(intensity * 1.4, 1.0);
+                        const erikProgRadius = Math.max(20, 70 - intensity * 50);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${erikProgIntensity * 0.9}) 0%, 
+                            rgba(0,0,0,${erikProgIntensity * 0.6}) ${erikProgRadius}%,
+                            rgba(0,0,0,${erikProgIntensity * 0.3}) ${erikProgRadius + 10}%,
+                            rgba(0,0,0,0) ${erikProgRadius + 20}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, erikProgIntensity);
+                        break;
+                        
+                      case 'erikScanningBehavior':
+                        // Erik's scanning behavior visualization
+                        const erikScanIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(0deg, 
+                            rgba(0,0,0,${erikScanIntensity * 0.6}) 0%, 
+                            rgba(0,0,0,${erikScanIntensity * 0.3}) 30%,
+                            rgba(0,0,0,0) 50%,
+                            rgba(0,0,0,${erikScanIntensity * 0.3}) 70%,
+                            rgba(0,0,0,${erikScanIntensity * 0.6}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.5, erikScanIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 3s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'erikCognitiveLoad':
+                        // Erik's cognitive load visualization
+                        const erikCogIntensity = Math.min(intensity * 1.3, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,0,0,${erikCogIntensity * 0.3}) 0%, 
+                            rgba(255,0,0,${erikCogIntensity * 0.1}) 50%,
+                            rgba(255,0,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.4, erikCogIntensity);
+                        break;
+                        
+                      // Marla Runyan Effects
+                      case 'marlaCentralScotoma':
+                        // Marla's central scotoma
+                        const marlaScotomaIntensity = Math.min(intensity * 1.3, 1.0);
+                        const marlaScotomaRadius = Math.max(15, 25 - intensity * 10);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.9}) 0%, 
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.7}) ${marlaScotomaRadius}%,
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.4}) ${marlaScotomaRadius + 5}%,
+                            rgba(0,0,0,0) ${marlaScotomaRadius + 15}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, marlaScotomaIntensity);
+                        break;
+                        
+                      case 'marlaPeripheralVision':
+                        // Marla's preserved peripheral vision
+                        const marlaPeriphIntensity = Math.min(intensity * 1.1, 1.0);
+                        const marlaPeriphRadius = Math.max(30, 50 - intensity * 20);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${marlaPeriphIntensity * 0.8}) 0%, 
+                            rgba(0,0,0,${marlaPeriphIntensity * 0.6}) ${marlaPeriphRadius}%,
+                            rgba(0,0,0,${marlaPeriphIntensity * 0.3}) ${marlaPeriphRadius + 10}%,
+                            rgba(0,0,0,0) ${marlaPeriphRadius + 20}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, marlaPeriphIntensity);
+                        break;
+                        
+                      case 'marlaEccentricViewing':
+                        // Marla's eccentric viewing
+                        const marlaEccentricIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 60% 40%, 
+                            rgba(0,0,0,${marlaEccentricIntensity * 0.9}) 0%, 
+                            rgba(0,0,0,${marlaEccentricIntensity * 0.6}) 20%,
+                            rgba(0,0,0,${marlaEccentricIntensity * 0.3}) 40%,
+                            rgba(0,0,0,0) 60%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.6, marlaEccentricIntensity);
+                        break;
+                        
+                      case 'marlaFillingIn':
+                        // Marla's brain filling-in effect
+                        const marlaFillIntensity = Math.min(intensity * 1.0, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(128,128,128,${marlaFillIntensity * 0.3}) 0%, 
+                            rgba(128,128,128,${marlaFillIntensity * 0.1}) 30%,
+                            rgba(128,128,128,0) 60%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.4, marlaFillIntensity);
+                        break;
+                        
+                      case 'marlaCrowdingEffect':
+                        // Marla's crowding effect
+                        const marlaCrowdIntensity = Math.min(intensity * 1.4, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(45deg, 
+                            rgba(0,0,0,${marlaCrowdIntensity * 0.6}) 0%, 
+                            rgba(0,0,0,${marlaCrowdIntensity * 0.3}) 25%,
+                            rgba(0,0,0,${marlaCrowdIntensity * 0.8}) 50%,
+                            rgba(0,0,0,${marlaCrowdIntensity * 0.4}) 75%,
+                            rgba(0,0,0,${marlaCrowdIntensity * 0.7}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.5, marlaCrowdIntensity);
+                        break;
+                        
+                      case 'marlaStargardtComplete':
+                        // Marla's complete Stargardt simulation
+                        const marlaCompleteIntensity = Math.min(intensity * 1.5, 1.0);
+                        const marlaCompleteRadius = Math.max(20, 40 - intensity * 20);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,0,${marlaCompleteIntensity * 0.95}) 0%, 
+                            rgba(0,0,0,${marlaCompleteIntensity * 0.8}) ${marlaCompleteRadius}%,
+                            rgba(0,0,0,${marlaCompleteIntensity * 0.5}) ${marlaCompleteRadius + 10}%,
+                            rgba(0,0,0,0) ${marlaCompleteRadius + 20}%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.9, marlaCompleteIntensity);
+                        break;
+                        
+                      // Joshua Miele Effects
+                      case 'joshuaCompleteBlindness':
+                        // Joshua's complete blindness
+                        overlayStyle.background = 'rgba(0,0,0,1)';
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = 1.0;
+                        break;
+                        
+                      case 'joshuaEcholocation':
+                        // Joshua's echolocation visualization
+                        const joshuaEchoIntensity = Math.min(intensity * 1.3, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,0,255,${joshuaEchoIntensity * 0.4}) 0%, 
+                            rgba(0,0,255,${joshuaEchoIntensity * 0.2}) 40%,
+                            rgba(0,0,255,0) 80%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.5, joshuaEchoIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 1.8s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'joshuaTactileMaps':
+                        // Joshua's tactile map visualization
+                        const joshuaTactileIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(45deg, 
+                            rgba(255,255,0,${joshuaTactileIntensity * 0.3}) 0%, 
+                            rgba(255,255,0,${joshuaTactileIntensity * 0.1}) 50%,
+                            rgba(255,255,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.4, joshuaTactileIntensity);
+                        break;
+                        
+                      case 'joshuaAudioLandscape':
+                        // Joshua's audio landscape
+                        const joshuaAudioIntensity = Math.min(intensity * 1.1, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(0,255,0,${joshuaAudioIntensity * 0.3}) 0%, 
+                            rgba(0,255,0,${joshuaAudioIntensity * 0.1}) 50%,
+                            rgba(0,255,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.3, joshuaAudioIntensity);
+                        break;
+                        
+                      case 'joshuaAccessibilityMode':
+                        // Joshua's accessibility mode
+                        const joshuaAccessIntensity = Math.min(intensity * 1.4, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(255,0,255,${joshuaAccessIntensity * 0.3}) 0%, 
+                            rgba(255,0,255,${joshuaAccessIntensity * 0.1}) 50%,
+                            rgba(255,0,255,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.4, joshuaAccessIntensity);
+                        break;
+                        
+                      case 'joshuaSonification':
+                        // Joshua's sonification visualization
+                        const joshuaSonifyIntensity = Math.min(intensity * 1.3, 1.0);
+                        overlayStyle.background = `
+                          radial-gradient(circle at 50% 50%, 
+                            rgba(255,128,0,${joshuaSonifyIntensity * 0.4}) 0%, 
+                            rgba(255,128,0,${joshuaSonifyIntensity * 0.2}) 50%,
+                            rgba(255,128,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.5, joshuaSonifyIntensity);
+                        overlayStyle.animation = 'auraSlowScintillation 2.2s ease-in-out infinite alternate';
+                        break;
+                        
+                      // David Paterson Effects
+                      case 'davidLeftEyeBlindness':
+                        // David's left eye blindness
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(0,0,0,1) 0%, 
+                            rgba(0,0,0,1) 50%,
+                            rgba(0,0,0,0) 50%,
+                            rgba(0,0,0,0) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = 1.0;
+                        break;
+                        
+                      case 'davidRightEyeGlaucoma':
+                        // David's right eye glaucoma
+                        const davidGlaucomaIntensity = Math.min(intensity * 1.3, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(0,0,0,0) 0%, 
+                            rgba(0,0,0,0) 50%,
+                            rgba(0,0,0,${davidGlaucomaIntensity * 0.8}) 50%,
+                            rgba(0,0,0,${davidGlaucomaIntensity * 0.6}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, davidGlaucomaIntensity);
+                        break;
+                        
+                      case 'davidHemisphericVision':
+                        // David's hemispheric vision
+                        const davidHemiIntensity = Math.min(intensity * 1.2, 1.0);
+                        overlayStyle.background = `
+                          linear-gradient(90deg, 
+                            rgba(0,0,0,${davidHemiIntensity * 0.9}) 0%, 
+                            rgba(0,0,0,${davidHemiIntensity * 0.9}) 50%,
+                            rgba(0,0,0,${davidHemiIntensity * 0.4}) 50%,
+                            rgba(0,0,0,${davidHemiIntensity * 0.4}) 100%
+                          )
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.7, davidHemiIntensity);
+                        break;
+                        
+                      case 'davidCompleteVision':
+                        // David's complete vision loss
+                        overlayStyle.background = 'rgba(0,0,0,1)';
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = 1.0;
+                        break;
+                        
                       default:
                         // For other conditions, use a simple darkening overlay
                         overlayStyle.background = `rgba(0,0,0,${intensity * 0.3})`;

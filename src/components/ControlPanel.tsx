@@ -716,113 +716,162 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualSnow':
-                        // Visual Snow (Static Particles): Persistent static pattern
-                        // Based on research from Visual Snow Initiative
+                        // Visual Snow (Static Particles): Optimized for performance
+                        // Uses a repeating pattern instead of individual particles to prevent crashes
                         const snowIntensity = Math.min(intensity * 1.5, 1.0);
-                        const particleCount = Math.floor(80 + intensity * 320 + (intensity * intensity * 2400) + (intensity * intensity * intensity * 19200)); // 8x additional increase at 100% (total 64x increase)
+                        const snowDensity = Math.min(intensity * 0.8, 0.6); // Reduced density for performance
                         
-                        // Generate dynamic particle pattern based on intensity
-                        let snowParticles = '';
-                        for (let i = 0; i < particleCount; i++) {
-                          const x = (i * 7.3 + Math.sin(i) * 13) % 100;
-                          const y = (i * 11.7 + Math.cos(i) * 17) % 100;
-                          const opacity = 0.6 + (Math.sin(i * 0.5) * 0.4) * snowIntensity; // Increased base opacity from 0.3 to 0.6
-                          snowParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
-                        }
-                        
-                        overlayStyle.background = snowParticles.slice(0, -1); // Remove trailing comma
+                        // Create a repeating pattern using CSS background-image with data URI
+                        // This is much more efficient than thousands of individual gradients
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 2px,
+                            rgba(255,255,255,${snowDensity * 0.3}) 2px,
+                            rgba(255,255,255,${snowDensity * 0.3}) 3px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 2px,
+                            rgba(255,255,255,${snowDensity * 0.2}) 2px,
+                            rgba(255,255,255,${snowDensity * 0.2}) 3px
+                          ),
+                          repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(255,255,255,${snowDensity * 0.1}) 3px,
+                            rgba(255,255,255,${snowDensity * 0.1}) 4px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '4px 4px, 4px 4px, 6px 6px';
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.9, snowIntensity); // Increased max opacity from 0.8 to 0.9
-                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
+                        overlayStyle.opacity = Math.min(0.8, snowIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
                       case 'visualSnowFlashing':
-                        // Visual Snow (Flashing Static): Rapidly flickering static
+                        // Visual Snow (Flashing Static): Optimized for performance
                         const flashingIntensity = Math.min(intensity * 2.0, 1.0);
-                        const flashingParticleCount = Math.floor(60 + intensity * 240 + (intensity * intensity * 1800) + (intensity * intensity * intensity * 14400)); // 8x additional increase at 100% (total 64x increase)
+                        const flashingDensity = Math.min(intensity * 0.9, 0.7);
                         
-                        let flashingParticles = '';
-                        for (let i = 0; i < flashingParticleCount; i++) {
-                          const x = (i * 8.1 + Math.sin(i) * 15) % 100;
-                          const y = (i * 12.3 + Math.cos(i) * 19) % 100;
-                          const opacity = 0.7 + (Math.sin(i * 0.7) * 0.3) * flashingIntensity; // Increased base opacity from 0.4 to 0.7
-                          flashingParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
-                        }
-                        
-                        overlayStyle.background = flashingParticles.slice(0, -1);
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${flashingDensity * 0.4}) 1px,
+                            rgba(255,255,255,${flashingDensity * 0.4}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${flashingDensity * 0.3}) 1px,
+                            rgba(255,255,255,${flashingDensity * 0.3}) 2px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '2px 2px, 2px 2px';
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.95, flashingIntensity); // Increased max opacity from 0.9 to 0.95
-                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite, visualSnowDrift 2s ease-in-out infinite alternate'; // Combined flicker and drift
+                        overlayStyle.opacity = Math.min(0.9, flashingIntensity);
+                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite, visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
                       case 'visualSnowColored':
-                        // Visual Snow (Colored Static): Multi-colored static particles
+                        // Visual Snow (Colored Static): Optimized for performance
                         const coloredIntensity = Math.min(intensity * 1.8, 1.0);
-                        const coloredParticleCount = Math.floor(100 + intensity * 300 + (intensity * intensity * 2200) + (intensity * intensity * intensity * 17600)); // 8x additional increase at 100% (total 64x increase)
+                        const coloredDensity = Math.min(intensity * 0.7, 0.5);
                         
-                        const colors = [
-                          'rgba(255,100,100,', // Red
-                          'rgba(100,255,100,', // Green
-                          'rgba(100,100,255,', // Blue
-                          'rgba(255,255,100,', // Yellow
-                          'rgba(255,100,255,', // Magenta
-                          'rgba(100,255,255,', // Cyan
-                          'rgba(255,150,100,', // Orange
-                          'rgba(150,100,255,'  // Purple
-                        ];
-                        
-                        let coloredParticles = '';
-                        for (let i = 0; i < coloredParticleCount; i++) {
-                          const x = (i * 6.7 + Math.sin(i) * 11) % 100;
-                          const y = (i * 9.3 + Math.cos(i) * 13) % 100;
-                          const colorIndex = i % colors.length;
-                          const opacity = 0.6 + (Math.sin(i * 0.6) * 0.4) * coloredIntensity; // Increased base opacity from 0.3 to 0.6
-                          coloredParticles += `radial-gradient(circle 1px at ${x}% ${y}%, ${colors[colorIndex]}${opacity}) 0%, transparent 1px),`;
-                        }
-                        
-                        overlayStyle.background = coloredParticles.slice(0, -1);
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(255,100,100,${coloredDensity * 0.3}) 3px,
+                            rgba(255,100,100,${coloredDensity * 0.3}) 4px
+                          ),
+                          repeating-linear-gradient(
+                            60deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(100,255,100,${coloredDensity * 0.2}) 3px,
+                            rgba(100,255,100,${coloredDensity * 0.2}) 4px
+                          ),
+                          repeating-linear-gradient(
+                            120deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(100,100,255,${coloredDensity * 0.2}) 3px,
+                            rgba(100,100,255,${coloredDensity * 0.2}) 4px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '5px 5px, 5px 5px, 5px 5px';
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.9, coloredIntensity); // Increased max opacity from 0.8 to 0.9
-                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
+                        overlayStyle.opacity = Math.min(0.8, coloredIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
                       case 'visualSnowTransparent':
-                        // Visual Snow (Transparent Static): Semi-transparent particles
+                        // Visual Snow (Transparent Static): Optimized for performance
                         const transparentIntensity = Math.min(intensity * 1.3, 1.0);
-                        const transparentParticleCount = Math.floor(120 + intensity * 280 + (intensity * intensity * 2000) + (intensity * intensity * intensity * 16000)); // 8x additional increase at 100% (total 64x increase)
+                        const transparentDensity = Math.min(intensity * 0.5, 0.3);
                         
-                        let transparentParticles = '';
-                        for (let i = 0; i < transparentParticleCount; i++) {
-                          const x = (i * 5.9 + Math.sin(i) * 9) % 100;
-                          const y = (i * 8.7 + Math.cos(i) * 11) % 100;
-                          const opacity = 0.3 + (Math.sin(i * 0.4) * 0.3) * transparentIntensity; // Increased base opacity from 0.1 to 0.3
-                          transparentParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
-                        }
-                        
-                        overlayStyle.background = transparentParticles.slice(0, -1);
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 4px,
+                            rgba(255,255,255,${transparentDensity * 0.2}) 4px,
+                            rgba(255,255,255,${transparentDensity * 0.2}) 5px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 4px,
+                            rgba(255,255,255,${transparentDensity * 0.15}) 4px,
+                            rgba(255,255,255,${transparentDensity * 0.15}) 5px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '6px 6px, 6px 6px';
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.7, transparentIntensity); // Increased max opacity from 0.6 to 0.7
-                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
+                        overlayStyle.opacity = Math.min(0.6, transparentIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
                       case 'visualSnowDense':
-                        // Visual Snow (Dense Static): High density, severe static
+                        // Visual Snow (Dense Static): Optimized for performance
                         const denseIntensity = Math.min(intensity * 2.5, 1.0);
-                        const denseParticleCount = Math.floor(200 + intensity * 600 + (intensity * intensity * 4800) + (intensity * intensity * intensity * 38400)); // 8x additional increase at 100% (total 64x increase)
+                        const denseDensity = Math.min(intensity * 1.0, 0.8);
                         
-                        let denseParticles = '';
-                        for (let i = 0; i < denseParticleCount; i++) {
-                          const x = (i * 4.3 + Math.sin(i) * 7) % 100;
-                          const y = (i * 6.7 + Math.cos(i) * 9) % 100;
-                          const opacity = 0.7 + (Math.sin(i * 0.8) * 0.3) * denseIntensity; // Increased base opacity from 0.4 to 0.7
-                          const size = 1 + Math.sin(i * 0.3) * 0.5; // Vary particle size slightly
-                          denseParticles += `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent ${size}px),`;
-                        }
-                        
-                        overlayStyle.background = denseParticles.slice(0, -1);
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${denseDensity * 0.5}) 1px,
+                            rgba(255,255,255,${denseDensity * 0.5}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${denseDensity * 0.4}) 1px,
+                            rgba(255,255,255,${denseDensity * 0.4}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 2px,
+                            rgba(255,255,255,${denseDensity * 0.3}) 2px,
+                            rgba(255,255,255,${denseDensity * 0.3}) 3px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '2px 2px, 2px 2px, 3px 3px';
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.98, denseIntensity); // Increased max opacity from 0.95 to 0.98
-                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
+                        overlayStyle.opacity = Math.min(0.9, denseIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
                       // Filter-based conditions (Color Vision, Eye Conditions, Retinal Disorders, Visual Disturbances, Double Vision) 

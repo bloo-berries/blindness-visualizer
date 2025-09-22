@@ -256,7 +256,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
     hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
-    visualFloaters, aura, glaucoma, stargardt,
+    visualFloaters, visualAura, visualAuraLeft, visualAuraRight, glaucoma, stargardt,
     miltonProgressiveVignetting, miltonRetinalDetachment, miltonGlaucomaHalos,
     miltonPhotophobia, miltonTemporalFieldLoss, completeBlindness,
     galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression,
@@ -271,7 +271,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
-    'visualFloaters', 'aura', 'glaucoma', 'stargardt',
+    'visualFloaters', 'visualAura', 'visualAuraLeft', 'visualAuraRight', 'glaucoma', 'stargardt',
     'miltonProgressiveVignetting', 'miltonRetinalDetachment', 'miltonGlaucomaHalos',
     'miltonPhotophobia', 'miltonTemporalFieldLoss', 'completeBlindness',
     'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression',
@@ -501,24 +501,67 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
 
   // Visual Snow is now handled by ControlPanel.tsx overlay generation
 
-  if (aura?.enabled) {
-    const now = Date.now();
-    const auraPhase = (now / 3000) % (2 * Math.PI);
-    const auraRadius = 30 + Math.sin(auraPhase) * 10;
+  // Visual Aura effects
+  if (visualAura?.enabled) {
+    // Use static radius instead of time-based animation to prevent progressive intensity increase
+    const auraRadius = 30;
     
-    createOverlay(
-      'visual-field-overlay-aura',
+    createOverlayWithContainer(
+      'visual-field-overlay-visualAura',
       `radial-gradient(circle at 50% 50%, 
-        rgba(255,255,255,${0.3 * aura.intensity}) 0%, 
-        rgba(255,255,255,${0.2 * aura.intensity}) ${auraRadius - 10}%, 
-        rgba(255,255,255,${0.1 * aura.intensity}) ${auraRadius}%, 
+        rgba(255,255,255,${0.6 * visualAura.intensity}) 0%, 
+        rgba(255,255,255,${0.4 * visualAura.intensity}) ${auraRadius - 10}%, 
+        rgba(255,255,255,${0.2 * visualAura.intensity}) ${auraRadius}%, 
         rgba(255,255,255,0) ${auraRadius + 20}%
       )`,
-      'screen',
-      Math.min(0.8, aura.intensity).toString(),
+      'overlay',
+      Math.min(0.9, visualAura.intensity).toString(),
       undefined,
       undefined,
-      'aura'
+      'visualAura',
+      container
+    );
+  }
+
+  if (visualAuraLeft?.enabled) {
+    // Use static radius instead of time-based animation to prevent progressive intensity increase
+    const auraRadius = 25;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-visualAuraLeft',
+      `radial-gradient(circle at 25% 50%, 
+        rgba(255,255,255,${0.6 * visualAuraLeft.intensity}) 0%, 
+        rgba(255,255,255,${0.4 * visualAuraLeft.intensity}) ${auraRadius - 8}%, 
+        rgba(255,255,255,${0.2 * visualAuraLeft.intensity}) ${auraRadius}%, 
+        rgba(255,255,255,0) ${auraRadius + 15}%
+      )`,
+      'overlay',
+      Math.min(0.9, visualAuraLeft.intensity).toString(),
+      undefined,
+      undefined,
+      'visualAuraLeft',
+      container
+    );
+  }
+
+  if (visualAuraRight?.enabled) {
+    // Use static radius instead of time-based animation to prevent progressive intensity increase
+    const auraRadius = 25;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-visualAuraRight',
+      `radial-gradient(circle at 75% 50%, 
+        rgba(255,255,255,${0.6 * visualAuraRight.intensity}) 0%, 
+        rgba(255,255,255,${0.4 * visualAuraRight.intensity}) ${auraRadius - 8}%, 
+        rgba(255,255,255,${0.2 * visualAuraRight.intensity}) ${auraRadius}%, 
+        rgba(255,255,255,0) ${auraRadius + 15}%
+      )`,
+      'overlay',
+      Math.min(0.9, visualAuraRight.intensity).toString(),
+      undefined,
+      undefined,
+      'visualAuraRight',
+      container
     );
   }
 

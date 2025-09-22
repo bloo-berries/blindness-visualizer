@@ -110,13 +110,21 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   useEffect(() => {
     if (!containerRef.current) return;
+    
+    // Don't set up Three.js if we're in comparison mode
+    if (showComparison) {
+      setIsLoading(false);
+      return;
+    }
 
     setIsLoading(true);
     setError(null);
 
     // Set up Three.js scene using utility
+    console.log('Creating Three.js scene for container:', containerRef.current);
     const sceneManager = createSceneManager(containerRef.current);
     const { scene, camera, renderer, dispose } = sceneManager;
+    console.log('Three.js scene created successfully:', { scene, camera, renderer });
 
     // Capture current ref values to avoid stale closure issues in cleanup
     const currentAnimationManager = animationManager.current;
@@ -157,8 +165,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           return;
           
         } else if (inputSource.type === 'image' && inputSource.url) {
+          console.log('Loading image texture from URL:', inputSource.url);
           const textureLoader = new THREE.TextureLoader();
           const imageTexture = await textureLoader.loadAsync(inputSource.url);
+          console.log('Image texture loaded successfully:', imageTexture);
           setTexture(imageTexture);
           setIsLoading(false);
         } else if (inputSource.type === 'youtube') {
@@ -211,21 +221,32 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
     // Optimized animation loop with performance monitoring
     const animate = () => {
+      // Stop animation if we're in comparison mode
+      if (showComparison) {
+        return;
+      }
+      
       // Monitor performance and throttle if needed
       optimizer.current.monitorPerformance();
       
-      if (texture) {
+      if (mesh && texture) {
         const material = mesh.material as THREE.ShaderMaterial;
         material.uniforms.tDiffuse.value = texture;
+        console.log('Applied texture to shader material:', texture);
         
         // Only update shader uniforms if effects have changed
         const { changed } = effectProcessor.current.updateEffects(effects);
         if (changed) {
           updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
         }
+        
+        renderer.render(scene, camera);
+      } else {
+        // Only log this if we're actually in Three.js mode (not comparison mode)
+        if (!showComparison) {
+          console.log('Three.js: No mesh or texture available for rendering');
+        }
       }
-      
-      renderer.render(scene, camera);
       
       // Use optimal frame rate based on condition count
       const frameRate = optimizer.current.getOptimalFrameRate(enabledEffectsCount);
@@ -235,7 +256,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         requestAnimationFrame(animate);
       }
     };
-    animate();
+    
+    // Only start animation loop if not in comparison mode
+    if (!showComparison) {
+      animate();
+    }
 
     // Cleanup
     return () => {
@@ -253,7 +278,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       // Use the dispose function from scene manager
       dispose();
     };
-  }, [inputSource, retryCount, diplopiaDirection, diplopiaSeparation, effects, texture]); // Recreate scene when input source changes or retry is triggered
+  }, [inputSource, retryCount, diplopiaDirection, diplopiaSeparation, effects, texture, showComparison]); // Recreate scene when input source changes or retry is triggered
 
   // Update shader uniforms when effects change (separate from scene creation)
   useEffect(() => {
@@ -562,6 +587,63 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                   style={{ width: '100%', height: '100%' }}
                 />
               </div>
+            ) : inputSource.type === 'image' && inputSource.url ? (
+              <div style={{ 
+                width: '100%', 
+                height: '100%',
+                position: 'relative',
+                // Apply SVG filters for color vision conditions (same as selection page)
+                filter: (() => {
+                  const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+                  const colorVisionEffect = enabledEffects.find(e => 
+                    ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  if (colorVisionEffect) {
+                    console.log('Applying SVG filter for uploaded image:', colorVisionEffect.id);
+                    const filterMap: { [key: string]: string } = {
+                      'protanopia': 'url(#protanopia)',
+                      'deuteranopia': 'url(#deuteranopia)',
+                      'tritanopia': 'url(#tritanopia)',
+                      'protanomaly': 'url(#protanomaly)',
+                      'deuteranomaly': 'url(#deuteranomaly)',
+                      'tritanomaly': 'url(#tritanomaly)',
+                      'monochromacy': 'url(#monochromacy)',
+                      'monochromatic': 'url(#monochromacy)'
+                    };
+                    return filterMap[colorVisionEffect.id] || 'none';
+                  }
+                  
+                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
+                  const otherEffects = enabledEffects.filter(e => 
+                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  if (otherEffects.length > 0) {
+                    const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
+                    const nonDiplopiaEffects = nonColorEffects.filter(e => 
+                      e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+                    );
+                    
+                    if (nonDiplopiaEffects.length > 0) {
+                      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                      return filters || 'none';
+                    }
+                  }
+                  
+                  return 'none';
+                })()
+              }}>
+                <img
+                  src={inputSource.url}
+                  alt="Uploaded image with vision simulation"
+                  style={{ 
+                    width: '100%', 
+                    height: '100%',
+                    objectFit: 'contain'
+                  }}
+                />
+              </div>
             ) : (
               <Box sx={{ 
                 width: '100%', 
@@ -606,6 +688,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               src={YOUTUBE_EMBED_URL}
               title="Original YouTube video"
               style={{ width: '100%', height: '100%' }}
+            />
+          ) : inputSource.type === 'image' && inputSource.url ? (
+            <img
+              src={inputSource.url}
+              alt="Original uploaded image"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'contain'
+              }}
             />
           ) : (
             <Box sx={{ 

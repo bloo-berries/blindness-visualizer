@@ -112,6 +112,8 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleSourceChange = useCallback((source: InputSource) => {
+    console.log('VisionSimulator: handleSourceChange called with:', source);
+    
     // Prevent camera access - force to YouTube if someone tries to set webcam
     if (source.type === 'webcam') {
       setInputSource({ type: 'youtube' });
@@ -119,8 +121,9 @@ const VisionSimulator: React.FC = () => {
     }
     setInputSource(source);
     
-    // Auto-advance to next step when Demo Video is selected
-    if (source.type === 'youtube') {
+    // Auto-advance to next step when Demo Video or Image is selected
+    if (source.type === 'youtube' || source.type === 'image') {
+      console.log('Auto-advancing to step 1 for source type:', source.type);
       setTimeout(() => {
         setActiveStep(1);
       }, 300); // Small delay for better UX

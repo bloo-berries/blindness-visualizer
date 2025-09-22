@@ -257,10 +257,13 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
           accept="image/*"
           onChange={(e) => {
             const file = e.target.files?.[0];
+            console.log('InputSelector: File selected:', file);
             if (file) {
+              const imageUrl = URL.createObjectURL(file);
+              console.log('InputSelector: Created object URL:', imageUrl);
               onSourceChange({ 
                 type: 'image', 
-                url: URL.createObjectURL(file) 
+                url: imageUrl 
               });
               // Announce to screen readers
               const announcement = document.createElement('div');

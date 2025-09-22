@@ -32,13 +32,14 @@ const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
 };
 
 /**
- * Generates blur filter for nearsightedness and farsightedness
+ * Generates blur filter for nearsightedness, farsightedness, and astigmatism
  */
 const generateBlurFilter = (effects: VisualEffect[]): string => {
   // More efficient: check specific IDs directly
   const nearSighted = effects.find(e => e.id === 'nearSighted' && e.enabled);
   const farSighted = effects.find(e => e.id === 'farSighted' && e.enabled);
-  const blurEffect = nearSighted || farSighted;
+  const astigmatism = effects.find(e => e.id === 'astigmatism' && e.enabled);
+  const blurEffect = nearSighted || farSighted || astigmatism;
   return blurEffect ? `blur(${blurEffect.intensity * 10}px)` : '';
 };
 

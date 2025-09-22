@@ -42,7 +42,6 @@ const VisionSimulator: React.FC = () => {
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
   const [showComparison, setShowComparison] = useState(false);
 
-
   // Handle pre-configured conditions from famous people page
   useEffect(() => {
     if (location.state?.preconfiguredConditions) {

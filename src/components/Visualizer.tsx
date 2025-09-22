@@ -7,11 +7,11 @@ import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
 import { updateAnimatedOverlays } from '../utils/animatedOverlays';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
-import { createVisualFieldOverlays } from '../utils/overlayManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
 import { createSimpleOverlay, findOverlayContainer } from '../utils/overlayManager';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
+import { EffectProcessor, OverlayManager } from '../utils/performanceOptimizer';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -31,7 +31,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const streamRef = useRef<MediaStream | null>(null);
   const effectProcessor = useRef(new EffectProcessor());
   const overlayManager = useRef(new OverlayManager());
-  const animationManager = useRef(AnimationManager.getInstance());
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -106,6 +105,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Capture ref values to avoid stale closures in cleanup
+    const currentOverlayManager = overlayManager.current;
+
     setIsLoading(true);
     setError(null);
 
@@ -113,70 +115,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     const sceneManager = createSceneManager(containerRef.current);
     const { scene, camera, renderer, dispose } = sceneManager;
 
-    // Setup animation frame for dynamic effects
-    let animationFrameId: number;
-    
-    // Function to update animated overlays using utility
-    const updateOverlays = () => {
-      // Cache effect lookups to avoid repeated finds
-      const effectMap = new Map(effects.map(e => [e.id, e]));
-      const scotoma = effectMap.get('scotoma');
-      const visualFloaters = effectMap.get('visualFloaters');
-      
-      if (scotoma?.enabled) {
-        const now = Date.now();
-        const overlayElement = document.getElementById('visual-field-overlay-scotoma');
-        if (overlayElement) {
-          overlayElement.style.background = `
-            radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
-              rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
-              rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
-              rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
-              rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
-            )
-          `;
-        }
-      }
-      
-      if (visualFloaters?.enabled) {
-        const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
-        
-        if (overlayElement) {
-          // Use the improved floater patterns from animatedOverlays utility
-          updateAnimatedOverlays([visualFloaters]);
-          
-          // Ensure the overlay is visible and properly styled
-          overlayElement.style.mixBlendMode = 'multiply';
-          overlayElement.style.opacity = Math.min(0.98, visualFloaters.intensity).toString();
-          // Visual Field Loss conditions get higher z-index (visualFloaters is not a Visual Field Loss condition)
-          overlayElement.style.zIndex = '10';
-          overlayElement.style.pointerEvents = 'none';
-        } else {
-          // If the overlay doesn't exist, try to create it
-          const container = findOverlayContainer();
-          if (container) {
-            createSimpleOverlay('visual-field-overlay-visualFloaters', container, {
-              mixBlendMode: 'multiply',
-              opacity: Math.min(0.98, visualFloaters.intensity).toString()
-            });
-          }
-        }
-      }
-      
-      // Visual Snow is now handled by ControlPanel.tsx overlay generation
-      
-      // Continue animation loop
-      animationFrameId = requestAnimationFrame(updateOverlays);
-    };
-    
-    // Start animation if needed (for all content types that support overlays)
-    const needsAnimation = effects.some(e => 
-      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa') && e.enabled
-    );
-    
-    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
-      animationFrameId = requestAnimationFrame(updateOverlays);
-    }
+    // Note: Animation for overlays is now handled by React re-renders
+    // The scotoma and visualFloaters effects will animate through React state updates
+    // This is more reliable than DOM manipulation
 
     // Handle different input sources
     const setupMedia = async () => {
@@ -259,13 +200,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         return;
       }
       
-      // Clear overlays
-      currentOverlayManager.clearOverlays();
-      
-      // Cancel animation frame
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
+      // Note: React-based overlays are automatically cleaned up by React
+      // No need for manual DOM cleanup
       
       // Use the dispose function from scene manager
       dispose();
@@ -286,68 +222,12 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     
     if (!changed) return;
     
-    // Create visual field overlays for image content only (not YouTube - uses CSS filters instead)
-    if (inputSource.type === 'image') {
-      // For image content, only create overlays for non-diplopia effects
-      const nonDiplopiaEffects = enabledEffects.filter(e => 
-        e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
-      );
-    // Create visual field overlays for YouTube and image content whenever effects change
-    if (inputSource.type === 'youtube' || inputSource.type === 'image') {
-      // For YouTube and image content, only create overlays for non-diplopia effects
-      // Diplopia effects are handled by the getDiplopiaOverlay function
-      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
-      
-      if (nonDiplopiaEffects.length > 0) {
-        // Use optimized overlay manager - use simulation container in comparison mode, main container otherwise
-        const targetContainer = showComparison && simulationContainerRef.current 
-          ? simulationContainerRef.current 
-          : containerRef.current;
-        
-        if (targetContainer) {
-          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
-        }
-      if (nonDiplopiaEffects.some(e => e.enabled)) {
-        console.log(`Creating visual field overlays for ${inputSource.type} content with non-diplopia effects:`, nonDiplopiaEffects);
-        
-        // Add a small delay to ensure the content is loaded
-        const timer = setTimeout(() => {
-          createVisualFieldOverlays(nonDiplopiaEffects);
-        }, 100);
-        
-        return () => clearTimeout(timer);
-      }
-    }
+    // Log effect changes for debugging
+    console.log('Effects changed:', enabledEffects.map(e => ({ id: e.id, intensity: e.intensity })));
     
-    // Check if we need animation (for overlay-based effects)
-    const visualFloaters = getEffect('visualFloaters');
-    const scotoma = getEffect('scotoma');
-    
-    const needsAnimation = 
-      (visualFloaters && visualFloaters.enabled) || 
-      (scotoma && scotoma.enabled);
-    
-    if (needsAnimation && inputSource.type === 'image') {
-      // Animation is now handled by the unified animation manager
-      // No need for separate animation loop here
-    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
-      // Start animation if not already running
-      let animationFrameId: number;
-      
-      const updateAnimatedEffects = () => {
-        updateAnimatedOverlays(effects);
-        animationFrameId = requestAnimationFrame(updateAnimatedEffects);
-      };
-      
-      animationFrameId = requestAnimationFrame(updateAnimatedEffects);
-      
-      return () => {
-        if (animationFrameId) {
-          cancelAnimationFrame(animationFrameId);
-        }
-      };
-    }
-  }, [effects, inputSource.type, getEffect]);
+    // Note: Overlays are now handled by React components in the render method
+    // This is more reliable than DOM manipulation
+  }, [effects, inputSource.type, getEffect, showComparison]);
 
   // Calculate CSS filters based on effects
   const getEffectStyles = () => {
@@ -357,8 +237,24 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     };
 
     if (inputSource.type === 'youtube') {
-      const nonDiplopiaEffects = effects.filter(e => e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular');
+      // Filter out diplopia effects as they're handled by separate overlays
+      const nonDiplopiaEffects = effects.filter(e => 
+        e.id !== 'diplopiaMonocular' && 
+        e.id !== 'diplopiaBinocular' &&
+        e.enabled // Only include enabled effects
+      );
+      
+      // Generate CSS filters for all enabled non-diplopia effects
       const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+      
+      // Debug logging to help identify issues
+      if (nonDiplopiaEffects.length > 0) {
+        console.log('Applying CSS filters to YouTube video:', {
+          enabledEffects: nonDiplopiaEffects.map(e => ({ id: e.id, intensity: e.intensity })),
+          filterString: filters
+        });
+      }
+      
       return filters ? { ...baseStyle, filter: filters } : baseStyle;
     }
 
@@ -489,6 +385,101 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             )}
           </div>
           {getDiplopiaOverlay()}
+          
+          {/* React-based overlays for visual effects in comparison mode */}
+          {effects
+            .filter(e => e.enabled && e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular')
+            .map(effect => {
+              const { id, intensity } = effect;
+              
+              // Generate overlay styles based on effect type
+              let overlayStyle: any = {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+                zIndex: 10
+              };
+
+              // Apply effect-specific styles (same as main view)
+              switch (id) {
+                case 'tunnelVision':
+                  overlayStyle.background = `radial-gradient(circle at 50% 50%, 
+                    rgba(0,0,0,0) 0%,
+                    rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 20)}%,
+                    rgba(0,0,0,${0.95 * intensity}) ${Math.max(40, 55 - intensity * 20)}%,
+                    rgba(0,0,0,${0.95 * intensity}) 100%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'hemianopiaLeft':
+                  overlayStyle.background = `linear-gradient(to right, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.95 * intensity}) 45%, 
+                    rgba(0,0,0,0) 50%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'hemianopiaRight':
+                  overlayStyle.background = `linear-gradient(to left, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.95 * intensity}) 45%, 
+                    rgba(0,0,0,0) 50%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'scotoma':
+                  const now = Date.now();
+                  overlayStyle.background = `radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.85 * intensity}) ${Math.max(5, 10 - intensity * 5)}%,
+                    rgba(0,0,0,${0.5 * intensity}) ${Math.max(10, 20 - intensity * 10)}%,
+                    rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 15)}%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'visualFloaters':
+                  overlayStyle.background = `radial-gradient(ellipse 20% 6% at 35% 35%, 
+                    rgba(0,0,0,${0.7 * intensity}) 0%, 
+                    rgba(0,0,0,${0.5 * intensity}) 20%,
+                    rgba(0,0,0,${0.3 * intensity}) 50%,
+                    rgba(0,0,0,0) 80%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.98, intensity);
+                  break;
+
+                case 'completeBlindness':
+                  overlayStyle.background = `rgba(0,0,0,${intensity})`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = intensity;
+                  break;
+
+                default:
+                  // Generic overlay for other effects
+                  overlayStyle.background = `rgba(0,0,0,${0.8 * intensity})`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = intensity;
+                  break;
+              }
+              
+              return (
+                <Box 
+                  key={`comparison-${effect.id}`}
+                  sx={overlayStyle}
+                />
+              );
+            })}
         </Box>
 
         {/* Right side - Original video */}
@@ -667,6 +658,101 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             />
           </div>
           {getDiplopiaOverlay()}
+          
+          {/* React-based overlays for visual effects */}
+          {effects
+            .filter(e => e.enabled && e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular')
+            .map(effect => {
+              const { id, intensity } = effect;
+              
+              // Generate overlay styles based on effect type
+              let overlayStyle: any = {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+                zIndex: 10
+              };
+
+              // Apply effect-specific styles
+              switch (id) {
+                case 'tunnelVision':
+                  overlayStyle.background = `radial-gradient(circle at 50% 50%, 
+                    rgba(0,0,0,0) 0%,
+                    rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 20)}%,
+                    rgba(0,0,0,${0.95 * intensity}) ${Math.max(40, 55 - intensity * 20)}%,
+                    rgba(0,0,0,${0.95 * intensity}) 100%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'hemianopiaLeft':
+                  overlayStyle.background = `linear-gradient(to right, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.95 * intensity}) 45%, 
+                    rgba(0,0,0,0) 50%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'hemianopiaRight':
+                  overlayStyle.background = `linear-gradient(to left, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.95 * intensity}) 45%, 
+                    rgba(0,0,0,0) 50%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'scotoma':
+                  const now = Date.now();
+                  overlayStyle.background = `radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
+                    rgba(0,0,0,${0.95 * intensity}) 0%, 
+                    rgba(0,0,0,${0.85 * intensity}) ${Math.max(5, 10 - intensity * 5)}%,
+                    rgba(0,0,0,${0.5 * intensity}) ${Math.max(10, 20 - intensity * 10)}%,
+                    rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 15)}%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.95, intensity);
+                  break;
+
+                case 'visualFloaters':
+                  overlayStyle.background = `radial-gradient(ellipse 20% 6% at 35% 35%, 
+                    rgba(0,0,0,${0.7 * intensity}) 0%, 
+                    rgba(0,0,0,${0.5 * intensity}) 20%,
+                    rgba(0,0,0,${0.3 * intensity}) 50%,
+                    rgba(0,0,0,0) 80%
+                  )`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = Math.min(0.98, intensity);
+                  break;
+
+                case 'completeBlindness':
+                  overlayStyle.background = `rgba(0,0,0,${intensity})`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = intensity;
+                  break;
+
+                default:
+                  // Generic overlay for other effects
+                  overlayStyle.background = `rgba(0,0,0,${0.8 * intensity})`;
+                  overlayStyle.mixBlendMode = 'multiply';
+                  overlayStyle.opacity = intensity;
+                  break;
+              }
+              
+              return (
+                <Box 
+                  key={effect.id}
+                  sx={overlayStyle}
+                />
+              );
+            })}
         </Box>
       )}
       

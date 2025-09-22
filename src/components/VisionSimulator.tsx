@@ -43,6 +43,9 @@ const VisionSimulator: React.FC = () => {
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
   const [showComparison, setShowComparison] = useState(false);
 
+  // Calculate the number of enabled effects for performance monitoring
+  const enabledEffectsCount = effects.filter(effect => effect.enabled).length;
+
 
   // Handle pre-configured conditions from famous people page
   useEffect(() => {

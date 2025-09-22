@@ -122,49 +122,18 @@ const updateScotomaOverlay = (intensity: number): void => {
 };
 
 /**
- * Updates the visual floaters overlay with multiple animated floaters
- * Based on medical research: cobwebs/strings, dots/spots, rings, and clouds
+ * Updates the visual floaters overlay with simplified animation
+ * Optimized for better performance with multiple conditions
  * 
  * @param intensity - The intensity of the floaters effect
  */
 const updateFloatersOverlay = (intensity: number): void => {
-  const now = Date.now();
   const overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
   
   if (overlayElement) {
-    // Simplified time calculation for better performance
-    const time = now * 0.001;
-    
-    // Simplified floater pattern based on intensity
-    const floaterCount = intensity < 0.3 ? 1 : intensity < 0.7 ? 2 : 3;
-    let floaterPatterns: string[] = [];
-    
-    for (let i = 0; i < floaterCount; i++) {
-      const phase = i * 2.1; // Offset each floater
-      const x = 35 + Math.sin(time * 0.1 + phase) * 15;
-      const y = 35 + Math.cos(time * 0.08 + phase) * 12;
-      const size = 20 + intensity * 10;
-      const opacity = 0.7 * intensity;
-      
-      floaterPatterns.push(`
-        radial-gradient(ellipse ${size}% ${size * 0.3}% at ${x}% ${y}%, 
-          rgba(0,0,0,${opacity}) 0%, 
-          rgba(0,0,0,${opacity * 0.7}) 20%,
-          rgba(0,0,0,${opacity * 0.4}) 50%,
-          rgba(0,0,0,0) 80%
-        )
-      `);
-    }
-    
-    overlayElement.style.background = floaterPatterns.join(',');
-    
-    // Simplified animation effects
-    const gravityOffset = Math.sin(time * 0.05) * 1;
-    const momentumX = Math.sin(time * 0.08) * 0.5;
-    const momentumY = Math.cos(time * 0.06) * 0.5;
-    
-    overlayElement.style.transform = `translate(${momentumX}px, ${momentumY + gravityOffset}px)`;
-    overlayElement.style.opacity = Math.min(0.95, intensity).toString();
+    // Use CSS animation instead of JavaScript calculations for better performance
+    overlayElement.style.animation = `floaterDrift ${2 + intensity * 3}s ease-in-out infinite alternate`;
+    overlayElement.style.opacity = Math.min(0.8, intensity).toString();
   }
 };
 

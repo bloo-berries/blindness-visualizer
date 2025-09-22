@@ -191,26 +191,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             100% { opacity: 0.5; }
           }
           @keyframes floaterDrift {
-            0% { 
-              transform: translate(0px, 0px) rotate(0deg);
-              filter: blur(0px);
-            }
-            25% { 
-              transform: translate(2px, -1px) rotate(0.5deg);
-              filter: blur(0.2px);
-            }
-            50% { 
-              transform: translate(-1px, 2px) rotate(-0.3deg);
-              filter: blur(0.1px);
-            }
-            75% { 
-              transform: translate(1px, 1px) rotate(0.2deg);
-              filter: blur(0.3px);
-            }
-            100% { 
-              transform: translate(0px, 0px) rotate(0deg);
-              filter: blur(0px);
-            }
+            0% { transform: translate(0px, 0px); }
+            25% { transform: translate(2px, -1px); }
+            50% { transform: translate(-1px, 2px); }
+            75% { transform: translate(1px, 1px); }
+            100% { transform: translate(0px, 0px); }
           }
         `}
       </style>
@@ -592,8 +577,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       overlayStyle.zIndex = Z_INDEX.BASE + enabledEffects.indexOf(effect); // Default z-index with ordering
                     }
                     
-                    // Get current time for animated effects
-                    const now = Date.now();
+                    // Get current time for animated effects (throttled for performance)
+                    const now = Math.floor(Date.now() / 100) * 100; // Throttle to 10fps for better performance
                     
                     // Apply specific overlay styles based on condition type
                     switch (effectType) {
@@ -731,129 +716,42 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualSnow':
-                        // Visual Snow Syndrome: Ultra-dense TV static-like persistent visual noise
-                        const snowPhase = now * 0.4; // GIF-like fast animation
-                        const snowIntensity = Math.min(intensity * 2.5, 1.0); // Maximum intensity scaling
+                        // Visual Snow Syndrome: Optimized version for better performance
+                        const snowIntensity = Math.min(intensity * 2.5, 1.0);
                         
-                        // Primary Visual Snow: Ultra-dense static dots across entire field
-                        const snowDots = [];
-                        const baseDensity = 600; // Base number of dots
-                        const maxDensity = 900; // Maximum at 100% intensity
-                        const dotCount = Math.floor(baseDensity + (maxDensity - baseDensity) * intensity);
-                        
-                        for (let i = 0; i < dotCount; i++) {
-                          // Animated movement for each dot
-                          const movePhase = (snowPhase + i * 0.02) % (2 * Math.PI);
-                          const baseX = (i * 2.3) % 100;
-                          const baseY = (i * 3.7) % 100;
-                          const x = (baseX + Math.sin(movePhase * 0.8) * 2 + Math.cos(movePhase * 1.3) * 1.5) % 100;
-                          const y = (baseY + Math.cos(movePhase * 0.6) * 2.5 + Math.sin(movePhase * 1.1) * 1.8) % 100;
-                          const flickerPhase = (snowPhase + i * 0.015) % (2 * Math.PI);
-                          const randomNoise = Math.sin(flickerPhase * 1.7) * Math.cos(flickerPhase * 2.1);
-                          
-                          // Intensity-based opacity scaling
-                          const baseOpacity = 0.5 + Math.abs(randomNoise) * 0.3;
-                          const intensityMultiplier = 0.8 + intensity * 0.4; // 0.8 to 1.2 at 100%
-                          const opacity = baseOpacity * intensityMultiplier;
-                          
-                          // Intensity-based size scaling
-                          const baseSize = 0.4 + Math.abs(randomNoise) * 0.4;
-                          const sizeMultiplier = 0.8 + intensity * 0.6; // 0.8 to 1.4 at 100%
-                          const size = baseSize * sizeMultiplier;
-                          
-                          // Random brightness for TV static effect
-                          const brightness = 0.1 + Math.abs(randomNoise) * 0.9; // 0.1 to 1.0
-                          const colorValue = Math.floor(brightness * 255);
-                          
-                          snowDots.push(`
-                            radial-gradient(circle ${size}px at ${x}% ${y}%, 
-                              rgba(${colorValue},${colorValue},${colorValue},${opacity * snowIntensity}) 0%, 
-                              rgba(0,0,0,0) 100%
-                            )
-                          `);
-                        }
-                        
-                        // Blue Field Entoptic Phenomenon: Moving white dots
-                        const blueFieldDots = [];
-                        const baseBlueDots = 40;
-                        const maxBlueDots = 80;
-                        const blueDotCount = Math.floor(baseBlueDots + (maxBlueDots - baseBlueDots) * intensity);
-                        
-                        for (let i = 0; i < blueDotCount; i++) {
-                          // Enhanced animated movement for blue field dots
-                          const movePhase = (snowPhase + i * 0.1) % (2 * Math.PI);
-                          const baseX = (i * 7.3) % 100;
-                          const baseY = (i * 9.7) % 100;
-                          const x = (baseX + Math.sin(movePhase * 0.7) * 4 + Math.cos(movePhase * 1.2) * 3 + snowPhase * 0.5) % 100;
-                          const y = (baseY + Math.cos(movePhase * 0.5) * 5 + Math.sin(movePhase * 1.0) * 4 + Math.sin(snowPhase * 0.25 + i) * 6) % 100;
-                          const flickerPhase = (snowPhase + i * 0.08) % (2 * Math.PI);
-                          
-                          // Intensity-based scaling
-                          const baseOpacity = 0.6 + Math.sin(flickerPhase) * 0.2;
-                          const intensityMultiplier = 0.9 + intensity * 0.3; // 0.9 to 1.2 at 100%
-                          const opacity = baseOpacity * intensityMultiplier;
-                          
-                          const baseSize = 1.2 + Math.sin(flickerPhase * 0.3) * 0.3;
-                          const sizeMultiplier = 1.0 + intensity * 0.5; // 1.0 to 1.5 at 100%
-                          const size = baseSize * sizeMultiplier;
-                          
-                          blueFieldDots.push(`
-                            radial-gradient(circle ${size}px at ${x}% ${y}%, 
-                              rgba(255,255,255,${opacity * snowIntensity}) 0%, 
-                            rgba(255,255,255,0) 100%
+                        // Use CSS patterns instead of hundreds of individual gradients
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            rgba(255,255,255,${0.1 * snowIntensity}) 1px,
+                            transparent 2px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            rgba(255,255,255,${0.08 * snowIntensity}) 1px,
+                            transparent 2px
+                          ),
+                          radial-gradient(
+                            circle at 20% 20%,
+                            rgba(255,255,255,${0.15 * snowIntensity}) 0%,
+                            transparent 2%
+                          ),
+                          radial-gradient(
+                            circle at 80% 80%,
+                            rgba(255,255,255,${0.12 * snowIntensity}) 0%,
+                            transparent 2%
+                          ),
+                          radial-gradient(
+                            circle at 50% 50%,
+                            rgba(100,150,255,${0.08 * snowIntensity}) 0%,
+                            transparent 1%
                           )
-                          `);
-                        }
-                        
-                        // Colored static pixels for TV color static effect
-                        const coloredStatic = [];
-                        const baseColoredDots = 80;
-                        const maxColoredDots = 150;
-                        const coloredDotCount = Math.floor(baseColoredDots + (maxColoredDots - baseColoredDots) * intensity);
-                        
-                        for (let i = 0; i < coloredDotCount; i++) {
-                          // Animated movement for colored static pixels
-                          const movePhase = (snowPhase + i * 0.06) % (2 * Math.PI);
-                          const baseX = (i * 3.7) % 100;
-                          const baseY = (i * 6.1) % 100;
-                          const x = (baseX + Math.sin(movePhase * 0.9) * 3 + Math.cos(movePhase * 1.4) * 2.2) % 100;
-                          const y = (baseY + Math.cos(movePhase * 0.7) * 3.5 + Math.sin(movePhase * 1.2) * 2.8) % 100;
-                          const flickerPhase = (snowPhase + i * 0.04) % (2 * Math.PI);
-                          const randomNoise = Math.sin(flickerPhase * 1.9) * Math.cos(flickerPhase * 2.1);
-                          
-                          // Intensity-based scaling
-                          const baseOpacity = 0.4 + Math.abs(randomNoise) * 0.4;
-                          const intensityMultiplier = 0.8 + intensity * 0.4; // 0.8 to 1.2 at 100%
-                          const opacity = baseOpacity * intensityMultiplier;
-                          
-                          const baseSize = 0.5 + Math.abs(randomNoise) * 0.5;
-                          const sizeMultiplier = 0.9 + intensity * 0.5; // 0.9 to 1.4 at 100%
-                          const size = baseSize * sizeMultiplier;
-                          
-                          // Random colored pixels (red, green, blue, yellow, cyan, magenta)
-                          const colorIndex = Math.floor(Math.abs(randomNoise) * 6);
-                          const colors = [
-                            `rgba(255,80,80,${opacity * snowIntensity})`, // Red
-                            `rgba(80,255,80,${opacity * snowIntensity})`, // Green
-                            `rgba(80,80,255,${opacity * snowIntensity})`, // Blue
-                            `rgba(255,255,80,${opacity * snowIntensity})`, // Yellow
-                            `rgba(80,255,255,${opacity * snowIntensity})`, // Cyan
-                            `rgba(255,80,255,${opacity * snowIntensity})`  // Magenta
-                          ];
-                          const color = colors[colorIndex];
-                          
-                          coloredStatic.push(`
-                            radial-gradient(circle ${size}px at ${x}% ${y}%, 
-                              ${color} 0%, 
-                              rgba(0,0,0,0) 100%
-                            )
-                          `);
-                        }
-                        
-                        overlayStyle.background = [...snowDots, ...blueFieldDots, ...coloredStatic].join(', ');
+                        `;
                         overlayStyle.mixBlendMode = 'screen';
                         overlayStyle.opacity = snowIntensity;
-                        overlayStyle.animation = 'visualSnowFlicker 0.01s linear infinite';
+                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite';
                         break;
                         
                       // Filter-based conditions (Color Vision, Eye Conditions, Retinal Disorders, Visual Disturbances, Double Vision) 
@@ -1271,10 +1169,17 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: Use simplified pattern (animation handled by unified system)
-                        overlayStyle.background = `radial-gradient(ellipse 20% 8% at 35% 35%, rgba(0,0,0,${intensity * 0.7}) 0%, rgba(0,0,0,0) 80%)`;
+                        // Visual Floaters: Optimized version with fewer complex gradients
+                        const floaterIntensity = Math.min(intensity * 0.8, 1.0);
+                        
+                        // Use simpler gradient patterns for better performance
+                        overlayStyle.background = `
+                          radial-gradient(ellipse 15% 6% at 30% 30%, rgba(0,0,0,${floaterIntensity * 0.6}) 0%, rgba(0,0,0,0) 70%),
+                          radial-gradient(ellipse 12% 5% at 70% 40%, rgba(0,0,0,${floaterIntensity * 0.5}) 0%, rgba(0,0,0,0) 65%),
+                          radial-gradient(circle 8% at 50% 70%, rgba(0,0,0,${floaterIntensity * 0.4}) 0%, rgba(0,0,0,0) 60%)
+                        `;
                         overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.8, intensity);
+                        overlayStyle.opacity = floaterIntensity;
                         break;
                         
                       case 'hallucinations':

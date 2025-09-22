@@ -355,129 +355,21 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   }
 
   if (visualFloaters?.enabled) {
-    const now = Date.now();
-    const time = now * 0.001; // Convert to seconds
+    // Simplified visual floaters for better performance
+    const intensity = visualFloaters.intensity;
     
-    // Determine severity level based on intensity
-    const severity = visualFloaters.intensity < 0.3 ? 'mild' : visualFloaters.intensity < 0.7 ? 'moderate' : 'severe';
-    
-    let floaterPattern: string;
-    
-    if (severity === 'mild') {
-      // Mild: 1-2 small floaters, only noticed in specific conditions
-      // Cobweb/string floater - most common type, often in superior field due to gravity
-      const cobwebX = 35 + Math.sin(time * 0.1) * 15 + Math.sin(time * 0.05) * 8;
-      const cobwebY = 35 + Math.cos(time * 0.08) * 12; // Slightly higher due to gravity settling
-      
-      floaterPattern = `
-        radial-gradient(ellipse 20% 6% at ${cobwebX}% ${cobwebY}%, 
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 20%,
-          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 50%,
-          rgba(0,0,0,0) 80%
-        )
-      `;
-      
-    } else if (severity === 'moderate') {
-      // Moderate: Multiple floaters of various types
-      // Cobweb/string floater with lag behind eye movement - often in superior field
-      const cobwebX = 30 + Math.sin(time * 0.12) * 20 + Math.sin(time * 0.06) * 10;
-      const cobwebY = 35 + Math.cos(time * 0.1) * 15; // Gravity bias toward superior field
-      const dotX = 60 + Math.sin(time * 0.15 + 1.5) * 18;
-      const dotY = 50 + Math.cos(time * 0.12 + 2) * 20; // More central distribution
-      const ringX = 50 + Math.sin(time * 0.08 + 3) * 12;
-      const ringY = 25 + Math.cos(time * 0.1 + 1) * 8; // Superior field bias
-      
-      floaterPattern = `
-        /* Cobweb/string floater */
-        radial-gradient(ellipse 25% 8% at ${cobwebX}% ${cobwebY}%, 
-          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 25%,
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 60%,
-          rgba(0,0,0,0) 85%
-        ),
-        /* Dot/spot floater */
-        radial-gradient(circle 6% at ${dotX}% ${dotY}%, 
-          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 50%,
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 80%,
-          rgba(0,0,0,0) 100%
-        ),
-        /* Ring floater (Weiss Ring) */
-        radial-gradient(ellipse 15% 12% at ${ringX}% ${ringY}%, 
-          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 30%,
-          rgba(0,0,0,${0.2 * visualFloaters.intensity}) 60%,
-          rgba(0,0,0,0) 90%
-        )
-      `;
-      
-    } else {
-      // Severe: Numerous large floaters, constant visual obstruction
-      // Multiple cobweb/string floaters - superior field bias due to gravity
-      const cobweb1X = 25 + Math.sin(time * 0.1) * 22 + Math.sin(time * 0.05) * 12;
-      const cobweb1Y = 30 + Math.cos(time * 0.08) * 18; // Superior field
-      const cobweb2X = 70 + Math.sin(time * 0.12 + 2) * 20;
-      const cobweb2Y = 35 + Math.cos(time * 0.1 + 1.5) * 15; // Superior field
-      const dot1X = 45 + Math.sin(time * 0.15 + 1) * 25;
-      const dot1Y = 50 + Math.cos(time * 0.12 + 2.5) * 20; // Central
-      const dot2X = 80 + Math.sin(time * 0.18 + 3) * 15;
-      const dot2Y = 70 + Math.cos(time * 0.14 + 1.8) * 12; // Peripheral
-      const ringX = 50 + Math.sin(time * 0.08 + 4) * 15;
-      const ringY = 25 + Math.cos(time * 0.1 + 2.2) * 10; // Superior field
-      const cloudX = 40 + Math.sin(time * 0.06 + 1.2) * 18;
-      const cloudY = 60 + Math.cos(time * 0.08 + 2.8) * 12; // More central
-      
-      floaterPattern = `
-        /* Cobweb/string floater 1 */
-        radial-gradient(ellipse 30% 10% at ${cobweb1X}% ${cobweb1Y}%, 
-          rgba(0,0,0,${0.85 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 20%,
-          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 50%,
-          rgba(0,0,0,0) 80%
-        ),
-        /* Cobweb/string floater 2 */
-        radial-gradient(ellipse 25% 8% at ${cobweb2X}% ${cobweb2Y}%, 
-          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.6 * visualFloaters.intensity}) 25%,
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 60%,
-          rgba(0,0,0,0) 85%
-        ),
-        /* Dot/spot floater 1 */
-        radial-gradient(circle 8% at ${dot1X}% ${dot1Y}%, 
-          rgba(0,0,0,${0.9 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 50%,
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 80%,
-          rgba(0,0,0,0) 100%
-        ),
-        /* Dot/spot floater 2 */
-        radial-gradient(circle 5% at ${dot2X}% ${dot2Y}%, 
-          rgba(0,0,0,${0.95 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.8 * visualFloaters.intensity}) 60%,
-          rgba(0,0,0,0) 100%
-        ),
-        /* Ring floater (Weiss Ring) */
-        radial-gradient(ellipse 18% 15% at ${ringX}% ${ringY}%, 
-          rgba(0,0,0,${0.7 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.5 * visualFloaters.intensity}) 30%,
-          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 60%,
-          rgba(0,0,0,0) 90%
-        ),
-        /* Cloud/sheet floater */
-        radial-gradient(ellipse 35% 20% at ${cloudX}% ${cloudY}%, 
-          rgba(0,0,0,${0.4 * visualFloaters.intensity}) 0%, 
-          rgba(0,0,0,${0.3 * visualFloaters.intensity}) 40%,
-          rgba(0,0,0,${0.2 * visualFloaters.intensity}) 70%,
-          rgba(0,0,0,0) 100%
-        )
-      `;
-    }
+    // Use simpler, static patterns instead of complex animated calculations
+    const floaterPattern = `
+      radial-gradient(ellipse 15% 6% at 30% 30%, rgba(0,0,0,${0.6 * intensity}) 0%, rgba(0,0,0,0) 70%),
+      radial-gradient(ellipse 12% 5% at 70% 40%, rgba(0,0,0,${0.5 * intensity}) 0%, rgba(0,0,0,0) 65%),
+      radial-gradient(circle 8% at 50% 70%, rgba(0,0,0,${0.4 * intensity}) 0%, rgba(0,0,0,0) 60%)
+    `;
 
     createOverlay(
       'visual-field-overlay-visualFloaters',
       floaterPattern,
       'multiply',
-      Math.min(0.98, visualFloaters.intensity).toString(),
+      Math.min(0.8, intensity).toString(),
       undefined,
       undefined,
       'visualFloaters'

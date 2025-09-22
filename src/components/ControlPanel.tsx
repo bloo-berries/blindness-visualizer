@@ -719,45 +719,46 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         // Visual Snow (Static Particles): Persistent static pattern
                         // Based on research from Visual Snow Initiative
                         const snowIntensity = Math.min(intensity * 1.5, 1.0);
-                        const particleCount = Math.floor(80 + intensity * 320 + (intensity * intensity * 2400)); // 80-400 base + up to 2400 more at 100% (8x total increase)
+                        const particleCount = Math.floor(80 + intensity * 320 + (intensity * intensity * 2400) + (intensity * intensity * intensity * 19200)); // 8x additional increase at 100% (total 64x increase)
                         
                         // Generate dynamic particle pattern based on intensity
                         let snowParticles = '';
                         for (let i = 0; i < particleCount; i++) {
                           const x = (i * 7.3 + Math.sin(i) * 13) % 100;
                           const y = (i * 11.7 + Math.cos(i) * 17) % 100;
-                          const opacity = 0.3 + (Math.sin(i * 0.5) * 0.4) * snowIntensity;
+                          const opacity = 0.6 + (Math.sin(i * 0.5) * 0.4) * snowIntensity; // Increased base opacity from 0.3 to 0.6
                           snowParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
                         }
                         
                         overlayStyle.background = snowParticles.slice(0, -1); // Remove trailing comma
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.8, snowIntensity);
+                        overlayStyle.opacity = Math.min(0.9, snowIntensity); // Increased max opacity from 0.8 to 0.9
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
                         break;
                         
                       case 'visualSnowFlashing':
                         // Visual Snow (Flashing Static): Rapidly flickering static
                         const flashingIntensity = Math.min(intensity * 2.0, 1.0);
-                        const flashingParticleCount = Math.floor(60 + intensity * 240 + (intensity * intensity * 1800)); // 60-300 base + up to 1800 more at 100% (8x total increase)
+                        const flashingParticleCount = Math.floor(60 + intensity * 240 + (intensity * intensity * 1800) + (intensity * intensity * intensity * 14400)); // 8x additional increase at 100% (total 64x increase)
                         
                         let flashingParticles = '';
                         for (let i = 0; i < flashingParticleCount; i++) {
                           const x = (i * 8.1 + Math.sin(i) * 15) % 100;
                           const y = (i * 12.3 + Math.cos(i) * 19) % 100;
-                          const opacity = 0.4 + (Math.sin(i * 0.7) * 0.5) * flashingIntensity;
+                          const opacity = 0.7 + (Math.sin(i * 0.7) * 0.3) * flashingIntensity; // Increased base opacity from 0.4 to 0.7
                           flashingParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
                         }
                         
                         overlayStyle.background = flashingParticles.slice(0, -1);
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.9, flashingIntensity);
-                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite';
+                        overlayStyle.opacity = Math.min(0.95, flashingIntensity); // Increased max opacity from 0.9 to 0.95
+                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite, visualSnowDrift 2s ease-in-out infinite alternate'; // Combined flicker and drift
                         break;
                         
                       case 'visualSnowColored':
                         // Visual Snow (Colored Static): Multi-colored static particles
                         const coloredIntensity = Math.min(intensity * 1.8, 1.0);
-                        const coloredParticleCount = Math.floor(100 + intensity * 300 + (intensity * intensity * 2200)); // 100-400 base + up to 2200 more at 100% (8x total increase)
+                        const coloredParticleCount = Math.floor(100 + intensity * 300 + (intensity * intensity * 2200) + (intensity * intensity * intensity * 17600)); // 8x additional increase at 100% (total 64x increase)
                         
                         const colors = [
                           'rgba(255,100,100,', // Red
@@ -775,50 +776,53 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           const x = (i * 6.7 + Math.sin(i) * 11) % 100;
                           const y = (i * 9.3 + Math.cos(i) * 13) % 100;
                           const colorIndex = i % colors.length;
-                          const opacity = 0.3 + (Math.sin(i * 0.6) * 0.4) * coloredIntensity;
+                          const opacity = 0.6 + (Math.sin(i * 0.6) * 0.4) * coloredIntensity; // Increased base opacity from 0.3 to 0.6
                           coloredParticles += `radial-gradient(circle 1px at ${x}% ${y}%, ${colors[colorIndex]}${opacity}) 0%, transparent 1px),`;
                         }
                         
                         overlayStyle.background = coloredParticles.slice(0, -1);
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.8, coloredIntensity);
+                        overlayStyle.opacity = Math.min(0.9, coloredIntensity); // Increased max opacity from 0.8 to 0.9
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
                         break;
                         
                       case 'visualSnowTransparent':
                         // Visual Snow (Transparent Static): Semi-transparent particles
                         const transparentIntensity = Math.min(intensity * 1.3, 1.0);
-                        const transparentParticleCount = Math.floor(120 + intensity * 280 + (intensity * intensity * 2000)); // 120-400 base + up to 2000 more at 100% (8x total increase)
+                        const transparentParticleCount = Math.floor(120 + intensity * 280 + (intensity * intensity * 2000) + (intensity * intensity * intensity * 16000)); // 8x additional increase at 100% (total 64x increase)
                         
                         let transparentParticles = '';
                         for (let i = 0; i < transparentParticleCount; i++) {
                           const x = (i * 5.9 + Math.sin(i) * 9) % 100;
                           const y = (i * 8.7 + Math.cos(i) * 11) % 100;
-                          const opacity = 0.1 + (Math.sin(i * 0.4) * 0.2) * transparentIntensity;
+                          const opacity = 0.3 + (Math.sin(i * 0.4) * 0.3) * transparentIntensity; // Increased base opacity from 0.1 to 0.3
                           transparentParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
                         }
                         
                         overlayStyle.background = transparentParticles.slice(0, -1);
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.6, transparentIntensity);
+                        overlayStyle.opacity = Math.min(0.7, transparentIntensity); // Increased max opacity from 0.6 to 0.7
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
                         break;
                         
                       case 'visualSnowDense':
                         // Visual Snow (Dense Static): High density, severe static
                         const denseIntensity = Math.min(intensity * 2.5, 1.0);
-                        const denseParticleCount = Math.floor(200 + intensity * 600 + (intensity * intensity * 4800)); // 200-800 base + up to 4800 more at 100% (8x total increase)
+                        const denseParticleCount = Math.floor(200 + intensity * 600 + (intensity * intensity * 4800) + (intensity * intensity * intensity * 38400)); // 8x additional increase at 100% (total 64x increase)
                         
                         let denseParticles = '';
                         for (let i = 0; i < denseParticleCount; i++) {
                           const x = (i * 4.3 + Math.sin(i) * 7) % 100;
                           const y = (i * 6.7 + Math.cos(i) * 9) % 100;
-                          const opacity = 0.4 + (Math.sin(i * 0.8) * 0.5) * denseIntensity;
+                          const opacity = 0.7 + (Math.sin(i * 0.8) * 0.3) * denseIntensity; // Increased base opacity from 0.4 to 0.7
                           const size = 1 + Math.sin(i * 0.3) * 0.5; // Vary particle size slightly
                           denseParticles += `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent ${size}px),`;
                         }
                         
                         overlayStyle.background = denseParticles.slice(0, -1);
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.95, denseIntensity);
+                        overlayStyle.opacity = Math.min(0.98, denseIntensity); // Increased max opacity from 0.95 to 0.98
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate'; // Add subtle motion
                         break;
                         
                       // Filter-based conditions (Color Vision, Eye Conditions, Retinal Disorders, Visual Disturbances, Double Vision) 

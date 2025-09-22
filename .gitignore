@@ -8,6 +8,12 @@
 
 # production
 /build
+/docs
+
+# deployment
+deploy.sh
+wrangler.toml
+_redirects
 
 # misc
 .DS_Store
@@ -18,4 +24,8 @@
 
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log* 
+yarn-error.log*
+
+# temporary files
+test-deploy.txt
+*.tmp 

@@ -21,7 +21,6 @@ import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
-import { useAnimatedFloaters } from '../hooks/useAnimatedFloaters';
 import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
 interface ControlPanelProps {
@@ -82,11 +81,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   
   // Get visual floaters effect for animation (using optimized lookup)
   const visualFloatersEffect = getEffect('visualFloaters');
-  const { floaterPattern } = useAnimatedFloaters({
-    intensity: visualFloatersEffect?.intensity || 0,
-    enabled: visualFloatersEffect?.enabled || false,
-    animationSpeed: 1.0
-  });
 
   // Handler for when an effect is clicked in the list (memoized)
   const handleEffectClick = useCallback((effect: VisualEffect) => {
@@ -1277,8 +1271,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: Use animated pattern from hook
-                        overlayStyle.background = floaterPattern;
+                        // Visual Floaters: Use simplified pattern (animation handled by unified system)
+                        overlayStyle.background = `radial-gradient(ellipse 20% 8% at 35% 35%, rgba(0,0,0,${intensity * 0.7}) 0%, rgba(0,0,0,0) 80%)`;
                         overlayStyle.mixBlendMode = 'multiply';
                         overlayStyle.opacity = Math.min(0.8, intensity);
                         break;

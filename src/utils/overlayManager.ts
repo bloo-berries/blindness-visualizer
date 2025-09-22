@@ -80,7 +80,6 @@ const createOverlay = (
         const iframe = document.querySelector(selector);
         if (iframe) {
           container = iframe.parentElement;
-          console.log('Found iframe parent container:', container);
           break;
         }
       } else if (selector === 'canvas') {
@@ -88,13 +87,11 @@ const createOverlay = (
         const canvas = document.querySelector(selector);
         if (canvas) {
           container = canvas.parentElement;
-          console.log('Found canvas parent container:', container);
           break;
         }
       } else {
         container = document.querySelector(selector);
         if (container) {
-          console.log(`Found container with selector: ${selector}`, container);
           break;
         }
       }
@@ -102,12 +99,9 @@ const createOverlay = (
     
     if (container) {
       container.appendChild(overlayElement);
-      console.log(`Successfully created overlay ${id} in container:`, container);
     } else {
-      console.warn(`Could not find container for overlay ${id}`);
       // Try to append to body as fallback
       document.body.appendChild(overlayElement);
-      console.log(`Fallback: Created overlay ${id} in body`);
     }
     
     // Force the container to have relative positioning if it doesn't
@@ -115,7 +109,6 @@ const createOverlay = (
       const computedStyle = window.getComputedStyle(container);
       if (computedStyle.position === 'static') {
         container.style.position = 'relative';
-        console.log('Set container position to relative');
       }
     }
   }
@@ -136,8 +129,6 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   // Remove existing overlays first
   document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
   
-  console.log('Creating visual field overlays for effects:', effects);
-  console.log('Current input source type:', document.querySelector('iframe[src*="youtube"]') ? 'youtube' : 'image/webcam');
 
   // Create effect lookup map for O(1) access instead of O(n) finds
   const effectMap = createEffectMap(effects);

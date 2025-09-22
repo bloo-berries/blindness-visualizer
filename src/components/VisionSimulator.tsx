@@ -28,7 +28,7 @@ const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
-  const [showFixedNav, setShowFixedNav] = useState(true);
+  // const [showFixedNav, setShowFixedNav] = useState(true);
   const [inputSource, setInputSource] = useState<InputSource>({
     type: 'youtube',
   });
@@ -190,21 +190,7 @@ const VisionSimulator: React.FC = () => {
     navigate('/');
   };
 
-  // Add scroll event listener to keep fixed nav visible
-  useEffect(() => {
-    const handleScroll = () => {
-      // Always show the fixed navigation to ensure buttons are accessible
-      setShowFixedNav(true);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    // Initial check - always show navigation
-    setShowFixedNav(true);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // Navigation is always visible, no need for scroll handler
 
   // Auto-enable comparison mode when reaching the final step
   useEffect(() => {

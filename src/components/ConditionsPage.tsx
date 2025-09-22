@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -58,7 +58,7 @@ const ConditionsPage: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | false>(false);
 
   // Organize conditions into categories
-  const conditionCategories: ConditionCategory[] = [
+  const conditionCategories: ConditionCategory[] = useMemo(() => [
     {
       id: 'visual-field',
       name: 'Visual Field Loss',
@@ -297,7 +297,7 @@ const ConditionsPage: React.FC = () => {
         }
       ]
     }
-  ];
+  ], []);
 
   const [filteredCategories, setFilteredCategories] = useState(conditionCategories);
 
@@ -321,7 +321,7 @@ const ConditionsPage: React.FC = () => {
     }
 
     setFilteredCategories(filtered);
-  }, [searchTerm, categoryFilter]);
+  }, [searchTerm, categoryFilter, conditionCategories]);
 
   useEffect(() => {
     filterCategories();

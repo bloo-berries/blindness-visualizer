@@ -42,6 +42,10 @@ const VisionSimulator: React.FC = () => {
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
   const [showComparison, setShowComparison] = useState(false);
 
+  // Calculate the number of enabled effects for performance monitoring
+  // const enabledEffectsCount = effects.filter(effect => effect.enabled).length; // Removed - Performance Monitor no longer used
+
+
   // Handle pre-configured conditions from famous people page
   useEffect(() => {
     if (location.state?.preconfiguredConditions) {
@@ -204,6 +208,8 @@ const VisionSimulator: React.FC = () => {
         showHomeButton={true}
         onHomeClick={handleHomeClick}
       />
+      
+      {/* Performance Monitor removed for general public use */}
       <a 
         href="#main-content" 
         className="skip-to-content"

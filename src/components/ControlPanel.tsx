@@ -21,7 +21,6 @@ import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
-import { useAnimatedFloaters } from '../hooks/useAnimatedFloaters';
 import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
 interface ControlPanelProps {
@@ -55,8 +54,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaDirectionChange
 }) => {
   // Create effect lookup map for O(1) access instead of O(n) finds
-  const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
-  const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
+  // const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
+  // const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
 
   // Group effects by category (memoized to prevent unnecessary recalculations)
   const effectsByCategory = useMemo(() => 
@@ -81,12 +80,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   );
   
   // Get visual floaters effect for animation (using optimized lookup)
-  const visualFloatersEffect = getEffect('visualFloaters');
-  const { floaterPattern } = useAnimatedFloaters({
-    intensity: visualFloatersEffect?.intensity || 0,
-    enabled: visualFloatersEffect?.enabled || false,
-    animationSpeed: 1.0
-  });
+  // const visualFloatersEffect = getEffect('visualFloaters');
 
   // Handler for when an effect is clicked in the list (memoized)
   const handleEffectClick = useCallback((effect: VisualEffect) => {
@@ -197,26 +191,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             100% { opacity: 0.5; }
           }
           @keyframes floaterDrift {
-            0% { 
-              transform: translate(0px, 0px) rotate(0deg);
-              filter: blur(0px);
-            }
-            25% { 
-              transform: translate(2px, -1px) rotate(0.5deg);
-              filter: blur(0.2px);
-            }
-            50% { 
-              transform: translate(-1px, 2px) rotate(-0.3deg);
-              filter: blur(0.1px);
-            }
-            75% { 
-              transform: translate(1px, 1px) rotate(0.2deg);
-              filter: blur(0.3px);
-            }
-            100% { 
-              transform: translate(0px, 0px) rotate(0deg);
-              filter: blur(0px);
-            }
+            0% { transform: translate(0px, 0px); }
+            25% { transform: translate(2px, -1px); }
+            50% { transform: translate(-1px, 2px); }
+            75% { transform: translate(1px, 1px); }
+            100% { transform: translate(0px, 0px); }
           }
         `}
       </style>
@@ -469,7 +448,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   {/* Base image with color vision filters applied directly */}
                   <Box 
                     component="img" 
-                    src="/images/garden.png" 
+                    src="./images/garden.png" 
                     alt="Base reference image"
                     sx={{ 
                       position: 'absolute',
@@ -598,8 +577,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       overlayStyle.zIndex = Z_INDEX.BASE + enabledEffects.indexOf(effect); // Default z-index with ordering
                     }
                     
-                    // Get current time for animated effects
-                    const now = Date.now();
+                    // Get current time for animated effects (throttled for performance)
+                    const now = Math.floor(Date.now() / 100) * 100; // Throttle to 10fps for better performance
                     
                     // Apply specific overlay styles based on condition type
                     switch (effectType) {
@@ -770,6 +749,128 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.backgroundSize = '4px 4px, 4px 4px, 6px 6px';
                         overlayStyle.mixBlendMode = 'screen';
                         overlayStyle.opacity = Math.min(0.8, snowIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'visualSnowFlashing':
+                        // Visual Snow (Flashing Static): Optimized for performance
+                        const flashingIntensity = Math.min(intensity * 2.0, 1.0);
+                        const flashingDensity = Math.min(intensity * 0.9, 0.7);
+                        
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${flashingDensity * 0.4}) 1px,
+                            rgba(255,255,255,${flashingDensity * 0.4}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${flashingDensity * 0.3}) 1px,
+                            rgba(255,255,255,${flashingDensity * 0.3}) 2px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '2px 2px, 2px 2px';
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.9, flashingIntensity);
+                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite, visualSnowDrift 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'visualSnowColored':
+                        // Visual Snow (Colored Static): Optimized for performance
+                        const coloredIntensity = Math.min(intensity * 1.8, 1.0);
+                        const coloredDensity = Math.min(intensity * 0.7, 0.5);
+                        
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(255,100,100,${coloredDensity * 0.3}) 3px,
+                            rgba(255,100,100,${coloredDensity * 0.3}) 4px
+                          ),
+                          repeating-linear-gradient(
+                            60deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(100,255,100,${coloredDensity * 0.2}) 3px,
+                            rgba(100,255,100,${coloredDensity * 0.2}) 4px
+                          ),
+                          repeating-linear-gradient(
+                            120deg,
+                            transparent 0px,
+                            transparent 3px,
+                            rgba(100,100,255,${coloredDensity * 0.2}) 3px,
+                            rgba(100,100,255,${coloredDensity * 0.2}) 4px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '5px 5px, 5px 5px, 5px 5px';
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.8, coloredIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'visualSnowTransparent':
+                        // Visual Snow (Transparent Static): Optimized for performance
+                        const transparentIntensity = Math.min(intensity * 1.3, 1.0);
+                        const transparentDensity = Math.min(intensity * 0.5, 0.3);
+                        
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 4px,
+                            rgba(255,255,255,${transparentDensity * 0.2}) 4px,
+                            rgba(255,255,255,${transparentDensity * 0.2}) 5px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 4px,
+                            rgba(255,255,255,${transparentDensity * 0.15}) 4px,
+                            rgba(255,255,255,${transparentDensity * 0.15}) 5px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '6px 6px, 6px 6px';
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.6, transparentIntensity);
+                        overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
+                        break;
+                        
+                      case 'visualSnowDense':
+                        // Visual Snow (Dense Static): Optimized for performance
+                        const denseIntensity = Math.min(intensity * 2.5, 1.0);
+                        const denseDensity = Math.min(intensity * 1.0, 0.8);
+                        
+                        overlayStyle.background = `
+                          repeating-linear-gradient(
+                            0deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${denseDensity * 0.5}) 1px,
+                            rgba(255,255,255,${denseDensity * 0.5}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            90deg,
+                            transparent 0px,
+                            transparent 1px,
+                            rgba(255,255,255,${denseDensity * 0.4}) 1px,
+                            rgba(255,255,255,${denseDensity * 0.4}) 2px
+                          ),
+                          repeating-linear-gradient(
+                            45deg,
+                            transparent 0px,
+                            transparent 2px,
+                            rgba(255,255,255,${denseDensity * 0.3}) 2px,
+                            rgba(255,255,255,${denseDensity * 0.3}) 3px
+                          )
+                        `;
+                        overlayStyle.backgroundSize = '2px 2px, 2px 2px, 3px 3px';
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.9, denseIntensity);
                         overlayStyle.animation = 'visualSnowDrift 2s ease-in-out infinite alternate';
                         break;
                         
@@ -977,7 +1078,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.3 + intensity * 0.2; // Semi-transparent ghost
                         overlayStyle.filter = 'blur(2px)'; // Slight blur for ghost image
                         overlayStyle.transform = `translate(${monocularOffset}px, ${monocularOffset * 0.5}px)`;
-                        overlayStyle.backgroundImage = 'url(/images/garden.png)';
+                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -991,7 +1092,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.5; // More opaque than monocular
                         overlayStyle.filter = 'none'; // No blur for clear second image
                         overlayStyle.transform = `translate(${binocularOffset}px, 0px)`;
-                        overlayStyle.backgroundImage = 'url(/images/garden.png)';
+                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -1188,10 +1289,41 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: Use animated pattern from hook
-                        overlayStyle.background = floaterPattern;
+                        // Visual Floaters (Myodesopsia): Realistic implementation based on medical research
+                        // Floaters are shadows of protein/cell debris in vitreous humour that drift with eye movement
+                        const floaterIntensity = Math.min(intensity * 1.5, 1.0);
+                        const floaterCount = Math.floor(3 + intensity * 8); // 3-11 floaters based on intensity
+                        
+                        // Generate dynamic floater patterns with varying shapes, sizes, and opacities
+                        // Based on Wikipedia: floaters appear as spots, threads, or "cobwebs"
+                        let floaterPatterns = '';
+                        for (let i = 0; i < floaterCount; i++) {
+                          const x = (i * 23.7 + Math.sin(i * 0.8) * 15) % 100;
+                          const y = (i * 31.3 + Math.cos(i * 0.6) * 20) % 100;
+                          const size = 8 + Math.sin(i * 0.4) * 12; // 8-20% size variation
+                          const opacity = 0.3 + (Math.sin(i * 0.7) * 0.4) * floaterIntensity;
+                          const shape = i % 3; // 0=circle, 1=ellipse, 2=thread-like
+                          
+                          if (shape === 0) {
+                            // Circular floaters (most common)
+                            floaterPatterns += `radial-gradient(circle ${size}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.6}) 30%, rgba(0,0,0,${opacity * 0.3}) 60%, rgba(0,0,0,0) 100%),`;
+                          } else if (shape === 1) {
+                            // Elliptical floaters (common in vitreous syneresis)
+                            const width = size;
+                            const height = size * 0.4;
+                            floaterPatterns += `radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.5}) 40%, rgba(0,0,0,${opacity * 0.2}) 70%, rgba(0,0,0,0) 100%),`;
+                          } else {
+                            // Thread-like floaters (cobweb appearance)
+                            const threadWidth = size * 0.2;
+                            const threadHeight = size * 1.5;
+                            floaterPatterns += `radial-gradient(ellipse ${threadWidth}% ${threadHeight}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.7}) 20%, rgba(0,0,0,${opacity * 0.4}) 50%, rgba(0,0,0,${opacity * 0.1}) 80%, rgba(0,0,0,0) 100%),`;
+                          }
+                        }
+                        
+                        overlayStyle.background = floaterPatterns.slice(0, -1); // Remove trailing comma
                         overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.8, intensity);
+                        overlayStyle.opacity = Math.min(0.85, floaterIntensity);
+                        overlayStyle.animation = 'floaterDrift 6s ease-in-out infinite alternate, floaterSway 4s ease-in-out infinite alternate'; // Combined drift and sway
                         break;
                         
                       case 'hallucinations':
@@ -1975,7 +2107,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               ) : (
                 <Box 
                   component="img" 
-                  src="/images/garden.png" 
+                  src="./images/garden.png" 
                   alt="Normal vision reference image"
                   sx={{ 
                     maxWidth: '100%', 

@@ -218,4 +218,24 @@ html {
     opacity: 0.7; 
     filter: hue-rotate(360deg) brightness(100%) saturate(100%); 
   }
+}
+
+/* Animation for Visual Snow drift motion */
+@keyframes visualSnowDrift {
+  0% { 
+    transform: translateX(-2px);
+  }
+  100% { 
+    transform: translateX(2px);
+  }
+}
+
+/* Animation for Visual Floaters sway motion */
+@keyframes floaterSway {
+  0% { 
+    transform: translateY(-1px) rotate(0.5deg);
+  }
+  100% { 
+    transform: translateY(1px) rotate(-0.5deg);
+  }
 } 

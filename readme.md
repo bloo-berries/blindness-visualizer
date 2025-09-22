@@ -5,12 +5,10 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 📸 Site Preview
 
 ### Homepage
-
 ![VisionSim Homepage](./public/images/people/VisionSim-Home-Page.png)
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
-### About Page  
-
+### About Page
 ![VisionSim About Page](./public/images/people/VisionSim-About.png)
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
@@ -32,6 +30,9 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
   - Refractive errors (Nearsightedness, Farsightedness, Astigmatism)
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
+![Visualization Preview](./public/images/people/Visualization-Preview.png)
+*Real-time vision condition simulation with multiple effects applied*
+
 ### Famous People Educational Section
 
 - **14 famous individuals** across 5 categories:
@@ -44,6 +45,9 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Detailed person cards** with medical information and life stories
 - **Direct simulation integration** - experience each person's specific vision condition
 
+![Claude Monet Preview](./public/images/people/Claude-Monet-Preview.png)
+*Example of famous person profile with detailed information and simulation integration*
+
 ### Accessibility Features
 
 - **Screen reader compatibility**
@@ -52,12 +56,15 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Font size adjustments**
 - **Focus indicators** for better visibility
 
+<<<<<<< HEAD
 ### Modern User Interface
 
 - **Responsive design** that works on desktop, tablet, and mobile
 - **Material-UI components** for consistent, professional appearance
 - **Intuitive navigation** with React Router
 - **Beautiful card-based layout** for easy browsing
+=======
+>>>>>>> fce39657ec6e939d2de3a6187d91af2027756128
 
 ## 🚀 Getting Started
 
@@ -193,11 +200,6 @@ We welcome contributions! Here's how you can help:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **Famous Blind People**: Research and information about historical and contemporary figures
-- **Medical Resources**: Information about vision conditions and their effects
-- **Open Source Community**: Libraries and tools that made this project possible
 
 ## 📞 Support
 

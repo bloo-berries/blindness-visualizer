@@ -91,10 +91,38 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   },
   { 
     id: 'visualSnow',
-    name: 'Visual Snow',
+    name: 'Visual Snow (Static Particles)',
     enabled: false,
     intensity: 1.0,
-    description: 'A persistent visual disturbance where people see tiny, flickering dots across their entire visual field. Similar to the static noise on an old television. Can be constant or intermittent.'
+    description: 'A persistent visual disturbance where people see tiny, static dots across their entire visual field. Similar to the static noise on an untuned television screen. This is a neurological condition that affects 2-3% of the population and remains present even with closed eyes.'
+  },
+  { 
+    id: 'visualSnowFlashing',
+    name: 'Visual Snow (Flashing Static)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'A subtype of Visual Snow where the static particles appear to flash or flicker rapidly. This can be particularly distracting and may worsen in certain lighting conditions.'
+  },
+  { 
+    id: 'visualSnowColored',
+    name: 'Visual Snow (Colored Static)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Visual Snow that appears in colors rather than black and white. Common colors include blue, red, green, or other chromatic variations. This subtype can be more noticeable against certain backgrounds.'
+  },
+  { 
+    id: 'visualSnowTransparent',
+    name: 'Visual Snow (Transparent Static)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Visual Snow that appears as transparent or semi-transparent particles. This subtype may be less noticeable but can still significantly impact visual clarity and cause visual fatigue.'
+  },
+  { 
+    id: 'visualSnowDense',
+    name: 'Visual Snow (Dense Static)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'A severe form of Visual Snow with high density particles that can significantly obscure vision. This subtype can be particularly debilitating and may interfere with daily activities like reading and driving.'
   },
   { 
     id: 'visualFloaters',

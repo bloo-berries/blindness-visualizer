@@ -16,7 +16,8 @@ export const VISUAL_FIELD_LOSS_CONDITIONS = [
  * Visual Disturbance conditions that should appear underneath other conditions
  */
 export const VISUAL_DISTURBANCE_CONDITIONS = [
-  'visualAura', 'visualFloaters', 'visualSnow', 'hallucinations',
+  'visualAura', 'visualFloaters', 'visualSnow', 'visualSnowFlashing', 
+  'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense', 'hallucinations',
   'visualAuraLeft', 'visualAuraRight'
 ];
 

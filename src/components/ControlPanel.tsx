@@ -716,74 +716,109 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualSnow':
-                        // Visual Snow Syndrome: Persistent static pattern (not flashing)
-                        // Based on research from Visual Snow Initiative and Emianopsia
-                        const snowIntensity = Math.min(intensity * 1.2, 1.0);
+                        // Visual Snow (Static Particles): Persistent static pattern
+                        // Based on research from Visual Snow Initiative
+                        const snowIntensity = Math.min(intensity * 1.5, 1.0);
+                        const particleCount = Math.floor(20 + intensity * 80); // 20-100 particles based on intensity
                         
-                        // Create persistent static dots pattern across the entire visual field
-                        // This represents the "continuous visual disturbance" described in research
-                        overlayStyle.background = `
-                          radial-gradient(circle 1px at 10% 10%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 20% 15%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 30% 8%, rgba(255,255,255,${0.7 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 40% 12%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 50% 6%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 60% 14%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 70% 9%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 80% 11%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 90% 7%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 15% 25%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 25% 30%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 35% 22%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 45% 28%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 55% 24%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 65% 31%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 75% 26%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 85% 29%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 95% 23%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 12% 40%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 22% 45%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 32% 38%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 42% 43%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 52% 39%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 62% 44%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 72% 41%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 82% 46%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 92% 42%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 8% 55%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 18% 60%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 28% 53%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 38% 58%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 48% 54%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 58% 59%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 68% 56%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 78% 61%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 88% 57%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 98% 62%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 5% 70%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 15% 75%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 25% 68%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 35% 73%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 45% 69%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 55% 74%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 65% 71%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 75% 76%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 85% 72%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 95% 77%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 3% 85%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 13% 90%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 23% 83%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 33% 88%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 43% 84%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 53% 89%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 63% 86%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 73% 91%, rgba(255,255,255,${0.5 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 83% 87%, rgba(255,255,255,${0.6 * snowIntensity}) 0%, transparent 1px),
-                          radial-gradient(circle 1px at 93% 92%, rgba(255,255,255,${0.4 * snowIntensity}) 0%, transparent 1px)
-                        `;
+                        // Generate dynamic particle pattern based on intensity
+                        let snowParticles = '';
+                        for (let i = 0; i < particleCount; i++) {
+                          const x = (i * 7.3 + Math.sin(i) * 13) % 100;
+                          const y = (i * 11.7 + Math.cos(i) * 17) % 100;
+                          const opacity = 0.3 + (Math.sin(i * 0.5) * 0.4) * snowIntensity;
+                          snowParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
+                        }
+                        
+                        overlayStyle.background = snowParticles.slice(0, -1); // Remove trailing comma
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = Math.min(0.7, snowIntensity);
-                        // Remove animation - Visual Snow should be persistent, not flashing
+                        overlayStyle.opacity = Math.min(0.8, snowIntensity);
+                        break;
+                        
+                      case 'visualSnowFlashing':
+                        // Visual Snow (Flashing Static): Rapidly flickering static
+                        const flashingIntensity = Math.min(intensity * 2.0, 1.0);
+                        const flashingParticleCount = Math.floor(15 + intensity * 60); // 15-75 particles
+                        
+                        let flashingParticles = '';
+                        for (let i = 0; i < flashingParticleCount; i++) {
+                          const x = (i * 8.1 + Math.sin(i) * 15) % 100;
+                          const y = (i * 12.3 + Math.cos(i) * 19) % 100;
+                          const opacity = 0.4 + (Math.sin(i * 0.7) * 0.5) * flashingIntensity;
+                          flashingParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
+                        }
+                        
+                        overlayStyle.background = flashingParticles.slice(0, -1);
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.9, flashingIntensity);
+                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite';
+                        break;
+                        
+                      case 'visualSnowColored':
+                        // Visual Snow (Colored Static): Multi-colored static particles
+                        const coloredIntensity = Math.min(intensity * 1.8, 1.0);
+                        const coloredParticleCount = Math.floor(25 + intensity * 75); // 25-100 particles
+                        
+                        const colors = [
+                          'rgba(255,100,100,', // Red
+                          'rgba(100,255,100,', // Green
+                          'rgba(100,100,255,', // Blue
+                          'rgba(255,255,100,', // Yellow
+                          'rgba(255,100,255,', // Magenta
+                          'rgba(100,255,255,', // Cyan
+                          'rgba(255,150,100,', // Orange
+                          'rgba(150,100,255,'  // Purple
+                        ];
+                        
+                        let coloredParticles = '';
+                        for (let i = 0; i < coloredParticleCount; i++) {
+                          const x = (i * 6.7 + Math.sin(i) * 11) % 100;
+                          const y = (i * 9.3 + Math.cos(i) * 13) % 100;
+                          const colorIndex = i % colors.length;
+                          const opacity = 0.3 + (Math.sin(i * 0.6) * 0.4) * coloredIntensity;
+                          coloredParticles += `radial-gradient(circle 1px at ${x}% ${y}%, ${colors[colorIndex]}${opacity}) 0%, transparent 1px),`;
+                        }
+                        
+                        overlayStyle.background = coloredParticles.slice(0, -1);
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.8, coloredIntensity);
+                        break;
+                        
+                      case 'visualSnowTransparent':
+                        // Visual Snow (Transparent Static): Semi-transparent particles
+                        const transparentIntensity = Math.min(intensity * 1.3, 1.0);
+                        const transparentParticleCount = Math.floor(30 + intensity * 70); // 30-100 particles
+                        
+                        let transparentParticles = '';
+                        for (let i = 0; i < transparentParticleCount; i++) {
+                          const x = (i * 5.9 + Math.sin(i) * 9) % 100;
+                          const y = (i * 8.7 + Math.cos(i) * 11) % 100;
+                          const opacity = 0.1 + (Math.sin(i * 0.4) * 0.2) * transparentIntensity;
+                          transparentParticles += `radial-gradient(circle 1px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent 1px),`;
+                        }
+                        
+                        overlayStyle.background = transparentParticles.slice(0, -1);
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.6, transparentIntensity);
+                        break;
+                        
+                      case 'visualSnowDense':
+                        // Visual Snow (Dense Static): High density, severe static
+                        const denseIntensity = Math.min(intensity * 2.5, 1.0);
+                        const denseParticleCount = Math.floor(50 + intensity * 150); // 50-200 particles for severe density
+                        
+                        let denseParticles = '';
+                        for (let i = 0; i < denseParticleCount; i++) {
+                          const x = (i * 4.3 + Math.sin(i) * 7) % 100;
+                          const y = (i * 6.7 + Math.cos(i) * 9) % 100;
+                          const opacity = 0.4 + (Math.sin(i * 0.8) * 0.5) * denseIntensity;
+                          const size = 1 + Math.sin(i * 0.3) * 0.5; // Vary particle size slightly
+                          denseParticles += `radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${opacity}) 0%, transparent ${size}px),`;
+                        }
+                        
+                        overlayStyle.background = denseParticles.slice(0, -1);
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.95, denseIntensity);
                         break;
                         
                       // Filter-based conditions (Color Vision, Eye Conditions, Retinal Disorders, Visual Disturbances, Double Vision) 

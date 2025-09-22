@@ -149,7 +149,7 @@ const App: React.FC = () => {
     <AccessibilityProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router>
+        <Router basename="/blindness-visualizer">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/simulator" element={<VisionSimulator />} />

@@ -2,7 +2,11 @@
 
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.
 
-## 📸 Site Preview
+## 📸 Site Preview & Demo
+
+https://github.com/user-attachments/assets/96f96494-c494-41c6-bd67-7ea45c1bd733
+
+
 
 ### Homepage
 ![VisionSim Homepage](./public/images/people/VisionSim-Home-Page.png)

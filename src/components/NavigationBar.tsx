@@ -39,9 +39,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   };
 
   const navItems = [
-    { label: 'About', href: '/about' },
-    { label: 'Conditions Glossary', href: '/conditions' },
-    { label: 'FAQ', href: '/faq' }
+    { label: 'About', path: '/about' },
+    { label: 'Conditions Glossary', path: '/conditions' },
+    { label: 'FAQ', path: '/faq' }
   ];
 
   return (
@@ -123,8 +123,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <Button
                   key={item.label}
                   color="inherit"
-                  component="a"
-                  href={item.href}
+                  onClick={() => navigate(item.path)}
                   sx={{
                     color: 'white',
                     fontWeight: 600,

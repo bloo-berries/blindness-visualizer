@@ -36,12 +36,21 @@ export const findOverlayContainer = (): HTMLElement | null => {
   const selectors = [
     '.visualizer-container',
     '[class*="visualizer"]',
-    '[style*="position: relative"]'
+    '[style*="position: relative"]',
+    'iframe[src*="youtube"]', // For YouTube videos, find the iframe parent
+    'canvas' // For WebGL content, find the canvas parent
   ];
   
   for (const selector of selectors) {
     const element = document.querySelector(selector);
     if (element && element instanceof HTMLElement) {
+      // For iframe and canvas, get their parent container
+      if (selector.includes('iframe') || selector.includes('canvas')) {
+        const parent = element.parentElement;
+        if (parent && parent instanceof HTMLElement) {
+          return parent;
+        }
+      }
       return element;
     }
   }

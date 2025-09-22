@@ -524,24 +524,82 @@ const generateJoshuaFilters = (effects: VisualEffect[]): string => {
   return filters.join(' ');
 };
 
+/**
+ * Generates CSS filters for Visual Snow effects
+ */
+const generateVisualSnowFilters = (effects: VisualEffect[]): string => {
+  const visualSnowEffect = effects.find(e => e.id === 'visualSnow' && e.enabled);
+  
+  if (!visualSnowEffect) return '';
+  
+  // Visual Snow cannot be effectively simulated with CSS filters alone
+  // It requires overlay effects for the static noise pattern
+  // For YouTube content, we'll apply a subtle brightness/contrast adjustment
+  // to simulate the visual interference, but the main effect should be handled by overlays
+  
+  const intensity = visualSnowEffect.intensity;
+  
+  // Subtle visual interference effects
+  const filters: string[] = [];
+  
+  // Slight brightness variation to simulate visual noise
+  filters.push(`brightness(${100 + intensity * 5}%)`);
+  
+  // Slight contrast reduction to simulate visual interference
+  filters.push(`contrast(${100 - intensity * 3}%)`);
+  
+  return filters.join(' ');
+};
+
 // Diplopia effects are now handled by the getDiplopiaOverlay function in Visualizer.tsx
 // This provides true double vision effects using iframe duplication instead of CSS filters
 
 // Note: Glaucoma is now handled by DOM overlays for accurate visual field loss patterns
+// Note: Visual Snow is primarily handled by DOM overlays, with minimal CSS filter support
 
 /**
  * Generates complete CSS filter string for all effects
  */
 export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: number = 1.0, diplopiaDirection: number = 0.0): string => {
-  return [generateColorBlindnessFilter(effects), generateBlurFilter(effects), generateGalileoFilters(effects), generateMonetFilters(effects), generateChristineFilters(effects), generateLucyFilters(effects), generateDavidFilters(effects), generateMarlaFilters(effects), generateMinkaraFilters(effects), generateJoshuaFilters(effects)]
-    .filter(Boolean)
-    .join(' ');
+  const enabledEffects = effects.filter(e => e.enabled);
+  
+  if (enabledEffects.length === 0) {
+    return '';
+  }
+  
+  const filterComponents = [
+    generateColorBlindnessFilter(effects), 
+    generateBlurFilter(effects), 
+    generateGalileoFilters(effects), 
+    generateMonetFilters(effects), 
+    generateChristineFilters(effects), 
+    generateLucyFilters(effects), 
+    generateDavidFilters(effects), 
+    generateMarlaFilters(effects), 
+    generateMinkaraFilters(effects), 
+    generateJoshuaFilters(effects), 
+    generateVisualSnowFilters(effects)
+  ].filter(Boolean);
+  
+  const finalFilter = filterComponents.join(' ');
+  
+  // Debug logging to help identify issues
+  if (enabledEffects.length > 0) {
+    console.log('CSS Filter Generation:', {
+      enabledEffects: enabledEffects.map(e => ({ id: e.id, intensity: e.intensity })),
+      filterComponents,
+      finalFilter
+    });
+  }
+  
+  return finalFilter;
   // Note: Diplopia is handled by separate overlay system, not CSS filters
   // Note: Glaucoma is handled by DOM overlays, not CSS filters
   // Note: David Paterson's hemispheric vision is handled by DOM overlays, not CSS filters
   // Note: Marla Runyan's central scotoma is primarily handled by DOM overlays, with CSS filters for subtle effects
   // Note: Dr. Mona Minkara's combined vision loss uses both CSS filters and DOM overlays for maximum effect
   // Note: Joshua Miele's complete blindness uses both complete darkness and alternative sensory visualizations
+  // Note: Visual Snow is primarily handled by DOM overlays, with minimal CSS filter support for YouTube content
 };
 
 /**

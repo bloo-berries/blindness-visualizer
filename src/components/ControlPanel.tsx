@@ -716,42 +716,52 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualSnow':
-                        // Visual Snow Syndrome: Optimized version for better performance
-                        const snowIntensity = Math.min(intensity * 2.5, 1.0);
+                        // Visual Snow Syndrome: More visible and realistic implementation
+                        const snowIntensity = Math.min(intensity * 1.5, 1.0);
                         
-                        // Use CSS patterns instead of hundreds of individual gradients
+                        // Create more visible visual snow pattern
                         overlayStyle.background = `
                           repeating-linear-gradient(
                             0deg,
                             transparent 0px,
-                            rgba(255,255,255,${0.1 * snowIntensity}) 1px,
-                            transparent 2px
+                            rgba(255,255,255,${0.3 * snowIntensity}) 1px,
+                            transparent 3px
                           ),
                           repeating-linear-gradient(
                             90deg,
                             transparent 0px,
-                            rgba(255,255,255,${0.08 * snowIntensity}) 1px,
-                            transparent 2px
+                            rgba(255,255,255,${0.25 * snowIntensity}) 1px,
+                            transparent 3px
                           ),
                           radial-gradient(
                             circle at 20% 20%,
-                            rgba(255,255,255,${0.15 * snowIntensity}) 0%,
-                            transparent 2%
+                            rgba(255,255,255,${0.4 * snowIntensity}) 0%,
+                            transparent 3%
                           ),
                           radial-gradient(
                             circle at 80% 80%,
-                            rgba(255,255,255,${0.12 * snowIntensity}) 0%,
-                            transparent 2%
+                            rgba(255,255,255,${0.35 * snowIntensity}) 0%,
+                            transparent 3%
                           ),
                           radial-gradient(
                             circle at 50% 50%,
-                            rgba(100,150,255,${0.08 * snowIntensity}) 0%,
-                            transparent 1%
+                            rgba(200,220,255,${0.3 * snowIntensity}) 0%,
+                            transparent 2%
+                          ),
+                          radial-gradient(
+                            circle at 70% 30%,
+                            rgba(255,255,255,${0.2 * snowIntensity}) 0%,
+                            transparent 2%
+                          ),
+                          radial-gradient(
+                            circle at 30% 70%,
+                            rgba(255,255,255,${0.25 * snowIntensity}) 0%,
+                            transparent 2%
                           )
                         `;
                         overlayStyle.mixBlendMode = 'screen';
-                        overlayStyle.opacity = snowIntensity;
-                        overlayStyle.animation = 'visualSnowFlicker 0.05s linear infinite';
+                        overlayStyle.opacity = Math.min(0.8, snowIntensity);
+                        overlayStyle.animation = 'visualSnowFlicker 0.1s linear infinite';
                         break;
                         
                       // Filter-based conditions (Color Vision, Eye Conditions, Retinal Disorders, Visual Disturbances, Double Vision) 
@@ -1169,17 +1179,20 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: Optimized version with fewer complex gradients
-                        const floaterIntensity = Math.min(intensity * 0.8, 1.0);
+                        // Visual Floaters: More visible and realistic implementation
+                        const floaterIntensity = Math.min(intensity * 1.2, 1.0);
                         
-                        // Use simpler gradient patterns for better performance
+                        // Create more visible floater patterns with varying shapes and sizes
                         overlayStyle.background = `
-                          radial-gradient(ellipse 15% 6% at 30% 30%, rgba(0,0,0,${floaterIntensity * 0.6}) 0%, rgba(0,0,0,0) 70%),
-                          radial-gradient(ellipse 12% 5% at 70% 40%, rgba(0,0,0,${floaterIntensity * 0.5}) 0%, rgba(0,0,0,0) 65%),
-                          radial-gradient(circle 8% at 50% 70%, rgba(0,0,0,${floaterIntensity * 0.4}) 0%, rgba(0,0,0,0) 60%)
+                          radial-gradient(ellipse 18% 8% at 25% 25%, rgba(0,0,0,${floaterIntensity * 0.8}) 0%, rgba(0,0,0,${floaterIntensity * 0.4}) 50%, rgba(0,0,0,0) 80%),
+                          radial-gradient(ellipse 15% 6% at 70% 35%, rgba(0,0,0,${floaterIntensity * 0.7}) 0%, rgba(0,0,0,${floaterIntensity * 0.3}) 50%, rgba(0,0,0,0) 75%),
+                          radial-gradient(circle 10% at 45% 65%, rgba(0,0,0,${floaterIntensity * 0.6}) 0%, rgba(0,0,0,${floaterIntensity * 0.2}) 50%, rgba(0,0,0,0) 70%),
+                          radial-gradient(ellipse 12% 4% at 80% 20%, rgba(0,0,0,${floaterIntensity * 0.5}) 0%, rgba(0,0,0,${floaterIntensity * 0.2}) 50%, rgba(0,0,0,0) 65%),
+                          radial-gradient(circle 6% at 15% 80%, rgba(0,0,0,${floaterIntensity * 0.4}) 0%, rgba(0,0,0,${floaterIntensity * 0.1}) 50%, rgba(0,0,0,0) 60%)
                         `;
                         overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = floaterIntensity;
+                        overlayStyle.opacity = Math.min(0.9, floaterIntensity);
+                        overlayStyle.animation = 'floaterDrift 8s ease-in-out infinite';
                         break;
                         
                       case 'hallucinations':

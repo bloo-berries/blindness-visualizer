@@ -5,16 +5,19 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 📸 Site Preview
 
 ### Homepage
-![VisionSim Homepage](./src/assets/images/people/VisionSim-Home-Page.png)
+
+![VisionSim Homepage](./public/images/people/VisionSim-Home-Page.png)
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
 ### About Page  
-![VisionSim About Page](./src/assets/images/people/VisionSim-About.png)
+
+![VisionSim About Page](./public/images/people/VisionSim-About.png)
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
 ## 🎯 Features
 
 ### Vision Condition Simulator
+
 - **Real-time visualization** of various vision conditions
 - **Multiple input sources**:
   - Webcam feed
@@ -30,6 +33,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
 ### Famous People Educational Section
+
 - **14 famous individuals** across 5 categories:
   - Historical Figures (John Milton, Louis Braille, Galileo Galilei)
   - Musicians & Artists (Ray Charles, Stevie Wonder, Andrea Bocelli)
@@ -41,6 +45,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Direct simulation integration** - experience each person's specific vision condition
 
 ### Accessibility Features
+
 - **Screen reader compatibility**
 - **Keyboard navigation** support
 - **High contrast mode**
@@ -48,6 +53,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Focus indicators** for better visibility
 
 ### Modern User Interface
+
 - **Responsive design** that works on desktop, tablet, and mobile
 - **Material-UI components** for consistent, professional appearance
 - **Intuitive navigation** with React Router
@@ -56,6 +62,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (version 14 or higher)
 - npm or yarn
 
@@ -80,17 +87,20 @@ The application will open at `http://localhost:3000`
 ## 📖 Usage
 
 ### Home Page
+
 1. Visit the home page to see two main options:
    - **Vision Condition Simulator**: For real-time vision condition simulation
    - **Famous People**: To learn about famous blind and visually impaired individuals
 
 ### Vision Condition Simulator
+
 1. **Choose Input Source**: Select webcam, image upload, or YouTube video
 2. **Select Conditions**: Toggle the vision conditions you want to simulate
 3. **Adjust Intensity**: Use sliders to control the severity of each condition
 4. **View Simulation**: Observe the real-time visualization
 
 ### Famous People Section
+
 1. **Browse Categories**: Explore people by category (Historical, Musicians, etc.)
 2. **Search & Filter**: Use the search bar or filters to find specific individuals
 3. **View Details**: Click on any person to see detailed information
@@ -98,7 +108,7 @@ The application will open at `http://localhost:3000`
 
 ## 🏗️ Project Structure
 
-```
+```bash
 src/
 ├── components/
 │   ├── HomePage.tsx              # Landing page with navigation options
@@ -171,6 +181,7 @@ We welcome contributions! Here's how you can help:
 5. **Open a Pull Request**
 
 ### Areas for Contribution
+
 - **New vision conditions**: Add more realistic simulations
 - **Additional famous people**: Expand the educational content
 - **Accessibility improvements**: Enhance screen reader support
@@ -191,6 +202,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 If you encounter any issues or have questions:
+
 - Open an issue on GitHub
 - Check the existing issues for solutions
 - Review the documentation in this README

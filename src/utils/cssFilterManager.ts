@@ -1,11 +1,12 @@
 import { VisualEffect } from '../types/visualEffects';
-import { getColorVisionMatrix, isColorVisionCondition } from './colorVisionFilters';
+import { isColorVisionCondition } from './colorVisionFilters';
 import { getFirstEnabledEffect } from './effectLookup';
 
 // Identity matrix removed as it was unused
 
 /**
- * Generates CSS filter string for color blindness effects using accurate Machado 2009 matrices
+ * Generates SVG filter string for color blindness effects (same as selection page)
+ * Note: CSS matrix filters don't work on iframes, so we use SVG filters instead
  */
 const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
   // Find the first enabled color vision condition using optimized lookup
@@ -15,19 +16,19 @@ const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
     return '';
   }
 
-  // Get the accurate matrix for this condition
-  const matrix = getColorVisionMatrix(colorVisionEffect.id, colorVisionEffect.intensity);
+  // Use SVG filters (same as selection page) instead of CSS matrix filters
+  const filterMap: { [key: string]: string } = {
+    'protanopia': 'url(#protanopia)',
+    'deuteranopia': 'url(#deuteranopia)',
+    'tritanopia': 'url(#tritanopia)',
+    'protanomaly': 'url(#protanomaly)',
+    'deuteranomaly': 'url(#deuteranomaly)',
+    'tritanomaly': 'url(#tritanomaly)',
+    'monochromacy': 'url(#monochromacy)',
+    'monochromatic': 'url(#monochromacy)'
+  };
   
-  // Convert 3x3 matrix to 4x5 CSS matrix format
-  // CSS matrix format: matrix(r1, r2, r3, 0, 0, g1, g2, g3, 0, 0, b1, b2, b3, 0, 0, 0, 0, 0, 1, 0)
-  const cssMatrix = [
-    matrix[0], matrix[1], matrix[2], 0, 0,
-    matrix[3], matrix[4], matrix[5], 0, 0,
-    matrix[6], matrix[7], matrix[8], 0, 0,
-    0, 0, 0, 1, 0
-  ];
-  
-  return `matrix(${cssMatrix.join(', ')})`;
+  return filterMap[colorVisionEffect.id] || '';
 };
 
 /**

@@ -144,6 +144,14 @@ const createOverlayWithContainer = (
   conditionId?: string,
   targetContainer?: HTMLElement
 ): void => {
+  console.log('createOverlayWithContainer called:', {
+    id,
+    conditionId,
+    targetContainer,
+    targetContainerId: targetContainer?.id,
+    targetContainerClass: targetContainer?.className
+  });
+  
   let overlayElement = document.getElementById(id);
   
   if (!overlayElement) {
@@ -185,11 +193,20 @@ const createOverlayWithContainer = (
     
     if (container) {
       container.appendChild(overlayElement);
-      console.log('Overlay appended to container:', container, 'overlay:', overlayElement);
+      console.log('Overlay appended to container:', {
+        container,
+        containerId: container.id,
+        containerClass: container.className,
+        overlay: overlayElement,
+        overlayId: overlayElement.id
+      });
     } else {
       // Try to append to body as fallback
       document.body.appendChild(overlayElement);
-      console.log('Overlay appended to body as fallback:', overlayElement);
+      console.log('Overlay appended to body as fallback:', {
+        overlay: overlayElement,
+        overlayId: overlayElement.id
+      });
     }
   }
 
@@ -211,6 +228,23 @@ const createOverlayWithContainer = (
  * Creates visual field overlays for all enabled effects
  */
 export const createVisualFieldOverlays = (effects: VisualEffect[], container?: HTMLElement): void => {
+  console.log('createVisualFieldOverlays called with:', {
+    effectsCount: effects.length,
+    enabledEffects: effects.filter(e => e.enabled).length,
+    enabledEffectIds: effects.filter(e => e.enabled).map(e => e.id),
+    container,
+    containerId: container?.id,
+    containerClass: container?.className
+  });
+  
+  // Log all effects for debugging
+  console.log('All effects details:', effects.map(e => ({
+    id: e.id,
+    enabled: e.enabled,
+    intensity: e.intensity,
+    name: e.name
+  })));
+  
   // Remove existing overlays first
   document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
   

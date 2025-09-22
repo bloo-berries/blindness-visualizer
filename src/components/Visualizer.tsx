@@ -20,9 +20,10 @@ interface VisualizerProps {
   personCondition?: string;
   showComparison?: boolean;
   onToggleComparison?: () => void;
+  isFamousPeopleMode?: boolean;
 }
 
-const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition, showComparison: propShowComparison, onToggleComparison }) => {
+const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition, showComparison: propShowComparison, onToggleComparison, isFamousPeopleMode = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
@@ -33,7 +34,19 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
-  const [showComparison, setShowComparison] = useState(false);
+  const [showComparison, setShowComparison] = useState(propShowComparison || false);
+
+  // Update local showComparison state when prop changes
+  useEffect(() => {
+    console.log('Visualizer: propShowComparison changed to:', propShowComparison, 'isFamousPeopleMode:', isFamousPeopleMode);
+    if (propShowComparison !== undefined) {
+      // Use explicit prop when provided
+      setShowComparison(propShowComparison);
+    } else if (isFamousPeopleMode && personName && personCondition) {
+      // Auto-enable for famous people when no explicit prop
+      setShowComparison(true);
+    }
+  }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
 
   // Performance optimization instances
   const optimizer = useRef(PerformanceOptimizer.getInstance());
@@ -45,15 +58,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   // const getEffect = useCallback((id: string) => effects.find(e => e.id === id), [effects]);
 
   // Enable comparison mode for famous people or when explicitly requested
-  useEffect(() => {
-    if (propShowComparison !== undefined) {
-      // Use explicit prop when provided
-      setShowComparison(propShowComparison);
-    } else if (personName && personCondition) {
-      // Auto-enable for famous people when no explicit prop
-      setShowComparison(true);
-    }
-  }, [personName, personCondition, propShowComparison]);
 
   // Retry camera access
   const handleRetryCamera = useCallback(() => {
@@ -260,10 +264,39 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   // Optimized effect state changes handling
   useEffect(() => {
+    console.log('Visualizer useEffect triggered:', {
+      effectsCount: effects.length,
+      enabledEffects: effects.filter(e => e.enabled).length,
+      enabledEffectIds: effects.filter(e => e.enabled).map(e => e.id),
+      inputSourceType: inputSource.type,
+      showComparison,
+      isFamousPeopleMode
+    });
+    
     // Only process if effects have actually changed
     const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
     
-    if (!changed) return;
+    console.log('Effect processor result:', {
+      changed,
+      enabledEffectsCount: enabledEffects.length,
+      enabledEffectIds: enabledEffects.map(e => e.id)
+    });
+    
+    // Force overlay update when transitioning to comparison view or when effects are enabled
+    const hasEnabledEffects = enabledEffects.length > 0;
+    const shouldUpdateOverlays = changed || (hasEnabledEffects && showComparison);
+    
+    if (!shouldUpdateOverlays) {
+      console.log('Effects unchanged and not in comparison mode, skipping overlay update');
+      return;
+    }
+    
+    console.log('Proceeding with overlay update:', {
+      changed,
+      hasEnabledEffects,
+      showComparison,
+      shouldUpdateOverlays
+    });
     
     // Create visual field overlays for YouTube and image content
     if (inputSource.type === 'youtube' || inputSource.type === 'image') {
@@ -272,20 +305,42 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
+      console.log('Non-diplopia effects for overlay:', {
+        count: nonDiplopiaEffects.length,
+        effects: nonDiplopiaEffects.map(e => e.id)
+      });
+      
       if (nonDiplopiaEffects.length > 0) {
         // Use simulation container for comparison mode, main container for other modes
         const targetContainer = showComparison && simulationContainerRef.current 
           ? simulationContainerRef.current 
           : containerRef.current;
         
+        console.log('Overlay update debug:', {
+          showComparison,
+          simulationContainerRef: simulationContainerRef.current,
+          containerRef: containerRef.current,
+          targetContainer,
+          targetContainerId: targetContainer?.id,
+          targetContainerClass: targetContainer?.className,
+          nonDiplopiaEffects: nonDiplopiaEffects.map(e => e.id)
+        });
+        
         if (targetContainer) {
           // Use optimized overlay manager
-          console.log('Updating overlays with effects:', nonDiplopiaEffects, 'targetContainer:', targetContainer);
+          console.log('Calling overlayManager.updateOverlays with:', {
+            effects: nonDiplopiaEffects,
+            targetContainer
+          });
           overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
         } else {
           console.log('No target container found for overlay update');
         }
+      } else {
+        console.log('No non-diplopia effects to process');
       }
+    } else {
+      console.log('Not YouTube or image input, skipping overlay creation');
     }
     
     // Check if we need animation (for overlay-based effects)
@@ -297,7 +352,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       // Animation is now handled by the unified animation manager
       // No need for separate animation loop here
     }
-  }, [effects, inputSource.type, showComparison]);
+  }, [effects, inputSource.type, showComparison, isFamousPeopleMode]);
 
   // Optimized CSS filter calculation with caching
   const getEffectStyles = useCallback(() => {
@@ -313,24 +368,35 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
+      console.log('getEffectStyles - CSS filter generation:', {
+        enabledEffectsCount: enabledEffects.length,
+        enabledEffectIds: enabledEffects.map(e => e.id),
+        nonDiplopiaEffectsCount: nonDiplopiaEffects.length,
+        nonDiplopiaEffectIds: nonDiplopiaEffects.map(e => e.id)
+      });
+      
       // Only generate filters if there are effects to process
       if (nonDiplopiaEffects.length > 0) {
         const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+        console.log('Generated CSS filters:', filters);
         return filters ? { ...baseStyle, filter: filters } : baseStyle;
       }
     }
 
+    console.log('getEffectStyles - returning base style (no filters)');
     return baseStyle;
   }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
 
   // Get appropriate video URL based on context
   const getVideoUrl = useCallback(() => {
-    if (personName && personCondition) {
+    if (isFamousPeopleMode && personName && personCondition) {
       // Use famous person specific video URL
       return getFamousPersonVideoUrl();
     }
+    // Use standard video URL for regular simulator
     return YOUTUBE_EMBED_URL;
-  }, [personName, personCondition]);
+  }, [personName, personCondition, isFamousPeopleMode]);
+
 
   // Optimized diplopia overlay generation
   const getDiplopiaOverlay = useCallback(() => {
@@ -379,7 +445,15 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
   // Render comparison view for famous people or general vision simulation
-  if (showComparison && personName && personCondition) {
+  console.log('Comparison view check:', {
+    showComparison,
+    personName,
+    personCondition,
+    isFamousPeopleMode,
+    shouldShowComparison: showComparison
+  });
+  
+  if (showComparison) {
     return (
       <Box className="comparison-container" sx={{ 
         position: 'relative', 
@@ -402,14 +476,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           textAlign: 'center'
         }}>
           <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
-            {personName} - {personCondition}
+            {isFamousPeopleMode && personName && personCondition 
+              ? `${personName} - ${personCondition}` 
+              : 'Vision Condition Simulation - Multiple Vision Conditions'}
           </Typography>
           <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            Side-by-side comparison: Original video (left) vs. Vision simulation (right)
+            Side-by-side comparison: Vision simulation (left) vs. Original video (right)
           </Typography>
         </Box>
 
-        {/* Left side - Original video */}
+        {/* Left side - Simulation video */}
         <Box sx={{ 
           position: 'absolute',
           left: 0,
@@ -422,6 +498,99 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             position: 'absolute', 
             top: '10px', 
             left: '10px', 
+            zIndex: 1001,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
+          }}>
+            Simulation
+          </Box>
+          <div ref={simulationContainerRef} style={getEffectStyles()}>
+            {inputSource.type === 'youtube' ? (
+              <div style={{ 
+                width: '100%', 
+                height: '100%',
+                position: 'relative',
+                // Apply SVG filters for color vision conditions (same as selection page)
+                filter: (() => {
+                  const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+                  const colorVisionEffect = enabledEffects.find(e => 
+                    ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  if (colorVisionEffect) {
+                    console.log('Applying SVG filter for iframe:', colorVisionEffect.id);
+                    const filterMap: { [key: string]: string } = {
+                      'protanopia': 'url(#protanopia)',
+                      'deuteranopia': 'url(#deuteranopia)',
+                      'tritanopia': 'url(#tritanopia)',
+                      'protanomaly': 'url(#protanomaly)',
+                      'deuteranomaly': 'url(#deuteranomaly)',
+                      'tritanomaly': 'url(#tritanomaly)',
+                      'monochromacy': 'url(#monochromacy)',
+                      'monochromatic': 'url(#monochromacy)'
+                    };
+                    return filterMap[colorVisionEffect.id] || 'none';
+                  }
+                  
+                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
+                  const otherEffects = enabledEffects.filter(e => 
+                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  if (otherEffects.length > 0) {
+                    const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
+                    const nonDiplopiaEffects = nonColorEffects.filter(e => 
+                      e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+                    );
+                    
+                    if (nonDiplopiaEffects.length > 0) {
+                      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                      return filters || 'none';
+                    }
+                  }
+                  
+                  return 'none';
+                })()
+              }}>
+                <iframe
+                  {...YOUTUBE_IFRAME_PROPS}
+                  src={getVideoUrl()}
+                  title="Vision simulation"
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </div>
+            ) : (
+              <Box sx={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#333',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white'
+              }}>
+                <Typography>Simulation content would appear here</Typography>
+              </Box>
+            )}
+          </div>
+          {getDiplopiaOverlay()}
+        </Box>
+
+        {/* Right side - Original video */}
+        <Box sx={{ 
+          position: 'absolute',
+          right: 0,
+          top: '60px',
+          width: '50%',
+          height: 'calc(100% - 60px)'
+        }}>
+          <Box sx={{ 
+            position: 'absolute', 
+            top: '10px', 
+            right: '10px', 
             zIndex: 1001,
             backgroundColor: 'rgba(0, 0, 0, 0.7)',
             color: 'white',
@@ -451,52 +620,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               <Typography>Original content would appear here</Typography>
             </Box>
           )}
-        </Box>
-
-        {/* Right side - Simulation */}
-        <Box sx={{ 
-          position: 'absolute',
-          right: 0,
-          top: '60px',
-          width: '50%',
-          height: 'calc(100% - 60px)'
-        }}>
-          <Box sx={{ 
-            position: 'absolute', 
-            top: '10px', 
-            right: '10px', 
-            zIndex: 1001,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            color: 'white',
-            padding: '4px 8px',
-            borderRadius: '4px',
-            fontSize: '12px'
-          }}>
-            Simulation
-          </Box>
-          <div ref={simulationContainerRef} style={getEffectStyles()}>
-            {inputSource.type === 'youtube' ? (
-              <iframe
-                {...YOUTUBE_IFRAME_PROPS}
-                src={getVideoUrl()}
-                title="Vision simulation"
-                style={{ width: '100%', height: '100%' }}
-              />
-            ) : (
-              <Box sx={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#333',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white'
-              }}>
-                <Typography>Visualization would appear here</Typography>
-              </Box>
-            )}
-          </div>
-          {getDiplopiaOverlay()}
         </Box>
 
         {/* Toggle button */}

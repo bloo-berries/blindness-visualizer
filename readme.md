@@ -56,16 +56,6 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Font size adjustments**
 - **Focus indicators** for better visibility
 
-<<<<<<< HEAD
-### Modern User Interface
-
-- **Responsive design** that works on desktop, tablet, and mobile
-- **Material-UI components** for consistent, professional appearance
-- **Intuitive navigation** with React Router
-- **Beautiful card-based layout** for easy browsing
-=======
->>>>>>> fce39657ec6e939d2de3a6187d91af2027756128
-
 ## 🚀 Getting Started
 
 ### Prerequisites

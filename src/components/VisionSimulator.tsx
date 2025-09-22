@@ -154,6 +154,17 @@ const VisionSimulator: React.FC = () => {
           </Box>
         );
       case 2:
+        const enabledEffects = effects.filter(e => e.enabled);
+        console.log('VisionSimulator step 2 - passing effects to Visualizer:', {
+          totalEffects: effects.length,
+          enabledEffects: enabledEffects.length,
+          enabledEffectIds: enabledEffects.map(e => e.id),
+          preconfiguredPerson,
+          showComparison,
+          isFamousPeopleMode,
+          isRegularSimulatorMode
+        });
+        
         return (
           <Box sx={{ p: 3 }}>
             <Visualizer 
@@ -161,10 +172,11 @@ const VisionSimulator: React.FC = () => {
               inputSource={inputSource}
               diplopiaSeparation={diplopiaSeparation}
               diplopiaDirection={diplopiaDirection}
-              personName={preconfiguredPerson?.name || "Vision Condition Simulation"}
-              personCondition={preconfiguredPerson?.condition || "Multiple Vision Conditions"}
+              personName={isFamousPeopleMode ? preconfiguredPerson?.name : undefined}
+              personCondition={isFamousPeopleMode ? preconfiguredPerson?.condition : undefined}
               showComparison={showComparison}
               onToggleComparison={() => setShowComparison(!showComparison)}
+              isFamousPeopleMode={isFamousPeopleMode}
             />
           </Box>
         );
@@ -197,6 +209,10 @@ const VisionSimulator: React.FC = () => {
       setShowComparison(true);
     }
   }, [activeStep]);
+
+  // Determine if we're in "Famous People" mode or "Regular Simulator" mode
+  const isFamousPeopleMode = preconfiguredPerson !== null;
+  const isRegularSimulatorMode = !isFamousPeopleMode;
 
   return (
     <Box className="app-container">

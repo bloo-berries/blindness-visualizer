@@ -5,7 +5,7 @@ import {
   CssBaseline,
   responsiveFontSizes
 } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
@@ -149,7 +149,7 @@ const App: React.FC = () => {
     <AccessibilityProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router basename="/blindness-visualizer">
+        <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/simulator" element={<VisionSimulator />} />

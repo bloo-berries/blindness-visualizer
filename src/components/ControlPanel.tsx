@@ -719,7 +719,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         // Visual Snow (Static Particles): Persistent static pattern
                         // Based on research from Visual Snow Initiative
                         const snowIntensity = Math.min(intensity * 1.5, 1.0);
-                        const particleCount = Math.floor(20 + intensity * 80); // 20-100 particles based on intensity
+                        const particleCount = Math.floor(80 + intensity * 320); // 80-400 particles based on intensity (4x increase)
                         
                         // Generate dynamic particle pattern based on intensity
                         let snowParticles = '';
@@ -738,7 +738,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'visualSnowFlashing':
                         // Visual Snow (Flashing Static): Rapidly flickering static
                         const flashingIntensity = Math.min(intensity * 2.0, 1.0);
-                        const flashingParticleCount = Math.floor(15 + intensity * 60); // 15-75 particles
+                        const flashingParticleCount = Math.floor(60 + intensity * 240); // 60-300 particles (4x increase)
                         
                         let flashingParticles = '';
                         for (let i = 0; i < flashingParticleCount; i++) {
@@ -757,7 +757,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'visualSnowColored':
                         // Visual Snow (Colored Static): Multi-colored static particles
                         const coloredIntensity = Math.min(intensity * 1.8, 1.0);
-                        const coloredParticleCount = Math.floor(25 + intensity * 75); // 25-100 particles
+                        const coloredParticleCount = Math.floor(100 + intensity * 300); // 100-400 particles (4x increase)
                         
                         const colors = [
                           'rgba(255,100,100,', // Red
@@ -787,7 +787,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'visualSnowTransparent':
                         // Visual Snow (Transparent Static): Semi-transparent particles
                         const transparentIntensity = Math.min(intensity * 1.3, 1.0);
-                        const transparentParticleCount = Math.floor(30 + intensity * 70); // 30-100 particles
+                        const transparentParticleCount = Math.floor(120 + intensity * 280); // 120-400 particles (4x increase)
                         
                         let transparentParticles = '';
                         for (let i = 0; i < transparentParticleCount; i++) {
@@ -805,7 +805,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'visualSnowDense':
                         // Visual Snow (Dense Static): High density, severe static
                         const denseIntensity = Math.min(intensity * 2.5, 1.0);
-                        const denseParticleCount = Math.floor(50 + intensity * 150); // 50-200 particles for severe density
+                        const denseParticleCount = Math.floor(200 + intensity * 600); // 200-800 particles for severe density (4x increase)
                         
                         let denseParticles = '';
                         for (let i = 0; i < denseParticleCount; i++) {

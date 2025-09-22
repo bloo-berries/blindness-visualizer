@@ -551,6 +551,90 @@ const generateVisualSnowFilters = (effects: VisualEffect[]): string => {
   return filters.join(' ');
 };
 
+/**
+ * Generates CSS filters for custom famous people effects
+ */
+const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {
+  const customEffects = effects.filter(e => 
+    (e.id === 'helenKellerBlindness' || 
+     e.id === 'johnMiltonBlindness' || 
+     e.id === 'louisBrailleBlindness' || 
+     e.id === 'erikWeihenmayerRetinoschisis' || 
+     e.id === 'marlaRunyanStargardt' || 
+     e.id === 'joshuaMieleBlindness' || 
+     e.id === 'davidPatersonBlindness' || 
+     e.id === 'rayCharlesBlindness' || 
+     e.id === 'stevieWonderROP' || 
+     e.id === 'andreaBocelliBlindness' || 
+     e.id === 'vedMehtaBlindness') && e.enabled
+  );
+  
+  if (customEffects.length === 0) return '';
+  
+  const filters: string[] = [];
+  
+  // Check for complete blindness effects (black overlay)
+  const completeBlindnessEffects = customEffects.filter(e => 
+    e.id === 'helenKellerBlindness' || 
+    e.id === 'louisBrailleBlindness' || 
+    e.id === 'joshuaMieleBlindness' || 
+    e.id === 'rayCharlesBlindness' || 
+    e.id === 'andreaBocelliBlindness' || 
+    e.id === 'vedMehtaBlindness'
+  );
+  
+  if (completeBlindnessEffects.length > 0) {
+    // Complete darkness - make the video completely black
+    filters.push(`brightness(0%)`);
+    filters.push(`contrast(0%)`);
+  }
+  
+  // Check for progressive blindness (John Milton)
+  const johnMiltonEffect = customEffects.find(e => e.id === 'johnMiltonBlindness');
+  if (johnMiltonEffect) {
+    // Very dark gray overlay
+    filters.push(`brightness(${100 - johnMiltonEffect.intensity * 95}%)`);
+    filters.push(`contrast(${100 - johnMiltonEffect.intensity * 90}%)`);
+  }
+  
+  // Check for near-total blindness (Stevie Wonder)
+  const stevieWonderEffect = customEffects.find(e => e.id === 'stevieWonderROP');
+  if (stevieWonderEffect) {
+    // Very dark with minimal light perception
+    filters.push(`brightness(${100 - stevieWonderEffect.intensity * 98}%)`);
+    filters.push(`contrast(${100 - stevieWonderEffect.intensity * 95}%)`);
+  }
+  
+  // Check for legal blindness (David Paterson)
+  const davidPatersonEffect = customEffects.find(e => e.id === 'davidPatersonBlindness');
+  if (davidPatersonEffect) {
+    // Heavy blur and reduced contrast
+    filters.push(`blur(${davidPatersonEffect.intensity * 8}px)`);
+    filters.push(`brightness(${100 - davidPatersonEffect.intensity * 70}%)`);
+    filters.push(`contrast(${100 - davidPatersonEffect.intensity * 80}%)`);
+  }
+  
+  // Check for Stargardt disease (Marla Runyan) - minimal CSS filters, overlay handles the main effect
+  const marlaRunyanEffect = customEffects.find(e => e.id === 'marlaRunyanStargardt');
+  if (marlaRunyanEffect) {
+    // Stargardt disease - let the overlay handle the central scotoma, minimal CSS filters
+    const intensity = marlaRunyanEffect.intensity;
+    
+    // Light color desaturation to complement the overlay (same as standard Stargardt)
+    filters.push(`saturate(${100 - intensity * 40}%)`);
+  }
+  
+  // Check for retinoschisis (Erik Weihenmayer)
+  const erikWeihenmayerEffect = customEffects.find(e => e.id === 'erikWeihenmayerRetinoschisis');
+  if (erikWeihenmayerEffect) {
+    // Progressive tunnel vision - darken periphery
+    filters.push(`brightness(${100 - erikWeihenmayerEffect.intensity * 60}%)`);
+    filters.push(`contrast(${100 - erikWeihenmayerEffect.intensity * 70}%)`);
+  }
+  
+  return filters.join(' ');
+};
+
 // Diplopia effects are now handled by the getDiplopiaOverlay function in Visualizer.tsx
 // This provides true double vision effects using iframe duplication instead of CSS filters
 
@@ -578,7 +662,8 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateMarlaFilters(effects), 
     generateMinkaraFilters(effects), 
     generateJoshuaFilters(effects), 
-    generateVisualSnowFilters(effects)
+    generateVisualSnowFilters(effects),
+    generateCustomFamousPeopleFilters(effects)
   ].filter(Boolean);
   
   const finalFilter = filterComponents.join(' ');

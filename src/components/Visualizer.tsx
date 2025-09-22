@@ -24,6 +24,7 @@ interface VisualizerProps {
 
 const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaSeparation = 1.0, diplopiaDirection = 0.0, personName, personCondition, showComparison: propShowComparison, onToggleComparison }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
@@ -271,9 +272,19 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
-      if (nonDiplopiaEffects.length > 0 && containerRef.current) {
-        // Use optimized overlay manager
-        overlayManager.current.updateOverlays(nonDiplopiaEffects, containerRef.current);
+      if (nonDiplopiaEffects.length > 0) {
+        // Use simulation container for comparison mode, main container for other modes
+        const targetContainer = showComparison && simulationContainerRef.current 
+          ? simulationContainerRef.current 
+          : containerRef.current;
+        
+        if (targetContainer) {
+          // Use optimized overlay manager
+          console.log('Updating overlays with effects:', nonDiplopiaEffects, 'targetContainer:', targetContainer);
+          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
+        } else {
+          console.log('No target container found for overlay update');
+        }
       }
     }
     
@@ -286,7 +297,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       // Animation is now handled by the unified animation manager
       // No need for separate animation loop here
     }
-  }, [effects, inputSource.type]);
+  }, [effects, inputSource.type, showComparison]);
 
   // Optimized CSS filter calculation with caching
   const getEffectStyles = useCallback(() => {
@@ -418,52 +429,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             borderRadius: '4px',
             fontSize: '12px'
           }}>
-            Simulation
-          </Box>
-          <div style={getEffectStyles()}>
-            {inputSource.type === 'youtube' ? (
-              <iframe
-                {...YOUTUBE_IFRAME_PROPS}
-                src={getVideoUrl()}
-                title="Vision simulation"
-                style={{ width: '100%', height: '100%' }}
-              />
-            ) : (
-              <Box sx={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundColor: '#333',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white'
-              }}>
-                <Typography>Visualization would appear here</Typography>
-              </Box>
-            )}
-          </div>
-          {getDiplopiaOverlay()}
-        </Box>
-
-        {/* Right side - Visualization */}
-        <Box sx={{ 
-          position: 'absolute',
-          right: 0,
-          top: '60px',
-          width: '50%',
-          height: 'calc(100% - 60px)'
-        }}>
-          <Box sx={{ 
-            position: 'absolute', 
-            top: '10px', 
-            right: '10px', 
-            zIndex: 1001,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            color: 'white',
-            padding: '4px 8px',
-            borderRadius: '4px',
-            fontSize: '12px'
-          }}>
             Original
           </Box>
           {inputSource.type === 'youtube' ? (
@@ -486,6 +451,52 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               <Typography>Original content would appear here</Typography>
             </Box>
           )}
+        </Box>
+
+        {/* Right side - Simulation */}
+        <Box sx={{ 
+          position: 'absolute',
+          right: 0,
+          top: '60px',
+          width: '50%',
+          height: 'calc(100% - 60px)'
+        }}>
+          <Box sx={{ 
+            position: 'absolute', 
+            top: '10px', 
+            right: '10px', 
+            zIndex: 1001,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            fontSize: '12px'
+          }}>
+            Simulation
+          </Box>
+          <div ref={simulationContainerRef} style={getEffectStyles()}>
+            {inputSource.type === 'youtube' ? (
+              <iframe
+                {...YOUTUBE_IFRAME_PROPS}
+                src={getVideoUrl()}
+                title="Vision simulation"
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              <Box sx={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#333',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white'
+              }}>
+                <Typography>Visualization would appear here</Typography>
+              </Box>
+            )}
+          </div>
+          {getDiplopiaOverlay()}
         </Box>
 
         {/* Toggle button */}

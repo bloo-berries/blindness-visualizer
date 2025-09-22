@@ -115,7 +115,18 @@ export type ConditionType =
   | 'joshuaTactileMaps'
   | 'joshuaAudioLandscape'
   | 'joshuaAccessibilityMode'
-  | 'joshuaSonification';
+  | 'joshuaSonification'
+  | 'helenKellerBlindness'
+  | 'johnMiltonBlindness'
+  | 'louisBrailleBlindness'
+  | 'erikWeihenmayerRetinoschisis'
+  | 'marlaRunyanStargardt'
+  | 'joshuaMieleBlindness'
+  | 'davidPatersonBlindness'
+  | 'rayCharlesBlindness'
+  | 'stevieWonderROP'
+  | 'andreaBocelliBlindness'
+  | 'vedMehtaBlindness';
 
 export interface VisualEffect {
   id: ConditionType;

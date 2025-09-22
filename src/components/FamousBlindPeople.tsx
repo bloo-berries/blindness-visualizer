@@ -228,8 +228,8 @@ const FamousBlindPeople: React.FC = () => {
     const person = personData[personId];
     // Map simulation types to actual condition IDs
     const simulationMap: Record<string, string[]> = {
-      'glaucoma-halos progressive-loss': ['miltonGlaucomaHalos', 'miltonProgressiveVignetting', 'miltonScotomas', 'miltonRetinalDetachment', 'miltonPhotophobia', 'miltonTemporalFieldLoss'],
-      'complete-blindness': ['completeBlindness'],
+      'glaucoma-halos progressive-loss': ['johnMiltonBlindness', 'miltonGlaucomaHalos'],
+      'complete-blindness': ['helenKellerBlindness', 'louisBrailleBlindness', 'rayCharlesBlindness', 'stevieWonderROP', 'andreaBocelliBlindness'],
       'acute-glaucoma-attacks': ['galileoAcuteAttackMode', 'galileoChronicProgression'],
       'tunnel-vision glaucoma-halos': ['glaucoma', 'cataracts'],
       'progressive-loss tunnel-vision': ['glaucoma', 'monochromatic'],
@@ -237,15 +237,15 @@ const FamousBlindPeople: React.FC = () => {
       'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'monochromatic'],
       'central-scotoma metamorphopsia': ['stargardt', 'amd'],
       'central-scotoma progressive-loss': ['stargardt', 'amd'],
-      'cataracts color-distortion': ['cataracts'],
-      'ved-spatial-awareness': ['vedCompleteBlindness', 'vedSpatialAwareness', 'vedEchoLocation', 'vedAirFlowSensors', 'vedProximityRadar', 'vedTemperatureMapping'],
-      'christine-nmo-complete': ['cataracts', 'astigmatism'],
-      'lucy-complete-vision': ['completeBlindness'],
-      'david-hemispheric-vision': ['davidLeftEyeBlindness', 'davidRightEyeGlaucoma', 'davidHemisphericVision', 'davidCompleteVision'],
-      'erik-retinoschisis-islands': ['erikRetinoschisisIslands', 'erikIslandFragmentation', 'erikProgressiveLoss', 'erikScanningBehavior', 'erikCognitiveLoad'],
-      'marla-stargardt-complete': ['marlaCentralScotoma', 'marlaPeripheralVision', 'marlaEccentricViewing', 'marlaFillingIn', 'marlaCrowdingEffect', 'marlaStargardtComplete'],
-      'minkara-end-stage-complete': ['completeBlindness'],
-      'joshua-complete-blindness': ['joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification']
+      'cataracts color-distortion': ['monetCataractsProgression'],
+      'ved-spatial-awareness': ['vedMehtaBlindness'],
+      'christine-nmo-complete': ['christineNMOComplete'],
+      'lucy-complete-vision': ['lucyCompleteVision'],
+      'david-hemispheric-vision': ['davidPatersonBlindness'],
+      'erik-retinoschisis-islands': ['erikWeihenmayerRetinoschisis'],
+      'marla-stargardt-complete': ['marlaRunyanStargardt'],
+      'minkara-end-stage-complete': ['minkaraEndStageComplete'],
+      'joshua-complete-blindness': ['joshuaMieleBlindness']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -271,27 +271,30 @@ const FamousBlindPeople: React.FC = () => {
   };
 
   const getPersonImage = (personId: string) => {
-    // Map person IDs to actual image files
+    // Map person IDs to actual image files (using process.env.PUBLIC_URL for proper path resolution)
+    const baseUrl = process.env.PUBLIC_URL || '';
     const imageMap: Record<string, string> = {
-      milton: '/images/people/john-milton.jpg',
-      braille: '/images/people/louis-Braille.jpg',
-      galileo: '/images/people/Galileo-Galilei.jpg',
-      ray: '/images/people/ray-charles.jpg',
-      stevie: '/images/people/stevie-wonder.jpg',
-      helen: '/images/people/hellen-keller.jpg',
-      bocelli: '/images/people/Andrea-Bocelli.jpg',
-      monet: '/images/people/claude-monet.jpg',
-      christine: '/images/people/christine-ha.webp',
-      ved: '/images/people/Ved-Mehta.png',
-      erik: '/images/people/Erik-Weihenmayer.webp',
-      marla: '/images/people/Marla-Runyan.webp',
-      mona: '/images/people/Mona-Minkara.webp',
-      joshua: '/images/people/Joshua-Miele.webp',
-      lucy: '/images/people/Lucy-Edwards.webp',
-      paterson: '/images/people/David-Paterson.webp'
+      milton: `${baseUrl}/images/people/john-milton.jpg`,
+      braille: `${baseUrl}/images/people/louis-Braille.jpg`,
+      galileo: `${baseUrl}/images/people/Galileo-Galilei.jpg`,
+      ray: `${baseUrl}/images/people/ray-charles.jpg`,
+      stevie: `${baseUrl}/images/people/stevie-wonder.jpg`,
+      helen: `${baseUrl}/images/people/hellen-keller.jpg`,
+      bocelli: `${baseUrl}/images/people/Andrea-Bocelli.jpg`,
+      monet: `${baseUrl}/images/people/claude-monet.jpg`,
+      christine: `${baseUrl}/images/people/christine-ha.webp`,
+      ved: `${baseUrl}/images/people/Ved-Mehta.png`,
+      erik: `${baseUrl}/images/people/Erik-Weihenmayer.webp`,
+      marla: `${baseUrl}/images/people/Marla-Runyan.webp`,
+      mona: `${baseUrl}/images/people/Mona-Minkara.webp`,
+      joshua: `${baseUrl}/images/people/Joshua-Miele.webp`,
+      lucy: `${baseUrl}/images/people/Lucy-Edwards.webp`,
+      paterson: `${baseUrl}/images/people/David-Paterson.webp`
     };
     
-    return imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
+    const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
+    console.log(`Loading image for ${personId}: ${imagePath} (baseUrl: ${baseUrl})`);
+    return imagePath;
   };
 
   return (
@@ -414,6 +417,10 @@ const FamousBlindPeople: React.FC = () => {
                           height="300"
                           image={getPersonImage(personId)}
                           alt={person.name}
+                          onError={(e) => {
+                            console.error(`Failed to load image for ${person.name}:`, e);
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
+                          }}
                         />
                         <CardContent>
                           <Typography variant="h6" component="h4" gutterBottom>
@@ -471,6 +478,10 @@ const FamousBlindPeople: React.FC = () => {
                     src={getPersonImage(selectedPerson)} 
                     alt={personData[selectedPerson].name}
                     style={{ width: '100%', borderRadius: '8px' }}
+                    onError={(e) => {
+                      console.error(`Failed to load dialog image for ${personData[selectedPerson].name}:`, e);
+                      e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[selectedPerson].name}`;
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12} md={8}>

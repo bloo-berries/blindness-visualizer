@@ -276,7 +276,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/john-milton.jpg" 
+                          src={`${process.env.PUBLIC_URL || ''}/images/people/john-milton.jpg`} 
                           alt="John Milton"
                           style={{ 
                             width: '100%', 
@@ -284,6 +284,10 @@ const HomePage: React.FC = () => {
                             objectFit: 'cover',
                             objectPosition: 'center 30%'
                           }}
+                          onError={(e) => {
+                            console.error('Failed to load John Milton image:', e);
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=John Milton`;
+                          }}
                         />
                       </Box>
                       <Box sx={{ 
@@ -294,7 +298,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/stevie-wonder.jpg" 
+                          src={`${process.env.PUBLIC_URL || ''}/images/people/stevie-wonder.jpg`} 
                           alt="Stevie Wonder"
                           style={{ 
                             width: '100%', 
@@ -302,23 +306,9 @@ const HomePage: React.FC = () => {
                             objectFit: 'cover',
                             objectPosition: 'center 40%'
                           }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
-                      }}>
-                        <img 
-                          src="/images/people/hellen-keller.jpg" 
-                          alt="Helen Keller"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 35%'
+                          onError={(e) => {
+                            console.error('Failed to load Stevie Wonder image:', e);
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Stevie Wonder`;
                           }}
                         />
                       </Box>
@@ -330,13 +320,39 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src="/images/people/ray-charles.jpg" 
+                          src={`${process.env.PUBLIC_URL || ''}/images/people/hellen-keller.jpg`} 
+                          alt="Helen Keller"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 35%'
+                          }}
+                          onError={(e) => {
+                            console.error('Failed to load Helen Keller image:', e);
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Helen Keller`;
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '70px', 
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src={`${process.env.PUBLIC_URL || ''}/images/people/ray-charles.jpg`} 
                           alt="Ray Charles"
                           style={{ 
                             width: '100%', 
                             height: '100%', 
                             objectFit: 'cover',
                             objectPosition: 'center 40%'
+                          }}
+                          onError={(e) => {
+                            console.error('Failed to load Ray Charles image:', e);
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Ray Charles`;
                           }}
                         />
                       </Box>

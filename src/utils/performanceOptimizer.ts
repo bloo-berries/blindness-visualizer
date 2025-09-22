@@ -4,6 +4,7 @@
  */
 
 import { VisualEffect } from '../types/visualEffects';
+import { createVisualFieldOverlays } from './overlayManager';
 
 /**
  * Performance monitoring and throttling utilities
@@ -177,12 +178,8 @@ export class OverlayManager {
     // Clear existing overlays
     this.clearOverlays();
 
-    // Create new overlays only for enabled effects
-    effects
-      .filter(effect => effect.enabled)
-      .forEach(effect => {
-        this.createOverlay(effect, container);
-      });
+    // Use the comprehensive overlay creation function from overlayManager
+    createVisualFieldOverlays(effects, container);
 
     this.lastOverlayState = stateHash;
   }

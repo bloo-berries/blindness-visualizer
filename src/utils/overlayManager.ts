@@ -132,9 +132,85 @@ const createOverlay = (
 };
 
 /**
+ * Creates an overlay with a specific container
+ */
+const createOverlayWithContainer = (
+  id: string, 
+  backgroundStyle: string, 
+  blendMode: string, 
+  opacity: string,
+  filter?: string,
+  clipPath?: string,
+  conditionId?: string,
+  targetContainer?: HTMLElement
+): void => {
+  let overlayElement = document.getElementById(id);
+  
+  if (!overlayElement) {
+    overlayElement = document.createElement('div');
+    overlayElement.id = id;
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex(conditionId || '', Z_INDEX.BASE)
+    });
+    
+    // Use provided container or try to find one
+    let container: Element | null = targetContainer || null;
+    
+    if (!container) {
+      // Try multiple selectors to find the container
+      for (const selector of CONTAINER_SELECTORS) {
+        if (selector === 'iframe[src*="youtube"]') {
+          // Special handling for iframe - get its parent
+          const iframe = document.querySelector(selector);
+          if (iframe) {
+            container = iframe.parentElement;
+            break;
+          }
+        } else if (selector === 'canvas') {
+          // Special handling for canvas - get its parent
+          const canvas = document.querySelector(selector);
+          if (canvas) {
+            container = canvas.parentElement;
+            break;
+          }
+        } else {
+          container = document.querySelector(selector);
+          if (container) {
+            break;
+          }
+        }
+      }
+    }
+    
+    if (container) {
+      container.appendChild(overlayElement);
+      console.log('Overlay appended to container:', container, 'overlay:', overlayElement);
+    } else {
+      // Try to append to body as fallback
+      document.body.appendChild(overlayElement);
+      console.log('Overlay appended to body as fallback:', overlayElement);
+    }
+  }
+
+  // Apply styles
+  overlayElement.style.background = backgroundStyle;
+  overlayElement.style.mixBlendMode = blendMode;
+  overlayElement.style.opacity = opacity;
+  
+  if (filter) {
+    overlayElement.style.filter = filter;
+  }
+  
+  if (clipPath) {
+    overlayElement.style.clipPath = clipPath;
+  }
+};
+
+/**
  * Creates visual field overlays for all enabled effects
  */
-export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
+export const createVisualFieldOverlays = (effects: VisualEffect[], container?: HTMLElement): void => {
   // Remove existing overlays first
   document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
   
@@ -147,7 +223,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
     hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
     visualFloaters, aura, glaucoma, stargardt,
-    miltonProgressiveVignetting, miltonRetinalDetachment, 
+    miltonProgressiveVignetting, miltonRetinalDetachment, miltonGlaucomaHalos,
     miltonPhotophobia, miltonTemporalFieldLoss, completeBlindness,
     galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression,
     vedCompleteBlindness, vedSpatialAwareness, vedEchoLocation, vedAirFlowSensors, vedProximityRadar, vedTemperatureMapping,
@@ -155,12 +231,14 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     lucyFrostedGlass, lucyHeavyBlur, lucyDesaturation, lucyLightDiffusion, lucyTextureOverlay, lucyCompleteVision,
     davidLeftEyeBlindness, davidRightEyeGlaucoma, davidHemisphericVision, davidCompleteVision,
     erikRetinoschisisIslands, erikIslandFragmentation, erikProgressiveLoss, erikCompleteBlindness, erikScanningBehavior, erikCognitiveLoad,
-    marlaCentralScotoma, marlaPeripheralVision, marlaEccentricViewing, marlaFillingIn, marlaCrowdingEffect, marlaStargardtComplete
+    marlaCentralScotoma, marlaPeripheralVision, marlaEccentricViewing, marlaFillingIn, marlaCrowdingEffect, marlaStargardtComplete,
+    minkaraEndStageComplete, minkaraCentralScotoma, minkaraRingScotoma, minkaraPeripheralIslands, minkaraPhotophobia, minkaraAchromatopsia, minkaraNightBlindness, minkaraChemistryMode,
+    joshuaCompleteBlindness, joshuaEcholocation, joshuaTactileMaps, joshuaAudioLandscape, joshuaAccessibilityMode, joshuaSonification
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
     'visualFloaters', 'aura', 'glaucoma', 'stargardt',
-    'miltonProgressiveVignetting', 'miltonRetinalDetachment',
+    'miltonProgressiveVignetting', 'miltonRetinalDetachment', 'miltonGlaucomaHalos',
     'miltonPhotophobia', 'miltonTemporalFieldLoss', 'completeBlindness',
     'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression',
     'vedCompleteBlindness', 'vedSpatialAwareness', 'vedEchoLocation', 'vedAirFlowSensors', 'vedProximityRadar', 'vedTemperatureMapping',
@@ -168,7 +246,9 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
     'lucyFrostedGlass', 'lucyHeavyBlur', 'lucyDesaturation', 'lucyLightDiffusion', 'lucyTextureOverlay', 'lucyCompleteVision',
     'davidLeftEyeBlindness', 'davidRightEyeGlaucoma', 'davidHemisphericVision', 'davidCompleteVision',
     'erikRetinoschisisIslands', 'erikIslandFragmentation', 'erikProgressiveLoss', 'erikCompleteBlindness', 'erikScanningBehavior', 'erikCognitiveLoad',
-    'marlaCentralScotoma', 'marlaPeripheralVision', 'marlaEccentricViewing', 'marlaFillingIn', 'marlaCrowdingEffect', 'marlaStargardtComplete'
+    'marlaCentralScotoma', 'marlaPeripheralVision', 'marlaEccentricViewing', 'marlaFillingIn', 'marlaCrowdingEffect', 'marlaStargardtComplete',
+    'minkaraEndStageComplete', 'minkaraCentralScotoma', 'minkaraRingScotoma', 'minkaraPeripheralIslands', 'minkaraPhotophobia', 'minkaraAchromatopsia', 'minkaraNightBlindness', 'minkaraChemistryMode',
+    'joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification'
   ].map(getEffect);
   // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
 
@@ -1142,22 +1222,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
   }
 
   // Dr. Mona Minkara - Combined Macular Degeneration + Cone-Rod Dystrophy Effects
-  const minkaraEndStageComplete = effects.find(e => e.id === 'minkaraEndStageComplete' && e.enabled);
-  const minkaraCentralScotoma = effects.find(e => e.id === 'minkaraCentralScotoma' && e.enabled);
-  const minkaraRingScotoma = effects.find(e => e.id === 'minkaraRingScotoma' && e.enabled);
-  const minkaraPeripheralIslands = effects.find(e => e.id === 'minkaraPeripheralIslands' && e.enabled);
-  const minkaraPhotophobia = effects.find(e => e.id === 'minkaraPhotophobia' && e.enabled);
-  const minkaraAchromatopsia = effects.find(e => e.id === 'minkaraAchromatopsia' && e.enabled);
-  const minkaraNightBlindness = effects.find(e => e.id === 'minkaraNightBlindness' && e.enabled);
-  const minkaraChemistryMode = effects.find(e => e.id === 'minkaraChemistryMode' && e.enabled);
+  // (Effects are now properly looked up in the main lookup array above)
 
   // Joshua Miele - Chemical Burn Complete Blindness Effects
-  const joshuaCompleteBlindness = effects.find(e => e.id === 'joshuaCompleteBlindness' && e.enabled);
-  const joshuaEcholocation = effects.find(e => e.id === 'joshuaEcholocation' && e.enabled);
-  const joshuaTactileMaps = effects.find(e => e.id === 'joshuaTactileMaps' && e.enabled);
-  const joshuaAudioLandscape = effects.find(e => e.id === 'joshuaAudioLandscape' && e.enabled);
-  const joshuaAccessibilityMode = effects.find(e => e.id === 'joshuaAccessibilityMode' && e.enabled);
-  const joshuaSonification = effects.find(e => e.id === 'joshuaSonification' && e.enabled);
+  // (Effects are now properly looked up in the main lookup array above)
 
   // Marla Runyan - Stargardt Disease Central Scotoma Effects
   // Central Scotoma - Large central blind spot (20-30 degrees)
@@ -1558,6 +1626,247 @@ export const createVisualFieldOverlays = (effects: VisualEffect[]): void => {
       undefined,
       undefined,
       'galileoSectoralDefects'
+    );
+  }
+
+  // ===== CUSTOM FAMOUS PEOPLE VISUALIZATIONS =====
+  
+  // Helen Keller - Complete Blindness (Total darkness from age 19 months)
+  const helenKellerBlindness = effects.find(e => e.id === 'helenKellerBlindness' && e.enabled);
+  if (helenKellerBlindness?.enabled) {
+    const intensity = helenKellerBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-helenKellerBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'helenKellerBlindness',
+      container
+    );
+  }
+
+  // John Milton - Progressive Blindness (Gradual deterioration to complete blindness)
+  const johnMiltonBlindness = effects.find(e => e.id === 'johnMiltonBlindness' && e.enabled);
+  if (johnMiltonBlindness?.enabled) {
+    const intensity = johnMiltonBlindness.intensity;
+    
+    // Progressive darkening with slight gray tint to represent gradual deterioration
+    createOverlayWithContainer(
+      'visual-field-overlay-johnMiltonBlindness',
+      `rgba(10,10,10,${intensity})`, // Very dark gray overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'johnMiltonBlindness',
+      container
+    );
+  }
+
+  // John Milton - Rainbow Halos (Glaucoma with corneal edema)
+  if (miltonGlaucomaHalos?.enabled) {
+    const intensity = miltonGlaucomaHalos.intensity;
+    
+    console.log('Creating John Milton rainbow halos with intensity:', intensity, 'container:', container);
+    
+    // Create rainbow halos around light sources - multiple concentric rings
+    createOverlayWithContainer(
+      'visual-field-overlay-miltonGlaucomaHalos',
+      `conic-gradient(from 0deg at 50% 50%,
+        rgba(255,255,255,${intensity * 0.3}) 0deg,
+        rgba(255,0,0,${intensity * 0.2}) 60deg,
+        rgba(255,255,0,${intensity * 0.2}) 120deg,
+        rgba(0,255,0,${intensity * 0.2}) 180deg,
+        rgba(0,255,255,${intensity * 0.2}) 240deg,
+        rgba(0,0,255,${intensity * 0.2}) 300deg,
+        rgba(255,255,255,${intensity * 0.3}) 360deg
+      )`,
+      'screen', // Use screen blend mode for bright halos
+      Math.min(0.6, intensity).toString(),
+      `blur(${intensity * 3}px)`, // Blur for soft halo effect
+      undefined,
+      'miltonGlaucomaHalos',
+      container
+    );
+  }
+
+  // Louis Braille - Sympathetic Ophthalmia (Complete darkness from age 5)
+  const louisBrailleBlindness = effects.find(e => e.id === 'louisBrailleBlindness' && e.enabled);
+  if (louisBrailleBlindness?.enabled) {
+    const intensity = louisBrailleBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-louisBrailleBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'louisBrailleBlindness',
+      container
+    );
+  }
+
+  // Erik Weihenmayer - Retinoschisis (Progressive tunnel vision to complete blindness)
+  const erikWeihenmayerRetinoschisis = effects.find(e => e.id === 'erikWeihenmayerRetinoschisis' && e.enabled);
+  if (erikWeihenmayerRetinoschisis?.enabled) {
+    const intensity = erikWeihenmayerRetinoschisis.intensity;
+    
+    // Progressive tunnel vision effect
+    const tunnelRadius = Math.max(5, 30 - intensity * 25); // From 30% to 5% of screen
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-erikWeihenmayerRetinoschisis',
+      `radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) ${tunnelRadius - 5}%,
+        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
+        rgba(0,0,0,${0.95 * intensity}) 100%
+      )`,
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'erikWeihenmayerRetinoschisis',
+      container
+    );
+  }
+
+  // Marla Runyan - Stargardt Disease (matches standard Stargardt Disease visualization)
+  const marlaRunyanStargardt = effects.find(e => e.id === 'marlaRunyanStargardt' && e.enabled);
+  if (marlaRunyanStargardt?.enabled) {
+    const intensity = marlaRunyanStargardt.intensity;
+    const scotomaRadius = 17 + intensity * 53; // 17% to 70% of screen (same as standard Stargardt)
+    
+    console.log('Creating Marla Runyan Stargardt overlay with intensity:', intensity, 'container:', container);
+    console.log('Marla Runyan effect found:', marlaRunyanStargardt);
+    console.log('Scotoma radius:', scotomaRadius);
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-marlaRunyanStargardt',
+      `radial-gradient(circle at 50% 50%, 
+        rgba(10,10,10,${0.99 * intensity}) 0%, 
+        rgba(15,15,15,${0.98 * intensity}) ${scotomaRadius - 5}%,
+        rgba(20,20,20,${0.95 * intensity}) ${scotomaRadius}%,
+        rgba(0,0,0,0) ${scotomaRadius + 5}%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      `saturate(${1 - intensity * 0.4})`, // Color desaturation (same as standard Stargardt)
+      undefined,
+      'marlaRunyanStargardt',
+      container
+    );
+    
+    console.log('Marla Runyan overlay creation completed');
+  } else {
+    console.log('Marla Runyan Stargardt effect not found or not enabled');
+  }
+
+  // Joshua Miele - Chemical Burn Blindness (Complete darkness from acid attack)
+  const joshuaMieleBlindness = effects.find(e => e.id === 'joshuaMieleBlindness' && e.enabled);
+  if (joshuaMieleBlindness?.enabled) {
+    const intensity = joshuaMieleBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-joshuaMieleBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'joshuaMieleBlindness',
+      container
+    );
+  }
+
+  // David Paterson - Optic Atrophy (Severely reduced vision, legal blindness)
+  const davidPatersonBlindness = effects.find(e => e.id === 'davidPatersonBlindness' && e.enabled);
+  if (davidPatersonBlindness?.enabled) {
+    const intensity = davidPatersonBlindness.intensity;
+    
+    // Heavy blur and reduced contrast effect for legal blindness
+    createOverlayWithContainer(
+      'visual-field-overlay-davidPatersonBlindness',
+      `rgba(50,50,50,${intensity * 0.8})`, // Dark gray overlay
+      'multiply',
+      intensity.toString(),
+      `blur(${intensity * 8}px) contrast(${100 - intensity * 70}%)`,
+      undefined,
+      'davidPatersonBlindness',
+      container
+    );
+  }
+
+  // Ray Charles - Glaucoma Blindness (Complete darkness by age 7)
+  const rayCharlesBlindness = effects.find(e => e.id === 'rayCharlesBlindness' && e.enabled);
+  if (rayCharlesBlindness?.enabled) {
+    const intensity = rayCharlesBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-rayCharlesBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'rayCharlesBlindness',
+      container
+    );
+  }
+
+  // Stevie Wonder - Retinopathy of Prematurity (Total or near-total blindness)
+  const stevieWonderROP = effects.find(e => e.id === 'stevieWonderROP' && e.enabled);
+  if (stevieWonderROP?.enabled) {
+    const intensity = stevieWonderROP.intensity;
+    
+    // Near-total blindness with minimal light perception
+    createOverlayWithContainer(
+      'visual-field-overlay-stevieWonderROP',
+      `rgba(5,5,5,${intensity})`, // Very dark overlay with slight gray tint
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'stevieWonderROP',
+      container
+    );
+  }
+
+  // Andrea Bocelli - Congenital Glaucoma (Complete blindness after soccer accident)
+  const andreaBocelliBlindness = effects.find(e => e.id === 'andreaBocelliBlindness' && e.enabled);
+  if (andreaBocelliBlindness?.enabled) {
+    const intensity = andreaBocelliBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-andreaBocelliBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'andreaBocelliBlindness',
+      container
+    );
+  }
+
+  // Ved Mehta - Meningitis Blindness (Complete darkness from age 3)
+  const vedMehtaBlindness = effects.find(e => e.id === 'vedMehtaBlindness' && e.enabled);
+  if (vedMehtaBlindness?.enabled) {
+    const intensity = vedMehtaBlindness.intensity;
+    
+    createOverlayWithContainer(
+      'visual-field-overlay-vedMehtaBlindness',
+      `rgba(0,0,0,${intensity})`, // Complete black overlay
+      'multiply',
+      intensity.toString(),
+      undefined,
+      undefined,
+      'vedMehtaBlindness',
+      container
     );
   }
 

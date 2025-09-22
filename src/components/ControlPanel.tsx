@@ -443,12 +443,15 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 position: 'relative'
               }}
             >
-              {enabledEffectsCount > 0 ? (
+              {(() => {
+                console.log('enabledEffectsCount:', enabledEffectsCount, 'enabledEffects:', enabledEffects);
+                return enabledEffectsCount > 0;
+              })() ? (
                 <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
                   {/* Base image with color vision filters applied directly */}
                   <Box 
                     component="img" 
-                    src="./images/garden.png" 
+                    src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
                     alt="Base reference image"
                     sx={{ 
                       position: 'absolute',
@@ -1078,7 +1081,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.3 + intensity * 0.2; // Semi-transparent ghost
                         overlayStyle.filter = 'blur(2px)'; // Slight blur for ghost image
                         overlayStyle.transform = `translate(${monocularOffset}px, ${monocularOffset * 0.5}px)`;
-                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
+                        overlayStyle.backgroundImage = `url(${process.env.PUBLIC_URL || ''}/images/garden.png)`;
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -1092,7 +1095,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.5; // More opaque than monocular
                         overlayStyle.filter = 'none'; // No blur for clear second image
                         overlayStyle.transform = `translate(${binocularOffset}px, 0px)`;
-                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
+                        overlayStyle.backgroundImage = `url(${process.env.PUBLIC_URL || ''}/images/garden.png)`;
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -2107,13 +2110,20 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               ) : (
                 <Box 
                   component="img" 
-                  src="./images/garden.png" 
+                  src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
                   alt="Normal vision reference image"
                   sx={{ 
                     maxWidth: '100%', 
                     maxHeight: '100%', 
                     objectFit: 'contain',
                     borderRadius: 1
+                  }}
+                  onLoad={() => {
+                    console.log('Garden image loaded successfully in else clause');
+                  }}
+                  onError={(e) => {
+                    console.error('Failed to load garden.png in else clause:', e);
+                    e.currentTarget.src = `https://via.placeholder.com/400x300/cccccc/666666?text=Garden+Image`;
                   }}
                 />
               )}

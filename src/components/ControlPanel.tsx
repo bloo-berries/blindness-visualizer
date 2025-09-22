@@ -1240,20 +1240,41 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       case 'visualFloaters':
-                        // Visual Floaters: More visible and realistic implementation
-                        const floaterIntensity = Math.min(intensity * 1.2, 1.0);
+                        // Visual Floaters (Myodesopsia): Realistic implementation based on medical research
+                        // Floaters are shadows of protein/cell debris in vitreous humour that drift with eye movement
+                        const floaterIntensity = Math.min(intensity * 1.5, 1.0);
+                        const floaterCount = Math.floor(3 + intensity * 8); // 3-11 floaters based on intensity
                         
-                        // Create more visible floater patterns with varying shapes and sizes
-                        overlayStyle.background = `
-                          radial-gradient(ellipse 18% 8% at 25% 25%, rgba(0,0,0,${floaterIntensity * 0.8}) 0%, rgba(0,0,0,${floaterIntensity * 0.4}) 50%, rgba(0,0,0,0) 80%),
-                          radial-gradient(ellipse 15% 6% at 70% 35%, rgba(0,0,0,${floaterIntensity * 0.7}) 0%, rgba(0,0,0,${floaterIntensity * 0.3}) 50%, rgba(0,0,0,0) 75%),
-                          radial-gradient(circle 10% at 45% 65%, rgba(0,0,0,${floaterIntensity * 0.6}) 0%, rgba(0,0,0,${floaterIntensity * 0.2}) 50%, rgba(0,0,0,0) 70%),
-                          radial-gradient(ellipse 12% 4% at 80% 20%, rgba(0,0,0,${floaterIntensity * 0.5}) 0%, rgba(0,0,0,${floaterIntensity * 0.2}) 50%, rgba(0,0,0,0) 65%),
-                          radial-gradient(circle 6% at 15% 80%, rgba(0,0,0,${floaterIntensity * 0.4}) 0%, rgba(0,0,0,${floaterIntensity * 0.1}) 50%, rgba(0,0,0,0) 60%)
-                        `;
+                        // Generate dynamic floater patterns with varying shapes, sizes, and opacities
+                        // Based on Wikipedia: floaters appear as spots, threads, or "cobwebs"
+                        let floaterPatterns = '';
+                        for (let i = 0; i < floaterCount; i++) {
+                          const x = (i * 23.7 + Math.sin(i * 0.8) * 15) % 100;
+                          const y = (i * 31.3 + Math.cos(i * 0.6) * 20) % 100;
+                          const size = 8 + Math.sin(i * 0.4) * 12; // 8-20% size variation
+                          const opacity = 0.3 + (Math.sin(i * 0.7) * 0.4) * floaterIntensity;
+                          const shape = i % 3; // 0=circle, 1=ellipse, 2=thread-like
+                          
+                          if (shape === 0) {
+                            // Circular floaters (most common)
+                            floaterPatterns += `radial-gradient(circle ${size}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.6}) 30%, rgba(0,0,0,${opacity * 0.3}) 60%, rgba(0,0,0,0) 100%),`;
+                          } else if (shape === 1) {
+                            // Elliptical floaters (common in vitreous syneresis)
+                            const width = size;
+                            const height = size * 0.4;
+                            floaterPatterns += `radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.5}) 40%, rgba(0,0,0,${opacity * 0.2}) 70%, rgba(0,0,0,0) 100%),`;
+                          } else {
+                            // Thread-like floaters (cobweb appearance)
+                            const threadWidth = size * 0.2;
+                            const threadHeight = size * 1.5;
+                            floaterPatterns += `radial-gradient(ellipse ${threadWidth}% ${threadHeight}% at ${x}% ${y}%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,${opacity * 0.7}) 20%, rgba(0,0,0,${opacity * 0.4}) 50%, rgba(0,0,0,${opacity * 0.1}) 80%, rgba(0,0,0,0) 100%),`;
+                          }
+                        }
+                        
+                        overlayStyle.background = floaterPatterns.slice(0, -1); // Remove trailing comma
                         overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.9, floaterIntensity);
-                        overlayStyle.animation = 'floaterDrift 8s ease-in-out infinite';
+                        overlayStyle.opacity = Math.min(0.85, floaterIntensity);
+                        overlayStyle.animation = 'floaterDrift 6s ease-in-out infinite alternate, floaterSway 4s ease-in-out infinite alternate'; // Combined drift and sway
                         break;
                         
                       case 'hallucinations':

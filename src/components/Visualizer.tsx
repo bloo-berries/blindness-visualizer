@@ -7,7 +7,7 @@ import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
-import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
+import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../utils/appConstants';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../utils/performanceOptimizer';
 
@@ -312,6 +312,15 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     return baseStyle;
   }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
 
+  // Get appropriate video URL based on context
+  const getVideoUrl = useCallback(() => {
+    if (personName && personCondition) {
+      // Use famous person specific video URL
+      return getFamousPersonVideoUrl();
+    }
+    return YOUTUBE_EMBED_URL;
+  }, [personName, personCondition]);
+
   // Optimized diplopia overlay generation
   const getDiplopiaOverlay = useCallback(() => {
     if (inputSource.type !== 'youtube') return null;
@@ -337,7 +346,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
     const iframeProps: React.IframeHTMLAttributes<HTMLIFrameElement> = {
       ...YOUTUBE_IFRAME_PROPS,
-      src: YOUTUBE_EMBED_URL,
+      src: getVideoUrl(),
       title: `YouTube video player (${diplopiaMonocular?.enabled ? 'ghost' : 'second image'}) - ${Math.random().toString(36).substr(2, 9)}`,
       style: { ...YOUTUBE_IFRAME_PROPS.style, pointerEvents: "none" }
     };
@@ -354,7 +363,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         <iframe {...iframeProps} title="Vision Simulator" />
       </div>
     );
-  }, [inputSource.type, diplopiaSeparation, diplopiaDirection]);
+  }, [inputSource.type, diplopiaSeparation, diplopiaDirection, getVideoUrl]);
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
@@ -415,7 +424,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             {inputSource.type === 'youtube' ? (
               <iframe
                 {...YOUTUBE_IFRAME_PROPS}
-                src={YOUTUBE_EMBED_URL}
+                src={getVideoUrl()}
                 title="Vision simulation"
                 style={{ width: '100%', height: '100%' }}
               />

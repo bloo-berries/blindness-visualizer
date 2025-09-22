@@ -4,14 +4,28 @@
  */
 
 /**
- * YouTube demo video ID used throughout the application
+ * YouTube demo video IDs used throughout the application
+ * Different videos for different contexts to provide more appropriate content
  */
-export const DEMO_VIDEO_ID = 'KOc146R8sws';
+export const DEMO_VIDEO_ID = 'KOc146R8sws'; // Default demo video (Norwegian fjord)
+export const FAMOUS_PEOPLE_VIDEO_ID = 'KOc146R8sws'; // Same video for now, but can be customized per person
 
 /**
  * YouTube embed URL template
  */
 export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`;
+
+/**
+ * Get contextually appropriate video URL for famous people
+ * @param personId - The ID of the famous person
+ * @returns YouTube embed URL with appropriate video
+ */
+export const getFamousPersonVideoUrl = (personId?: string): string => {
+  // For now, use the same demo video for all famous people
+  // In the future, this could be customized per person with specific videos
+  const videoId = FAMOUS_PEOPLE_VIDEO_ID;
+  return `https://www.youtube.com/embed/${videoId}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`;
+};
 
 /**
  * YouTube iframe properties

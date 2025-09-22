@@ -16,7 +16,6 @@ import ControlPanel from './ControlPanel';
 import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import PerformanceMonitor from './PerformanceMonitor';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
@@ -44,7 +43,7 @@ const VisionSimulator: React.FC = () => {
   const [showComparison, setShowComparison] = useState(false);
 
   // Calculate the number of enabled effects for performance monitoring
-  const enabledEffectsCount = effects.filter(effect => effect.enabled).length;
+  // const enabledEffectsCount = effects.filter(effect => effect.enabled).length; // Removed - Performance Monitor no longer used
 
 
   // Handle pre-configured conditions from famous people page
@@ -210,11 +209,7 @@ const VisionSimulator: React.FC = () => {
         onHomeClick={handleHomeClick}
       />
       
-      {/* Performance Monitor - only show when conditions are active */}
-      <PerformanceMonitor 
-        conditionCount={enabledEffectsCount} 
-        isVisible={activeStep >= 2 && enabledEffectsCount > 0} 
-      />
+      {/* Performance Monitor removed for general public use */}
       <a 
         href="#main-content" 
         className="skip-to-content"

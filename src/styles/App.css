@@ -228,4 +228,14 @@ html {
   100% { 
     transform: translateX(2px);
   }
+}
+
+/* Animation for Visual Floaters sway motion */
+@keyframes floaterSway {
+  0% { 
+    transform: translateY(-1px) rotate(0.5deg);
+  }
+  100% { 
+    transform: translateY(1px) rotate(-0.5deg);
+  }
 } 

@@ -463,7 +463,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   {/* Base image with color vision filters applied directly */}
                   <Box 
                     component="img" 
-                    src="./assets/images/garden.png" 
+                    src="./images/garden.png" 
                     alt="Base reference image"
                     sx={{ 
                       position: 'absolute',
@@ -1060,7 +1060,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.3 + intensity * 0.2; // Semi-transparent ghost
                         overlayStyle.filter = 'blur(2px)'; // Slight blur for ghost image
                         overlayStyle.transform = `translate(${monocularOffset}px, ${monocularOffset * 0.5}px)`;
-                        overlayStyle.backgroundImage = 'url(./assets/images/garden.png)';
+                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -1074,7 +1074,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 0.5; // More opaque than monocular
                         overlayStyle.filter = 'none'; // No blur for clear second image
                         overlayStyle.transform = `translate(${binocularOffset}px, 0px)`;
-                        overlayStyle.backgroundImage = 'url(./assets/images/garden.png)';
+                        overlayStyle.backgroundImage = 'url(./images/garden.png)';
                         overlayStyle.backgroundSize = 'cover';
                         overlayStyle.backgroundPosition = 'center';
                         overlayStyle.backgroundRepeat = 'no-repeat';
@@ -1543,7 +1543,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               ) : (
                 <Box 
                   component="img" 
-                  src="./assets/images/garden.png" 
+                  src="./images/garden.png" 
                   alt="Normal vision reference image"
                   sx={{ 
                     maxWidth: '100%', 

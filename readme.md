@@ -53,11 +53,6 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 - **Font size adjustments**
 - **Focus indicators** for better visibility
 
-### Modern User Interface
-- **Responsive design** that works on desktop, tablet, and mobile
-- **Material-UI components** for consistent, professional appearance
-- **Intuitive navigation** with React Router
-- **Beautiful card-based layout** for easy browsing
 
 ## 🚀 Getting Started
 
@@ -188,11 +183,6 @@ We welcome contributions! Here's how you can help:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **Famous Blind People**: Research and information about historical and contemporary figures
-- **Medical Resources**: Information about vision conditions and their effects
-- **Open Source Community**: Libraries and tools that made this project possible
 
 ## 📞 Support
 

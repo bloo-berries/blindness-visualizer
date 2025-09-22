@@ -13,8 +13,27 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Vision Condition Visualizer</title>
     <script>
-      // Simple redirect to main app for GitHub Pages
-      window.location.replace(window.location.origin + window.location.pathname + '#/');
+      // Redirect to main app for GitHub Pages with proper hash routing
+      // Get the current path and redirect to the hash-based equivalent
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      
+      // If there's already a hash, use it; otherwise redirect to home
+      if (hash) {
+        window.location.replace(window.location.origin + '/blindness-visualizer/' + hash);
+      } else {
+        // Map common paths to their hash equivalents
+        const pathMap = {
+          '/about': '/#/about',
+          '/simulator': '/#/simulator', 
+          '/famous-people': '/#/famous-people',
+          '/conditions': '/#/conditions',
+          '/faq': '/#/faq'
+        };
+        
+        const redirectPath = pathMap[path] || '/#/';
+        window.location.replace(window.location.origin + '/blindness-visualizer' + redirectPath);
+      }
     </script>
   </head>
   <body>

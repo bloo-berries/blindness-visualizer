@@ -263,7 +263,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       // Use the dispose function from scene manager
       dispose();
     };
-  }, [inputSource, retryCount]); // Recreate scene when input source changes or retry is triggered
+  }, [inputSource, retryCount, diplopiaDirection, diplopiaSeparation, effects, texture]); // Recreate scene when input source changes or retry is triggered
 
   // Update shader uniforms when effects change (separate from scene creation)
   useEffect(() => {
@@ -373,7 +373,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         filter: diplopiaMonocular?.enabled ? 'blur(2px)' : undefined,
         mixBlendMode: diplopiaMonocular?.enabled ? 'multiply' : undefined
       }}>
-        <iframe {...iframeProps} />
+        <iframe {...iframeProps} title="Vision Simulator" />
       </div>
     );
   };

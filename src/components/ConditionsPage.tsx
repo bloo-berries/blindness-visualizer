@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -301,11 +301,7 @@ const ConditionsPage: React.FC = () => {
 
   const [filteredCategories, setFilteredCategories] = useState(conditionCategories);
 
-  useEffect(() => {
-    filterCategories();
-  }, [searchTerm, categoryFilter]);
-
-  const filterCategories = () => {
+  const filterCategories = useCallback(() => {
     let filtered = conditionCategories;
 
     // Filter by search term
@@ -325,7 +321,11 @@ const ConditionsPage: React.FC = () => {
     }
 
     setFilteredCategories(filtered);
-  };
+  }, [searchTerm, categoryFilter]);
+
+  useEffect(() => {
+    filterCategories();
+  }, [filterCategories]);
 
   const handleCategoryChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpandedCategory(isExpanded ? panel : false);
@@ -340,10 +340,6 @@ const ConditionsPage: React.FC = () => {
     navigate('/');
   };
 
-  const getCategoryIcon = (categoryId: string) => {
-    const category = conditionCategories.find(cat => cat.id === categoryId);
-    return category?.icon || <VisibilityIcon />;
-  };
 
   return (
     <Box className="conditions-glossary">

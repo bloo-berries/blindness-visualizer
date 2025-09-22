@@ -1386,8 +1386,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         // Scenic elements (water, landscapes, buildings)
                         for (let i = 0; i < 2 + Math.floor(intensity * 3); i++) {
                           const scenePhase = (hallucinationTime + i * 0.8) % (2 * Math.PI);
-                          const baseX = 10 + (i * 35) % 80;
-                          const baseY = 40 + (i * 20) % 40;
+                          // const baseX = 10 + (i * 35) % 80;
+                          // const baseY = 40 + (i * 20) % 40;
                           // const x = baseX + Math.sin(scenePhase * 0.03) * 6;
                           // const y = baseY + Math.cos(scenePhase * 0.02) * 4;
                           
@@ -1409,8 +1409,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         // Architectural elements (buildings, structures)
                         for (let i = 0; i < 1 + Math.floor(intensity * 2); i++) {
                           const archPhase = (hallucinationTime + i * 0.6) % (2 * Math.PI);
-                          const baseX = 15 + (i * 50) % 70;
-                          const baseY = 30 + (i * 30) % 50;
+                          // const baseX = 15 + (i * 50) % 70;
+                          // const baseY = 30 + (i * 30) % 50;
                           // const x = baseX + Math.sin(archPhase * 0.02) * 4;
                           // const y = baseY + Math.cos(archPhase * 0.03) * 3;
                           
@@ -1456,8 +1456,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         // Text-like elements (words, letters appearing)
                         for (let i = 0; i < Math.floor(intensity * 2); i++) {
                           const textPhase = (hallucinationTime + i * 1.8) % (2 * Math.PI);
-                          const baseX = 30 + (i * 25) % 50;
-                          const baseY = 20 + (i * 35) % 60;
+                          // const baseX = 30 + (i * 25) % 50;
+                          // const baseY = 20 + (i * 35) % 60;
                           // const x = baseX + Math.sin(textPhase * 0.04) * 5;
                           // const y = baseY + Math.cos(textPhase * 0.03) * 4;
                           

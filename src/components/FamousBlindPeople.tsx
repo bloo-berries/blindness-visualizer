@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -181,11 +181,7 @@ const FamousBlindPeople: React.FC = () => {
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
   const [filteredPeople, setFilteredPeople] = useState<string[]>([]);
 
-  useEffect(() => {
-    filterPeople();
-  }, [searchTerm, categoryFilter, conditionFilter]);
-
-  const filterPeople = () => {
+  const filterPeople = useCallback(() => {
     let filtered = Object.keys(personData);
 
     // Filter by search term
@@ -214,7 +210,11 @@ const FamousBlindPeople: React.FC = () => {
     }
 
     setFilteredPeople(filtered);
-  };
+  }, [searchTerm, categoryFilter, conditionFilter]);
+
+  useEffect(() => {
+    filterPeople();
+  }, [filterPeople]);
 
   const handlePersonClick = (personId: string) => {
     setSelectedPerson(personId);

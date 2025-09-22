@@ -94,7 +94,7 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     name: 'Visual Snow',
     enabled: false,
     intensity: 1.0,
-    description: 'A persistent visual disturbance where people see tiny, flickering dots across their entire visual field. Similar to the static noise on an old television. Can be constant or intermittent.'
+    description: 'A persistent visual disturbance where people see tiny, static dots across their entire visual field. Similar to the static noise on an untuned television screen. This is a neurological condition that affects 2-3% of the population and remains present even with closed eyes.'
   },
   { 
     id: 'visualFloaters',

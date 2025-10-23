@@ -6,7 +6,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 
 ### Homepage
 
-![Site Video Preview](./public/images/repo-assets/VisionSim.mp4)
+[![Site Video Preview](https://img.shields.io/badge/📹_Watch_Demo-Vision_Simulator-blue?style=for-the-badge)](https://github.com/bloo-berries/blindness-visualizer/raw/main/public/images/repo-assets/VisionSim.mp4)
 
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 

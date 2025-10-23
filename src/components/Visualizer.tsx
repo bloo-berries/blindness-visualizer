@@ -636,7 +636,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               }}>
                 <img
                   src={inputSource.url}
-                  alt="Uploaded image with vision simulation"
+                  alt="Uploaded with vision simulation"
                   style={{ 
                     width: '100%', 
                     height: '100%',
@@ -692,7 +692,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           ) : inputSource.type === 'image' && inputSource.url ? (
             <img
               src={inputSource.url}
-              alt="Original uploaded image"
+              alt="Original uploaded"
               style={{ 
                 width: '100%', 
                 height: '100%',

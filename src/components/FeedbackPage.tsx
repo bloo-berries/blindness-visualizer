@@ -6,10 +6,6 @@ import {
   Box,
   TextField,
   Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Alert,
   Snackbar,
   Divider,
@@ -27,7 +23,6 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import { useAccessibility } from '../contexts/AccessibilityContext';
 
 interface FeedbackForm {
   type: 'general' | 'bug' | 'feature' | 'improvement' | 'other';
@@ -39,7 +34,6 @@ interface FeedbackForm {
 }
 
 const FeedbackPage: React.FC = () => {
-  const { preferences } = useAccessibility();
   const [formData, setFormData] = useState<FeedbackForm>({
     type: 'general',
     name: '',

@@ -236,7 +236,8 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     erikRetinoschisisIslands, erikIslandFragmentation, erikProgressiveLoss, erikCompleteBlindness, erikScanningBehavior, erikCognitiveLoad,
     marlaCentralScotoma, marlaPeripheralVision, marlaEccentricViewing, marlaFillingIn, marlaCrowdingEffect, marlaStargardtComplete,
     minkaraEndStageComplete, minkaraCentralScotoma, minkaraRingScotoma, minkaraPeripheralIslands, minkaraPhotophobia, minkaraAchromatopsia, minkaraNightBlindness, minkaraChemistryMode,
-    joshuaCompleteBlindness, joshuaEcholocation, joshuaTactileMaps, joshuaAudioLandscape, joshuaAccessibilityMode, joshuaSonification
+    joshuaCompleteBlindness, joshuaEcholocation, joshuaTactileMaps, joshuaAudioLandscape, joshuaAccessibilityMode, joshuaSonification,
+    keratoconus
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
@@ -251,7 +252,8 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     'erikRetinoschisisIslands', 'erikIslandFragmentation', 'erikProgressiveLoss', 'erikCompleteBlindness', 'erikScanningBehavior', 'erikCognitiveLoad',
     'marlaCentralScotoma', 'marlaPeripheralVision', 'marlaEccentricViewing', 'marlaFillingIn', 'marlaCrowdingEffect', 'marlaStargardtComplete',
     'minkaraEndStageComplete', 'minkaraCentralScotoma', 'minkaraRingScotoma', 'minkaraPeripheralIslands', 'minkaraPhotophobia', 'minkaraAchromatopsia', 'minkaraNightBlindness', 'minkaraChemistryMode',
-    'joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification'
+    'joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification',
+    'keratoconus'
   ].map(getEffect);
   // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
 
@@ -429,17 +431,18 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   if (scotoma?.enabled) {
-    const now = Date.now();
+    const intensity = scotoma.intensity;
+    
+    // Calculate scotoma size based on intensity - larger at 100%
+    const scotomaSize = Math.max(15, 10 + intensity * 20); // 15% at 0%, 30% at 100%
+    const blackIntensity = intensity; // Full black at 100%
+    
+    // Create centered scotoma using radial gradient
     createOverlay(
       'visual-field-overlay-scotoma',
-      `radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
-        rgba(0,0,0,${0.95 * scotoma.intensity}) 0%, 
-        rgba(0,0,0,${0.85 * scotoma.intensity}) ${Math.max(5, 10 - scotoma.intensity * 5)}%,
-        rgba(0,0,0,${0.5 * scotoma.intensity}) ${Math.max(10, 20 - scotoma.intensity * 10)}%,
-        rgba(0,0,0,0) ${Math.max(20, 35 - scotoma.intensity * 15)}%
-      )`,
+      `radial-gradient(circle at 50% 50%, rgba(0,0,0,${blackIntensity}) 0%, rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%, rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%, rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%, transparent ${scotomaSize + 10}%)`,
       'multiply',
-      Math.min(0.95, scotoma.intensity).toString(),
+      Math.min(0.95, intensity).toString(),
       undefined,
       undefined,
       'scotoma'
@@ -1278,10 +1281,14 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   if (marlaCentralScotoma?.enabled) {
     const intensity = marlaCentralScotoma.intensity;
     
-    // Create central scotoma using radial gradient - gray void, not black (simplified)
+    // Calculate scotoma size based on intensity - larger at 100%
+    const scotomaSize = Math.max(20, 15 + intensity * 25); // 20% at 0%, 40% at 100%
+    const blackIntensity = intensity; // Full black at 100%
+    
+    // Create central scotoma using radial gradient - centered and larger at 100%
     createOverlay(
       'visual-field-overlay-marlaCentralScotoma',
-      `radial-gradient(circle at 50% 50%, rgba(128,128,128,${intensity * 0.8}) 0%, rgba(128,128,128,${intensity * 0.6}) 30%, transparent 40%)`,
+      `radial-gradient(circle at 50% 50%, rgba(0,0,0,${blackIntensity}) 0%, rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%, rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%, rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%, transparent ${scotomaSize + 10}%)`,
       'multiply',
       intensity.toString(),
       undefined,
@@ -1456,10 +1463,14 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   if (minkaraCentralScotoma?.enabled) {
     const intensity = minkaraCentralScotoma.intensity;
     
-    // Massive central scotoma (35+ degrees)
+    // Calculate massive scotoma size based on intensity - even larger at 100%
+    const scotomaSize = Math.max(35, 30 + intensity * 20); // 35% at 0%, 50% at 100%
+    const blackIntensity = intensity; // Full black at 100%
+    
+    // Massive central scotoma (35+ degrees) - centered and larger at 100%
     createOverlay(
       'visual-field-overlay-minkaraCentralScotoma',
-      `radial-gradient(circle at 50% 50%, rgba(0,0,0,${intensity}) 0%, rgba(0,0,0,${intensity * 0.95}) 15%, rgba(0,0,0,${intensity * 0.9}) 25%, rgba(0,0,0,${intensity * 0.8}) 35%, transparent 40%)`,
+      `radial-gradient(circle at 50% 50%, rgba(0,0,0,${blackIntensity}) 0%, rgba(0,0,0,${blackIntensity * 0.95}) ${scotomaSize - 10}%, rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%, rgba(0,0,0,${blackIntensity * 0.8}) ${scotomaSize}%, rgba(0,0,0,${blackIntensity * 0.5}) ${scotomaSize + 5}%, transparent ${scotomaSize + 10}%)`,
       'multiply',
       intensity.toString(),
       undefined,
@@ -1973,6 +1984,109 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       undefined,
       undefined,
       'galileoChronicProgression'
+    );
+  }
+
+  // Keratoconus - Progressive corneal thinning with irregular cone shape
+  if (keratoconus?.enabled) {
+    const intensity = keratoconus.intensity;
+    
+    // Create multiple ghost images (monocular diplopia/polyopia)
+    // 2-8+ overlapping copies with slight offsets - ENHANCED CONTRAST
+    const ghostCount = Math.max(2, Math.floor(2 + intensity * 6)); // 2-8 ghosts based on intensity
+    const ghostOffsets = [];
+    
+    for (let i = 0; i < ghostCount; i++) {
+      const angle = (i / ghostCount) * Math.PI * 2;
+      const distance = 2 + intensity * 5; // 2-7px offset (increased for higher contrast)
+      const offsetX = Math.cos(angle) * distance;
+      const offsetY = Math.sin(angle) * distance;
+      ghostOffsets.push(`translate(${offsetX}px, ${offsetY}px)`);
+    }
+    
+    // Create streaking and comet tails effect - ENHANCED CONTRAST
+    const streakIntensity = intensity * 1.2; // Increased intensity
+    const streakLength = 30 + intensity * 40; // 30-70px streaks (longer for more dramatic effect)
+    
+    // Create halos around lights - ENHANCED CONTRAST
+    const haloIntensity = intensity * 1.0; // Increased intensity
+    const haloSize = 15 + intensity * 25; // 15-40px halos (larger for more visibility)
+    
+    // Create wavy distortion for text - ENHANCED
+    const waveIntensity = intensity * 0.8; // Increased distortion
+    const waveFrequency = 0.02 + intensity * 0.03; // 0.02-0.05 frequency
+    
+    // High contrast loss - ENHANCED
+    const contrastLoss = intensity * 1.0; // Increased contrast loss
+    
+    // Create comprehensive keratoconus overlay with ENHANCED CONTRAST
+    createOverlay(
+      'visual-field-overlay-keratoconus',
+      `
+        /* Multiple ghost images - ENHANCED CONTRAST */
+        ${ghostOffsets.map((offset, i) => `
+          linear-gradient(${45 + i * 15}deg, 
+            rgba(255,255,255,${intensity * 0.3}) 0%, 
+            rgba(255,255,255,${intensity * 0.2}) 50%, 
+            rgba(255,255,255,${intensity * 0.1}) 80%,
+            transparent 100%
+          )
+        `).join(', ')}
+        /* Streaking and comet tails - ENHANCED CONTRAST */
+        , linear-gradient(90deg, 
+          rgba(255,255,255,${streakIntensity * 0.6}) 0%, 
+          rgba(255,255,255,${streakIntensity * 0.4}) ${streakLength * 0.3}%, 
+          rgba(255,255,255,${streakIntensity * 0.2}) ${streakLength * 0.6}%,
+          rgba(255,255,255,${streakIntensity * 0.1}) ${streakLength}%, 
+          transparent 100%
+        )
+        , linear-gradient(45deg, 
+          rgba(255,255,255,${streakIntensity * 0.5}) 0%, 
+          rgba(255,255,255,${streakIntensity * 0.3}) ${streakLength * 0.4}%, 
+          rgba(255,255,255,${streakIntensity * 0.15}) ${streakLength * 0.8}%, 
+          transparent 100%
+        )
+        , linear-gradient(135deg, 
+          rgba(255,255,255,${streakIntensity * 0.4}) 0%, 
+          rgba(255,255,255,${streakIntensity * 0.2}) ${streakLength * 0.5}%, 
+          transparent 100%
+        )
+        /* Halos around lights - ENHANCED CONTRAST */
+        , radial-gradient(circle at 20% 20%, 
+          rgba(255,255,255,${haloIntensity * 0.8}) 0%, 
+          rgba(255,255,255,${haloIntensity * 0.6}) ${haloSize * 0.3}%, 
+          rgba(255,255,255,${haloIntensity * 0.4}) ${haloSize * 0.6}%,
+          rgba(255,255,255,${haloIntensity * 0.2}) ${haloSize}%, 
+          transparent ${haloSize * 2}%
+        )
+        , radial-gradient(circle at 80% 30%, 
+          rgba(255,255,255,${haloIntensity * 0.7}) 0%, 
+          rgba(255,255,255,${haloIntensity * 0.5}) ${haloSize * 0.4}%, 
+          rgba(255,255,255,${haloIntensity * 0.3}) ${haloSize * 0.8}%,
+          rgba(255,255,255,${haloIntensity * 0.15}) ${haloSize * 1.2}%, 
+          transparent ${haloSize * 2}%
+        )
+        , radial-gradient(circle at 50% 80%, 
+          rgba(255,255,255,${haloIntensity * 0.6}) 0%, 
+          rgba(255,255,255,${haloIntensity * 0.4}) ${haloSize * 0.5}%, 
+          rgba(255,255,255,${haloIntensity * 0.2}) ${haloSize}%, 
+          transparent ${haloSize * 1.5}%
+        )
+        /* High contrast loss - ENHANCED */
+        , rgba(0,0,0,${contrastLoss * 0.5})
+        , rgba(128,128,128,${contrastLoss * 0.3})
+      `,
+      'multiply',
+      intensity.toString(),
+      `
+        /* Enhanced wavy distortion filter */
+        blur(${waveIntensity * 3}px) 
+        contrast(${100 - contrastLoss * 60}%) 
+        brightness(${100 + intensity * 30}%)
+        saturate(${100 - intensity * 40}%)
+      `,
+      undefined,
+      'keratoconus'
     );
   }
 };

@@ -871,14 +871,6 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   },
 
   // ===== OCULAR DISEASES - Missing from specialty.vision =====
-  
-  {
-    id: 'keratoconus',
-    name: 'Keratoconus',
-    enabled: false,
-    intensity: 1.0,
-    description: 'Progressive, irregular astigmatism with localized warping, double or triple ghosting of high-contrast edges, and increased glare from point light sources. Central or paracentral blurring is asymmetric, with starburst-like streaking around lights and reduced fine detail resolution even when corrected.'
-  },
   {
     id: 'dryEye',
     name: 'Dry Eye Syndrome',
@@ -992,6 +984,13 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     enabled: false,
     intensity: 1.0,
     description: 'Gradual loss of near-focus accommodation by blurring objects closer than a variable distance from the focal plane. Transition occurs dynamically with simulated refocus effort lag. Distant and midrange objects remain sharp, but text or fine objects at hand length become unresolved without magnification.'
+  },
+  {
+    id: 'keratoconus',
+    name: 'Keratoconus',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Progressive corneal thinning causing irregular cone shape that creates multiple focal points. Results in multiple ghost images (2-8+ copies), streaking and comet tails from light sources, severe blur and wavy distortion of text, halos around lights, and high contrast loss. Gets worse with bright objects on dark backgrounds.'
   }
 ];
 

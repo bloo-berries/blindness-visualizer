@@ -1914,19 +1914,20 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         
                       // Marla Runyan Effects
                       case 'marlaCentralScotoma':
-                        // Marla's central scotoma
-                        const marlaScotomaIntensity = Math.min(intensity * 1.3, 1.0);
-                        const marlaScotomaRadius = Math.max(15, 25 - intensity * 10);
+                        // Marla's central scotoma - updated for larger black mass at 100%
+                        const marlaScotomaIntensity = intensity; // Full intensity at 100%
+                        const marlaScotomaRadius = Math.max(20, 15 + intensity * 25); // 20% at 0%, 40% at 100%
                         overlayStyle.background = `
                           radial-gradient(circle at 50% 50%, 
-                            rgba(0,0,0,${marlaScotomaIntensity * 0.9}) 0%, 
-                            rgba(0,0,0,${marlaScotomaIntensity * 0.7}) ${marlaScotomaRadius}%,
-                            rgba(0,0,0,${marlaScotomaIntensity * 0.4}) ${marlaScotomaRadius + 5}%,
-                            rgba(0,0,0,0) ${marlaScotomaRadius + 15}%
+                            rgba(0,0,0,${marlaScotomaIntensity}) 0%, 
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.9}) ${marlaScotomaRadius - 5}%,
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.6}) ${marlaScotomaRadius}%,
+                            rgba(0,0,0,${marlaScotomaIntensity * 0.3}) ${marlaScotomaRadius + 5}%,
+                            rgba(0,0,0,0) ${marlaScotomaRadius + 10}%
                           )
                         `;
                         overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.8, marlaScotomaIntensity);
+                        overlayStyle.opacity = Math.min(0.9, marlaScotomaIntensity);
                         break;
                         
                       case 'marlaPeripheralVision':
@@ -2237,6 +2238,82 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
                         overlayStyle.mixBlendMode = 'normal';
                         overlayStyle.opacity = Math.min(0.4, intensity).toString();
+                        break;
+
+                      case 'keratoconus':
+                        // Keratoconus - Multiple ghost images, streaking, halos, and distortion - ENHANCED CONTRAST
+                        const ghostCount = Math.max(2, Math.floor(2 + intensity * 6)); // 2-8 ghosts
+                        const ghostGradients = [];
+                        
+                        for (let i = 0; i < ghostCount; i++) {
+                          const angle = (i / ghostCount) * 360;
+                          const offsetX = Math.cos(angle * Math.PI / 180) * (2 + intensity * 5);
+                          const offsetY = Math.sin(angle * Math.PI / 180) * (2 + intensity * 5);
+                          ghostGradients.push(`
+                            linear-gradient(${angle}deg, 
+                              rgba(255,255,255,${intensity * 0.4}) 0%, 
+                              rgba(255,255,255,${intensity * 0.3}) 30%, 
+                              rgba(255,255,255,${intensity * 0.2}) 60%,
+                              rgba(255,255,255,${intensity * 0.1}) 80%,
+                              transparent 100%
+                            )
+                          `);
+                        }
+                        
+                        overlayStyle.background = `
+                          ${ghostGradients.join(', ')}
+                          , linear-gradient(90deg, 
+                            rgba(255,255,255,${intensity * 0.6}) 0%, 
+                            rgba(255,255,255,${intensity * 0.4}) 20%, 
+                            rgba(255,255,255,${intensity * 0.3}) 40%,
+                            rgba(255,255,255,${intensity * 0.2}) 60%,
+                            rgba(255,255,255,${intensity * 0.1}) 80%,
+                            transparent 100%
+                          )
+                          , linear-gradient(45deg, 
+                            rgba(255,255,255,${intensity * 0.5}) 0%, 
+                            rgba(255,255,255,${intensity * 0.3}) 25%, 
+                            rgba(255,255,255,${intensity * 0.2}) 50%,
+                            rgba(255,255,255,${intensity * 0.1}) 75%,
+                            transparent 100%
+                          )
+                          , linear-gradient(135deg, 
+                            rgba(255,255,255,${intensity * 0.4}) 0%, 
+                            rgba(255,255,255,${intensity * 0.2}) 30%, 
+                            rgba(255,255,255,${intensity * 0.1}) 60%,
+                            transparent 100%
+                          )
+                          , radial-gradient(circle at 20% 20%, 
+                            rgba(255,255,255,${intensity * 0.8}) 0%, 
+                            rgba(255,255,255,${intensity * 0.6}) 15%, 
+                            rgba(255,255,255,${intensity * 0.4}) 30%,
+                            rgba(255,255,255,${intensity * 0.2}) 45%,
+                            transparent 60%
+                          )
+                          , radial-gradient(circle at 80% 30%, 
+                            rgba(255,255,255,${intensity * 0.7}) 0%, 
+                            rgba(255,255,255,${intensity * 0.5}) 12%, 
+                            rgba(255,255,255,${intensity * 0.3}) 24%,
+                            rgba(255,255,255,${intensity * 0.15}) 36%,
+                            transparent 50%
+                          )
+                          , radial-gradient(circle at 50% 80%, 
+                            rgba(255,255,255,${intensity * 0.6}) 0%, 
+                            rgba(255,255,255,${intensity * 0.4}) 20%, 
+                            rgba(255,255,255,${intensity * 0.2}) 40%,
+                            transparent 60%
+                          )
+                          , rgba(0,0,0,${intensity * 0.4})
+                          , rgba(128,128,128,${intensity * 0.2})
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.filter = `
+                          blur(${intensity * 2.5}px) 
+                          contrast(${100 - intensity * 50}%) 
+                          brightness(${100 + intensity * 25}%)
+                          saturate(${100 - intensity * 30}%)
+                        `;
+                        overlayStyle.opacity = Math.min(0.95, intensity).toString();
                         break;
 
                       case 'blueFieldPhenomena':

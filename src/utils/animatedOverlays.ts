@@ -106,16 +106,20 @@ export const updateAnimatedOverlays = (effects: VisualEffect[]): void => {
  * @param intensity - The intensity of the scotoma effect
  */
 const updateScotomaOverlay = (intensity: number): void => {
-  const now = Date.now();
   const overlayElement = document.getElementById('visual-field-overlay-scotoma');
   
   if (overlayElement) {
+    // Calculate scotoma size based on intensity - larger at 100%
+    const scotomaSize = Math.max(15, 10 + intensity * 20); // 15% at 0%, 30% at 100%
+    const blackIntensity = intensity; // Full black at 100%
+    
     overlayElement.style.background = `
-      radial-gradient(circle at ${50 + Math.sin(now/2000) * 10}% ${50 + Math.cos(now/2000) * 10}%, 
-        rgba(0,0,0,${0.95 * intensity}) 0%, 
-        rgba(0,0,0,${0.85 * intensity}) ${Math.max(5, 10 - intensity * 5)}%,
-        rgba(0,0,0,${0.5 * intensity}) ${Math.max(10, 20 - intensity * 10)}%,
-        rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 15)}%
+      radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,${blackIntensity}) 0%, 
+        rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%,
+        rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%,
+        rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%,
+        rgba(0,0,0,0) ${scotomaSize + 10}%
       )
     `;
   }

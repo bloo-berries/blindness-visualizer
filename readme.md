@@ -6,13 +6,13 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 
 ### Homepage
 
-https://github.com/bloo-berries/blindness-visualizer/assets/VisionSim.mp4
+![Vision Simulator Demo](./public/images/repo-assets/VisionSim.mp4)
 
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
 ### About Page
 
-https://github.com/bloo-berries/blindness-visualizer/assets/VisionSim-About.png
+![About Page Preview](./public/images/repo-assets/VisionSim-About.png)
 
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
@@ -35,6 +35,8 @@ https://github.com/bloo-berries/blindness-visualizer/assets/VisionSim-About.png
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
 *Real-time vision condition simulation with multiple effects applied*
+
+![Visualization Preview](./public/images/repo-assets/Visualization-Preview.png)
 
 ### Famous People Educational Section
 

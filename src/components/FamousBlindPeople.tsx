@@ -226,14 +226,70 @@ const personData: Record<string, PersonData> = {
     onset: "Age 11, progressive",
     simulation: "anastasia-stargardt",
     description: "Anastasia Pagonis is a Paralympic swimmer who has Stargardt disease, a form of juvenile macular degeneration. Despite her visual impairment, she has become a world-class athlete, winning multiple Paralympic medals and setting world records. She is an inspiration to young athletes with disabilities. Learn more at teamusa.com."
+  },
+  mila: {
+    name: "Mila Kunis",
+    condition: "Chronic Iritis & Cataracts",
+    years: "Born 1983",
+    onset: "Childhood, blind in one eye for years",
+    simulation: "mila-iritis-cataracts",
+    description: "Mila Kunis has been blind in one eye for years due to chronic iritis that caused cataracts. Despite her visual impairment, she has become a successful actress, known for her roles in That '70s Show and various films. She has spoken openly about her condition and how it has affected her life and career."
+  },
+  judi: {
+    name: "Dame Judi Dench",
+    condition: "Age-Related Macular Degeneration (AMD)",
+    years: "Born 1934",
+    onset: "Dry AMD in one eye, wet AMD in the other",
+    simulation: "judi-amd-progression",
+    description: "Dame Judi Dench, the acclaimed British actress, has been living with age-related macular degeneration. She has dry AMD in one eye and wet AMD in the other, which affects her central vision. Despite her visual challenges, she continues to act and has adapted her career to work with her condition."
+  },
+  bono: {
+    name: "Bono",
+    condition: "Glaucoma",
+    years: "Born 1960",
+    onset: "Adult onset",
+    simulation: "bono-glaucoma-sensitivity",
+    description: "Bono, the lead singer of U2, has glaucoma and wears sunglasses due to light sensitivity. He has been open about his condition and how it affects his daily life, including his need for protective eyewear. His advocacy has helped raise awareness about glaucoma and vision health."
+  },
+  georgia: {
+    name: "Georgia O'Keeffe",
+    condition: "Age-Related Macular Degeneration (AMD)",
+    years: "1887-1986",
+    onset: "Lost central vision in 1972",
+    simulation: "georgia-amd-central-loss",
+    description: "Georgia O'Keeffe, the renowned American artist, lost her central vision to age-related macular degeneration in 1972. Despite this significant visual impairment, she continued to create art, adapting her techniques to work with her remaining peripheral vision. Her later works reflect her changed visual perspective."
+  },
+  ella: {
+    name: "Ella Fitzgerald",
+    condition: "Diabetic Retinopathy",
+    years: "1917-1996",
+    onset: "Progressive, eventually went blind",
+    simulation: "ella-diabetic-retinopathy",
+    description: "Ella Fitzgerald, the legendary jazz singer, developed diabetic retinopathy which eventually led to blindness. Despite her visual impairment, she continued to perform and record music, becoming one of the most celebrated vocalists in jazz history. Her condition was a result of diabetes complications."
+  },
+  sugar: {
+    name: "Sugar Ray Leonard",
+    condition: "Partial Retinal Detachment",
+    years: "Born 1956",
+    onset: "Left eye in 1982",
+    simulation: "sugar-retinal-detachment",
+    description: "Sugar Ray Leonard, the former professional boxer, suffered a partial retinal detachment in his left eye in 1982. This condition affected his depth perception and peripheral vision, ultimately contributing to his decision to retire from boxing. He has since become an advocate for eye health and safety in sports."
+  },
+  stephen: {
+    name: "Stephen Curry",
+    condition: "Keratoconus",
+    years: "Born 1988",
+    onset: "Diagnosed in college",
+    simulation: "stephen-keratoconus",
+    description: "Stephen Curry, the NBA superstar and Golden State Warriors point guard, has keratoconus, a condition where the cornea becomes thin and cone-shaped, causing distorted vision. Despite this visual impairment, he has become one of the greatest shooters in NBA history, winning multiple championships and MVP awards. He uses specialized contact lenses to manage his condition."
   }
 };
 
 const categories = [
   { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet"] },
-  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "casey", "haben", "molly"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli"] },
+  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella"] },
   { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye"] }
 ];
 
@@ -310,7 +366,14 @@ const FamousBlindPeople: React.FC = () => {
       'marla-stargardt-complete': ['marlaRunyanStargardt'],
       'minkara-end-stage-complete': ['minkaraEndStageComplete'],
       'joshua-complete-blindness': ['joshuaMieleBlindness'],
-      'paul-retinitis-pigmentosa': ['retinitisPigmentosa']
+      'paul-retinitis-pigmentosa': ['retinitisPigmentosa'],
+      'mila-iritis-cataracts': ['cataracts', 'glaucoma'],
+      'judi-amd-progression': ['amd', 'stargardt'],
+      'bono-glaucoma-sensitivity': ['glaucoma', 'photophobia'],
+      'georgia-amd-central-loss': ['amd', 'stargardt'],
+      'ella-diabetic-retinopathy': ['diabeticRetinopathy', 'glaucoma'],
+      'sugar-retinal-detachment': ['retinalDetachment', 'glaucoma'],
+      'stephen-keratoconus': ['keratoconus', 'astigmatism']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -362,11 +425,17 @@ const FamousBlindPeople: React.FC = () => {
       molly: `${baseUrl}/images/people/molly-burke.png`,
       tilly: `${baseUrl}/images/people/tilly-aston.png`,
       sabriye: `${baseUrl}/images/people/Sabriye-Tenberken.png`,
-      anastasia: `${baseUrl}/images/people/Anastasia-Pagonis.png`
+      anastasia: `${baseUrl}/images/people/Anastasia-Pagonis.png`,
+      mila: `${baseUrl}/images/people/mila-kunis.webp`,
+      judi: `${baseUrl}/images/people/judi-dench.webp`,
+      bono: `${baseUrl}/images/people/bono.webp`,
+      georgia: `${baseUrl}/images/people/Georgia-OKeeffe.webp`,
+      ella: `${baseUrl}/images/people/Ella-Fitzgerald.webp`,
+      sugar: `${baseUrl}/images/people/sugar-ray-leonard.webp`,
+      stephen: `${baseUrl}/images/people/stephen-curry.webp`
     };
     
     const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
-    console.log(`Loading image for ${personId}: ${imagePath} (baseUrl: ${baseUrl})`);
     return imagePath;
   };
 
@@ -498,6 +567,8 @@ const FamousBlindPeople: React.FC = () => {
                                           personId === 'paterson' ? 'center top' :
                                           personId === 'galileo' ? 'center top' :
                                           personId === 'ved' ? 'center top' :
+                                          personId === 'mila' ? 'center 30%' :
+                                          personId === 'georgia' ? 'center 30%' :
                                           'center center'
                           }}
                           onError={(e) => {

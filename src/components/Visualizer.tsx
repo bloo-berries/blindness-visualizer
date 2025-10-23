@@ -7,6 +7,7 @@ import { generateEffectsDescription } from '../utils/effectsDescription';
 import { createSceneManager } from '../utils/threeSceneManager';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
+import { updateSVGFilters } from '../utils/svgFilterManager';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../utils/appConstants';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../utils/performanceOptimizer';
@@ -38,7 +39,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   // Update local showComparison state when prop changes
   useEffect(() => {
-    console.log('Visualizer: propShowComparison changed to:', propShowComparison, 'isFamousPeopleMode:', isFamousPeopleMode);
+
     if (propShowComparison !== undefined) {
       // Use explicit prop when provided
       setShowComparison(propShowComparison);
@@ -47,6 +48,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       setShowComparison(true);
     }
   }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
+
+  // Update SVG filters when effects change
+  useEffect(() => {
+    updateSVGFilters(effects);
+  }, [effects]);
 
   // Performance optimization instances
   const optimizer = useRef(PerformanceOptimizer.getInstance());
@@ -121,10 +127,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     setError(null);
 
     // Set up Three.js scene using utility
-    console.log('Creating Three.js scene for container:', containerRef.current);
+
     const sceneManager = createSceneManager(containerRef.current);
     const { scene, camera, renderer, dispose } = sceneManager;
-    console.log('Three.js scene created successfully:', { scene, camera, renderer });
 
     // Capture current ref values to avoid stale closure issues in cleanup
     const currentAnimationManager = animationManager.current;
@@ -165,10 +170,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           return;
           
         } else if (inputSource.type === 'image' && inputSource.url) {
-          console.log('Loading image texture from URL:', inputSource.url);
+
           const textureLoader = new THREE.TextureLoader();
           const imageTexture = await textureLoader.loadAsync(inputSource.url);
-          console.log('Image texture loaded successfully:', imageTexture);
+
           setTexture(imageTexture);
           setIsLoading(false);
         } else if (inputSource.type === 'youtube') {
@@ -232,8 +237,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       if (mesh && texture) {
         const material = mesh.material as THREE.ShaderMaterial;
         material.uniforms.tDiffuse.value = texture;
-        console.log('Applied texture to shader material:', texture);
-        
+
         // Only update shader uniforms if effects have changed
         const { changed } = effectProcessor.current.updateEffects(effects);
         if (changed) {
@@ -244,7 +248,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       } else {
         // Only log this if we're actually in Three.js mode (not comparison mode)
         if (!showComparison) {
-          console.log('Three.js: No mesh or texture available for rendering');
+
         }
       }
       
@@ -289,40 +293,20 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
 
   // Optimized effect state changes handling
   useEffect(() => {
-    console.log('Visualizer useEffect triggered:', {
-      effectsCount: effects.length,
-      enabledEffects: effects.filter(e => e.enabled).length,
-      enabledEffectIds: effects.filter(e => e.enabled).map(e => e.id),
-      inputSourceType: inputSource.type,
-      showComparison,
-      isFamousPeopleMode
-    });
+    // Only process if effects have actually changed
     
     // Only process if effects have actually changed
     const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
-    
-    console.log('Effect processor result:', {
-      changed,
-      enabledEffectsCount: enabledEffects.length,
-      enabledEffectIds: enabledEffects.map(e => e.id)
-    });
     
     // Force overlay update when transitioning to comparison view or when effects are enabled
     const hasEnabledEffects = enabledEffects.length > 0;
     const shouldUpdateOverlays = changed || (hasEnabledEffects && showComparison);
     
     if (!shouldUpdateOverlays) {
-      console.log('Effects unchanged and not in comparison mode, skipping overlay update');
+
       return;
     }
-    
-    console.log('Proceeding with overlay update:', {
-      changed,
-      hasEnabledEffects,
-      showComparison,
-      shouldUpdateOverlays
-    });
-    
+
     // Create visual field overlays for YouTube and image content
     if (inputSource.type === 'youtube' || inputSource.type === 'image') {
       // For YouTube and image content, only create overlays for non-diplopia effects
@@ -330,42 +314,24 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
-      console.log('Non-diplopia effects for overlay:', {
-        count: nonDiplopiaEffects.length,
-        effects: nonDiplopiaEffects.map(e => e.id)
-      });
-      
       if (nonDiplopiaEffects.length > 0) {
         // Use simulation container for comparison mode, main container for other modes
         const targetContainer = showComparison && simulationContainerRef.current 
           ? simulationContainerRef.current 
           : containerRef.current;
         
-        console.log('Overlay update debug:', {
-          showComparison,
-          simulationContainerRef: simulationContainerRef.current,
-          containerRef: containerRef.current,
-          targetContainer,
-          targetContainerId: targetContainer?.id,
-          targetContainerClass: targetContainer?.className,
-          nonDiplopiaEffects: nonDiplopiaEffects.map(e => e.id)
-        });
-        
         if (targetContainer) {
           // Use optimized overlay manager
-          console.log('Calling overlayManager.updateOverlays with:', {
-            effects: nonDiplopiaEffects,
-            targetContainer
-          });
+
           overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
         } else {
-          console.log('No target container found for overlay update');
+
         }
       } else {
-        console.log('No non-diplopia effects to process');
+
       }
     } else {
-      console.log('Not YouTube or image input, skipping overlay creation');
+
     }
     
     // Check if we need animation (for overlay-based effects)
@@ -393,22 +359,14 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
-      console.log('getEffectStyles - CSS filter generation:', {
-        enabledEffectsCount: enabledEffects.length,
-        enabledEffectIds: enabledEffects.map(e => e.id),
-        nonDiplopiaEffectsCount: nonDiplopiaEffects.length,
-        nonDiplopiaEffectIds: nonDiplopiaEffects.map(e => e.id)
-      });
-      
       // Only generate filters if there are effects to process
       if (nonDiplopiaEffects.length > 0) {
         const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-        console.log('Generated CSS filters:', filters);
+
         return filters ? { ...baseStyle, filter: filters } : baseStyle;
       }
     }
 
-    console.log('getEffectStyles - returning base style (no filters)');
     return baseStyle;
   }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
 
@@ -421,7 +379,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // Use standard video URL for regular simulator
     return YOUTUBE_EMBED_URL;
   }, [personName, personCondition, isFamousPeopleMode]);
-
 
   // Optimized diplopia overlay generation
   const getDiplopiaOverlay = useCallback(() => {
@@ -470,14 +427,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
   // Render comparison view for famous people or general vision simulation
-  console.log('Comparison view check:', {
-    showComparison,
-    personName,
-    personCondition,
-    isFamousPeopleMode,
-    shouldShowComparison: showComparison
-  });
-  
+
   if (showComparison) {
     return (
       <Box className="comparison-container" sx={{ 
@@ -538,15 +488,25 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 width: '100%', 
                 height: '100%',
                 position: 'relative',
-                // Apply SVG filters for color vision conditions (same as selection page)
+                overflow: 'hidden', // Clip overlays to video boundaries
+                // Apply CSS matrix filters for color vision conditions with intensity scaling
                 filter: (() => {
                   const { enabledEffects } = effectProcessor.current.updateEffects(effects);
                   const colorVisionEffect = enabledEffects.find(e => 
                     ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
                   );
                   
+                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
+                  const otherEffects = enabledEffects.filter(e => 
+                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  const filters: string[] = [];
+                  
+                  // Add color vision filter if present
                   if (colorVisionEffect) {
-                    console.log('Applying SVG filter for iframe:', colorVisionEffect.id);
+
+                    // Use SVG filters which are more reliable than CSS matrix filters
                     const filterMap: { [key: string]: string } = {
                       'protanopia': 'url(#protanopia)',
                       'deuteranopia': 'url(#deuteranopia)',
@@ -557,14 +517,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                       'monochromacy': 'url(#monochromacy)',
                       'monochromatic': 'url(#monochromacy)'
                     };
-                    return filterMap[colorVisionEffect.id] || 'none';
+                    const svgFilter = filterMap[colorVisionEffect.id];
+                    if (svgFilter) {
+                      filters.push(svgFilter);
+                    }
                   }
                   
-                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
-                  const otherEffects = enabledEffects.filter(e => 
-                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-                  );
-                  
+                  // Add other filters
                   if (otherEffects.length > 0) {
                     const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
                     const nonDiplopiaEffects = nonColorEffects.filter(e => 
@@ -572,12 +531,14 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                     );
                     
                     if (nonDiplopiaEffects.length > 0) {
-                      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-                      return filters || 'none';
+                      const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                      if (otherFilters) {
+                        filters.push(otherFilters);
+                      }
                     }
                   }
                   
-                  return 'none';
+                  return filters.length > 0 ? filters.join(' ') : 'none';
                 })()
               }}>
                 <iframe
@@ -592,15 +553,25 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 width: '100%', 
                 height: '100%',
                 position: 'relative',
-                // Apply SVG filters for color vision conditions (same as selection page)
+                overflow: 'hidden', // Clip overlays to image boundaries
+                // Apply CSS matrix filters for color vision conditions with intensity scaling
                 filter: (() => {
                   const { enabledEffects } = effectProcessor.current.updateEffects(effects);
                   const colorVisionEffect = enabledEffects.find(e => 
                     ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
                   );
                   
+                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
+                  const otherEffects = enabledEffects.filter(e => 
+                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                  );
+                  
+                  const filters: string[] = [];
+                  
+                  // Add color vision filter if present
                   if (colorVisionEffect) {
-                    console.log('Applying SVG filter for uploaded image:', colorVisionEffect.id);
+
+                    // Use SVG filters which are more reliable than CSS matrix filters
                     const filterMap: { [key: string]: string } = {
                       'protanopia': 'url(#protanopia)',
                       'deuteranopia': 'url(#deuteranopia)',
@@ -611,14 +582,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                       'monochromacy': 'url(#monochromacy)',
                       'monochromatic': 'url(#monochromacy)'
                     };
-                    return filterMap[colorVisionEffect.id] || 'none';
+                    const svgFilter = filterMap[colorVisionEffect.id];
+                    if (svgFilter) {
+                      filters.push(svgFilter);
+                    }
                   }
                   
-                  // Apply other CSS filters (blur, etc.) for non-color-vision effects
-                  const otherEffects = enabledEffects.filter(e => 
-                    !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-                  );
-                  
+                  // Add other filters
                   if (otherEffects.length > 0) {
                     const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
                     const nonDiplopiaEffects = nonColorEffects.filter(e => 
@@ -626,12 +596,14 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                     );
                     
                     if (nonDiplopiaEffects.length > 0) {
-                      const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-                      return filters || 'none';
+                      const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                      if (otherFilters) {
+                        filters.push(otherFilters);
+                      }
                     }
                   }
                   
-                  return 'none';
+                  return filters.length > 0 ? filters.join(' ') : 'none';
                 })()
               }}>
                 <img

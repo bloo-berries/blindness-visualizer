@@ -99,18 +99,9 @@ export class EffectProcessor {
       .map(e => `${e.id}:${e.enabled}:${e.intensity}`)
       .join('|');
 
-    console.log('EffectProcessor.updateEffects:', {
-      effectsCount: effects.length,
-      enabledCount: effects.filter(e => e.enabled).length,
-      enabledIds: effects.filter(e => e.enabled).map(e => e.id),
-      currentHash,
-      lastUpdateHash: this.lastUpdateHash,
-      willChange: currentHash !== this.lastUpdateHash
-    });
-
     // Only update if effects have changed
     if (currentHash === this.lastUpdateHash) {
-      console.log('EffectProcessor: No changes detected, returning cached effects');
+
       return {
         changed: false,
         enabledEffects: this.enabledEffects,
@@ -118,17 +109,10 @@ export class EffectProcessor {
       };
     }
 
-    console.log('EffectProcessor: Changes detected, updating cache');
-
     // Update cache
     this.effectMap = new Map(effects.map(effect => [effect.id, effect]));
     this.enabledEffects = effects.filter(effect => effect.enabled);
     this.lastUpdateHash = currentHash;
-
-    console.log('EffectProcessor: Cache updated, returning new effects:', {
-      enabledEffectsCount: this.enabledEffects.length,
-      enabledEffectIds: this.enabledEffects.map(e => e.id)
-    });
 
     return {
       changed: true,
@@ -180,14 +164,6 @@ export class OverlayManager {
     effects: VisualEffect[],
     container: HTMLElement
   ): void {
-    console.log('OverlayManager.updateOverlays called:', {
-      effectsCount: effects.length,
-      enabledEffects: effects.filter(e => e.enabled).length,
-      enabledEffectIds: effects.filter(e => e.enabled).map(e => e.id),
-      container,
-      containerId: container?.id,
-      containerClass: container?.className
-    });
     
     // Create state hash for comparison
     const stateHash = effects
@@ -196,29 +172,21 @@ export class OverlayManager {
       .sort()
       .join('|');
 
-    console.log('OverlayManager state hash:', {
-      stateHash,
-      lastOverlayState: this.lastOverlayState,
-      willSkip: stateHash === this.lastOverlayState
-    });
-
     // Skip update if state hasn't changed
     if (stateHash === this.lastOverlayState) {
-      console.log('OverlayManager: State unchanged, skipping update');
+
       return;
     }
-
-    console.log('OverlayManager: State changed, proceeding with update');
 
     // Clear existing overlays
     this.clearOverlays();
 
     // Use the comprehensive overlay creation function from overlayManager
-    console.log('OverlayManager: Calling createVisualFieldOverlays');
+
     createVisualFieldOverlays(effects, container);
 
     this.lastOverlayState = stateHash;
-    console.log('OverlayManager: Update completed');
+
   }
 
   /**

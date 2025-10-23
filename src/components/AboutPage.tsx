@@ -167,7 +167,6 @@ const AboutPage: React.FC = () => {
             </Grid>
           </Box>
 
-
           {/* Call to Action */}
           <Paper elevation={2} sx={{ 
             p: 4, 

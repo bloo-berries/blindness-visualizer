@@ -218,8 +218,7 @@ export const saveVisionSimulation = async (
     // Generate filename and download
     const filename = generateFilename(metadata);
     downloadScreenshot(blob, filename);
-    
-    console.log('Vision simulation saved successfully:', filename);
+
   } catch (error) {
     console.error('Failed to save vision simulation:', error);
     throw error;

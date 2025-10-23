@@ -1,12 +1,12 @@
 import { VisualEffect } from '../types/visualEffects';
-import { isColorVisionCondition } from './colorVisionFilters';
+import { isColorVisionCondition, getColorVisionFilter } from './colorVisionFilters';
 import { getFirstEnabledEffect } from './effectLookup';
 
 // Identity matrix removed as it was unused
 
 /**
- * Generates SVG filter string for color blindness effects (same as selection page)
- * Note: CSS matrix filters don't work on iframes, so we use SVG filters instead
+ * Generates CSS matrix filter for color blindness effects with intensity scaling
+ * This replaces the static SVG filters to allow intensity-based severity adjustment
  */
 const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
   // Find the first enabled color vision condition using optimized lookup
@@ -16,19 +16,8 @@ const generateColorBlindnessFilter = (effects: VisualEffect[]): string => {
     return '';
   }
 
-  // Use SVG filters (same as selection page) instead of CSS matrix filters
-  const filterMap: { [key: string]: string } = {
-    'protanopia': 'url(#protanopia)',
-    'deuteranopia': 'url(#deuteranopia)',
-    'tritanopia': 'url(#tritanopia)',
-    'protanomaly': 'url(#protanomaly)',
-    'deuteranomaly': 'url(#deuteranomaly)',
-    'tritanomaly': 'url(#tritanomaly)',
-    'monochromacy': 'url(#monochromacy)',
-    'monochromatic': 'url(#monochromacy)'
-  };
-  
-  return filterMap[colorVisionEffect.id] || '';
+  // Use CSS matrix filters with intensity scaling instead of static SVG filters
+  return getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
 };
 
 /**
@@ -739,8 +728,7 @@ const generateSymptomFilters = (effects: VisualEffect[]): string => {
     filters.push(`contrast(${100 - glare.intensity * 40}%)`);
     filters.push(`saturate(${100 - glare.intensity * 20}%)`);
   }
-  
-  
+
   if (blurryVision) {
     // General blur effect
     filters.push(`blur(${blurryVision.intensity * 12}px)`);
@@ -836,11 +824,7 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
   
   // Debug logging to help identify issues
   if (enabledEffects.length > 0) {
-    console.log('CSS Filter Generation:', {
-      enabledEffects: enabledEffects.map(e => ({ id: e.id, intensity: e.intensity })),
-      filterComponents,
-      finalFilter
-    });
+    // Filter generation completed
   }
   
   return finalFilter;

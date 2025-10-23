@@ -21,11 +21,10 @@ export const createSceneManager = (container: HTMLDivElement): SceneManager => {
   
   // Configure renderer to match container dimensions
   const containerRect = container.getBoundingClientRect();
-  console.log('Container dimensions:', containerRect);
+
   renderer.setSize(containerRect.width, containerRect.height);
-  console.log('Renderer canvas size set to:', containerRect.width, 'x', containerRect.height);
+
   container.appendChild(renderer.domElement);
-  console.log('Canvas appended to container');
 
   // Cleanup function
   const dispose = () => {

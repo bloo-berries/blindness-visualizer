@@ -144,14 +144,7 @@ const createOverlayWithContainer = (
   conditionId?: string,
   targetContainer?: HTMLElement
 ): void => {
-  console.log('createOverlayWithContainer called:', {
-    id,
-    conditionId,
-    targetContainer,
-    targetContainerId: targetContainer?.id,
-    targetContainerClass: targetContainer?.className
-  });
-  
+
   let overlayElement = document.getElementById(id);
   
   if (!overlayElement) {
@@ -193,20 +186,11 @@ const createOverlayWithContainer = (
     
     if (container) {
       container.appendChild(overlayElement);
-      console.log('Overlay appended to container:', {
-        container,
-        containerId: container.id,
-        containerClass: container.className,
-        overlay: overlayElement,
-        overlayId: overlayElement.id
-      });
+
     } else {
       // Try to append to body as fallback
       document.body.appendChild(overlayElement);
-      console.log('Overlay appended to body as fallback:', {
-        overlay: overlayElement,
-        overlayId: overlayElement.id
-      });
+
     }
   }
 
@@ -228,26 +212,11 @@ const createOverlayWithContainer = (
  * Creates visual field overlays for all enabled effects
  */
 export const createVisualFieldOverlays = (effects: VisualEffect[], container?: HTMLElement): void => {
-  console.log('createVisualFieldOverlays called with:', {
-    effectsCount: effects.length,
-    enabledEffects: effects.filter(e => e.enabled).length,
-    enabledEffectIds: effects.filter(e => e.enabled).map(e => e.id),
-    container,
-    containerId: container?.id,
-    containerClass: container?.className
-  });
   
   // Log all effects for debugging
-  console.log('All effects details:', effects.map(e => ({
-    id: e.id,
-    enabled: e.enabled,
-    intensity: e.intensity,
-    name: e.name
-  })));
   
   // Remove existing overlays first
   document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
-  
 
   // Create effect lookup map for O(1) access instead of O(n) finds
   const effectMap = createEffectMap(effects);
@@ -1746,9 +1715,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   // John Milton - Rainbow Halos (Glaucoma with corneal edema)
   if (miltonGlaucomaHalos?.enabled) {
     const intensity = miltonGlaucomaHalos.intensity;
-    
-    console.log('Creating John Milton rainbow halos with intensity:', intensity, 'container:', container);
-    
+
     // Create rainbow halos around light sources - multiple concentric rings
     createOverlayWithContainer(
       'visual-field-overlay-miltonGlaucomaHalos',
@@ -1772,17 +1739,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
 
   // Louis Braille - Sympathetic Ophthalmia (Complete darkness from age 5)
   const louisBrailleBlindness = effects.find(e => e.id === 'louisBrailleBlindness' && e.enabled);
-  console.log('Louis Braille effect check:', {
-    found: !!louisBrailleBlindness,
-    enabled: louisBrailleBlindness?.enabled,
-    intensity: louisBrailleBlindness?.intensity,
-    effect: louisBrailleBlindness
-  });
-  
+
   if (louisBrailleBlindness?.enabled) {
     const intensity = Math.max(0.95, louisBrailleBlindness.intensity); // Ensure near-complete blackness
-    console.log('Creating Louis Braille overlay with intensity:', intensity);
-    
+
     createOverlayWithContainer(
       'visual-field-overlay-louisBrailleBlindness',
       `rgba(0,0,0,${intensity})`, // Complete black overlay
@@ -1794,7 +1754,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       container
     );
   } else {
-    console.log('Louis Braille effect not found or not enabled');
+
   }
 
   // Erik Weihenmayer - Retinoschisis (Progressive tunnel vision to complete blindness)
@@ -1827,11 +1787,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   if (marlaRunyanStargardt?.enabled) {
     const intensity = marlaRunyanStargardt.intensity;
     const scotomaRadius = 17 + intensity * 53; // 17% to 70% of screen (same as standard Stargardt)
-    
-    console.log('Creating Marla Runyan Stargardt overlay with intensity:', intensity, 'container:', container);
-    console.log('Marla Runyan effect found:', marlaRunyanStargardt);
-    console.log('Scotoma radius:', scotomaRadius);
-    
+
     createOverlayWithContainer(
       'visual-field-overlay-marlaRunyanStargardt',
       `radial-gradient(circle at 50% 50%, 
@@ -1847,10 +1803,9 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       'marlaRunyanStargardt',
       container
     );
-    
-    console.log('Marla Runyan overlay creation completed');
+
   } else {
-    console.log('Marla Runyan Stargardt effect not found or not enabled');
+
   }
 
   // Joshua Miele - Chemical Burn Blindness (Complete darkness from acid attack)

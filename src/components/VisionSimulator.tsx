@@ -22,8 +22,6 @@ import { createDefaultEffects } from '../data/visualEffects';
 
 const steps = ['Choose Input Source', 'Select Vision Conditions', 'View Simulation'];
 
-
-
 const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -112,8 +110,7 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleSourceChange = useCallback((source: InputSource) => {
-    console.log('VisionSimulator: handleSourceChange called with:', source);
-    
+
     // Prevent camera access - force to YouTube if someone tries to set webcam
     if (source.type === 'webcam') {
       setInputSource({ type: 'youtube' });
@@ -123,7 +120,7 @@ const VisionSimulator: React.FC = () => {
     
     // Auto-advance to next step when Demo Video or Image is selected
     if (source.type === 'youtube' || source.type === 'image') {
-      console.log('Auto-advancing to step 1 for source type:', source.type);
+
       setTimeout(() => {
         setActiveStep(1);
       }, 300); // Small delay for better UX
@@ -157,16 +154,6 @@ const VisionSimulator: React.FC = () => {
           </Box>
         );
       case 2:
-        const enabledEffects = effects.filter(e => e.enabled);
-        console.log('VisionSimulator step 2 - passing effects to Visualizer:', {
-          totalEffects: effects.length,
-          enabledEffects: enabledEffects.length,
-          enabledEffectIds: enabledEffects.map(e => e.id),
-          preconfiguredPerson,
-          showComparison,
-          isFamousPeopleMode,
-          isRegularSimulatorMode
-        });
         
         return (
           <Box sx={{ p: 3 }}>
@@ -215,7 +202,6 @@ const VisionSimulator: React.FC = () => {
 
   // Determine if we're in "Famous People" mode or "Regular Simulator" mode
   const isFamousPeopleMode = preconfiguredPerson !== null;
-  const isRegularSimulatorMode = !isFamousPeopleMode;
 
   return (
     <Box className="app-container">

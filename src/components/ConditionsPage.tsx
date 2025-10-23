@@ -340,7 +340,6 @@ const ConditionsPage: React.FC = () => {
     navigate('/');
   };
 
-
   return (
     <Box className="conditions-glossary">
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />

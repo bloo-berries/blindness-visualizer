@@ -32,6 +32,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:prod": "GENERATE_SOURCEMAP=false npm run build",
+    "build:analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "clean": "rm -rf build/ node_modules/.cache/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,7 +42,14 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "no-unused-vars": "warn",
+      "prefer-const": "warn",
+      "no-var": "error"
+    }
   },
   "browserslist": {
     "production": [
@@ -52,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

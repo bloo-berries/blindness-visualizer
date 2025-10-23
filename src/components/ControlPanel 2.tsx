@@ -21,6 +21,7 @@ import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
+import { updateSVGFilters } from '../utils/svgFilterManager';
 import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
 interface ControlPanelProps {
@@ -54,6 +55,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange
 }) => {
+  // Update SVG filters when effects change
+  React.useEffect(() => {
+    updateSVGFilters(effects);
+  }, [effects]);
   // Create effect lookup map for O(1) access instead of O(n) finds
   // const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
   // const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
@@ -448,20 +453,38 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 console.log('enabledEffectsCount:', enabledEffectsCount, 'enabledEffects:', enabledEffects);
                 return enabledEffectsCount > 0;
               })() ? (
-                <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
-                  {/* Base image with color vision filters applied directly */}
-                  <Box 
-                    component="img" 
-                    src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
-                    alt="Base reference image"
-                    sx={{ 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      borderRadius: 1,
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '100%',
+                  overflow: 'hidden', // Clip overlays to container boundaries
+                  borderRadius: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {/* Image wrapper to contain overlays */}
+                  <Box sx={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    // Ensure overlays are clipped to image boundaries
+                    overflow: 'hidden'
+                  }}>
+                    {/* Base image with color vision filters applied directly */}
+                    <Box 
+                      component="img" 
+                      src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
+                      alt="Base reference image"
+                      sx={{ 
+                        display: 'block',
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: 1,
                       // Apply filters directly to the image for filter-based conditions
                       filter: (() => {
                         const filterBasedConditions = enabledEffects.filter(effect => {
@@ -484,8 +507,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           const id = effect.id as ConditionType;
                           const intensity = effect.intensity;
                           
-                          // Color vision conditions use SVG filters
+                          // Color vision conditions use SVG filters (more reliable than CSS matrix)
                           if (isColorVisionCondition(id)) {
+                            console.log('ControlPanel: Using SVG filter for', id, 'intensity', intensity);
+                            // Use SVG filters which are more reliable than CSS matrix filters
                             const filterMap: { [key: string]: string } = {
                               'protanopia': 'url(#protanopia)',
                               'deuteranopia': 'url(#deuteranopia)',
@@ -578,14 +603,18 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     const effectType = effect.id as ConditionType;
                     const intensity = effect.intensity;
                     
-                  // Generate overlay styles based on condition type
-                  const overlayStyle: any = {
+                    // Generate overlay styles based on condition type
+                    let overlayStyle: any = {
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       width: '100%',
                       height: '100%',
-                      pointerEvents: 'none'
+                      pointerEvents: 'none',
+                      // Clip overlays to image boundaries
+                      clipPath: 'inset(0)',
+                      // Ensure overlays are positioned relative to the image
+                      transform: 'translateZ(0)'
                     };
 
                     // Set z-index based on condition type
@@ -2327,6 +2356,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       />
                     );
                   })}
+                  </Box>
                 </Box>
               ) : (
                 <Box 

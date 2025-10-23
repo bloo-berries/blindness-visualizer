@@ -191,6 +191,7 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
  */
 export const matrixToCSSFilter = (matrix: number[]): string => {
   // CSS matrix format: matrix(r1, r2, r3, 0, 0, g1, g2, g3, 0, 0, b1, b2, b3, 0, 0, 0, 0, 0, 1, 0)
+  // The matrix should be in the format: [r1, r2, r3, g1, g2, g3, b1, b2, b3]
   const cssMatrix = [
     matrix[0], matrix[1], matrix[2], 0, 0,
     matrix[3], matrix[4], matrix[5], 0, 0,

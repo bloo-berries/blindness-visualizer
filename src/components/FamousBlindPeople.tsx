@@ -577,30 +577,30 @@ const FamousBlindPeople: React.FC = () => {
               <Typography variant="h5" component="h3" gutterBottom sx={{ mb: 2 }}>
                 {category.name}
               </Typography>
-              <Grid container spacing={3}>
+              <Grid container spacing={2}>
                 {categoryPeople.map(personId => {
                   const person = personData[personId];
                   return (
-                    <Grid item xs={12} sm={6} md={4} key={personId}>
+                    <Grid item xs={6} sm={4} md={3} lg={2} xl={2} key={personId}>
                       <Card 
                         sx={{ 
                           height: '100%', 
                           cursor: 'pointer',
                           transition: 'transform 0.2s, box-shadow 0.2s',
                           '&:hover': {
-                            transform: 'translateY(-4px)',
-                            boxShadow: 4
+                            transform: 'translateY(-2px)',
+                            boxShadow: 3
                           }
                         }}
                         onClick={() => handlePersonClick(personId)}
                       >
                         <CardMedia
                           component="img"
-                          height="300"
+                          height="140"
                           image={getPersonImage(personId)}
                           alt={person.name}
                           sx={{
-                            objectPosition: personId === 'harriet' ? 'center top' :
+                            objectPosition: personId === 'harriet' ? 'center 20%' :
                                           personId === 'tilly' ? 'center top' :
                                           personId === 'helen' ? 'center top' :
                                           personId === 'stevie' ? 'center top' :
@@ -609,20 +609,21 @@ const FamousBlindPeople: React.FC = () => {
                                           personId === 'ved' ? 'center top' :
                                           personId === 'mila' ? 'center 30%' :
                                           personId === 'georgia' ? 'center 30%' :
+                                          personId === 'bocelli' ? 'center 60%' :
                                           'center center'
                           }}
                           onError={(e) => {
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
                           }}
                         />
-                        <CardContent>
-                          <Typography variant="h6" component="h4" gutterBottom>
+                        <CardContent sx={{ p: 1.5 }}>
+                          <Typography variant="subtitle2" component="h4" gutterBottom sx={{ fontSize: '0.9rem', lineHeight: 1.2 }}>
                             {person.name}
                           </Typography>
-                          <Typography variant="body2" color="text.secondary">
+                          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.75rem', lineHeight: 1.2, display: 'block', mb: 0.5 }}>
                             {person.condition}
                           </Typography>
-                          <Typography variant="caption" color="text.secondary">
+                          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
                             {person.years}
                           </Typography>
                         </CardContent>

@@ -5,9 +5,15 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 📸 Site Preview & Demo
 
 ### Homepage
+
+https://github.com/your-username/blindness-visualizer/assets/VisionSim.mp4
+
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
 ### About Page
+
+https://github.com/your-username/blindness-visualizer/assets/VisionSim-About.png
+
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
 ## 🎯 Features

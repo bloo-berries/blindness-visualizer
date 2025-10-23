@@ -587,8 +587,13 @@ const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {
   
   if (completeBlindnessEffects.length > 0) {
     // Complete darkness - make the video completely black
+    // Use multiple filters to ensure complete blackness on iframes
     filters.push(`brightness(0%)`);
     filters.push(`contrast(0%)`);
+    filters.push(`saturate(0%)`);
+    filters.push(`hue-rotate(0deg)`);
+    // Add a very dark overlay effect
+    filters.push(`sepia(100%)`);
   }
   
   // Check for progressive blindness (John Milton)
@@ -637,6 +642,162 @@ const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {
   return filters.join(' ');
 };
 
+/**
+ * Generates CSS filters for new ocular diseases from specialty.vision
+ */
+const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
+  const ocularEffects = effects.filter(e => 
+    (e.id === 'keratoconus' || e.id === 'dryEye' || e.id === 'vitreousHemorrhage' || 
+     e.id === 'retinalDetachment' || e.id === 'posteriorSubcapsularCataract') && e.enabled
+  );
+  
+  if (ocularEffects.length === 0) return '';
+  
+  const filters: string[] = [];
+  
+  const keratoconus = effects.find(e => e.id === 'keratoconus' && e.enabled);
+  const dryEye = effects.find(e => e.id === 'dryEye' && e.enabled);
+  const vitreousHemorrhage = effects.find(e => e.id === 'vitreousHemorrhage' && e.enabled);
+  const retinalDetachment = effects.find(e => e.id === 'retinalDetachment' && e.enabled);
+  const posteriorSubcapsularCataract = effects.find(e => e.id === 'posteriorSubcapsularCataract' && e.enabled);
+  
+  if (keratoconus) {
+    // Irregular astigmatism and distortion
+    filters.push(`blur(${keratoconus.intensity * 8}px)`);
+    filters.push(`brightness(${100 - keratoconus.intensity * 20}%)`);
+    filters.push(`contrast(${100 - keratoconus.intensity * 30}%)`);
+    // Add slight hue rotation for color distortion
+    filters.push(`hue-rotate(${keratoconus.intensity * 5}deg)`);
+  }
+  
+  if (dryEye) {
+    // Intermittent blurring and fluctuating vision
+    filters.push(`blur(${dryEye.intensity * 3}px)`);
+    filters.push(`brightness(${100 - dryEye.intensity * 15}%)`);
+    filters.push(`contrast(${100 - dryEye.intensity * 20}%)`);
+    // Add slight desaturation for the gritty sensation
+    filters.push(`saturate(${100 - dryEye.intensity * 25}%)`);
+  }
+  
+  if (vitreousHemorrhage) {
+    // Highly intensified red veil effect from blood in vitreous
+    filters.push(`blur(${vitreousHemorrhage.intensity * 8}px)`);
+    filters.push(`brightness(${100 - vitreousHemorrhage.intensity * 50}%)`);
+    filters.push(`contrast(${100 - vitreousHemorrhage.intensity * 45}%)`);
+    // Enhanced red tint for blood effect
+    filters.push(`sepia(${vitreousHemorrhage.intensity * 70}%) hue-rotate(${vitreousHemorrhage.intensity * 35}deg)`);
+    filters.push(`saturate(${100 + vitreousHemorrhage.intensity * 30}%)`);
+  }
+  
+  if (retinalDetachment) {
+    // Curtain-like shadow effect with margin distortion (metamorphopsia)
+    filters.push(`brightness(${100 - retinalDetachment.intensity * 50}%)`);
+    filters.push(`contrast(${100 - retinalDetachment.intensity * 40}%)`);
+    // Add slight blur for margin distortion (metamorphopsia)
+    filters.push(`blur(${retinalDetachment.intensity * 3}px)`);
+    // Add slight hue rotation for color distortion at margins
+    filters.push(`hue-rotate(${retinalDetachment.intensity * 2}deg)`);
+  }
+  
+  if (posteriorSubcapsularCataract) {
+    // Severe glare and halos effect
+    filters.push(`brightness(${100 + posteriorSubcapsularCataract.intensity * 25}%)`);
+    filters.push(`contrast(${100 - posteriorSubcapsularCataract.intensity * 30}%)`);
+    filters.push(`blur(${posteriorSubcapsularCataract.intensity * 3}px)`);
+    // Add slight desaturation for glare effect
+    filters.push(`saturate(${100 - posteriorSubcapsularCataract.intensity * 20}%)`);
+  }
+  
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for new symptoms from specialty.vision
+ */
+const generateSymptomFilters = (effects: VisualEffect[]): string => {
+  const symptomEffects = effects.filter(e => 
+    (e.id === 'blueFieldPhenomena' || e.id === 'glare' || 
+     e.id === 'blurryVision' || e.id === 'nightBlindness' || e.id === 'halos' ||
+     e.id === 'persistentPositiveVisualPhenomenon' || e.id === 'palinopsia' ||
+     e.id === 'trails' || e.id === 'lossOfContrast' || e.id === 'starbursting') && e.enabled
+  );
+  
+  if (symptomEffects.length === 0) return '';
+  
+  const filters: string[] = [];
+  
+  const glare = effects.find(e => e.id === 'glare' && e.enabled);
+  const blurryVision = effects.find(e => e.id === 'blurryVision' && e.enabled);
+  const nightBlindness = effects.find(e => e.id === 'nightBlindness' && e.enabled);
+  const halos = effects.find(e => e.id === 'halos' && e.enabled);
+  const lossOfContrast = effects.find(e => e.id === 'lossOfContrast' && e.enabled);
+  const starbursting = effects.find(e => e.id === 'starbursting' && e.enabled);
+  
+  if (glare) {
+    // Excessive brightness and reduced contrast
+    filters.push(`brightness(${100 + glare.intensity * 30}%)`);
+    filters.push(`contrast(${100 - glare.intensity * 40}%)`);
+    filters.push(`saturate(${100 - glare.intensity * 20}%)`);
+  }
+  
+  
+  if (blurryVision) {
+    // General blur effect
+    filters.push(`blur(${blurryVision.intensity * 12}px)`);
+    filters.push(`contrast(${100 - blurryVision.intensity * 25}%)`);
+  }
+  
+  if (nightBlindness) {
+    // Darken the image significantly
+    filters.push(`brightness(${100 - nightBlindness.intensity * 60}%)`);
+    filters.push(`contrast(${100 - nightBlindness.intensity * 30}%)`);
+  }
+  
+  if (halos) {
+    // Brighten and add slight blur for halo effect
+    filters.push(`brightness(${100 + halos.intensity * 20}%)`);
+    filters.push(`blur(${halos.intensity * 1}px)`);
+  }
+  
+  if (lossOfContrast) {
+    // Reduce contrast significantly
+    filters.push(`contrast(${100 - lossOfContrast.intensity * 50}%)`);
+    filters.push(`brightness(${100 - lossOfContrast.intensity * 20}%)`);
+  }
+  
+  if (starbursting) {
+    // Intensified starburst effect with enhanced brightness and blur
+    filters.push(`brightness(${100 + starbursting.intensity * 40}%)`);
+    filters.push(`blur(${starbursting.intensity * 1.5}px)`);
+    filters.push(`contrast(${100 + starbursting.intensity * 20}%)`);
+  }
+  
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for new refractive errors from specialty.vision
+ */
+const generateRefractiveErrorFilters = (effects: VisualEffect[]): string => {
+  const refractiveEffects = effects.filter(e => 
+    e.id === 'presbyopia' && e.enabled
+  );
+  
+  if (refractiveEffects.length === 0) return '';
+  
+  const filters: string[] = [];
+  
+  const presbyopia = effects.find(e => e.id === 'presbyopia' && e.enabled);
+  
+  if (presbyopia) {
+    // Blur effect for near vision difficulty
+    filters.push(`blur(${presbyopia.intensity * 6}px)`);
+    filters.push(`contrast(${100 - presbyopia.intensity * 20}%)`);
+  }
+  
+  return filters.join(' ');
+};
+
 // Diplopia effects are now handled by the getDiplopiaOverlay function in Visualizer.tsx
 // This provides true double vision effects using iframe duplication instead of CSS filters
 
@@ -665,7 +826,10 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateMinkaraFilters(effects), 
     generateJoshuaFilters(effects), 
     generateVisualSnowFilters(effects),
-    generateCustomFamousPeopleFilters(effects)
+    generateCustomFamousPeopleFilters(effects),
+    generateOcularDiseaseFilters(effects),
+    generateSymptomFilters(effects),
+    generateRefractiveErrorFilters(effects)
   ].filter(Boolean);
   
   const finalFilter = filterComponents.join(' ');

@@ -194,12 +194,12 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     intensity: 1.0,
     description: 'Seeing only in shades of one color (usually blue). Different from complete color blindness as some color perception remains. Very rare condition.'
   },
-  { 
+  {
     id: 'cataracts',
-    name: 'Cataracts',
+    name: 'Nuclear Sclerotic Cataract',
     enabled: false,
     intensity: 1.0,
-    description: 'Clouding of the eye\'s natural lens. Causes blurry vision, difficulty seeing in bright light, and faded colors. Common with aging but can occur at any age.'
+    description: 'Nuclear sclerotic cataract - the most common type of cataract affecting the center of the lens. Causes progressive blurring, dimming of vision, and loss of color vibrancy, especially affecting blue color perception. The image becomes progressively more yellowed and less colorful over time.'
   },
   { 
     id: 'glaucoma',
@@ -868,6 +868,130 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     enabled: false,
     intensity: 1.0,
     description: 'Complete blindness from cerebrospinal meningitis at age 3. Total darkness with retained visual memories from before age 3.'
+  },
+
+  // ===== OCULAR DISEASES - Missing from specialty.vision =====
+  
+  {
+    id: 'keratoconus',
+    name: 'Keratoconus',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Progressive, irregular astigmatism with localized warping, double or triple ghosting of high-contrast edges, and increased glare from point light sources. Central or paracentral blurring is asymmetric, with starburst-like streaking around lights and reduced fine detail resolution even when corrected.'
+  },
+  {
+    id: 'dryEye',
+    name: 'Dry Eye Syndrome',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Mild random blurring and fluctuating transparency across the cornea due to an unstable tear film. Vision clarity varies over time, worsening after periods without blinking. Includes transient halos or glare around bright points and reduced contrast, especially in dry or windy conditions.'
+  },
+
+  // ===== OCULAR DISEASES - From Richmond Eye Associates =====
+  
+  {
+    id: 'vitreousHemorrhage',
+    name: 'Vitreous Hemorrhage',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Hazy, semi-random dark reddish or gray floaters that move with small inertia as gaze shifts. In severe cases, includes diffuse reddish clouding or patchy opacity that dims retinal illumination and obscures details, particularly in the lower visual field, with possible shadows or streaking.'
+  },
+  {
+    id: 'retinalDetachment',
+    name: 'Retinal Detachment',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Medical emergency where the retina separates from underlying tissue, causing sudden vision loss. Most common type is rhegmatogenous (from retinal tears), often associated with aging and posterior vitreous detachment. Symptoms include sudden increase in floaters, flashes of light, and a curtain-like shadow moving across vision. At detachment margins, vision may be distorted (metamorphopsia). Requires immediate medical attention to prevent permanent vision loss.'
+  },
+  {
+    id: 'posteriorSubcapsularCataract',
+    name: 'Posterior Subcapsular Cataract',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Small central area of light scatter behind the pupil, causing pronounced glare sensitivity and loss of contrast in bright lighting. Creates a bright halo or cloudy patch that grows with brightness intensity, disproportionately affecting near and backlit vision. Peripheral vision may remain clearer.'
+  },
+
+  // ===== SYMPTOMS SECTION - Missing from specialty.vision =====
+  
+  {
+    id: 'blueFieldPhenomena',
+    name: 'Blue Field Entoptic Phenomenon',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Small, fast-moving bright dots darting along random, looping trajectories on a light-blue background, best visible when looking at a bright sky texture. Motion correlates with pulse rhythm and vanishes when gaze shifts toward darker or non-uniform backgrounds.'
+  },
+  {
+    id: 'glare',
+    name: 'Glare Sensitivity',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Bloom or light-scatter effect proportional to scene luminance and eye adaptation state. Causes local veiling glare that washes out nearby details, especially after exposure to sudden brightness changes. Contrast recovery can be delayed to simulate photostress.'
+  },
+  {
+    id: 'blurryVision',
+    name: 'Blurry Vision',
+    enabled: false,
+    intensity: 1.0,
+    description: 'General lack of visual sharpness and clarity affecting the entire visual field. Objects appear out of focus, edges are soft, and fine details are difficult to distinguish. Can be constant or intermittent depending on the underlying cause.'
+  },
+  {
+    id: 'nightBlindness',
+    name: 'Night Blindness (Nyctalopia)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Difficulty seeing in low light conditions or darkness. Vision becomes significantly impaired in dim lighting, making navigation and object recognition challenging. Often associated with rod cell dysfunction or vitamin A deficiency.'
+  },
+  {
+    id: 'halos',
+    name: 'Halos Around Lights',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Concentric rings or soft circular gradients around point light sources with size and intensity depending on brightness and pupil dilation. Combines with mild chromatic fringes at halo edges for realism. Halos become more intense when night mode (dilated pupil) or lens scatter conditions are active.'
+  },
+  {
+    id: 'persistentPositiveVisualPhenomenon',
+    name: 'Persistent Positive Visual Phenomenon',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Images or visual patterns that persist in the visual field after the original stimulus has been removed. Similar to an afterimage but lasting much longer. Can be simple shapes, colors, or complex patterns that remain visible for extended periods.'
+  },
+  {
+    id: 'palinopsia',
+    name: 'Palinopsia (Visual Perseveration)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Seeing trailing images or "ghosts" of moving objects that persist after the object has moved. Moving objects leave behind a trail or afterimage that follows their path. Can be associated with migraine, medications, or neurological conditions.'
+  },
+  {
+    id: 'trails',
+    name: 'Visual Trails',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Motion blur effects where moving objects appear to leave trails behind them. Similar to palinopsia but specifically related to motion perception. Can make tracking moving objects difficult and create a "strobe light" effect with rapid movements.'
+  },
+  {
+    id: 'lossOfContrast',
+    name: 'Loss of Contrast Sensitivity',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Reduced ability to distinguish between similar shades or colors. Makes it difficult to see subtle differences in brightness, texture, or color. Objects may appear washed out or lacking in detail, especially in low contrast situations.'
+  },
+  {
+    id: 'starbursting',
+    name: 'Starbursting',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Light sources appearing as star-like rays or spikes extending outward from the center. Creates a "sunburst" or "starburst" pattern around bright lights, especially noticeable at night. Often caused by corneal irregularities or certain eye surgeries.'
+  },
+
+  // ===== REFRACTIVE ERRORS - Missing from specialty.vision =====
+  
+  {
+    id: 'presbyopia',
+    name: 'Presbyopia',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Gradual loss of near-focus accommodation by blurring objects closer than a variable distance from the focal plane. Transition occurs dynamically with simulated refocus effort lag. Distant and midrange objects remain sharp, but text or fine objects at hand length become unresolved without magnification.'
   }
 ];
 

@@ -126,7 +126,27 @@ export type ConditionType =
   | 'rayCharlesBlindness'
   | 'stevieWonderROP'
   | 'andreaBocelliBlindness'
-  | 'vedMehtaBlindness';
+  | 'vedMehtaBlindness'
+  // Ocular Diseases - Missing from specialty.vision
+  | 'keratoconus'
+  | 'dryEye'
+  // Ocular Diseases - From Richmond Eye Associates
+  | 'vitreousHemorrhage'
+  | 'retinalDetachment'
+  | 'posteriorSubcapsularCataract'
+  // Symptoms Section - Missing from specialty.vision
+  | 'blueFieldPhenomena'
+  | 'glare'
+  | 'blurryVision'
+  | 'nightBlindness'
+  | 'halos'
+  | 'persistentPositiveVisualPhenomenon'
+  | 'palinopsia'
+  | 'trails'
+  | 'lossOfContrast'
+  | 'starbursting'
+  // Refractive Errors - Missing from specialty.vision
+  | 'presbyopia';
 
 export interface VisualEffect {
   id: ConditionType;

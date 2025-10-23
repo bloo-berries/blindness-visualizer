@@ -1772,19 +1772,29 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
 
   // Louis Braille - Sympathetic Ophthalmia (Complete darkness from age 5)
   const louisBrailleBlindness = effects.find(e => e.id === 'louisBrailleBlindness' && e.enabled);
+  console.log('Louis Braille effect check:', {
+    found: !!louisBrailleBlindness,
+    enabled: louisBrailleBlindness?.enabled,
+    intensity: louisBrailleBlindness?.intensity,
+    effect: louisBrailleBlindness
+  });
+  
   if (louisBrailleBlindness?.enabled) {
-    const intensity = louisBrailleBlindness.intensity;
+    const intensity = Math.max(0.95, louisBrailleBlindness.intensity); // Ensure near-complete blackness
+    console.log('Creating Louis Braille overlay with intensity:', intensity);
     
     createOverlayWithContainer(
       'visual-field-overlay-louisBrailleBlindness',
       `rgba(0,0,0,${intensity})`, // Complete black overlay
-      'multiply',
+      'normal', // Use normal blend mode for complete coverage
       intensity.toString(),
       undefined,
       undefined,
       'louisBrailleBlindness',
       container
     );
+  } else {
+    console.log('Louis Braille effect not found or not enabled');
   }
 
   // Erik Weihenmayer - Retinoschisis (Progressive tunnel vision to complete blindness)

@@ -3,15 +3,11 @@
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.
 
 ## 📸 Site Preview & Demo
-https://github.com/user-attachments/assets/8b2c853d-e9b8-4f63-9654-f349ece8a944
-
 
 ### Homepage
-![VisionSim Homepage](./public/images/people/VisionSim-Home-Page.png)
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
 ### About Page
-![VisionSim About Page](./public/images/people/VisionSim-About.png)
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
 ## 🎯 Features
@@ -32,22 +28,20 @@ https://github.com/user-attachments/assets/8b2c853d-e9b8-4f63-9654-f349ece8a944
   - Refractive errors (Nearsightedness, Farsightedness, Astigmatism)
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
-![Visualization Preview](./public/images/people/Visualization-Preview.png)
 *Real-time vision condition simulation with multiple effects applied*
 
 ### Famous People Educational Section
 
-- **14 famous individuals** across 5 categories:
-  - Historical Figures (John Milton, Louis Braille, Galileo Galilei)
-  - Musicians & Artists (Ray Charles, Stevie Wonder, Andrea Bocelli)
-  - Writers & Activists (Helen Keller, Ved Mehta)
-  - Contemporary Figures (Christine Ha, Lucy Edwards, David Paterson)
-  - Athletes & Scientists (Erik Weihenmayer, Marla Runyan, Dr. Mona Minkara, Joshua Miele)
+- **21 famous individuals** across 5 categories:
+  - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman)
+  - Musicians & Artists (Ray Charles, Stevie Wonder, Andrea Bocelli, Casey Harris, Bono, Georgia O'Keeffe, Ella Fitzgerald)
+  - Writers & Activists (Helen Keller, Ved Mehta, Tilly Aston, Sabriye Tenberken)
+  - Contemporary Figures (Christine Ha, Lucy Edwards, David Paterson, Paul Castle, Haben Girma, Molly Burke, Mila Kunis, Dame Judi Dench)
+  - Athletes & Scientists (Erik Weihenmayer, Marla Runyan, Dr. Mona Minkara, Joshua Miele, Anastasia Pagonis, Sugar Ray Leonard, Stephen Curry)
 - **Search and filter functionality** by name, condition, or category
 - **Detailed person cards** with medical information and life stories
 - **Direct simulation integration** - experience each person's specific vision condition
 
-![Claude Monet Preview](./public/images/people/Claude-Monet-Preview.png)
 *Example of famous person profile with detailed information and simulation integration*
 
 ### Accessibility Features

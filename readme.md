@@ -6,7 +6,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 
 ### Homepage
 
-![Site Video Preview](./public/images/repo-assets/VisionSim.mp4)
+https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 

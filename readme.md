@@ -6,7 +6,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 
 ### Homepage
 
-![Vision Simulator Demo](./public/images/repo-assets/VisionSim.mp4)
+https://github.com/bloo-berries/blindness-visualizer/raw/main/public/images/repo-assets/VisionSim.mp4
 
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
@@ -19,6 +19,8 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 ## 🎯 Features
 
 ### Vision Condition Simulator
+
+![Visualization Preview](./public/images/repo-assets/Visualization-Preview.png)
 
 - **Real-time visualization** of various vision conditions
 - **Multiple input sources**:

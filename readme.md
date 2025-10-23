@@ -6,7 +6,7 @@ A comprehensive web-based tool for visualizing various vision conditions and imp
 
 ### Homepage
 
-https://github.com/bloo-berries/blindness-visualizer/raw/main/public/images/repo-assets/VisionSim.mp4
+![Site Video Preview](./public/images/repo-assets/VisionSim.mp4)
 
 *Clean, modern interface with two main sections: Vision Condition Simulator and Famous People educational content*
 
@@ -38,9 +38,9 @@ https://github.com/bloo-berries/blindness-visualizer/raw/main/public/images/repo
 
 *Real-time vision condition simulation with multiple effects applied*
 
-![Visualization Preview](./public/images/repo-assets/Visualization-Preview.png)
-
 ### Famous People Educational Section
+
+![Visualization Preview](./public/images/repo-assets/Claude-Monet-Preview.png)
 
 - **21 famous individuals** across 5 categories:
   - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman)

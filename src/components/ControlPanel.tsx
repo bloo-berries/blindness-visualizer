@@ -2105,18 +2105,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         break;
                         
                       // New conditions from specialty.vision and Richmond Eye Associates
-                      case 'keratoconus':
-                        // Progressive irregular astigmatism with ghosting and starbursts
-                        overlayStyle.background = `
-                          radial-gradient(ellipse at 30% 40%, rgba(0,0,0,${0.15 * intensity}) 0%, transparent 20%),
-                          radial-gradient(ellipse at 70% 60%, rgba(0,0,0,${0.12 * intensity}) 0%, transparent 18%),
-                          radial-gradient(ellipse at 50% 20%, rgba(0,0,0,${0.1 * intensity}) 0%, transparent 15%),
-                          conic-gradient(from 0deg at 25% 25%, transparent 0deg, rgba(255,255,255,${0.1 * intensity}) 5deg, transparent 10deg),
-                          conic-gradient(from 45deg at 75% 25%, transparent 0deg, rgba(255,255,255,${0.08 * intensity}) 5deg, transparent 10deg)
-                        `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.6, intensity).toString();
-                        break;
 
                       case 'dryEye':
                         // Mild random blurring and fluctuating transparency
@@ -2212,8 +2200,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         
                         for (let i = 0; i < ghostCount; i++) {
                           const angle = (i / ghostCount) * 360;
-                          const offsetX = Math.cos(angle * Math.PI / 180) * (2 + intensity * 5);
-                          const offsetY = Math.sin(angle * Math.PI / 180) * (2 + intensity * 5);
                           ghostGradients.push(`
                             linear-gradient(${angle}deg, 
                               rgba(255,255,255,${intensity * 0.4}) 0%, 

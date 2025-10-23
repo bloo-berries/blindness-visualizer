@@ -2014,7 +2014,6 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     
     // Create wavy distortion for text - ENHANCED
     const waveIntensity = intensity * 0.8; // Increased distortion
-    const waveFrequency = 0.02 + intensity * 0.03; // 0.02-0.05 frequency
     
     // High contrast loss - ENHANCED
     const contrastLoss = intensity * 1.0; // Increased contrast loss

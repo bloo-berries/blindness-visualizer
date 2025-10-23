@@ -599,6 +599,7 @@ const FamousBlindPeople: React.FC = () => {
                                           selectedPerson === 'galileo' ? 'https://en.wikipedia.org/wiki/Galileo_Galilei' :
                                           selectedPerson === 'tilly' ? 'https://en.wikipedia.org/wiki/Tilly_Aston' :
                                           selectedPerson === 'sabriye' ? 'https://en.wikipedia.org/wiki/Sabriye_Tenberken' :
+                                          selectedPerson === 'harriet' ? 'https://en.wikipedia.org/wiki/Harriet_Tubman' :
                                           'https://en.wikipedia.org/wiki/Claude_Monet',
                         'steviewonder.net': 'https://www.steviewonder.net/',
                         'raycharles.com': 'https://raycharles.com/',

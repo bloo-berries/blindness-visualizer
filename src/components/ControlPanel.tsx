@@ -37,9 +37,10 @@ interface ControlPanelProps {
 const conditionCategories: Record<string, ConditionType[]> = {
   "Visual Field Loss": ['blindnessLeftEye', 'blindnessRightEye', 'hemianopiaLeft', 'hemianopiaRight', 'bitemporalHemianopia', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior', 'scotoma', 'tunnelVision'],
   "Color Vision": ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic'],
-  "Eye Conditions": ['cataracts', 'glaucoma', 'astigmatism', 'nearSighted', 'farSighted'],
-  "Retinal Disorders": ['amd', 'diabeticRetinopathy', 'retinitisPigmentosa', 'stargardt'],
-  "Visual Disturbances": ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'visualFloaters', 'hallucinations'],
+  "Eye Conditions": ['cataracts', 'glaucoma', 'keratoconus', 'dryEye', 'vitreousHemorrhage', 'posteriorSubcapsularCataract'],
+  "Refractive Errors": ['astigmatism', 'nearSighted', 'farSighted', 'presbyopia'],
+  "Retinal Disorders": ['amd', 'diabeticRetinopathy', 'retinitisPigmentosa', 'stargardt', 'retinalDetachment'],
+  "Visual Disturbances": ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'visualFloaters', 'hallucinations', 'blueFieldPhenomena', 'glare', 'blurryVision', 'nightBlindness', 'halos', 'persistentPositiveVisualPhenomenon', 'palinopsia', 'trails', 'lossOfContrast', 'starbursting'],
   "Double Vision": ['diplopiaMonocular', 'diplopiaBinocular']
 };
 
@@ -526,6 +527,22 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                             case 'visualAuraLeft':
                             case 'visualAuraRight':
                             case 'visualSnow':
+                            case 'keratoconus':
+                            case 'dryEye':
+                            case 'vitreousHemorrhage':
+                            case 'retinalDetachment':
+                            case 'posteriorSubcapsularCataract':
+                            case 'presbyopia':
+                            case 'blueFieldPhenomena':
+                            case 'glare':
+                            case 'blurryVision':
+                            case 'nightBlindness':
+                            case 'halos':
+                            case 'persistentPositiveVisualPhenomenon':
+                            case 'palinopsia':
+                            case 'trails':
+                            case 'lossOfContrast':
+                            case 'starbursting':
                               return 'none';
                             
                             
@@ -2092,6 +2109,210 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         overlayStyle.opacity = 1.0;
                         break;
                         
+                      // New conditions from specialty.vision and Richmond Eye Associates
+                      case 'keratoconus':
+                        // Progressive irregular astigmatism with ghosting and starbursts
+                        overlayStyle.background = `
+                          radial-gradient(ellipse at 30% 40%, rgba(0,0,0,${0.15 * intensity}) 0%, transparent 20%),
+                          radial-gradient(ellipse at 70% 60%, rgba(0,0,0,${0.12 * intensity}) 0%, transparent 18%),
+                          radial-gradient(ellipse at 50% 20%, rgba(0,0,0,${0.1 * intensity}) 0%, transparent 15%),
+                          conic-gradient(from 0deg at 25% 25%, transparent 0deg, rgba(255,255,255,${0.1 * intensity}) 5deg, transparent 10deg),
+                          conic-gradient(from 45deg at 75% 25%, transparent 0deg, rgba(255,255,255,${0.08 * intensity}) 5deg, transparent 10deg)
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.6, intensity).toString();
+                        break;
+
+                      case 'dryEye':
+                        // Mild random blurring and fluctuating transparency
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.3, intensity).toString();
+                        break;
+
+                      case 'vitreousHemorrhage':
+                        // Highly intensified hazy, semi-random dark reddish floaters with extensive blood streaks and pools
+                        overlayStyle.background = `
+                          /* Blood streaks at various angles - intensified */
+                          linear-gradient(45deg, rgba(139,0,0,${0.7 * intensity}) 0%, transparent 30%),
+                          linear-gradient(-45deg, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 25%),
+                          linear-gradient(90deg, rgba(139,0,0,${0.65 * intensity}) 0%, transparent 35%),
+                          linear-gradient(135deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 22%),
+                          linear-gradient(15deg, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 18%),
+                          linear-gradient(75deg, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 15%),
+                          linear-gradient(105deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 25%),
+                          linear-gradient(165deg, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 20%),
+                          linear-gradient(30deg, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 16%),
+                          linear-gradient(60deg, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 14%),
+                          linear-gradient(120deg, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 12%),
+                          linear-gradient(150deg, rgba(139,0,0,${0.35 * intensity}) 0%, transparent 10%),
+                          /* Blood pools and dots - intensified */
+                          radial-gradient(circle at 30% 40%, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 15%),
+                          radial-gradient(circle at 70% 60%, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 12%),
+                          radial-gradient(circle at 20% 80%, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 10%),
+                          radial-gradient(circle at 80% 20%, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 8%),
+                          radial-gradient(circle at 50% 50%, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 18%),
+                          radial-gradient(circle at 15% 25%, rgba(139,0,0,${0.52 * intensity}) 0%, transparent 9%),
+                          radial-gradient(circle at 85% 35%, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 11%),
+                          radial-gradient(circle at 25% 75%, rgba(139,0,0,${0.46 * intensity}) 0%, transparent 7%),
+                          radial-gradient(circle at 75% 85%, rgba(139,0,0,${0.44 * intensity}) 0%, transparent 10%),
+                          radial-gradient(circle at 40% 15%, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 8%),
+                          radial-gradient(circle at 60% 90%, rgba(139,0,0,${0.40 * intensity}) 0%, transparent 6%),
+                          radial-gradient(circle at 10% 60%, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 5%),
+                          radial-gradient(circle at 90% 40%, rgba(139,0,0,${0.36 * intensity}) 0%, transparent 7%),
+                          radial-gradient(circle at 35% 85%, rgba(139,0,0,${0.34 * intensity}) 0%, transparent 6%),
+                          radial-gradient(circle at 65% 10%, rgba(139,0,0,${0.32 * intensity}) 0%, transparent 8%),
+                          /* Irregular blood patches - intensified */
+                          radial-gradient(ellipse at 35% 65%, rgba(139,0,0,${0.28 * intensity}) 0%, transparent 16%),
+                          radial-gradient(ellipse at 65% 25%, rgba(139,0,0,${0.26 * intensity}) 0%, transparent 13%),
+                          radial-gradient(ellipse at 10% 50%, rgba(139,0,0,${0.24 * intensity}) 0%, transparent 11%),
+                          radial-gradient(ellipse at 90% 70%, rgba(139,0,0,${0.22 * intensity}) 0%, transparent 9%),
+                          radial-gradient(ellipse at 20% 30%, rgba(139,0,0,${0.20 * intensity}) 0%, transparent 8%),
+                          radial-gradient(ellipse at 80% 80%, rgba(139,0,0,${0.18 * intensity}) 0%, transparent 7%),
+                          radial-gradient(ellipse at 45% 10%, rgba(139,0,0,${0.16 * intensity}) 0%, transparent 6%),
+                          radial-gradient(ellipse at 55% 90%, rgba(139,0,0,${0.14 * intensity}) 0%, transparent 5%)
+                        `;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.9, intensity).toString();
+                        break;
+
+                      case 'retinalDetachment':
+                        // Curtain-like shadow progressing from periphery
+                        overlayStyle.background = `linear-gradient(to bottom, 
+                          rgba(0,0,0,${0.9 * intensity}) 0%,
+                          rgba(0,0,0,${0.8 * intensity}) 15%,
+                          rgba(0,0,0,${0.6 * intensity}) 30%,
+                          rgba(0,0,0,${0.4 * intensity}) 45%,
+                          rgba(0,0,0,${0.2 * intensity}) 60%,
+                          rgba(0,0,0,0) 75%
+                        )`;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, intensity).toString();
+                        break;
+
+                      case 'posteriorSubcapsularCataract':
+                        // Small central area of light scatter with bright halo
+                        overlayStyle.background = `
+                          radial-gradient(circle at 25% 25%, rgba(255,255,255,${0.4 * intensity}) 0%, transparent 12%),
+                          radial-gradient(circle at 75% 25%, rgba(255,255,255,${0.35 * intensity}) 0%, transparent 10%),
+                          radial-gradient(circle at 25% 75%, rgba(255,255,255,${0.45 * intensity}) 0%, transparent 14%),
+                          radial-gradient(circle at 75% 75%, rgba(255,255,255,${0.3 * intensity}) 0%, transparent 8%),
+                          radial-gradient(circle at 50% 50%, rgba(255,255,255,${0.2 * intensity}) 0%, transparent 20%)
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.8, intensity).toString();
+                        break;
+
+                      case 'presbyopia':
+                        // Blur effect for near vision difficulty
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.4, intensity).toString();
+                        break;
+
+                      case 'blueFieldPhenomena':
+                        // Small, fast-moving bright dots
+                        overlayStyle.background = `
+                          radial-gradient(circle at 15% 25%, rgba(255,255,255,${0.15 * intensity}) 0%, transparent 1%),
+                          radial-gradient(circle at 35% 45%, rgba(255,255,255,${0.12 * intensity}) 0%, transparent 0.8%),
+                          radial-gradient(circle at 55% 15%, rgba(255,255,255,${0.18 * intensity}) 0%, transparent 1.2%),
+                          radial-gradient(circle at 75% 35%, rgba(255,255,255,${0.14 * intensity}) 0%, transparent 0.9%),
+                          radial-gradient(circle at 85% 65%, rgba(255,255,255,${0.16 * intensity}) 0%, transparent 1.1%)
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.5, intensity).toString();
+                        break;
+
+                      case 'glare':
+                        // Bloom or light-scatter effect
+                        overlayStyle.background = `radial-gradient(circle at 50% 50%, 
+                          rgba(255,255,255,${0.3 * intensity}) 0%,
+                          rgba(255,255,255,${0.2 * intensity}) 20%,
+                          rgba(255,255,255,${0.1 * intensity}) 40%,
+                          transparent 60%
+                        )`;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.7, intensity).toString();
+                        break;
+
+                      case 'blurryVision':
+                        // General blur effect
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.4, intensity).toString();
+                        break;
+
+                      case 'nightBlindness':
+                        // Dark overlay for night blindness
+                        overlayStyle.background = `rgba(0,0,0,${0.7 * intensity})`;
+                        overlayStyle.mixBlendMode = 'multiply';
+                        overlayStyle.opacity = Math.min(0.8, intensity).toString();
+                        break;
+
+                      case 'halos':
+                        // Concentric rings around light sources
+                        overlayStyle.background = `
+                          radial-gradient(circle at 25% 25%, rgba(255,255,255,${0.2 * intensity}) 0%, transparent 8%),
+                          radial-gradient(circle at 75% 25%, rgba(255,255,255,${0.18 * intensity}) 0%, transparent 7%),
+                          radial-gradient(circle at 25% 75%, rgba(255,255,255,${0.22 * intensity}) 0%, transparent 9%),
+                          radial-gradient(circle at 75% 75%, rgba(255,255,255,${0.16 * intensity}) 0%, transparent 6%)
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.6, intensity).toString();
+                        break;
+
+                      case 'persistentPositiveVisualPhenomenon':
+                        // Images lingering after stimulus removal
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.3, intensity).toString();
+                        break;
+
+                      case 'palinopsia':
+                        // Trailing images following moving objects
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.3, intensity).toString();
+                        break;
+
+                      case 'trails':
+                        // Motion blur effects with object trails
+                        overlayStyle.background = `rgba(255,255,255,${0.1 * intensity})`;
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = Math.min(0.3, intensity).toString();
+                        break;
+
+                      case 'lossOfContrast':
+                        // Low contrast overlay
+                        overlayStyle.background = `rgba(128,128,128,${0.3 * intensity})`;
+                        overlayStyle.mixBlendMode = 'overlay';
+                        overlayStyle.opacity = Math.min(0.6, intensity).toString();
+                        break;
+
+                      case 'starbursting':
+                        // Intensified starburst pattern with more rays and higher opacity
+                        overlayStyle.background = `
+                          conic-gradient(from 0deg at 25% 25%, transparent 0deg, rgba(255,255,255,${0.25 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 22.5deg at 25% 25%, transparent 0deg, rgba(255,255,255,${0.22 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 45deg at 75% 25%, transparent 0deg, rgba(255,255,255,${0.28 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 67.5deg at 75% 25%, transparent 0deg, rgba(255,255,255,${0.24 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 90deg at 25% 75%, transparent 0deg, rgba(255,255,255,${0.30 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 112.5deg at 25% 75%, transparent 0deg, rgba(255,255,255,${0.26 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 135deg at 75% 75%, transparent 0deg, rgba(255,255,255,${0.32 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 157.5deg at 75% 75%, transparent 0deg, rgba(255,255,255,${0.28 * intensity}) 3deg, transparent 8deg),
+                          conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.20 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 202.5deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.18 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 225deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.22 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 247.5deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.20 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 270deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.24 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 292.5deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.22 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 315deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.26 * intensity}) 2deg, transparent 6deg),
+                          conic-gradient(from 337.5deg at 50% 50%, transparent 0deg, rgba(255,255,255,${0.24 * intensity}) 2deg, transparent 6deg)
+                        `;
+                        overlayStyle.mixBlendMode = 'screen';
+                        overlayStyle.opacity = Math.min(0.8, intensity).toString();
+                        break;
+
                       default:
                         // For other conditions, use a simple darkening overlay
                         overlayStyle.background = `rgba(0,0,0,${intensity * 0.3})`;

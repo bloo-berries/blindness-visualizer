@@ -41,7 +41,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const navItems = [
     { label: 'About', path: '/about' },
     { label: 'Conditions Glossary', path: '/conditions' },
-    { label: 'FAQ', path: '/faq' }
+    { label: 'FAQ', path: '/faq' },
+    { label: 'Feedback', path: '/feedback' }
   ];
 
   return (

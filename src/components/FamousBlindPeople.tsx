@@ -282,14 +282,46 @@ const personData: Record<string, PersonData> = {
     onset: "Diagnosed in college",
     simulation: "stephen-keratoconus",
     description: "Stephen Curry, the NBA superstar and Golden State Warriors point guard, has keratoconus, a condition where the cornea becomes thin and cone-shaped, causing distorted vision. Despite this visual impairment, he has become one of the greatest shooters in NBA history, winning multiple championships and MVP awards. He uses specialized contact lenses to manage his condition."
+  },
+  allan: {
+    name: "Allan Pineda Lindo (Apl.de.ap)",
+    condition: "Nystagmus",
+    years: "Born 1974",
+    onset: "From birth",
+    simulation: "allan-nystagmus",
+    description: "Allan Pineda Lindo, known as Apl.de.ap, is a Filipino-American rapper, singer, and record producer, best known as a founding member of the Black Eyed Peas. He was born with nystagmus, a condition that causes involuntary eye movements and reduced vision. Despite his visual impairment, he has achieved international success in music and continues to be an advocate for disability awareness."
+  },
+  fetty: {
+    name: "Fetty Wap",
+    condition: "Glaucoma & Prosthetic Eye",
+    years: "Born 1991",
+    onset: "Childhood glaucoma, lost eye",
+    simulation: "fetty-glaucoma-prosthetic",
+    description: "Fetty Wap, the American rapper and singer, lost his left eye to glaucoma as a child and wears a prosthetic eye. Despite this visual impairment, he rose to fame with his hit single 'Trap Queen' and has become a successful recording artist. He has been open about his condition and how it has shaped his perspective on life and music."
+  },
+  slick: {
+    name: "Slick Rick",
+    condition: "Blind in Right Eye",
+    years: "Born 1965",
+    onset: "Infancy, from broken glass",
+    simulation: "slick-rick-blindness",
+    description: "Slick Rick, the legendary British-American rapper and hip-hop pioneer, was blinded in his right eye as an infant when broken glass from a bottle hit his eye. Despite this visual impairment, he became one of the most influential figures in hip-hop, known for his storytelling abilities and distinctive style. He often wears an eye patch and has incorporated his visual condition into his artistic persona."
+  },
+  abraham: {
+    name: "Abraham Nemeth",
+    condition: "Congenital Blindness",
+    years: "1918-2013",
+    onset: "From birth",
+    simulation: "abraham-congenital-blindness",
+    description: "Abraham Nemeth was a blind mathematician who developed the Nemeth Braille Code for Mathematics and Science Notation. Born blind, he became a professor of mathematics and made significant contributions to making mathematics accessible to blind students. His Nemeth Code is still widely used today for transcribing mathematical and scientific materials into braille."
   }
 };
 
 const categories = [
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham"] },
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen"] },
   { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick"] },
   { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye"] }
 ];
 
@@ -373,7 +405,11 @@ const FamousBlindPeople: React.FC = () => {
       'georgia-amd-central-loss': ['amd', 'stargardt'],
       'ella-diabetic-retinopathy': ['diabeticRetinopathy', 'glaucoma'],
       'sugar-retinal-detachment': ['retinalDetachment', 'glaucoma'],
-      'stephen-keratoconus': ['keratoconus', 'astigmatism']
+      'stephen-keratoconus': ['keratoconus', 'astigmatism'],
+      'allan-nystagmus': ['nystagmus', 'astigmatism'],
+      'fetty-glaucoma-prosthetic': ['glaucoma', 'complete-blindness'],
+      'slick-rick-blindness': ['hemianopia', 'glaucoma'],
+      'abraham-congenital-blindness': ['complete-blindness']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -432,7 +468,11 @@ const FamousBlindPeople: React.FC = () => {
       georgia: `${baseUrl}/images/people/Georgia-OKeeffe.webp`,
       ella: `${baseUrl}/images/people/Ella-Fitzgerald.webp`,
       sugar: `${baseUrl}/images/people/sugar-ray-leonard.webp`,
-      stephen: `${baseUrl}/images/people/stephen-curry.webp`
+      stephen: `${baseUrl}/images/people/stephen-curry.webp`,
+      allan: `https://via.placeholder.com/300x400/cccccc/666666?text=Allan%20Pineda%20Lindo`,
+      fetty: `https://via.placeholder.com/300x400/cccccc/666666?text=Fetty%20Wap`,
+      slick: `https://via.placeholder.com/300x400/cccccc/666666?text=Slick%20Rick`,
+      abraham: `https://via.placeholder.com/300x400/cccccc/666666?text=Abraham%20Nemeth`
     };
     
     const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;

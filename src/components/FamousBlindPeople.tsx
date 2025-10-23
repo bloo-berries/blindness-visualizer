@@ -572,7 +572,6 @@ const FamousBlindPeople: React.FC = () => {
                                           'center center'
                           }}
                           onError={(e) => {
-                            console.error(`Failed to load image for ${person.name}:`, e);
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
                           }}
                         />
@@ -633,7 +632,6 @@ const FamousBlindPeople: React.FC = () => {
                     alt={personData[selectedPerson].name}
                     style={{ width: '100%', borderRadius: '8px' }}
                     onError={(e) => {
-                      console.error(`Failed to load dialog image for ${personData[selectedPerson].name}:`, e);
                       e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[selectedPerson].name}`;
                     }}
                   />

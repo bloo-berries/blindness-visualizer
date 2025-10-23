@@ -285,7 +285,6 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 30%'
                           }}
                           onError={(e) => {
-                            console.error('Failed to load John Milton image:', e);
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=John Milton`;
                           }}
                         />
@@ -307,7 +306,6 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 40%'
                           }}
                           onError={(e) => {
-                            console.error('Failed to load Stevie Wonder image:', e);
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Stevie Wonder`;
                           }}
                         />
@@ -329,7 +327,6 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 35%'
                           }}
                           onError={(e) => {
-                            console.error('Failed to load Helen Keller image:', e);
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Helen Keller`;
                           }}
                         />
@@ -351,7 +348,6 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 40%'
                           }}
                           onError={(e) => {
-                            console.error('Failed to load Ray Charles image:', e);
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Ray Charles`;
                           }}
                         />

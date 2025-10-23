@@ -444,10 +444,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 position: 'relative'
               }}
             >
-              {(() => {
-                console.log('enabledEffectsCount:', enabledEffectsCount, 'enabledEffects:', enabledEffects);
-                return enabledEffectsCount > 0;
-              })() ? (
+              {enabledEffectsCount > 0 ? (
                 <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
                   {/* Base image with color vision filters applied directly */}
                   <Box 
@@ -1016,7 +1013,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'glaucoma':
                         // Glaucoma: complex peripheral vision loss with scotomas
                         // Start with a base that ensures some effect is always visible
-                        console.log('Creating glaucoma overlay with intensity:', intensity);
                         let glaucomaBackground = '';
                         
                         // Early stage: Small paracentral scotomas (10-20 degrees from center)
@@ -1079,8 +1075,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         if (glaucomaBackground === '') {
                           glaucomaBackground = `rgba(0,0,0,${intensity * 0.2})`;
                         }
-                        
-                        console.log('Glaucoma background:', glaucomaBackground);
                         overlayStyle.background = glaucomaBackground;
                         overlayStyle.mixBlendMode = 'multiply';
                         overlayStyle.opacity = Math.min(0.95, intensity);
@@ -2339,11 +2333,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     objectFit: 'contain',
                     borderRadius: 1
                   }}
-                  onLoad={() => {
-                    console.log('Garden image loaded successfully in else clause');
-                  }}
                   onError={(e) => {
-                    console.error('Failed to load garden.png in else clause:', e);
                     e.currentTarget.src = `https://via.placeholder.com/400x300/cccccc/666666?text=Garden+Image`;
                   }}
                 />

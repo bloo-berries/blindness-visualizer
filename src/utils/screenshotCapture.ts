@@ -73,7 +73,6 @@ export const captureVisualizerScreenshot = async (
 
     return canvas.toDataURL('image/png', 1.0);
   } catch (error) {
-    console.error('Failed to capture screenshot:', error);
     throw new Error('Failed to capture screenshot. Please try again.');
   }
 };
@@ -220,7 +219,6 @@ export const saveVisionSimulation = async (
     downloadScreenshot(blob, filename);
 
   } catch (error) {
-    console.error('Failed to save vision simulation:', error);
     throw error;
   }
 };

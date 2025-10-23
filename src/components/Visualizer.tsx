@@ -92,7 +92,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       );
       setSaveMessage('Screenshot saved successfully!');
     } catch (error) {
-      console.error('Failed to save screenshot:', error);
       setSaveMessage(error instanceof Error ? error.message : 'Failed to save screenshot');
     } finally {
       setIsSaving(false);
@@ -182,8 +181,6 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           setIsLoading(false);
         }
       } catch (err) {
-        console.error('Media setup error:', err);
-        
         // Provide more specific error messages
         if (err instanceof Error) {
           if (err.name === 'NotAllowedError') {

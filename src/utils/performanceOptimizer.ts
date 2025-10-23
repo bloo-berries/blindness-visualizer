@@ -615,7 +615,7 @@ export class AnimationManager {
       try {
         callback();
       } catch (error) {
-        console.error('Animation callback error:', error);
+        // Animation callback error - silently handle
       }
     });
 

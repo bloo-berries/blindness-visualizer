@@ -35,14 +35,12 @@ const updateSVGFilter = (conditionId: ConditionType, matrix: number[]) => {
   const filterElement = document.getElementById(filterId);
   
   if (!filterElement) {
-    console.warn(`SVG filter ${filterId} not found`);
     return;
   }
 
   // Find the feColorMatrix element within the filter
   const feColorMatrix = filterElement.querySelector('feColorMatrix');
   if (!feColorMatrix) {
-    console.warn(`feColorMatrix not found in filter ${filterId}`);
     return;
   }
 

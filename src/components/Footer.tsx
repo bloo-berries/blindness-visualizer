@@ -12,7 +12,9 @@ const Footer: React.FC = () => {
       sx={{ 
         mt: 1, 
         py: 2, 
-        bgcolor: 'grey.50'
+        bgcolor: 'grey.50',
+        position: 'relative',
+        zIndex: 10001
       }}
     >
       <Container maxWidth="lg">
@@ -48,6 +50,9 @@ const Footer: React.FC = () => {
               fontSize: '16px',
               padding: '8px 24px',
               textTransform: 'none',
+              position: 'relative',
+              zIndex: 10002,
+              pointerEvents: 'auto',
               '&:hover': {
                 backgroundColor: '#C62828'
               }

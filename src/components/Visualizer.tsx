@@ -745,7 +745,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               position: 'absolute', 
               top: '20px', 
               right: '20px', 
-              zIndex: 1000
+              zIndex: 10000
             }}>
               <Button
                 variant="contained"

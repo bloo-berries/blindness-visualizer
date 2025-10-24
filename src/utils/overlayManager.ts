@@ -300,11 +300,11 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       `radial-gradient(circle at 0% 100%, 
         rgba(0,0,0,0) 0%,
         rgba(0,0,0,0) ${Math.max(25, 40 - quadrantanopiaRight.intensity * 20)}%,
-        rgba(0,0,0,${0.95 * quadrantanopiaRight.intensity}) ${Math.max(45, 60 - quadrantanopiaRight.intensity * 20)}%,
-        rgba(0,0,0,${0.95 * quadrantanopiaRight.intensity}) 100%
+        rgba(0,0,0,1) ${Math.max(45, 60 - quadrantanopiaRight.intensity * 20)}%,
+        rgba(0,0,0,1) 100%
       )`,
-      'multiply',
-      Math.min(0.95, quadrantanopiaRight.intensity).toString(),
+      'normal',
+      '1',
       undefined,
       undefined,
       'quadrantanopiaRight'
@@ -315,13 +315,13 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-quadrantanopiaInferior',
       `conic-gradient(from 0deg at 50% 50%, 
-        rgba(0,0,0,${0.95 * quadrantanopiaInferior.intensity}) 0deg, 
-        rgba(0,0,0,${0.95 * quadrantanopiaInferior.intensity}) 90deg, 
+        rgba(0,0,0,${quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity}) 0deg, 
+        rgba(0,0,0,${quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity}) 90deg, 
         rgba(0,0,0,0) 90deg, 
         rgba(0,0,0,0) 360deg
       )`,
-      'multiply',
-      Math.min(0.95, quadrantanopiaInferior.intensity).toString(),
+      quadrantanopiaInferior.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaInferior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferior.intensity).toString(),
       undefined,
       undefined,
       'quadrantanopiaInferior'
@@ -334,13 +334,13 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       `conic-gradient(from 0deg at 50% 50%, 
         rgba(0,0,0,0) 0deg, 
         rgba(0,0,0,0) 90deg, 
-        rgba(0,0,0,${0.95 * quadrantanopiaSuperior.intensity}) 90deg, 
-        rgba(0,0,0,${0.95 * quadrantanopiaSuperior.intensity}) 180deg, 
+        rgba(0,0,0,${quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity}) 90deg, 
+        rgba(0,0,0,${quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity}) 180deg, 
         rgba(0,0,0,0) 180deg, 
         rgba(0,0,0,0) 360deg
       )`,
-      'multiply',
-      Math.min(0.95, quadrantanopiaSuperior.intensity).toString(),
+      quadrantanopiaSuperior.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaSuperior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperior.intensity).toString(),
       undefined,
       undefined,
       'quadrantanopiaSuperior'
@@ -351,12 +351,12 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-hemianopiaLeft',
       `linear-gradient(to right, 
-        rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 0%, 
-        rgba(0,0,0,${0.95 * hemianopiaLeft.intensity}) 45%, 
+        rgba(0,0,0,${hemianopiaLeft.intensity === 1 ? 1 : 0.95 * hemianopiaLeft.intensity}) 0%, 
+        rgba(0,0,0,${hemianopiaLeft.intensity === 1 ? 1 : 0.95 * hemianopiaLeft.intensity}) 45%, 
         rgba(0,0,0,0) 50%
       )`,
-      'multiply',
-      Math.min(0.95, hemianopiaLeft.intensity).toString(),
+      hemianopiaLeft.intensity === 1 ? 'normal' : 'multiply',
+      hemianopiaLeft.intensity === 1 ? '1' : Math.min(0.95, hemianopiaLeft.intensity).toString(),
       undefined,
       undefined,
       'hemianopiaLeft'
@@ -367,12 +367,12 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-hemianopiaRight',
       `linear-gradient(to left, 
-        rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 0%, 
-        rgba(0,0,0,${0.95 * hemianopiaRight.intensity}) 45%, 
+        rgba(0,0,0,${hemianopiaRight.intensity === 1 ? 1 : 0.95 * hemianopiaRight.intensity}) 0%, 
+        rgba(0,0,0,${hemianopiaRight.intensity === 1 ? 1 : 0.95 * hemianopiaRight.intensity}) 45%, 
         rgba(0,0,0,0) 50%
       )`,
-      'multiply',
-      Math.min(0.95, hemianopiaRight.intensity).toString(),
+      hemianopiaRight.intensity === 1 ? 'normal' : 'multiply',
+      hemianopiaRight.intensity === 1 ? '1' : Math.min(0.95, hemianopiaRight.intensity).toString(),
       undefined,
       undefined,
       'hemianopiaRight'
@@ -383,12 +383,12 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-blindnessLeftEye',
       `linear-gradient(to right, 
-        rgba(0,0,0,${0.95 * blindnessLeftEye.intensity}) 0%, 
-        rgba(0,0,0,${0.95 * blindnessLeftEye.intensity}) 50%, 
+        rgba(0,0,0,${blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity}) 0%, 
+        rgba(0,0,0,${blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity}) 50%, 
         rgba(0,0,0,0) 50%
       )`,
-      'multiply',
-      Math.min(0.95, blindnessLeftEye.intensity).toString(),
+      blindnessLeftEye.intensity === 1 ? 'normal' : 'multiply',
+      blindnessLeftEye.intensity === 1 ? '1' : Math.min(0.95, blindnessLeftEye.intensity).toString(),
       undefined,
       undefined,
       'blindnessLeftEye'
@@ -399,12 +399,12 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-blindnessRightEye',
       `linear-gradient(to left, 
-        rgba(0,0,0,${0.95 * blindnessRightEye.intensity}) 0%, 
-        rgba(0,0,0,${0.95 * blindnessRightEye.intensity}) 50%, 
+        rgba(0,0,0,${blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity}) 0%, 
+        rgba(0,0,0,${blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity}) 50%, 
         rgba(0,0,0,0) 50%
       )`,
-      'multiply',
-      Math.min(0.95, blindnessRightEye.intensity).toString(),
+      blindnessRightEye.intensity === 1 ? 'normal' : 'multiply',
+      blindnessRightEye.intensity === 1 ? '1' : Math.min(0.95, blindnessRightEye.intensity).toString(),
       undefined,
       undefined,
       'blindnessRightEye'
@@ -415,15 +415,15 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     createOverlay(
       'visual-field-overlay-bitemporalHemianopia',
       `linear-gradient(to right, 
-        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 0%, 
-        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 25%, 
+        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 0%, 
+        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 25%, 
         rgba(0,0,0,0) 25%,
         rgba(0,0,0,0) 75%,
-        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 75%, 
-        rgba(0,0,0,${0.95 * bitemporalHemianopia.intensity}) 100%
+        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 75%, 
+        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 100%
       )`,
-      'multiply',
-      Math.min(0.95, bitemporalHemianopia.intensity).toString(),
+      bitemporalHemianopia.intensity === 1 ? 'normal' : 'multiply',
+      bitemporalHemianopia.intensity === 1 ? '1' : Math.min(0.95, bitemporalHemianopia.intensity).toString(),
       undefined,
       undefined,
       'bitemporalHemianopia'

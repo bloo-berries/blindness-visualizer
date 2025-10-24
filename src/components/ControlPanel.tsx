@@ -621,76 +621,76 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'blindnessLeftEye':
                         overlayStyle.background = `
                           linear-gradient(to right, 
-                            rgba(0,0,0,${0.95 * intensity}) 0%, 
-                            rgba(0,0,0,${0.95 * intensity}) 50%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 50%, 
                             rgba(0,0,0,0) 50%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                       case 'blindnessRightEye':
                         overlayStyle.background = `
                           linear-gradient(to left, 
-                            rgba(0,0,0,${0.95 * intensity}) 0%, 
-                            rgba(0,0,0,${0.95 * intensity}) 50%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 50%, 
                             rgba(0,0,0,0) 50%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                       case 'bitemporalHemianopia':
                         overlayStyle.background = `
                           linear-gradient(to right, 
-                            rgba(0,0,0,${0.95 * intensity}) 0%, 
-                            rgba(0,0,0,${0.95 * intensity}) 25%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 25%, 
                             rgba(0,0,0,0) 25%,
                             rgba(0,0,0,0) 75%,
-                            rgba(0,0,0,${0.95 * intensity}) 75%, 
-                            rgba(0,0,0,${0.95 * intensity}) 100%
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 75%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 100%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                       case 'quadrantanopiaRight':
                         overlayStyle.background = `
                           radial-gradient(circle at 0% 100%, 
                             rgba(0,0,0,0) 0%,
                             rgba(0,0,0,0) ${Math.max(25, 40 - intensity * 20)}%,
-                            rgba(0,0,0,${0.95 * intensity}) ${Math.max(45, 60 - intensity * 20)}%,
-                            rgba(0,0,0,${0.95 * intensity}) 100%
+                            rgba(0,0,0,1) ${Math.max(45, 60 - intensity * 20)}%,
+                            rgba(0,0,0,1) 100%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = 'normal';
+                        overlayStyle.opacity = '1';
                         break;
                       case 'quadrantanopiaInferior':
                         overlayStyle.background = `
                           conic-gradient(from 0deg at 50% 50%, 
-                            rgba(0,0,0,${0.95 * intensity}) 0deg, 
-                            rgba(0,0,0,${0.95 * intensity}) 90deg, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0deg, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 90deg, 
                             rgba(0,0,0,0) 90deg, 
                             rgba(0,0,0,0) 360deg
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                       case 'quadrantanopiaSuperior':
                         overlayStyle.background = `
                           conic-gradient(from 0deg at 50% 50%, 
                             rgba(0,0,0,0) 0deg, 
                             rgba(0,0,0,0) 90deg, 
-                            rgba(0,0,0,${0.95 * intensity}) 90deg, 
-                            rgba(0,0,0,${0.95 * intensity}) 180deg, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 90deg, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 180deg, 
                             rgba(0,0,0,0) 180deg, 
                             rgba(0,0,0,0) 360deg
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
 
                         
@@ -730,25 +730,25 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       case 'hemianopiaLeft':
                         overlayStyle.background = `
                           linear-gradient(to right, 
-                            rgba(0,0,0,${0.95 * intensity}) 0%, 
-                            rgba(0,0,0,${0.95 * intensity}) 45%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 45%, 
                             rgba(0,0,0,0) 50%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                         
                       case 'hemianopiaRight':
                         overlayStyle.background = `
                           linear-gradient(to left, 
-                            rgba(0,0,0,${0.95 * intensity}) 0%, 
-                            rgba(0,0,0,${0.95 * intensity}) 45%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
+                            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 45%, 
                             rgba(0,0,0,0) 50%
                           )
                         `;
-                        overlayStyle.mixBlendMode = 'multiply';
-                        overlayStyle.opacity = Math.min(0.95, intensity);
+                        overlayStyle.mixBlendMode = intensity === 1 ? 'normal' : 'multiply';
+                        overlayStyle.opacity = intensity === 1 ? '1' : Math.min(0.95, intensity);
                         break;
                         
                       case 'visualSnow':

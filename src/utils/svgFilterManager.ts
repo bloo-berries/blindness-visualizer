@@ -20,11 +20,11 @@ export const updateSVGFilters = (effects: Array<{id: ConditionType, intensity: n
   // TODO: Support multiple color vision effects
   const effect = colorVisionEffects[0];
   
-  console.log('SVG Filter Manager: Processing effect:', effect.id, 'intensity:', effect.intensity);
+  // console.log('SVG Filter Manager: Processing effect:', effect.id, 'intensity:', effect.intensity);
   
   // Get the full matrix for this effect (without intensity scaling)
   const fullMatrix = getColorVisionMatrix(effect.id, 1.0);
-  console.log('SVG Filter Manager: Full matrix:', fullMatrix);
+  // console.log('SVG Filter Manager: Full matrix:', fullMatrix);
   
   // Identity matrix for normal vision
   const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
@@ -34,7 +34,7 @@ export const updateSVGFilters = (effects: Array<{id: ConditionType, intensity: n
     val * effect.intensity + identityMatrix[index] * (1 - effect.intensity)
   );
   
-  console.log('SVG Filter Manager: Blended matrix:', blendedMatrix);
+  // console.log('SVG Filter Manager: Blended matrix:', blendedMatrix);
   
   // Update the corresponding SVG filter
   updateSVGFilter(effect.id, blendedMatrix);
@@ -45,25 +45,25 @@ export const updateSVGFilters = (effects: Array<{id: ConditionType, intensity: n
  */
 const updateSVGFilter = (conditionId: ConditionType, matrix: number[]) => {
   const filterId = getFilterId(conditionId);
-  console.log('SVG Filter Manager: Looking for filter with ID:', filterId);
+  // console.log('SVG Filter Manager: Looking for filter with ID:', filterId);
   
   const filterElement = document.getElementById(filterId);
   
   if (!filterElement) {
-    console.log('SVG Filter Manager: Filter element not found for ID:', filterId);
+    // console.log('SVG Filter Manager: Filter element not found for ID:', filterId);
     return;
   }
 
-  console.log('SVG Filter Manager: Found filter element:', filterElement);
+  // console.log('SVG Filter Manager: Found filter element:', filterElement);
 
   // Find the feColorMatrix element within the filter
   const feColorMatrix = filterElement.querySelector('feColorMatrix');
   if (!feColorMatrix) {
-    console.log('SVG Filter Manager: feColorMatrix element not found');
+    // console.log('SVG Filter Manager: feColorMatrix element not found');
     return;
   }
 
-  console.log('SVG Filter Manager: Found feColorMatrix element:', feColorMatrix);
+  // console.log('SVG Filter Manager: Found feColorMatrix element:', feColorMatrix);
 
   // Convert matrix to CSS matrix format
   const cssMatrix = [
@@ -74,12 +74,12 @@ const updateSVGFilter = (conditionId: ConditionType, matrix: number[]) => {
   ];
 
   const matrixString = cssMatrix.join(', ');
-  console.log('SVG Filter Manager: Setting matrix values:', matrixString);
+  // console.log('SVG Filter Manager: Setting matrix values:', matrixString);
 
   // Update the filter values
   feColorMatrix.setAttribute('values', matrixString);
   
-  console.log('SVG Filter Manager: Matrix values set successfully');
+  // console.log('SVG Filter Manager: Matrix values set successfully');
 
 };
 

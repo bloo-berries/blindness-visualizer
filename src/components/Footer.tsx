@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Link, Divider, Dialog, DialogContent } from '@mui/material';
+import { Box, Container, Typography, Link, Dialog, DialogContent } from '@mui/material';
 import AccessibilityStatement from './AccessibilityStatement';
 
 const Footer: React.FC = () => {

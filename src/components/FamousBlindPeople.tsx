@@ -314,13 +314,21 @@ const personData: Record<string, PersonData> = {
     onset: "From birth",
     simulation: "abraham-congenital-blindness",
     description: "Abraham Nemeth was a blind mathematician who developed the Nemeth Braille Code for Mathematics and Science Notation. Born blind, he became a professor of mathematics and made significant contributions to making mathematics accessible to blind students. His Nemeth Code is still widely used today for transcribing mathematical and scientific materials into braille."
+  },
+  sharon: {
+    name: "Sharon Stone",
+    condition: "Hemorrhagic Stroke & Visual Distortions",
+    years: "Born 1958",
+    onset: "Age 43, from stroke",
+    simulation: "sharon-stroke-visual-distortions",
+    description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. It took years for her vision to return to normal. She also had difficulty reading and memorizing lines, which brought her career to a screeching halt. Beyond vision, Stone experienced aphasia (speech difficulties) and an ongoing stutter, lost directional hearing in her right ear, lost feeling from the knee up in her left leg, had a tilted walk with her right leg dragging, the left side of her face became distorted, lost short-term memory, and had balance problems, constant fatigue, and periodic seizures."
   }
 };
 
 const categories = [
   { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham"] },
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon"] },
   { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick"] },
   { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye"] }
 ];
@@ -409,7 +417,8 @@ const FamousBlindPeople: React.FC = () => {
       'allan-nystagmus': ['nystagmus', 'astigmatism'],
       'fetty-glaucoma-prosthetic': ['glaucoma', 'complete-blindness'],
       'slick-rick-blindness': ['hemianopia', 'glaucoma'],
-      'abraham-congenital-blindness': ['complete-blindness']
+      'abraham-congenital-blindness': ['complete-blindness'],
+      'sharon-stroke-visual-distortions': ['visual-auras', 'metamorphopsia', 'hallucinations']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -472,7 +481,8 @@ const FamousBlindPeople: React.FC = () => {
       allan: `${baseUrl}/images/people/allan-pineda-lindo.webp`,
       fetty: `${baseUrl}/images/people/fetty-wap.webp`,
       slick: `${baseUrl}/images/people/slick-rick.webp`,
-      abraham: `${baseUrl}/images/people/abraham-nemeth.webp`
+      abraham: `${baseUrl}/images/people/abraham-nemeth.webp`,
+      sharon: `${baseUrl}/images/people/sharon-stone.webp`
     };
     
     const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;

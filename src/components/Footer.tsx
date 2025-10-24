@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Link, Dialog, DialogContent } from '@mui/material';
+import { Box, Container, Typography, Link, Dialog, DialogContent, Button } from '@mui/material';
+import { Favorite } from '@mui/icons-material';
 import AccessibilityStatement from './AccessibilityStatement';
 
 const Footer: React.FC = () => {
@@ -20,10 +21,11 @@ const Footer: React.FC = () => {
             display: 'flex', 
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: 'space-between',
-            alignItems: { xs: 'center', sm: 'flex-start' },
+            alignItems: { xs: 'center', sm: 'center' },
             gap: 2
           }}
         >
+          {/* Left section - Copyright */}
           <Typography 
             variant="body2" 
             color="text.secondary"
@@ -32,6 +34,29 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} VisionSim
           </Typography>
           
+          {/* Center section - Support & Donate */}
+          <Button
+            variant="contained"
+            href="https://linktr.ee/bloomedhealth"
+            target="_blank"
+            rel="noopener"
+            startIcon={<Favorite />}
+            sx={{
+              backgroundColor: '#E53935',
+              color: '#FFFFFF',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              padding: '8px 24px',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: '#C62828'
+              }
+            }}
+          >
+            Support & Donate
+          </Button>
+          
+          {/* Right section - Other links */}
           <Box sx={{ 
             display: 'flex', 
             gap: 3,

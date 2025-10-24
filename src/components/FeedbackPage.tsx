@@ -30,6 +30,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import { sendFeedbackEmailServerless, FeedbackEmailData } from '../utils/emailService';
 
 interface FeedbackForm {
   type: 'general' | 'bug' | 'feature' | 'improvement' | 'other';
@@ -129,8 +130,8 @@ const FeedbackPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission (replace with actual submission logic)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send feedback email
+      await sendFeedbackEmailServerless(formData as FeedbackEmailData);
       
       // Reset form
       setFormData({
@@ -148,6 +149,7 @@ const FeedbackPage: React.FC = () => {
       
       setShowSuccess(true);
     } catch (error) {
+      console.error('Error submitting feedback:', error);
       setShowError(true);
     } finally {
       setIsSubmitting(false);

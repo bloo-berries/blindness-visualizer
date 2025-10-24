@@ -9,14 +9,12 @@ const Footer: React.FC = () => {
     <Box 
       component="footer" 
       sx={{ 
-        mt: 3, 
-        py: 3, 
-        bgcolor: 'grey.50',
-        borderTop: '1px solid #e2e8f0'
+        mt: 1, 
+        py: 2, 
+        bgcolor: 'grey.50'
       }}
     >
       <Container maxWidth="lg">
-        <Divider sx={{ mb: 3, borderColor: '#e2e8f0' }} />
         <Box 
           sx={{ 
             display: 'flex', 

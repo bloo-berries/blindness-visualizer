@@ -20,7 +20,7 @@ import {
 import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
-import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
+import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition, getColorVisionFilter } from '../utils/colorVisionFilters';
 import { updateSVGFilters } from '../utils/svgFilterManager';
 import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
@@ -507,21 +507,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           const id = effect.id as ConditionType;
                           const intensity = effect.intensity;
                           
-                          // Color vision conditions use SVG filters (more reliable than CSS matrix)
+                          // Color vision conditions use CSS filters with intensity scaling
                           if (isColorVisionCondition(id)) {
-                            console.log('ControlPanel: Using SVG filter for', id, 'intensity', intensity);
-                            // Use SVG filters which are more reliable than CSS matrix filters
-                            const filterMap: { [key: string]: string } = {
-                              'protanopia': 'url(#protanopia)',
-                              'deuteranopia': 'url(#deuteranopia)',
-                              'tritanopia': 'url(#tritanopia)',
-                              'protanomaly': 'url(#protanomaly)',
-                              'deuteranomaly': 'url(#deuteranomaly)',
-                              'tritanomaly': 'url(#tritanomaly)',
-                              'monochromacy': 'url(#monochromacy)',
-                              'monochromatic': 'url(#monochromacy)'
-                            };
-                            return filterMap[id] || 'none';
+                            console.log('ControlPanel: Using CSS filter for', id, 'intensity', intensity);
+                            return getColorVisionFilter(id, intensity);
                           }
                           
                           // Other conditions use CSS filters

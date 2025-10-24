@@ -20,7 +20,7 @@ import {
 import { Info, ExpandMore } from '@mui/icons-material';
 import { VisualEffect } from '../types/visualEffects';
 import { ConditionType } from '../types/visualEffects';
-import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../utils/colorVisionFilters';
+import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition, getColorVisionFilter } from '../utils/colorVisionFilters';
 import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../utils/overlayConstants';
 
 interface ControlPanelProps {
@@ -481,19 +481,9 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                           const id = effect.id as ConditionType;
                           const intensity = effect.intensity;
                           
-                          // Color vision conditions use SVG filters
+                          // Color vision conditions use CSS filters with intensity scaling
                           if (isColorVisionCondition(id)) {
-                            const filterMap: { [key: string]: string } = {
-                              'protanopia': 'url(#protanopia)',
-                              'deuteranopia': 'url(#deuteranopia)',
-                              'tritanopia': 'url(#tritanopia)',
-                              'protanomaly': 'url(#protanomaly)',
-                              'deuteranomaly': 'url(#deuteranomaly)',
-                              'tritanomaly': 'url(#tritanomaly)',
-                              'monochromacy': 'url(#monochromacy)',
-                              'monochromatic': 'url(#monochromacy)'
-                            };
-                            return filterMap[id] || 'none';
+                            return getColorVisionFilter(id, intensity);
                           }
                           
                           // Other conditions use CSS filters

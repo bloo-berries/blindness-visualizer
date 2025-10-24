@@ -8,6 +8,7 @@ import { createSceneManager } from '../utils/threeSceneManager';
 import { createVisualizationMesh, updateShaderUniforms } from '../utils/shaderManager';
 import { generateCSSFilters } from '../utils/cssFilterManager';
 import { updateSVGFilters } from '../utils/svgFilterManager';
+import { getColorVisionFilter } from '../utils/colorVisionFilters';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../utils/appConstants';
 import { saveVisionSimulation } from '../utils/screenshotCapture';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../utils/performanceOptimizer';
@@ -503,20 +504,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                   // Add color vision filter if present
                   if (colorVisionEffect) {
 
-                    // Use SVG filters which are more reliable than CSS matrix filters
-                    const filterMap: { [key: string]: string } = {
-                      'protanopia': 'url(#protanopia)',
-                      'deuteranopia': 'url(#deuteranopia)',
-                      'tritanopia': 'url(#tritanopia)',
-                      'protanomaly': 'url(#protanomaly)',
-                      'deuteranomaly': 'url(#deuteranomaly)',
-                      'tritanomaly': 'url(#tritanomaly)',
-                      'monochromacy': 'url(#monochromacy)',
-                      'monochromatic': 'url(#monochromacy)'
-                    };
-                    const svgFilter = filterMap[colorVisionEffect.id];
-                    if (svgFilter) {
-                      filters.push(svgFilter);
+                    // Use CSS filters with intensity scaling instead of static SVG filters
+                    const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                    if (cssFilter) {
+                      filters.push(cssFilter);
                     }
                   }
                   
@@ -568,20 +559,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                   // Add color vision filter if present
                   if (colorVisionEffect) {
 
-                    // Use SVG filters which are more reliable than CSS matrix filters
-                    const filterMap: { [key: string]: string } = {
-                      'protanopia': 'url(#protanopia)',
-                      'deuteranopia': 'url(#deuteranopia)',
-                      'tritanopia': 'url(#tritanopia)',
-                      'protanomaly': 'url(#protanomaly)',
-                      'deuteranomaly': 'url(#deuteranomaly)',
-                      'tritanomaly': 'url(#tritanomaly)',
-                      'monochromacy': 'url(#monochromacy)',
-                      'monochromatic': 'url(#monochromacy)'
-                    };
-                    const svgFilter = filterMap[colorVisionEffect.id];
-                    if (svgFilter) {
-                      filters.push(svgFilter);
+                    // Use CSS filters with intensity scaling instead of static SVG filters
+                    const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                    if (cssFilter) {
+                      filters.push(cssFilter);
                     }
                   }
                   

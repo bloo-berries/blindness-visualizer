@@ -53,7 +53,6 @@ export const sendFeedbackEmailServerless = async (data: FeedbackEmailData): Prom
     }
     
   } catch (error) {
-    console.error('Error sending email:', error);
     throw new Error('Failed to send feedback email');
   }
 };

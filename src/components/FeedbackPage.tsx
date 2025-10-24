@@ -149,7 +149,6 @@ const FeedbackPage: React.FC = () => {
       
       setShowSuccess(true);
     } catch (error) {
-      console.error('Error submitting feedback:', error);
       setShowError(true);
     } finally {
       setIsSubmitting(false);

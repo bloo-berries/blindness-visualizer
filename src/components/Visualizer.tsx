@@ -352,8 +352,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     };
 
     if (inputSource.type === 'youtube') {
+      console.log('getEffectStyles: Processing effects:', effects);
       // Use optimized effect processor to get enabled effects
       const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+      console.log('getEffectStyles: Enabled effects:', enabledEffects);
       const nonDiplopiaEffects = enabledEffects.filter(e => 
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
@@ -362,6 +364,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       const colorVisionEffect = enabledEffects.find(e => 
         ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
       );
+      console.log('getEffectStyles: Color vision effect found:', colorVisionEffect);
       
       const otherEffects = nonDiplopiaEffects.filter(e => 
         !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
@@ -371,7 +374,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
       
       // Add color vision filter if present
       if (colorVisionEffect) {
+        console.log('getEffectStyles: Color vision effect:', colorVisionEffect.id, 'intensity:', colorVisionEffect.intensity);
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+        console.log('getEffectStyles: Generated CSS filter:', cssFilter);
         if (cssFilter) {
           filters.push(cssFilter);
         }
@@ -385,7 +390,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         }
       }
       
-      return filters.length > 0 ? { ...baseStyle, filter: filters.join(' ') } : baseStyle;
+      const finalStyle = filters.length > 0 ? { ...baseStyle, filter: filters.join(' ') } : baseStyle;
+      console.log('getEffectStyles: Final style:', finalStyle);
+      return finalStyle;
     }
 
     return baseStyle;
@@ -828,7 +835,79 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               </Typography>
             </Box>
           )}
-          <div style={getEffectStyles()}>
+          
+          {/* Back to Comparison button - only show when not in comparison mode */}
+          {!showComparison && (
+            <Box sx={{ 
+              position: 'absolute', 
+              top: '20px', 
+              right: '20px', 
+              zIndex: 1000
+            }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={onToggleComparison || (() => setShowComparison(true))}
+                disabled={isLoading}
+                sx={{ 
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  color: 'white',
+                  '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
+                }}
+              >
+                Back to Comparison
+              </Button>
+            </Box>
+          )}
+          
+          <div style={{
+            position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+            maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain',
+            // Apply CSS matrix filters for color vision conditions with intensity scaling
+            filter: (() => {
+              console.log('Main mode: Processing effects:', effects);
+              const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+              console.log('Main mode: Enabled effects:', enabledEffects);
+              const colorVisionEffect = enabledEffects.find(e => 
+                ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+              );
+              console.log('Main mode: Color vision effect found:', colorVisionEffect);
+              
+              // Apply other CSS filters (blur, etc.) for non-color-vision effects
+              const otherEffects = enabledEffects.filter(e => 
+                !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+              );
+              
+              const filters: string[] = [];
+              
+              // Add color vision filter if present
+              if (colorVisionEffect) {
+                console.log('Main mode: Color vision effect:', colorVisionEffect.id, 'intensity:', colorVisionEffect.intensity);
+                const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                console.log('Main mode: Generated CSS filter:', cssFilter);
+                if (cssFilter) {
+                  filters.push(cssFilter);
+                }
+              }
+              
+              // Add other filters
+              if (otherEffects.length > 0) {
+                const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
+                const nonDiplopiaEffects = nonColorEffects.filter(e => 
+                  e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+                );
+                
+                if (nonDiplopiaEffects.length > 0) {
+                  const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                  if (otherFilters) {
+                    filters.push(otherFilters);
+                  }
+                }
+              }
+              
+              return filters.length > 0 ? filters.join(' ') : 'none';
+            })()
+          }}>
             <iframe
               {...YOUTUBE_IFRAME_PROPS}
               src={YOUTUBE_EMBED_URL}
@@ -863,6 +942,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 disabled={isLoading}
               >
                 Show Comparison
+              </Button>
+            )}
+            {showComparison && (
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={onToggleComparison || (() => setShowComparison(false))}
+                disabled={isLoading}
+              >
+                Back to Full Simulation
               </Button>
             )}
             <Button

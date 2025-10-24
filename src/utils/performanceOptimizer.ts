@@ -156,24 +156,32 @@ export class EffectProcessor {
 export class OverlayManager {
   private overlayCache = new Map<string, HTMLElement>();
   private lastOverlayState = '';
+  private lastComparisonMode: boolean | undefined = undefined;
 
   /**
    * Creates or updates overlays efficiently
    */
   updateOverlays(
     effects: VisualEffect[],
-    container: HTMLElement
+    container: HTMLElement,
+    isComparisonMode?: boolean
   ): void {
     
-    // Create state hash for comparison
+    // Create state hash for comparison - include container to handle mode switches
     const stateHash = effects
       .filter(e => e.enabled)
       .map(e => `${e.id}:${e.intensity}`)
       .sort()
-      .join('|');
+      .join('|') + `|container:${container.id || container.className || 'default'}`;
 
-    // Skip update if state hasn't changed
-    if (stateHash === this.lastOverlayState) {
+    // Check if comparison mode has changed
+    const comparisonModeChanged = isComparisonMode !== undefined && isComparisonMode !== this.lastComparisonMode;
+    if (comparisonModeChanged) {
+      this.lastComparisonMode = isComparisonMode;
+    }
+
+    // Skip update if state hasn't changed and comparison mode hasn't changed
+    if (stateHash === this.lastOverlayState && !comparisonModeChanged) {
 
       return;
     }

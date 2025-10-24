@@ -320,17 +320,25 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
           : containerRef.current;
         
         if (targetContainer) {
-          // Use optimized overlay manager
-
-          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer);
+          // Clear any existing overlays first to prevent duplicates
+          overlayManager.current.clearOverlays();
+          
+          // Use optimized overlay manager with comparison mode info
+          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer, showComparison);
         } else {
-
+          // If target container is not available, try to use the main container as fallback
+          if (containerRef.current) {
+            overlayManager.current.clearOverlays();
+            overlayManager.current.updateOverlays(nonDiplopiaEffects, containerRef.current, showComparison);
+          }
         }
       } else {
-
+        // Clear overlays when no effects are enabled
+        overlayManager.current.clearOverlays();
       }
     } else {
-
+      // Clear overlays for other input types
+      overlayManager.current.clearOverlays();
     }
     
     // Check if we need animation (for overlay-based effects)

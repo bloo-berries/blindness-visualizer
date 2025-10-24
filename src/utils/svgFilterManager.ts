@@ -20,6 +20,13 @@ export const updateSVGFilters = (effects: Array<{id: ConditionType, intensity: n
   // TODO: Support multiple color vision effects
   const effect = colorVisionEffects[0];
   
+  // If intensity is 0, reset to identity matrix (normal vision)
+  if (effect.intensity === 0) {
+    const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    updateSVGFilter(effect.id, identityMatrix);
+    return;
+  }
+  
   // Get the matrix for this effect with intensity scaling
   const matrix = getColorVisionMatrix(effect.id, effect.intensity);
   

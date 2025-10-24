@@ -207,7 +207,17 @@ export const matrixToCSSFilter = (matrix: number[]): string => {
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
   // For achromatopsia, use a simpler approach with saturate and contrast
   if (type === 'monochromatic' || type === 'monochromacy') {
-    return `saturate(0) contrast(${100 + intensity * 20}%)`;
+    // At 0% intensity, show normal color vision (no filter)
+    if (intensity === 0) {
+      return '';
+    }
+    // Gradually increase desaturation and contrast as intensity increases
+    return `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
+  }
+  
+  // For all other color vision conditions, ensure 0% intensity shows normal vision
+  if (intensity === 0) {
+    return '';
   }
   
   // Get the full matrix for the condition

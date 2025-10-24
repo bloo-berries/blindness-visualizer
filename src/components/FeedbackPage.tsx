@@ -12,7 +12,14 @@ import {
   Chip,
   Grid,
   Card,
-  CardContent
+  CardContent,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormGroup,
+  FormControlLabel,
+  Checkbox
 } from '@mui/material';
 import {
   Send as SendIcon,
@@ -31,6 +38,10 @@ interface FeedbackForm {
   subject: string;
   message: string;
   rating?: number;
+  favoriteFeature?: string;
+  userType?: string;
+  browser?: string;
+  accessibilityNeeds?: string[];
 }
 
 const FeedbackPage: React.FC = () => {
@@ -40,7 +51,11 @@ const FeedbackPage: React.FC = () => {
     email: '',
     subject: '',
     message: '',
-    rating: 5
+    rating: 5,
+    favoriteFeature: '',
+    userType: '',
+    browser: '',
+    accessibilityNeeds: []
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -54,6 +69,39 @@ const FeedbackPage: React.FC = () => {
     { value: 'other', label: 'Other', icon: <FeedbackIcon />, color: 'default' }
   ];
 
+  const favoriteFeatures = [
+    { value: 'demo-video', label: 'Demo Video Visualizer' },
+    { value: 'upload-photo', label: 'Upload Your Own Photo Visualizer' },
+    { value: 'famous-people', label: 'Famous People Knowledge/Visualizations' }
+  ];
+
+  const userTypes = [
+    { value: 'student', label: 'Student' },
+    { value: 'educator', label: 'Educator' },
+    { value: 'healthcare', label: 'Healthcare Professional' },
+    { value: 'researcher', label: 'Researcher' },
+    { value: 'general', label: 'General Public' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const browsers = [
+    { value: 'chrome', label: 'Chrome' },
+    { value: 'firefox', label: 'Firefox' },
+    { value: 'safari', label: 'Safari' },
+    { value: 'edge', label: 'Microsoft Edge' },
+    { value: 'opera', label: 'Opera' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const accessibilityOptions = [
+    { value: 'screen-reader', label: 'Screen Reader' },
+    { value: 'voice-control', label: 'Voice Control' },
+    { value: 'keyboard-navigation', label: 'Keyboard Navigation Only' },
+    { value: 'magnification', label: 'Screen Magnification' },
+    { value: 'high-contrast', label: 'High Contrast Mode' },
+    { value: 'none', label: 'None' }
+  ];
+
   const handleInputChange = (field: keyof FeedbackForm) => (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any
   ) => {
@@ -61,6 +109,18 @@ const FeedbackPage: React.FC = () => {
     setFormData(prev => ({
       ...prev,
       [field]: value
+    }));
+  };
+
+  const handleAccessibilityChange = (value: string) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const isChecked = event.target.checked;
+    setFormData(prev => ({
+      ...prev,
+      accessibilityNeeds: isChecked 
+        ? [...(prev.accessibilityNeeds || []), value]
+        : (prev.accessibilityNeeds || []).filter(item => item !== value)
     }));
   };
 
@@ -79,7 +139,11 @@ const FeedbackPage: React.FC = () => {
         email: '',
         subject: '',
         message: '',
-        rating: 5
+        rating: 5,
+        favoriteFeature: '',
+        userType: '',
+        browser: '',
+        accessibilityNeeds: []
       });
       
       setShowSuccess(true);
@@ -197,6 +261,78 @@ const FeedbackPage: React.FC = () => {
                     variant="outlined"
                     placeholder="Brief description of your feedback"
                   />
+
+                  {/* Favorite Feature Dropdown */}
+                  <FormControl fullWidth>
+                    <InputLabel>Which feature did you find most interesting or helpful?</InputLabel>
+                    <Select
+                      value={formData.favoriteFeature}
+                      onChange={handleInputChange('favoriteFeature')}
+                      label="Which feature did you find most interesting or helpful?"
+                    >
+                      {favoriteFeatures.map((feature) => (
+                        <MenuItem key={feature.value} value={feature.value}>
+                          {feature.label}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  {/* User Type and Browser - Side by Side */}
+                  <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                    <FormControl sx={{ minWidth: '200px', flex: 1 }}>
+                      <InputLabel>What best describes you?</InputLabel>
+                      <Select
+                        value={formData.userType}
+                        onChange={handleInputChange('userType')}
+                        label="What best describes you?"
+                      >
+                        {userTypes.map((type) => (
+                          <MenuItem key={type.value} value={type.value}>
+                            {type.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl sx={{ minWidth: '200px', flex: 1 }}>
+                      <InputLabel>What browser are you using?</InputLabel>
+                      <Select
+                        value={formData.browser}
+                        onChange={handleInputChange('browser')}
+                        label="What browser are you using?"
+                      >
+                        {browsers.map((browser) => (
+                          <MenuItem key={browser.value} value={browser.value}>
+                            {browser.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Box>
+
+                  {/* Accessibility Needs Checkboxes */}
+                  <Box>
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      Do you use any assistive technologies? (Select all that apply)
+                    </Typography>
+                    <FormGroup>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                        {accessibilityOptions.map((option) => (
+                          <FormControlLabel
+                            key={option.value}
+                            control={
+                              <Checkbox
+                                checked={(formData.accessibilityNeeds || []).includes(option.value)}
+                                onChange={handleAccessibilityChange(option.value)}
+                              />
+                            }
+                            label={option.label}
+                          />
+                        ))}
+                      </Box>
+                    </FormGroup>
+                  </Box>
 
                   {/* Message */}
                   <TextField

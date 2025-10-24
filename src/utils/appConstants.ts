@@ -7,8 +7,8 @@
  * YouTube demo video IDs used throughout the application
  * Different videos for different contexts to provide more appropriate content
  */
-export const DEMO_VIDEO_ID = 'KOc146R8sws'; // Default demo video (Norwegian fjord)
-export const FAMOUS_PEOPLE_VIDEO_ID = 'KOc146R8sws'; // Same video for now, but can be customized per person
+export const DEMO_VIDEO_ID = '6BPuGeS6O4w'; // Default demo video
+export const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be customized per person
 
 /**
  * YouTube embed URL template

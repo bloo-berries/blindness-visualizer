@@ -1026,6 +1026,6 @@ export const createDefaultEffects = (): VisualEffect[] => {
   return VISUAL_EFFECTS.map(effect => ({
     ...effect,
     enabled: false,
-    intensity: 1.0
+    intensity: 0.0
   }));
 };

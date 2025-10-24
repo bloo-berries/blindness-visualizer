@@ -66,9 +66,18 @@ const VisionSimulator: React.FC = () => {
 
   const handleToggle = useCallback((id: string) => {
     setEffects(prevEffects => 
-      prevEffects.map(effect => 
-        effect.id === id ? { ...effect, enabled: !effect.enabled } : effect
-      )
+      prevEffects.map(effect => {
+        if (effect.id === id) {
+          // When enabling an effect, set intensity to 1.0 (100%) for maximum effect
+          // When disabling, keep the current intensity for when it's re-enabled
+          return { 
+            ...effect, 
+            enabled: !effect.enabled,
+            intensity: !effect.enabled ? 1.0 : effect.intensity
+          };
+        }
+        return effect;
+      })
     );
   }, []);
 

@@ -51,6 +51,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
   }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
 
   // Update SVG filters when effects change
+  // Re-enabled: Using SVG filters for color vision matrix transformations
   useEffect(() => {
     updateSVGFilters(effects);
   }, [effects]);
@@ -357,12 +358,34 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
       );
       
-      // Only generate filters if there are effects to process
-      if (nonDiplopiaEffects.length > 0) {
-        const filters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-
-        return filters ? { ...baseStyle, filter: filters } : baseStyle;
+      // Handle color vision conditions separately with SVG filters
+      const colorVisionEffect = enabledEffects.find(e => 
+        ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+      );
+      
+      const otherEffects = nonDiplopiaEffects.filter(e => 
+        !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+      );
+      
+      const filters: string[] = [];
+      
+      // Add color vision filter if present
+      if (colorVisionEffect) {
+        const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+        if (cssFilter) {
+          filters.push(cssFilter);
+        }
       }
+      
+      // Add other filters
+      if (otherEffects.length > 0) {
+        const otherFilters = generateCSSFilters(otherEffects, diplopiaSeparation, diplopiaDirection);
+        if (otherFilters) {
+          filters.push(otherFilters);
+        }
+      }
+      
+      return filters.length > 0 ? { ...baseStyle, filter: filters.join(' ') } : baseStyle;
     }
 
     return baseStyle;
@@ -489,10 +512,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 overflow: 'hidden', // Clip overlays to video boundaries
                 // Apply CSS matrix filters for color vision conditions with intensity scaling
                 filter: (() => {
+                  console.log('Visualizer: Processing effects:', effects);
                   const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+                  console.log('Visualizer: Enabled effects:', enabledEffects);
                   const colorVisionEffect = enabledEffects.find(e => 
                     ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
                   );
+                  console.log('Visualizer: Color vision effect found:', colorVisionEffect);
                   
                   // Apply other CSS filters (blur, etc.) for non-color-vision effects
                   const otherEffects = enabledEffects.filter(e => 
@@ -504,8 +530,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                   // Add color vision filter if present
                   if (colorVisionEffect) {
 
+                    // Debug logging
+                    console.log('Color vision effect:', colorVisionEffect.id, 'intensity:', colorVisionEffect.intensity);
+                    
                     // Use CSS filters with intensity scaling instead of static SVG filters
                     const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                    console.log('Generated CSS filter:', cssFilter);
+                    
                     if (cssFilter) {
                       filters.push(cssFilter);
                     }
@@ -544,10 +575,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 overflow: 'hidden', // Clip overlays to image boundaries
                 // Apply CSS matrix filters for color vision conditions with intensity scaling
                 filter: (() => {
+                  console.log('Visualizer: Processing effects:', effects);
                   const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+                  console.log('Visualizer: Enabled effects:', enabledEffects);
                   const colorVisionEffect = enabledEffects.find(e => 
                     ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
                   );
+                  console.log('Visualizer: Color vision effect found:', colorVisionEffect);
                   
                   // Apply other CSS filters (blur, etc.) for non-color-vision effects
                   const otherEffects = enabledEffects.filter(e => 
@@ -559,8 +593,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                   // Add color vision filter if present
                   if (colorVisionEffect) {
 
+                    // Debug logging
+                    console.log('Color vision effect:', colorVisionEffect.id, 'intensity:', colorVisionEffect.intensity);
+                    
                     // Use CSS filters with intensity scaling instead of static SVG filters
                     const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                    console.log('Generated CSS filter:', cssFilter);
+                    
                     if (cssFilter) {
                       filters.push(cssFilter);
                     }

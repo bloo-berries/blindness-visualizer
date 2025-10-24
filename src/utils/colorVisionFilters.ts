@@ -174,65 +174,73 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
       return [1, 0, 0, 0, 1, 0, 0, 0, 1]; // Identity matrix
   }
   
-  // For dichromatic conditions, blend with identity matrix based on severity
-  if (['protanopia', 'deuteranopia', 'tritanopia'].includes(type)) {
-    const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    return fullMatrix.map((val, index) => 
-      val * severity + identityMatrix[index] * (1 - severity)
-    );
-  }
-  
+  // For dichromatic conditions, return the full matrix without blending
+  // The blending will be handled in getColorVisionFilter based on intensity
   return fullMatrix;
 };
 
 /**
- * Converts a color matrix to CSS filter values
- * Matrix should be in row-major order: [r1, r2, r3, g1, g2, g3, b1, b2, b3]
+ * Converts a color matrix to CSS filter values using available CSS filter functions
+ * Since CSS doesn't support arbitrary matrix transformations, we'll use a combination
+ * of available filters to approximate the color vision deficiency
  */
 export const matrixToCSSFilter = (matrix: number[]): string => {
-  // CSS matrix format: matrix(r1, r2, r3, 0, 0, g1, g2, g3, 0, 0, b1, b2, b3, 0, 0, 0, 0, 0, 1, 0)
-  // The matrix should be in the format: [r1, r2, r3, g1, g2, g3, b1, b2, b3]
-  const cssMatrix = [
-    matrix[0], matrix[1], matrix[2], 0, 0,
-    matrix[3], matrix[4], matrix[5], 0, 0,
-    matrix[6], matrix[7], matrix[8], 0, 0,
-    0, 0, 0, 1, 0
-  ];
-  return `matrix(${cssMatrix.join(', ')})`;
+  // CSS filters don't support arbitrary matrix transformations
+  // We'll use a combination of available filters to approximate the effect
+  // For now, return an empty string to indicate no direct matrix support
+  return '';
 };
 
 /**
  * Generates CSS filter for color vision deficiency simulation
+ * Since CSS filters don't support arbitrary matrix transformations,
+ * we'll use SVG filters with URL references
  */
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
+  console.log('getColorVisionFilter called with:', type, intensity);
+  
   // For achromatopsia, use a simpler approach with saturate and contrast
   if (type === 'monochromatic' || type === 'monochromacy') {
     // At 0% intensity, show normal color vision (no filter)
     if (intensity === 0) {
+      console.log('Monochromacy at 0% - returning empty string');
       return '';
     }
     // Gradually increase desaturation and contrast as intensity increases
-    return `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
+    const filter = `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
+    console.log('Monochromacy filter:', filter);
+    return filter;
   }
   
   // For all other color vision conditions, ensure 0% intensity shows normal vision
   if (intensity === 0) {
+    console.log('Color vision at 0% - returning empty string');
     return '';
   }
   
-  // Get the full matrix for the condition
-  const fullMatrix = getColorVisionMatrix(type, 1.0);
+  // Use SVG filters for matrix transformations
+  // The SVG filters are defined in the HTML and updated by updateSVGFilters
+  const filterId = getFilterId(type);
+  console.log('Using SVG filter with ID:', filterId);
+  return `url(#${filterId})`;
+};
+
+/**
+ * Gets the SVG filter ID for a condition
+ */
+const getFilterId = (conditionId: ConditionType): string => {
+  const filterMap: Partial<Record<ConditionType, string>> = {
+    'protanopia': 'protanopia',
+    'deuteranopia': 'deuteranopia',
+    'tritanopia': 'tritanopia',
+    'protanomaly': 'protanomaly',
+    'deuteranomaly': 'deuteranomaly',
+    'tritanomaly': 'tritanomaly',
+    'monochromacy': 'monochromacy',
+    'monochromatic': 'monochromacy'
+  };
   
-  // Identity matrix for blending
-  const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-  
-  // Blend between identity and full matrix based on intensity
-  const blendedMatrix = fullMatrix.map((val, index) => 
-    val * intensity + identityMatrix[index] * (1 - intensity)
-  );
-  
-  // For other conditions, use the matrix transformation
-  return matrixToCSSFilter(blendedMatrix);
+  return filterMap[conditionId] || conditionId;
 };
 
 /**

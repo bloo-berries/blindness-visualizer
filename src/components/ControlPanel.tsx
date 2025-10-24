@@ -54,6 +54,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange
 }) => {
+  // Update SVG filters when effects change
+  // DISABLED: Now using CSS filters exclusively instead of SVG filters
+  // React.useEffect(() => {
+  //   updateSVGFilters(effects);
+  // }, [effects]);
   // Create effect lookup map for O(1) access instead of O(n) finds
   // const effectMap = useMemo(() => new Map(effects.map(e => [e.id, e])), [effects]);
   // const getEffect = useCallback((id: string) => effectMap.get(id as ConditionType), [effectMap]);
@@ -444,21 +449,41 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 position: 'relative'
               }}
             >
-              {enabledEffectsCount > 0 ? (
-                <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
-                  {/* Base image with color vision filters applied directly */}
-                  <Box 
-                    component="img" 
-                    src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
-                    alt="Base reference image"
-                    sx={{ 
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                      borderRadius: 1,
+              {(() => {
+                return enabledEffectsCount > 0;
+              })() ? (
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '100%',
+                  overflow: 'hidden', // Clip overlays to container boundaries
+                  borderRadius: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {/* Image wrapper to contain overlays */}
+                  <Box sx={{
+                    position: 'relative',
+                    display: 'inline-block',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    // Ensure overlays are clipped to image boundaries
+                    overflow: 'hidden'
+                  }}>
+                    {/* Base image with color vision filters applied directly */}
+                    <Box 
+                      component="img" 
+                      src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
+                      alt="Base reference image"
+                      sx={{ 
+                        display: 'block',
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        width: 'auto',
+                        height: 'auto',
+                        objectFit: 'contain',
+                        borderRadius: 1,
                       // Apply filters directly to the image for filter-based conditions
                       filter: (() => {
                         const filterBasedConditions = enabledEffects.filter(effect => {
@@ -565,14 +590,18 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     const effectType = effect.id as ConditionType;
                     const intensity = effect.intensity;
                     
-                  // Generate overlay styles based on condition type
-                  const overlayStyle: any = {
+                    // Generate overlay styles based on condition type
+                    const overlayStyle: any = {
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       width: '100%',
                       height: '100%',
-                      pointerEvents: 'none'
+                      pointerEvents: 'none',
+                      // Clip overlays to image boundaries
+                      clipPath: 'inset(0)',
+                      // Ensure overlays are positioned relative to the image
+                      transform: 'translateZ(0)'
                     };
 
                     // Set z-index based on condition type
@@ -1065,6 +1094,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                         if (glaucomaBackground === '') {
                           glaucomaBackground = `rgba(0,0,0,${intensity * 0.2})`;
                         }
+                        
                         overlayStyle.background = glaucomaBackground;
                         overlayStyle.mixBlendMode = 'multiply';
                         overlayStyle.opacity = Math.min(0.95, intensity);
@@ -2374,6 +2404,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                       />
                     );
                   })}
+                  </Box>
                 </Box>
               ) : (
                 <Box 
@@ -2385,6 +2416,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     maxHeight: '100%', 
                     objectFit: 'contain',
                     borderRadius: 1
+                  }}
+                  onLoad={() => {
                   }}
                   onError={(e) => {
                     e.currentTarget.src = `https://via.placeholder.com/400x300/cccccc/666666?text=Garden+Image`;

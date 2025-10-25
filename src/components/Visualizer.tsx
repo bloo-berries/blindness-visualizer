@@ -467,35 +467,14 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         backgroundColor: '#000',
         overflow: 'hidden'
       }}>
-        {/* Comparison Header */}
-        <Box sx={{ 
-          position: 'absolute', 
-          top: 0, 
-          left: 0, 
-          right: 0, 
-          zIndex: 1000,
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          color: 'white',
-          padding: '8px 16px',
-          textAlign: 'center'
-        }}>
-          <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
-            {isFamousPeopleMode && personName && personCondition 
-              ? `${personName} - ${personCondition}` 
-              : 'Vision Condition Simulation - Multiple Vision Conditions'}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            Side-by-side comparison: Vision simulation (left) vs. Original video (right)
-          </Typography>
-        </Box>
 
         {/* Left side - Simulation video */}
         <Box sx={{ 
           position: 'absolute',
           left: 0,
-          top: '60px',
+          top: 0,
           width: '50%',
-          height: 'calc(100% - 60px)',
+          height: '100%',
           borderRight: '2px solid #fff'
         }}>
           <Box sx={{ 
@@ -564,9 +543,9 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         <Box sx={{ 
           position: 'absolute',
           right: 0,
-          top: '60px',
+          top: 0,
           width: '50%',
-          height: 'calc(100% - 60px)'
+          height: '100%'
         }}>
           <Box sx={{ 
             position: 'absolute', 

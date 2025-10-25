@@ -10,11 +10,14 @@ const Footer: React.FC = () => {
     <Box 
       component="footer" 
       sx={{ 
-        mt: 1, 
         py: 2, 
         bgcolor: 'grey.50',
-        position: 'relative',
-        zIndex: 10001
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10001,
+        borderTop: '1px solid #e2e8f0'
       }}
     >
       <Container maxWidth="lg">
@@ -22,16 +25,21 @@ const Footer: React.FC = () => {
           sx={{ 
             display: 'flex', 
             flexDirection: { xs: 'column', sm: 'row' },
-            justifyContent: 'space-between',
-            alignItems: { xs: 'center', sm: 'center' },
-            gap: 2
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 2,
+            position: 'relative'
           }}
         >
           {/* Left section - Copyright */}
           <Typography 
             variant="body2" 
             color="text.secondary"
-            sx={{ fontWeight: 500 }}
+            sx={{ 
+              fontWeight: 500,
+              position: 'absolute',
+              left: 0
+            }}
           >
             © {new Date().getFullYear()} VisionSim
           </Typography>
@@ -65,7 +73,8 @@ const Footer: React.FC = () => {
           <Box sx={{ 
             display: 'flex', 
             gap: 3,
-            mt: { xs: 2, sm: 0 } 
+            position: 'absolute',
+            right: 0
           }}>
             <Link 
               href="#" 

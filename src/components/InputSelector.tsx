@@ -51,19 +51,10 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
     <Box 
       sx={{ py: 0.5 }}
       role="region"
-      aria-labelledby="input-selector-heading"
     >
-      <Typography 
-        variant="h6" 
-        gutterBottom
-        id="input-selector-heading"
-        sx={{ mb: 1.5 }}
-      >
-        Choose Your Input Source
-      </Typography>
       
       <Grid container spacing={1.5}>
-        {/* Demo Video - Large, centered option */}
+        {/* Demo Video - Large, prominent option */}
         {inputOptions
           .filter(option => option.type === 'youtube')
           .map((option) => (
@@ -81,8 +72,9 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   border: currentSource.type === option.type ? 2 : 0,
                   borderColor: 'primary.main',
                   backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
-                  maxWidth: '400px',
-                  mx: 'auto'
+                  maxWidth: '500px',
+                  mx: 'auto',
+                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
                 }}
                 onClick={() => {
                   if (option.isPremium) {
@@ -113,27 +105,27 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   }
                 }}
               >
-                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 1.5 }}>
-                  <Box sx={{ fontSize: '36px', mb: 1 }}>
+                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 3 }}>
+                  <Box sx={{ fontSize: '48px', mb: 2 }}>
                     {option.icon}
                   </Box>
                   <Typography 
-                    variant="subtitle1" 
+                    variant="h5" 
                     component="div" 
-                    sx={{ mt: 1, fontWeight: 600 }}
+                    sx={{ mt: 1, fontWeight: 700 }}
                   >
                     {option.title}
                   </Typography>
                   <Typography 
-                    variant="body2" 
+                    variant="body1" 
                     color="text.secondary"
                     id={`${option.type}-description`}
-                    sx={{ mt: 0.5, fontSize: '0.8rem' }}
+                    sx={{ mt: 1, fontSize: '1rem' }}
                   >
                     {option.description}
                   </Typography>
                   {option.isPremium && (
-                    <Box sx={{ mt: 1.5 }}>
+                    <Box sx={{ mt: 2 }}>
                       <Chip
                         icon={<Star />}
                         label="Coming Soon: Premium Feature"
@@ -141,10 +133,10 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                         variant="outlined"
                         sx={{
                           fontWeight: 'bold',
-                          fontSize: '0.7rem',
-                          height: '20px',
+                          fontSize: '0.8rem',
+                          height: '24px',
                           '& .MuiChip-icon': {
-                            fontSize: '14px'
+                            fontSize: '16px'
                           }
                         }}
                       />
@@ -220,7 +212,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                         variant="body2" 
                         color="text.secondary"
                         id={`${option.type}-description`}
-                        sx={{ fontSize: '0.75rem' }}
+                        sx={{ mt: 0.5, fontSize: '0.75rem' }}
                       >
                         {option.description}
                       </Typography>

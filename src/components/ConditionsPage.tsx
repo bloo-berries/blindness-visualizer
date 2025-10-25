@@ -341,7 +341,7 @@ const ConditionsPage: React.FC = () => {
   };
 
   return (
-    <Box className="conditions-glossary">
+    <Box className="conditions-glossary" sx={{ pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>

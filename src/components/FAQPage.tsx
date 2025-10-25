@@ -334,7 +334,7 @@ const FAQPage: React.FC = () => {
   };
 
   return (
-    <Box className="faq-page">
+    <Box className="faq-page" sx={{ pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>

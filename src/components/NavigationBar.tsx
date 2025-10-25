@@ -158,12 +158,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 size="large"
                 sx={{
                   ml: 2,
-                  bgcolor: 'primary.main',
-                  color: 'white',
+                  bgcolor: 'background.paper',
+                  color: 'primary.main',
                   width: '50px', // Increased from 40px
                   height: '50px', // Increased from 40px
                   '&:hover': {
-                    bgcolor: 'primary.dark',
+                    bgcolor: 'grey.100',
                   },
                   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                 }}

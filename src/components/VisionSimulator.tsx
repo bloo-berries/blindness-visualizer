@@ -140,7 +140,7 @@ const VisionSimulator: React.FC = () => {
     switch (step) {
       case 0:
         return (
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: 2 }}>
             <InputSelector 
               currentSource={inputSource}
               onSourceChange={handleSourceChange}
@@ -149,7 +149,7 @@ const VisionSimulator: React.FC = () => {
         );
       case 1:
         return (
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: 2 }}>
             <ControlPanel 
               effects={effects}
               onToggle={handleToggle}
@@ -165,7 +165,7 @@ const VisionSimulator: React.FC = () => {
       case 2:
         
         return (
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: 2 }}>
             <Visualizer 
               effects={effects} 
               inputSource={inputSource}
@@ -213,7 +213,7 @@ const VisionSimulator: React.FC = () => {
   const isFamousPeopleMode = preconfiguredPerson !== null;
 
   return (
-    <Box className="app-container">
+    <Box className="app-container" sx={{ pb: 10 }}>
       <NavigationBar 
         showHomeButton={true}
         onHomeClick={handleHomeClick}
@@ -238,8 +238,8 @@ const VisionSimulator: React.FC = () => {
         <Paper 
           elevation={0} 
           sx={{ 
-            p: 3,
-            pt: 5,
+            p: 2,
+            pt: 3,
             borderRadius: 3,
             border: '1px solid #e2e8f0',
             backgroundColor: 'background.paper'
@@ -256,7 +256,8 @@ const VisionSimulator: React.FC = () => {
             sx={{ 
               fontWeight: 700,
               color: 'text.primary',
-              mb: 3
+              mb: 2,
+              mt: 3
             }}
           >
             Vision Condition Simulator
@@ -266,20 +267,11 @@ const VisionSimulator: React.FC = () => {
             component="p"
             align="center"
             color="text.secondary"
-            sx={{ mb: 2 }}
+            sx={{ mb: 1 }}
             id="simulator-description"
           >
-            Use the Tab key to navigate between controls, Arrow keys to adjust sliders, 
-            and Enter/Space to activate buttons. Press Alt+A (Windows/Linux) or Option+A (Mac) to open accessibility settings.
-          </Typography>
-          <Typography 
-            variant="h6" 
-            gutterBottom 
-            align="center" 
-            color="text.secondary"
-            sx={{ mb: 4, fontWeight: 400 }}
-          >
-            Experience and understand different vision conditions in real-time
+            Use Tab to move, Arrows to adjust, and Enter/Space to activate. 
+            Press Alt+A (Win/Linux) or Option+A (Mac) for accessibility settings.
           </Typography>
 
           {preconfiguredPerson && (
@@ -306,28 +298,11 @@ const VisionSimulator: React.FC = () => {
             </Box>
           )}
 
-          {/* Video playing message for all visualizations */}
-          <Box sx={{ 
-            mb: 2, 
-            p: 1.5, 
-            backgroundColor: '#e3f2fd', 
-            borderRadius: 1, 
-            border: '1px solid #2196f3',
-            textAlign: 'center'
-          }}>
-            <Typography 
-              variant="body2" 
-              className="video-info-text"
-              sx={{ color: '#1976d2', fontWeight: 500 }}
-            >
-              📹 Although you may not be able to see a video, a video is actively playing behind this blindness visualization.
-            </Typography>
-          </Box>
 
           <Stepper 
             activeStep={activeStep} 
             sx={{ 
-              my: 2,
+              my: 1,
               '& .MuiStepLabel-root .Mui-completed': {
                 color: 'primary.main',
               },
@@ -361,23 +336,16 @@ const VisionSimulator: React.FC = () => {
 
           {getStepContent(activeStep)}
 
-          {/* Fixed navigation buttons that stay visible at the bottom of the viewport */}
+          {/* Navigation buttons positioned at the bottom of the content */}
           <Box 
             sx={{ 
-              position: 'fixed',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '16px 0',
+              mt: 3,
+              p: 2,
               backgroundColor: 'background.paper',
               borderTop: '1px solid #e2e8f0',
-              boxShadow: '0px -4px 8px rgba(0,0,0,0.15)',
-              zIndex: 1000,
-              opacity: 1,
-              visibility: 'visible'
+              borderRadius: '0 0 12px 12px'
             }}
           >
-            <Container maxWidth="lg">
               <Box
                 sx={{
                   display: 'flex',
@@ -413,11 +381,7 @@ const VisionSimulator: React.FC = () => {
                   </span>
                 </Tooltip>
               </Box>
-            </Container>
           </Box>
-          
-          {/* Spacer to prevent content from being hidden behind fixed navigation */}
-          <Box sx={{ height: '72px', mt: 3 }} />
         </Paper>
         <Footer />
       </Container>

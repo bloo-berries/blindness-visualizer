@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
+    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar showHomeButton={false} onHomeClick={() => {}} />
       
       {/* Hero Section */}

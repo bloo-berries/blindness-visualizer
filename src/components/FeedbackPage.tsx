@@ -158,7 +158,7 @@ const FeedbackPage: React.FC = () => {
   const isFormValid = formData.name.trim() && formData.email.trim() && formData.subject.trim() && formData.message.trim();
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
+    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 8 }}>

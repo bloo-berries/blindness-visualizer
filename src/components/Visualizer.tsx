@@ -533,7 +533,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               }}>
                 <img
                   src={inputSource.url}
-                  alt="Uploaded image with vision condition simulation applied"
+                  alt="Uploaded content with vision condition simulation applied"
                   style={{ 
                     width: '100%', 
                     height: '100%',

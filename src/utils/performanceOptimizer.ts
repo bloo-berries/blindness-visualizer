@@ -60,7 +60,7 @@ export class PerformanceOptimizer {
   /**
    * Throttles function calls based on performance
    */
-  throttle<T extends (...args: any[]) => any>(
+  throttle<T extends (...args: unknown[]) => unknown>(
     func: T,
     conditionCount: number
   ): T {
@@ -68,7 +68,7 @@ export class PerformanceOptimizer {
     const interval = 1000 / frameRate;
     let lastCall = 0;
 
-    return ((...args: any[]) => {
+    return ((...args: Parameters<T>) => {
       const now = performance.now();
       if (now - lastCall >= interval) {
         lastCall = now;

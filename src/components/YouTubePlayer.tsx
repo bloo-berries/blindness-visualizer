@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 interface YouTubePlayerProps {
   videoUrl: string;
-  onReady: (event: any) => void;
+  onReady: (event: { target: any }) => void;
 }
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoUrl, onReady }) => {

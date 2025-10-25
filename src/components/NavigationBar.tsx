@@ -46,7 +46,29 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   ];
 
   return (
-    <AppBar 
+    <>
+      {/* Skip Navigation Links */}
+      <Box
+        component="a"
+        href="#main-content"
+        sx={{
+          position: 'absolute',
+          top: -40,
+          left: 6,
+          background: 'white',
+          color: 'black',
+          padding: '8px 16px',
+          textDecoration: 'none',
+          borderRadius: '4px',
+          zIndex: 9999,
+          '&:focus': {
+            top: 6,
+          }
+        }}
+      >
+        Skip to main content
+      </Box>
+      <AppBar 
       position="fixed" 
       elevation={0}
       sx={{
@@ -204,6 +226,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         </Toolbar>
       </Container>
     </AppBar>
+    </>
   );
 };
 

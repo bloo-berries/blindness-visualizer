@@ -219,7 +219,23 @@ const VisionSimulator: React.FC = () => {
         onHomeClick={handleHomeClick}
       />
       
-      {/* Performance Monitor removed for general public use */}
+      {/* Screen Reader Announcements */}
+      <Box
+        component="div"
+        aria-live="polite"
+        aria-atomic="true"
+        sx={{
+          position: 'absolute',
+          left: '-10000px',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden'
+        }}
+      >
+        {activeStep === 0 && "Step 1: Choose your input source - webcam, image upload, or YouTube video"}
+        {activeStep === 1 && "Step 2: Select vision conditions to simulate"}
+        {activeStep === 2 && "Step 3: View your vision simulation"}
+      </Box>
       <a 
         href="#main-content" 
         className="skip-to-content"

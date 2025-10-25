@@ -468,6 +468,24 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         overflow: 'hidden'
       }}>
 
+        {/* Screen Reader Announcements for Simulation Status */}
+        <Box
+          component="div"
+          aria-live="polite"
+          aria-atomic="true"
+          sx={{
+            position: 'absolute',
+            left: '-10000px',
+            width: '1px',
+            height: '1px',
+            overflow: 'hidden'
+          }}
+        >
+          {effects.filter(e => e.enabled).length > 0 && 
+            `Simulation active with ${effects.filter(e => e.enabled).length} vision condition${effects.filter(e => e.enabled).length > 1 ? 's' : ''} applied`
+          }
+        </Box>
+
         {/* Left side - Simulation video */}
         <Box sx={{ 
           position: 'absolute',
@@ -501,7 +519,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
                 <iframe
                   {...YOUTUBE_IFRAME_PROPS}
                   src={getVideoUrl()}
-                  title="Vision simulation"
+                  title="Vision simulation video with applied visual effects"
+                  aria-label="YouTube video with vision condition simulation applied"
                   style={{ width: '100%', height: '100%' }}
                 />
               </div>
@@ -514,7 +533,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               }}>
                 <img
                   src={inputSource.url}
-                  alt="Uploaded with vision simulation"
+                  alt="Uploaded image with vision condition simulation applied"
                   style={{ 
                     width: '100%', 
                     height: '100%',
@@ -747,13 +766,10 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
             maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain',
             // Apply CSS matrix filters for color vision conditions with intensity scaling
             filter: (() => {
-              // console.log('Main mode: Processing effects:', effects);
               const { enabledEffects } = effectProcessor.current.updateEffects(effects);
-              // console.log('Main mode: Enabled effects:', enabledEffects);
               const colorVisionEffect = enabledEffects.find(e => 
                 ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
               );
-              // console.log('Main mode: Color vision effect found:', colorVisionEffect);
               
               // Apply other CSS filters (blur, etc.) for non-color-vision effects
               const otherEffects = enabledEffects.filter(e => 
@@ -764,9 +780,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
               
               // Add color vision filter if present
               if (colorVisionEffect) {
-                // console.log('Main mode: Color vision effect:', colorVisionEffect.id, 'intensity:', colorVisionEffect.intensity);
                 const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-                // console.log('Main mode: Generated CSS filter:', cssFilter);
                 if (cssFilter) {
                   filters.push(cssFilter);
                 }

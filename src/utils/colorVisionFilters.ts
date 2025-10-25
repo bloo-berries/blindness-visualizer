@@ -197,31 +197,26 @@ export const matrixToCSSFilter = (matrix: number[]): string => {
  * we'll use SVG filters with URL references
  */
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
-  // console.log('getColorVisionFilter called with:', type, intensity);
   
   // For achromatopsia, use a simpler approach with saturate and contrast
   if (type === 'monochromatic' || type === 'monochromacy') {
     // At 0% intensity, show normal color vision (no filter)
     if (intensity === 0) {
-      // console.log('Monochromacy at 0% - returning empty string');
       return '';
     }
     // Gradually increase desaturation and contrast as intensity increases
     const filter = `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
-    // console.log('Monochromacy filter:', filter);
     return filter;
   }
   
   // For all other color vision conditions, ensure 0% intensity shows normal vision
   if (intensity === 0) {
-    // console.log('Color vision at 0% - returning empty string');
     return '';
   }
   
   // Use SVG filters for matrix transformations
   // The SVG filters are defined in the HTML and updated by updateSVGFilters
   const filterId = getFilterId(type);
-  // console.log('Using SVG filter with ID:', filterId);
   return `url(#${filterId})`;
 };
 

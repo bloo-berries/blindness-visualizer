@@ -37,6 +37,13 @@ const AccessibilityMenu: React.FC = () => {
     setAnchorEl(null);
   };
 
+  // Focus management for keyboard navigation
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      handleClose();
+    }
+  };
+
   const open = Boolean(anchorEl);
 
   // Handle keyboard shortcut Alt + A (Windows/Linux) or Option + A (Mac)
@@ -159,6 +166,7 @@ const AccessibilityMenu: React.FC = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        onKeyDown={handleKeyDown}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',

@@ -209,6 +209,23 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       role="region" 
       aria-label="Vision condition controls"
     >
+      {/* Screen Reader Announcements for Condition Changes */}
+      <Box
+        component="div"
+        aria-live="polite"
+        aria-atomic="true"
+        sx={{
+          position: 'absolute',
+          left: '-10000px',
+          width: '1px',
+          height: '1px',
+          overflow: 'hidden'
+        }}
+      >
+        {effects.filter(e => e.enabled).length > 0 && 
+          `Vision conditions enabled: ${effects.filter(e => e.enabled).map(e => e.name).join(', ')}`
+        }
+      </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography 
           variant="h6" 
@@ -591,7 +608,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                     const intensity = effect.intensity;
                     
                     // Generate overlay styles based on condition type
-                    const overlayStyle: any = {
+                    const overlayStyle: React.CSSProperties = {
                       position: 'absolute',
                       top: 0,
                       left: 0,

@@ -14,6 +14,7 @@ import FAQPage from './components/FAQPage';
 import AboutPage from './components/AboutPage';
 import FeedbackPage from './components/FeedbackPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import './styles/App.css';
 
 let theme = createTheme({
@@ -147,22 +148,29 @@ theme = responsiveFontSizes(theme);
 
 const App: React.FC = () => {
   return (
-    <AccessibilityProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/simulator" element={<VisionSimulator />} />
-            <Route path="/famous-people" element={<FamousBlindPeople />} />
-            <Route path="/conditions" element={<ConditionsPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/feedback" element={<FeedbackPage />} />
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </AccessibilityProvider>
+    <ErrorBoundary>
+      <AccessibilityProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router
+            future={{
+              v7_startTransition: true,
+              v7_relativeSplatPath: true
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/simulator" element={<VisionSimulator />} />
+              <Route path="/famous-people" element={<FamousBlindPeople />} />
+              <Route path="/conditions" element={<ConditionsPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/feedback" element={<FeedbackPage />} />
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </AccessibilityProvider>
+    </ErrorBoundary>
   );
 };
 

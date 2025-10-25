@@ -11,7 +11,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -29,6 +29,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleHomeClick = () => {
     if (onHomeClick) {
@@ -47,27 +48,29 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   return (
     <>
-      {/* Skip Navigation Links */}
-      <Box
-        component="a"
-        href="#main-content"
-        sx={{
-          position: 'absolute',
-          top: -40,
-          left: 6,
-          background: 'white',
-          color: 'black',
-          padding: '8px 16px',
-          textDecoration: 'none',
-          borderRadius: '4px',
-          zIndex: 9999,
-          '&:focus': {
-            top: 6,
-          }
-        }}
-      >
-        Skip to main content
-      </Box>
+      {/* Skip Navigation Links - Only show on non-home pages */}
+      {location.pathname !== '/' && (
+        <Box
+          component="a"
+          href="#main-content"
+          sx={{
+            position: 'absolute',
+            top: -40,
+            left: 6,
+            background: 'white',
+            color: 'black',
+            padding: '8px 16px',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            zIndex: 9999,
+            '&:focus': {
+              top: 6,
+            }
+          }}
+        >
+          Skip to main content
+        </Box>
+      )}
       <AppBar 
       position="fixed" 
       elevation={0}

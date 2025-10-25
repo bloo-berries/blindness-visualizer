@@ -9,6 +9,45 @@
       name="description"
       content="Vision Condition Visualizer - A tool for understanding different vision conditions"
     />
+    <!-- Content Security Policy -->
+    <script>
+      // Set CSP based on environment
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Development CSP - more permissive
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Content-Security-Policy';
+        meta.content = `
+          default-src 'self';
+          script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* blob:;
+          style-src 'self' 'unsafe-inline';
+          img-src 'self' data: blob: http://localhost:* https://localhost:*;
+          connect-src 'self' http://localhost:* https://localhost:* ws://localhost:* wss://localhost:*;
+          font-src 'self' data:;
+          object-src 'none';
+          base-uri 'self';
+          form-action 'self';
+          worker-src 'self' blob:;
+          child-src 'self' blob:;
+        `;
+        document.head.appendChild(meta);
+      } else {
+        // Production CSP - more restrictive
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Content-Security-Policy';
+        meta.content = `
+          default-src 'self';
+          script-src 'self' 'unsafe-inline';
+          style-src 'self' 'unsafe-inline';
+          img-src 'self' data: blob:;
+          connect-src 'self';
+          font-src 'self';
+          object-src 'none';
+          base-uri 'self';
+          form-action 'self';
+        `;
+        document.head.appendChild(meta);
+      }
+    </script>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Vision Condition Visualizer</title>

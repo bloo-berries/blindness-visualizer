@@ -53,6 +53,17 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Vision Condition Visualizer</title>
+    <!-- Wistia Player Scripts -->
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script src="https://fast.wistia.com/embed/qjdv24o4kb.js" async type="module"></script>
+    <style>
+      wistia-player[media-id='qjdv24o4kb']:not(:defined) { 
+        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/qjdv24o4kb/swatch'); 
+        display: block; 
+        filter: blur(5px); 
+        padding-top:37.92%; 
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

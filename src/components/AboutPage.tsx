@@ -44,8 +44,8 @@ const AboutPage: React.FC = () => {
       await new Promise<void>((resolve, reject) => {
         playerScript.onload = () => resolve();
         playerScript.onerror = () => {
-          console.warn('Wistia player script failed to load, but continuing...');
-          resolve(); // Continue even if script fails
+          // Continue even if script fails - Wistia may load via other means
+          resolve();
         };
         document.head.appendChild(playerScript);
       });
@@ -61,15 +61,15 @@ const AboutPage: React.FC = () => {
       await new Promise<void>((resolve, reject) => {
         embedScript.onload = () => resolve();
         embedScript.onerror = () => {
-          console.warn('Wistia embed script failed to load, but continuing...');
-          resolve(); // Continue even if script fails
+          // Continue even if script fails - Wistia may load via other means
+          resolve();
         };
         document.head.appendChild(embedScript);
       });
     };
 
-    loadWistiaScripts().catch((error) => {
-      console.error('Error loading Wistia scripts:', error);
+    loadWistiaScripts().catch(() => {
+      // Silently handle script loading errors - video may still work
     });
   }, []);
 

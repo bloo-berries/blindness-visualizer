@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { 
   Container, 
   Typography, 
@@ -9,41 +9,68 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
 const AboutPage: React.FC = () => {
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Load Wistia scripts
-    const loadWistiaScripts = () => {
+    const loadWistiaScripts = async () => {
       // Check if scripts are already loaded
       if (document.querySelector('script[src*="fast.wistia.com/player.js"]')) {
         return;
+      }
+
+      // Add Wistia styles first
+      if (!document.querySelector('style[data-wistia-styles]')) {
+        const style = document.createElement('style');
+        style.setAttribute('data-wistia-styles', 'true');
+        style.textContent = `
+          wistia-player[media-id='qjdv24o4kb']:not(:defined) { 
+            background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/qjdv24o4kb/swatch'); 
+            display: block; 
+            filter: blur(5px); 
+            padding-top:37.92%; 
+          }
+        `;
+        document.head.appendChild(style);
       }
 
       // Load Wistia player script
       const playerScript = document.createElement('script');
       playerScript.src = 'https://fast.wistia.com/player.js';
       playerScript.async = true;
-      document.head.appendChild(playerScript);
+      playerScript.crossOrigin = 'anonymous';
+      
+      // Wait for player script to load
+      await new Promise<void>((resolve, reject) => {
+        playerScript.onload = () => resolve();
+        playerScript.onerror = () => {
+          console.warn('Wistia player script failed to load, but continuing...');
+          resolve(); // Continue even if script fails
+        };
+        document.head.appendChild(playerScript);
+      });
 
       // Load Wistia embed script
       const embedScript = document.createElement('script');
       embedScript.src = 'https://fast.wistia.com/embed/qjdv24o4kb.js';
       embedScript.async = true;
       embedScript.type = 'module';
-      document.head.appendChild(embedScript);
-
-      // Add Wistia styles
-      const style = document.createElement('style');
-      style.textContent = `
-        wistia-player[media-id='qjdv24o4kb']:not(:defined) { 
-          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/qjdv24o4kb/swatch'); 
-          display: block; 
-          filter: blur(5px); 
-          padding-top:37.92%; 
-        }
-      `;
-      document.head.appendChild(style);
+      embedScript.crossOrigin = 'anonymous';
+      
+      // Wait for embed script to load
+      await new Promise<void>((resolve, reject) => {
+        embedScript.onload = () => resolve();
+        embedScript.onerror = () => {
+          console.warn('Wistia embed script failed to load, but continuing...');
+          resolve(); // Continue even if script fails
+        };
+        document.head.appendChild(embedScript);
+      });
     };
 
-    loadWistiaScripts();
+    loadWistiaScripts().catch((error) => {
+      console.error('Error loading Wistia scripts:', error);
+    });
   }, []);
 
   return (
@@ -126,13 +153,23 @@ const AboutPage: React.FC = () => {
                 position: 'relative'
               }}>
                 {/* Wistia Video Player */}
-                <Box sx={{ 
-                  width: '100%',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                  overflow: 'hidden'
-                }}>
-                  <wistia-player media-id="qjdv24o4kb" aspect="2.6373626373626373"></wistia-player>
+                <Box 
+                  ref={videoContainerRef}
+                  sx={{ 
+                    width: '100%',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    minHeight: '300px',
+                    backgroundColor: '#000'
+                  }}
+                >
+                  <wistia-player 
+                    media-id="qjdv24o4kb" 
+                    aspect="2.6373626373626373"
+                    style={{ width: '100%', height: '100%', display: 'block' }}
+                  />
                 </Box>
                 
                 <Typography variant="body2" sx={{ 

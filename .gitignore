@@ -28,4 +28,4 @@ yarn-error.log*
 
 # temporary files
 test-deploy.txt
-*.tmp 
+*.tmp src/components/ControlPanel.tsx.backup

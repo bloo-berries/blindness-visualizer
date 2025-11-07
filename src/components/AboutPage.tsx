@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { 
   Container, 
   Typography, 
@@ -9,53 +9,6 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
 const AboutPage: React.FC = () => {
-  const videoContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Wait for Wistia scripts to load, then create the player element
-    const createPlayer = async () => {
-      if (!videoContainerRef.current) return;
-
-      // Check if player already exists
-      if (videoContainerRef.current.querySelector('wistia-player')) {
-        return;
-      }
-
-      // Wait for the custom element to be defined
-      if (customElements.get('wistia-player')) {
-        // Custom element is already defined, create it immediately
-        const playerElement = document.createElement('wistia-player');
-        playerElement.setAttribute('media-id', 'qjdv24o4kb');
-        playerElement.setAttribute('aspect', '2.6373626373626373');
-        videoContainerRef.current.appendChild(playerElement);
-      } else {
-        // Wait for custom element to be defined
-        try {
-          await customElements.whenDefined('wistia-player');
-          if (videoContainerRef.current && !videoContainerRef.current.querySelector('wistia-player')) {
-            const playerElement = document.createElement('wistia-player');
-            playerElement.setAttribute('media-id', 'qjdv24o4kb');
-            playerElement.setAttribute('aspect', '2.6373626373626373');
-            videoContainerRef.current.appendChild(playerElement);
-          }
-        } catch {
-          // If custom element never loads, create it anyway (it might work)
-          if (videoContainerRef.current && !videoContainerRef.current.querySelector('wistia-player')) {
-            const playerElement = document.createElement('wistia-player');
-            playerElement.setAttribute('media-id', 'qjdv24o4kb');
-            playerElement.setAttribute('aspect', '2.6373626373626373');
-            videoContainerRef.current.appendChild(playerElement);
-          }
-        }
-      }
-    };
-
-    // Small delay to ensure scripts have started loading
-    const timeoutId = setTimeout(createPlayer, 100);
-    
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
     <>
       <NavigationBar />
@@ -137,7 +90,6 @@ const AboutPage: React.FC = () => {
               }}>
                 {/* Wistia Video Player */}
                 <Box 
-                  ref={videoContainerRef}
                   sx={{ 
                     width: '100%',
                     borderRadius: '8px',
@@ -145,9 +97,20 @@ const AboutPage: React.FC = () => {
                     overflow: 'hidden',
                     position: 'relative',
                     backgroundColor: '#000',
-                    minHeight: '300px'
+                    minHeight: '300px',
+                    '& wistia-player': {
+                      width: '100%',
+                      height: '100%',
+                      display: 'block'
+                    }
                   }}
-                />
+                >
+                  <wistia-player 
+                    media-id="qjdv24o4kb" 
+                    aspect="2.6373626373626373"
+                    style={{ width: '100%', height: '100%', display: 'block' }}
+                  />
+                </Box>
                 
                 <Typography variant="body2" sx={{ 
                   textAlign: 'center', 

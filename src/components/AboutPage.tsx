@@ -9,6 +9,7 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
 const AboutPage: React.FC = () => {
+
   return (
     <>
       <NavigationBar />
@@ -90,6 +91,9 @@ const AboutPage: React.FC = () => {
               }}>
                 {/* Wistia Video Player */}
                 <Box 
+                  dangerouslySetInnerHTML={{
+                    __html: '<wistia-player media-id="qjdv24o4kb" aspect="2.6373626373626373"></wistia-player>'
+                  }}
                   sx={{ 
                     width: '100%',
                     borderRadius: '8px',
@@ -97,20 +101,9 @@ const AboutPage: React.FC = () => {
                     overflow: 'hidden',
                     position: 'relative',
                     backgroundColor: '#000',
-                    minHeight: '300px',
-                    '& wistia-player': {
-                      width: '100%',
-                      height: '100%',
-                      display: 'block'
-                    }
+                    minHeight: '300px'
                   }}
-                >
-                  <wistia-player 
-                    media-id="qjdv24o4kb" 
-                    aspect="2.6373626373626373"
-                    style={{ width: '100%', height: '100%', display: 'block' }}
-                  />
-                </Box>
+                />
                 
                 <Typography variant="body2" sx={{ 
                   textAlign: 'center', 

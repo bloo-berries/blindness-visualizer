@@ -2,8 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import {
   Box,
   Typography,
-  Button,
-  Paper
+  Button
 } from '@mui/material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';

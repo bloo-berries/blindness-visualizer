@@ -315,6 +315,14 @@ const personData: Record<string, PersonData> = {
     simulation: "abraham-congenital-blindness",
     description: "Abraham Nemeth was a blind mathematician who developed the Nemeth Braille Code for Mathematics and Science Notation. Born blind, he became a professor of mathematics and made significant contributions to making mathematics accessible to blind students. His Nemeth Code is still widely used today for transcribing mathematical and scientific materials into braille."
   },
+  moon: {
+    name: "William Moon",
+    condition: "Scarlet Fever Complications",
+    years: "1818-1894",
+    onset: "Lost one eye as child, completely blind by 21",
+    simulation: "moon-complete-blindness",
+    description: "William Moon lost sight in one eye from scarlet fever as a small child, and by age 21 had become totally blind. He became a teacher and realized that existing embossed reading codes were difficult to learn. He devised Moon type, a simplified reading alphabet based on the Latin alphabet, which he designed to be easier to learn than Braille. First published in 1845, Moon type was widely used and remains important for people who have difficulty reading Braille. He was elected to fellowships of the Royal Geographical Society and the Royal Society of Arts, and received an honorary LLD degree from the University of Philadelphia. Learn more at en.wikipedia.org."
+  },
   sharon: {
     name: "Sharon Stone",
     condition: "Hemorrhagic Stroke & Visual Distortions",
@@ -326,7 +334,7 @@ const personData: Record<string, PersonData> = {
 };
 
 const categories = [
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon"] },
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen"] },
   { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon"] },
   { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick"] },
@@ -418,6 +426,7 @@ const FamousBlindPeople: React.FC = () => {
       'fetty-glaucoma-prosthetic': ['glaucoma', 'complete-blindness'],
       'slick-rick-blindness': ['hemianopia', 'glaucoma'],
       'abraham-congenital-blindness': ['complete-blindness'],
+      'moon-complete-blindness': ['complete-blindness'],
       'sharon-stroke-visual-distortions': ['visual-auras', 'metamorphopsia', 'hallucinations']
     };
     
@@ -482,6 +491,7 @@ const FamousBlindPeople: React.FC = () => {
       fetty: `${baseUrl}/images/people/fetty-wap.webp`,
       slick: `${baseUrl}/images/people/slick-rick.webp`,
       abraham: `${baseUrl}/images/people/abraham-nemeth.webp`,
+      moon: `${baseUrl}/images/people/william-moon.jpg`,
       sharon: `${baseUrl}/images/people/sharon-stone.webp`
     };
     
@@ -620,6 +630,7 @@ const FamousBlindPeople: React.FC = () => {
                                           personId === 'mila' ? 'center 30%' :
                                           personId === 'georgia' ? 'center 30%' :
                                           personId === 'bocelli' ? 'center 60%' :
+                                          personId === 'moon' ? 'center 25%' :
                                           'center center'
                           }}
                           onError={(e) => {
@@ -720,6 +731,7 @@ const FamousBlindPeople: React.FC = () => {
                                           selectedPerson === 'tilly' ? 'https://en.wikipedia.org/wiki/Tilly_Aston' :
                                           selectedPerson === 'sabriye' ? 'https://en.wikipedia.org/wiki/Sabriye_Tenberken' :
                                           selectedPerson === 'harriet' ? 'https://en.wikipedia.org/wiki/Harriet_Tubman' :
+                                          selectedPerson === 'moon' ? 'https://en.wikipedia.org/wiki/William_Moon' :
                                           'https://en.wikipedia.org/wiki/Claude_Monet',
                         'steviewonder.net': 'https://www.steviewonder.net/',
                         'raycharles.com': 'https://raycharles.com/',

@@ -330,15 +330,159 @@ const personData: Record<string, PersonData> = {
     onset: "Age 43, from stroke",
     simulation: "sharon-stroke-visual-distortions",
     description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. It took years for her vision to return to normal. She also had difficulty reading and memorizing lines, which brought her career to a screeching halt. Beyond vision, Stone experienced aphasia (speech difficulties) and an ongoing stutter, lost directional hearing in her right ear, lost feeling from the knee up in her left leg, had a tilted walk with her right leg dragging, the left side of her face became distorted, lost short-term memory, and had balance problems, constant fatigue, and periodic seizures."
+  },
+  jose: {
+    name: "José Feliciano",
+    condition: "Congenital Glaucoma",
+    years: "Born 1945",
+    onset: "From birth",
+    simulation: "jose-congenital-glaucoma",
+    description: "José Feliciano is a legendary guitarist and singer who was born with congenital glaucoma. Despite being blind from birth, he became one of the most influential Latin musicians of all time, known for his virtuosic guitar playing and soulful voice. He has won multiple Grammy Awards and is celebrated for his contributions to music. Learn more at en.wikipedia.org."
+  },
+  art: {
+    name: "Art Tatum",
+    condition: "Congenital Cataracts",
+    years: "1909-1956",
+    onset: "From birth",
+    simulation: "art-congenital-cataracts",
+    description: "Art Tatum was a jazz piano virtuoso who was born with congenital cataracts. Despite being blind from birth, he became one of the greatest jazz pianists in history, known for his incredible technique, harmonic sophistication, and improvisational skills. His recordings continue to inspire musicians today. Learn more at en.wikipedia.org."
+  },
+  ronnie: {
+    name: "Ronnie Milsap",
+    condition: "Congenital Glaucoma",
+    years: "Born 1943",
+    onset: "From birth",
+    simulation: "ronnie-congenital-glaucoma",
+    description: "Ronnie Milsap is a country music icon who was born with congenital glaucoma. Despite being blind from birth, he became one of the most successful country artists of all time, with numerous number-one hits and Grammy Awards. His music has influenced generations of country musicians. Learn more at en.wikipedia.org."
+  },
+  doc: {
+    name: "Doc Watson",
+    condition: "Eye Infection in Infancy",
+    years: "1923-2012",
+    onset: "Infancy",
+    simulation: "doc-eye-infection",
+    description: "Doc Watson was a legendary bluegrass and folk guitarist who lost his sight due to an eye infection in infancy. Despite his blindness, he became one of the most influential flatpicking guitarists in American music history, known for his mastery of traditional Appalachian music. Learn more at en.wikipedia.org."
+  },
+  jeff: {
+    name: "Jeff Healey",
+    condition: "Retinoblastoma",
+    years: "1966-2008",
+    onset: "From birth",
+    simulation: "jeff-retinoblastoma",
+    description: "Jeff Healey was a blues-rock guitarist who lost his sight to retinoblastoma as an infant. He developed a unique guitar technique, playing the instrument flat on his lap. Despite his blindness, he became a celebrated musician known for his powerful blues guitar playing and soulful vocals. Learn more at en.wikipedia.org."
+  },
+  diane: {
+    name: "Diane Schuur",
+    condition: "Congenital Cataracts",
+    years: "Born 1953",
+    onset: "From birth",
+    simulation: "diane-congenital-cataracts",
+    description: "Diane Schuur is a jazz vocalist who was born with congenital cataracts. Despite being blind from birth, she became a Grammy Award-winning jazz singer known for her powerful voice and impressive vocal range. She has performed with many jazz legends and continues to record and perform. Learn more at en.wikipedia.org."
+  },
+  nobuyuki: {
+    name: "Nobuyuki Tsujii",
+    condition: "Congenital Blindness",
+    years: "Born 1988",
+    onset: "From birth",
+    simulation: "nobuyuki-congenital-blindness",
+    description: "Nobuyuki Tsujii is a classical pianist who was born blind. Despite his congenital blindness, he won the prestigious Van Cliburn International Piano Competition in 2009, becoming one of the most celebrated classical pianists of his generation. He performs internationally and has recorded numerous albums. Learn more at en.wikipedia.org."
+  },
+  rahsaan: {
+    name: "Rahsaan Roland Kirk",
+    condition: "Childhood Blindness",
+    years: "1935-1977",
+    onset: "Childhood",
+    simulation: "rahsaan-childhood-blindness",
+    description: "Rahsaan Roland Kirk was a jazz multi-instrumentalist who became blind in childhood. He was known for his ability to play multiple instruments simultaneously, including several saxophones at once. Despite his blindness, he became one of the most innovative and influential jazz musicians of the 20th century. Learn more at en.wikipedia.org."
+  },
+  borges: {
+    name: "Jorge Luis Borges",
+    condition: "Progressive Blindness from Inherited Condition",
+    years: "1899-1986",
+    onset: "Progressive, complete by age 55",
+    simulation: "borges-progressive-blindness",
+    description: "Jorge Luis Borges was an Argentine writer who experienced progressive blindness from an inherited condition. Despite losing his sight completely by age 55, he continued to write and became one of the most important literary figures of the 20th century, known for his innovative short stories and essays. Learn more at en.wikipedia.org."
+  },
+  thurber: {
+    name: "James Thurber",
+    condition: "Childhood Eye Injury",
+    years: "1894-1961",
+    onset: "Age 7, from eye injury",
+    simulation: "thurber-eye-injury",
+    description: "James Thurber was an American author and cartoonist who lost sight in one eye from a childhood accident at age 7. Despite his visual impairment, he became one of the most celebrated humorists of his time, writing for The New Yorker and creating memorable characters and stories. Author of The Secret Life of Walter Mitty, adapted in film portrayed by Ben Stiller. Learn more at en.wikipedia.org."
+  },
+  fanny: {
+    name: "Fanny Crosby",
+    condition: "Iatrogenic Blindness in Infancy",
+    years: "1820-1915",
+    onset: "6 weeks old",
+    simulation: "fanny-iatrogenic-blindness",
+    description: "Fanny Crosby was a prolific hymn writer who became blind at 6 weeks old due to improper medical treatment. Despite her blindness, she wrote over 8,000 hymns, many of which are still sung today, including 'Blessed Assurance' and 'To God Be the Glory.' She was one of the most influential hymn writers in American history. Learn more at en.wikipedia.org."
+  },
+  homer: {
+    name: "Homer",
+    condition: "Traditionally Believed Blind",
+    years: "Exact dates unknown (8th century BCE)",
+    onset: "Unknown",
+    simulation: "homer-traditional-blindness",
+    description: "Homer is the legendary ancient Greek epic poet traditionally credited with composing the Iliad and the Odyssey. While historical details about Homer are uncertain, tradition holds that he was blind. His epic poems are foundational works of Western literature and continue to be studied and admired today. Learn more at en.wikipedia.org."
+  },
+  lex: {
+    name: "Lex Gillette",
+    condition: "Retinopathy of Prematurity",
+    years: "Born 1984",
+    onset: "From birth (premature)",
+    simulation: "lex-rop",
+    description: "Lex Gillette is a Paralympic long jumper who was born premature and lost his sight to retinopathy of prematurity. Despite his blindness, he has won four silver medals in the Paralympic Games and is one of the most successful blind track and field athletes in history. Learn more at teamusa.com."
+  },
+  davidBrown: {
+    name: "David Brown",
+    condition: "Kawasaki Disease",
+    years: "Born 1992",
+    onset: "Childhood",
+    simulation: "david-brown-kawasaki",
+    description: "David Brown is a Paralympic sprinter who lost his sight due to complications from Kawasaki disease in childhood. Despite his blindness, he won a gold medal in the 100-meter dash at the 2016 Paralympic Games, setting a world record. He is one of the fastest blind sprinters in the world. Learn more at teamusa.com."
+  },
+  blunkett: {
+    name: "David Blunkett",
+    condition: "Congenital Blindness",
+    years: "Born 1947",
+    onset: "From birth",
+    simulation: "blunkett-congenital-blindness",
+    description: "David Blunkett is a British politician who was born blind. Despite his congenital blindness, he served as the UK Home Secretary from 2001 to 2004, becoming the first blind person to hold a major cabinet position in the British government. He has been a prominent advocate for disability rights. Learn more at en.wikipedia.org."
+  },
+  saunderson: {
+    name: "Nicholas Saunderson",
+    condition: "Blindness from Smallpox",
+    years: "1682-1739",
+    onset: "Age 1",
+    simulation: "saunderson-smallpox-blindness",
+    description: "Nicholas Saunderson was a mathematician who became blind from smallpox at age 1. Despite his blindness, he became the Lucasian Professor of Mathematics at Cambridge University (a position later held by Isaac Newton and Stephen Hawking). He made significant contributions to mathematics and developed innovative teaching methods. Learn more at en.wikipedia.org."
+  },
+  geerat: {
+    name: "Geerat Vermeij",
+    condition: "Congenital Glaucoma",
+    years: "Born 1946",
+    onset: "From birth",
+    simulation: "geerat-congenital-glaucoma",
+    description: "Geerat Vermeij is an evolutionary biologist and paleontologist who was born with congenital glaucoma. Despite being blind from birth, he became a distinguished professor and has made groundbreaking contributions to the study of evolution, particularly in marine biology and paleontology. He uses touch to study shells and fossils. Learn more at en.wikipedia.org."
+  },
+  holman: {
+    name: "James Holman",
+    condition: "Illness-Related Blindness",
+    years: "1786-1857",
+    onset: "Age 25, from illness while serving in Royal Navy",
+    simulation: "holman-complete-blindness",
+    description: "James Holman, known as the 'Blind Traveller,' was a British adventurer, author and social observer who became completely blind at age 25 due to an illness while serving in the Royal Navy. Despite his blindness, he became the first blind person to circumnavigate the globe in 1832, using human echolocation for navigation. He traveled extensively through Europe, Asia, Africa, and the Americas, and was elected a Fellow of the Royal Society. Learn more at en.wikipedia.org."
   }
 };
 
 const categories = [
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon"] },
-  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick"] },
-  { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye"] }
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman"] },
+  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan"] },
+  { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] }
 ];
 
 const FamousBlindPeople: React.FC = () => {
@@ -427,7 +571,25 @@ const FamousBlindPeople: React.FC = () => {
       'slick-rick-blindness': ['hemianopia', 'glaucoma'],
       'abraham-congenital-blindness': ['complete-blindness'],
       'moon-complete-blindness': ['complete-blindness'],
-      'sharon-stroke-visual-distortions': ['visual-auras', 'metamorphopsia', 'hallucinations']
+      'sharon-stroke-visual-distortions': ['visual-auras', 'metamorphopsia', 'hallucinations'],
+      'jose-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
+      'art-congenital-cataracts': ['cataracts', 'complete-blindness'],
+      'ronnie-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
+      'doc-eye-infection': ['complete-blindness'],
+      'jeff-retinoblastoma': ['complete-blindness'],
+      'diane-congenital-cataracts': ['cataracts', 'complete-blindness'],
+      'nobuyuki-congenital-blindness': ['complete-blindness'],
+      'rahsaan-childhood-blindness': ['complete-blindness'],
+      'borges-progressive-blindness': ['glaucoma', 'progressive-loss'],
+      'thurber-eye-injury': ['hemianopia', 'glaucoma'],
+      'fanny-iatrogenic-blindness': ['complete-blindness'],
+      'homer-traditional-blindness': ['complete-blindness'],
+      'lex-rop': ['retinopathyOfPrematurity', 'complete-blindness'],
+      'david-brown-kawasaki': ['complete-blindness'],
+      'blunkett-congenital-blindness': ['complete-blindness'],
+      'saunderson-smallpox-blindness': ['complete-blindness'],
+      'geerat-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
+      'holman-complete-blindness': ['complete-blindness']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -492,7 +654,25 @@ const FamousBlindPeople: React.FC = () => {
       slick: `${baseUrl}/images/people/slick-rick.webp`,
       abraham: `${baseUrl}/images/people/abraham-nemeth.webp`,
       moon: `${baseUrl}/images/people/william-moon.jpg`,
-      sharon: `${baseUrl}/images/people/sharon-stone.webp`
+      sharon: `${baseUrl}/images/people/sharon-stone.webp`,
+      jose: `${baseUrl}/images/people/Jose-Feliciano.jpg`,
+      art: `${baseUrl}/images/people/art-tatum.jpg`,
+      ronnie: `${baseUrl}/images/people/ronnie-milsap.webp`,
+      doc: `${baseUrl}/images/people/doc-watson.jpg`,
+      jeff: `${baseUrl}/images/people/jeff-healy.webp`,
+      diane: `${baseUrl}/images/people/Diane-Schuur.webp`,
+      nobuyuki: `${baseUrl}/images/people/Nobuyuki-Tsujii.webp`,
+      rahsaan: `${baseUrl}/images/people/Rahsaan-Roland-Kirk.jpg`,
+      borges: `${baseUrl}/images/people/Jorge-Luis-Borges.jpg`,
+      thurber: `${baseUrl}/images/people/james-thurber.jpg`,
+      fanny: `${baseUrl}/images/people/Fanny-Crosby.jpg`,
+      homer: `${baseUrl}/images/people/homer.jpg`,
+      lex: `${baseUrl}/images/people/lex-gilette.jpeg`,
+      davidBrown: `${baseUrl}/images/people/david-brown.avif`,
+      blunkett: `${baseUrl}/images/people/david-blunkett.jpg`,
+      saunderson: `${baseUrl}/images/people/Nicolas-Saunderson.jpg`,
+      geerat: `${baseUrl}/images/people/Geerat-Vermeij.webp`,
+      holman: `${baseUrl}/images/people/james-holman.jpg`
     };
     
     const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
@@ -631,6 +811,14 @@ const FamousBlindPeople: React.FC = () => {
                                           personId === 'georgia' ? 'center 30%' :
                                           personId === 'bocelli' ? 'center 60%' :
                                           personId === 'moon' ? 'center 25%' :
+                                          personId === 'borges' ? 'center 30%' :
+                                          personId === 'art' ? 'center 30%' :
+                                          personId === 'doc' ? 'center 30%' :
+                                          personId === 'lex' ? 'center 30%' :
+                                          personId === 'fanny' ? 'center 30%' :
+                                          personId === 'saunderson' ? 'center 30%' :
+                                          personId === 'holman' ? 'center 30%' :
+                                          personId === 'diane' ? 'center 30%' :
                                           'center center'
                           }}
                           onError={(e) => {
@@ -721,6 +909,8 @@ const FamousBlindPeople: React.FC = () => {
                         'erikweihenmayer.com': 'https://erikweihenmayer.com/',
                         'teamusa.com': selectedPerson === 'marla' ? 'https://www.teamusa.com/profiles/marla-runyan' :
                                      selectedPerson === 'anastasia' ? 'https://www.teamusa.com/profiles/anastasia-pagonis-1136100' :
+                                     selectedPerson === 'lex' ? 'https://www.teamusa.com/profiles/lex-gillette' :
+                                     selectedPerson === 'davidBrown' ? 'https://www.teamusa.com/profiles/david-brown' :
                                      'https://www.teamusa.com/profiles/marla-runyan',
                         'womenshistory.org': 'https://www.womenshistory.org/education-resources/biographies/helen-keller',
                         'andreabocelli.com': 'https://www.andreabocelli.com/',
@@ -732,6 +922,22 @@ const FamousBlindPeople: React.FC = () => {
                                           selectedPerson === 'sabriye' ? 'https://en.wikipedia.org/wiki/Sabriye_Tenberken' :
                                           selectedPerson === 'harriet' ? 'https://en.wikipedia.org/wiki/Harriet_Tubman' :
                                           selectedPerson === 'moon' ? 'https://en.wikipedia.org/wiki/William_Moon' :
+                                          selectedPerson === 'jose' ? 'https://en.wikipedia.org/wiki/José_Feliciano' :
+                                          selectedPerson === 'art' ? 'https://en.wikipedia.org/wiki/Art_Tatum' :
+                                          selectedPerson === 'ronnie' ? 'https://en.wikipedia.org/wiki/Ronnie_Milsap' :
+                                          selectedPerson === 'doc' ? 'https://en.wikipedia.org/wiki/Doc_Watson' :
+                                          selectedPerson === 'jeff' ? 'https://en.wikipedia.org/wiki/Jeff_Healey' :
+                                          selectedPerson === 'diane' ? 'https://en.wikipedia.org/wiki/Diane_Schuur' :
+                                          selectedPerson === 'nobuyuki' ? 'https://en.wikipedia.org/wiki/Nobuyuki_Tsujii' :
+                                          selectedPerson === 'rahsaan' ? 'https://en.wikipedia.org/wiki/Rahsaan_Roland_Kirk' :
+                                          selectedPerson === 'borges' ? 'https://en.wikipedia.org/wiki/Jorge_Luis_Borges' :
+                                          selectedPerson === 'thurber' ? 'https://en.wikipedia.org/wiki/James_Thurber' :
+                                          selectedPerson === 'fanny' ? 'https://en.wikipedia.org/wiki/Fanny_Crosby' :
+                                          selectedPerson === 'homer' ? 'https://en.wikipedia.org/wiki/Homer' :
+                                          selectedPerson === 'blunkett' ? 'https://en.wikipedia.org/wiki/David_Blunkett' :
+                                          selectedPerson === 'saunderson' ? 'https://en.wikipedia.org/wiki/Nicholas_Saunderson' :
+                                          selectedPerson === 'geerat' ? 'https://en.wikipedia.org/wiki/Geerat_Vermeij' :
+                                          selectedPerson === 'holman' ? 'https://en.wikipedia.org/wiki/James_Holman' :
                                           'https://en.wikipedia.org/wiki/Claude_Monet',
                         'steviewonder.net': 'https://www.steviewonder.net/',
                         'raycharles.com': 'https://raycharles.com/',

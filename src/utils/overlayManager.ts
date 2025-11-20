@@ -225,7 +225,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
     hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
-    visualFloaters, visualAura, visualAuraLeft, visualAuraRight, glaucoma, stargardt,
+    visualFloaters, visualAura, visualAuraLeft, visualAuraRight, glaucoma, stargardt, retinitisPigmentosa,
     miltonProgressiveVignetting, miltonRetinalDetachment, miltonGlaucomaHalos,
     miltonPhotophobia, miltonTemporalFieldLoss, completeBlindness,
     galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression,
@@ -241,7 +241,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
-    'visualFloaters', 'visualAura', 'visualAuraLeft', 'visualAuraRight', 'glaucoma', 'stargardt',
+    'visualFloaters', 'visualAura', 'visualAuraLeft', 'visualAuraRight', 'glaucoma', 'stargardt', 'retinitisPigmentosa',
     'miltonProgressiveVignetting', 'miltonRetinalDetachment', 'miltonGlaucomaHalos',
     'miltonPhotophobia', 'miltonTemporalFieldLoss', 'completeBlindness',
     'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression',
@@ -255,7 +255,8 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     'joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification',
     'keratoconus'
   ].map(getEffect);
-  // Note: diplopia and retinitisPigmentosa are handled by shader effects, not overlays
+  // Note: diplopia is handled by shader effects, not overlays
+  // Retinitis Pigmentosa is now handled by both shaders (for webcam) and overlays (for YouTube/images)
 
   // Create overlays for each enabled effect
   if (tunnelVision?.enabled) {
@@ -658,7 +659,33 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   // Diplopia effects are handled by WebGL shaders, not DOM overlays
   // This ensures consistent diplopia rendering across all content types
 
-  // Retinitis Pigmentosa is handled by shader effects, not overlays
+  // Retinitis Pigmentosa - Progressive tunnel vision with peripheral vision loss
+  // Now handled by both shaders (for webcam) and overlays (for YouTube/images)
+  if (retinitisPigmentosa?.enabled) {
+    const intensity = retinitisPigmentosa.intensity;
+    // Create severe tunnel vision effect - very narrow central vision
+    // At 100% intensity, tunnel should be extremely narrow (3-5% of screen)
+    const tunnelRadius = Math.max(3, 30 - intensity * 27); // From 30% to 3% of screen
+    
+    // Create irregular, asymmetrical tunnel shape (more oval, not perfect circle)
+    // Use radial gradient with elliptical shape for more realistic effect
+    createOverlay(
+      'visual-field-overlay-retinitisPigmentosa',
+      `radial-gradient(ellipse 100% 130% at 50% 50%, 
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) ${tunnelRadius - 2}%,
+        rgba(0,0,0,${0.3 * intensity}) ${tunnelRadius}%,
+        rgba(0,0,0,${0.7 * intensity}) ${tunnelRadius + 3}%,
+        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 8}%,
+        rgba(0,0,0,${0.95 * intensity}) 100%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'retinitisPigmentosa'
+    );
+  }
 
   // John Milton-specific overlays for bilateral retinal detachment and secondary glaucoma
   
@@ -1689,7 +1716,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   // ===== CUSTOM FAMOUS PEOPLE VISUALIZATIONS =====
   
   // Helen Keller - Complete Blindness (Total darkness from age 19 months)
-  const helenKellerBlindness = effects.find(e => e.id === 'helenKellerBlindness' && e.enabled);
+  const helenKellerBlindness = getEffect('helenKellerBlindness');
   if (helenKellerBlindness?.enabled) {
     const intensity = helenKellerBlindness.intensity;
     
@@ -1706,7 +1733,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // John Milton - Progressive Blindness (Gradual deterioration to complete blindness)
-  const johnMiltonBlindness = effects.find(e => e.id === 'johnMiltonBlindness' && e.enabled);
+  const johnMiltonBlindness = getEffect('johnMiltonBlindness');
   if (johnMiltonBlindness?.enabled) {
     const intensity = johnMiltonBlindness.intensity;
     
@@ -1749,7 +1776,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Louis Braille - Sympathetic Ophthalmia (Complete darkness from age 5)
-  const louisBrailleBlindness = effects.find(e => e.id === 'louisBrailleBlindness' && e.enabled);
+  const louisBrailleBlindness = getEffect('louisBrailleBlindness');
 
   if (louisBrailleBlindness?.enabled) {
     const intensity = Math.max(0.95, louisBrailleBlindness.intensity); // Ensure near-complete blackness
@@ -1769,7 +1796,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Erik Weihenmayer - Retinoschisis (Progressive tunnel vision to complete blindness)
-  const erikWeihenmayerRetinoschisis = effects.find(e => e.id === 'erikWeihenmayerRetinoschisis' && e.enabled);
+  const erikWeihenmayerRetinoschisis = getEffect('erikWeihenmayerRetinoschisis');
   if (erikWeihenmayerRetinoschisis?.enabled) {
     const intensity = erikWeihenmayerRetinoschisis.intensity;
     
@@ -1794,7 +1821,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Marla Runyan - Stargardt Disease (matches standard Stargardt Disease visualization)
-  const marlaRunyanStargardt = effects.find(e => e.id === 'marlaRunyanStargardt' && e.enabled);
+  const marlaRunyanStargardt = getEffect('marlaRunyanStargardt');
   if (marlaRunyanStargardt?.enabled) {
     const intensity = marlaRunyanStargardt.intensity;
     const scotomaRadius = 17 + intensity * 53; // 17% to 70% of screen (same as standard Stargardt)
@@ -1820,7 +1847,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Joshua Miele - Chemical Burn Blindness (Complete darkness from acid attack)
-  const joshuaMieleBlindness = effects.find(e => e.id === 'joshuaMieleBlindness' && e.enabled);
+  const joshuaMieleBlindness = getEffect('joshuaMieleBlindness');
   if (joshuaMieleBlindness?.enabled) {
     const intensity = joshuaMieleBlindness.intensity;
     
@@ -1837,7 +1864,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // David Paterson - Optic Atrophy (Severely reduced vision, legal blindness)
-  const davidPatersonBlindness = effects.find(e => e.id === 'davidPatersonBlindness' && e.enabled);
+  const davidPatersonBlindness = getEffect('davidPatersonBlindness');
   if (davidPatersonBlindness?.enabled) {
     const intensity = davidPatersonBlindness.intensity;
     
@@ -1855,7 +1882,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Ray Charles - Glaucoma Blindness (Complete darkness by age 7)
-  const rayCharlesBlindness = effects.find(e => e.id === 'rayCharlesBlindness' && e.enabled);
+  const rayCharlesBlindness = getEffect('rayCharlesBlindness');
   if (rayCharlesBlindness?.enabled) {
     const intensity = rayCharlesBlindness.intensity;
     
@@ -1872,7 +1899,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Stevie Wonder - Retinopathy of Prematurity (Total or near-total blindness)
-  const stevieWonderROP = effects.find(e => e.id === 'stevieWonderROP' && e.enabled);
+  const stevieWonderROP = getEffect('stevieWonderROP');
   if (stevieWonderROP?.enabled) {
     const intensity = stevieWonderROP.intensity;
     
@@ -1890,7 +1917,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Andrea Bocelli - Congenital Glaucoma (Complete blindness after soccer accident)
-  const andreaBocelliBlindness = effects.find(e => e.id === 'andreaBocelliBlindness' && e.enabled);
+  const andreaBocelliBlindness = getEffect('andreaBocelliBlindness');
   if (andreaBocelliBlindness?.enabled) {
     const intensity = andreaBocelliBlindness.intensity;
     
@@ -1907,7 +1934,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Ved Mehta - Meningitis Blindness (Complete darkness from age 3)
-  const vedMehtaBlindness = effects.find(e => e.id === 'vedMehtaBlindness' && e.enabled);
+  const vedMehtaBlindness = getEffect('vedMehtaBlindness');
   if (vedMehtaBlindness?.enabled) {
     const intensity = vedMehtaBlindness.intensity;
     

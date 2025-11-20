@@ -24,6 +24,7 @@ import {
 import { Close as CloseIcon } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import { getPersonImagePath } from '../utils/imagePaths';
 
 interface PersonData {
   name: string;
@@ -474,13 +475,21 @@ const personData: Record<string, PersonData> = {
     onset: "Age 25, from illness while serving in Royal Navy",
     simulation: "holman-complete-blindness",
     description: "James Holman, known as the 'Blind Traveller,' was a British adventurer, author and social observer who became completely blind at age 25 due to an illness while serving in the Royal Navy. Despite his blindness, he became the first blind person to circumnavigate the globe in 1832, using human echolocation for navigation. He traveled extensively through Europe, Asia, Africa, and the Americas, and was elected a Fellow of the Royal Society. Learn more at en.wikipedia.org."
+  },
+  chris: {
+    name: "Chris McCausland",
+    condition: "Retinitis Pigmentosa",
+    years: "Born 1977",
+    onset: "Progressive, blind due to retinitis pigmentosa",
+    simulation: "chris-retinitis-pigmentosa",
+    description: "Chris McCausland is a British comedian and actor who is blind due to retinitis pigmentosa. He is known for his stand-up comedy, appearances on shows like Have I Got News for You and Would I Lie to You?, and for winning series 22 of BBC's Strictly Come Dancing in 2024 with professional dancer Dianne Buswell - becoming the first blind contestant to win the show. He also won a BAFTA award in 2025 for the memorable moment in their waltz. McCausland has established himself as a regular panellist on Have I Got News for You and has his own Saturday morning chat show on ITV1. Learn more at en.wikipedia.org."
   }
 };
 
 const categories = [
   { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman"] },
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett", "chris"] },
   { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan"] },
   { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] }
 ];
@@ -589,7 +598,8 @@ const FamousBlindPeople: React.FC = () => {
       'blunkett-congenital-blindness': ['complete-blindness'],
       'saunderson-smallpox-blindness': ['complete-blindness'],
       'geerat-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
-      'holman-complete-blindness': ['complete-blindness']
+      'holman-complete-blindness': ['complete-blindness'],
+      'chris-retinitis-pigmentosa': ['retinitisPigmentosa']
     };
     
     const conditions = simulationMap[person.simulation] || ['glaucoma'];
@@ -615,67 +625,12 @@ const FamousBlindPeople: React.FC = () => {
   };
 
   const getPersonImage = (personId: string) => {
-    // Map person IDs to actual image files (using process.env.PUBLIC_URL for proper deployment)
-    const baseUrl = process.env.PUBLIC_URL || '';
-    const imageMap: Record<string, string> = {
-      milton: `${baseUrl}/images/people/john-milton.jpg`,
-      braille: `${baseUrl}/images/people/louis-Braille.jpg`,
-      galileo: `${baseUrl}/images/people/Galileo-Galilei.jpg`,
-      ray: `${baseUrl}/images/people/ray-charles.jpg`,
-      stevie: `${baseUrl}/images/people/stevie-wonder.jpg`,
-      helen: `${baseUrl}/images/people/hellen-keller.jpg`,
-      bocelli: `${baseUrl}/images/people/Andrea-Bocelli.jpg`,
-      monet: `${baseUrl}/images/people/claude-monet.jpg`,
-      christine: `${baseUrl}/images/people/christine-ha.webp`,
-      ved: `${baseUrl}/images/people/Ved-Mehta.png`,
-      erik: `${baseUrl}/images/people/Erik-Weihenmayer.webp`,
-      marla: `${baseUrl}/images/people/Marla-Runyan.webp`,
-      mona: `${baseUrl}/images/people/Mona-Minkara.webp`,
-      joshua: `${baseUrl}/images/people/Joshua-Miele.webp`,
-      lucy: `${baseUrl}/images/people/Lucy-Edwards.webp`,
-      paterson: `${baseUrl}/images/people/David-Paterson.webp`,
-      paul: `${baseUrl}/images/people/paul-castle.png`,
-      harriet: `${baseUrl}/images/people/harriet-tubman.png`,
-      casey: `${baseUrl}/images/people/casey-harris.png`,
-      haben: `${baseUrl}/images/people/haben-girma.png`,
-      molly: `${baseUrl}/images/people/molly-burke.png`,
-      tilly: `${baseUrl}/images/people/tilly-aston.png`,
-      sabriye: `${baseUrl}/images/people/Sabriye-Tenberken.png`,
-      anastasia: `${baseUrl}/images/people/Anastasia-Pagonis.png`,
-      mila: `${baseUrl}/images/people/mila-kunis.webp`,
-      judi: `${baseUrl}/images/people/judi-dench.webp`,
-      bono: `${baseUrl}/images/people/bono.webp`,
-      georgia: `${baseUrl}/images/people/Georgia-OKeeffe.webp`,
-      ella: `${baseUrl}/images/people/Ella-Fitzgerald.webp`,
-      sugar: `${baseUrl}/images/people/sugar-ray-leonard.webp`,
-      stephen: `${baseUrl}/images/people/stephen-curry.webp`,
-      allan: `${baseUrl}/images/people/allan-pineda-lindo.webp`,
-      fetty: `${baseUrl}/images/people/fetty-wap.webp`,
-      slick: `${baseUrl}/images/people/slick-rick.webp`,
-      abraham: `${baseUrl}/images/people/abraham-nemeth.webp`,
-      moon: `${baseUrl}/images/people/william-moon.jpg`,
-      sharon: `${baseUrl}/images/people/sharon-stone.webp`,
-      jose: `${baseUrl}/images/people/Jose-Feliciano.jpg`,
-      art: `${baseUrl}/images/people/art-tatum.jpg`,
-      ronnie: `${baseUrl}/images/people/ronnie-milsap.webp`,
-      doc: `${baseUrl}/images/people/doc-watson.jpg`,
-      jeff: `${baseUrl}/images/people/jeff-healy.webp`,
-      diane: `${baseUrl}/images/people/Diane-Schuur.webp`,
-      nobuyuki: `${baseUrl}/images/people/Nobuyuki-Tsujii.webp`,
-      rahsaan: `${baseUrl}/images/people/Rahsaan-Roland-Kirk.jpg`,
-      borges: `${baseUrl}/images/people/Jorge-Luis-Borges.jpg`,
-      thurber: `${baseUrl}/images/people/james-thurber.jpg`,
-      fanny: `${baseUrl}/images/people/Fanny-Crosby.jpg`,
-      homer: `${baseUrl}/images/people/homer.jpg`,
-      lex: `${baseUrl}/images/people/lex-gilette.jpeg`,
-      davidBrown: `${baseUrl}/images/people/david-brown.avif`,
-      blunkett: `${baseUrl}/images/people/david-blunkett.jpg`,
-      saunderson: `${baseUrl}/images/people/Nicolas-Saunderson.jpg`,
-      geerat: `${baseUrl}/images/people/Geerat-Vermeij.webp`,
-      holman: `${baseUrl}/images/people/james-holman.jpg`
-    };
-    
-    const imagePath = imageMap[personId] || `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
+    // Use centralized image path utility for single source of truth
+    const imagePath = getPersonImagePath(personId);
+    // If not found, use person's name for placeholder
+    if (imagePath.includes('placeholder')) {
+      return `https://via.placeholder.com/300x400/cccccc/666666?text=${personData[personId]?.name || 'Image'}`;
+    }
     return imagePath;
   };
 
@@ -938,6 +893,7 @@ const FamousBlindPeople: React.FC = () => {
                                           selectedPerson === 'saunderson' ? 'https://en.wikipedia.org/wiki/Nicholas_Saunderson' :
                                           selectedPerson === 'geerat' ? 'https://en.wikipedia.org/wiki/Geerat_Vermeij' :
                                           selectedPerson === 'holman' ? 'https://en.wikipedia.org/wiki/James_Holman' :
+                                          selectedPerson === 'chris' ? 'https://en.wikipedia.org/wiki/Chris_McCausland' :
                                           'https://en.wikipedia.org/wiki/Claude_Monet',
                         'steviewonder.net': 'https://www.steviewonder.net/',
                         'raycharles.com': 'https://raycharles.com/',

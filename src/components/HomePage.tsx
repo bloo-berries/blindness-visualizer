@@ -17,6 +17,7 @@ import {
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import { useAccessibility } from '../contexts/AccessibilityContext';
+import { getPersonImagePath } from '../utils/imagePaths';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -276,7 +277,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src={`${process.env.PUBLIC_URL || ''}/images/people/john-milton.jpg`} 
+                          src={getPersonImagePath('milton')} 
                           alt="John Milton"
                           style={{ 
                             width: '100%', 
@@ -297,7 +298,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src={`${process.env.PUBLIC_URL || ''}/images/people/stevie-wonder.jpg`} 
+                          src={getPersonImagePath('stevie')} 
                           alt="Stevie Wonder"
                           style={{ 
                             width: '100%', 
@@ -318,7 +319,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src={`${process.env.PUBLIC_URL || ''}/images/people/hellen-keller.jpg`} 
+                          src={getPersonImagePath('helen')} 
                           alt="Helen Keller"
                           style={{ 
                             width: '100%', 
@@ -339,7 +340,7 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src={`${process.env.PUBLIC_URL || ''}/images/people/ray-charles.jpg`} 
+                          src={getPersonImagePath('ray')} 
                           alt="Ray Charles"
                           style={{ 
                             width: '100%', 

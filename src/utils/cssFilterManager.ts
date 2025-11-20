@@ -632,6 +632,34 @@ const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {
 };
 
 /**
+ * Generates CSS filters for cataracts (Nuclear Sclerotic Cataract)
+ */
+const generateCataractsFilter = (effects: VisualEffect[]): string => {
+  const cataracts = effects.find(e => e.id === 'cataracts' && e.enabled);
+  
+  if (!cataracts) return '';
+  
+  const filters: string[] = [];
+  const intensity = cataracts.intensity;
+  
+  // Nuclear Sclerotic Cataract effects:
+  // - Progressive blurring
+  // - Dimming of vision (reduced brightness)
+  // - Loss of color vibrancy, especially blue perception
+  // - Progressive yellowing (sepia effect)
+  // - Reduced contrast
+  
+  filters.push(`brightness(${100 + intensity * 15}%)`); // Slight brightness increase from light scatter
+  filters.push(`contrast(${100 - intensity * 30}%)`); // Reduced contrast
+  filters.push(`sepia(${intensity * 80}%)`); // Yellowing effect (affects blue color perception)
+  filters.push(`blur(${intensity * 3}px)`); // Progressive blurring
+  filters.push(`hue-rotate(${intensity * 20}deg)`); // Color shift affecting cool colors
+  filters.push(`saturate(${100 + intensity * 20}%)`); // Slight saturation increase for warm tones
+  
+  return filters.join(' ');
+};
+
+/**
  * Generates CSS filters for new ocular diseases from specialty.vision
  */
 const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
@@ -804,7 +832,8 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
   
   const filterComponents = [
     generateColorBlindnessFilter(effects), 
-    generateBlurFilter(effects), 
+    generateBlurFilter(effects),
+    generateCataractsFilter(effects), // Nuclear Sclerotic Cataract
     generateGalileoFilters(effects), 
     generateMonetFilters(effects), 
     generateChristineFilters(effects), 

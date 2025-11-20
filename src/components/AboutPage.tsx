@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import { YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
 
 const AboutPage: React.FC = () => {
 
@@ -89,11 +90,8 @@ const AboutPage: React.FC = () => {
                 maxWidth: '800px',
                 position: 'relative'
               }}>
-                {/* Wistia Video Player */}
+                {/* YouTube Video Player */}
                 <Box 
-                  dangerouslySetInnerHTML={{
-                    __html: '<wistia-player media-id="qjdv24o4kb" aspect="2.6373626373626373"></wistia-player>'
-                  }}
                   sx={{ 
                     width: '100%',
                     borderRadius: '8px',
@@ -101,9 +99,25 @@ const AboutPage: React.FC = () => {
                     overflow: 'hidden',
                     position: 'relative',
                     backgroundColor: '#000',
-                    minHeight: '300px'
+                    paddingTop: '56.25%', // 16:9 aspect ratio
+                    height: 0
                   }}
-                />
+                >
+                  <iframe
+                    {...YOUTUBE_IFRAME_PROPS}
+                    src="https://www.youtube.com/embed/6BPuGeS6O4w?si=0pCMD96TZDgBDRCM&autoplay=0&controls=1&enablejsapi=1"
+                    title="Preview How I See - YouTube video"
+                    aria-label="YouTube video: Preview How I See"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 'none'
+                    }}
+                  />
+                </Box>
                 
                 <Typography variant="body2" sx={{ 
                   textAlign: 'center', 

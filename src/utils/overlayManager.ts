@@ -225,7 +225,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   const [
     tunnelVision, quadrantanopiaLeft, quadrantanopiaRight, quadrantanopiaInferior, quadrantanopiaSuperior,
     hemianopiaLeft, hemianopiaRight, blindnessLeftEye, blindnessRightEye, bitemporalHemianopia, scotoma, 
-    visualFloaters, visualAura, visualAuraLeft, visualAuraRight, glaucoma, stargardt, retinitisPigmentosa,
+    visualFloaters, visualAura, visualAuraLeft, visualAuraRight, visualSnow, hallucinations, glaucoma, amd, diabeticRetinopathy, stargardt, retinitisPigmentosa, retinalDetachment,
     miltonProgressiveVignetting, miltonRetinalDetachment, miltonGlaucomaHalos,
     miltonPhotophobia, miltonTemporalFieldLoss, completeBlindness,
     galileoSectoralDefects, galileoArcuateScotomas, galileoSwissCheeseVision, galileoChronicProgression,
@@ -237,11 +237,11 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     marlaCentralScotoma, marlaPeripheralVision, marlaEccentricViewing, marlaFillingIn, marlaCrowdingEffect, marlaStargardtComplete,
     minkaraEndStageComplete, minkaraCentralScotoma, minkaraRingScotoma, minkaraPeripheralIslands, minkaraPhotophobia, minkaraAchromatopsia, minkaraNightBlindness, minkaraChemistryMode,
     joshuaCompleteBlindness, joshuaEcholocation, joshuaTactileMaps, joshuaAudioLandscape, joshuaAccessibilityMode, joshuaSonification,
-    keratoconus
+    keratoconus, vitreousHemorrhage
   ] = [
     'tunnelVision', 'quadrantanopiaLeft', 'quadrantanopiaRight', 'quadrantanopiaInferior', 'quadrantanopiaSuperior',
     'hemianopiaLeft', 'hemianopiaRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma',
-    'visualFloaters', 'visualAura', 'visualAuraLeft', 'visualAuraRight', 'glaucoma', 'stargardt', 'retinitisPigmentosa',
+    'visualFloaters', 'visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'hallucinations', 'glaucoma', 'amd', 'diabeticRetinopathy', 'stargardt', 'retinitisPigmentosa', 'retinalDetachment',
     'miltonProgressiveVignetting', 'miltonRetinalDetachment', 'miltonGlaucomaHalos',
     'miltonPhotophobia', 'miltonTemporalFieldLoss', 'completeBlindness',
     'galileoSectoralDefects', 'galileoArcuateScotomas', 'galileoSwissCheeseVision', 'galileoChronicProgression',
@@ -253,7 +253,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     'marlaCentralScotoma', 'marlaPeripheralVision', 'marlaEccentricViewing', 'marlaFillingIn', 'marlaCrowdingEffect', 'marlaStargardtComplete',
     'minkaraEndStageComplete', 'minkaraCentralScotoma', 'minkaraRingScotoma', 'minkaraPeripheralIslands', 'minkaraPhotophobia', 'minkaraAchromatopsia', 'minkaraNightBlindness', 'minkaraChemistryMode',
     'joshuaCompleteBlindness', 'joshuaEcholocation', 'joshuaTactileMaps', 'joshuaAudioLandscape', 'joshuaAccessibilityMode', 'joshuaSonification',
-    'keratoconus'
+    'keratoconus', 'vitreousHemorrhage'
   ].map(getEffect);
   // Note: diplopia is handled by shader effects, not overlays
   // Retinitis Pigmentosa is now handled by both shaders (for webcam) and overlays (for YouTube/images)
@@ -472,69 +472,348 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     );
   }
 
-  // Visual Snow is now handled by ControlPanel.tsx overlay generation
-
-  // Visual Aura effects
-  if (visualAura?.enabled) {
-    // Use static radius instead of time-based animation to prevent progressive intensity increase
-    const auraRadius = 30;
+  // Visual Snow (Static Particles) - Persistent static noise pattern
+  if (visualSnow?.enabled) {
+    const intensity = visualSnow.intensity;
+    // Visual Snow: Tiny, static dots across entire visual field
+    // Similar to static noise on an untuned television screen
+    // Uses repeating patterns for performance instead of individual particles
     
-    createOverlayWithContainer(
+    const snowIntensity = Math.min(intensity * 1.5, 1.0);
+    const snowDensity = Math.min(intensity * 0.8, 0.6); // Reduced density for performance
+    
+    // Create a repeating pattern using repeating-linear-gradient
+    // This is much more efficient than thousands of individual gradients
+    const visualSnowBackground = `
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255,255,255,${snowDensity * 0.3}) 2px,
+        rgba(255,255,255,${snowDensity * 0.3}) 3px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255,255,255,${snowDensity * 0.2}) 2px,
+        rgba(255,255,255,${snowDensity * 0.2}) 3px
+      ),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(255,255,255,${snowDensity * 0.1}) 3px,
+        rgba(255,255,255,${snowDensity * 0.1}) 4px
+      )
+    `;
+    
+    // Create overlay element
+    let overlayElement = document.getElementById('visual-field-overlay-visualSnow');
+    
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualSnow';
+      Object.assign(overlayElement.style, {
+        ...OVERLAY_BASE_STYLES,
+        zIndex: getOverlayZIndex('visualSnow', Z_INDEX.BASE),
+        background: visualSnowBackground,
+        backgroundSize: '4px 4px, 4px 4px, 6px 6px',
+        mixBlendMode: 'screen',
+        opacity: Math.min(0.8, snowIntensity).toString()
+      });
+      
+      // Find container
+      let container: Element | null = null;
+      for (const selector of CONTAINER_SELECTORS) {
+        if (selector === 'iframe[src*="youtube"]') {
+          const iframe = document.querySelector(selector);
+          if (iframe) {
+            container = iframe.parentElement;
+            break;
+          }
+        } else if (selector === 'canvas') {
+          const canvas = document.querySelector(selector);
+          if (canvas) {
+            container = canvas.parentElement;
+            break;
+          }
+        } else {
+          container = document.querySelector(selector);
+          if (container) {
+            break;
+          }
+        }
+      }
+      
+      if (container) {
+        container.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+      
+      // Force container to have relative positioning
+      if (container && container instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(container);
+        if (computedStyle.position === 'static') {
+          container.style.position = 'relative';
+        }
+      }
+    } else {
+      // Update existing overlay
+      overlayElement.style.background = visualSnowBackground;
+      overlayElement.style.backgroundSize = '4px 4px, 4px 4px, 6px 6px';
+      overlayElement.style.mixBlendMode = 'screen';
+      overlayElement.style.opacity = Math.min(0.8, snowIntensity).toString();
+    }
+  }
+
+  // Visual Hallucinations - Realistic-appearing objects and figures that aren't actually there
+  if (hallucinations?.enabled) {
+    const intensity = hallucinations.intensity;
+    const hallucinationIntensity = Math.min(intensity * 1.8, 1.0);
+    
+    // Create multiple hallucination elements with realistic characteristics
+    const hallucinationElements: string[] = [];
+    
+    // Human-like figures (common hallucination) - static positions
+    for (let i = 0; i < 2 + Math.floor(intensity * 3); i++) {
+      const baseX = 20 + (i * 25) % 60;
+      const baseY = 30 + (i * 35) % 40;
+      const figureOpacity = 0.3 + (i % 3) * 0.1; // Varying opacity
+      
+      // Human silhouette
+      hallucinationElements.push(`
+        radial-gradient(ellipse 15px 25px at ${baseX}% ${baseY}%, 
+          rgba(0,0,0,${figureOpacity * hallucinationIntensity}) 0%, 
+          rgba(0,0,0,${figureOpacity * 0.6 * hallucinationIntensity}) 40%,
+          rgba(0,0,0,${figureOpacity * 0.3 * hallucinationIntensity}) 70%,
+          rgba(0,0,0,0) 100%
+        )
+      `);
+    }
+    
+    // Objects and shapes (furniture, animals, etc.) - static positions
+    for (let i = 0; i < 3 + Math.floor(intensity * 4); i++) {
+      const baseX = 10 + (i * 30) % 70;
+      const baseY = 20 + (i * 25) % 60;
+      const objectOpacity = 0.2 + (i % 2) * 0.1;
+      const objectSize = 8 + (i % 3) * 2;
+      
+      // Alternate between circle and ellipse
+      if (i % 2 === 0) {
+        hallucinationElements.push(`
+          radial-gradient(circle ${objectSize}px at ${baseX}% ${baseY}%, 
+            rgba(100,100,100,${objectOpacity * hallucinationIntensity}) 0%, 
+            rgba(100,100,100,${objectOpacity * 0.5 * hallucinationIntensity}) 60%,
+            rgba(100,100,100,0) 100%
+          )
+        `);
+      } else {
+        hallucinationElements.push(`
+          radial-gradient(ellipse ${objectSize}px ${objectSize * 1.5}px at ${baseX}% ${baseY}%, 
+            rgba(80,80,80,${objectOpacity * hallucinationIntensity}) 0%, 
+            rgba(80,80,80,${objectOpacity * 0.4 * hallucinationIntensity}) 70%,
+            rgba(80,80,80,0) 100%
+          )
+        `);
+      }
+    }
+    
+    // Floating orbs and lights (common in visual hallucinations) - static positions
+    for (let i = 0; i < 2 + Math.floor(intensity * 2); i++) {
+      const baseX = 15 + (i * 40) % 70;
+      const baseY = 15 + (i * 30) % 70;
+      const orbOpacity = 0.4 + (i % 2) * 0.2;
+      const orbSize = 6 + (i % 2) * 2;
+      
+      // Glowing orb effect
+      hallucinationElements.push(`
+        radial-gradient(circle ${orbSize}px at ${baseX}% ${baseY}%, 
+          rgba(255,255,255,${orbOpacity * hallucinationIntensity}) 0%, 
+          rgba(255,255,200,${orbOpacity * 0.7 * hallucinationIntensity}) 30%,
+          rgba(255,200,100,${orbOpacity * 0.4 * hallucinationIntensity}) 60%,
+          rgba(255,255,255,0) 100%
+        )
+      `);
+    }
+    
+    // Shadowy figures in peripheral vision
+    for (let i = 0; i < 1 + Math.floor(intensity * 2); i++) {
+      const edgeX = i % 2 === 0 ? 5 : 95;
+      const edgeY = 20 + (i * 60) % 60;
+      const shadowOpacity = 0.25 + (i % 2) * 0.1;
+      
+      hallucinationElements.push(`
+        radial-gradient(ellipse 20px 30px at ${edgeX}% ${edgeY}%, 
+          rgba(0,0,0,${shadowOpacity * hallucinationIntensity}) 0%, 
+          rgba(0,0,0,${shadowOpacity * 0.5 * hallucinationIntensity}) 50%,
+          rgba(0,0,0,0) 100%
+        )
+      `);
+    }
+    
+    // Combine all hallucination elements
+    const hallucinationsBackground = hallucinationElements.join(', ');
+    
+    createOverlay(
+      'visual-field-overlay-hallucinations',
+      hallucinationsBackground,
+      'normal',
+      Math.min(0.9, hallucinationIntensity).toString(),
+      undefined,
+      undefined,
+      'hallucinations'
+    );
+  }
+
+  // Visual Aura effects - Scintillating Scotoma (Fortification Spectrum)
+  if (visualAura?.enabled) {
+    const intensity = visualAura.intensity;
+    // Visual Aura: C-shaped scotoma with scintillating edges
+    // Static representation of the migrating scotoma pattern
+    const scotomaSize = 25; // Medium size scotoma
+    const scotomaCenterX = 50; // Centered horizontally
+    const scotomaCenterY = 50; // Centered vertically
+    
+    // C-shaped scotoma (crescent pattern) - weighted to one side
+    const cShapeScotoma = `
+      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(0,0,0,${0.95 * intensity}) 0%, 
+        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
+        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
+        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
+        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
+        rgba(0,0,0,0) ${scotomaSize + 8}%
+      )
+    `;
+    
+    // Scintillating edges with prismatic colors
+    const scintillatingEdges = `
+      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(255,0,0,${0.6 * intensity}) 0deg,
+        rgba(255,165,0,${0.7 * intensity}) 30deg,
+        rgba(255,255,0,${0.5 * intensity}) 60deg,
+        rgba(0,255,0,${0.6 * intensity}) 90deg,
+        rgba(0,255,255,${0.4 * intensity}) 120deg,
+        rgba(0,0,255,${0.5 * intensity}) 150deg,
+        rgba(128,0,128,${0.6 * intensity}) 180deg,
+        rgba(255,0,255,${0.4 * intensity}) 210deg,
+        rgba(255,255,255,${0.7 * intensity}) 240deg,
+        rgba(255,192,203,${0.3 * intensity}) 270deg,
+        rgba(255,255,0,${0.5 * intensity}) 300deg,
+        rgba(255,165,0,${0.6 * intensity}) 330deg,
+        rgba(255,0,0,${0.6 * intensity}) 360deg
+      )
+    `;
+    
+    // Combine scotoma and scintillating edges
+    const visualAuraBackground = `${cShapeScotoma}, ${scintillatingEdges}`;
+    
+    createOverlay(
       'visual-field-overlay-visualAura',
-      `radial-gradient(circle at 50% 50%, 
-        rgba(255,255,255,${0.6 * visualAura.intensity}) 0%, 
-        rgba(255,255,255,${0.4 * visualAura.intensity}) ${auraRadius - 10}%, 
-        rgba(255,255,255,${0.2 * visualAura.intensity}) ${auraRadius}%, 
-        rgba(255,255,255,0) ${auraRadius + 20}%
-      )`,
+      visualAuraBackground,
       'overlay',
-      Math.min(0.9, visualAura.intensity).toString(),
+      Math.min(0.9, intensity).toString(),
       undefined,
       undefined,
-      'visualAura',
-      container
+      'visualAura'
     );
   }
 
   if (visualAuraLeft?.enabled) {
-    // Use static radius instead of time-based animation to prevent progressive intensity increase
-    const auraRadius = 25;
+    const intensity = visualAuraLeft.intensity;
+    const scotomaSize = 20;
+    const scotomaCenterX = 25; // Left side
+    const scotomaCenterY = 50;
     
-    createOverlayWithContainer(
+    // C-shaped scotoma on left side
+    const cShapeScotoma = `
+      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(0,0,0,${0.95 * intensity}) 0%, 
+        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
+        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
+        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
+        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
+        rgba(0,0,0,0) ${scotomaSize + 8}%
+      )
+    `;
+    
+    // Scintillating edges
+    const scintillatingEdges = `
+      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(255,0,0,${0.6 * intensity}) 0deg,
+        rgba(255,165,0,${0.7 * intensity}) 30deg,
+        rgba(255,255,0,${0.5 * intensity}) 60deg,
+        rgba(0,255,0,${0.6 * intensity}) 90deg,
+        rgba(0,255,255,${0.4 * intensity}) 120deg,
+        rgba(0,0,255,${0.5 * intensity}) 150deg,
+        rgba(128,0,128,${0.6 * intensity}) 180deg,
+        rgba(255,0,255,${0.4 * intensity}) 210deg,
+        rgba(255,255,255,${0.7 * intensity}) 240deg,
+        rgba(255,192,203,${0.3 * intensity}) 270deg,
+        rgba(255,255,0,${0.5 * intensity}) 300deg,
+        rgba(255,165,0,${0.6 * intensity}) 330deg,
+        rgba(255,0,0,${0.6 * intensity}) 360deg
+      )
+    `;
+    
+    createOverlay(
       'visual-field-overlay-visualAuraLeft',
-      `radial-gradient(circle at 25% 50%, 
-        rgba(255,255,255,${0.6 * visualAuraLeft.intensity}) 0%, 
-        rgba(255,255,255,${0.4 * visualAuraLeft.intensity}) ${auraRadius - 8}%, 
-        rgba(255,255,255,${0.2 * visualAuraLeft.intensity}) ${auraRadius}%, 
-        rgba(255,255,255,0) ${auraRadius + 15}%
-      )`,
+      `${cShapeScotoma}, ${scintillatingEdges}`,
       'overlay',
-      Math.min(0.9, visualAuraLeft.intensity).toString(),
+      Math.min(0.9, intensity).toString(),
       undefined,
       undefined,
-      'visualAuraLeft',
-      container
+      'visualAuraLeft'
     );
   }
 
   if (visualAuraRight?.enabled) {
-    // Use static radius instead of time-based animation to prevent progressive intensity increase
-    const auraRadius = 25;
+    const intensity = visualAuraRight.intensity;
+    const scotomaSize = 20;
+    const scotomaCenterX = 75; // Right side
+    const scotomaCenterY = 50;
     
-    createOverlayWithContainer(
+    // C-shaped scotoma on right side
+    const cShapeScotoma = `
+      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(0,0,0,${0.95 * intensity}) 0%, 
+        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
+        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
+        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
+        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
+        rgba(0,0,0,0) ${scotomaSize + 8}%
+      )
+    `;
+    
+    // Scintillating edges
+    const scintillatingEdges = `
+      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
+        rgba(255,0,0,${0.6 * intensity}) 0deg,
+        rgba(255,165,0,${0.7 * intensity}) 30deg,
+        rgba(255,255,0,${0.5 * intensity}) 60deg,
+        rgba(0,255,0,${0.6 * intensity}) 90deg,
+        rgba(0,255,255,${0.4 * intensity}) 120deg,
+        rgba(0,0,255,${0.5 * intensity}) 150deg,
+        rgba(128,0,128,${0.6 * intensity}) 180deg,
+        rgba(255,0,255,${0.4 * intensity}) 210deg,
+        rgba(255,255,255,${0.7 * intensity}) 240deg,
+        rgba(255,192,203,${0.3 * intensity}) 270deg,
+        rgba(255,255,0,${0.5 * intensity}) 300deg,
+        rgba(255,165,0,${0.6 * intensity}) 330deg,
+        rgba(255,0,0,${0.6 * intensity}) 360deg
+      )
+    `;
+    
+    createOverlay(
       'visual-field-overlay-visualAuraRight',
-      `radial-gradient(circle at 75% 50%, 
-        rgba(255,255,255,${0.6 * visualAuraRight.intensity}) 0%, 
-        rgba(255,255,255,${0.4 * visualAuraRight.intensity}) ${auraRadius - 8}%, 
-        rgba(255,255,255,${0.2 * visualAuraRight.intensity}) ${auraRadius}%, 
-        rgba(255,255,255,0) ${auraRadius + 15}%
-      )`,
+      `${cShapeScotoma}, ${scintillatingEdges}`,
       'overlay',
-      Math.min(0.9, visualAuraRight.intensity).toString(),
+      Math.min(0.9, intensity).toString(),
       undefined,
       undefined,
-      'visualAuraRight',
-      container
+      'visualAuraRight'
     );
   }
 
@@ -620,18 +899,65 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       `;
     }
     
-    // Remove trailing comma
-    glaucomaBackground = glaucomaBackground.slice(0, -1);
-    
-    createOverlay(
-      'visual-field-overlay-glaucoma',
-      glaucomaBackground,
-      'multiply',
-      Math.min(0.95, intensity).toString(),
-      undefined,
-      undefined,
-      'glaucoma'
-    );
+    // Only create overlay if we have a background to apply
+    if (glaucomaBackground.trim().length > 0) {
+      // Remove trailing comma
+      glaucomaBackground = glaucomaBackground.trim().replace(/,\s*$/, '');
+      
+      // Use createOverlayWithContainer if container is provided, otherwise use createOverlay
+      if (container) {
+        createOverlayWithContainer(
+          'visual-field-overlay-glaucoma',
+          glaucomaBackground,
+          'multiply',
+          Math.min(0.95, intensity).toString(),
+          undefined,
+          undefined,
+          'glaucoma',
+          container
+        );
+      } else {
+        createOverlay(
+          'visual-field-overlay-glaucoma',
+          glaucomaBackground,
+          'multiply',
+          Math.min(0.95, intensity).toString(),
+          undefined,
+          undefined,
+          'glaucoma'
+        );
+      }
+    } else {
+      // For very low intensity, create a subtle overlay to ensure visibility
+      const subtleBackground = `radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,${0.1 * intensity}) 80%,
+        rgba(0,0,0,${0.2 * intensity}) 100%
+      )`;
+      
+      if (container) {
+        createOverlayWithContainer(
+          'visual-field-overlay-glaucoma',
+          subtleBackground,
+          'multiply',
+          Math.min(0.3, intensity).toString(),
+          undefined,
+          undefined,
+          'glaucoma',
+          container
+        );
+      } else {
+        createOverlay(
+          'visual-field-overlay-glaucoma',
+          subtleBackground,
+          'multiply',
+          Math.min(0.3, intensity).toString(),
+          undefined,
+          undefined,
+          'glaucoma'
+        );
+      }
+    }
   }
 
   if (stargardt?.enabled) {
@@ -651,6 +977,141 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       `saturate(${1 - intensity * 0.4})`, // Color desaturation
       undefined,
       'stargardt'
+    );
+  }
+
+  // Age-Related Macular Degeneration (AMD) - Central scotoma
+  if (amd?.enabled) {
+    const intensity = amd.intensity;
+    // AMD causes central vision loss (central scotoma) while preserving peripheral vision
+    // Based on NIH research: "Central vision loss makes things appear blurry or distorted, particularly when you look at them directly"
+    const amdRadius = Math.max(15, 52 - intensity * 37); // Central scotoma size based on intensity (30% larger at 100%)
+    
+    createOverlay(
+      'visual-field-overlay-amd',
+      `radial-gradient(circle at 50% 50%, 
+        rgba(0,0,0,${0.95 * intensity}) 0%, 
+        rgba(0,0,0,${0.95 * intensity}) ${amdRadius - 5}%,
+        rgba(0,0,0,${0.7 * intensity}) ${amdRadius}%,
+        rgba(0,0,0,${0.3 * intensity}) ${amdRadius + 5}%,
+        rgba(0,0,0,0) ${amdRadius + 10}%
+      )`,
+      'multiply',
+      Math.min(0.95, intensity).toString(),
+      undefined,
+      undefined,
+      'amd'
+    );
+  }
+
+  // Diabetic Retinopathy - Multiple symptoms: microaneurysms, cotton wool spots, vitreous hemorrhages, macular edema
+  if (diabeticRetinopathy?.enabled) {
+    const intensity = diabeticRetinopathy.intensity;
+    // Based on detailed medical description: microaneurysms, cotton wool spots, macular edema, vitreous hemorrhages
+    
+    // Microaneurysms and small hemorrhages - dark spots scattered across the retina
+    const microaneurysms = `
+      radial-gradient(circle 3px at 25% 35%, 
+        rgba(0,0,0,${0.9 * intensity}) 0%, 
+        rgba(0,0,0,${0.6 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      ),
+      radial-gradient(circle 2px at 65% 55%, 
+        rgba(0,0,0,${0.8 * intensity}) 0%, 
+        rgba(0,0,0,${0.5 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      ),
+      radial-gradient(circle 4px at 45% 75%, 
+        rgba(0,0,0,${0.7 * intensity}) 0%, 
+        rgba(0,0,0,${0.4 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      ),
+      radial-gradient(circle 2.5px at 80% 25%, 
+        rgba(0,0,0,${0.85 * intensity}) 0%, 
+        rgba(0,0,0,${0.55 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      ),
+      radial-gradient(circle 3px at 30% 60%, 
+        rgba(0,0,0,${0.75 * intensity}) 0%, 
+        rgba(0,0,0,${0.45 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      ),
+      radial-gradient(circle 2px at 70% 40%, 
+        rgba(0,0,0,${0.8 * intensity}) 0%, 
+        rgba(0,0,0,${0.5 * intensity}) 50%,
+        rgba(0,0,0,0) 100%
+      )
+    `;
+    
+    // Cotton wool spots - larger, more prominent white areas
+    const cottonWoolSpots = `
+      radial-gradient(ellipse 15px 10px at 60% 40%, 
+        rgba(255,255,255,${0.6 * intensity}) 0%, 
+        rgba(255,255,255,${0.3 * intensity}) 50%,
+        rgba(255,255,255,0) 100%
+      ),
+      radial-gradient(ellipse 12px 8px at 30% 70%, 
+        rgba(255,255,255,${0.5 * intensity}) 0%, 
+        rgba(255,255,255,${0.25 * intensity}) 50%,
+        rgba(255,255,255,0) 100%
+      ),
+      radial-gradient(ellipse 10px 7px at 55% 20%, 
+        rgba(255,255,255,${0.4 * intensity}) 0%, 
+        rgba(255,255,255,${0.2 * intensity}) 50%,
+        rgba(255,255,255,0) 100%
+      )
+    `;
+    
+    // Vitreous hemorrhage - reddish tint over central area
+    const vitreousHemorrhage = `
+      radial-gradient(circle at 50% 50%, 
+        rgba(139,0,0,${0.3 * intensity}) 0%, 
+        rgba(139,0,0,${0.2 * intensity}) 30%,
+        rgba(139,0,0,${0.1 * intensity}) 60%,
+        rgba(139,0,0,0) 100%
+      )
+    `;
+    
+    // Combine all symptoms
+    const diabeticRetinopathyBackground = `${microaneurysms}, ${cottonWoolSpots}, ${vitreousHemorrhage}`;
+    
+    createOverlay(
+      'visual-field-overlay-diabeticRetinopathy',
+      diabeticRetinopathyBackground,
+      'normal',
+      Math.min(0.9, intensity).toString(),
+      // Macular edema effects: blur, brightness, contrast, saturation, sepia
+      `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) saturate(${100 - intensity * 15}%) sepia(${intensity * 20}%)`,
+      undefined,
+      'diabeticRetinopathy'
+    );
+  }
+
+  // Retinal Detachment - Curtain-like shadow moving across vision
+  if (retinalDetachment?.enabled) {
+    const intensity = retinalDetachment.intensity;
+    // Medical emergency where the retina separates from underlying tissue
+    // Symptoms include sudden increase in floaters, flashes of light, and a curtain-like shadow moving across vision
+    // At detachment margins, vision may be distorted (metamorphopsia)
+    
+    // Curtain-like shadow progressing from top (most common presentation)
+    // The shadow can also come from sides or bottom depending on detachment location
+    createOverlay(
+      'visual-field-overlay-retinalDetachment',
+      `linear-gradient(to bottom, 
+        rgba(0,0,0,${0.9 * intensity}) 0%,
+        rgba(0,0,0,${0.8 * intensity}) 15%,
+        rgba(0,0,0,${0.6 * intensity}) 30%,
+        rgba(0,0,0,${0.4 * intensity}) 45%,
+        rgba(0,0,0,${0.2 * intensity}) 60%,
+        rgba(0,0,0,0) 75%
+      )`,
+      'multiply',
+      Math.min(0.8, intensity).toString(),
+      // Metamorphopsia (distortion at detachment margins): blur and slight hue rotation
+      `blur(${intensity * 3}px) hue-rotate(${intensity * 2}deg)`,
+      undefined,
+      'retinalDetachment'
     );
   }
 
@@ -2114,6 +2575,82 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       undefined,
       'keratoconus'
     );
+  }
+
+  // Vitreous Hemorrhage - Blood in the vitreous humor causing red-tinted vision
+  if (vitreousHemorrhage?.enabled) {
+    const intensity = vitreousHemorrhage.intensity;
+    
+    // Create highly intensified hazy, semi-random dark reddish floaters with extensive blood streaks and pools
+    let vitreousBackground = `
+      /* Blood streaks at various angles - intensified */
+      linear-gradient(45deg, rgba(139,0,0,${0.7 * intensity}) 0%, transparent 30%),
+      linear-gradient(-45deg, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 25%),
+      linear-gradient(90deg, rgba(139,0,0,${0.65 * intensity}) 0%, transparent 35%),
+      linear-gradient(135deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 22%),
+      linear-gradient(15deg, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 18%),
+      linear-gradient(75deg, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 15%),
+      linear-gradient(105deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 25%),
+      linear-gradient(165deg, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 20%),
+      linear-gradient(30deg, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 16%),
+      linear-gradient(60deg, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 14%),
+      linear-gradient(120deg, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 12%),
+      linear-gradient(150deg, rgba(139,0,0,${0.35 * intensity}) 0%, transparent 10%),
+      /* Blood pools and dots - intensified */
+      radial-gradient(circle at 30% 40%, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 15%),
+      radial-gradient(circle at 70% 60%, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 12%),
+      radial-gradient(circle at 20% 80%, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 10%),
+      radial-gradient(circle at 80% 20%, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 8%),
+      radial-gradient(circle at 50% 50%, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 18%),
+      radial-gradient(circle at 15% 25%, rgba(139,0,0,${0.52 * intensity}) 0%, transparent 9%),
+      radial-gradient(circle at 85% 35%, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 11%),
+      radial-gradient(circle at 25% 75%, rgba(139,0,0,${0.46 * intensity}) 0%, transparent 7%),
+      radial-gradient(circle at 75% 85%, rgba(139,0,0,${0.44 * intensity}) 0%, transparent 10%),
+      radial-gradient(circle at 40% 15%, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 8%),
+      radial-gradient(circle at 60% 90%, rgba(139,0,0,${0.40 * intensity}) 0%, transparent 6%),
+      radial-gradient(circle at 10% 60%, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 5%),
+      radial-gradient(circle at 90% 40%, rgba(139,0,0,${0.36 * intensity}) 0%, transparent 7%),
+      radial-gradient(circle at 35% 85%, rgba(139,0,0,${0.34 * intensity}) 0%, transparent 6%),
+      radial-gradient(circle at 65% 10%, rgba(139,0,0,${0.32 * intensity}) 0%, transparent 8%),
+      /* Irregular blood patches - intensified */
+      radial-gradient(ellipse at 35% 65%, rgba(139,0,0,${0.28 * intensity}) 0%, transparent 16%),
+      radial-gradient(ellipse at 65% 25%, rgba(139,0,0,${0.26 * intensity}) 0%, transparent 13%),
+      radial-gradient(ellipse at 10% 50%, rgba(139,0,0,${0.24 * intensity}) 0%, transparent 11%),
+      radial-gradient(ellipse at 90% 70%, rgba(139,0,0,${0.22 * intensity}) 0%, transparent 9%),
+      radial-gradient(ellipse at 20% 30%, rgba(139,0,0,${0.20 * intensity}) 0%, transparent 8%),
+      radial-gradient(ellipse at 80% 80%, rgba(139,0,0,${0.18 * intensity}) 0%, transparent 7%),
+      radial-gradient(ellipse at 45% 10%, rgba(139,0,0,${0.16 * intensity}) 0%, transparent 6%),
+      radial-gradient(ellipse at 55% 90%, rgba(139,0,0,${0.14 * intensity}) 0%, transparent 5%),
+      /* Overall red tint veil */
+      rgba(139,0,0,${0.2 * intensity})
+    `;
+    
+    // Remove trailing comma and clean up
+    vitreousBackground = vitreousBackground.trim().replace(/,\s*$/, '');
+    
+    // Use createOverlayWithContainer if container is provided, otherwise use createOverlay
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-vitreousHemorrhage',
+        vitreousBackground,
+        'multiply',
+        Math.min(0.9, intensity).toString(), // Match preview opacity
+        undefined,
+        undefined,
+        'vitreousHemorrhage',
+        container
+      );
+    } else {
+      createOverlay(
+        'visual-field-overlay-vitreousHemorrhage',
+        vitreousBackground,
+        'multiply',
+        Math.min(0.9, intensity).toString(), // Match preview opacity
+        undefined,
+        undefined,
+        'vitreousHemorrhage'
+      );
+    }
   }
 };
 

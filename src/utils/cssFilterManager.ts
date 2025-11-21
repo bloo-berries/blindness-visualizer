@@ -697,13 +697,16 @@ const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
   }
   
   if (vitreousHemorrhage) {
-    // Highly intensified red veil effect from blood in vitreous
-    filters.push(`blur(${vitreousHemorrhage.intensity * 8}px)`);
-    filters.push(`brightness(${100 - vitreousHemorrhage.intensity * 50}%)`);
-    filters.push(`contrast(${100 - vitreousHemorrhage.intensity * 45}%)`);
-    // Enhanced red tint for blood effect
-    filters.push(`sepia(${vitreousHemorrhage.intensity * 70}%) hue-rotate(${vitreousHemorrhage.intensity * 35}deg)`);
-    filters.push(`saturate(${100 + vitreousHemorrhage.intensity * 30}%)`);
+    // Vitreous Hemorrhage - Blood in vitreous humor
+    // Use minimal CSS filters - let the overlay handle the red tint
+    // CSS filters should only provide blur, dimming, and contrast reduction
+    // The red tint comes from the overlay with blood streaks and pools
+    const intensity = vitreousHemorrhage.intensity;
+    filters.push(`blur(${intensity * 8}px)`);
+    filters.push(`brightness(${100 - intensity * 50}%)`); // Dimming from blood
+    filters.push(`contrast(${100 - intensity * 45}%)`);
+    // NO sepia or hue-rotate - these create yellow/brown tint that conflicts with red overlay
+    // The red tint is provided entirely by the overlay layer
   }
   
   if (retinalDetachment) {
@@ -830,10 +833,14 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     return '';
   }
   
+  // Check if vitreousHemorrhage is enabled - if so, skip cataracts filter to avoid conflicts
+  const hasVitreousHemorrhage = enabledEffects.some(e => e.id === 'vitreousHemorrhage');
+  
   const filterComponents = [
     generateColorBlindnessFilter(effects), 
     generateBlurFilter(effects),
-    generateCataractsFilter(effects), // Nuclear Sclerotic Cataract
+    // Only apply cataracts filter if vitreousHemorrhage is NOT enabled (to avoid yellow/brown tint conflict)
+    ...(hasVitreousHemorrhage ? [] : [generateCataractsFilter(effects)]),
     generateGalileoFilters(effects), 
     generateMonetFilters(effects), 
     generateChristineFilters(effects), 

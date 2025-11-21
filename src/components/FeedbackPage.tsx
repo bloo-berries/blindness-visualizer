@@ -161,7 +161,7 @@ const FeedbackPage: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar />
       
-      <Container maxWidth="lg" sx={{ pt: 12, pb: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 8 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography 

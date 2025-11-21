@@ -14,7 +14,6 @@ import {
 import { useNavigate, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import AccessibilityMenu from './AccessibilityMenu';
 
 interface NavigationBarProps {
@@ -41,9 +40,9 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   const navItems = [
     { label: 'About', path: '/about' },
-    { label: 'Conditions Glossary', path: '/conditions' },
-    { label: 'FAQ', path: '/faq' },
-    { label: 'Feedback', path: '/feedback' }
+    { label: 'Vision Simulator', path: '/simulator' },
+    { label: 'Famous Blind People', path: '/famous-people' },
+    { label: 'Glossary & FAQ', path: '/conditions' }
   ];
 
   return (
@@ -81,11 +80,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         zIndex: 1200,
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>
         <Toolbar sx={{ 
           px: { xs: 0 },
-          minHeight: '80px', // Increased from default
-          py: 2 // Added vertical padding
+          minHeight: '64px',
+          py: 1
         }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
@@ -93,7 +92,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               sx={{ 
                 display: 'flex', 
                 alignItems: 'center', 
-                mr: 3,
+                mr: 2,
                 cursor: 'pointer',
                 '&:hover': {
                   opacity: 0.8,
@@ -113,22 +112,22 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               <VisibilityIcon 
                 sx={{ 
-                  color: 'white', // Changed from primary.main to white for better visibility
-                  fontSize: 48, // Increased from 36
-                  mr: 2, // Increased from 1.5
-                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))' // Added drop shadow for better visibility
+                  color: 'white',
+                  fontSize: 36,
+                  mr: 1.5,
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
                 }} 
               />
               <Typography 
-                variant="h4" // Changed from h5
+                variant="h5"
                 component="div" 
                 sx={{ 
-                  fontWeight: 900, // Increased from 800
+                  fontWeight: 800,
                   color: 'white',
-                  fontSize: '2.2rem', // Increased from 2rem
+                  fontSize: '1.75rem',
                   letterSpacing: '-0.02em',
-                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)', // Added text shadow for better visibility
-                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))' // Added drop shadow
+                  textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))'
                 }}
               >
                 VisionSim
@@ -140,7 +139,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
           {!isMobile && (
             <Box sx={{ 
               display: 'flex', 
-              gap: 2,
+              gap: 1,
               position: 'absolute',
               left: '50%',
               transform: 'translateX(-50%)'
@@ -153,10 +152,11 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   sx={{
                     color: 'white',
                     fontWeight: 600,
-                    fontSize: '1.1rem', // Increased from 0.95rem
+                    fontSize: '0.8rem',
                     textTransform: 'none',
-                    padding: '12px 20px', // Increased from 8px 16px
-                    borderRadius: '8px', // Increased from 6px
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    whiteSpace: 'nowrap',
                     '&:hover': {
                       color: '#60a5fa',
                       backgroundColor: 'rgba(96, 165, 250, 0.15)',
@@ -185,47 +185,21 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   ml: 2,
                   bgcolor: 'background.paper',
                   color: 'primary.main',
-                  width: '50px', // Increased from 40px
-                  height: '50px', // Increased from 40px
+                  width: '40px',
+                  height: '40px',
                   '&:hover': {
                     bgcolor: 'grey.100',
                   },
                   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                 }}
               >
-                <HomeIcon fontSize="large" /> {/* Changed from medium */}
+                <HomeIcon fontSize="medium" />
               </IconButton>
             </Tooltip>
           )}
 
           {/* Accessibility Menu */}
           <AccessibilityMenu />
-
-          {/* GitHub Link */}
-          <Tooltip title="View on GitHub">
-            <IconButton
-              component="a"
-              href="https://github.com/bloo-berries/blindness-visualizer"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View project on GitHub"
-              size="large"
-              sx={{
-                ml: 2,
-                color: 'white',
-                width: '50px', // Increased from 40px
-                height: '50px', // Increased from 40px
-                '&:hover': {
-                  color: '#60a5fa',
-                  backgroundColor: 'rgba(96, 165, 250, 0.15)',
-                  transform: 'scale(1.05)',
-                },
-                transition: 'all 0.3s ease-in-out',
-              }}
-            >
-              <GitHubIcon fontSize="large" /> {/* Changed from medium */}
-            </IconButton>
-          </Tooltip>
         </Toolbar>
       </Container>
     </AppBar>

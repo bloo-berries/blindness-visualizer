@@ -638,7 +638,7 @@ const FamousBlindPeople: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
-      <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
           Visual Impairment Simulator
         </Typography>

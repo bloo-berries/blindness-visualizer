@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
           backgroundColor: 'background.default'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>
           <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 5 } }}>
             <Typography 
               variant="h2" 

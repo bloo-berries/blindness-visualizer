@@ -9,8 +9,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
-import ConditionsPage from './components/ConditionsPage';
-import FAQPage from './components/FAQPage';
+import ConditionsAndFAQPage from './components/ConditionsAndFAQPage';
 import AboutPage from './components/AboutPage';
 import FeedbackPage from './components/FeedbackPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
@@ -162,8 +161,8 @@ const App: React.FC = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="/simulator" element={<VisionSimulator />} />
               <Route path="/famous-people" element={<FamousBlindPeople />} />
-              <Route path="/conditions" element={<ConditionsPage />} />
-              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/conditions" element={<ConditionsAndFAQPage />} />
+              <Route path="/faq" element={<ConditionsAndFAQPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/feedback" element={<FeedbackPage />} />
             </Routes>

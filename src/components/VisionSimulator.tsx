@@ -244,8 +244,8 @@ const VisionSimulator: React.FC = () => {
         Skip to content
       </a>
       <Container 
-        maxWidth="lg" 
-        sx={{ py: 2, pt: 6 }}
+        maxWidth={false}
+        sx={{ maxWidth: '1000px', py: 2, pt: 6 }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"

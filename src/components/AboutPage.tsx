@@ -15,7 +15,7 @@ const AboutPage: React.FC = () => {
     <>
       <NavigationBar />
       <Box sx={{ pt: '80px', pb: 10 }}>
-        <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>
           {/* Hero Section */}
           <Box sx={{ textAlign: 'center', mb: 3 }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{ 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, Link, Dialog, DialogContent, Button } from '@mui/material';
-import { Favorite } from '@mui/icons-material';
+import { Box, Container, Typography, Link, Dialog, DialogContent, Button, IconButton, Tooltip } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Favorite, GitHub as GitHubIcon } from '@mui/icons-material';
 import AccessibilityStatement from './AccessibilityStatement';
 
 const Footer: React.FC = () => {
   const [accessibilityDialogOpen, setAccessibilityDialogOpen] = useState(false);
+  const navigate = useNavigate();
   
   return (
     <Box 
@@ -20,7 +22,7 @@ const Footer: React.FC = () => {
         borderTop: '1px solid #e2e8f0'
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>
         <Box 
           sx={{ 
             display: 'flex', 
@@ -96,9 +98,12 @@ const Footer: React.FC = () => {
               Accessibility
             </Link>
             <Link 
-              href="https://github.com/bloo-berries/blindness-visualizer" 
-              target="_blank" 
-              rel="noopener"
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/feedback');
+              }}
+              aria-label="Provide feedback"
               sx={{ 
                 color: 'text.secondary',
                 textDecoration: 'none',
@@ -109,8 +114,27 @@ const Footer: React.FC = () => {
                 }
               }}
             >
-              GitHub
+              Feedback
             </Link>
+            <Tooltip title="View on GitHub">
+              <IconButton
+                component="a"
+                href="https://github.com/bloo-berries/blindness-visualizer"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View project on GitHub"
+                size="small"
+                sx={{ 
+                  color: 'text.secondary',
+                  '&:hover': {
+                    color: 'primary.main',
+                    backgroundColor: 'transparent'
+                  }
+                }}
+              >
+                <GitHubIcon />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Box>
       </Container>

@@ -224,10 +224,10 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   },
   { 
     id: 'astigmatism',
-    name: 'Astigmatism',
+    name: 'Astigmatism/Pterygium',
     enabled: false,
     intensity: 1.0,
-    description: 'Irregular curvature of the cornea or lens causing blurred or distorted vision at all distances. Common refractive error that can be corrected with glasses or contacts.'
+    description: 'Irregular curvature of the cornea or lens causing blurred or distorted vision at all distances. Common refractive error that can be corrected with glasses or contacts. Pterygium is a fibrovascular growth onto the cornea that can cause astigmatism by distorting the corneal surface.'
   },
   { 
     id: 'retinitisPigmentosa',
@@ -266,7 +266,7 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
   },
   { 
     id: 'diplopiaBinocular',
-    name: 'Binocular Diplopia (Double Vision in Both Eyes)',
+    name: 'Binocular Diplopia/Strabismus (Double Vision in Both Eyes)',
     enabled: false,
     intensity: 1.0,
     description: 'Seeing double when both eyes are open, but single when one eye is closed. Usually caused by misalignment of the eyes due to muscle or nerve problems.'

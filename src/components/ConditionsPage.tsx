@@ -173,8 +173,8 @@ const ConditionsPage: React.FC = () => {
         },
         {
           id: 'astigmatism',
-          name: 'Astigmatism',
-          description: 'Irregular curvature of the cornea or lens causing blurred or distorted vision at all distances. Common refractive error that can be corrected with glasses or contacts.'
+          name: 'Astigmatism/Pterygium',
+          description: 'Irregular curvature of the cornea or lens causing blurred or distorted vision at all distances. Common refractive error that can be corrected with glasses or contacts. Pterygium is a fibrovascular growth onto the cornea that can cause astigmatism by distorting the corneal surface.'
         },
         {
           id: 'nearSighted',

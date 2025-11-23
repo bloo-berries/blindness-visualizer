@@ -651,7 +651,7 @@ const ConditionsAndFAQPage: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Comprehensive information about vision conditions, visual impairments, and frequently asked questions. 
+          Comprehensive definitions and explanations of vision conditions, visual impairments, and related medical terms. 
           Learn about the conditions that affect the famous individuals featured in our simulator, and discover answers to common questions about blindness and visual impairment.
         </Typography>
 
@@ -659,20 +659,6 @@ const ConditionsAndFAQPage: React.FC = () => {
         <Box sx={{ mb: 8 }}>
           <Typography variant="h3" component="h2" gutterBottom align="center" sx={{ mb: 4, fontWeight: 600 }}>
             Vision Conditions Glossary
-          </Typography>
-          <Typography 
-            variant="body1" 
-            align="center" 
-            sx={{ 
-              mb: 4, 
-              color: 'text.secondary',
-              maxWidth: '800px',
-              mx: 'auto',
-              lineHeight: 1.6
-            }}
-          >
-            Comprehensive definitions and explanations of vision conditions, visual impairments, and related medical terms. 
-            Learn about the conditions that affect the famous individuals featured in our simulator.
           </Typography>
 
           {/* Search and Filter Section */}

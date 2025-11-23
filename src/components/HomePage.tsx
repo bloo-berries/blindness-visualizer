@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
                 mb: 1.5
               }}
             >
-              Experience visual impairments firsthand to build empathy and create more accessible digital experiences
+              Experience visual impairments to build empathy and create more accessible digital experiences
             </Typography>
 
           </Box>
@@ -125,71 +125,23 @@ const HomePage: React.FC = () => {
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}
                       >
-                        Upload images or sample a YouTube video with adjustable visuals.
+                        Upload images or sample a YouTube video with customizable and adjustable visuals.
                       </Typography>
-                    </Box>
-                    
-                    <Box sx={{ mb: 2 }}>
-                      <Typography 
-                        variant="subtitle1" 
-                        className="homepage-features-title" 
-                        sx={{ 
-                          fontWeight: 600, 
-                          mb: 1.5, 
-                          color: 'text.primary',
-                          ...(preferences.highContrast && { color: '#000000 !important' })
-                        }}
-                      >
-                        Features:
-                      </Typography>
-                      <Box sx={{ textAlign: 'left', maxWidth: '400px', mx: 'auto' }}>
-                        <Typography 
-                          variant="body2" 
-                          color="text.primary" 
-                          className="homepage-feature-item" 
-                          sx={{ 
-                            mb: 0.5,
-                            fontSize: '0.85rem',
-                            ...(preferences.highContrast && { color: '#000000 !important' })
+                      <Box sx={{ mb: 2, width: '100%' }}>
+                        <img 
+                          src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.png`}
+                          alt="Example vision condition comparison"
+                          onError={(e) => {
+                            console.error('Failed to load image:', e.currentTarget.src);
+                            e.currentTarget.style.display = 'none';
                           }}
-                        >
-                          • Real-time simulation with images and videos
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          color="text.primary" 
-                          className="homepage-feature-item" 
-                          sx={{ 
-                            mb: 0.5,
-                            fontSize: '0.85rem',
-                            ...(preferences.highContrast && { color: '#000000 !important' })
+                          style={{ 
+                            width: '100%', 
+                            height: 'auto',
+                            borderRadius: '8px',
+                            display: 'block'
                           }}
-                        >
-                          • Multiple vision conditions with adjustable intensity
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          color="text.primary" 
-                          className="homepage-feature-item" 
-                          sx={{ 
-                            mb: 0.5,
-                            fontSize: '0.85rem',
-                            ...(preferences.highContrast && { color: '#000000 !important' })
-                          }}
-                        >
-                          • Educational tool for healthcare professionals and teachers
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          color="text.primary" 
-                          className="homepage-feature-item"
-                          sx={{
-                            fontSize: '0.85rem',
-                            ...(preferences.highContrast && { color: '#000000 !important' })
-                          }}
-                        >
-                          • Build empathy for accessibility awareness
-                        </Typography>
+                        />
                       </Box>
                     </Box>
                   </Box>
@@ -249,19 +201,7 @@ const HomePage: React.FC = () => {
                     </Box>
                     
                     {/* Image Preview Grid */}
-                    <Box sx={{ mb: 2 }}>
-                    <Typography 
-                      variant="subtitle1" 
-                      className="homepage-featured-title" 
-                      sx={{ 
-                        fontWeight: 600, 
-                        mb: 1.5, 
-                        color: 'text.primary',
-                        ...(preferences.highContrast && { color: '#000000 !important' })
-                      }}
-                    >
-                      Featured People:
-                    </Typography>
+                    <Box sx={{ mb: 2, mt: 5.5 }}>
                     <Box sx={{ 
                       display: 'grid', 
                       gridTemplateColumns: 'repeat(4, 1fr)', 
@@ -277,16 +217,16 @@ const HomePage: React.FC = () => {
                         border: '2px solid #e2e8f0'
                       }}>
                         <img 
-                          src={getPersonImagePath('milton')} 
-                          alt="John Milton"
+                          src={getPersonImagePath('galileo')} 
+                          alt="Galileo Galilei"
                           style={{ 
                             width: '100%', 
                             height: '100%', 
                             objectFit: 'cover',
-                            objectPosition: 'center 30%'
+                            objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=John Milton`;
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Galileo Galilei`;
                           }}
                         />
                       </Box>
@@ -304,7 +244,7 @@ const HomePage: React.FC = () => {
                             width: '100%', 
                             height: '100%', 
                             objectFit: 'cover',
-                            objectPosition: 'center 40%'
+                            objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Stevie Wonder`;
@@ -350,6 +290,90 @@ const HomePage: React.FC = () => {
                           }}
                           onError={(e) => {
                             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Ray Charles`;
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '70px', 
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src={getPersonImagePath('sharon')} 
+                          alt="Sharon Stone"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 40%'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Sharon Stone`;
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '70px', 
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src={getPersonImagePath('bono')} 
+                          alt="Bono"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 40%'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Bono`;
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '70px', 
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src={getPersonImagePath('georgia')} 
+                          alt="Georgia O'Keefe"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 20%'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Georgia O'Keefe`;
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ 
+                        width: '100%', 
+                        height: '70px', 
+                        borderRadius: '10px',
+                        overflow: 'hidden',
+                        border: '2px solid #e2e8f0'
+                      }}>
+                        <img 
+                          src={getPersonImagePath('harriet')} 
+                          alt="Harriet Tubman"
+                          style={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            objectFit: 'cover',
+                            objectPosition: 'center 20%'
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Harriet Tubman`;
                           }}
                         />
                       </Box>

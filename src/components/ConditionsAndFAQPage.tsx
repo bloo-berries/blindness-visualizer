@@ -21,8 +21,7 @@ import {
   ListItemIcon,
   IconButton,
   Tooltip,
-  Divider,
-  Paper
+  Divider
 } from '@mui/material';
 import { 
   ExpandMore as ExpandMoreIcon,

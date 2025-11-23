@@ -3,7 +3,6 @@ import { Box, Typography, Paper } from '@mui/material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { isColorVisionCondition, getColorVisionFilter } from '../../utils/colorVisionFilters';
-import { isVisualDisturbanceCondition, isVisualFieldLossCondition, Z_INDEX } from '../../utils/overlayConstants';
 import { generatePreviewOverlayStyle } from './previewOverlays/generatePreviewOverlayStyle';
 
 interface EffectPreviewProps {

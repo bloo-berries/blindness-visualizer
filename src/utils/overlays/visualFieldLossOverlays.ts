@@ -1,5 +1,5 @@
 import { VisualEffect } from '../../types/visualEffects';
-import { createOverlay, createOverlayWithContainer } from './overlayHelpers';
+import { createOverlay } from './overlayHelpers';
 
 /**
  * Creates overlays for visual field loss conditions

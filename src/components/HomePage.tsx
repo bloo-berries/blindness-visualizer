@@ -132,7 +132,6 @@ const HomePage: React.FC = () => {
                           src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.png`}
                           alt="Example vision condition comparison"
                           onError={(e) => {
-                            console.error('Failed to load image:', e.currentTarget.src);
                             e.currentTarget.style.display = 'none';
                           }}
                           style={{ 

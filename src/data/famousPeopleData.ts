@@ -459,6 +459,86 @@ export const personData: Record<string, PersonData> = {
     onset: "Progressive, blind due to retinitis pigmentosa",
     simulation: "chris-retinitis-pigmentosa",
     description: "Chris McCausland is a British comedian and actor who is blind due to retinitis pigmentosa. He is known for his stand-up comedy, appearances on shows like Have I Got News for You and Would I Lie to You?, and for winning series 22 of BBC's Strictly Come Dancing in 2024 with professional dancer Dianne Buswell - becoming the first blind contestant to win the show. He also won a BAFTA award in 2025 for the memorable moment in their waltz. McCausland has established himself as a regular panellist on Have I Got News for You and has his own Saturday morning chat show on ITV1. Learn more at en.wikipedia.org."
+  },
+  odin: {
+    name: "Odin",
+    condition: "Partial Blindness (Symbolic)",
+    years: "Norse Mythology",
+    onset: "Sacrificed eye for wisdom",
+    simulation: "complete-blindness",
+    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye."
+  },
+  daredevil: {
+    name: "Daredevil / Matt Murdock",
+    condition: "Chemical Accident",
+    years: "Marvel Comics / Netflix Series",
+    onset: "Childhood accident",
+    simulation: "complete-blindness",
+    description: "Matt Murdock is a lawyer turned vigilante from Marvel Comics. As a child, he was blinded by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels. He uses his enhanced hearing, smell, touch, and a form of 'radar sense' to navigate and fight crime as Daredevil."
+  },
+  geordi: {
+    name: "Geordi La Forge",
+    condition: "Congenital Blindness",
+    years: "Star Trek: The Next Generation",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities."
+  },
+  mulanMonk: {
+    name: "Mulan (Blind Monk)",
+    condition: "Blindness",
+    years: "Mulan II",
+    onset: "Unknown",
+    simulation: "complete-blindness",
+    description: "The blind monk is a minor comic-relief character in Disney's Mulan II. Despite his blindness, he demonstrates wisdom and martial arts skills, serving as a humorous but capable character who helps guide the protagonists on their journey."
+  },
+  kenny: {
+    name: "Kenny McCormick (Blind Kenny)",
+    condition: "Temporary Blindness",
+    years: "South Park",
+    onset: "Episode: 'The Tooth Fairy Tats 2000'",
+    simulation: "complete-blindness",
+    description: "In the South Park episode 'The Tooth Fairy Tats 2000,' Kenny McCormick temporarily becomes blind as part of a gag storyline. This is one of many temporary conditions Kenny experiences throughout the series, often played for comedic effect."
+  },
+  raven: {
+    name: "Raven (Blind Raven)",
+    condition: "Temporary Blindness",
+    years: "Teen Titans Go!",
+    onset: "Occasional episodes",
+    simulation: "complete-blindness",
+    description: "Raven, a member of the Teen Titans, occasionally experiences temporary blindness in certain episodes of Teen Titans Go!. These episodes explore how she adapts to vision loss and continues to use her magical abilities despite the temporary impairment."
+  },
+  blindspot: {
+    name: "Blindspot (Samuel 'Sam' Baines)",
+    condition: "Blindness",
+    years: "Batman (DC Comics)",
+    onset: "Unknown",
+    simulation: "complete-blindness",
+    description: "Blindspot, also known as Samuel 'Sam' Baines, is a villain in DC Comics' Batman series. Despite being blind, he uses advanced sonar-based technology to navigate and fight, making him a formidable opponent who can 'see' through sound waves and echolocation."
+  },
+  kassandra: {
+    name: "Kassandra (Blind Kassandra)",
+    condition: "Blindness",
+    years: "Assassin's Creed Odyssey",
+    onset: "Game storyline",
+    simulation: "complete-blindness",
+    description: "Kassandra is a playable character in Assassin's Creed Odyssey who can experience blindness in certain storylines. When blind, she uses echolocation and heightened other senses to navigate and continue her missions as an assassin, demonstrating remarkable adaptability."
+  },
+  mira: {
+    name: "Mira",
+    condition: "Blindness",
+    years: "The Last of Us Part II",
+    onset: "From birth or early childhood",
+    simulation: "complete-blindness",
+    description: "Mira is a blind teenage girl in The Last of Us Part II who assists Ellie. Despite her blindness, she is resourceful and capable, navigating the post-apocalyptic world using her other senses and demonstrating that blindness does not prevent someone from being a valuable ally and survivor."
+  },
+  toph: {
+    name: "Toph Beifong",
+    condition: "Blindness from Birth",
+    years: "Avatar: The Last Airbender",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision."
   }
 };
 
@@ -467,6 +547,7 @@ export const categories = [
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat"] },
   { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett", "chris"] },
   { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan"] },
-  { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] }
+  { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] },
+  { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "mulanMonk", "kenny", "raven", "blindspot", "kassandra", "mira", "toph"] }
 ];
 

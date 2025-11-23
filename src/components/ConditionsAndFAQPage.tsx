@@ -37,8 +37,7 @@ import {
   Home as HomeIcon,
   Directions as DirectionsIcon,
   Person as PersonIcon,
-  Work as WorkIcon,
-  Help as HelpIcon
+  Work as WorkIcon
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -323,6 +322,19 @@ const ConditionsAndFAQPage: React.FC = () => {
         <Box>
           <Typography variant="body1" paragraph>
             Not necessarily. About 85% of legally blind people have some remaining vision. Only 10-15% experience total darkness. Many see light/shadow, colors, or blurry shapes. Some who've never had sight don't experience "blackness" as a concept - similar to how you don't "see" blackness behind your head.
+          </Typography>
+        </Box>
+      ),
+      icon: <VisibilityIcon />,
+      category: 'Vision & Perception'
+    },
+    {
+      id: 'dreams',
+      question: 'Do blind people see in their dreams?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Blind people do dream, and many do see in their dreams—provided they had visual experiences before losing sight. Those who never had visual input generally dream without pictures, relying on sound, touch, smell, and emotion to construct their nocturnal narratives.
           </Typography>
         </Box>
       ),
@@ -798,25 +810,6 @@ const ConditionsAndFAQPage: React.FC = () => {
               </Button>
             </Box>
           )}
-
-          {/* Additional Information */}
-          <Box className="conditions-info-box">
-            <Typography variant="h5" gutterBottom className="conditions-info-title">
-              About This Glossary
-            </Typography>
-            <Typography variant="body1" paragraph className="conditions-info-text">
-              This glossary contains comprehensive information about vision conditions and visual impairments. 
-              Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.
-            </Typography>
-            <Typography variant="body1" paragraph className="conditions-info-text">
-              Conditions marked with "Featured in:" are associated with famous individuals in our simulator. 
-              Click the eye icon next to any condition to experience it in our vision simulator.
-            </Typography>
-            <Typography variant="body1" className="conditions-info-text">
-              This resource is designed to help users understand the various ways vision can be affected, 
-              whether through genetic conditions, injury, disease, or other factors.
-            </Typography>
-          </Box>
         </Box>
 
         {/* Divider between sections */}
@@ -896,27 +889,6 @@ const ConditionsAndFAQPage: React.FC = () => {
               </Accordion>
             ))}
           </Box>
-
-          {/* Additional Information */}
-          <Paper className="faq-info-box" elevation={2}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <HelpIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography variant="h5" className="faq-info-title">
-                About These FAQs
-              </Typography>
-            </Box>
-            <Typography variant="body1" paragraph className="faq-info-text">
-              These frequently asked questions are based on common misconceptions and genuine curiosity about blindness and visual impairment. 
-              The answers reflect the diverse experiences of blind and visually impaired individuals.
-            </Typography>
-            <Typography variant="body1" paragraph className="faq-info-text">
-              Remember that every person's experience with vision loss is unique. What works for one person may not work for another, 
-              and it's always best to ask individuals about their specific needs and preferences.
-            </Typography>
-            <Typography variant="body1" className="faq-info-text">
-              For more detailed information about specific vision conditions, see the <strong>Conditions Glossary</strong> section above.
-            </Typography>
-          </Paper>
         </Box>
       </Container>
 

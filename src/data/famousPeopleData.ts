@@ -466,7 +466,7 @@ export const personData: Record<string, PersonData> = {
     years: "Norse Mythology",
     onset: "Sacrificed eye for wisdom",
     simulation: "complete-blindness",
-    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye."
+    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye. Learn more at https://en.wikipedia.org/wiki/Odin"
   },
   daredevil: {
     name: "Daredevil / Matt Murdock",
@@ -482,31 +482,7 @@ export const personData: Record<string, PersonData> = {
     years: "Star Trek: The Next Generation",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities."
-  },
-  mulanMonk: {
-    name: "Mulan (Blind Monk)",
-    condition: "Blindness",
-    years: "Mulan II",
-    onset: "Unknown",
-    simulation: "complete-blindness",
-    description: "The blind monk is a minor comic-relief character in Disney's Mulan II. Despite his blindness, he demonstrates wisdom and martial arts skills, serving as a humorous but capable character who helps guide the protagonists on their journey."
-  },
-  kenny: {
-    name: "Kenny McCormick (Blind Kenny)",
-    condition: "Temporary Blindness",
-    years: "South Park",
-    onset: "Episode: 'The Tooth Fairy Tats 2000'",
-    simulation: "complete-blindness",
-    description: "In the South Park episode 'The Tooth Fairy Tats 2000,' Kenny McCormick temporarily becomes blind as part of a gag storyline. This is one of many temporary conditions Kenny experiences throughout the series, often played for comedic effect."
-  },
-  raven: {
-    name: "Raven (Blind Raven)",
-    condition: "Temporary Blindness",
-    years: "Teen Titans Go!",
-    onset: "Occasional episodes",
-    simulation: "complete-blindness",
-    description: "Raven, a member of the Teen Titans, occasionally experiences temporary blindness in certain episodes of Teen Titans Go!. These episodes explore how she adapts to vision loss and continues to use her magical abilities despite the temporary impairment."
+    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities. Learn more at https://en.wikipedia.org/wiki/Geordi_La_Forge"
   },
   blindspot: {
     name: "Blindspot (Samuel 'Sam' Baines)",
@@ -514,23 +490,151 @@ export const personData: Record<string, PersonData> = {
     years: "Batman (DC Comics)",
     onset: "Unknown",
     simulation: "complete-blindness",
-    description: "Blindspot, also known as Samuel 'Sam' Baines, is a villain in DC Comics' Batman series. Despite being blind, he uses advanced sonar-based technology to navigate and fight, making him a formidable opponent who can 'see' through sound waves and echolocation."
+    description: "Blindspot, also known as Samuel 'Sam' Baines, is a villain in DC Comics' Batman series. Despite being blind, he uses advanced sonar-based technology to navigate and fight, making him a formidable opponent who can 'see' through sound waves and echolocation. Learn more at en.wikipedia.org."
   },
-  kassandra: {
-    name: "Kassandra (Blind Kassandra)",
+  kenshi: {
+    name: "Kenshi Takahashi",
     condition: "Blindness",
-    years: "Assassin's Creed Odyssey",
-    onset: "Game storyline",
+    years: "Mortal Kombat",
+    onset: "Blinded by sword's souls",
     simulation: "complete-blindness",
-    description: "Kassandra is a playable character in Assassin's Creed Odyssey who can experience blindness in certain storylines. When blind, she uses echolocation and heightened other senses to navigate and continue her missions as an assassin, demonstrating remarkable adaptability."
+    description: "Kenshi Takahashi is a blind swordsman and Special Forces operative from the Mortal Kombat series. He was blinded when he opened a tomb containing the ancient sword Sento, which released imprisoned souls that took his sight. Despite his blindness, he possesses powerful telekinetic abilities and uses his sword skills to fight. Learn more at en.wikipedia.org."
   },
-  mira: {
-    name: "Mira",
+  neo: {
+    name: "Neo (Thomas Anderson)",
     condition: "Blindness",
-    years: "The Last of Us Part II",
+    years: "The Matrix trilogy",
+    onset: "Film storyline",
+    simulation: "complete-blindness",
+    description: "Neo, also known as Thomas Anderson, is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation with Agent Smith, but gains the ability to 'see' through a different perception, allowing him to perceive the code of the Matrix itself. Learn more at en.wikipedia.org."
+  },
+  eli: {
+    name: "Eli",
+    condition: "Blindness",
+    years: "The Book of Eli",
+    onset: "Unknown",
+    simulation: "complete-blindness",
+    description: "Eli is the protagonist of The Book of Eli, a post-apocalyptic film. Despite being blind, he travels across the wasteland protecting a valuable book, using his heightened senses and combat skills to survive. His blindness is revealed at the end of the film, demonstrating his remarkable abilities. Learn more at book-of-eli.fandom.com."
+  },
+  blinkin: {
+    name: "Blinkin",
+    condition: "Blindness",
+    years: "Robin Hood: Men in Tights",
+    onset: "Unknown",
+    simulation: "complete-blindness",
+    description: "Blinkin is a comedic character from the film Robin Hood: Men in Tights, a parody of the classic Robin Hood story. He serves as Robin Hood's blind servant, providing comic relief with his inability to see and his humorous misunderstandings. Learn more at en.wikipedia.org."
+  },
+  juliaCarpenter: {
+    name: "Julia Carpenter (Arachne)",
+    condition: "Blindness",
+    years: "Marvel Comics",
+    onset: "Comic storyline",
+    simulation: "complete-blindness",
+    description: "Julia Carpenter, also known as Arachne, is a Marvel Comics character who has experienced blindness in certain storylines. As a superhero with spider-like abilities, she has demonstrated remarkable adaptability despite visual impairment. Learn more at marvel.com."
+  },
+  mrMagoo: {
+    name: "Mr. Magoo",
+    condition: "Severe Nearsightedness",
+    years: "Animated series and films",
+    onset: "Character trait",
+    simulation: "nearSighted",
+    description: "Mr. Magoo is a cartoon character known for his extreme nearsightedness. Despite his poor vision, he manages to navigate through various adventures, often mistaking objects and situations due to his inability to see clearly. The character has appeared in animated shorts, television series, and films. Learn more at en.wikipedia.org."
+  },
+  doctorMidNite: {
+    name: "Doctor Mid-Nite",
+    condition: "Blindness",
+    years: "DC Comics",
+    onset: "Comic storyline",
+    simulation: "complete-blindness",
+    description: "Doctor Mid-Nite is a DC Comics superhero who is blind but uses special infrared lenses that allow him to see in darkness. Despite his blindness in normal light, he fights crime using his enhanced night vision and medical expertise. Learn more at en.wikipedia.org."
+  },
+  wallyKarew: {
+    name: "Wally Karew",
+    condition: "Blindness",
+    years: "See No Evil, Hear No Evil",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Wally Karew is a character from the film See No Evil, Hear No Evil, played by Richard Pryor. Wally is blind and teams up with a deaf character to solve a crime, using his other heightened senses to navigate and help solve the mystery. Learn more at en.wikipedia.org."
+  },
+  mohammad: {
+    name: "Mohammad",
+    condition: "Blindness",
+    years: "The Color of Paradise",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Mohammad is the protagonist of the Iranian film The Color of Paradise. He is a blind boy who attends a school for the blind in Tehran and has a deep connection with nature, using his sense of touch and hearing to experience the world around him. Learn more at en.wikipedia.org."
+  },
+  maryIngalls: {
+    name: "Mary Ingalls",
+    condition: "Blindness from Scarlet Fever",
+    years: "1865-1928",
+    onset: "Age 14, from scarlet fever",
+    simulation: "complete-blindness",
+    description: "Mary Ingalls was the older sister of author Laura Ingalls Wilder, who wrote the Little House on the Prairie series. Mary became blind at age 14 due to complications from scarlet fever. Despite her blindness, she attended the Iowa College for the Blind and became a teacher. Her story was featured in the Little House books and television series. Learn more at en.wikipedia.org."
+  },
+  francisCampbell: {
+    name: "Sir Francis Joseph Campbell",
+    condition: "Blindness from Accident",
+    years: "1832-1914",
+    onset: "Age 5, from accident",
+    simulation: "complete-blindness",
+    description: "Sir Francis Joseph Campbell was a British-American anti-slavery campaigner, teacher, and co-founder of the Royal National College for the Blind in the United Kingdom. He lost his sight at age 5 following an accident. A talented musician, he taught music and became the first principal of the Royal Normal College (now Royal National College for the Blind). He was also the first blind person to climb Mont Blanc and was knighted by King Edward VII in 1909. Learn more at en.wikipedia.org."
+  },
+  anthonyClarke: {
+    name: "Anthony Clarke",
+    condition: "Blindness from Car Accident",
+    years: "Born 1961",
+    onset: "Age 17, from car accident",
+    simulation: "complete-blindness",
+    description: "Anthony 'Tony' Clarke is an Australian Paralympic judoka and the only Australian to win a gold medal in judo at the Paralympics, achieving this feat at the 1996 Atlanta Games. He became blind at age 17 following a car accident. He represented Australia at five Summer Paralympic Games and won two International Blind Sports Association (IBSA) World Championships. He was awarded the Medal of the Order of Australia (OAM) in 1997. Learn more at en.wikipedia.org."
+  },
+  amyBower: {
+    name: "Dr. Amy Bower",
+    condition: "Blindness",
+    years: "Born 1957",
+    onset: "Progressive vision loss",
+    simulation: "complete-blindness",
+    description: "Dr. Amy Bower is a blind oceanographer who has made significant contributions to physical oceanography research. Despite her blindness, she has conducted groundbreaking research on ocean currents and underwater acoustics, using sound and other non-visual methods to study the ocean. She has worked at the Woods Hole Oceanographic Institution and has been an inspiration for accessibility in science. Learn more at en.wikipedia.org."
+  },
+  crazzySteve: {
+    name: "Crazzy Steve",
+    condition: "Blindness",
+    years: "Professional Wrestling",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Crazzy Steve is a professional wrestler who is blind. Despite his visual impairment, he has achieved success in professional wrestling, competing in various promotions and demonstrating that blindness does not prevent someone from pursuing a career in sports entertainment. Learn more at en.wikipedia.org."
+  },
+  floydMorris: {
+    name: "Floyd Morris",
+    condition: "Blindness",
+    years: "Born 1969",
+    onset: "Age 16, from glaucoma",
+    simulation: "complete-blindness",
+    description: "Floyd Morris is a Jamaican politician who became the first blind person to serve as President of the Senate of Jamaica. He lost his sight at age 16 due to glaucoma. Despite his blindness, he has had a distinguished political career, serving in the Jamaican Senate and advocating for disability rights and inclusion. Learn more at en.wikipedia.org."
+  },
+  belaTheBlind: {
+    name: "Béla II of Hungary (Béla the Blind)",
+    condition: "Blindness",
+    years: "c. 1109-1141",
     onset: "From birth or early childhood",
     simulation: "complete-blindness",
-    description: "Mira is a blind teenage girl in The Last of Us Part II who assists Ellie. Despite her blindness, she is resourceful and capable, navigating the post-apocalyptic world using her other senses and demonstrating that blindness does not prevent someone from being a valuable ally and survivor."
+    description: "Béla II, known as Béla the Blind, was King of Hungary and Croatia from 1131 to 1141. He was blinded as a child along with his father Álmos by his uncle, King Coloman of Hungary, in an attempt to prevent them from claiming the throne. Despite his blindness, Béla II successfully ruled Hungary for a decade, with his wife Helena and son Géza II assisting in governance. Learn more at en.wikipedia.org."
+  },
+  blindLemonJefferson: {
+    name: "Blind Lemon Jefferson",
+    condition: "Blindness",
+    years: "c. 1893-1929",
+    onset: "From birth or early childhood",
+    simulation: "complete-blindness",
+    description: "Blind Lemon Jefferson was an American blues and gospel singer, guitarist, and songwriter. He was one of the most popular blues singers of the 1920s and is considered one of the most influential early blues musicians. Despite being blind, he became one of the first commercially successful blues artists, recording over 100 songs. His distinctive guitar style and powerful voice influenced generations of blues musicians. Learn more at en.wikipedia.org."
+  },
+  charlottaSeuerling: {
+    name: "Charlotta Seuerling",
+    condition: "Blindness from Smallpox Vaccination",
+    years: "1782/84-1828",
+    onset: "Age 4, from smallpox vaccination",
+    simulation: "complete-blindness",
+    description: "Charlotta Seuerling was a Swedish concert singer, harpsichordist, composer, and poet, known as 'The Blind Song-Maiden.' She became blind at age 4 due to complications from a smallpox vaccination. Despite her blindness, she had a successful career performing in Sweden, Finland, and Russia, and authored the popular song 'Sång i en melankolisk stund.' She also assisted in the development of Valentin Haüy's Institute for the Blind in Saint Petersburg. Learn more at en.wikipedia.org."
   },
   toph: {
     name: "Toph Beifong",
@@ -538,16 +642,16 @@ export const personData: Record<string, PersonData> = {
     years: "Avatar: The Last Airbender",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision."
+    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision. Learn more at https://en.wikipedia.org/wiki/Toph_Beifong"
   }
 };
 
 export const categories = [
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman"] },
-  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett", "chris"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind"] },
+  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat", "anthonyClarke", "amyBower", "crazzySteve"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett", "chris", "floydMorris"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling"] },
   { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] },
-  { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "mulanMonk", "kenny", "raven", "blindspot", "kassandra", "mira", "toph"] }
+  { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad"] }
 ];
 

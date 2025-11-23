@@ -91,7 +91,30 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   saunderson: 'Nicolas-Saunderson.jpg',
   geerat: 'Geerat-Vermeij.webp',
   holman: 'james-holman.jpg',
-  chris: 'chris-mccausland.webp'
+  chris: 'chris-mccausland.webp',
+  odin: 'Odin.jpg',
+  geordi: 'GeordiLaForge.jpg',
+  toph: 'Toph.webp',
+  daredevil: 'mattmurdock.webp',
+  blindspot: 'blind-spot.png',
+  kenshi: 'kenshi.webp',
+  neo: 'neo.webp',
+  eli: 'eli.webp',
+  blinkin: 'blinkin.webp',
+  juliaCarpenter: 'julia-carpenter.webp',
+  mrMagoo: 'mr-magoo.webp',
+  doctorMidNite: 'dr-mid-nite.webp',
+  wallyKarew: 'wally-karew.png',
+  mohammad: 'mohammad-color-paradise.webp',
+  maryIngalls: 'mary-ingalls.jpg',
+  francisCampbell: 'francis-joseph-campbell.webp',
+  anthonyClarke: 'anthony-clarke.jpg',
+  amyBower: 'amy-bower.jpg',
+  floydMorris: 'floyd-morris.jpeg',
+  blindLemonJefferson: 'Blindlemonjefferson.jpg',
+  charlottaSeuerling: 'charlotta-seuerling.webp',
+  crazzySteve: 'crazzy-steve.webp',
+  belaTheBlind: 'bela-the-blind.jpg'
 };
 
 /**

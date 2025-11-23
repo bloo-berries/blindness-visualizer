@@ -105,7 +105,23 @@ const getWikipediaUrl = (personId: string): string => {
     'saunderson': 'https://en.wikipedia.org/wiki/Nicholas_Saunderson',
     'geerat': 'https://en.wikipedia.org/wiki/Geerat_Vermeij',
     'holman': 'https://en.wikipedia.org/wiki/James_Holman',
-    'chris': 'https://en.wikipedia.org/wiki/Chris_McCausland'
+    'chris': 'https://en.wikipedia.org/wiki/Chris_McCausland',
+    'blindspot': 'https://en.wikipedia.org/wiki/Blindspot_(DC_Comics)',
+    'kenshi': 'https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat)',
+    'neo': 'https://en.wikipedia.org/wiki/Neo_(The_Matrix)',
+    'blinkin': 'https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights',
+    'mrMagoo': 'https://en.wikipedia.org/wiki/Mr._Magoo',
+    'doctorMidNite': 'https://en.wikipedia.org/wiki/Doctor_Mid-Nite',
+    'wallyKarew': 'https://en.wikipedia.org/wiki/See_No_Evil,_Hear_No_Evil_(film)',
+    'mohammad': 'https://en.wikipedia.org/wiki/The_Color_of_Paradise',
+    'maryIngalls': 'https://en.wikipedia.org/wiki/Mary_Ingalls',
+    'francisCampbell': 'https://en.wikipedia.org/wiki/Francis_Joseph_Campbell',
+    'anthonyClarke': 'https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka)',
+    'amyBower': 'https://en.wikipedia.org/wiki/Amy_Bower',
+    'floydMorris': 'https://en.wikipedia.org/wiki/Floyd_Morris',
+    'belaTheBlind': 'https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary',
+    'blindLemonJefferson': 'https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson',
+    'charlottaSeuerling': 'https://en.wikipedia.org/wiki/Charlotta_Seuerling'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };
@@ -131,7 +147,9 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'newyorker.com': 'https://www.newyorker.com/culture/postscript/ved-mehta-1934-2021',
     'disabilitytalent.org': 'https://www.disabilitytalent.org/single-post/2018/10/01/a-vision-for-the-future-an-interview-with-casey-harris-of-x-ambassadors',
     'habengirma.com': 'https://habengirma.com/',
-    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/'
+    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
+    'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
+    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter'
   };
   
   return websiteMap[domain] || '';
@@ -158,7 +176,9 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'newyorker.com': 'https://www.newyorker.com/culture/postscript/ved-mehta-1934-2021',
     'disabilitytalent.org': 'https://www.disabilitytalent.org/single-post/2018/10/01/a-vision-for-the-future-an-interview-with-casey-harris-of-x-ambassadors',
     'habengirma.com': 'https://habengirma.com/',
-    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/'
+    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
+    'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
+    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter'
   };
   
   const domainPattern = Object.keys(websiteMap)

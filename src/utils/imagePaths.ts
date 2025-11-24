@@ -123,7 +123,16 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   gurrumulYunupingu: 'Geoffrey-Gurrumul-Yunupingu.webp',
   geraldineLawhorn: 'Geraldine-Lawhorn.jpg',
   murphyMason: 'murphy-mason.webp',
-  fujitora: 'Issho.webp'
+  fujitora: 'Issho.webp',
+  gustafDalen: 'Gustaf-Dalen.jpg',
+  jacobBolotin: 'jacob-bolotin.jpg',
+  heatherHutchison: 'Heather-Hutchison.webp',
+  joaquinRodrigo: 'Joaquin-Rodrigo.webp',
+  johnBramblitt: 'John-Bramblitt.webp',
+  jacquesLusseyran: 'Jacques-Lusseyran.png',
+  johnOfBohemia: 'john-of-bohemia.jpg',
+  josephPlateau: 'joseph-plateau.webp',
+  henryFawcett: 'Henry-Fawcett.jpg'
 };
 
 /**

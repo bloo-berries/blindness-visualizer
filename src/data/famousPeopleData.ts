@@ -715,15 +715,87 @@ export const personData: Record<string, PersonData> = {
     onset: "Blinded himself",
     simulation: "complete-blindness",
     description: "Fujitora, also known as Issho, is a Marine Admiral in the One Piece series. He blinded himself, choosing to live without sight because he did not want to see the world's wickedness. Despite his blindness, he is one of the most powerful fighters in the series, using Observation Haki (a form of spiritual perception) to 'see' his surroundings and sense the presence, emotions, and intentions of others. He fights with a sword and can manipulate gravity through his Devil Fruit powers. Learn more at onepiece.fandom.com."
+  },
+  gustafDalen: {
+    name: "Gustaf Dalén",
+    condition: "Blindness from Explosion Accident",
+    years: "1869-1937",
+    onset: "Age 43, from explosion in 1912",
+    simulation: "complete-blindness",
+    description: "Gustaf Dalén was a Swedish engineer and inventor who was awarded the Nobel Prize in Physics in 1912 for his invention of automatic regulators for use in conjunction with gas accumulators for illuminating lighthouses and buoys. He became completely blind later that same year due to an explosion accident during an acetylene experiment. Despite his blindness, he continued to work as the managing director of AGA (the company he worked for) and made further significant contributions to technology, including the development of the AGA cooker. Learn more at en.wikipedia.org."
+  },
+  jacobBolotin: {
+    name: "Jacob Bolotin",
+    condition: "Congenital Blindness",
+    years: "1888-1924",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Jacob Bolotin was the world's first totally blind person to become a licensed physician. Despite being blind from birth, he overcame significant barriers to medical education and became a successful doctor specializing in diseases of the heart and lungs. He was a strong advocate for the employment and integration of blind individuals into society, demonstrating that blindness need not be a barrier to professional achievement. Learn more at en.wikipedia.org."
+  },
+  heatherHutchison: {
+    name: "Heather Hutchison",
+    condition: "Congenital Blindness",
+    years: "Born 1970s",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Heather Hutchison is an award-winning Canadian singer-songwriter and author who has been blind from birth. She has released multiple albums and is known for her advocacy on disability and mental health awareness through her music and writing. Her work has helped raise awareness about the experiences of people with disabilities and mental health challenges. Visit her website at heather-hutchison.com."
+  },
+  joaquinRodrigo: {
+    name: "Joaquín Rodrigo",
+    condition: "Blindness from Diphtheria",
+    years: "1901-1999",
+    onset: "Age 3, from diphtheria",
+    simulation: "complete-blindness",
+    description: "Joaquín Rodrigo was a Spanish composer and virtuoso pianist who became blind at age 3 due to complications from diphtheria. Despite his blindness, he became one of the most important Spanish composers of the 20th century, best known for his composition 'Concierto de Aranjuez,' a cornerstone of the classical guitar repertoire. His works have been performed by orchestras worldwide and continue to be celebrated today. Learn more at en.wikipedia.org."
+  },
+  johnBramblitt: {
+    name: "John Bramblitt",
+    condition: "Blindness from Epilepsy Complications",
+    years: "Born 1971",
+    onset: "Age 30, from epilepsy complications in 2001",
+    simulation: "complete-blindness",
+    description: "John Bramblitt is an American visual artist who became blind in 2001 due to complications from epilepsy. He developed a unique method of painting by feeling the textures of the paint, creating tactile lines and shapes. His works have been sold in over 120 countries, and he has received multiple Presidential Service awards for his art workshops. He has become an inspiration for artists with disabilities worldwide. Visit his website at bramblitt.com."
+  },
+  henryFawcett: {
+    name: "Henry Fawcett",
+    condition: "Blindness from Shooting Accident",
+    years: "1833-1884",
+    onset: "Age 25, from shooting accident",
+    simulation: "complete-blindness",
+    description: "Henry Fawcett was a British academic, statesman, and economist who became blind at age 25 from a shooting accident. Despite his blindness, he continued his career and became a Member of Parliament, eventually serving as Postmaster-General. He was a strong advocate for women's suffrage and education, and made significant contributions to economic theory. His achievements demonstrated that blindness need not prevent someone from holding high political office. Learn more at en.wikipedia.org."
+  },
+  jacquesLusseyran: {
+    name: "Jacques Lusseyran",
+    condition: "Blindness from Accident",
+    years: "1924-1971",
+    onset: "Age 8, from accident",
+    simulation: "complete-blindness",
+    description: "Jacques Lusseyran was a French author and political activist who became blind at age 8 due to an accident. During World War II, he led a resistance group against the Nazi occupation of France, organizing intelligence networks despite his blindness. He was later imprisoned in the Buchenwald concentration camp but survived. After the war, he became a professor and wrote about his experiences, including his memoir 'And There Was Light.' Learn more at en.wikipedia.org."
+  },
+  johnOfBohemia: {
+    name: "John of Bohemia",
+    condition: "Blindness from Eye Disease",
+    years: "1296-1346",
+    onset: "Age 40, around 1336",
+    simulation: "complete-blindness",
+    description: "John of Bohemia, also known as John the Blind, was King of Bohemia and Count of Luxembourg from 1310 until his death. Despite becoming blind around 1336, he continued to participate in military campaigns and was known for his chivalry. He died in the Battle of Crécy in 1346, where he fought valiantly despite his blindness. His death became legendary, with accounts of his knights tying their horses to his so they could fight together. Learn more at en.wikipedia.org."
+  },
+  josephPlateau: {
+    name: "Joseph Plateau",
+    condition: "Blindness from Experimental Exposure",
+    years: "1801-1883",
+    onset: "Age 42, in 1843",
+    simulation: "complete-blindness",
+    description: "Joseph Plateau was a Belgian physicist and mathematician who made significant contributions to the study of visual perception. He invented the phenakistoscope, an early animation device that demonstrated the illusion of motion and is considered a precursor to modern cinema. He became blind in 1843, likely due to his experiments involving prolonged exposure to bright light, particularly staring at the sun. Despite his blindness, he continued his scientific work with the help of his family and colleagues. Learn more at en.wikipedia.org."
   }
 };
 
 export const categories = [
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris"] },
-  { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat", "anthonyClarke", "amyBower", "crazzySteve"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn"] },
-  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris"] },
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind"] },
+  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve"] },
+  { name: "Athletes, Scientists, & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "johnBramblitt"] },
+  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia"] },
   { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad", "chirrutImwe", "murphyMason", "fujitora"] }
 ];
 

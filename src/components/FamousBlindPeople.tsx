@@ -100,9 +100,6 @@ const FamousBlindPeople: React.FC = () => {
       
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-          Visual Impairment Simulator
-        </Typography>
-        <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 3, color: 'text.secondary' }}>
           Famous Blind & Visually Impaired People
         </Typography>
         <Typography 

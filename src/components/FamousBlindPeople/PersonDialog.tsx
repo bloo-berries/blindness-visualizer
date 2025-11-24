@@ -67,9 +67,6 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
               {person.condition}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              <strong>Years:</strong> {person.years}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
               <strong>Onset:</strong> {person.onset}
             </Typography>
             <Typography variant="body1" sx={{ mt: 2 }}>

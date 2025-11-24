@@ -132,7 +132,13 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   jacquesLusseyran: 'Jacques-Lusseyran.png',
   johnOfBohemia: 'john-of-bohemia.jpg',
   josephPlateau: 'joseph-plateau.webp',
-  henryFawcett: 'Henry-Fawcett.jpg'
+  henryFawcett: 'Henry-Fawcett.jpg',
+  euler: 'Leonhard-Euler.jpg',
+  marilee: 'marilee-talkington.webp',
+  rachael: 'Rachael-Leahcar.webp',
+  tiffany: 'Tiffany-Brar.jpg',
+  ross: 'ross-minor.jpeg',
+  tofiri: 'Tofiri-Kibuuka.webp'
 };
 
 /**

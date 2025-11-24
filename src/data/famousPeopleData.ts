@@ -787,14 +787,62 @@ export const personData: Record<string, PersonData> = {
     onset: "Age 42, in 1843",
     simulation: "complete-blindness",
     description: "Joseph Plateau was a Belgian physicist and mathematician who made significant contributions to the study of visual perception. He invented the phenakistoscope, an early animation device that demonstrated the illusion of motion and is considered a precursor to modern cinema. He became blind in 1843, likely due to his experiments involving prolonged exposure to bright light, particularly staring at the sun. Despite his blindness, he continued his scientific work with the help of his family and colleagues. Learn more at en.wikipedia.org."
+  },
+  euler: {
+    name: "Leonhard Euler",
+    condition: "Progressive Blindness",
+    years: "1707-1783",
+    onset: "Progressive, complete blindness in later years",
+    simulation: "euler-progressive-blindness",
+    description: "Leonhard Euler was a Swiss mathematician, physicist, and astronomer who made fundamental contributions to mathematics, physics, and engineering. He experienced progressive eyesight deterioration and became completely blind in his later years. Despite his blindness, he continued his prolific mathematical work with remarkable productivity, dictating his research to assistants and relying on his exceptional memory and mental calculation abilities. Euler is considered one of the greatest mathematicians in history, with his work influencing countless areas of mathematics and science. Learn more at en.wikipedia.org."
+  },
+  marilee: {
+    name: "Marilee Talkington",
+    condition: "Cone‑Rod Dystrophy",
+    years: "Born (Contemporary)",
+    onset: "Legally blind from birth or early life",
+    simulation: "marilee-legal-blindness",
+    description: "Marilee Talkington is a legally blind actor, writer, director, and disability advocate. She earned her M.F.A. in Acting from the American Conservatory Theater and has originated over 80 characters on stage and screen, including roles in TV series such as 'SEE' (Apple TV+), 'FBI: Most Wanted' (NBC), and 'Law & Order: SVU' (NBC). She made history as the first self-identified legally blind actress cast in a principal role on Broadway, portraying Morgan Le Fey in Aaron Sorkin's adaptation of 'Camelot.' Talkington is the founder of Access Acting Academy, the world's first acting studio for blind and low vision performers. In 2024, she received the Helen Keller Achievement Award from the American Foundation for the Blind. In her youth, she was a competitive basketball player and was named a California State Regional All-Star. Learn more at imdb.com."
+  },
+  rachael: {
+    name: "Rachael Leahcar",
+    condition: "Retinitis Pigmentosa",
+    years: "Born 1994",
+    onset: "From birth or early life",
+    simulation: "rachael-retinitis-pigmentosa",
+    description: "Rachael Leahcar is an Australian singer-songwriter from Adelaide, South Australia. She is legally blind due to retinitis pigmentosa, retaining only 10% of her vision. Despite this, Leahcar has pursued a successful music career, showcasing her talents in multiple languages including English, French, Italian, and Spanish. She gained national recognition in 2012 as a contestant on the first season of The Voice Australia, where she finished in third place. Following the show, she signed a record deal with Universal Music Australia and released her debut album, Shooting Star, which debuted at number five on the ARIA Albums Chart. She has since released several albums including Romantique (2013), Here Comes the Sun (2014), Shadows (2017), and Together For Christmas (2019). Leahcar is an ambassador for the Royal Society for the Blind and has been involved in various charitable activities. Learn more at rachaelleahcar.com.au."
+  },
+  tiffany: {
+    name: "Tiffany Brar",
+    condition: "Terry Syndrome (Oxygen Toxicity)",
+    years: "Born (Contemporary)",
+    onset: "Age 6 months",
+    simulation: "tiffany-complete-blindness",
+    description: "Tiffany Brar is an Indian social activist and founder of the Jyothirgamaya Foundation, a non-profit organization that teaches life skills to blind people of all ages. She became blind at six months due to oxygen toxicity (Terry Syndrome). Brar is a trainer, campaigner for disability awareness, and advocate for an inclusive society. She founded Jyothirgamaya (meaning 'leading to light') mobile school for the blind in July 2012, with the motto 'If the blind cannot go to school then the school shall go to them.' Through the foundation, she trains blind people in Braille, mobility, basic computer use, and life skills. Brar designed the Tiffy template, a device that identifies Indian currency notes to prevent blind people from being cheated. She has received numerous awards including the National Award from the President of India for Best Role Model, the Holman Prize (first Indian recipient), and the Nari Shakti Puraskar, the highest civilian honor for women in India. Learn more at en.wikipedia.org."
+  },
+  ross: {
+    name: "Ross Minor",
+    condition: "Gunshot Wound",
+    years: "Born (Contemporary)",
+    onset: "Age 8",
+    simulation: "ross-complete-blindness",
+    description: "Ross Minor is an American accessibility consultant, content creator, and former para swimmer. He lost his sight at the age of eight and has dedicated his career to promoting accessibility in gaming, media, and technology. Minor works as an accessibility consultant helping companies make their products and services more accessible to people with disabilities. He is also a content creator who shares his experiences and insights about living with blindness and advocating for accessibility. As a former para swimmer, he competed in swimming events for athletes with disabilities. Minor's work focuses on breaking down barriers and creating more inclusive digital experiences for people with visual impairments. Learn more at rossminor.com."
+  },
+  tofiri: {
+    name: "Tofiri Kibuuka",
+    condition: "Degenerative Sight Disease",
+    years: "Born (Contemporary)",
+    onset: "Age 13",
+    simulation: "tofiri-complete-blindness",
+    description: "Tofiri Kibuuka is a Ugandan-Norwegian Paralympic athlete and physiotherapist who made history as Africa's first winter Para athlete at the 1976 Paralympic Winter Games in Ornskoldsvik, Sweden, competing in cross-country skiing for Uganda. He lost his sight at age 13 due to a degenerative sight disease. Kibuuka later acquired Norwegian citizenship and switched to athletics, winning five silver medals and one bronze medal at Paralympic Games between 1984 and 1992. He was honored as Norway's flag bearer at the 1996 Atlanta Paralympic Games, becoming the first black man to carry the Norwegian flag at a Paralympics. Kibuuka also became one of the first blind people to climb Mount Kilimanjaro. He graduated as a physiotherapist and worked in Norway, where he settled and raised a family. Learn more at paralympic.org."
   }
 };
 
 export const categories = [
-  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve"] },
-  { name: "Athletes, Scientists, & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "johnBramblitt"] },
-  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran"] },
+  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "marilee", "tofiri", "ross"] },
+  { name: "Scientists, & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler"] },
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "johnBramblitt", "rachael"] },
+  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany"] },
   { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia"] },
   { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad", "chirrutImwe", "murphyMason", "fujitora"] }
 ];

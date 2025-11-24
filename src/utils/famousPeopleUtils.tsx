@@ -59,7 +59,13 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'saunderson-smallpox-blindness': ['complete-blindness'],
     'geerat-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
     'holman-complete-blindness': ['complete-blindness'],
-    'chris-retinitis-pigmentosa': ['retinitisPigmentosa']
+    'chris-retinitis-pigmentosa': ['retinitisPigmentosa'],
+    'euler-progressive-blindness': ['glaucoma', 'progressive-loss'],
+    'marilee-legal-blindness': ['low-vision', 'glaucoma'],
+    'rachael-retinitis-pigmentosa': ['retinitisPigmentosa'],
+    'tiffany-complete-blindness': ['complete-blindness'],
+    'ross-complete-blindness': ['complete-blindness'],
+    'tofiri-complete-blindness': ['complete-blindness']
   };
   
   return simulationMap[simulation] || ['glaucoma'];
@@ -74,6 +80,26 @@ const getTeamUsaUrl = (personId: string): string => {
   if (personId === 'lex') return 'https://www.teamusa.com/profiles/lex-gillette';
   if (personId === 'davidBrown') return 'https://www.teamusa.com/profiles/david-brown';
   return 'https://www.teamusa.com/profiles/marla-runyan';
+};
+
+/**
+ * Helper function to get IMDb URL based on personId
+ */
+const getImdbUrl = (personId: string): string => {
+  const imdbMap: Record<string, string> = {
+    'marilee': 'https://www.imdb.com/name/nm3411258/'
+  };
+  return imdbMap[personId] || '';
+};
+
+/**
+ * Helper function to get Paralympic.org URL based on personId
+ */
+const getParalympicUrl = (personId: string): string => {
+  const paralympicMap: Record<string, string> = {
+    'tofiri': 'https://www.paralympic.org/news/throwback-thursday-uganda-s-tofiri-kibuuka'
+  };
+  return paralympicMap[personId] || '';
 };
 
 /**
@@ -131,7 +157,10 @@ const getWikipediaUrl = (personId: string): string => {
     'odin': 'https://en.wikipedia.org/wiki/Odin',
     'geordi': 'https://en.wikipedia.org/wiki/Geordi_La_Forge',
     'toph': 'https://en.wikipedia.org/wiki/Toph_Beifong',
-    'chirrutImwe': 'https://starwars.fandom.com/wiki/Chirrut_%C3%8Emwe'
+    'chirrutImwe': 'https://starwars.fandom.com/wiki/Chirrut_%C3%8Emwe',
+    'euler': 'https://en.wikipedia.org/wiki/Leonhard_Euler',
+    'rachael': 'https://en.wikipedia.org/wiki/Rachael_Leahcar',
+    'tiffany': 'https://en.wikipedia.org/wiki/Tiffany_Brar'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };
@@ -160,7 +189,11 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
     'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
     'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
-    'starwars.fandom.com': getWikipediaUrl(personId)
+    'starwars.fandom.com': getWikipediaUrl(personId),
+    'imdb.com': getImdbUrl(personId),
+    'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
+    'rossminor.com': 'https://rossminor.com/',
+    'paralympic.org': getParalympicUrl(personId)
   };
   
   return websiteMap[domain] || '';
@@ -190,7 +223,11 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
     'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
     'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
-    'starwars.fandom.com': getWikipediaUrl(personId)
+    'starwars.fandom.com': getWikipediaUrl(personId),
+    'imdb.com': getImdbUrl(personId),
+    'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
+    'rossminor.com': 'https://rossminor.com/',
+    'paralympic.org': getParalympicUrl(personId)
   };
   
   const domainPattern = Object.keys(websiteMap)

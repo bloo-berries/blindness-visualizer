@@ -102,9 +102,6 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
           <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.75rem', lineHeight: 1.2, display: 'block', mb: 0.5 }}>
             {person.condition}
           </Typography>
-          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-            {person.years}
-          </Typography>
         </CardContent>
       </Card>
     </Grid>

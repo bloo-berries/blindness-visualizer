@@ -1,5 +1,5 @@
 import { VisualEffect } from '../../types/visualEffects';
-import { createOverlay, createOverlayWithContainer } from './overlayHelpers';
+import { createOverlay } from './overlayHelpers';
 import { createMiltonOverlays } from './famousPeople/miltonOverlays';
 
 /**

@@ -189,7 +189,6 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
               }}
               onError={(e) => {
                 if (!imageError) {
-                  console.error(`Failed to load image for ${personId}:`, imageSrc, 'Attempting placeholder...');
                   setImageError(true);
                   // Try to load placeholder
                   const img = e.currentTarget;

@@ -214,6 +214,24 @@ const FamousBlindPeople: React.FC = () => {
     return filtered;
   }, [searchTerm, categoryFilter, conditionFilter, conditionCategories]);
 
+  // Get display order that matches how people are actually rendered on the page
+  const displayOrder = useMemo(() => {
+    const filteredSet = new Set(filteredPeople);
+    const ordered: string[] = [];
+
+    // Iterate through categories in order
+    categories.forEach(category => {
+      // For each category, get people that are both in the category and filtered
+      category.people.forEach(personId => {
+        if (filteredSet.has(personId)) {
+          ordered.push(personId);
+        }
+      });
+    });
+
+    return ordered;
+  }, [filteredPeople]);
+
   const handlePersonClick = (personId: string) => {
     setSelectedPerson(personId);
   };
@@ -406,7 +424,9 @@ const FamousBlindPeople: React.FC = () => {
         open={!!selectedPerson}
         personId={selectedPerson}
         person={selectedPersonData}
+        filteredPeople={displayOrder}
         onClose={handleCloseDialog}
+        onNavigate={(personId) => setSelectedPerson(personId)}
         onExperienceSimulation={() => {
           if (selectedPerson) {
             handleExperienceSimulation(selectedPerson);

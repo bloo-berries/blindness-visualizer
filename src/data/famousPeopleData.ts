@@ -128,9 +128,9 @@ export const personData: Record<string, PersonData> = {
     name: "Lucy Edwards",
     condition: "Incontinentia Pigmenti",
     years: "Born 1995",
-    onset: "From birth",
+    onset: "Lost right eye at age 11, remaining eyesight at age 17",
     simulation: "lucy-complete-vision",
-    description: "Born with incontinentia pigmenti, Lucy has been blind from birth. Her vision is like looking through thick frosted glass with severe blur, desaturation, and light diffusion. She became a BBC presenter and advocate for disability representation in media. Visit her website at lucyedwards.com."
+    description: "Lucy has a rare genetic condition called Incontinentia Pigmenti (IP), an X-linked dominant genetic disorder passed down the female line. She lost sight in her right eye at age 11 due to incontinentia pigmenti, and lost her remaining eyesight at age 17. She relies entirely on screen readers, her guide dog (Molly), and other adaptive technologies to navigate the world. She became a BBC presenter and advocate for disability representation in media. Visit her website at lucyedwards.com."
   },
   paterson: {
     name: "David Paterson",

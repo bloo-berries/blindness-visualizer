@@ -18,17 +18,17 @@ const getObjectPosition = (personId: string): string => {
     'paterson': 'center top',
     'galileo': 'center top',
     'ved': 'center top',
-    'mila': 'center 30%',
-    'georgia': 'center 30%',
+    'mila': 'center 20%',
+    'georgia': 'center 20%',
     'bocelli': 'center 60%',
     'moon': 'center 25%',
-    'borges': 'center 30%',
-    'art': 'center 30%',
+    'borges': 'center 20%',
+    'art': 'center 20%',
     'doc': 'center 30%',
-    'lex': 'center 30%',
-    'fanny': 'center 30%',
+    'lex': 'center 20%',
+    'fanny': 'center 20%',
     'saunderson': 'center 30%',
-    'holman': 'center 30%',
+    'holman': 'center 20%',
     'diane': 'center 30%',
     'geordi': 'center 20%',
     'odin': 'center 20%',
@@ -51,7 +51,7 @@ const getObjectPosition = (personId: string): string => {
     'crazzySteve': 'center 30%',
     'floydMorris': 'center 30%',
     'belaTheBlind': 'center 30%',
-    'blindLemonJefferson': 'center 30%',
+    'blindLemonJefferson': 'center 20%',
     'charlottaSeuerling': 'center 30%',
     'levPontryagin': 'center 30%',
     'garyODonoghue': 'center 30%',
@@ -60,7 +60,23 @@ const getObjectPosition = (personId: string): string => {
     'gurrumulYunupingu': 'center 30%',
     'geraldineLawhorn': 'center 30%',
     'fujitora': 'center top',
-    'murphyMason': 'center center'
+    'murphyMason': 'center 20%',
+    'davidBrown': 'center 20%',
+    'lucy': 'center 20%',
+    'ross': 'center 20%',
+    'marilee': 'center 20%',
+    'trischa': 'center 20%',
+    'gustafDalen': 'center 20%',
+    'euler': 'center 20%',
+    'ray': 'center 20%',
+    'monet': 'center 20%',
+    'jeff': 'center 20%',
+    'ronnie': 'center 20%',
+    'rahsaan': 'center 20%',
+    'johnBramblitt': 'center 20%',
+    'joaquinRodrigo': 'center 20%',
+    'thurber': 'center 20%',
+    'henryFawcett': 'center 20%'
   };
   
   return positionMap[personId] || 'center center';
@@ -68,7 +84,7 @@ const getObjectPosition = (personId: string): string => {
 
 export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClick }) => {
   return (
-    <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+    <Grid item xs={3} sm={2} md={2} lg={2} xl={2}>
       <Card 
         sx={{ 
           height: '100%', 
@@ -83,7 +99,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
       >
         <CardMedia
           component="img"
-          height="140"
+          height="100"
           image={getPersonImagePath(personId)}
           alt={person.name}
           loading="lazy"
@@ -95,11 +111,11 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
           }}
         />
-        <CardContent sx={{ p: 1.5 }}>
-          <Typography variant="subtitle2" component="h4" gutterBottom sx={{ fontSize: '0.9rem', lineHeight: 1.2 }}>
+        <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5 }}>
+          <Typography variant="subtitle2" component="h4" sx={{ fontSize: '0.75rem', lineHeight: 1.1, mb: 0.25 }}>
             {person.name}
           </Typography>
-          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.75rem', lineHeight: 1.2, display: 'block', mb: 0.5 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.65rem', lineHeight: 1.1, display: 'block' }}>
             {person.condition}
           </Typography>
         </CardContent>

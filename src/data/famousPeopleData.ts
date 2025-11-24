@@ -835,11 +835,19 @@ export const personData: Record<string, PersonData> = {
     onset: "Age 13",
     simulation: "tofiri-complete-blindness",
     description: "Tofiri Kibuuka is a Ugandan-Norwegian Paralympic athlete and physiotherapist who made history as Africa's first winter Para athlete at the 1976 Paralympic Winter Games in Ornskoldsvik, Sweden, competing in cross-country skiing for Uganda. He lost his sight at age 13 due to a degenerative sight disease. Kibuuka later acquired Norwegian citizenship and switched to athletics, winning five silver medals and one bronze medal at Paralympic Games between 1984 and 1992. He was honored as Norway's flag bearer at the 1996 Atlanta Paralympic Games, becoming the first black man to carry the Norwegian flag at a Paralympics. Kibuuka also became one of the first blind people to climb Mount Kilimanjaro. He graduated as a physiotherapist and worked in Norway, where he settled and raised a family. Learn more at paralympic.org."
+  },
+  trischa: {
+    name: "Trischa Zorn",
+    condition: "Aniridia",
+    years: "Born 1964",
+    onset: "From birth",
+    simulation: "trischa-aniridia",
+    description: "Trischa Zorn was born with aniridia, a rare congenital genetic eye disorder in which the iris fails to develop properly. The condition stems from a mutation in the PAX6 gene, which controls eye formation during embryonic development. Born legally blind, Zorn became the most successful athlete in Paralympic history, competing in seven consecutive Paralympic Games from 1980 to 2004 and winning 55 medals (41 gold, 9 silver, 5 bronze). She was the first visually impaired athlete to earn an NCAA Division I scholarship, attending the University of Nebraska as a four-time All-American backstroker. After her swimming career, she earned a Juris Doctor degree and works for the Department of Veterans Affairs. Zorn has been inducted into the International Paralympic Hall of Fame, the U.S. Olympic & Paralympic Hall of Fame, and the International Swimming Hall of Fame. Learn more at ishof.org."
   }
 };
 
 export const categories = [
-  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "marilee", "tofiri", "ross"] },
+  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "marilee", "tofiri", "ross", "trischa"] },
   { name: "Scientists, & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler"] },
   { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "johnBramblitt", "rachael"] },
   { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany"] },

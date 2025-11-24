@@ -138,7 +138,8 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   rachael: 'Rachael-Leahcar.webp',
   tiffany: 'Tiffany-Brar.jpg',
   ross: 'ross-minor.jpeg',
-  tofiri: 'Tofiri-Kibuuka.webp'
+  tofiri: 'Tofiri-Kibuuka.webp',
+  trischa: 'Trischa-Zorn.jpeg'
 };
 
 /**

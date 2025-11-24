@@ -73,16 +73,21 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
           href="#main-content"
           sx={{
             position: 'absolute',
-            top: -40,
-            left: 6,
+            left: -9999,
+            top: -9999,
             background: 'white',
             color: 'black',
             padding: '8px 16px',
             textDecoration: 'none',
             borderRadius: '4px',
             zIndex: 9999,
+            opacity: 0,
+            visibility: 'hidden',
             '&:focus': {
+              left: 6,
               top: 6,
+              opacity: 1,
+              visibility: 'visible',
             }
           }}
         >
@@ -93,10 +98,25 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       position="fixed" 
       elevation={0}
       sx={{
+        top: 0,
+        left: 0,
+        right: 0,
         backgroundColor: '#1e293b',
         backdropFilter: 'blur(10px)',
+        borderTop: 'none !important',
         borderBottom: '1px solid #334155',
+        boxShadow: 'none',
+        margin: 0,
+        padding: 0,
         zIndex: 1200,
+        '&::before': {
+          content: '""',
+          display: 'none',
+        },
+        '&::after': {
+          content: '""',
+          display: 'none',
+        },
       }}
     >
       <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>

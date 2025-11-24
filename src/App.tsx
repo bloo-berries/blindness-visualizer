@@ -139,6 +139,24 @@ let theme = createTheme({
           borderRadius: '12px',
         }
       }
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          borderTop: 'none !important',
+          boxShadow: 'none',
+          top: 0,
+          margin: 0,
+          padding: 0,
+          '&::before': {
+            display: 'none',
+            borderTop: 'none',
+          },
+          '&::after': {
+            display: 'none',
+          },
+        }
+      }
     }
   },
 });

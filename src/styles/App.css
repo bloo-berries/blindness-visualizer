@@ -11,6 +11,17 @@ body {
 
 html {
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure AppBar has no top border or gap */
+.MuiAppBar-root {
+  border-top: none !important;
+  box-shadow: none !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .app-container {

@@ -65,7 +65,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'rachael-retinitis-pigmentosa': ['retinitisPigmentosa'],
     'tiffany-complete-blindness': ['complete-blindness'],
     'ross-complete-blindness': ['complete-blindness'],
-    'tofiri-complete-blindness': ['complete-blindness']
+    'tofiri-complete-blindness': ['complete-blindness'],
+    'trischa-aniridia': ['complete-blindness']
   };
   
   return simulationMap[simulation] || ['glaucoma'];
@@ -100,6 +101,16 @@ const getParalympicUrl = (personId: string): string => {
     'tofiri': 'https://www.paralympic.org/news/throwback-thursday-uganda-s-tofiri-kibuuka'
   };
   return paralympicMap[personId] || '';
+};
+
+/**
+ * Helper function to get ishof.org URL based on personId
+ */
+const getIshofUrl = (personId: string): string => {
+  const ishofMap: Record<string, string> = {
+    'trischa': 'https://ishof.org/honoree/trischa-zorn'
+  };
+  return ishofMap[personId] || '';
 };
 
 /**
@@ -193,7 +204,8 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'imdb.com': getImdbUrl(personId),
     'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
     'rossminor.com': 'https://rossminor.com/',
-    'paralympic.org': getParalympicUrl(personId)
+    'paralympic.org': getParalympicUrl(personId),
+    'ishof.org': getIshofUrl(personId)
   };
   
   return websiteMap[domain] || '';
@@ -227,7 +239,8 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'imdb.com': getImdbUrl(personId),
     'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
     'rossminor.com': 'https://rossminor.com/',
-    'paralympic.org': getParalympicUrl(personId)
+    'paralympic.org': getParalympicUrl(personId),
+    'ishof.org': getIshofUrl(personId)
   };
   
   const domainPattern = Object.keys(websiteMap)

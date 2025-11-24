@@ -11,7 +11,8 @@ import {
   MenuBook as MenuBookIcon,
   School as SchoolIcon,
   Article as ArticleIcon,
-  Support as SupportIcon
+  Support as SupportIcon,
+  Phone as PhoneIcon
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -41,6 +42,12 @@ const ResourcesPage: React.FC = () => {
       url: 'https://nfb.org/programs-services/free-white-cane-program',
       description: 'The National Federation of the Blind offers free white canes to those who need them.',
       icon: <SupportIcon />
+    },
+    {
+      title: 'Accessibility Support Phone Lines',
+      url: 'https://oepatients.org/accessibility-support-phone-lines-you-should-know/',
+      description: 'A comprehensive list of accessibility support phone lines from major companies including Apple, Microsoft, Amazon, airlines, and telecommunications providers for customers with vision loss.',
+      icon: <PhoneIcon />
     }
   ];
 

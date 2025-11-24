@@ -121,7 +121,17 @@ const getWikipediaUrl = (personId: string): string => {
     'floydMorris': 'https://en.wikipedia.org/wiki/Floyd_Morris',
     'belaTheBlind': 'https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary',
     'blindLemonJefferson': 'https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson',
-    'charlottaSeuerling': 'https://en.wikipedia.org/wiki/Charlotta_Seuerling'
+    'charlottaSeuerling': 'https://en.wikipedia.org/wiki/Charlotta_Seuerling',
+    'levPontryagin': 'https://en.wikipedia.org/wiki/Lev_Pontryagin',
+    'garyODonoghue': 'https://en.wikipedia.org/wiki/Gary_O%27Donoghue',
+    'francescoLandini': 'https://en.wikipedia.org/wiki/Francesco_Landini',
+    'garretBarry': 'https://en.wikipedia.org/wiki/Garret_Barry_(piper)',
+    'gurrumulYunupingu': 'https://en.wikipedia.org/wiki/Geoffrey_Gurrumul_Yunupingu',
+    'geraldineLawhorn': 'https://en.wikipedia.org/wiki/Geraldine_Lawhorn',
+    'odin': 'https://en.wikipedia.org/wiki/Odin',
+    'geordi': 'https://en.wikipedia.org/wiki/Geordi_La_Forge',
+    'toph': 'https://en.wikipedia.org/wiki/Toph_Beifong',
+    'chirrutImwe': 'https://starwars.fandom.com/wiki/Chirrut_%C3%8Emwe'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };
@@ -149,7 +159,8 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'habengirma.com': 'https://habengirma.com/',
     'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
     'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
-    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter'
+    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
+    'starwars.fandom.com': getWikipediaUrl(personId)
   };
   
   return websiteMap[domain] || '';
@@ -178,7 +189,8 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'habengirma.com': 'https://habengirma.com/',
     'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
     'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
-    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter'
+    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
+    'starwars.fandom.com': getWikipediaUrl(personId)
   };
   
   const domainPattern = Object.keys(websiteMap)

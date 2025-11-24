@@ -466,13 +466,13 @@ export const personData: Record<string, PersonData> = {
     years: "Norse Mythology",
     onset: "Sacrificed eye for wisdom",
     simulation: "complete-blindness",
-    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye. Learn more at https://en.wikipedia.org/wiki/Odin"
+    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye. Learn more at en.wikipedia.org."
   },
   daredevil: {
     name: "Daredevil / Matt Murdock",
     condition: "Chemical Accident",
     years: "Marvel Comics / Netflix Series",
-    onset: "Childhood accident",
+    onset: "Radioactive chemical accident",
     simulation: "complete-blindness",
     description: "Matt Murdock is a lawyer turned vigilante from Marvel Comics. As a child, he was blinded by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels. He uses his enhanced hearing, smell, touch, and a form of 'radar sense' to navigate and fight crime as Daredevil."
   },
@@ -480,15 +480,15 @@ export const personData: Record<string, PersonData> = {
     name: "Geordi La Forge",
     condition: "Congenital Blindness",
     years: "Star Trek: The Next Generation",
-    onset: "From birth",
+    onset: "Born blind (birth defect)",
     simulation: "complete-blindness",
-    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities. Learn more at https://en.wikipedia.org/wiki/Geordi_La_Forge"
+    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities. Learn more at en.wikipedia.org."
   },
   blindspot: {
     name: "Blindspot (Samuel 'Sam' Baines)",
     condition: "Blindness",
     years: "Batman (DC Comics)",
-    onset: "Unknown",
+    onset: "Eyes burned by villain",
     simulation: "complete-blindness",
     description: "Blindspot, also known as Samuel 'Sam' Baines, is a villain in DC Comics' Batman series. Despite being blind, he uses advanced sonar-based technology to navigate and fight, making him a formidable opponent who can 'see' through sound waves and echolocation. Learn more at en.wikipedia.org."
   },
@@ -496,7 +496,7 @@ export const personData: Record<string, PersonData> = {
     name: "Kenshi Takahashi",
     condition: "Blindness",
     years: "Mortal Kombat",
-    onset: "Blinded by sword's souls",
+    onset: "Tricked by sorcerer",
     simulation: "complete-blindness",
     description: "Kenshi Takahashi is a blind swordsman and Special Forces operative from the Mortal Kombat series. He was blinded when he opened a tomb containing the ancient sword Sento, which released imprisoned souls that took his sight. Despite his blindness, he possesses powerful telekinetic abilities and uses his sword skills to fight. Learn more at en.wikipedia.org."
   },
@@ -504,7 +504,7 @@ export const personData: Record<string, PersonData> = {
     name: "Neo (Thomas Anderson)",
     condition: "Blindness",
     years: "The Matrix trilogy",
-    onset: "Film storyline",
+    onset: "Burned by Agent Smith",
     simulation: "complete-blindness",
     description: "Neo, also known as Thomas Anderson, is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation with Agent Smith, but gains the ability to 'see' through a different perception, allowing him to perceive the code of the Matrix itself. Learn more at en.wikipedia.org."
   },
@@ -512,7 +512,7 @@ export const personData: Record<string, PersonData> = {
     name: "Eli",
     condition: "Blindness",
     years: "The Book of Eli",
-    onset: "Unknown",
+    onset: "Unknown/ambiguous",
     simulation: "complete-blindness",
     description: "Eli is the protagonist of The Book of Eli, a post-apocalyptic film. Despite being blind, he travels across the wasteland protecting a valuable book, using his heightened senses and combat skills to survive. His blindness is revealed at the end of the film, demonstrating his remarkable abilities. Learn more at book-of-eli.fandom.com."
   },
@@ -520,7 +520,7 @@ export const personData: Record<string, PersonData> = {
     name: "Blinkin",
     condition: "Blindness",
     years: "Robin Hood: Men in Tights",
-    onset: "Unknown",
+    onset: "Unspecified (parody character)",
     simulation: "complete-blindness",
     description: "Blinkin is a comedic character from the film Robin Hood: Men in Tights, a parody of the classic Robin Hood story. He serves as Robin Hood's blind servant, providing comic relief with his inability to see and his humorous misunderstandings. Learn more at en.wikipedia.org."
   },
@@ -528,7 +528,7 @@ export const personData: Record<string, PersonData> = {
     name: "Julia Carpenter (Arachne)",
     condition: "Blindness",
     years: "Marvel Comics",
-    onset: "Comic storyline",
+    onset: "Inherited Madame Web powers",
     simulation: "complete-blindness",
     description: "Julia Carpenter, also known as Arachne, is a Marvel Comics character who has experienced blindness in certain storylines. As a superhero with spider-like abilities, she has demonstrated remarkable adaptability despite visual impairment. Learn more at marvel.com."
   },
@@ -536,7 +536,7 @@ export const personData: Record<string, PersonData> = {
     name: "Mr. Magoo",
     condition: "Severe Nearsightedness",
     years: "Animated series and films",
-    onset: "Character trait",
+    onset: "Extreme nearsightedness",
     simulation: "nearSighted",
     description: "Mr. Magoo is a cartoon character known for his extreme nearsightedness. Despite his poor vision, he manages to navigate through various adventures, often mistaking objects and situations due to his inability to see clearly. The character has appeared in animated shorts, television series, and films. Learn more at en.wikipedia.org."
   },
@@ -544,7 +544,7 @@ export const personData: Record<string, PersonData> = {
     name: "Doctor Mid-Nite",
     condition: "Blindness",
     years: "DC Comics",
-    onset: "Comic storyline",
+    onset: "Grenade explosion",
     simulation: "complete-blindness",
     description: "Doctor Mid-Nite is a DC Comics superhero who is blind but uses special infrared lenses that allow him to see in darkness. Despite his blindness in normal light, he fights crime using his enhanced night vision and medical expertise. Learn more at en.wikipedia.org."
   },
@@ -552,7 +552,7 @@ export const personData: Record<string, PersonData> = {
     name: "Wally Karew",
     condition: "Blindness",
     years: "See No Evil, Hear No Evil",
-    onset: "From birth",
+    onset: "Unspecified backstory",
     simulation: "complete-blindness",
     description: "Wally Karew is a character from the film See No Evil, Hear No Evil, played by Richard Pryor. Wally is blind and teams up with a deaf character to solve a crime, using his other heightened senses to navigate and help solve the mystery. Learn more at en.wikipedia.org."
   },
@@ -560,7 +560,7 @@ export const personData: Record<string, PersonData> = {
     name: "Mohammad",
     condition: "Blindness",
     years: "The Color of Paradise",
-    onset: "From birth",
+    onset: "Born blind",
     simulation: "complete-blindness",
     description: "Mohammad is the protagonist of the Iranian film The Color of Paradise. He is a blind boy who attends a school for the blind in Tehran and has a deep connection with nature, using his sense of touch and hearing to experience the world around him. Learn more at en.wikipedia.org."
   },
@@ -590,7 +590,7 @@ export const personData: Record<string, PersonData> = {
   },
   amyBower: {
     name: "Dr. Amy Bower",
-    condition: "Blindness",
+    condition: "Progressive Vision Loss",
     years: "Born 1957",
     onset: "Progressive vision loss",
     simulation: "complete-blindness",
@@ -598,15 +598,15 @@ export const personData: Record<string, PersonData> = {
   },
   crazzySteve: {
     name: "Crazzy Steve",
-    condition: "Blindness",
+    condition: "Congenital Blindness",
     years: "Professional Wrestling",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Crazzy Steve is a professional wrestler who is blind. Despite his visual impairment, he has achieved success in professional wrestling, competing in various promotions and demonstrating that blindness does not prevent someone from pursuing a career in sports entertainment. Learn more at en.wikipedia.org."
+    description: "Crazzy Steve is a professional wrestler who is blind from birth. Despite his visual impairment, he has achieved success in professional wrestling, competing in various promotions and demonstrating that blindness does not prevent someone from pursuing a career in sports entertainment. Learn more at en.wikipedia.org."
   },
   floydMorris: {
     name: "Floyd Morris",
-    condition: "Blindness",
+    condition: "Glaucoma",
     years: "Born 1969",
     onset: "Age 16, from glaucoma",
     simulation: "complete-blindness",
@@ -614,7 +614,7 @@ export const personData: Record<string, PersonData> = {
   },
   belaTheBlind: {
     name: "Béla II of Hungary (Béla the Blind)",
-    condition: "Blindness",
+    condition: "Blindness from Childhood Trauma",
     years: "c. 1109-1141",
     onset: "From birth or early childhood",
     simulation: "complete-blindness",
@@ -622,11 +622,11 @@ export const personData: Record<string, PersonData> = {
   },
   blindLemonJefferson: {
     name: "Blind Lemon Jefferson",
-    condition: "Blindness",
+    condition: "Congenital Blindness",
     years: "c. 1893-1929",
     onset: "From birth or early childhood",
     simulation: "complete-blindness",
-    description: "Blind Lemon Jefferson was an American blues and gospel singer, guitarist, and songwriter. He was one of the most popular blues singers of the 1920s and is considered one of the most influential early blues musicians. Despite being blind, he became one of the first commercially successful blues artists, recording over 100 songs. His distinctive guitar style and powerful voice influenced generations of blues musicians. Learn more at en.wikipedia.org."
+    description: "Blind Lemon Jefferson was an American blues and gospel singer, guitarist, and songwriter. He was one of the most popular blues singers of the 1920s and is considered one of the most influential early blues musicians. Despite being blind from birth or early childhood, he became one of the first commercially successful blues artists, recording over 100 songs. His distinctive guitar style and powerful voice influenced generations of blues musicians. Learn more at en.wikipedia.org."
   },
   charlottaSeuerling: {
     name: "Charlotta Seuerling",
@@ -636,22 +636,94 @@ export const personData: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Charlotta Seuerling was a Swedish concert singer, harpsichordist, composer, and poet, known as 'The Blind Song-Maiden.' She became blind at age 4 due to complications from a smallpox vaccination. Despite her blindness, she had a successful career performing in Sweden, Finland, and Russia, and authored the popular song 'Sång i en melankolisk stund.' She also assisted in the development of Valentin Haüy's Institute for the Blind in Saint Petersburg. Learn more at en.wikipedia.org."
   },
+  levPontryagin: {
+    name: "Lev Pontryagin",
+    condition: "Blindness from Accident",
+    years: "1908-1988",
+    onset: "Age 14, from primus stove explosion",
+    simulation: "complete-blindness",
+    description: "Lev Semyonovich Pontryagin was a Soviet mathematician who became completely blind at age 14 due to an unsuccessful eye surgery after a primus stove explosion. Despite his blindness, he made major discoveries in algebraic topology, differential topology, and optimal control theory. His mother read mathematical books to him, using alternative names for math symbols. He developed Pontryagin duality, Pontryagin classes, and Pontryagin's maximum principle, fundamental to modern optimization theory. Learn more at en.wikipedia.org."
+  },
+  garyODonoghue: {
+    name: "Gary O'Donoghue",
+    condition: "Congenital Blindness",
+    years: "Born 1965",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Gary O'Donoghue is a British journalist and broadcaster who has been blind from birth. He has worked for the BBC for many years, covering politics and current affairs. Despite his blindness, he has had a successful career in journalism, demonstrating that visual impairment does not prevent someone from excelling in media and reporting. Learn more at en.wikipedia.org."
+  },
+  francescoLandini: {
+    name: "Francesco Landini",
+    condition: "Blindness from Childhood",
+    years: "c. 1325-1397",
+    onset: "Blind from childhood (smallpox)",
+    simulation: "complete-blindness",
+    description: "Francesco Landini was an Italian composer, organist, singer, poet, and instrument maker who was blind from childhood, likely due to smallpox. Despite his blindness, he became one of the most famous and prolific composers of the 14th century, known for his madrigals, ballate, and other secular works. He was also an accomplished organist and is considered one of the most important composers of the Italian Trecento. Learn more at en.wikipedia.org."
+  },
+  garretBarry: {
+    name: "Garret Barry",
+    condition: "Childhood Blindness (from illness)",
+    years: "c. 1780-1860",
+    onset: "Blind from birth or early childhood",
+    simulation: "complete-blindness",
+    description: "Garret Barry was an Irish uilleann piper who became blind during childhood due to an illness. Despite his blindness, he became one of the most celebrated traditional Irish musicians of his time, known for his mastery of the uilleann pipes. His music and style influenced generations of Irish musicians, and he is remembered as one of the great figures in Irish traditional music. Learn more at en.wikipedia.org."
+  },
+  gurrumulYunupingu: {
+    name: "Geoffrey Gurrumul Yunupingu",
+    condition: "Congenital Blindness",
+    years: "1971-2017",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Geoffrey Gurrumul Yunupingu was an Australian Indigenous musician who was born blind. Despite his congenital blindness, he became one of Australia's most celebrated musicians, known for his soulful voice and mastery of multiple instruments including guitar, keyboards, drums, and didgeridoo. He sang in both his native Yolngu language and English, and his music brought Indigenous Australian culture to a global audience. Learn more at en.wikipedia.org."
+  },
+  geraldineLawhorn: {
+    name: "Geraldine Lawhorn",
+    condition: "Deaf-Blindness",
+    years: "1916-2016",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Geraldine 'Jerrie' Lawhorn was an American deaf-blind performer, actress, pianist, and educator. She was the first deaf-blind African American to earn a college degree in the United States. Despite being both deaf and blind from birth, she had a successful career as a performer, giving one-woman shows, and later became an educator at the Hadley Institute for the Blind and Visually Impaired. She was a trailblazer for people with multiple disabilities. Learn more at en.wikipedia.org."
+  },
   toph: {
     name: "Toph Beifong",
     condition: "Blindness from Birth",
     years: "Avatar: The Last Airbender",
-    onset: "From birth",
+    onset: "Born blind",
     simulation: "complete-blindness",
-    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision. Learn more at https://en.wikipedia.org/wiki/Toph_Beifong"
+    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision. Learn more at en.wikipedia.org."
+  },
+  chirrutImwe: {
+    name: "Chirrut Îmwe",
+    condition: "Blindness",
+    years: "Star Wars: Rogue One",
+    onset: "Born blind",
+    simulation: "complete-blindness",
+    description: "Chirrut Îmwe was a Guardian of the Whills from the planet Jedha in the Star Wars universe. Despite being blind, he was a skilled warrior who used the Force to guide him, believing that 'the Force moves darkly near a thing that's about to kill.' He fought alongside the Rebel Alliance during the mission to steal the Death Star plans, demonstrating remarkable combat abilities despite his blindness. Learn more at starwars.fandom.com."
+  },
+  murphyMason: {
+    name: "Murphy Mason",
+    condition: "Retinitis Pigmentosa",
+    years: "In the Dark (TV Series)",
+    onset: "Age 14",
+    simulation: "complete-blindness",
+    description: "Murphy Mason is the main character of the CW television series In the Dark. She lost her sight completely at age 14 due to retinitis pigmentosa. Despite being blind, she becomes determined to solve her best friend Tyson's murder when she is the only eyewitness. She is known for her hard-drinking lifestyle and her determination to navigate a world of crime and mystery despite her visual impairment. Learn more at in-the-dark-cw.fandom.com."
+  },
+  fujitora: {
+    name: "Fujitora (Issho)",
+    condition: "Self-Inflicted Blindness",
+    years: "One Piece",
+    onset: "Blinded himself",
+    simulation: "complete-blindness",
+    description: "Fujitora, also known as Issho, is a Marine Admiral in the One Piece series. He blinded himself, choosing to live without sight because he did not want to see the world's wickedness. Despite his blindness, he is one of the most powerful fighters in the series, using Observation Haki (a form of spiritual perception) to 'see' his surroundings and sense the presence, emotions, and intentions of others. He fights with a sword and can manipulate gravity through his Devil Fruit powers. Learn more at onepiece.fandom.com."
   }
 };
 
 export const categories = [
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris"] },
   { name: "Athletes & Scientists", people: ["erik", "marla", "mona", "joshua", "anastasia", "sugar", "stephen", "lex", "davidBrown", "geerat", "anthonyClarke", "amyBower", "crazzySteve"] },
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paterson", "paul", "haben", "molly", "mila", "judi", "sharon", "blunkett", "chris", "floydMorris"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling"] },
-  { name: "Writers & Activists", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber"] },
-  { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad"] }
+  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn"] },
+  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind"] },
+  { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad", "chirrutImwe", "murphyMason", "fujitora"] }
 ];
 

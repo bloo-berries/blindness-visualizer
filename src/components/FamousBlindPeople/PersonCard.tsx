@@ -41,8 +41,9 @@ const getObjectPosition = (personId: string): string => {
     'juliaCarpenter': 'center 20%',
     'mrMagoo': 'center 20%',
     'doctorMidNite': 'center 20%',
-    'wallyKarew': 'center 20%',
+    'wallyKarew': 'center 50%',
     'mohammad': 'center 20%',
+    'chirrutImwe': 'center 20%',
     'maryIngalls': 'center 30%',
     'francisCampbell': 'center 30%',
     'anthonyClarke': 'center 30%',
@@ -51,7 +52,15 @@ const getObjectPosition = (personId: string): string => {
     'floydMorris': 'center 30%',
     'belaTheBlind': 'center 30%',
     'blindLemonJefferson': 'center 30%',
-    'charlottaSeuerling': 'center 30%'
+    'charlottaSeuerling': 'center 30%',
+    'levPontryagin': 'center 30%',
+    'garyODonoghue': 'center 30%',
+    'francescoLandini': 'center 30%',
+    'garretBarry': 'center 30%',
+    'gurrumulYunupingu': 'center 30%',
+    'geraldineLawhorn': 'center 30%',
+    'fujitora': 'center top',
+    'murphyMason': 'center center'
   };
   
   return positionMap[personId] || 'center center';

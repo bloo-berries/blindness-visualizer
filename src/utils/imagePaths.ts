@@ -106,6 +106,7 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   doctorMidNite: 'dr-mid-nite.webp',
   wallyKarew: 'wally-karew.png',
   mohammad: 'mohammad-color-paradise.webp',
+  chirrutImwe: 'Chirrut-Îmwe.webp',
   maryIngalls: 'mary-ingalls.jpg',
   francisCampbell: 'francis-joseph-campbell.webp',
   anthonyClarke: 'anthony-clarke.jpg',
@@ -114,7 +115,15 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   blindLemonJefferson: 'Blindlemonjefferson.jpg',
   charlottaSeuerling: 'charlotta-seuerling.webp',
   crazzySteve: 'crazzy-steve.webp',
-  belaTheBlind: 'bela-the-blind.jpg'
+  belaTheBlind: 'bela-the-blind.jpg',
+  levPontryagin: 'lev-pontryagin.webp',
+  garyODonoghue: 'Gary-ODonoghue.webp',
+  francescoLandini: 'francesco-landini.webp',
+  garretBarry: 'garret-barry.jpg',
+  gurrumulYunupingu: 'Geoffrey-Gurrumul-Yunupingu.webp',
+  geraldineLawhorn: 'Geraldine-Lawhorn.jpg',
+  murphyMason: 'murphy-mason.webp',
+  fujitora: 'Issho.webp'
 };
 
 /**

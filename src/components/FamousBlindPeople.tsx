@@ -271,7 +271,7 @@ const FamousBlindPeople: React.FC = () => {
         </Typography>
 
         {/* Search and Filter Section */}
-        <Box sx={{ mb: 4 }}>
+        <Box className="famous-people-filter-section" sx={{ mb: 4 }}>
           <Grid container spacing={2} sx={{ mb: 2 }}>
             <Grid item xs={12} md={6}>
               <TextField

@@ -24,6 +24,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AccessibilityMenu from './AccessibilityMenu';
+import { useAccessibility } from '../contexts/AccessibilityContext';
 
 interface NavigationBarProps {
   showHomeButton?: boolean;
@@ -39,6 +40,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { preferences } = useAccessibility();
 
   const handleHomeClick = () => {
     if (onHomeClick) {
@@ -152,10 +154,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               <VisibilityIcon 
                 sx={{ 
-                  color: 'white',
+                  color: preferences.highContrast ? '#000000' : 'white',
                   fontSize: 36,
                   mr: 1.5,
-                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
+                  filter: preferences.highContrast ? 'none' : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
                 }} 
               />
               <Typography 

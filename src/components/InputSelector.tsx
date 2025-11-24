@@ -14,6 +14,7 @@ import {
   Star
 } from '@mui/icons-material';
 import { InputSource } from '../types/visualEffects';
+import { useAccessibility } from '../contexts/AccessibilityContext';
 
 interface InputSelectorProps {
   currentSource: InputSource;
@@ -22,6 +23,7 @@ interface InputSelectorProps {
 
 const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceChange }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { preferences } = useAccessibility();
 
   const inputOptions = [
     {
@@ -60,6 +62,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
           .map((option) => (
             <Grid item xs={12} key={option.type}>
               <Card 
+                className={option.type === 'youtube' ? 'demo-video-card' : ''}
                 sx={{ 
                   cursor: option.isPremium ? 'not-allowed' : 'pointer',
                   height: '100%',
@@ -74,7 +77,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
                   maxWidth: '500px',
                   mx: 'auto',
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)'
+                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                  ...(preferences.highContrast && option.type === 'youtube' && {
+                    backgroundColor: '#ffffff !important',
+                    background: '#ffffff !important'
+                  })
                 }}
                 onClick={() => {
                   if (option.isPremium) {
@@ -112,15 +119,29 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   <Typography 
                     variant="h5" 
                     component="div" 
-                    sx={{ mt: 1, fontWeight: 700 }}
+                    className="demo-video-title"
+                    sx={{ 
+                      mt: 1, 
+                      fontWeight: 700,
+                      ...(preferences.highContrast && option.type === 'youtube' && { 
+                        color: '#000000 !important' 
+                      })
+                    }}
                   >
                     {option.title}
                   </Typography>
                   <Typography 
                     variant="body1" 
-                    color="text.secondary"
+                    color={preferences.highContrast && option.type === 'youtube' ? undefined : "text.secondary"}
                     id={`${option.type}-description`}
-                    sx={{ mt: 1, fontSize: '1rem' }}
+                    className="demo-video-description"
+                    sx={{ 
+                      mt: 1, 
+                      fontSize: '1rem',
+                      ...(preferences.highContrast && option.type === 'youtube' && { 
+                        color: '#000000 !important' 
+                      })
+                    }}
                   >
                     {option.description}
                   </Typography>

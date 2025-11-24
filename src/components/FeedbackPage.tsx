@@ -221,13 +221,14 @@ const FeedbackPage: React.FC = () => {
           <Grid item xs={12} md={8}>
             <Paper 
               elevation={2}
+              className="feedback-form-paper"
               sx={{ 
                 p: 4,
                 borderRadius: 3,
                 backgroundColor: 'background.paper'
               }}
             >
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="feedback-form">
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {/* Name and Email */}
                   <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>

@@ -1,0 +1,9 @@
+{
+  "short_name": "Vision Visualizer",
+  "name": "Vision Condition Visualizer",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+} 

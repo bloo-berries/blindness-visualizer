@@ -79,6 +79,27 @@
   border: 2px solid #000000 !important;
 }
 
+/* Preview How I See text in high contrast mode */
+.high-contrast-mode .preview-how-i-see-text {
+  color: #000000 !important;
+}
+
+/* Demo Video text in high contrast mode - Must come after general card rules and be more specific */
+.high-contrast-mode .demo-video-card .demo-video-title,
+.high-contrast-mode .demo-video-card .demo-video-description,
+.high-contrast-mode .MuiCard-root.demo-video-card .MuiCardContent-root .demo-video-title,
+.high-contrast-mode .MuiCard-root.demo-video-card .MuiCardContent-root .demo-video-description,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .demo-video-title,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .demo-video-description,
+.high-contrast-mode .MuiCardContent-root .demo-video-title,
+.high-contrast-mode .MuiCardContent-root .demo-video-description,
+.high-contrast-mode .MuiCard-root .demo-video-title,
+.high-contrast-mode .MuiCard-root .demo-video-description,
+.high-contrast-mode .demo-video-title,
+.high-contrast-mode .demo-video-description {
+  color: #000000 !important;
+}
+
 /* Specific styling for conditions stats text in high contrast mode */
 .high-contrast-mode .conditions-stats {
   color: #000000 !important;
@@ -89,11 +110,30 @@
 }
 
 /* Specific styling for conditions glossary text elements in high contrast mode */
-.high-contrast-mode .condition-category-title {
+/* Category header buttons should have dark background with white text for contrast */
+.high-contrast-mode .condition-category-header {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+.high-contrast-mode .condition-category-header .condition-category-title,
+.high-contrast-mode .condition-category-header .condition-category-subtitle,
+.high-contrast-mode .condition-category-header .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-category-header .condition-category-icon,
+.high-contrast-mode .condition-category-header .MuiSvgIcon-root,
+.high-contrast-mode .condition-category-header .MuiAccordionSummary-expandIconWrapper .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Other condition text elements (not in header buttons) */
+.high-contrast-mode .condition-category-title:not(.condition-category-header .condition-category-title) {
   color: #000000 !important;
 }
 
-.high-contrast-mode .condition-category-subtitle {
+.high-contrast-mode .condition-category-subtitle:not(.condition-category-header .condition-category-subtitle) {
   color: #000000 !important;
 }
 
@@ -127,6 +167,51 @@
   border: 2px solid #000000 !important;
 }
 
+/* Clear Filters button text should be white in high contrast mode */
+.high-contrast-mode .conditions-clear-button,
+.high-contrast-mode .conditions-clear-button .MuiButton-label,
+.high-contrast-mode .conditions-clear-button .MuiTypography-root {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* Feedback form - increased outline visibility for textboxes in high contrast mode */
+.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 4px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 4px !important;
+}
+
 /* Specific styling for FAQ page text elements in high contrast mode */
 .high-contrast-mode .faq-info-title {
   color: #000000 !important;
@@ -151,18 +236,33 @@
   color: #000000 !important;
 }
 
-/* Homepage text styling with maximum specificity for high contrast mode */
+/* Homepage text styling with maximum specificity for high contrast mode - Must come after general card rules */
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
+.high-contrast-mode .MuiCard-root .homepage-card-title,
+.high-contrast-mode .MuiCardContent-root .homepage-card-title,
 .high-contrast-mode .homepage-card-title,
 .high-contrast-mode .homepage-card-title.MuiTypography-root,
 .high-contrast-mode .homepage-card-title.MuiTypography-h4,
-.high-contrast-mode .MuiTypography-h4.homepage-card-title {
+.high-contrast-mode .homepage-card-title.MuiTypography-h5,
+.high-contrast-mode .MuiTypography-h4.homepage-card-title,
+.high-contrast-mode .MuiTypography-h5.homepage-card-title,
+.high-contrast-mode .homepage-card-title-left,
+.high-contrast-mode .homepage-card-title-right,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title {
   color: #000000 !important;
 }
 
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
+.high-contrast-mode .MuiCard-root .homepage-card-description,
+.high-contrast-mode .MuiCardContent-root .homepage-card-description,
 .high-contrast-mode .homepage-card-description,
 .high-contrast-mode .homepage-card-description.MuiTypography-root,
 .high-contrast-mode .homepage-card-description.MuiTypography-body1,
-.high-contrast-mode .MuiTypography-body1.homepage-card-description {
+.high-contrast-mode .homepage-card-description.MuiTypography-body2,
+.high-contrast-mode .MuiTypography-body1.homepage-card-description,
+.high-contrast-mode .MuiTypography-body2.homepage-card-description,
+.high-contrast-mode .homepage-card-description-left,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description {
   color: #000000 !important;
 }
 
@@ -227,41 +327,57 @@
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root {
+.high-contrast-mode .MuiCard-root:not(.demo-video-card) {
   background-color: var(--hc-bg) !important;
   border: 2px solid var(--hc-border) !important;
   color: var(--hc-text) !important;
 }
 
 /* Override any gradient backgrounds in high contrast mode */
-.high-contrast-mode [style*="linear-gradient"] {
+.high-contrast-mode [style*="linear-gradient"]:not(.demo-video-card) {
   background: var(--hc-bg) !important;
 }
 
 /* Specifically target common light background colors that cause contrast issues */
-.high-contrast-mode [style*="#f8fafc"],
-.high-contrast-mode [style*="#e2e8f0"],
-.high-contrast-mode [style*="#f1f5f9"] {
+.high-contrast-mode [style*="#f8fafc"]:not(.demo-video-card),
+.high-contrast-mode [style*="#e2e8f0"]:not(.demo-video-card),
+.high-contrast-mode [style*="#f1f5f9"]:not(.demo-video-card) {
   background-color: var(--hc-bg) !important;
 }
 
 /* Force high contrast for any remaining light backgrounds */
-.high-contrast-mode [style*="background-color: rgb(248, 250, 252)"],
-.high-contrast-mode [style*="background-color: rgb(226, 232, 240)"],
-.high-contrast-mode [style*="background-color: rgb(241, 245, 249)"] {
+.high-contrast-mode [style*="background-color: rgb(248, 250, 252)"]:not(.demo-video-card),
+.high-contrast-mode [style*="background-color: rgb(226, 232, 240)"]:not(.demo-video-card),
+.high-contrast-mode [style*="background-color: rgb(241, 245, 249)"]:not(.demo-video-card) {
   background-color: var(--hc-bg) !important;
 }
 
+/* Demo Video card background in high contrast mode - keep white background - Must be after all other background rules */
+.high-contrast-mode .MuiCard-root.demo-video-card,
+.high-contrast-mode .MuiCard-root.demo-video-card[style*="linear-gradient"],
+.high-contrast-mode .MuiCard-root.demo-video-card[style*="#f8fafc"],
+.high-contrast-mode .MuiCard-root.demo-video-card[style*="#e2e8f0"],
+.high-contrast-mode .demo-video-card,
+.high-contrast-mode .demo-video-card[style*="linear-gradient"],
+.high-contrast-mode .demo-video-card[style*="#f8fafc"],
+.high-contrast-mode .demo-video-card[style*="#e2e8f0"],
+.high-contrast-mode .demo-video-card[style*="background-color: rgb(248, 250, 252)"],
+.high-contrast-mode .demo-video-card[style*="background-color: rgb(226, 232, 240)"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
 /* Ensure all text in cards is visible */
-.high-contrast-mode .MuiCard-root .MuiTypography-root {
+.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"] {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"] {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
   color: var(--hc-text) !important;
 }
 
@@ -270,13 +386,25 @@
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCardContent-root .MuiTypography-root {
+.high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
   color: var(--hc-text) !important;
 }
 
 /* Icons in cards should also be visible */
 .high-contrast-mode .MuiCardContent-root .MuiSvgIcon-root {
-  color: var(--hc-text) !important;
+  color: #000000 !important;
+}
+
+/* Homepage card text - Must come after general card rules with higher specificity */
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
+.high-contrast-mode .MuiCard-root .homepage-card-title,
+.high-contrast-mode .MuiCard-root .homepage-card-description,
+.high-contrast-mode .MuiCardContent-root .homepage-card-title,
+.high-contrast-mode .MuiCardContent-root .homepage-card-description {
+  color: #000000 !important;
 }
 
 /* Navigation */
@@ -295,6 +423,12 @@
 .high-contrast-mode .MuiIconButton-root:hover {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
+
+/* VisionSim logo eye icon in high contrast mode */
+.high-contrast-mode .MuiAppBar-root .MuiBox-root[role="button"] .MuiSvgIcon-root {
+  color: #000000 !important;
+}
+
 
 /* Switches */
 .high-contrast-mode .MuiSwitch-root .MuiSwitch-track {
@@ -654,6 +788,57 @@
 }
 
 /* High contrast mode for forced-colors media query */
+/* Final override for demo video card - must be last to ensure white background */
+.high-contrast-mode .MuiCard-root.demo-video-card.MuiCard-root {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Famous People filter section - white background with black text in high contrast mode */
+.high-contrast-mode .famous-people-filter-section {
+  background-color: #ffffff !important;
+  padding: 16px !important;
+  border-radius: 8px !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiTextField-root,
+.high-contrast-mode .famous-people-filter-section .MuiFormControl-root {
+  background-color: #ffffff !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiInputBase-root,
+.high-contrast-mode .famous-people-filter-section .MuiInputBase-input,
+.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root,
+.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root.Mui-focused,
+.high-contrast-mode .famous-people-filter-section .MuiSelect-select,
+.high-contrast-mode .famous-people-filter-section .MuiMenuItem-root,
+.high-contrast-mode .famous-people-filter-section input::placeholder,
+.high-contrast-mode .famous-people-filter-section input::-webkit-input-placeholder,
+.high-contrast-mode .famous-people-filter-section input::-moz-placeholder {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-notchedOutline {
+  border-color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiTypography-root {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiButton-outlined {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
 @media (forced-colors: active) {
   .high-contrast-mode {
     forced-color-adjust: none;

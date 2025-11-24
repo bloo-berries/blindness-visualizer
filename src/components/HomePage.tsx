@@ -100,12 +100,16 @@ const HomePage: React.FC = () => {
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
                     <Box sx={{ mb: 2 }}>
-                      <VisibilityIcon sx={{ fontSize: 50, color: 'primary.main', mb: 1.5 }} />
+                      <VisibilityIcon sx={{ 
+                        fontSize: 50, 
+                        color: preferences.highContrast ? '#000000' : 'primary.main', 
+                        mb: 1.5 
+                      }} />
                       <Typography 
                         variant="h5" 
                         component="h2" 
                         gutterBottom
-                        className="homepage-card-title"
+                        className="homepage-card-title homepage-card-title-left"
                         sx={{ 
                           fontWeight: 600,
                           color: preferences.highContrast ? '#000000' : 'text.primary',
@@ -117,8 +121,8 @@ const HomePage: React.FC = () => {
                       </Typography>
                       <Typography 
                         variant="body2" 
-                        color="text.primary" 
-                        className="homepage-card-description"
+                        color={preferences.highContrast ? undefined : "text.primary"}
+                        className="homepage-card-description homepage-card-description-left"
                         sx={{ 
                           mb: 2, 
                           lineHeight: 1.5,
@@ -182,15 +186,19 @@ const HomePage: React.FC = () => {
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
                     <Box sx={{ mb: 2 }}>
-                      <PeopleIcon sx={{ fontSize: 50, color: 'primary.main', mb: 1.5 }} />
+                      <PeopleIcon sx={{ 
+                        fontSize: 50, 
+                        color: preferences.highContrast ? '#000000' : 'primary.main', 
+                        mb: 1.5 
+                      }} />
                       <Typography 
                         variant="h5" 
                         component="h2" 
                         gutterBottom
-                        className="homepage-card-title"
+                        className="homepage-card-title homepage-card-title-right"
                         sx={{ 
                           fontWeight: 600,
-                          color: 'text.primary',
+                          color: preferences.highContrast ? '#000000' : 'text.primary',
                           mb: 1.5,
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}

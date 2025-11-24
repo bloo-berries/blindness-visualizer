@@ -8,8 +8,10 @@ import {
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import { YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
+import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AboutPage: React.FC = () => {
+  const { preferences } = useAccessibility();
 
   return (
     <>
@@ -119,12 +121,17 @@ const AboutPage: React.FC = () => {
                   />
                 </Box>
                 
-                <Typography variant="body2" sx={{ 
-                  textAlign: 'center', 
-                  mt: 2, 
-                  fontStyle: 'italic',
-                  color: 'text.secondary'
-                }}>
+                <Typography 
+                  variant="body2" 
+                  className="preview-how-i-see-text"
+                  sx={{ 
+                    textAlign: 'center', 
+                    mt: 2, 
+                    fontStyle: 'italic',
+                    color: preferences.highContrast ? '#000000' : 'text.secondary',
+                    ...(preferences.highContrast && { color: '#000000 !important' })
+                  }}
+                >
                   Preview How I See
                 </Typography>
               </Box>

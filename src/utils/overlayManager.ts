@@ -1,7 +1,6 @@
 import { VisualEffect } from '../types/visualEffects';
-import { getOverlayZIndex, OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
 import { createEffectMap, getEffectById } from './effectLookup';
-import { CONTAINER_SELECTORS } from './appConstants';
 import { createVisualFieldLossOverlays } from './overlays/visualFieldLossOverlays';
 import { createVisualDisturbanceOverlays } from './overlays/visualDisturbanceOverlays';
 import { createRetinalDiseaseOverlays } from './overlays/retinalDiseaseOverlays';

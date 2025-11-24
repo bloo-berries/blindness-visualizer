@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     <Box 
       component="footer" 
       sx={{ 
-        py: 2, 
+        py: { xs: 1, sm: 2 }, 
         bgcolor: 'grey.50',
         position: 'fixed',
         bottom: 0,
@@ -22,11 +22,110 @@ const Footer: React.FC = () => {
         borderTop: '1px solid #e2e8f0'
       }}
     >
-      <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1000px', px: { xs: 1.5, sm: 2 } }}>
+        {/* Mobile Layout */}
         <Box 
           sx={{ 
-            display: 'flex', 
-            flexDirection: { xs: 'column', sm: 'row' },
+            display: { xs: 'flex', sm: 'none' },
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: { xs: 0.5, sm: 1 },
+            py: 0,
+            width: '100%',
+            position: 'relative'
+          }}
+        >
+          {/* Left side - Accessibility */}
+          <Box sx={{ 
+            position: 'absolute',
+            left: 0,
+            flexShrink: 0
+          }}>
+            <Link 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                setAccessibilityDialogOpen(true);
+              }}
+              aria-label="View accessibility statement"
+              sx={{ 
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                }
+              }}
+            >
+              Accessibility
+            </Link>
+          </Box>
+          
+          {/* Center - Support Button */}
+          <Button
+            variant="contained"
+            href="https://linktr.ee/bloomedhealth"
+            target="_blank"
+            rel="noopener"
+            startIcon={<Favorite sx={{ fontSize: '14px' }} />}
+            sx={{
+              backgroundColor: '#E53935',
+              color: '#FFFFFF',
+              fontWeight: 'bold',
+              fontSize: { xs: '11px', sm: '14px' },
+              padding: { xs: '4px 10px', sm: '6px 20px' },
+              textTransform: 'none',
+              minWidth: 'auto',
+              flexShrink: 0,
+              position: 'relative',
+              zIndex: 1,
+              '&:hover': {
+                backgroundColor: '#C62828'
+              }
+            }}
+          >
+            Support
+          </Button>
+          
+          {/* Right side - Feedback */}
+          <Box sx={{ 
+            position: 'absolute',
+            right: 0,
+            flexShrink: 0
+          }}>
+            <Link 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/feedback');
+              }}
+              aria-label="Provide feedback"
+              sx={{ 
+                color: 'text.secondary',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                }
+              }}
+            >
+              Feedback
+            </Link>
+          </Box>
+        </Box>
+
+        {/* Desktop Layout */}
+        <Box 
+          sx={{ 
+            display: { xs: 'none', sm: 'flex' },
+            flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
             gap: 2,

@@ -10,7 +10,13 @@ import {
   Switch,
   Divider,
   Tooltip,
-  Chip
+  Chip,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import {
   Accessibility as AccessibilityIcon,
@@ -23,18 +29,26 @@ import {
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AccessibilityMenu: React.FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const { preferences, toggleHighContrast, toggleLargeText, toggleIncreasedSpacing, toggleEnhancedFocus, toggleReducedMotion } = useAccessibility();
 
   // Count active accessibility features
   const activeFeaturesCount = Object.values(preferences).filter(Boolean).length;
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+    if (isMobile) {
+      setDrawerOpen(true);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+    setDrawerOpen(false);
   };
 
   // Focus management for keyboard navigation
@@ -44,7 +58,7 @@ const AccessibilityMenu: React.FC = () => {
     }
   };
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl) || drawerOpen;
 
   // Handle keyboard shortcut Alt + A (Windows/Linux) or Option + A (Mac)
   useEffect(() => {
@@ -52,13 +66,17 @@ const AccessibilityMenu: React.FC = () => {
       // Alt key works on both Windows/Linux and Mac (Option key on Mac)
       if (event.altKey && event.key === 'a') {
         event.preventDefault();
-        if (anchorEl) {
-          setAnchorEl(null);
+        if (isMobile) {
+          setDrawerOpen(!drawerOpen);
         } else {
-          // Find the accessibility button and click it
-          const button = document.querySelector('[aria-label="Open accessibility settings"]') as HTMLElement;
-          if (button) {
-            button.click();
+          if (anchorEl) {
+            setAnchorEl(null);
+          } else {
+            // Find the accessibility button and click it
+            const button = document.querySelector('[aria-label="Open accessibility settings"]') as HTMLElement;
+            if (button) {
+              button.click();
+            }
           }
         }
       }
@@ -68,7 +86,7 @@ const AccessibilityMenu: React.FC = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [anchorEl]);
+  }, [anchorEl, drawerOpen, isMobile]);
 
   const menuItems = [
     {
@@ -162,114 +180,249 @@ const AccessibilityMenu: React.FC = () => {
         </IconButton>
       </Tooltip>
       
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onKeyDown={handleKeyDown}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        PaperProps={{
-          sx: {
-            minWidth: 320,
-            maxWidth: 400,
-            mt: 1,
-            '& .MuiMenuItem-root': {
-              py: 1.5,
+      {/* Desktop Menu */}
+      {!isMobile && (
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          onKeyDown={handleKeyDown}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          PaperProps={{
+            sx: {
+              minWidth: 320,
+              maxWidth: 400,
+              mt: 1,
+              maxHeight: 'calc(100vh - 100px)',
+              overflow: 'auto',
+              '& .MuiMenuItem-root': {
+                py: 1.5,
+              }
             }
-          }
-        }}
-        role="menu"
-        aria-label="Accessibility settings"
-      >
-        <Box sx={{ p: 2, pb: 1 }}>
-          <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
-            Accessibility Settings
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Customize your viewing experience to meet WCAG 2.1 AA standards
-          </Typography>
-        </Box>
-        
-        <Divider />
-        
-        {menuItems.map((item, index) => (
-          <MenuItem
-            key={item.id}
-            onClick={(e) => {
-              // Only toggle if the click wasn't on the switch
-              if (!(e.target as HTMLElement).closest('.MuiSwitch-root')) {
-                item.toggle();
-              }
-            }}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              py: 2,
-              px: 2,
-              '&:hover': {
-                backgroundColor: 'rgba(30, 58, 138, 0.04)',
-              }
-            }}
-            role="menuitemcheckbox"
-            aria-checked={item.checked}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
-              <ListItemIcon sx={{ minWidth: 40 }}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
-                      {item.label}
+          }}
+          role="menu"
+          aria-label="Accessibility settings"
+        >
+          <Box sx={{ p: 2, pb: 1 }}>
+            <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
+              Accessibility Settings
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Customize your viewing experience to meet WCAG 2.1 AA standards
+            </Typography>
+          </Box>
+          
+          <Divider />
+          
+          {menuItems.map((item, index) => (
+            <MenuItem
+              key={item.id}
+              onClick={(e) => {
+                // Only toggle if the click wasn't on the switch
+                if (!(e.target as HTMLElement).closest('.MuiSwitch-root')) {
+                  item.toggle();
+                }
+              }}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                py: 2,
+                px: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(30, 58, 138, 0.04)',
+                }
+              }}
+              role="menuitemcheckbox"
+              aria-checked={item.checked}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
+                <ListItemIcon sx={{ minWidth: 40 }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                      <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+                        {item.label}
+                      </Typography>
+                      <Chip
+                        label={item.wcag}
+                        size="small"
+                        variant="outlined"
+                        sx={{ 
+                          height: 20, 
+                          fontSize: '0.7rem',
+                          '& .MuiChip-label': { px: 1 }
+                        }}
+                      />
+                    </Box>
+                  }
+                  secondary={
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                      {item.description}
                     </Typography>
-                    <Chip
-                      label={item.wcag}
-                      size="small"
-                      variant="outlined"
-                      sx={{ 
-                        height: 20, 
-                        fontSize: '0.7rem',
-                        '& .MuiChip-label': { px: 1 }
-                      }}
-                    />
-                  </Box>
-                }
-                secondary={
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                    {item.description}
-                  </Typography>
-                }
-              />
-              <Switch
-                checked={item.checked}
-                onChange={item.toggle}
-                onClick={(e) => e.stopPropagation()}
-                inputProps={{
-                  'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
-                }}
-                size="small"
-              />
+                  }
+                />
+                <Switch
+                  checked={item.checked}
+                  onChange={item.toggle}
+                  onClick={(e) => e.stopPropagation()}
+                  inputProps={{
+                    'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
+                  }}
+                  size="small"
+                />
+              </Box>
+            </MenuItem>
+          ))}
+          
+          <Divider />
+          
+          <Box sx={{ p: 2, pt: 1 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+              Settings are automatically saved and will persist across sessions.
+            </Typography>
+          </Box>
+        </Menu>
+      )}
+
+      {/* Mobile Drawer */}
+      {isMobile && (
+        <Drawer
+          anchor="bottom"
+          open={drawerOpen}
+          onClose={handleClose}
+          ModalProps={{
+            keepMounted: true, // Better mobile performance
+          }}
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            '& .MuiDrawer-paper': {
+              borderTopLeftRadius: 16,
+              borderTopRightRadius: 16,
+              maxHeight: '90vh',
+              overflow: 'auto',
+            },
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              pt: 2,
+              pb: 3,
+            }}
+            role="presentation"
+          >
+            {/* Drawer Handle */}
+            <Box
+              sx={{
+                width: 40,
+                height: 4,
+                backgroundColor: 'grey.300',
+                borderRadius: 2,
+                mx: 'auto',
+                mb: 2,
+              }}
+            />
+            
+            {/* Header */}
+            <Box sx={{ px: 3, pb: 2 }}>
+              <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
+                Accessibility Settings
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Customize your viewing experience to meet WCAG 2.1 AA standards
+              </Typography>
             </Box>
-          </MenuItem>
-        ))}
-        
-        <Divider />
-        
-        <Box sx={{ p: 2, pt: 1 }}>
-          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
-            Settings are automatically saved and will persist across sessions.
-          </Typography>
-        </Box>
-      </Menu>
+            
+            <Divider />
+            
+            {/* Menu Items */}
+            <List sx={{ pt: 0 }}>
+              {menuItems.map((item) => (
+                <React.Fragment key={item.id}>
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      onClick={(e) => {
+                        // Only toggle if the click wasn't on the switch
+                        if (!(e.target as HTMLElement).closest('.MuiSwitch-root')) {
+                          item.toggle();
+                        }
+                      }}
+                      sx={{
+                        py: 2.5,
+                        px: 3,
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        '&:hover': {
+                          backgroundColor: 'rgba(30, 58, 138, 0.04)',
+                        }
+                      }}
+                      role="checkbox"
+                      aria-checked={item.checked}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
+                        <ListItemIcon sx={{ minWidth: 44, color: 'primary.main' }}>
+                          {item.icon}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+                              <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+                                {item.label}
+                              </Typography>
+                              <Chip
+                                label={item.wcag}
+                                size="small"
+                                variant="outlined"
+                                sx={{ 
+                                  height: 22, 
+                                  fontSize: '0.7rem',
+                                  '& .MuiChip-label': { px: 1 }
+                                }}
+                              />
+                            </Box>
+                          }
+                          secondary={
+                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                              {item.description}
+                            </Typography>
+                          }
+                        />
+                        <Switch
+                          checked={item.checked}
+                          onChange={item.toggle}
+                          onClick={(e) => e.stopPropagation()}
+                          inputProps={{
+                            'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
+                          }}
+                          size="medium"
+                        />
+                      </Box>
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                </React.Fragment>
+              ))}
+            </List>
+            
+            {/* Footer */}
+            <Box sx={{ px: 3, pt: 2 }}>
+              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                Settings are automatically saved and will persist across sessions.
+              </Typography>
+            </Box>
+          </Box>
+        </Drawer>
+      )}
     </>
   );
 };

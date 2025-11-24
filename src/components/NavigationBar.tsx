@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Box, 
   AppBar, 
@@ -9,11 +9,20 @@ import {
   IconButton,
   Tooltip,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListItemIcon,
+  Divider
 } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import MenuIcon from '@mui/icons-material/Menu';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import AccessibilityMenu from './AccessibilityMenu';
 
 interface NavigationBarProps {
@@ -29,6 +38,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleHomeClick = () => {
     if (onHomeClick) {
@@ -44,6 +54,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     { label: 'Famous Blind People', path: '/famous-people' },
     { label: 'Glossary & FAQ', path: '/conditions' }
   ];
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMobileNavClick = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -174,6 +193,25 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             </Box>
           )}
 
+          {/* Mobile Hamburger Menu Button */}
+          {isMobile && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open navigation menu"
+              onClick={handleMobileMenuToggle}
+              sx={{
+                ml: 1,
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                }
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
+
           {/* Home Button */}
           {showHomeButton && (
             <Tooltip title="Start Simulator">
@@ -203,6 +241,112 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         </Toolbar>
       </Container>
     </AppBar>
+
+    {/* Mobile Navigation Drawer */}
+    <Drawer
+      anchor="right"
+      open={mobileMenuOpen}
+      onClose={handleMobileMenuToggle}
+      ModalProps={{
+        keepMounted: true, // Better mobile performance
+      }}
+      sx={{
+        display: { xs: 'block', md: 'none' },
+        '& .MuiDrawer-paper': {
+          boxSizing: 'border-box',
+          width: 280,
+          backgroundColor: '#1e293b',
+          color: 'white',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          width: 280,
+          pt: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+        }}
+        role="presentation"
+      >
+        <Box sx={{ flex: 1 }}>
+          <Box sx={{ px: 2, pb: 2 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700,
+                color: 'white',
+                fontSize: '1.25rem',
+              }}
+            >
+              Navigation
+            </Typography>
+          </Box>
+          <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
+          <List>
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <ListItem key={item.label} disablePadding>
+                  <ListItemButton
+                    onClick={() => handleMobileNavClick(item.path)}
+                    sx={{
+                      py: 1.5,
+                      px: 2,
+                      backgroundColor: isActive ? 'rgba(96, 165, 250, 0.15)' : 'transparent',
+                      '&:hover': {
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{
+                        fontWeight: isActive ? 600 : 400,
+                        color: isActive ? '#60a5fa' : 'white',
+                        fontSize: '1rem',
+                      }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
+        
+        {/* GitHub Link at Bottom */}
+        <Box sx={{ mt: 'auto', pb: { xs: 10, sm: 2 } }}>
+          <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)', mb: 2 }} />
+          <ListItem disablePadding>
+            <ListItemButton
+              component="a"
+              href="https://github.com/bloo-berries/blindness-visualizer"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                py: 1.5,
+                px: 2,
+                '&:hover': {
+                  backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                },
+              }}
+            >
+              <ListItemIcon sx={{ minWidth: 40, color: 'white' }}>
+                <GitHubIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="View on GitHub"
+                primaryTypographyProps={{
+                  color: 'white',
+                  fontSize: '1rem',
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        </Box>
+      </Box>
+    </Drawer>
     </>
   );
 };

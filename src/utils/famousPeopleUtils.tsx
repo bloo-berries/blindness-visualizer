@@ -66,7 +66,12 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'tiffany-complete-blindness': ['complete-blindness'],
     'ross-complete-blindness': ['complete-blindness'],
     'tofiri-complete-blindness': ['complete-blindness'],
-    'trischa-aniridia': ['complete-blindness']
+    'trischa-aniridia': ['complete-blindness'],
+    'wanda-diabetic-retinopathy': ['diabeticRetinopathy', 'glaucoma'],
+    'fred-rogers-deuteranopia': ['deuteranopia'],
+    'bill-gates-deuteranomaly': ['deuteranomaly'],
+    'john-kay-achromatopsia': ['monochromacy'],
+    'jonny-greenwood-color-blindness': ['deuteranomaly']
   };
   
   return simulationMap[simulation] || ['glaucoma'];
@@ -171,7 +176,12 @@ const getWikipediaUrl = (personId: string): string => {
     'chirrutImwe': 'https://starwars.fandom.com/wiki/Chirrut_%C3%8Emwe',
     'euler': 'https://en.wikipedia.org/wiki/Leonhard_Euler',
     'rachael': 'https://en.wikipedia.org/wiki/Rachael_Leahcar',
-    'tiffany': 'https://en.wikipedia.org/wiki/Tiffany_Brar'
+    'tiffany': 'https://en.wikipedia.org/wiki/Tiffany_Brar',
+    'wanda': 'https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced',
+    'fredRogers': 'https://en.wikipedia.org/wiki/Fred_Rogers',
+    'billGates': 'https://en.wikipedia.org/wiki/Bill_Gates',
+    'johnKay': 'https://en.wikipedia.org/wiki/John_Kay_(musician)',
+    'jonnyGreenwood': 'https://en.wikipedia.org/wiki/Jonny_Greenwood'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };
@@ -205,7 +215,9 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
     'rossminor.com': 'https://rossminor.com/',
     'paralympic.org': getParalympicUrl(personId),
-    'ishof.org': getIshofUrl(personId)
+    'ishof.org': getIshofUrl(personId),
+    'misterrogers.org': 'https://www.misterrogers.org/',
+    'steppenwolf.com': 'https://steppenwolf.com/'
   };
   
   return websiteMap[domain] || '';
@@ -240,7 +252,9 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
     'rossminor.com': 'https://rossminor.com/',
     'paralympic.org': getParalympicUrl(personId),
-    'ishof.org': getIshofUrl(personId)
+    'ishof.org': getIshofUrl(personId),
+    'misterrogers.org': 'https://www.misterrogers.org/',
+    'steppenwolf.com': 'https://steppenwolf.com/'
   };
   
   const domainPattern = Object.keys(websiteMap)

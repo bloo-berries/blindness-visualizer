@@ -843,15 +843,57 @@ export const personData: Record<string, PersonData> = {
     onset: "From birth",
     simulation: "trischa-aniridia",
     description: "Trischa Zorn was born with aniridia, a rare congenital genetic eye disorder in which the iris fails to develop properly. The condition stems from a mutation in the PAX6 gene, which controls eye formation during embryonic development. Born legally blind, Zorn became the most successful athlete in Paralympic history, competing in seven consecutive Paralympic Games from 1980 to 2004 and winning 55 medals (41 gold, 9 silver, 5 bronze). She was the first visually impaired athlete to earn an NCAA Division I scholarship, attending the University of Nebraska as a four-time All-American backstroker. After her swimming career, she earned a Juris Doctor degree and works for the Department of Veterans Affairs. Zorn has been inducted into the International Paralympic Hall of Fame, the U.S. Olympic & Paralympic Hall of Fame, and the International Swimming Hall of Fame. Learn more at ishof.org."
+  },
+  wanda: {
+    name: "Wanda Díaz-Merced",
+    condition: "Degenerative Diabetic Retinopathy",
+    years: "Born (Contemporary)",
+    onset: "Early twenties",
+    simulation: "wanda-diabetic-retinopathy",
+    description: "Wanda Díaz-Merced is a Puerto Rican astronomer and astrophysicist known for pioneering the use of sonification to turn large astronomical data sets into audible sound. She lost her sight in her early twenties due to complications with degenerative diabetic retinopathy. Rather than abandon her career, she developed innovative techniques to study stellar radiation and astrophysical data using sound, discovering that she could detect patterns in stellar radio data through audio that might be obscured in visual representations. Currently the Director of the Arecibo Observatory and working at the European Gravitational Observatory, Díaz-Merced has brought attention to increasing equality of access to astronomy and has been recognized as one of the 7 most trailblazing women in science by the BBC. She received her doctorate in computer science from the University of Glasgow and has worked at NASA Goddard Space Flight Center, the Center for Astrophysics Harvard & Smithsonian, and the South African Astronomical Observatory. Learn more at en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced."
+  },
+  fredRogers: {
+    name: "Fred Rogers",
+    condition: "Deuteranopia (Red-Green Color Deficiency)",
+    years: "1928-2003",
+    onset: "From birth",
+    simulation: "fred-rogers-deuteranopia",
+    description: "Fred Rogers, best known as Mister Rogers from the beloved children's television program 'Mister Rogers' Neighborhood,' lived with deuteranopia, a form of red-green color deficiency. Deuteranopia is a more severe lack of functional green cones, resulting in complete green-blindness. Despite this color vision deficiency, Rogers created one of the most influential and beloved children's programs in television history, teaching generations of children about kindness, empathy, and understanding. His gentle approach and commitment to children's emotional well-being made him an icon of children's television. Learn more at misterrogers.org."
+  },
+  billGates: {
+    name: "Bill Gates",
+    condition: "Deuteranomaly (Red-Green Color Deficiency)",
+    years: "Born 1955",
+    onset: "From birth",
+    simulation: "bill-gates-deuteranomaly",
+    description: "Bill Gates, co-founder of Microsoft and philanthropist, has deuteranomaly, a type of red-green color deficiency. Deuteranomaly is the most common form of color vision deficiency, affecting reduced sensitivity to green light. Despite this condition, Gates built one of the world's largest technology companies and has become one of the most influential figures in the tech industry. Through the Bill & Melinda Gates Foundation, he has also become one of the world's leading philanthropists, focusing on global health, education, and poverty reduction. Learn more at en.wikipedia.org/wiki/Bill_Gates."
+  },
+  johnKay: {
+    name: "John Kay",
+    condition: "Congenital Achromatopsia (Total Color Blindness)",
+    years: "Born 1944",
+    onset: "From birth",
+    simulation: "john-kay-achromatopsia",
+    description: "John Kay is the lead singer, songwriter, and founding member of the rock band Steppenwolf, best known for hits like 'Born to Be Wild' and 'Magic Carpet Ride.' He was born with congenital achromatopsia, a rare form of total color blindness that eliminates functional cone cells, leaving him to see essentially in black-and-white and making him highly sensitive to light. Despite this condition, Kay has had a successful music career spanning over five decades, writing and performing some of rock music's most iconic songs. Learn more at steppenwolf.com/pages/john-kay-biography."
+  },
+  jonnyGreenwood: {
+    name: "Jonny Greenwood",
+    condition: "Red-Green Color Blindness",
+    years: "Born 1971",
+    onset: "From birth",
+    simulation: "jonny-greenwood-color-blindness",
+    description: "Jonny Greenwood is the lead guitarist and multi-instrumentalist for the English rock band Radiohead, known for their innovative and experimental music. He has red-green color blindness, which affects his ability to distinguish between red and green colors. Despite this color vision deficiency, Greenwood has become one of the most acclaimed guitarists and composers in modern music, known for his innovative use of electronic instruments and orchestral arrangements. He has also composed numerous film scores, including for films like 'There Will Be Blood' and 'The Master.' Learn more at en.wikipedia.org/wiki/Jonny_Greenwood."
   }
 };
 
 export const categories = [
-  { name: "Contemporary Figures and Athletes", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "marilee", "tofiri", "ross", "trischa"] },
-  { name: "Scientists, & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler"] },
-  { name: "Musicians & Artists", people: ["monet", "ray", "stevie", "bocelli", "casey", "bono", "georgia", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "johnBramblitt", "rachael"] },
-  { name: "Writers, Activists, & Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany"] },
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "abraham", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "marilee", "fredRogers", "billGates"] },
+  { name: "Athletes", people: ["erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "tofiri", "ross", "trischa"] },
+  { name: "Scientists & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler", "wanda", "abraham"] },
+  { name: "Musicians", people: ["ray", "stevie", "bocelli", "casey", "bono", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "rachael", "johnKay", "jonnyGreenwood"] },
+  { name: "Artists", people: ["monet", "georgia", "johnBramblitt"] },
+  { name: "Writers, Activists, Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia"] },
   { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad", "chirrutImwe", "murphyMason", "fujitora"] }
 ];
 

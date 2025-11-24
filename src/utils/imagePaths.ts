@@ -139,7 +139,12 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   tiffany: 'Tiffany-Brar.jpg',
   ross: 'ross-minor.jpeg',
   tofiri: 'Tofiri-Kibuuka.webp',
-  trischa: 'Trischa-Zorn.jpeg'
+  trischa: 'Trischa-Zorn.jpeg',
+  wanda: 'wanda-diaz-merced.webp',
+  fredRogers: 'fred-rogers.webp',
+  billGates: 'bill-gates.webp',
+  johnKay: 'john-kay.webp',
+  jonnyGreenwood: 'jonny-greenwood.webp'
 };
 
 /**

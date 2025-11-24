@@ -26,6 +26,156 @@ const FamousBlindPeople: React.FC = () => {
   const [conditionFilter, setConditionFilter] = useState('');
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
+  // Categorize conditions into groups
+  const conditionCategories = useMemo(() => {
+    const categorizeCondition = (condition: string): string => {
+      const lower = condition.toLowerCase();
+      
+      // Ocular Issues - direct eye problems
+      if (
+        lower.includes('glaucoma') ||
+        lower.includes('cataract') ||
+        lower.includes('retinal detachment') ||
+        lower.includes('retinopathy') ||
+        lower.includes('retinoschisis') ||
+        lower.includes('macular degeneration') ||
+        lower.includes('macular') ||
+        lower.includes('amd') ||
+        lower.includes('keratoconus') ||
+        lower.includes('aniridia') ||
+        lower.includes('nystagmus') ||
+        lower.includes('retinoblastoma') ||
+        lower.includes('stargardt') ||
+        lower.includes('cone-rod') ||
+        lower.includes('diabetic retinopathy') ||
+        lower.includes('ophthalmia') ||
+        lower.includes('iritis') ||
+        lower.includes('eye infection') ||
+        lower.includes('eye disease') ||
+        lower.includes('sight disease') ||
+        lower.includes('color blindness') ||
+        lower.includes('color deficiency') ||
+        lower.includes('achromatopsia') ||
+        lower.includes('deuteranopia') ||
+        lower.includes('deuteranomaly') ||
+        lower.includes('nearsighted')
+      ) {
+        return 'Ocular Issues';
+      }
+      
+      // Neurologic Issues - brain/nervous system related
+      if (
+        lower.includes('neuromyelitis') ||
+        lower.includes('stroke') ||
+        lower.includes('brain injury') ||
+        lower.includes('traumatic brain') ||
+        lower.includes('meningitis') ||
+        lower.includes('neurologic') ||
+        lower.includes('neurological')
+      ) {
+        return 'Neurologic Issues';
+      }
+      
+      // Accident/Injury - trauma related
+      if (
+        lower.includes('accident') ||
+        lower.includes('injury') ||
+        lower.includes('trauma') ||
+        lower.includes('gunshot') ||
+        lower.includes('car accident') ||
+        lower.includes('chemical burn') ||
+        lower.includes('explosion') ||
+        lower.includes('shooting') ||
+        lower.includes('broken glass') ||
+        lower.includes('eye injury')
+      ) {
+        return 'Accident/Injury';
+      }
+      
+      // Congenital Defects - present from birth
+      if (
+        lower.includes('congenital') ||
+        lower.includes('from birth') ||
+        lower.includes('born blind') ||
+        lower.includes('birth defect')
+      ) {
+        return 'Congenital Defects';
+      }
+      
+      // Degenerative Eye Diseases - progressive conditions
+      if (
+        lower.includes('degenerative') ||
+        lower.includes('progressive') ||
+        lower.includes('retinitis pigmentosa') ||
+        lower.includes('dystrophy')
+      ) {
+        return 'Degenerative Eye Diseases';
+      }
+      
+      // Illness - disease/infection related
+      if (
+        lower.includes('illness') ||
+        lower.includes('disease') ||
+        lower.includes('fever') ||
+        lower.includes('smallpox') ||
+        lower.includes('diphtheria') ||
+        lower.includes('kawasaki') ||
+        lower.includes('epilepsy') ||
+        lower.includes('terry syndrome') ||
+        lower.includes('oxygen toxicity') ||
+        lower.includes('scarlet fever') ||
+        lower.includes('complications')
+      ) {
+        return 'Illness';
+      }
+      
+      // Default category for unmatched conditions
+      return 'Other';
+    };
+
+    // Get all unique conditions and categorize them
+    const conditionsMap = new Map<string, string[]>();
+    Object.values(personData).forEach(person => {
+      const category = categorizeCondition(person.condition);
+      if (!conditionsMap.has(category)) {
+        conditionsMap.set(category, []);
+      }
+      const categoryConditions = conditionsMap.get(category)!;
+      if (!categoryConditions.includes(person.condition)) {
+        categoryConditions.push(person.condition);
+      }
+    });
+
+    // Sort conditions within each category
+    conditionsMap.forEach((conditions) => {
+      conditions.sort((a, b) => a.localeCompare(b));
+    });
+
+    // Define category order
+    const categoryOrder = [
+      'Ocular Issues',
+      'Neurologic Issues',
+      'Accident/Injury',
+      'Congenital Defects',
+      'Degenerative Eye Diseases',
+      'Illness',
+      'Other'
+    ];
+
+    // Build categorized structure
+    const categorized: Array<{ category: string; conditions: string[] }> = [];
+    categoryOrder.forEach(category => {
+      if (conditionsMap.has(category)) {
+        categorized.push({
+          category,
+          conditions: conditionsMap.get(category)!
+        });
+      }
+    });
+
+    return categorized;
+  }, []);
+
   // Use useMemo to optimize filtering - only recalculate when filters change
   const filteredPeople = useMemo(() => {
     let filtered = Object.keys(personData);
@@ -48,17 +198,20 @@ const FamousBlindPeople: React.FC = () => {
       }
     }
 
-    // Filter by condition
+    // Filter by condition category
     if (conditionFilter) {
-      const conditionLower = conditionFilter.toLowerCase();
-      filtered = filtered.filter(personId => {
-        const person = personData[personId];
-        return person.condition.toLowerCase().includes(conditionLower);
-      });
+      const selectedCategory = conditionCategories.find(cat => cat.category === conditionFilter);
+      if (selectedCategory) {
+        const categoryConditions = new Set(selectedCategory.conditions);
+        filtered = filtered.filter(personId => {
+          const person = personData[personId];
+          return categoryConditions.has(person.condition);
+        });
+      }
     }
 
     return filtered;
-  }, [searchTerm, categoryFilter, conditionFilter]);
+  }, [searchTerm, categoryFilter, conditionFilter, conditionCategories]);
 
   const handlePersonClick = (personId: string) => {
     setSelectedPerson(personId);
@@ -114,7 +267,7 @@ const FamousBlindPeople: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history, from historical figures to contemporary icons.
+          Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history.
         </Typography>
 
         {/* Search and Filter Section */}
@@ -155,12 +308,11 @@ const FamousBlindPeople: React.FC = () => {
                   label="Condition"
                 >
                   <MenuItem value="">All Conditions</MenuItem>
-                  <MenuItem value="Glaucoma">Glaucoma</MenuItem>
-                  <MenuItem value="Complete Blindness">Complete Blindness</MenuItem>
-                  <MenuItem value="Macular">Macular</MenuItem>
-                  <MenuItem value="Trauma">Trauma</MenuItem>
-                  <MenuItem value="Meningitis">Meningitis</MenuItem>
-                  <MenuItem value="Prematurity">Prematurity</MenuItem>
+                  {conditionCategories.map(({ category, conditions }) => (
+                    <MenuItem key={category} value={category}>
+                      {category} ({conditions.length})
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>

@@ -89,12 +89,15 @@ const getObjectPosition = (personId: string): string => {
 
 export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClick }) => {
   return (
-    <Grid item xs={3} sm={2} md={2} lg={2} xl={2}>
+    <Grid item xs={4} sm={2} md={2} lg={2} xl={2}>
       <Card 
         sx={{ 
           height: '100%', 
           cursor: 'pointer',
           transition: 'transform 0.2s, box-shadow 0.2s',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
           '&:hover': {
             transform: 'translateY(-2px)',
             boxShadow: 3
@@ -116,11 +119,35 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
             e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
           }}
         />
-        <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5 }}>
-          <Typography variant="subtitle2" component="h4" sx={{ fontSize: '0.75rem', lineHeight: 1.1, mb: 0.25 }}>
+        <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5, minWidth: 0, flex: 1 }}>
+          <Typography 
+            variant="subtitle2" 
+            component="h4" 
+            sx={{ 
+              fontSize: '0.75rem', 
+              lineHeight: 1.1, 
+              mb: 0.25,
+              overflowWrap: 'break-word',
+              wordBreak: 'normal',
+              whiteSpace: 'normal',
+              hyphens: 'auto'
+            }}
+          >
             {person.name}
           </Typography>
-          <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.65rem', lineHeight: 1.1, display: 'block' }}>
+          <Typography 
+            variant="caption" 
+            color="text.secondary" 
+            sx={{ 
+              fontSize: '0.65rem', 
+              lineHeight: 1.1, 
+              display: 'block',
+              overflowWrap: 'break-word',
+              wordBreak: 'normal',
+              whiteSpace: 'normal',
+              hyphens: 'auto'
+            }}
+          >
             {person.condition}
           </Typography>
         </CardContent>

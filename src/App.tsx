@@ -12,6 +12,7 @@ import FamousBlindPeople from './components/FamousBlindPeople';
 import ConditionsAndFAQPage from './components/ConditionsAndFAQPage';
 import AboutPage from './components/AboutPage';
 import FeedbackPage from './components/FeedbackPage';
+import ResourcesPage from './components/ResourcesPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import './styles/App.css';
@@ -183,6 +184,7 @@ const App: React.FC = () => {
               <Route path="/faq" element={<ConditionsAndFAQPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/feedback" element={<FeedbackPage />} />
+              <Route path="/resources" element={<ResourcesPage />} />
             </Routes>
           </Router>
         </ThemeProvider>

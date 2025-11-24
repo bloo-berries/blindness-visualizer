@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
                 mb: 1.5
               }}
             >
-              Experience visual impairments to build empathy and create more accessible digital experiences
+              Experience visual impairments to build empathy and understanding
             </Typography>
 
           </Box>

@@ -52,7 +52,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     { label: 'About', path: '/about' },
     { label: 'Vision Simulator', path: '/simulator' },
     { label: 'Famous Blind People', path: '/famous-people' },
-    { label: 'Glossary & FAQ', path: '/conditions' }
+    { label: 'Glossary & FAQ', path: '/conditions' },
+    { label: 'Resources', path: '/resources' }
   ];
 
   const handleMobileMenuToggle = () => {

@@ -125,8 +125,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       <Container maxWidth={false} sx={{ maxWidth: '1000px' }}>
         <Toolbar sx={{ 
           px: { xs: 0 },
-          minHeight: '64px',
-          py: 1
+          minHeight: '56px',
+          py: 0.75
         }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
@@ -155,8 +155,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               <VisibilityIcon 
                 sx={{ 
                   color: preferences.highContrast ? '#000000' : 'white',
-                  fontSize: 36,
-                  mr: 1.5,
+                  fontSize: 32,
+                  mr: 1.25,
                   filter: preferences.highContrast ? 'none' : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
                 }} 
               />
@@ -166,7 +166,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 sx={{ 
                   fontWeight: 800,
                   color: 'white',
-                  fontSize: '1.75rem',
+                  fontSize: '1.5rem',
                   letterSpacing: '-0.02em',
                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
                   filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))'

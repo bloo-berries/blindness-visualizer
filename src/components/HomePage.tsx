@@ -129,11 +129,11 @@ const HomePage: React.FC = () => {
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}
                       >
-                        Upload images or sample a YouTube video with customizable and adjustable visuals.
+                        Create your unique visualization
                       </Typography>
-                      <Box sx={{ mb: 2, width: '100%' }}>
+                      <Box sx={{ mb: 2, mt: 5.5, width: '100%' }}>
                         <img 
-                          src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.png`}
+                          src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.webp`}
                           alt="Example vision condition comparison"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';

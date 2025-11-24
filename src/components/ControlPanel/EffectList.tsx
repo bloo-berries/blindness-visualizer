@@ -55,7 +55,7 @@ export const EffectList: React.FC<EffectListProps> = ({
   }).filter(({ effects }) => effects.length > 0);
 
   return (
-    <Box sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '400px', md: '600px' } }}>
+    <Box sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '350px', md: '500px' } }}>
       {enabledEffectsCount > 0 && (
         <Chip 
           label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}

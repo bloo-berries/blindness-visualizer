@@ -149,7 +149,7 @@ const VisionSimulator: React.FC = () => {
         );
       case 1:
         return (
-          <Box sx={{ p: 2 }}>
+          <Box sx={{ p: 1.5 }}>
             <ControlPanel 
               effects={effects}
               onToggle={handleToggle}
@@ -245,7 +245,7 @@ const VisionSimulator: React.FC = () => {
       </a>
       <Container 
         maxWidth={false}
-        sx={{ maxWidth: '1000px', py: 2, pt: 6 }}
+        sx={{ maxWidth: '1000px', py: 2, pt: 5 }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"
@@ -355,8 +355,8 @@ const VisionSimulator: React.FC = () => {
           {/* Navigation buttons positioned at the bottom of the content */}
           <Box 
             sx={{ 
-              mt: 3,
-              p: 2,
+              mt: 2,
+              p: 1.5,
               backgroundColor: 'background.paper',
               borderTop: '1px solid #e2e8f0',
               borderRadius: '0 0 12px 12px'

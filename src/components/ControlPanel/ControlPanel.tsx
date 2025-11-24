@@ -88,7 +88,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             `Vision conditions enabled: ${effects.filter(e => e.enabled).map(e => e.name).join(', ')}`
           }
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography 
             variant="h6" 
             gutterBottom
@@ -105,7 +105,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           </Button>
         </Box>
         
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2 }}>
           {/* Left side: List of vision conditions */}
           <EffectList
             effects={effects}

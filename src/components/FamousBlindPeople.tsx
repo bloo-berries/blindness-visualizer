@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -18,6 +18,7 @@ import { personData, categories } from '../data/famousPeopleData';
 import { getSimulationConditions } from '../utils/famousPeopleUtils';
 import { PersonCard } from './FamousBlindPeople/PersonCard';
 import { PersonDialog } from './FamousBlindPeople/PersonDialog';
+import { getPersonImagePath } from '../utils/imagePaths';
 
 const FamousBlindPeople: React.FC = () => {
   const navigate = useNavigate();
@@ -247,6 +248,22 @@ const FamousBlindPeople: React.FC = () => {
 
   const selectedPersonData = selectedPerson ? personData[selectedPerson] : null;
 
+  // Preload first batch of images for better initial load performance
+  useEffect(() => {
+    const preloadImages = () => {
+      // Preload first 12 images (first visible row + buffer)
+      const firstBatch = filteredPeople.slice(0, 12);
+      firstBatch.forEach((personId) => {
+        const img = new Image();
+        img.src = getPersonImagePath(personId);
+      });
+    };
+
+    // Small delay to not block initial render
+    const timeoutId = setTimeout(preloadImages, 100);
+    return () => clearTimeout(timeoutId);
+  }, [filteredPeople]);
+
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
@@ -329,34 +346,48 @@ const FamousBlindPeople: React.FC = () => {
         </Box>
 
         {/* People Cards */}
-        {categories.map(category => {
-          const categoryPeople = filteredPeople.filter(personId => 
-            category.people.includes(personId)
-          );
-          
-          if (categoryPeople.length === 0) return null;
+        {(() => {
+          let globalIndex = 0;
+          return categories.map(category => {
+            const categoryPeople = filteredPeople.filter(personId => 
+              category.people.includes(personId)
+            );
+            
+            if (categoryPeople.length === 0) return null;
 
-          return (
-            <Box key={category.name} sx={{ mb: 4 }}>
-              <Typography variant="h5" component="h3" gutterBottom sx={{ mb: 2 }}>
-                {category.name}
-              </Typography>
-              <Grid container spacing={2}>
-                {categoryPeople.map(personId => {
-                  const person = personData[personId];
-                  return (
-                    <PersonCard
-                      key={personId}
-                      personId={personId}
-                      person={person}
-                      onClick={() => handlePersonClick(personId)}
-                    />
-                  );
-                })}
-              </Grid>
-            </Box>
-          );
-        })}
+            const categoryStartIndex = globalIndex;
+            const categoryCards = categoryPeople.map((personId, categoryIndex) => {
+              const person = personData[personId];
+              const currentGlobalIndex = categoryStartIndex + categoryIndex;
+              // Mark first 6 images as priority (above the fold)
+              const isPriority = currentGlobalIndex < 6;
+              
+              return (
+                <PersonCard
+                  key={personId}
+                  personId={personId}
+                  person={person}
+                  onClick={() => handlePersonClick(personId)}
+                  priority={isPriority}
+                  index={currentGlobalIndex}
+                />
+              );
+            });
+            
+            globalIndex += categoryPeople.length;
+
+            return (
+              <Box key={category.name} sx={{ mb: 4 }}>
+                <Typography variant="h5" component="h3" gutterBottom sx={{ mb: 2 }}>
+                  {category.name}
+                </Typography>
+                <Grid container spacing={2}>
+                  {categoryCards}
+                </Grid>
+              </Box>
+            );
+          });
+        })()}
 
         {filteredPeople.length === 0 && (
           <Box sx={{ textAlign: 'center', py: 8 }}>

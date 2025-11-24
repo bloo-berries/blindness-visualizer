@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material';
+import React, { useState, useEffect, useRef } from 'react';
+import { Card, CardContent, Typography, Grid, Box, Skeleton } from '@mui/material';
 import { PersonData } from '../../data/famousPeopleData';
 import { getPersonImagePath } from '../../utils/imagePaths';
 
@@ -7,6 +7,8 @@ interface PersonCardProps {
   personId: string;
   person: PersonData;
   onClick: () => void;
+  priority?: boolean; // For above-the-fold images
+  index?: number; // For preloading strategy
 }
 
 const getObjectPosition = (personId: string): string => {
@@ -87,10 +89,67 @@ const getObjectPosition = (personId: string): string => {
   return positionMap[personId] || 'center center';
 };
 
-export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClick }) => {
+export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClick, priority = false, index = 0 }) => {
+  // Force load for specific people that have had issues
+  const forceLoad = personId === 'johnKay' || personId === 'jonnyGreenwood';
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(priority || index < 12 || forceLoad); // Load first 12 immediately, or force load
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (shouldLoad || !cardRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '50px', // Start loading 50px before entering viewport
+        threshold: 0.01
+      }
+    );
+
+    observer.observe(cardRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [shouldLoad]);
+
+  // Check if image is already loaded (for cached images)
+  useEffect(() => {
+    if (shouldLoad && imgRef.current) {
+      if (imgRef.current.complete && imgRef.current.naturalHeight !== 0) {
+        setImageLoaded(true);
+      }
+    }
+  }, [shouldLoad]);
+
+  // Fallback: Make image visible after timeout even if onLoad doesn't fire
+  useEffect(() => {
+    if (shouldLoad && !imageLoaded && !imageError) {
+      const timeout = setTimeout(() => {
+        setImageLoaded(true);
+      }, 1000); // Show image after 1 second even if onLoad hasn't fired
+      return () => clearTimeout(timeout);
+    }
+  }, [shouldLoad, imageLoaded, imageError]);
+
+  const imageSrc = getPersonImagePath(personId);
+  const placeholderSrc = `https://via.placeholder.com/300x400/cccccc/666666?text=${encodeURIComponent(person.name)}`;
+
   return (
     <Grid item xs={4} sm={2} md={2} lg={2} xl={2}>
       <Card 
+        ref={cardRef}
         sx={{ 
           height: '100%', 
           cursor: 'pointer',
@@ -105,20 +164,74 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
         }}
         onClick={onClick}
       >
-        <CardMedia
-          component="img"
-          height="100"
-          image={getPersonImagePath(personId)}
-          alt={person.name}
-          loading="lazy"
-          decoding="async"
-          sx={{
-            objectPosition: getObjectPosition(personId)
-          }}
-          onError={(e) => {
-            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
-          }}
-        />
+        <Box sx={{ position: 'relative', width: '100%', height: '100px', overflow: 'hidden', backgroundColor: '#f5f5f5' }}>
+          {!imageLoaded && !imageError && shouldLoad && (
+            <Skeleton 
+              variant="rectangular" 
+              width="100%" 
+              height="100%" 
+              sx={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+            />
+          )}
+          {shouldLoad ? (
+            <Box
+              component="img"
+              src={imageError ? placeholderSrc : imageSrc}
+              alt={person.name}
+              loading={priority || forceLoad ? 'eager' : 'lazy'}
+              decoding="async"
+              ref={imgRef}
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (img.complete && img.naturalHeight !== 0) {
+                  setImageLoaded(true);
+                }
+              }}
+              onError={(e) => {
+                if (!imageError) {
+                  console.error(`Failed to load image for ${personId}:`, imageSrc, 'Attempting placeholder...');
+                  setImageError(true);
+                  // Try to load placeholder
+                  const img = e.currentTarget;
+                  if (img.src !== placeholderSrc) {
+                    img.src = placeholderSrc;
+                    // Reset error state to try loading placeholder
+                    setImageError(false);
+                    setImageLoaded(false);
+                  } else {
+                    // Placeholder also failed, just show it anyway
+                    setImageLoaded(true);
+                  }
+                }
+              }}
+              sx={{
+                objectPosition: getObjectPosition(personId),
+                opacity: imageLoaded ? 1 : 0,
+                transition: 'opacity 0.3s ease-in-out',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 2,
+                display: 'block',
+                objectFit: 'cover'
+              }}
+            />
+          ) : (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                backgroundColor: '#f5f5f5',
+                zIndex: 1
+              }}
+            />
+          )}
+        </Box>
         <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5, minWidth: 0, flex: 1 }}>
           <Typography 
             variant="subtitle2" 

@@ -365,7 +365,7 @@ const FAQPage: React.FC = () => {
               expanded={expandedFAQ === faq.id}
               onChange={handleFAQChange(faq.id)}
               className="faq-accordion"
-              sx={{ mb: 2 }}
+              sx={{ mb: 1 }}
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -382,13 +382,13 @@ const FAQPage: React.FC = () => {
                   }
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
                   <Box className="faq-icon">
                     {faq.icon}
                   </Box>
                 </Box>
                 <Box sx={{ flexGrow: 1 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 0 }}>
                     <Typography variant="h6" component="h3" className="faq-question">
                       {index + 1}. {faq.question}
                     </Typography>
@@ -398,8 +398,8 @@ const FAQPage: React.FC = () => {
                       sx={{ 
                         backgroundColor: 'rgba(255, 255, 255, 0.2)',
                         color: 'white',
-                        fontSize: '0.75rem',
-                        height: '20px'
+                        fontSize: '0.7rem',
+                        height: '18px'
                       }}
                     />
                   </Box>

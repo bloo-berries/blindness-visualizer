@@ -210,7 +210,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1983",
     onset: "Childhood, blind in one eye for years",
     simulation: "mila-iritis-cataracts",
-    description: "Mila Kunis has been blind in one eye for years due to chronic iritis that caused cataracts. Despite her visual impairment, she has become a successful actress, known for her roles in That '70s Show and various films. She has spoken openly about her condition and how it has affected her life and career."
+    description: "Mila Kunis has been blind in one eye for years due to chronic iritis that caused cataracts. Despite her visual impairment, she has become a successful actress, known for her roles in That '70s Show and various films. She has spoken openly about her condition and how it has affected her life and career. Learn more at en.wikipedia.org."
   },
   judi: {
     name: "Dame Judi Dench",
@@ -218,7 +218,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1934",
     onset: "Dry AMD in one eye, wet AMD in the other",
     simulation: "judi-amd-progression",
-    description: "Dame Judi Dench, the acclaimed British actress, has been living with age-related macular degeneration. She has dry AMD in one eye and wet AMD in the other, which affects her central vision. Despite her visual challenges, she continues to act and has adapted her career to work with her condition."
+    description: "Dame Judi Dench, the acclaimed British actress, has been living with age-related macular degeneration. She has dry AMD in one eye and wet AMD in the other, which affects her central vision. Despite her visual challenges, she continues to act and has adapted her career to work with her condition. Learn more at en.wikipedia.org."
   },
   bono: {
     name: "Bono",
@@ -226,7 +226,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1960",
     onset: "Adult onset",
     simulation: "bono-glaucoma-sensitivity",
-    description: "Bono, the lead singer of U2, has glaucoma and wears sunglasses due to light sensitivity. He has been open about his condition and how it affects his daily life, including his need for protective eyewear. His advocacy has helped raise awareness about glaucoma and vision health."
+    description: "Bono, the lead singer of U2, has glaucoma and wears sunglasses due to light sensitivity. He has been open about his condition and how it affects his daily life, including his need for protective eyewear. His advocacy has helped raise awareness about glaucoma and vision health. Learn more at en.wikipedia.org."
   },
   georgia: {
     name: "Georgia O'Keeffe",
@@ -234,7 +234,7 @@ export const personData: Record<string, PersonData> = {
     years: "1887-1986",
     onset: "Lost central vision in 1972",
     simulation: "georgia-amd-central-loss",
-    description: "Georgia O'Keeffe, the renowned American artist, lost her central vision to age-related macular degeneration in 1972. Despite this significant visual impairment, she continued to create art, adapting her techniques to work with her remaining peripheral vision. Her later works reflect her changed visual perspective."
+    description: "Georgia O'Keeffe, the renowned American artist, lost her central vision to age-related macular degeneration in 1972. Despite this significant visual impairment, she continued to create art, adapting her techniques to work with her remaining peripheral vision. Her later works reflect her changed visual perspective. Learn more at en.wikipedia.org."
   },
   ella: {
     name: "Ella Fitzgerald",
@@ -242,7 +242,7 @@ export const personData: Record<string, PersonData> = {
     years: "1917-1996",
     onset: "Progressive, eventually went blind",
     simulation: "ella-diabetic-retinopathy",
-    description: "Ella Fitzgerald, the legendary jazz singer, developed diabetic retinopathy which eventually led to blindness. Despite her visual impairment, she continued to perform and record music, becoming one of the most celebrated vocalists in jazz history. Her condition was a result of diabetes complications."
+    description: "Ella Fitzgerald, the legendary jazz singer, developed diabetic retinopathy which eventually led to blindness. Despite her visual impairment, she continued to perform and record music, becoming one of the most celebrated vocalists in jazz history. Her condition was a result of diabetes complications. Learn more at en.wikipedia.org."
   },
   sugar: {
     name: "Sugar Ray Leonard",
@@ -250,7 +250,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1956",
     onset: "Left eye in 1982",
     simulation: "sugar-retinal-detachment",
-    description: "Sugar Ray Leonard, the former professional boxer, suffered a partial retinal detachment in his left eye in 1982. This condition affected his depth perception and peripheral vision, ultimately contributing to his decision to retire from boxing. He has since become an advocate for eye health and safety in sports."
+    description: "Sugar Ray Leonard, the former professional boxer, suffered a partial retinal detachment in his left eye in 1982. This condition affected his depth perception and peripheral vision, ultimately contributing to his decision to retire from boxing. He has since become an advocate for eye health and safety in sports. Learn more at en.wikipedia.org."
   },
   stephen: {
     name: "Stephen Curry",
@@ -258,7 +258,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1988",
     onset: "Diagnosed in college",
     simulation: "stephen-keratoconus",
-    description: "Stephen Curry, the NBA superstar and Golden State Warriors point guard, has keratoconus, a condition where the cornea becomes thin and cone-shaped, causing distorted vision. Despite this visual impairment, he has become one of the greatest shooters in NBA history, winning multiple championships and MVP awards. He uses specialized contact lenses to manage his condition."
+    description: "Stephen Curry, the NBA superstar and Golden State Warriors point guard, has keratoconus, a condition where the cornea becomes thin and cone-shaped, causing distorted vision. Despite this visual impairment, he has become one of the greatest shooters in NBA history, winning multiple championships and MVP awards. He uses specialized contact lenses to manage his condition. Learn more at en.wikipedia.org."
   },
   allan: {
     name: "Allan Pineda Lindo (Apl.de.ap)",
@@ -266,7 +266,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1974",
     onset: "From birth",
     simulation: "allan-nystagmus",
-    description: "Allan Pineda Lindo, known as Apl.de.ap, is a Filipino-American rapper, singer, and record producer, best known as a founding member of the Black Eyed Peas. He was born with nystagmus, a condition that causes involuntary eye movements and reduced vision. Despite his visual impairment, he has achieved international success in music and continues to be an advocate for disability awareness."
+    description: "Allan Pineda Lindo, known as Apl.de.ap, is a Filipino-American rapper, singer, and record producer, best known as a founding member of the Black Eyed Peas. He was born with nystagmus, a condition that causes involuntary eye movements and reduced vision. Despite his visual impairment, he has achieved international success in music and continues to be an advocate for disability awareness. Learn more at en.wikipedia.org."
   },
   fetty: {
     name: "Fetty Wap",
@@ -274,7 +274,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1991",
     onset: "Childhood glaucoma, lost eye",
     simulation: "fetty-glaucoma-prosthetic",
-    description: "Fetty Wap, the American rapper and singer, lost his left eye to glaucoma as a child and wears a prosthetic eye. Despite this visual impairment, he rose to fame with his hit single 'Trap Queen' and has become a successful recording artist. He has been open about his condition and how it has shaped his perspective on life and music."
+    description: "Fetty Wap, the American rapper and singer, lost his left eye to glaucoma as a child and wears a prosthetic eye. Despite this visual impairment, he rose to fame with his hit single 'Trap Queen' and has become a successful recording artist. He has been open about his condition and how it has shaped his perspective on life and music. Learn more at en.wikipedia.org."
   },
   slick: {
     name: "Slick Rick",
@@ -282,7 +282,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1965",
     onset: "Infancy, from broken glass",
     simulation: "slick-rick-blindness",
-    description: "Slick Rick, the legendary British-American rapper and hip-hop pioneer, was blinded in his right eye as an infant when broken glass from a bottle hit his eye. Despite this visual impairment, he became one of the most influential figures in hip-hop, known for his storytelling abilities and distinctive style. He often wears an eye patch and has incorporated his visual condition into his artistic persona."
+    description: "Slick Rick, the legendary British-American rapper and hip-hop pioneer, was blinded in his right eye as an infant when broken glass from a bottle hit his eye. Despite this visual impairment, he became one of the most influential figures in hip-hop, known for his storytelling abilities and distinctive style. He often wears an eye patch and has incorporated his visual condition into his artistic persona. Learn more at en.wikipedia.org."
   },
   abraham: {
     name: "Abraham Nemeth",
@@ -290,7 +290,7 @@ export const personData: Record<string, PersonData> = {
     years: "1918-2013",
     onset: "From birth",
     simulation: "abraham-congenital-blindness",
-    description: "Abraham Nemeth was a blind mathematician who developed the Nemeth Braille Code for Mathematics and Science Notation. Born blind, he became a professor of mathematics and made significant contributions to making mathematics accessible to blind students. His Nemeth Code is still widely used today for transcribing mathematical and scientific materials into braille."
+    description: "Abraham Nemeth was a blind mathematician who developed the Nemeth Braille Code for Mathematics and Science Notation. Born blind, he became a professor of mathematics and made significant contributions to making mathematics accessible to blind students. His Nemeth Code is still widely used today for transcribing mathematical and scientific materials into braille. Learn more at en.wikipedia.org."
   },
   moon: {
     name: "William Moon",
@@ -306,7 +306,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1958",
     onset: "Age 43, from stroke",
     simulation: "sharon-stroke-visual-distortions",
-    description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. It took years for her vision to return to normal. She also had difficulty reading and memorizing lines, which brought her career to a screeching halt. Beyond vision, Stone experienced aphasia (speech difficulties) and an ongoing stutter, lost directional hearing in her right ear, lost feeling from the knee up in her left leg, had a tilted walk with her right leg dragging, the left side of her face became distorted, lost short-term memory, and had balance problems, constant fatigue, and periodic seizures."
+    description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. It took years for her vision to return to normal. She also had difficulty reading and memorizing lines, which brought her career to a screeching halt. Beyond vision, Stone experienced aphasia (speech difficulties) and an ongoing stutter, lost directional hearing in her right ear, lost feeling from the knee up in her left leg, had a tilted walk with her right leg dragging, the left side of her face became distorted, lost short-term memory, and had balance problems, constant fatigue, and periodic seizures. Learn more at en.wikipedia.org."
   },
   jose: {
     name: "José Feliciano",
@@ -474,7 +474,7 @@ export const personData: Record<string, PersonData> = {
     years: "Marvel Comics / Netflix Series",
     onset: "Radioactive chemical accident",
     simulation: "complete-blindness",
-    description: "Matt Murdock is a lawyer turned vigilante from Marvel Comics. As a child, he was blinded by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels. He uses his enhanced hearing, smell, touch, and a form of 'radar sense' to navigate and fight crime as Daredevil."
+    description: "Matt Murdock is a lawyer turned vigilante from Marvel Comics. As a child, he was blinded by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels. He uses his enhanced hearing, smell, touch, and a form of 'radar sense' to navigate and fight crime as Daredevil. Learn more at en.wikipedia.org."
   },
   geordi: {
     name: "Geordi La Forge",
@@ -850,7 +850,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Early twenties",
     simulation: "wanda-diabetic-retinopathy",
-    description: "Wanda Díaz-Merced is a Puerto Rican astronomer and astrophysicist known for pioneering the use of sonification to turn large astronomical data sets into audible sound. She lost her sight in her early twenties due to complications with degenerative diabetic retinopathy. Rather than abandon her career, she developed innovative techniques to study stellar radiation and astrophysical data using sound, discovering that she could detect patterns in stellar radio data through audio that might be obscured in visual representations. Currently the Director of the Arecibo Observatory and working at the European Gravitational Observatory, Díaz-Merced has brought attention to increasing equality of access to astronomy and has been recognized as one of the 7 most trailblazing women in science by the BBC. She received her doctorate in computer science from the University of Glasgow and has worked at NASA Goddard Space Flight Center, the Center for Astrophysics Harvard & Smithsonian, and the South African Astronomical Observatory. Learn more at en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced."
+    description: "Wanda Díaz-Merced is a Puerto Rican astronomer and astrophysicist known for pioneering the use of sonification to turn large astronomical data sets into audible sound. She lost her sight in her early twenties due to complications with degenerative diabetic retinopathy. Rather than abandon her career, she developed innovative techniques to study stellar radiation and astrophysical data using sound, discovering that she could detect patterns in stellar radio data through audio that might be obscured in visual representations. Currently the Director of the Arecibo Observatory and working at the European Gravitational Observatory, Díaz-Merced has brought attention to increasing equality of access to astronomy and has been recognized as one of the 7 most trailblazing women in science by the BBC. She received her doctorate in computer science from the University of Glasgow and has worked at NASA Goddard Space Flight Center, the Center for Astrophysics Harvard & Smithsonian, and the South African Astronomical Observatory. Learn more at en.wikipedia.org."
   },
   fredRogers: {
     name: "Fred Rogers",
@@ -874,7 +874,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1944",
     onset: "From birth",
     simulation: "john-kay-achromatopsia",
-    description: "John Kay is the lead singer, songwriter, and founding member of the rock band Steppenwolf, best known for hits like 'Born to Be Wild' and 'Magic Carpet Ride.' He was born with congenital achromatopsia, a rare form of total color blindness that eliminates functional cone cells, leaving him to see essentially in black-and-white and making him highly sensitive to light. Despite this condition, Kay has had a successful music career spanning over five decades, writing and performing some of rock music's most iconic songs. Learn more at steppenwolf.com/pages/john-kay-biography."
+    description: "John Kay is the lead singer, songwriter, and founding member of the rock band Steppenwolf, best known for hits like 'Born to Be Wild' and 'Magic Carpet Ride.' He was born with congenital achromatopsia, a rare form of total color blindness that eliminates functional cone cells, leaving him to see essentially in black-and-white and making him highly sensitive to light. Despite this condition, Kay has had a successful music career spanning over five decades, writing and performing some of rock music's most iconic songs. Learn more at steppenwolf.com."
   },
   jonnyGreenwood: {
     name: "Jonny Greenwood",
@@ -882,7 +882,7 @@ export const personData: Record<string, PersonData> = {
     years: "Born 1971",
     onset: "From birth",
     simulation: "jonny-greenwood-color-blindness",
-    description: "Jonny Greenwood is the lead guitarist and multi-instrumentalist for the English rock band Radiohead, known for their innovative and experimental music. He has red-green color blindness, which affects his ability to distinguish between red and green colors. Despite this color vision deficiency, Greenwood has become one of the most acclaimed guitarists and composers in modern music, known for his innovative use of electronic instruments and orchestral arrangements. He has also composed numerous film scores, including for films like 'There Will Be Blood' and 'The Master.' Learn more at en.wikipedia.org/wiki/Jonny_Greenwood."
+    description: "Jonny Greenwood is the lead guitarist and multi-instrumentalist for the English rock band Radiohead, known for their innovative and experimental music. He has red-green color blindness, which affects his ability to distinguish between red and green colors. Despite this color vision deficiency, Greenwood has become one of the most acclaimed guitarists and composers in modern music, known for his innovative use of electronic instruments and orchestral arrangements. He has also composed numerous film scores, including for films like 'There Will Be Blood' and 'The Master.' Learn more at en.wikipedia.org."
   }
 };
 

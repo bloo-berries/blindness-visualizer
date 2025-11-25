@@ -16,14 +16,14 @@
 .conditions-search-section {
   background: white;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 0.75rem;
   margin-bottom: 2rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   border: 1px solid #e2e8f0;
 }
 
 .condition-category-accordion {
-  margin-bottom: 1rem;
+  margin-bottom: 0.625rem;
   border-radius: 12px !important;
   overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -33,8 +33,8 @@
 .condition-category-header {
   background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
   color: white !important;
-  min-height: 80px !important;
-  padding: 0 24px !important;
+  min-height: 56px !important;
+  padding: 0 16px !important;
 }
 
 .condition-category-header:hover {
@@ -42,19 +42,20 @@
 }
 
 .condition-category-icon {
-  margin-right: 16px;
-  font-size: 28px !important;
+  margin-right: 12px;
+  font-size: 20px !important;
 }
 
 .condition-category-title {
   font-weight: 600 !important;
-  font-size: 1.25rem !important;
-  margin-bottom: 4px !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 2px !important;
 }
 
 .condition-category-subtitle {
   opacity: 0.9 !important;
-  font-size: 0.875rem !important;
+  font-size: 0.8125rem !important;
 }
 
 .condition-list {
@@ -147,6 +148,13 @@
   border-radius: 8px !important;
   text-transform: none !important;
   font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  padding: 4px 12px !important;
+  min-width: auto !important;
+}
+
+.conditions-clear-button .MuiSvgIcon-root {
+  font-size: 16px !important;
 }
 
 .conditions-stats {
@@ -165,8 +173,8 @@
   }
   
   .condition-category-header {
-    min-height: 60px !important;
-    padding: 0 16px !important;
+    min-height: 48px !important;
+    padding: 0 12px !important;
   }
   
   .condition-item {
@@ -174,12 +182,12 @@
   }
   
   .condition-category-icon {
-    font-size: 24px !important;
-    margin-right: 12px;
+    font-size: 18px !important;
+    margin-right: 10px;
   }
   
   .condition-category-title {
-    font-size: 1.125rem !important;
+    font-size: 0.875rem !important;
   }
 }
 

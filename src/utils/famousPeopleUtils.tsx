@@ -146,7 +146,10 @@ const getWikipediaUrl = (personId: string): string => {
     'blunkett': 'https://en.wikipedia.org/wiki/David_Blunkett',
     'saunderson': 'https://en.wikipedia.org/wiki/Nicholas_Saunderson',
     'geerat': 'https://en.wikipedia.org/wiki/Geerat_Vermeij',
+    'gustafDalen': 'https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n',
     'holman': 'https://en.wikipedia.org/wiki/James_Holman',
+    'jacobBolotin': 'https://en.wikipedia.org/wiki/Jacob_Bolotin',
+    'josephPlateau': 'https://en.wikipedia.org/wiki/Joseph_Plateau',
     'chris': 'https://en.wikipedia.org/wiki/Chris_McCausland',
     'blindspot': 'https://en.wikipedia.org/wiki/Blindspot_(DC_Comics)',
     'kenshi': 'https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat)',
@@ -161,7 +164,10 @@ const getWikipediaUrl = (personId: string): string => {
     'anthonyClarke': 'https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka)',
     'amyBower': 'https://en.wikipedia.org/wiki/Amy_Bower',
     'floydMorris': 'https://en.wikipedia.org/wiki/Floyd_Morris',
+    'henryFawcett': 'https://en.wikipedia.org/wiki/Henry_Fawcett',
+    'jacquesLusseyran': 'https://en.wikipedia.org/wiki/Jacques_Lusseyran',
     'belaTheBlind': 'https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary',
+    'johnOfBohemia': 'https://en.wikipedia.org/wiki/John_of_Bohemia',
     'blindLemonJefferson': 'https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson',
     'charlottaSeuerling': 'https://en.wikipedia.org/wiki/Charlotta_Seuerling',
     'levPontryagin': 'https://en.wikipedia.org/wiki/Lev_Pontryagin',
@@ -181,7 +187,22 @@ const getWikipediaUrl = (personId: string): string => {
     'fredRogers': 'https://en.wikipedia.org/wiki/Fred_Rogers',
     'billGates': 'https://en.wikipedia.org/wiki/Bill_Gates',
     'johnKay': 'https://en.wikipedia.org/wiki/John_Kay_(musician)',
-    'jonnyGreenwood': 'https://en.wikipedia.org/wiki/Jonny_Greenwood'
+    'joaquinRodrigo': 'https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Rodrigo',
+    'jonnyGreenwood': 'https://en.wikipedia.org/wiki/Jonny_Greenwood',
+    'crazzySteve': 'https://en.wikipedia.org/wiki/Crazzy_Steve',
+    'mila': 'https://en.wikipedia.org/wiki/Mila_Kunis',
+    'judi': 'https://en.wikipedia.org/wiki/Judi_Dench',
+    'bono': 'https://en.wikipedia.org/wiki/Bono',
+    'georgia': 'https://en.wikipedia.org/wiki/Georgia_O%27Keeffe',
+    'ella': 'https://en.wikipedia.org/wiki/Ella_Fitzgerald',
+    'sugar': 'https://en.wikipedia.org/wiki/Sugar_Ray_Leonard',
+    'stephen': 'https://en.wikipedia.org/wiki/Stephen_Curry',
+    'allan': 'https://en.wikipedia.org/wiki/Apl.de.ap',
+    'fetty': 'https://en.wikipedia.org/wiki/Fetty_Wap',
+    'slick': 'https://en.wikipedia.org/wiki/Slick_Rick',
+    'abraham': 'https://en.wikipedia.org/wiki/Abraham_Nemeth',
+    'sharon': 'https://en.wikipedia.org/wiki/Sharon_Stone',
+    'daredevil': 'https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };
@@ -217,7 +238,11 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
     'paralympic.org': getParalympicUrl(personId),
     'ishof.org': getIshofUrl(personId),
     'misterrogers.org': 'https://www.misterrogers.org/',
-    'steppenwolf.com': 'https://steppenwolf.com/'
+    'steppenwolf.com': 'https://steppenwolf.com/pages/john-kay-biography',
+    'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
+    'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
+    'heather-hutchison.com': 'https://www.heather-hutchison.com/',
+    'bramblitt.com': 'https://bramblitt.com/'
   };
   
   return websiteMap[domain] || '';
@@ -254,7 +279,11 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'paralympic.org': getParalympicUrl(personId),
     'ishof.org': getIshofUrl(personId),
     'misterrogers.org': 'https://www.misterrogers.org/',
-    'steppenwolf.com': 'https://steppenwolf.com/'
+    'steppenwolf.com': 'https://steppenwolf.com/pages/john-kay-biography',
+    'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
+    'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
+    'heather-hutchison.com': 'https://www.heather-hutchison.com/',
+    'bramblitt.com': 'https://bramblitt.com/'
   };
   
   const domainPattern = Object.keys(websiteMap)

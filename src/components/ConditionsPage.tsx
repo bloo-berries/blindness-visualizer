@@ -21,7 +21,10 @@ import {
   ListItemIcon,
   IconButton,
   Tooltip,
-  Divider
+  Divider,
+  Tabs,
+  Tab,
+  Paper
 } from '@mui/material';
 import { 
   ExpandMore as ExpandMoreIcon,
@@ -31,12 +34,19 @@ import {
   MedicalServices as MedicalServicesIcon,
   Psychology as PsychologyIcon,
   ColorLens as ColorLensIcon,
-  RemoveRedEye as RemoveRedEyeIcon
+  RemoveRedEye as RemoveRedEyeIcon,
+  Smartphone as SmartphoneIcon,
+  Home as HomeIcon,
+  Directions as DirectionsIcon,
+  Person as PersonIcon,
+  Work as WorkIcon,
+  Help as HelpIcon
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 // Note: VISUAL_EFFECTS import removed as it's not currently used
 import '../styles/Conditions.css';
+import '../styles/FAQ.css';
 
 interface ConditionCategory {
   id: string;
@@ -51,11 +61,21 @@ interface ConditionCategory {
   }>;
 }
 
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string | React.ReactNode;
+  icon: React.ReactNode;
+  category: string;
+}
+
 const ConditionsPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [expandedCategory, setExpandedCategory] = useState<string | false>(false);
+  const [activeTab, setActiveTab] = useState(0);
+  const [expandedFAQ, setExpandedFAQ] = useState<string | false>(false);
 
   // Organize conditions into categories
   const conditionCategories: ConditionCategory[] = useMemo(() => [
@@ -327,7 +347,7 @@ const ConditionsPage: React.FC = () => {
     filterCategories();
   }, [filterCategories]);
 
-  const handleCategoryChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+  const handleCategoryChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpandedCategory(isExpanded ? panel : false);
   };
 
@@ -340,19 +360,299 @@ const ConditionsPage: React.FC = () => {
     navigate('/');
   };
 
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setActiveTab(newValue);
+  };
+
+  const handleFAQChange = (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpandedFAQ(isExpanded ? panel : false);
+  };
+
+  const getCategoryColor = (_category: string) => {
+    return '#1e3a8a';
+  };
+
+  // FAQ Items
+  const faqItems: FAQItem[] = useMemo(() => [
+    {
+      id: 'darkness',
+      question: 'Do blind people see complete darkness/blackness?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Not necessarily. About 85% of legally blind people have some remaining vision. Only 10-15% experience total darkness. Many see light/shadow, colors, or blurry shapes. Some who've never had sight don't experience "blackness" as a concept - similar to how you don't "see" blackness behind your head.
+          </Typography>
+        </Box>
+      ),
+      icon: <VisibilityIcon />,
+      category: 'Vision & Perception'
+    },
+    {
+      id: 'technology',
+      question: 'How do blind people use smartphones and computers?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Screen readers (JAWS, NVDA, VoiceOver) convert text to speech or braille. Gestures and keyboard shortcuts replace mouse use. Many use normal smartphones with built-in accessibility features. Voice assistants like Siri are heavily utilized.
+          </Typography>
+        </Box>
+      ),
+      icon: <SmartphoneIcon />,
+      category: 'Technology & Accessibility'
+    },
+    {
+      id: 'independence',
+      question: 'Can blind people live independently?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Yes. With proper training and adaptive techniques, blind people cook, clean, work, raise families, and live fully independent lives. They use systematic organization, tactile markers, assistive technology, and mobility tools.
+          </Typography>
+        </Box>
+      ),
+      icon: <HomeIcon />,
+      category: 'Daily Life'
+    },
+    {
+      id: 'navigation',
+      question: 'How do blind people navigate and get around?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Blind people use various methods for navigation and mobility:
+          </Typography>
+          <List dense>
+            <ListItem>
+              <ListItemIcon>
+                <DirectionsIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="White canes detect obstacles and elevation changes" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <DirectionsIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Guide dogs provide intelligent disobedience and navigation" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <DirectionsIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="GPS apps with audio directions (Soundscape, BlindSquare)" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <DirectionsIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Memorized routes and mental mapping" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <DirectionsIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Public transportation and rideshare apps" />
+            </ListItem>
+          </List>
+        </Box>
+      ),
+      icon: <DirectionsIcon />,
+      category: 'Navigation & Mobility'
+    },
+    {
+      id: 'senses',
+      question: 'Do blind people have heightened other senses?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            No, their other senses aren't biologically superior. They develop better attention to and processing of audio/tactile information through practice and necessity. It's enhanced perception, not enhanced sensation.
+          </Typography>
+        </Box>
+      ),
+      icon: <PsychologyIcon />,
+      category: 'Vision & Perception'
+    },
+    {
+      id: 'interaction',
+      question: 'How should I interact with a blind person?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Here are some important guidelines for respectful interaction:
+          </Typography>
+          <List dense>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Speak normally and directly to them, not through companions" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Identify yourself when approaching" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Ask before helping - don't grab or push" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Give verbal descriptions when relevant" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Use normal language ('see you later' is fine)" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PersonIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Never pet or distract guide dogs" />
+            </ListItem>
+          </List>
+        </Box>
+      ),
+      icon: <PersonIcon />,
+      category: 'Social Interaction'
+    },
+    {
+      id: 'legal-vs-total',
+      question: 'What\'s the difference between legally blind and totally blind?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            <strong>Legally blind:</strong> Vision 20/200 or worse with correction, OR visual field less than 20 degrees
+          </Typography>
+          <Typography variant="body1" paragraph>
+            <strong>Totally blind:</strong> No light perception (NLP)
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Most "blind" people fall somewhere between these extremes.
+          </Typography>
+        </Box>
+      ),
+      icon: <VisibilityIcon />,
+      category: 'Vision & Perception'
+    },
+    {
+      id: 'employment',
+      question: 'Can blind people work regular jobs?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Yes. Blind people work as lawyers, teachers, programmers, musicians, psychologists, business owners, and countless other professions. Workplace accommodations (screen readers, braille displays) enable most jobs.
+          </Typography>
+        </Box>
+      ),
+      icon: <WorkIcon />,
+      category: 'Employment & Career'
+    },
+    {
+      id: 'identification',
+      question: 'How do blind people identify money, colors, or objects?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            Blind people use various adaptive techniques for identification:
+          </Typography>
+          <List dense>
+            <ListItem>
+              <ListItemIcon>
+                <ColorLensIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Money: Apps like Seeing AI, different folding methods, electronic identifiers, and different sizes for different denominations in various countries" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <ColorLensIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Colors: Color identifier apps, asking others, buying pre-matched clothing" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <ColorLensIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Objects: Systematic organization, braille/tactile labels, voice recording labels, memory" />
+            </ListItem>
+          </List>
+        </Box>
+      ),
+      icon: <ColorLensIcon />,
+      category: 'Daily Life'
+    },
+    {
+      id: 'causes-treatment',
+      question: 'What causes blindness and can it be cured?',
+      answer: (
+        <Box>
+          <Typography variant="body1" paragraph>
+            <strong>Leading causes globally:</strong>
+          </Typography>
+          <List dense>
+            <ListItem>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Cataracts (reversible)" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Glaucoma" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Macular degeneration" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Diabetic retinopathy" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <MedicalServicesIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText primary="Genetic conditions" />
+            </ListItem>
+          </List>
+          <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+            Treatment depends on cause. Some conditions are preventable/treatable, others currently aren't. Research continues on treatments like gene therapy, stem cells, and bionic eyes.
+          </Typography>
+          <Typography variant="body1" paragraph>
+            People can also lose their vision from neurological conditions like trauma or stroke.
+          </Typography>
+        </Box>
+      ),
+      icon: <MedicalServicesIcon />,
+      category: 'Medical & Treatment'
+    }
+  ], []);
+
   return (
     <Box className="conditions-glossary" sx={{ pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-          Vision Conditions Glossary
+          Glossary & FAQ
         </Typography>
         <Typography 
           variant="body1" 
           align="center" 
           sx={{ 
-            mb: 6, 
+            mb: 4, 
             color: 'text.primary',
             maxWidth: '800px',
             mx: 'auto',
@@ -360,13 +660,35 @@ const ConditionsPage: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Comprehensive definitions and explanations of vision conditions, visual impairments, and related medical terms. 
-          Learn about the conditions that affect the famous individuals featured in our simulator.
+          Comprehensive definitions and explanations of vision conditions, visual impairments, and frequently asked questions about blindness and visual impairment.
         </Typography>
 
-        {/* Search and Filter Section */}
+        {/* Tabs */}
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4, display: 'flex', justifyContent: 'center' }}>
+          <Tabs 
+            value={activeTab} 
+            onChange={handleTabChange} 
+            aria-label="glossary and faq tabs"
+            sx={{
+              '& .MuiTab-root': {
+                fontWeight: 700,
+                fontSize: '1rem',
+                textTransform: 'none',
+                minWidth: 120,
+              }
+            }}
+          >
+            <Tab label="Glossary" />
+            <Tab label="FAQ" />
+          </Tabs>
+        </Box>
+
+        {/* Glossary Tab Content */}
+        {activeTab === 0 && (
+          <>
+            {/* Search and Filter Section */}
         <Box className="conditions-search-section">
-          <Grid container spacing={2} sx={{ mb: 2 }}>
+          <Grid container spacing={1.5} sx={{ mb: 1 }}>
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
@@ -402,7 +724,7 @@ const ConditionsPage: React.FC = () => {
             </Grid>
           </Grid>
           
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
             <Typography variant="body2" className="conditions-stats">
               {filteredCategories.reduce((total, category) => total + category.conditions.length, 0)} conditions found
             </Typography>
@@ -424,7 +746,7 @@ const ConditionsPage: React.FC = () => {
               expandIcon={<ExpandMoreIcon />}
               className="condition-category-header"
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', mr: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
                 <Box className="condition-category-icon">
                   {category.icon}
                 </Box>
@@ -503,24 +825,107 @@ const ConditionsPage: React.FC = () => {
           </Box>
         )}
 
-        {/* Additional Information */}
-        <Box className="conditions-info-box">
-          <Typography variant="h5" gutterBottom className="conditions-info-title">
-            About This Glossary
-          </Typography>
-          <Typography variant="body1" paragraph className="conditions-info-text">
-            This glossary contains comprehensive information about vision conditions and visual impairments. 
-            Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.
-          </Typography>
-          <Typography variant="body1" paragraph className="conditions-info-text">
-            Conditions marked with "Featured in:" are associated with famous individuals in our simulator. 
-            Click the eye icon next to any condition to experience it in our vision simulator.
-          </Typography>
-          <Typography variant="body1" className="conditions-info-text">
-            This resource is designed to help users understand the various ways vision can be affected, 
-            whether through genetic conditions, injury, disease, or other factors.
-          </Typography>
-        </Box>
+            {/* Additional Information */}
+            <Box className="conditions-info-box">
+              <Typography variant="h5" gutterBottom className="conditions-info-title">
+                About This Glossary
+              </Typography>
+              <Typography variant="body1" paragraph className="conditions-info-text">
+                This glossary contains comprehensive information about vision conditions and visual impairments. 
+                Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.
+              </Typography>
+              <Typography variant="body1" paragraph className="conditions-info-text">
+                Conditions marked with "Featured in:" are associated with famous individuals in our simulator. 
+                Click the eye icon next to any condition to experience it in our vision simulator.
+              </Typography>
+              <Typography variant="body1" className="conditions-info-text">
+                This resource is designed to help users understand the various ways vision can be affected, 
+                whether through genetic conditions, injury, disease, or other factors.
+              </Typography>
+            </Box>
+          </>
+        )}
+
+        {/* FAQ Tab Content */}
+        {activeTab === 1 && (
+          <>
+            {/* FAQ Items */}
+            <Box sx={{ mb: 4 }}>
+              {faqItems.map((faq, index) => (
+                <Accordion 
+                  key={faq.id}
+                  expanded={expandedFAQ === faq.id}
+                  onChange={handleFAQChange(faq.id)}
+                  className="faq-accordion"
+                  sx={{ mb: 1 }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    className="faq-summary"
+                    sx={{
+                      backgroundColor: getCategoryColor(faq.category),
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: getCategoryColor(faq.category),
+                        opacity: 0.9,
+                      },
+                      '& .MuiAccordionSummary-content': {
+                        alignItems: 'center',
+                      }
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
+                      <Box className="faq-icon">
+                        {faq.icon}
+                      </Box>
+                    </Box>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 0 }}>
+                        <Typography variant="h6" component="h3" className="faq-question">
+                          {index + 1}. {faq.question}
+                        </Typography>
+                        <Chip 
+                          label={faq.category}
+                          size="small"
+                          sx={{ 
+                            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                            color: 'white',
+                            fontSize: '0.7rem',
+                            height: '18px'
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                  </AccordionSummary>
+                  <AccordionDetails className="faq-details">
+                    {faq.answer}
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Box>
+
+            {/* Additional Information */}
+            <Paper className="faq-info-box" elevation={2}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <HelpIcon sx={{ mr: 1, color: 'primary.main' }} />
+                <Typography variant="h5" className="faq-info-title">
+                  About These FAQs
+                </Typography>
+              </Box>
+              <Typography variant="body1" paragraph className="faq-info-text">
+                These frequently asked questions are based on common misconceptions and genuine curiosity about blindness and visual impairment. 
+                The answers reflect the diverse experiences of blind and visually impaired individuals.
+              </Typography>
+              <Typography variant="body1" paragraph className="faq-info-text">
+                Remember that every person's experience with vision loss is unique. What works for one person may not work for another, 
+                and it's always best to ask individuals about their specific needs and preferences.
+              </Typography>
+              <Typography variant="body1" className="faq-info-text">
+                For more detailed information about specific vision conditions, visit our <strong>Glossary</strong> tab above.
+              </Typography>
+            </Paper>
+          </>
+        )}
       </Container>
 
       <Footer />

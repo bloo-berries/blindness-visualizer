@@ -79,6 +79,51 @@ interface FAQItem {
   category: string;
 }
 
+// Component to handle thumbnail image with fallback (.webp -> .png)
+const ThumbnailImage: React.FC<{ conditionName: string; imagePath?: string }> = ({ conditionName, imagePath }) => {
+  const [imageSrc, setImageSrc] = React.useState<string | null>(null);
+  const [hasError, setHasError] = React.useState(false);
+
+  React.useEffect(() => {
+    if (imagePath) {
+      setImageSrc(imagePath);
+    } else {
+      // Try .webp first, then .png
+      const basePath = `${process.env.PUBLIC_URL || ''}/images/glossary/${conditionName}`;
+      setImageSrc(`${basePath}.webp`);
+    }
+    setHasError(false);
+  }, [conditionName, imagePath]);
+
+  const handleError = () => {
+    if (imageSrc?.endsWith('.webp')) {
+      // Try .png as fallback
+      const basePath = `${process.env.PUBLIC_URL || ''}/images/glossary/${conditionName}`;
+      setImageSrc(`${basePath}.png`);
+    } else {
+      setHasError(true);
+    }
+  };
+
+  if (hasError || !imageSrc) {
+    return null;
+  }
+
+  return (
+    <img
+      src={imageSrc}
+      alt={`${conditionName} preview`}
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block'
+      }}
+      onError={handleError}
+    />
+  );
+};
+
 const ConditionsPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -101,7 +146,6 @@ const ConditionsPage: React.FC = () => {
           name: 'Homonymous Hemianopia (Left-field)',
           description: 'Loss of the left half of the visual field in both eyes. Caused by damage to the right side of the brain\'s visual pathways. May cause difficulty seeing objects to the left and problems with navigation.',
           relatedPeople: ['John Milton'],
-          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Homonymous Hemianopia (Left-field).png`,
           treatments: {
             available: true,
             options: [
@@ -798,9 +842,11 @@ const ConditionsPage: React.FC = () => {
   };
 
   // Helper function to get image path for a condition
+  // Tries .webp first (most common format), then falls back to .png
   const getConditionImagePath = (conditionName: string): string | null => {
-    const imagePath = `${process.env.PUBLIC_URL || ''}/images/glossary/${conditionName}.png`;
-    return imagePath;
+    const basePath = `${process.env.PUBLIC_URL || ''}/images/glossary/${conditionName}`;
+    // Try .webp first, then .png
+    return `${basePath}.webp`;
   };
 
   const getCategoryColor = (_category: string) => {
@@ -1327,18 +1373,9 @@ const ConditionsPage: React.FC = () => {
                             backgroundColor: '#f8fafc'
                           }}
                         >
-                          <img
-                            src={condition.imagePath || getConditionImagePath(condition.name) || ''}
-                            alt={`${condition.name} preview`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover',
-                              display: 'block'
-                            }}
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none';
-                            }}
+                          <ThumbnailImage 
+                            conditionName={condition.name}
+                            imagePath={condition.imagePath}
                           />
                         </Box>
                       )}

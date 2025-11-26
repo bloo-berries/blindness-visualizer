@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   Container, 
   Typography, 
@@ -7,11 +7,23 @@ import {
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import { YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AboutPage: React.FC = () => {
   const { preferences } = useAccessibility();
+
+  // Load Wistia player script if not already loaded
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src*="wistia.net/player.js"]') || 
+                          document.querySelector('script[src*="wistia.com/player.js"]');
+    
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://fast.wistia.net/player.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }, []);
 
   return (
     <>
@@ -92,7 +104,7 @@ const AboutPage: React.FC = () => {
                 maxWidth: '800px',
                 position: 'relative'
               }}>
-                {/* YouTube Video Player */}
+                {/* Wistia Video Player */}
                 <Box 
                   sx={{ 
                     width: '100%',
@@ -100,25 +112,42 @@ const AboutPage: React.FC = () => {
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                     overflow: 'hidden',
                     position: 'relative',
-                    backgroundColor: '#000',
-                    paddingTop: '56.25%', // 16:9 aspect ratio
-                    height: 0
+                    backgroundColor: '#000'
                   }}
                 >
-                  <iframe
-                    {...YOUTUBE_IFRAME_PROPS}
-                    src="https://www.youtube.com/embed/6BPuGeS6O4w?si=0pCMD96TZDgBDRCM&autoplay=0&controls=1&enablejsapi=1"
-                    title="Preview How I See - YouTube video"
-                    aria-label="YouTube video: Preview How I See"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 'none'
+                  <Box
+                    className="wistia_responsive_padding"
+                    sx={{
+                      padding: '37.92% 0 0 0',
+                      position: 'relative'
                     }}
-                  />
+                  >
+                    <Box
+                      className="wistia_responsive_wrapper"
+                      sx={{
+                        height: '100%',
+                        left: 0,
+                        position: 'absolute',
+                        top: 0,
+                        width: '100%'
+                      }}
+                    >
+                      <iframe
+                        src="https://fast.wistia.net/embed/iframe/qjdv24o4kb?web_component=true&seo=true"
+                        title="my-vision Video"
+                        allow="autoplay; fullscreen"
+                        allowTransparency={true}
+                        frameBorder="0"
+                        scrolling="no"
+                        className="wistia_embed"
+                        name="wistia_embed"
+                        style={{
+                          width: '100%',
+                          height: '100%'
+                        }}
+                      />
+                    </Box>
+                  </Box>
                 </Box>
                 
                 <Typography 

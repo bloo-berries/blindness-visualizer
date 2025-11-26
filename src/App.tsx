@@ -5,7 +5,7 @@ import {
   CssBaseline,
   responsiveFontSizes
 } from '@mui/material';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
 import FamousBlindPeople from './components/FamousBlindPeople';
@@ -166,12 +166,35 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 const App: React.FC = () => {
+  // Use basename for GitHub Pages deployment, empty for local development
+  // In development, always use empty basename regardless of PUBLIC_URL
+  // In production, extract path from PUBLIC_URL or use default
+  const getBasename = (): string => {
+    if (process.env.NODE_ENV === 'development') {
+      return '';
+    }
+    // In production, extract path from PUBLIC_URL if it's a full URL
+    const publicUrl = process.env.PUBLIC_URL || '';
+    if (publicUrl.startsWith('http')) {
+      // Extract path from full URL (e.g., "https://bloo-berries.github.io/blindness-visualizer" -> "/blindness-visualizer")
+      try {
+        const url = new URL(publicUrl);
+        return url.pathname || '/blindness-visualizer';
+      } catch {
+        return '/blindness-visualizer';
+      }
+    }
+    // If PUBLIC_URL is already a path, use it
+    return publicUrl || '/blindness-visualizer';
+  };
+
   return (
     <ErrorBoundary>
       <AccessibilityProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Router
+            basename={getBasename()}
             future={{
               v7_startTransition: true,
               v7_relativeSplatPath: true

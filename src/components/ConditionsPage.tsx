@@ -144,6 +144,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'hemianopiaLeft',
           name: 'Homonymous Hemianopia (Left-field)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Homonymous Hemianopia (Left-field).webp`,
           description: 'Loss of the left half of the visual field in both eyes. Caused by damage to the right side of the brain\'s visual pathways. May cause difficulty seeing objects to the left and problems with navigation.',
           relatedPeople: ['John Milton'],
           treatments: {
@@ -161,6 +162,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'hemianopiaRight',
           name: 'Homonymous Hemianopia (Right-field)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Homonymous Hemianopia (Right-field).webp`,
           description: 'Loss of the right half of the visual field in both eyes. Caused by damage to the left side of the brain\'s visual pathways. May cause difficulty seeing objects to the right and problems with navigation.',
           treatments: {
             available: true,
@@ -175,9 +177,10 @@ const ConditionsPage: React.FC = () => {
           }
         },
         {
-          id: 'quadrantanopia',
-          name: 'Quadrantanopia',
-          description: 'Loss of vision in one quarter (quadrant) of the visual field. Often caused by damage to specific parts of the brain that process vision. Affects spatial awareness and navigation.',
+          id: 'quadrantanopiaInferior',
+          name: 'Homonymous Inferior Quadrantanopia',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Homonymous Inferior Quadrantanopia.webp`,
+          description: 'Loss of vision in the same lower quadrant of visual field in both eyes. Caused by damage to the superior optic radiations (parietal pathway). Often referred to as "pie on the floor" defect.',
           treatments: {
             available: true,
             options: [
@@ -190,8 +193,67 @@ const ConditionsPage: React.FC = () => {
           }
         },
         {
+          id: 'quadrantanopiaSuperior',
+          name: 'Homonymous Superior Quadrantanopia',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Homonymous Superior Quadrantanopia.webp`,
+          description: 'Loss of vision in the same upper quadrant of visual field in both eyes. Caused by damage to the inferior optic radiations (temporal pathway or Meyer\'s loop). Often referred to as "pie in the sky" defect.',
+          treatments: {
+            available: true,
+            options: [
+              'Vision rehabilitation therapy',
+              'Prism glasses or visual field awareness devices',
+              'Compensatory scanning techniques',
+              'Treatment of underlying neurological cause when possible'
+            ],
+            notes: 'Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.'
+          }
+        },
+        {
+          id: 'blindnessLeftEye',
+          name: 'Complete Loss of Vision in Left Eye',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Complete Loss of Vision in Left Eye.webp`,
+          description: 'Complete blindness in the left eye. Caused by damage to the left optic nerve. Results in total loss of vision in the left eye while the right eye remains unaffected.',
+          treatments: {
+            available: true,
+            options: [
+              'Treatment depends on underlying cause:',
+              '• Optic neuritis: Corticosteroids, treatment of underlying autoimmune condition',
+              '• Glaucoma: Eye drops, laser therapy, surgery to lower intraocular pressure',
+              '• Trauma: Immediate medical attention, surgical repair when possible',
+              '• Tumor: Surgical removal, radiation therapy, chemotherapy',
+              '• Stroke: Treatment of underlying cardiovascular condition',
+              'Vision rehabilitation for monocular vision',
+              'Protective eyewear for remaining eye',
+              'Adaptive strategies for depth perception and spatial awareness'
+            ],
+            notes: 'Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.'
+          }
+        },
+        {
+          id: 'blindnessRightEye',
+          name: 'Complete Loss of Vision in Right Eye',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Complete Loss of Vision in Right Eye.webp`,
+          description: 'Complete blindness in the right eye. Caused by damage to the right optic nerve. Results in total loss of vision in the right eye while the left eye remains unaffected.',
+          treatments: {
+            available: true,
+            options: [
+              'Treatment depends on underlying cause:',
+              '• Optic neuritis: Corticosteroids, treatment of underlying autoimmune condition',
+              '• Glaucoma: Eye drops, laser therapy, surgery to lower intraocular pressure',
+              '• Trauma: Immediate medical attention, surgical repair when possible',
+              '• Tumor: Surgical removal, radiation therapy, chemotherapy',
+              '• Stroke: Treatment of underlying cardiovascular condition',
+              'Vision rehabilitation for monocular vision',
+              'Protective eyewear for remaining eye',
+              'Adaptive strategies for depth perception and spatial awareness'
+            ],
+            notes: 'Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.'
+          }
+        },
+        {
           id: 'bitemporalHemianopia',
           name: 'Bitemporal Hemianopia',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Bitemporal Hemianopia.webp`,
           description: 'Loss of vision in the outer (temporal) half of each eye\'s visual field. Caused by damage to the optic chiasm, often from pituitary tumors. Creates a "tunnel vision" effect.',
           treatments: {
             available: true,
@@ -208,6 +270,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'scotoma',
           name: 'Central Scotoma',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Central Scotoma.webp`,
           description: 'A blind spot in the center of vision. Can be caused by macular degeneration, optic neuritis, or other conditions affecting the macula. Makes reading and recognizing faces difficult.',
           relatedPeople: ['Marla Runyan', 'Dr. Mona Minkara'],
           treatments: {
@@ -228,6 +291,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'tunnelVision',
           name: 'Tunnel Vision',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Tunnel Vision.webp`,
           description: 'Loss of peripheral vision while central vision remains. Can be caused by glaucoma, retinitis pigmentosa, or other conditions affecting the retina or optic nerve.',
           relatedPeople: ['Erik Weihenmayer'],
           treatments: {
@@ -255,6 +319,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'protanopia',
           name: 'Protanopia (Red-Blind)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Protanopia (Red-Blind).webp`,
           description: 'Complete inability to distinguish between red and green colors. Red appears as black, and green appears as yellow. Affects about 1% of males and 0.01% of females.',
           treatments: {
             available: false,
@@ -270,6 +335,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'deuteranopia',
           name: 'Deuteranopia (Green-Blind)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Deuteranopia (Green-Blind).webp`,
           description: 'Complete inability to distinguish between red and green colors. Green appears as light gray or beige, and red appears as brown. Most common form of color blindness.',
           treatments: {
             available: false,
@@ -285,6 +351,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'tritanopia',
           name: 'Tritanopia (Blue-Blind)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Tritanopia (Blue-Blind).webp`,
           description: 'Inability to distinguish between blue and yellow colors. Blue appears as green, and yellow appears as light gray or violet. Very rare form of color blindness.',
           treatments: {
             available: false,
@@ -300,6 +367,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'protanomaly',
           name: 'Protanomaly (Red-Weak)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Protanomaly (Red-Weak).webp`,
           description: 'Reduced sensitivity to red light. Red appears darker and less bright than normal. Difficulty distinguishing between red and green, especially in low light.',
           treatments: {
             available: false,
@@ -314,6 +382,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'deuteranomaly',
           name: 'Deuteranomaly (Green-Weak)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Deuteranomaly (Green-Weak).webp`,
           description: 'Reduced sensitivity to green light. Green appears more red than normal. Most common form of color vision deficiency, affecting about 6% of males.',
           treatments: {
             available: false,
@@ -328,6 +397,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'tritanomaly',
           name: 'Tritanomaly (Blue-Weak)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Tritanomaly (Blue-Weak).webp`,
           description: 'Reduced sensitivity to blue light. Blue appears greener than normal, and yellow appears lighter. Very rare form of color vision deficiency.',
           treatments: {
             available: false,
@@ -342,6 +412,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'monochromacy',
           name: 'Monochromacy (Complete Color Blindness)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Monochromacy (Complete Color Blindness).webp`,
           description: 'Complete inability to see any colors. Vision is limited to shades of gray. Extremely rare, affecting only about 1 in 33,000 people.',
           treatments: {
             available: false,
@@ -381,8 +452,9 @@ const ConditionsPage: React.FC = () => {
         },
         {
           id: 'cataracts',
-          name: 'Cataracts',
-          description: 'Clouding of the eye\'s natural lens. Causes blurry vision, difficulty seeing in bright light, and faded colors. Common with aging but can occur at any age.',
+          name: 'Nuclear Sclerotic Cataract',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Nuclear Sclerotic Cataract.webp`,
+          description: 'Nuclear sclerotic cataract - the most common type of cataract affecting the center of the lens. Causes progressive blurring, dimming of vision, and loss of color vibrancy, especially affecting blue color perception. The image becomes progressively more yellowed and less colorful over time.',
           treatments: {
             available: true,
             options: [
@@ -396,8 +468,27 @@ const ConditionsPage: React.FC = () => {
           }
         },
         {
+          id: 'posteriorSubcapsularCataract',
+          name: 'Posterior Subcapsular Cataract',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Posterior Subcapsular Cataract.webp`,
+          description: 'Small central area of light scatter behind the pupil, causing pronounced glare sensitivity and loss of contrast in bright lighting. Creates a bright halo or cloudy patch that grows with brightness intensity, disproportionately affecting near and backlit vision. Peripheral vision may remain clearer.',
+          treatments: {
+            available: true,
+            options: [
+              'Cataract surgery: removal of clouded lens and replacement with artificial intraocular lens (IOL)',
+              'Phacoemulsification: most common technique using ultrasound to break up cataract',
+              'Femtosecond laser-assisted cataract surgery',
+              'Various IOL options: monofocal, multifocal, toric (for astigmatism), accommodating lenses',
+              'Early stages: stronger glasses, brighter lighting, anti-glare sunglasses',
+              'Pupil-dilating eye drops may provide temporary relief'
+            ],
+            notes: 'Posterior subcapsular cataracts often progress more quickly than other types and can significantly impact vision, especially in bright light. Surgery is typically recommended when vision is significantly affected.'
+          }
+        },
+        {
           id: 'amd',
           name: 'Age-Related Macular Degeneration (AMD)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Age-Related Macular Degeneration (AMD).webp`,
           description: 'Deterioration of the macula, the central part of the retina. Causes loss of central vision while peripheral vision remains. Leading cause of vision loss in older adults.',
           relatedPeople: ['Dr. Mona Minkara'],
           treatments: {
@@ -449,6 +540,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'nearSighted',
           name: 'Myopia (Near-Sightedness)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Myopia (Near-Sightedness).webp`,
           description: 'Difficulty seeing distant objects clearly while near objects appear normal. Caused by the eye being too long or the cornea being too curved.',
           treatments: {
             available: true,
@@ -488,6 +580,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'retinitisPigmentosa',
           name: 'Retinitis Pigmentosa',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Retinitis Pigmentosa.webp`,
           description: 'Progressive genetic disorder causing gradual degeneration of photoreceptor cells in the retina. Creates distinctive tunnel vision with progressive peripheral vision loss, night blindness requiring 10-100x more light, severe light sensitivity and glare issues, color desaturation, and eventual complete blindness at advanced stages. The visual field constricts from normal 180° to 40°, 20°, or less, making navigation extremely challenging.',
           relatedPeople: ['Erik Weihenmayer'],
           treatments: {
@@ -508,6 +601,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'stargardt',
           name: 'Stargardt Disease',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Stargardt Disease.webp`,
           description: 'Genetic eye disorder causing progressive vision loss in the macula. Usually begins in childhood or adolescence, affecting central vision while peripheral vision remains.',
           relatedPeople: ['Marla Runyan'],
           treatments: {
@@ -528,6 +622,7 @@ const ConditionsPage: React.FC = () => {
         {
           id: 'retinalDetachment',
           name: 'Retinal Detachment',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Retinal Detachment.webp`,
           description: 'Separation of the retina from the underlying tissue. Can cause sudden flashes of light, floaters, and a curtain-like shadow over the visual field. Requires immediate medical attention.',
           relatedPeople: ['John Milton'],
           treatments: {
@@ -635,6 +730,67 @@ const ConditionsPage: React.FC = () => {
               '• Brain tumor/stroke: treat underlying condition'
             ],
             notes: 'Monocular diplopia is usually due to eye problems (cataracts, corneal issues). Binocular diplopia requires treatment of eye alignment or underlying neurological conditions.'
+          }
+        },
+        {
+          id: 'glare',
+          name: 'Glare Sensitivity',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Glare Sensitivity.webp`,
+          description: 'Bloom or light-scatter effect proportional to scene luminance and eye adaptation state. Causes local veiling glare that washes out nearby details, especially after exposure to sudden brightness changes. Contrast recovery can be delayed to simulate photostress.',
+          treatments: {
+            available: true,
+            options: [
+              'Anti-glare sunglasses with polarized or tinted lenses',
+              'FL-41 tinted lenses (rose-colored) for light sensitivity',
+              'Treatment of underlying conditions: cataracts, dry eye, corneal issues',
+              'Cataract surgery if cataracts are causing glare',
+              'Lubricating eye drops for dry eye-related glare',
+              'Avoiding bright light sources when possible',
+              'Using hats or visors to block overhead light'
+            ],
+            notes: 'Glare sensitivity can be a symptom of various eye conditions. Treatment depends on the underlying cause. Anti-glare lenses and protective eyewear can significantly improve comfort.'
+          }
+        },
+        {
+          id: 'nightBlindness',
+          name: 'Night Blindness (Nyctalopia)',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Night Blindness (Nyctalopia).webp`,
+          description: 'Difficulty seeing in low light conditions or darkness. Vision becomes significantly impaired in dim lighting, making navigation and object recognition challenging. Often associated with rod cell dysfunction or vitamin A deficiency.',
+          treatments: {
+            available: true,
+            options: [
+              'Treatment depends on underlying cause:',
+              '• Vitamin A deficiency: vitamin A supplementation',
+              '• Retinitis pigmentosa: vitamin A palmitate, gene therapy (for specific mutations)',
+              '• Cataracts: cataract surgery',
+              '• Glaucoma: treatment to lower intraocular pressure',
+              '• Refractive errors: prescription glasses or contact lenses',
+              '• Zinc deficiency: zinc supplementation (often needed with vitamin A)',
+              'Low vision aids: night vision devices, enhanced lighting',
+              'Adaptive strategies: avoiding driving at night, using extra lighting'
+            ],
+            notes: 'Night blindness can be a symptom of various conditions. Some causes are treatable (vitamin deficiencies, cataracts), while others (retinitis pigmentosa) may be progressive. Early diagnosis is important.'
+          }
+        },
+        {
+          id: 'starbursting',
+          name: 'Starbursting',
+          imagePath: `${process.env.PUBLIC_URL || ''}/images/glossary/Starbursting.webp`,
+          description: 'Light sources appearing as star-like rays or spikes extending outward from the center. Creates a "sunburst" or "starburst" pattern around bright lights, especially noticeable at night. Often caused by corneal irregularities or certain eye surgeries.',
+          treatments: {
+            available: true,
+            options: [
+              'Treatment depends on underlying cause:',
+              '• Post-surgical (LASIK, PRK): usually improves over time, may require enhancement surgery',
+              '• Corneal irregularities: rigid gas permeable contact lenses, corneal cross-linking',
+              '• Cataracts: cataract surgery',
+              '• Dry eye: lubricating eye drops, punctal plugs',
+              '• Astigmatism: prescription glasses or contact lenses',
+              'Anti-glare coatings on glasses',
+              'Avoiding bright lights when possible',
+              'Using polarized sunglasses at night (if legally allowed)'
+            ],
+            notes: 'Starbursting after refractive surgery often improves over 6-12 months. If persistent, it may require additional treatment. Corneal irregularities may need specialized contact lenses or surgical correction.'
           }
         }
       ]

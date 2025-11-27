@@ -10,47 +10,65 @@ export const generateVisualFieldLossPreviewStyle = (
   now: number
 ): Partial<React.CSSProperties> | null => {
   switch (effectType) {
-    case 'blindnessLeftEye':
+    case 'blindnessLeftEye': {
+      const leftEyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
           linear-gradient(to right, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 50%, 
-            rgba(0,0,0,0) 50%
+            rgba(0,0,0,${leftEyeIntensity}) 0%, 
+            rgba(0,0,0,${leftEyeIntensity}) 47.5%, 
+            rgba(0,0,0,${leftEyeIntensity * 0.7}) 48.75%,
+            rgba(0,0,0,${leftEyeIntensity * 0.4}) 50%,
+            rgba(0,0,0,${leftEyeIntensity * 0.1}) 51.25%,
+            rgba(0,0,0,0) 52.5%
           )
         `,
         mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
+    }
       
-    case 'blindnessRightEye':
+    case 'blindnessRightEye': {
+      const rightEyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
           linear-gradient(to left, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 50%, 
-            rgba(0,0,0,0) 50%
+            rgba(0,0,0,${rightEyeIntensity}) 0%, 
+            rgba(0,0,0,${rightEyeIntensity}) 47.5%, 
+            rgba(0,0,0,${rightEyeIntensity * 0.7}) 48.75%,
+            rgba(0,0,0,${rightEyeIntensity * 0.4}) 50%,
+            rgba(0,0,0,${rightEyeIntensity * 0.1}) 51.25%,
+            rgba(0,0,0,0) 52.5%
           )
         `,
         mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
+    }
       
-    case 'bitemporalHemianopia':
+    case 'bitemporalHemianopia': {
+      const bitemporalIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
           linear-gradient(to right, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0%, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 25%, 
-            rgba(0,0,0,0) 25%,
-            rgba(0,0,0,0) 75%,
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 75%, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 100%
+            rgba(0,0,0,${bitemporalIntensity}) 0%, 
+            rgba(0,0,0,${bitemporalIntensity}) 22.5%, 
+            rgba(0,0,0,${bitemporalIntensity * 0.7}) 23.75%,
+            rgba(0,0,0,${bitemporalIntensity * 0.4}) 25%,
+            rgba(0,0,0,${bitemporalIntensity * 0.1}) 26.25%,
+            rgba(0,0,0,0) 27.5%,
+            rgba(0,0,0,0) 72.5%,
+            rgba(0,0,0,${bitemporalIntensity * 0.1}) 73.75%,
+            rgba(0,0,0,${bitemporalIntensity * 0.4}) 75%,
+            rgba(0,0,0,${bitemporalIntensity * 0.7}) 76.25%,
+            rgba(0,0,0,${bitemporalIntensity}) 77.5%, 
+            rgba(0,0,0,${bitemporalIntensity}) 100%
           )
         `,
         mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
+    }
       
     case 'quadrantanopiaRight':
       return {
@@ -66,35 +84,41 @@ export const generateVisualFieldLossPreviewStyle = (
         opacity: '1'
       };
       
-    case 'quadrantanopiaInferior':
+    case 'quadrantanopiaInferior': {
+      const inferiorIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
-          conic-gradient(from 0deg at 50% 50%, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 0deg, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 90deg, 
-            rgba(0,0,0,0) 90deg, 
-            rgba(0,0,0,0) 360deg
+          radial-gradient(ellipse 100% 100% at 100% 100%, 
+            rgba(0,0,0,${inferiorIntensity}) 0%,
+            rgba(0,0,0,${inferiorIntensity}) 65%,
+            rgba(0,0,0,${inferiorIntensity * 0.8}) 70%,
+            rgba(0,0,0,${inferiorIntensity * 0.5}) 75%,
+            rgba(0,0,0,${inferiorIntensity * 0.2}) 80%,
+            rgba(0,0,0,0) 85%
           )
         `,
         mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
+    }
       
-    case 'quadrantanopiaSuperior':
+    case 'quadrantanopiaSuperior': {
+      const superiorIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
-          conic-gradient(from 0deg at 50% 50%, 
-            rgba(0,0,0,0) 0deg, 
-            rgba(0,0,0,0) 90deg, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 90deg, 
-            rgba(0,0,0,${intensity === 1 ? 1 : 0.95 * intensity}) 180deg, 
-            rgba(0,0,0,0) 180deg, 
-            rgba(0,0,0,0) 360deg
+          radial-gradient(ellipse 100% 100% at 100% 0%, 
+            rgba(0,0,0,${superiorIntensity}) 0%,
+            rgba(0,0,0,${superiorIntensity}) 65%,
+            rgba(0,0,0,${superiorIntensity * 0.8}) 70%,
+            rgba(0,0,0,${superiorIntensity * 0.5}) 75%,
+            rgba(0,0,0,${superiorIntensity * 0.2}) 80%,
+            rgba(0,0,0,0) 85%
           )
         `,
         mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
+    }
       
     case 'scotoma': {
       const offsetX = 50 + Math.sin(now/2000) * 10;

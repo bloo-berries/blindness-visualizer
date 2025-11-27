@@ -81,13 +81,16 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Inferior
   if (quadrantanopiaInferior?.enabled) {
+    const inferiorIntensity = quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaInferior',
-      `conic-gradient(from 0deg at 50% 50%, 
-        rgba(0,0,0,${quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity}) 0deg, 
-        rgba(0,0,0,${quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity}) 90deg, 
-        rgba(0,0,0,0) 90deg, 
-        rgba(0,0,0,0) 360deg
+      `radial-gradient(ellipse 100% 100% at 100% 100%, 
+        rgba(0,0,0,${inferiorIntensity}) 0%,
+        rgba(0,0,0,${inferiorIntensity}) 65%,
+        rgba(0,0,0,${inferiorIntensity * 0.8}) 70%,
+        rgba(0,0,0,${inferiorIntensity * 0.5}) 75%,
+        rgba(0,0,0,${inferiorIntensity * 0.2}) 80%,
+        rgba(0,0,0,0) 85%
       )`,
       quadrantanopiaInferior.intensity === 1 ? 'normal' : 'multiply',
       quadrantanopiaInferior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferior.intensity).toString(),
@@ -99,15 +102,16 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Superior
   if (quadrantanopiaSuperior?.enabled) {
+    const superiorIntensity = quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaSuperior',
-      `conic-gradient(from 0deg at 50% 50%, 
-        rgba(0,0,0,0) 0deg, 
-        rgba(0,0,0,0) 90deg, 
-        rgba(0,0,0,${quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity}) 90deg, 
-        rgba(0,0,0,${quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity}) 180deg, 
-        rgba(0,0,0,0) 180deg, 
-        rgba(0,0,0,0) 360deg
+      `radial-gradient(ellipse 100% 100% at 100% 0%, 
+        rgba(0,0,0,${superiorIntensity}) 0%,
+        rgba(0,0,0,${superiorIntensity}) 65%,
+        rgba(0,0,0,${superiorIntensity * 0.8}) 70%,
+        rgba(0,0,0,${superiorIntensity * 0.5}) 75%,
+        rgba(0,0,0,${superiorIntensity * 0.2}) 80%,
+        rgba(0,0,0,0) 85%
       )`,
       quadrantanopiaSuperior.intensity === 1 ? 'normal' : 'multiply',
       quadrantanopiaSuperior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperior.intensity).toString(),
@@ -153,12 +157,16 @@ export const createVisualFieldLossOverlays = (
 
   // Blindness Left Eye
   if (blindnessLeftEye?.enabled) {
+    const leftEyeIntensity = blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity;
     createOverlay(
       'visual-field-overlay-blindnessLeftEye',
       `linear-gradient(to right, 
-        rgba(0,0,0,${blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity}) 0%, 
-        rgba(0,0,0,${blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity}) 50%, 
-        rgba(0,0,0,0) 50%
+        rgba(0,0,0,${leftEyeIntensity}) 0%, 
+        rgba(0,0,0,${leftEyeIntensity}) 47.5%, 
+        rgba(0,0,0,${leftEyeIntensity * 0.7}) 48.75%,
+        rgba(0,0,0,${leftEyeIntensity * 0.4}) 50%,
+        rgba(0,0,0,${leftEyeIntensity * 0.1}) 51.25%,
+        rgba(0,0,0,0) 52.5%
       )`,
       blindnessLeftEye.intensity === 1 ? 'normal' : 'multiply',
       blindnessLeftEye.intensity === 1 ? '1' : Math.min(0.95, blindnessLeftEye.intensity).toString(),
@@ -170,12 +178,16 @@ export const createVisualFieldLossOverlays = (
 
   // Blindness Right Eye
   if (blindnessRightEye?.enabled) {
+    const rightEyeIntensity = blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity;
     createOverlay(
       'visual-field-overlay-blindnessRightEye',
       `linear-gradient(to left, 
-        rgba(0,0,0,${blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity}) 0%, 
-        rgba(0,0,0,${blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity}) 50%, 
-        rgba(0,0,0,0) 50%
+        rgba(0,0,0,${rightEyeIntensity}) 0%, 
+        rgba(0,0,0,${rightEyeIntensity}) 47.5%, 
+        rgba(0,0,0,${rightEyeIntensity * 0.7}) 48.75%,
+        rgba(0,0,0,${rightEyeIntensity * 0.4}) 50%,
+        rgba(0,0,0,${rightEyeIntensity * 0.1}) 51.25%,
+        rgba(0,0,0,0) 52.5%
       )`,
       blindnessRightEye.intensity === 1 ? 'normal' : 'multiply',
       blindnessRightEye.intensity === 1 ? '1' : Math.min(0.95, blindnessRightEye.intensity).toString(),
@@ -187,15 +199,22 @@ export const createVisualFieldLossOverlays = (
 
   // Bitemporal Hemianopia
   if (bitemporalHemianopia?.enabled) {
+    const bitemporalIntensity = bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity;
     createOverlay(
       'visual-field-overlay-bitemporalHemianopia',
       `linear-gradient(to right, 
-        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 0%, 
-        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 25%, 
-        rgba(0,0,0,0) 25%,
-        rgba(0,0,0,0) 75%,
-        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 75%, 
-        rgba(0,0,0,${bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity}) 100%
+        rgba(0,0,0,${bitemporalIntensity}) 0%, 
+        rgba(0,0,0,${bitemporalIntensity}) 22.5%, 
+        rgba(0,0,0,${bitemporalIntensity * 0.7}) 23.75%,
+        rgba(0,0,0,${bitemporalIntensity * 0.4}) 25%,
+        rgba(0,0,0,${bitemporalIntensity * 0.1}) 26.25%,
+        rgba(0,0,0,0) 27.5%,
+        rgba(0,0,0,0) 72.5%,
+        rgba(0,0,0,${bitemporalIntensity * 0.1}) 73.75%,
+        rgba(0,0,0,${bitemporalIntensity * 0.4}) 75%,
+        rgba(0,0,0,${bitemporalIntensity * 0.7}) 76.25%,
+        rgba(0,0,0,${bitemporalIntensity}) 77.5%, 
+        rgba(0,0,0,${bitemporalIntensity}) 100%
       )`,
       bitemporalHemianopia.intensity === 1 ? 'normal' : 'multiply',
       bitemporalHemianopia.intensity === 1 ? '1' : Math.min(0.95, bitemporalHemianopia.intensity).toString(),

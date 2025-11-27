@@ -488,102 +488,109 @@ export const createColorBlindnessShaderMaterial = (): THREE.ShaderMaterial => {
         return result;
       }
 
-      // Glaucoma effects - complex peripheral vision loss with scotomas
+      // Simple noise function for scotomas and grain
+      float simpleNoise(vec2 p) {
+        return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+      }
+      
+      // Gaussian blur helper
+      vec3 gaussianBlur(sampler2D tex, vec2 uv, float sigma) {
+        vec2 pixelSize = vec2(1.0) / vec2(textureSize(tex, 0));
+        vec3 result = vec3(0.0);
+        float total = 0.0;
+        int samples = int(sigma * 3.0);
+        
+        for(int x = -samples; x <= samples; x++) {
+          for(int y = -samples; y <= samples; y++) {
+            vec2 offset = vec2(float(x), float(y)) * pixelSize;
+            float weight = exp(-(float(x*x + y*y)) / (2.0 * sigma * sigma));
+            result += texture2D(tex, uv + offset).rgb * weight;
+            total += weight;
+          }
+        }
+        return result / total;
+      }
+
+      // Glaucoma effects - Based on NIH research: NOT tunnel vision, but contrast loss, blur, fading periphery
       vec3 applyGlaucoma(vec3 color, vec2 uv, float intensity, float time) {
         if (intensity <= 0.0) return color;
         
         vec2 center = vec2(0.5, 0.5);
-        vec2 offset = uv - center;
-        float dist = length(offset);
-        float angle = atan(offset.y, offset.x);
+        float dist = distance(uv, center);
+        vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
         
-        // Create multiple scotomas (blind spots) at different locations
+        // ===== 1. BASE BLUR (clarity loss) - PRIMARY EFFECT =====
+        float blurAmount = mix(0.0, 8.0, intensity);
         vec3 result = color;
-        
-        // Early stage: Small paracentral scotomas (10-20 degrees from center)
-        if (intensity > 0.1) {
-          // Superior paracentral scotoma
-          vec2 scotoma1 = center + vec2(0.15, 0.1);
-          float scotoma1Dist = distance(uv, scotoma1);
-          float scotoma1Size = 0.05 + intensity * 0.03;
-          float scotoma1Effect = smoothstep(scotoma1Size, scotoma1Size + 0.02, scotoma1Dist);
-          
-          // Inferior paracentral scotoma
-          vec2 scotoma2 = center + vec2(-0.12, -0.08);
-          float scotoma2Dist = distance(uv, scotoma2);
-          float scotoma2Size = 0.04 + intensity * 0.025;
-          float scotoma2Effect = smoothstep(scotoma2Size, scotoma2Size + 0.02, scotoma2Dist);
-          
-          // Combine scotomas
-          float scotomaMask = min(scotoma1Effect, scotoma2Effect);
-          result = mix(vec3(0.0), result, scotomaMask);
+        if(blurAmount > 0.1) {
+          result = gaussianBlur(tDiffuse, uv, blurAmount);
         }
         
-        // Moderate stage: Arc-shaped defects (arcuate scotomas)
-        if (intensity > 0.3) {
-          // Superior arcuate scotoma
-          float superiorArc = 0.0;
-          if (offset.y > 0.0) { // Superior field
-            float arcDist = abs(offset.y - 0.1);
-            float arcWidth = 0.08 + intensity * 0.05;
-            superiorArc = smoothstep(arcWidth, arcWidth + 0.03, arcDist);
+        // ===== 2. CONTRAST REDUCTION - PRIMARY EFFECT =====
+        float contrastFactor = mix(1.0, 0.5, intensity);
+        result = mix(vec3(0.5), result, contrastFactor);
+        
+        // ===== 3. SATURATION REDUCTION (color discrimination) =====
+        float saturation = mix(1.0, 0.6, intensity);
+        vec3 gray = vec3(dot(result, vec3(0.299, 0.587, 0.114)));
+        result = mix(gray, result, saturation);
+        
+        // ===== 4. PERIPHERAL FIELD LOSS WITH FADE (NOT sharp cutoff) =====
+        // Field radius shrinks with severity
+        // Map severity to visual angle (normalized)
+        float fieldRadius = mix(0.9, 0.2, intensity);
+        float fadeWidth = fieldRadius * 0.2; // 20% fade zone
+        float fadeStart = fieldRadius - fadeWidth;
+        
+        // Smooth fade - NOT sharp cutoff, but darker and more opaque at edges
+        float visibility = 1.0 - smoothstep(fadeStart, fieldRadius, dist);
+        
+        // Fade to darker gray at edges - make it progressively darker towards periphery
+        float edgeDarkness = smoothstep(fadeStart, fieldRadius, dist);
+        vec3 fadeColor = mix(vec3(0.3), vec3(0.15), edgeDarkness); // Darker at edges (0.15 vs 0.3)
+        result = mix(fadeColor, result, visibility);
+        
+        // ===== 5. ADDITIONAL PERIPHERAL BLUR =====
+        // Vision is blurrier at edges even within visible field
+        float peripheralBlurAmount = smoothstep(0.0, fieldRadius, dist) * 4.0 * intensity;
+        if(peripheralBlurAmount > 0.5) {
+          vec3 blurred = gaussianBlur(tDiffuse, uv, peripheralBlurAmount);
+          result = mix(result, blurred, 0.5);
+        }
+        
+        // ===== 6. SCOTOMAS (patchy blind spots) - NOT black holes =====
+        if(intensity > 0.3) {
+          // Create irregular scotoma pattern using noise
+          vec2 scotomaSeed = vec2(1.234, 5.678);
+          float scotomaNoise = simpleNoise(uv * 4.0 + scotomaSeed);
+          float scotomaThreshold = mix(1.0, 0.5, (intensity - 0.3) / 0.7);
+          
+          if(scotomaNoise > scotomaThreshold) {
+            // Blend scotoma areas rather than making them black
+            // Apply heavy blur + desaturation to scotoma regions
+            vec3 scotomaColor = mix(result, vec3(0.2), 0.8); // Darker scotomas
+            float scotomaBlend = smoothstep(scotomaThreshold, scotomaThreshold + 0.1, scotomaNoise);
+            result = mix(result, scotomaColor, scotomaBlend);
+            
+            // Add extra blur to scotoma areas
+            vec3 scotomaBlurred = gaussianBlur(tDiffuse, uv, 15.0);
+            result = mix(result, scotomaBlurred, scotomaBlend * 0.5);
           }
-          
-          // Inferior arcuate scotoma
-          float inferiorArc = 0.0;
-          if (offset.y < 0.0) { // Inferior field
-            float arcDist = abs(offset.y + 0.08);
-            float arcWidth = 0.06 + intensity * 0.04;
-            inferiorArc = smoothstep(arcWidth, arcWidth + 0.03, arcDist);
-          }
-          
-          float arcuateMask = min(superiorArc, inferiorArc);
-          result = mix(vec3(0.0), result, arcuateMask);
         }
         
-        // Advanced stage: Peripheral constriction (tunnel vision)
-        if (intensity > 0.5) {
-          // Create tunnel vision with irregular edges
-          float tunnelRadius = 0.4 - intensity * 0.3; // From 40% to 10% of screen
-          
-          // Add irregularity to tunnel edges
-          float irregularity = sin(angle * 8.0 + time * 0.5) * 0.02;
-          tunnelRadius += irregularity;
-          
-          float tunnelMask = smoothstep(tunnelRadius, tunnelRadius + 0.05, dist);
-          result = mix(vec3(0.0), result, tunnelMask);
-        }
+        // ===== 7. GLARE / BLOOM =====
+        float glareSensitivity = mix(0.0, 0.3, intensity);
+        vec3 highlights = max(result - vec3(0.7), vec3(0.0));
+        result += highlights * glareSensitivity * 2.0;
+        result = clamp(result, 0.0, 1.2);
         
-        // End stage: Severe constriction
-        if (intensity > 0.8) {
-          float severeRadius = 0.15 - (intensity - 0.8) * 0.1; // Down to 5% of screen
-          float severeMask = smoothstep(severeRadius, severeRadius + 0.03, dist);
-          result = mix(vec3(0.0), result, severeMask);
-        }
+        // ===== 8. DIRTY GLASS EFFECT =====
+        float grainAmount = mix(0.0, 0.03, intensity);
+        float grain = (simpleNoise(uv * 500.0 + time * 0.1) - 0.5) * grainAmount;
+        result += vec3(grain);
         
-        // Color vision deficits - blue-yellow color blindness
-        if (intensity > 0.2) {
-          // Reduce blue-yellow sensitivity
-          float blueYellowDeficit = intensity * 0.4;
-          float luminance = dot(result, vec3(0.299, 0.587, 0.114));
-          
-          // Desaturate blues and yellows more than reds and greens
-          vec3 blueYellowDesaturated = mix(result, vec3(luminance), blueYellowDeficit);
-          result = mix(result, blueYellowDesaturated, 0.6);
-        }
-        
-        // Contrast sensitivity reduction
-        if (intensity > 0.1) {
-          float contrastReduction = intensity * 0.3;
-          float avgLuminance = 0.5;
-          result = mix(vec3(avgLuminance), result, 1.0 - contrastReduction);
-        }
-        
-        // Add slight shimmer/fluctuation to represent unstable areas
-        if (intensity > 0.3) {
-          float shimmer = sin(time * 2.0 + dist * 10.0) * 0.02 * intensity;
-          result = mix(result, result * 0.8, abs(shimmer));
-        }
+        // Final clamp
+        result = clamp(result, 0.0, 1.0);
         
         return result;
       }

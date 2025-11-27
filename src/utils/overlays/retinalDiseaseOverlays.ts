@@ -18,131 +18,62 @@ export const createRetinalDiseaseOverlays = (
   const retinitisPigmentosa = getEffect('retinitisPigmentosa');
   const retinalDetachment = getEffect('retinalDetachment');
 
-  // Glaucoma
+  // Glaucoma - Based on NIH research: fading periphery (not black), contrast loss, blur
   if (glaucoma?.enabled) {
     const intensity = glaucoma.intensity;
-    let glaucomaBackground = '';
     
-    // Early stage: Small paracentral scotomas
-    if (intensity > 0.1) {
-      glaucomaBackground += `
-        radial-gradient(circle at 65% 40%, 
-          rgba(0,0,0,${0.95 * intensity}) 0%, 
-          rgba(0,0,0,${0.85 * intensity}) ${Math.max(3, 8 - intensity * 5)}%,
-          rgba(0,0,0,${0.5 * intensity}) ${Math.max(8, 15 - intensity * 7)}%,
-          rgba(0,0,0,0) ${Math.max(15, 25 - intensity * 10)}%
-        ),
-        radial-gradient(circle at 35% 60%, 
-          rgba(0,0,0,${0.95 * intensity}) 0%, 
-          rgba(0,0,0,${0.85 * intensity}) ${Math.max(2, 6 - intensity * 4)}%,
-          rgba(0,0,0,${0.5 * intensity}) ${Math.max(6, 12 - intensity * 6)}%,
-          rgba(0,0,0,0) ${Math.max(12, 20 - intensity * 8)}%
-        ),
-      `;
-    }
+    // Calculate field radius (shrinks with severity)
+    // Early: 90-95%, Moderate: 75-85%, Advanced: 50-70%, Severe: 30-50%, End-stage: 15-30%
+    const fieldRadius = Math.max(15, 90 - intensity * 75); // 90% to 15%
+    const fadeWidth = fieldRadius * 0.2; // 20% fade zone
+    const fadeStart = fieldRadius - fadeWidth;
     
-    // Moderate stage: Arc-shaped defects
-    if (intensity > 0.3) {
-      glaucomaBackground += `
-        conic-gradient(from 0deg at 50% 50%, 
-          rgba(0,0,0,0) 0deg, 
-          rgba(0,0,0,0) 60deg, 
-          rgba(0,0,0,${0.9 * intensity}) 60deg, 
-          rgba(0,0,0,${0.9 * intensity}) 120deg, 
-          rgba(0,0,0,0) 120deg, 
-          rgba(0,0,0,0) 360deg
-        ),
-        conic-gradient(from 180deg at 50% 50%, 
-          rgba(0,0,0,0) 0deg, 
-          rgba(0,0,0,0) 60deg, 
-          rgba(0,0,0,${0.85 * intensity}) 60deg, 
-          rgba(0,0,0,${0.85 * intensity}) 120deg, 
-          rgba(0,0,0,0) 120deg, 
-          rgba(0,0,0,0) 360deg
-        ),
-      `;
-    }
+    // Use darker gray values that get progressively darker towards edges
+    // This represents "fading to nothingness" but with more opacity at edges
+    const grayValueCenter = 80; // Lighter gray in fade zone
+    const grayValueEdge = 40; // Darker gray at edges
+    const grayAlphaStart = intensity * 0.5; // Starting opacity in fade zone
+    const grayAlphaEdge = intensity * 0.9; // Higher opacity at edges
     
-    // Advanced stage: Peripheral constriction
-    if (intensity > 0.5) {
-      const tunnelRadius = Math.max(20, 60 - intensity * 50);
-      glaucomaBackground += `
-        radial-gradient(circle at 50% 50%, 
-          rgba(0,0,0,0) 0%,
-          rgba(0,0,0,0) ${tunnelRadius - 10}%,
-          rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
-          rgba(0,0,0,${0.95 * intensity}) 100%
-        ),
-      `;
-    }
+    // Create smooth peripheral fade - darker and more opaque at edges
+    const glaucomaBackground = `radial-gradient(circle at 50% 50%, 
+      rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},0) 0%,
+      rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},0) ${fadeStart}%,
+      rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},${grayAlphaStart * 0.4}) ${fadeStart + fadeWidth * 0.3}%,
+      rgba(${(grayValueCenter + grayValueEdge) / 2},${(grayValueCenter + grayValueEdge) / 2},${(grayValueCenter + grayValueEdge) / 2},${grayAlphaStart * 0.7}) ${fadeStart + fadeWidth * 0.6}%,
+      rgba(${grayValueEdge},${grayValueEdge},${grayValueEdge},${grayAlphaEdge}) ${fieldRadius}%,
+      rgba(${grayValueEdge},${grayValueEdge},${grayValueEdge},${grayAlphaEdge}) 100%
+    )`;
     
-    // End stage: Severe constriction
-    if (intensity > 0.8) {
-      const severeRadius = Math.max(5, 20 - (intensity - 0.8) * 15);
-      glaucomaBackground += `
-        radial-gradient(circle at 50% 50%, 
-          rgba(0,0,0,0) 0%,
-          rgba(0,0,0,0) ${severeRadius - 3}%,
-          rgba(0,0,0,${0.98 * intensity}) ${severeRadius}%,
-          rgba(0,0,0,${0.98 * intensity}) 100%
-        ),
-      `;
-    }
+    // Use 'normal' blend mode for gray overlay instead of 'multiply' for black
+    // This creates a more realistic "fading" effect
+    const blendMode = intensity > 0.5 ? 'normal' : 'normal';
+    const opacity = Math.min(0.85, intensity * 0.95); // Higher opacity overall
     
-    if (glaucomaBackground.trim().length > 0) {
-      glaucomaBackground = glaucomaBackground.trim().replace(/,\s*$/, '');
-      
-      if (container) {
-        createOverlayWithContainer(
-          'visual-field-overlay-glaucoma',
-          glaucomaBackground,
-          'multiply',
-          Math.min(0.95, intensity).toString(),
-          undefined,
-          undefined,
-          'glaucoma',
-          container
-        );
-      } else {
-        createOverlay(
-          'visual-field-overlay-glaucoma',
-          glaucomaBackground,
-          'multiply',
-          Math.min(0.95, intensity).toString(),
-          undefined,
-          undefined,
-          'glaucoma'
-        );
-      }
+    // Add CSS filters for blur and contrast reduction to complement shader
+    const filters = `blur(${intensity * 2}px) contrast(${100 - intensity * 50}%) brightness(${100 - intensity * 10}%)`;
+    
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-glaucoma',
+        glaucomaBackground,
+        blendMode,
+        opacity.toString(),
+        filters,
+        undefined,
+        'glaucoma',
+        container
+      );
     } else {
-      const subtleBackground = `radial-gradient(circle at 50% 50%, 
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,${0.1 * intensity}) 80%,
-        rgba(0,0,0,${0.2 * intensity}) 100%
-      )`;
-      
-      if (container) {
-        createOverlayWithContainer(
-          'visual-field-overlay-glaucoma',
-          subtleBackground,
-          'multiply',
-          Math.min(0.3, intensity).toString(),
-          undefined,
-          undefined,
-          'glaucoma',
-          container
-        );
-      } else {
-        createOverlay(
-          'visual-field-overlay-glaucoma',
-          subtleBackground,
-          'multiply',
-          Math.min(0.3, intensity).toString(),
-          undefined,
-          undefined,
-          'glaucoma'
-        );
-      }
+      createOverlay(
+        'visual-field-overlay-glaucoma',
+        glaucomaBackground,
+        blendMode,
+        opacity.toString(),
+        filters,
+        undefined,
+        'glaucoma'
+      );
     }
   }
 

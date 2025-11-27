@@ -206,7 +206,7 @@ export const VISUAL_EFFECTS: VisualEffect[] = [
     name: 'Glaucoma',
     enabled: false,
     intensity: 1.0,
-    description: 'A group of eye diseases that damage the optic nerve, typically due to elevated intraocular pressure. Known as the "silent thief of sight" because vision loss occurs gradually and peripherally first. Early stages show small paracentral scotomas, progressing to arc-shaped defects, then tunnel vision, and finally severe constriction. Central vision remains sharp until late stages. Includes blue-yellow color deficits and reduced contrast sensitivity.'
+    description: 'Damages the optic nerve, typically due to elevated intraocular pressure. The most common symptoms are needing more light, blurry vision, and reduced contrast sensitivity - patients describe vision as "like looking underwater" or "through dirty glasses." Color discrimination is reduced, especially blue-yellow. Glare sensitivity and light bloom are common. Central vision typically remains clearer until late stages.'
   },
   { 
     id: 'amd',

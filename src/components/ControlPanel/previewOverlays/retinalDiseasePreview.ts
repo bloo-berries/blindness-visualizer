@@ -11,93 +11,34 @@ export const generateRetinalDiseasePreviewStyle = (
 ): Partial<React.CSSProperties> | null => {
   switch (effectType) {
     case 'glaucoma': {
-      let glaucomaBackground = '';
+      // Based on NIH research: fading periphery (not black), contrast loss, blur
+      // Calculate field radius (shrinks with severity)
+      const fieldRadius = Math.max(15, 90 - intensity * 75); // 90% to 15%
+      const fadeWidth = fieldRadius * 0.2; // 20% fade zone
+      const fadeStart = fieldRadius - fadeWidth;
       
-      // Early stage: Small paracentral scotomas
-      if (intensity > 0.1) {
-        glaucomaBackground += `
-          radial-gradient(circle at 65% 40%, 
-            rgba(0,0,0,${0.95 * intensity}) 0%, 
-            rgba(0,0,0,${0.85 * intensity}) ${Math.max(3, 8 - intensity * 5)}%,
-            rgba(0,0,0,${0.5 * intensity}) ${Math.max(8, 15 - intensity * 7)}%,
-            rgba(0,0,0,0) ${Math.max(15, 25 - intensity * 10)}%
-          ),
-          radial-gradient(circle at 35% 60%, 
-            rgba(0,0,0,${0.95 * intensity}) 0%, 
-            rgba(0,0,0,${0.85 * intensity}) ${Math.max(2, 6 - intensity * 4)}%,
-            rgba(0,0,0,${0.5 * intensity}) ${Math.max(6, 12 - intensity * 6)}%,
-            rgba(0,0,0,0) ${Math.max(12, 20 - intensity * 8)}%
-          ),
-        `;
-      }
+      // Use darker gray values that get progressively darker towards edges
+      const grayValueCenter = 80; // Lighter gray in fade zone
+      const grayValueEdge = 40; // Darker gray at edges
+      const grayAlphaStart = intensity * 0.5; // Starting opacity in fade zone
+      const grayAlphaEdge = intensity * 0.9; // Higher opacity at edges
       
-      // Moderate stage: Arc-shaped defects
-      if (intensity > 0.3) {
-        glaucomaBackground += `
-          conic-gradient(from 0deg at 50% 50%, 
-            rgba(0,0,0,0) 0deg, 
-            rgba(0,0,0,0) 60deg, 
-            rgba(0,0,0,${0.9 * intensity}) 60deg, 
-            rgba(0,0,0,${0.9 * intensity}) 120deg, 
-            rgba(0,0,0,0) 120deg, 
-            rgba(0,0,0,0) 360deg
-          ),
-          conic-gradient(from 180deg at 50% 50%, 
-            rgba(0,0,0,0) 0deg, 
-            rgba(0,0,0,0) 60deg, 
-            rgba(0,0,0,${0.85 * intensity}) 60deg, 
-            rgba(0,0,0,${0.85 * intensity}) 120deg, 
-            rgba(0,0,0,0) 120deg, 
-            rgba(0,0,0,0) 360deg
-          ),
-        `;
-      }
+      // Create smooth peripheral fade - darker and more opaque at edges
+      const glaucomaBackground = `radial-gradient(circle at 50% 50%, 
+        rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},0) 0%,
+        rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},0) ${fadeStart}%,
+        rgba(${grayValueCenter},${grayValueCenter},${grayValueCenter},${grayAlphaStart * 0.4}) ${fadeStart + fadeWidth * 0.3}%,
+        rgba(${(grayValueCenter + grayValueEdge) / 2},${(grayValueCenter + grayValueEdge) / 2},${(grayValueCenter + grayValueEdge) / 2},${grayAlphaStart * 0.7}) ${fadeStart + fadeWidth * 0.6}%,
+        rgba(${grayValueEdge},${grayValueEdge},${grayValueEdge},${grayAlphaEdge}) ${fieldRadius}%,
+        rgba(${grayValueEdge},${grayValueEdge},${grayValueEdge},${grayAlphaEdge}) 100%
+      )`;
       
-      // Advanced stage: Peripheral constriction
-      if (intensity > 0.5) {
-        const tunnelRadius = Math.max(20, 60 - intensity * 50);
-        glaucomaBackground += `
-          radial-gradient(circle at 50% 50%, 
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) ${tunnelRadius - 10}%,
-            rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius}%,
-            rgba(0,0,0,${0.95 * intensity}) 100%
-          ),
-        `;
-      }
-      
-      // End stage: Severe constriction
-      if (intensity > 0.8) {
-        const severeRadius = Math.max(5, 20 - (intensity - 0.8) * 15);
-        glaucomaBackground += `
-          radial-gradient(circle at 50% 50%, 
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,0) ${severeRadius - 3}%,
-            rgba(0,0,0,${0.98 * intensity}) ${severeRadius}%,
-            rgba(0,0,0,${0.98 * intensity}) 100%
-          ),
-        `;
-      }
-      
-      if (glaucomaBackground.trim().length > 0) {
-        glaucomaBackground = glaucomaBackground.trim().replace(/,\s*$/, '');
-        return {
-          background: glaucomaBackground,
-          mixBlendMode: 'multiply' as const,
-          opacity: Math.min(0.95, intensity)
-        };
-      } else {
-        // Subtle background for very low intensity
-        return {
-          background: `radial-gradient(circle at 50% 50%, 
-            rgba(0,0,0,0) 0%,
-            rgba(0,0,0,${0.1 * intensity}) 80%,
-            rgba(0,0,0,${0.2 * intensity}) 100%
-          )`,
-          mixBlendMode: 'multiply' as const,
-          opacity: Math.min(0.3, intensity)
-        };
-      }
+      return {
+        background: glaucomaBackground,
+        mixBlendMode: 'normal' as const,
+        opacity: Math.min(0.85, intensity * 0.95), // Higher opacity overall
+        filter: `blur(${intensity * 2}px) contrast(${100 - intensity * 50}%) brightness(${100 - intensity * 10}%)`
+      };
     }
     
     case 'amd': {

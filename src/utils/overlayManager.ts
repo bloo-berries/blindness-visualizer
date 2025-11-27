@@ -1,11 +1,12 @@
 import { VisualEffect } from '../types/visualEffects';
-import { OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
+import { OVERLAY_BASE_STYLES, Z_INDEX, getOverlayZIndex } from './overlayConstants';
 import { createEffectMap, getEffectById } from './effectLookup';
 import { createVisualFieldLossOverlays } from './overlays/visualFieldLossOverlays';
 import { createVisualDisturbanceOverlays } from './overlays/visualDisturbanceOverlays';
 import { createRetinalDiseaseOverlays } from './overlays/retinalDiseaseOverlays';
 import { createFamousPeopleOverlays } from './overlays/famousPeopleOverlays';
 import { createOverlay as createOverlayHelper, createOverlayWithContainer as createOverlayWithContainerHelper } from './overlays/overlayHelpers';
+import { CONTAINER_SELECTORS } from './appConstants';
 
 /**
  * Creates a simple overlay element with consistent styling
@@ -214,78 +215,233 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   }
 
   // Vitreous Hemorrhage - Blood in the vitreous humor causing red-tinted vision
+  // Implementation with animated floaters, gravitational settling, haze, and red tint
   if (vitreousHemorrhage?.enabled) {
     const intensity = vitreousHemorrhage.intensity;
     
-    // Create highly intensified hazy, semi-random dark reddish floaters with extensive blood streaks and pools
-    let vitreousBackground = `
-      /* Blood streaks at various angles - intensified */
-      linear-gradient(45deg, rgba(139,0,0,${0.7 * intensity}) 0%, transparent 30%),
-      linear-gradient(-45deg, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 25%),
-      linear-gradient(90deg, rgba(139,0,0,${0.65 * intensity}) 0%, transparent 35%),
-      linear-gradient(135deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 22%),
-      linear-gradient(15deg, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 18%),
-      linear-gradient(75deg, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 15%),
-      linear-gradient(105deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 25%),
-      linear-gradient(165deg, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 20%),
-      linear-gradient(30deg, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 16%),
-      linear-gradient(60deg, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 14%),
-      linear-gradient(120deg, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 12%),
-      linear-gradient(150deg, rgba(139,0,0,${0.35 * intensity}) 0%, transparent 10%),
-      /* Blood pools and dots - intensified */
-      radial-gradient(circle at 30% 40%, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 15%),
-      radial-gradient(circle at 70% 60%, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 12%),
-      radial-gradient(circle at 20% 80%, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 10%),
-      radial-gradient(circle at 80% 20%, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 8%),
-      radial-gradient(circle at 50% 50%, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 18%),
-      radial-gradient(circle at 15% 25%, rgba(139,0,0,${0.52 * intensity}) 0%, transparent 9%),
-      radial-gradient(circle at 85% 35%, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 11%),
-      radial-gradient(circle at 25% 75%, rgba(139,0,0,${0.46 * intensity}) 0%, transparent 7%),
-      radial-gradient(circle at 75% 85%, rgba(139,0,0,${0.44 * intensity}) 0%, transparent 10%),
-      radial-gradient(circle at 40% 15%, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 8%),
-      radial-gradient(circle at 60% 90%, rgba(139,0,0,${0.40 * intensity}) 0%, transparent 6%),
-      radial-gradient(circle at 10% 60%, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 5%),
-      radial-gradient(circle at 90% 40%, rgba(139,0,0,${0.36 * intensity}) 0%, transparent 7%),
-      radial-gradient(circle at 35% 85%, rgba(139,0,0,${0.34 * intensity}) 0%, transparent 6%),
-      radial-gradient(circle at 65% 10%, rgba(139,0,0,${0.32 * intensity}) 0%, transparent 8%),
-      /* Irregular blood patches - intensified */
-      radial-gradient(ellipse at 35% 65%, rgba(139,0,0,${0.28 * intensity}) 0%, transparent 16%),
-      radial-gradient(ellipse at 65% 25%, rgba(139,0,0,${0.26 * intensity}) 0%, transparent 13%),
-      radial-gradient(ellipse at 10% 50%, rgba(139,0,0,${0.24 * intensity}) 0%, transparent 11%),
-      radial-gradient(ellipse at 90% 70%, rgba(139,0,0,${0.22 * intensity}) 0%, transparent 9%),
-      radial-gradient(ellipse at 20% 30%, rgba(139,0,0,${0.20 * intensity}) 0%, transparent 8%),
-      radial-gradient(ellipse at 80% 80%, rgba(139,0,0,${0.18 * intensity}) 0%, transparent 7%),
-      radial-gradient(ellipse at 45% 10%, rgba(139,0,0,${0.16 * intensity}) 0%, transparent 6%),
-      radial-gradient(ellipse at 55% 90%, rgba(139,0,0,${0.14 * intensity}) 0%, transparent 5%),
-      /* Overall red tint veil */
-      rgba(139,0,0,${0.2 * intensity})
+    // Generate floater positions (pre-computed for performance)
+    // Different types: small dots, cobweb strands, dark streaks, large blobs
+    const floaterCount = Math.max(8, Math.floor(8 + intensity * 20)); // 8-28 floaters based on intensity
+    const floaters: Array<{type: 'dot' | 'cobweb' | 'streak' | 'blob', x: number, y: number, size: number, opacity: number, angle?: number}> = [];
+    
+    for (let i = 0; i < floaterCount; i++) {
+      const rand = Math.random();
+      let type: 'dot' | 'cobweb' | 'streak' | 'blob';
+      let size: number;
+      let opacity: number;
+      let angle: number | undefined;
+      
+      if (rand < 0.3) {
+        // Small dots (30% of floaters) - increased size for visibility
+        type = 'dot';
+        size = 1.5 + Math.random() * 2.5; // 1.5-4% of screen (increased from 0.5-2%)
+        opacity = 0.5 + Math.random() * 0.4; // 0.5-0.9 (increased from 0.4-0.8)
+      } else if (rand < 0.6) {
+        // Cobweb/spider-web strands (30% of floaters)
+        type = 'cobweb';
+        size = 2 + Math.random() * 3; // 2-5% of screen
+        opacity = 0.3 + Math.random() * 0.3; // 0.3-0.6
+        angle = Math.random() * 360;
+      } else if (rand < 0.85) {
+        // Dark streaks/lines (25% of floaters)
+        type = 'streak';
+        size = 1.5 + Math.random() * 2.5; // 1.5-4% of screen
+        opacity = 0.5 + Math.random() * 0.3; // 0.5-0.8
+        angle = Math.random() * 360;
+      } else {
+        // Large amorphous blobs (15% of floaters)
+        type = 'blob';
+        size = 3 + Math.random() * 4; // 3-7% of screen
+        opacity = 0.6 + Math.random() * 0.3; // 0.6-0.9
+      }
+      
+      floaters.push({
+        type,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size,
+        opacity: opacity * intensity,
+        angle
+      });
+    }
+    
+    // Generate background gradients for floaters - increased reddish hue
+    const floaterGradients = floaters.map(floater => {
+      const baseColor = `rgba(180,0,0,${floater.opacity})`; // More saturated red
+      const darkRed = `rgba(120,0,0,${floater.opacity * 0.8})`; // More saturated dark red
+      
+      switch (floater.type) {
+        case 'dot':
+          // Make dots more visible with a solid center and gradual fade
+          return `radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, ${baseColor} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+        case 'cobweb':
+          // Create spider-web like pattern
+          const webAngle = floater.angle || 0;
+          return `
+            linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+            linear-gradient(${webAngle + 60}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+            linear-gradient(${webAngle + 120}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+            radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, transparent ${floater.size * 0.5}%)
+          `;
+        case 'streak':
+          // Create dark streak along vitreous fibers
+          const streakAngle = floater.angle || 0;
+          return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${floater.size * 0.2}%, transparent ${floater.size}%)`;
+        case 'blob':
+          // Large amorphous blob
+          return `radial-gradient(ellipse ${floater.size * 1.2}% ${floater.size}% at ${floater.x}% ${floater.y}%, ${baseColor} 0%, ${darkRed} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+        default:
+          return '';
+      }
+    }).filter(g => g).join(', ');
+    
+    // Overall red/pink tint overlay (light filtering from blood) - increased reddish hue
+    const redTint = `rgba(220,20,20,${0.25 * intensity})`;
+    
+    // Haze/fog effect (diffuse blood scattering light) - increased reddish hue
+    const hazeGradient = `
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.12 * intensity}) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 60%)
     `;
     
-    // Remove trailing comma and clean up
-    vitreousBackground = vitreousBackground.trim().replace(/,\s*$/, '');
+    // Combine all layers: floaters + haze + red tint
+    // Note: Gravitational settling will be handled by animation updates
+    let vitreousBackground = `
+      ${floaterGradients},
+      ${hazeGradient},
+      ${redTint}
+    `;
     
-    // Use createOverlayWithContainer if container is provided, otherwise use createOverlay
-    if (container) {
-      createOverlayWithContainer(
-        'visual-field-overlay-vitreousHemorrhage',
-        vitreousBackground,
-        'multiply',
-        Math.min(0.9, intensity).toString(), // Match preview opacity
-        undefined,
-        undefined,
-        'vitreousHemorrhage',
-        container
-      );
+    // Remove trailing comma and clean up whitespace
+    vitreousBackground = vitreousBackground.trim().replace(/,\s*$/, '').replace(/\s+/g, ' ');
+    
+    // Store floater data for animation updates (gravitational settling)
+    const overlayId = 'visual-field-overlay-vitreousHemorrhage';
+    let overlayElement = document.getElementById(overlayId);
+    
+    if (!overlayElement) {
+      // Create overlay element directly to ensure we have a reference
+      overlayElement = document.createElement('div');
+      overlayElement.id = overlayId;
+      overlayElement.className = 'vitreous-hemorrhage-overlay';
+      overlayElement.setAttribute('data-floaters', JSON.stringify(floaters));
+      overlayElement.setAttribute('data-intensity', intensity.toString());
+      
+      // Apply base overlay styles - use higher z-index to ensure it appears above YouTube iframe
+      Object.assign(overlayElement.style, {
+        ...OVERLAY_BASE_STYLES,
+        zIndex: (Z_INDEX.BASE + 50).toString(), // Higher z-index to appear above YouTube iframe
+        background: vitreousBackground,
+        mixBlendMode: 'multiply',
+        opacity: Math.min(0.81, intensity).toString(),
+      });
+      
+      // Add CSS animation class for floater movement
+      overlayElement.classList.add('vitreous-hemorrhage-animated');
+      
+      // Find container and append
+      let targetContainer: Element | null = container || null;
+      
+      if (!targetContainer) {
+        // Try to find container using CONTAINER_SELECTORS
+        const selectors = [
+          '.visualizer-container',
+          '[class*="visualizer"]',
+          'iframe[src*="youtube"]',
+          'canvas'
+        ];
+        
+        for (const selector of selectors) {
+          if (selector === 'iframe[src*="youtube"]') {
+            const iframe = document.querySelector(selector);
+            if (iframe) {
+              targetContainer = iframe.parentElement;
+              break;
+            }
+          } else if (selector === 'canvas') {
+            const canvas = document.querySelector(selector);
+            if (canvas) {
+              targetContainer = canvas.parentElement;
+              break;
+            }
+          } else {
+            targetContainer = document.querySelector(selector);
+            if (targetContainer) {
+              break;
+            }
+          }
+        }
+      }
+      
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
+        
+        // Force container to have relative positioning
+        if (targetContainer instanceof HTMLElement) {
+          const computedStyle = window.getComputedStyle(targetContainer);
+          if (computedStyle.position === 'static') {
+            targetContainer.style.position = 'relative';
+          }
+        }
+      } else {
+        // Fallback to body
+        document.body.appendChild(overlayElement);
+      }
     } else {
-      createOverlay(
-        'visual-field-overlay-vitreousHemorrhage',
-        vitreousBackground,
-        'multiply',
-        Math.min(0.9, intensity).toString(), // Match preview opacity
-        undefined,
-        undefined,
-        'vitreousHemorrhage'
-      );
+      // Update existing overlay - ensure it's still in the right container and visible
+      overlayElement.setAttribute('data-floaters', JSON.stringify(floaters));
+      overlayElement.setAttribute('data-intensity', intensity.toString());
+      overlayElement.style.background = vitreousBackground;
+      overlayElement.style.opacity = Math.min(0.81, intensity).toString();
+      overlayElement.style.zIndex = (Z_INDEX.BASE + 50).toString(); // Ensure z-index is correct
+      
+      // Ensure animation class is present
+      if (!overlayElement.classList.contains('vitreous-hemorrhage-animated')) {
+        overlayElement.classList.add('vitreous-hemorrhage-animated');
+      }
+      
+      // Verify overlay is still in a container (might have been removed by video iframe changes)
+      if (!overlayElement.parentElement) {
+        // Re-append to container if it was removed
+        let targetContainer: Element | null = container || null;
+        
+        if (!targetContainer) {
+          const selectors = [
+            '.visualizer-container',
+            '[class*="visualizer"]',
+            'iframe[src*="youtube"]',
+            'canvas'
+          ];
+          
+          for (const selector of selectors) {
+            if (selector === 'iframe[src*="youtube"]') {
+              const iframe = document.querySelector(selector);
+              if (iframe) {
+                targetContainer = iframe.parentElement;
+                break;
+              }
+            } else if (selector === 'canvas') {
+              const canvas = document.querySelector(selector);
+              if (canvas) {
+                targetContainer = canvas.parentElement;
+                break;
+              }
+            } else {
+              targetContainer = document.querySelector(selector);
+              if (targetContainer) {
+                break;
+              }
+            }
+          }
+        }
+        
+        if (targetContainer) {
+          targetContainer.appendChild(overlayElement);
+        } else {
+          document.body.appendChild(overlayElement);
+        }
+      }
     }
   }
 };

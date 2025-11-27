@@ -108,13 +108,21 @@ export const generateRetinalDiseasePreviewStyle = (
         )
       `;
       
+      // Vitreous Hemorrhage with floaters, haze, and red tint - increased reddish hue
       const vitreousHemorrhage = `
-        radial-gradient(circle at 50% 50%, 
-          rgba(139,0,0,${0.3 * intensity}) 0%, 
-          rgba(139,0,0,${0.2 * intensity}) 30%,
-          rgba(139,0,0,${0.1 * intensity}) 60%,
-          rgba(139,0,0,0) 100%
-        )
+        /* Floaters - dots, cobwebs, streaks, blobs */
+        radial-gradient(circle at 30% 40%, rgba(180,0,0,${0.5 * intensity}) 0%, transparent 2%),
+        radial-gradient(circle at 70% 60%, rgba(180,0,0,${0.45 * intensity}) 0%, transparent 1.5%),
+        radial-gradient(circle at 20% 80%, rgba(180,0,0,${0.4 * intensity}) 0%, transparent 1.8%),
+        linear-gradient(45deg, rgba(180,0,0,${0.35 * intensity}) 0%, transparent 3%),
+        linear-gradient(135deg, rgba(120,0,0,${0.4 * intensity}) 0%, transparent 2.5%),
+        radial-gradient(ellipse 4% 3% at 50% 50%, rgba(180,0,0,${0.3 * intensity}) 0%, rgba(120,0,0,${0.25 * intensity}) 30%, transparent 100%),
+        /* Haze/fog effect */
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 70%),
+        /* Red tint */
+        rgba(220,20,20,${0.2 * intensity}),
+        /* Bottom accumulation (gravitational settling) */
+        linear-gradient(to bottom, transparent 75%, rgba(180,0,0,${0.25 * intensity}) 90%, rgba(180,0,0,${0.45 * intensity}) 100%)
       `;
       
       return {

@@ -139,7 +139,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     // Optimized animation setup using performance manager
     const enabledEffectsCount = effects.filter(e => e.enabled).length;
     const needsAnimation = effects.some(e => 
-      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa') && e.enabled
+      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa' || e.id === 'vitreousHemorrhage') && e.enabled
     );
     
     // Create optimized animation callback
@@ -152,7 +152,8 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
         overlayManager.current.updateOverlays(enabledEffects, containerRef.current);
       }
       
-      // Update animated overlays
+      // Always update animated overlays (for vitreous hemorrhage gravitational settling, etc.)
+      // This doesn't recreate overlays, just updates their animation state
       overlayManager.current.updateAnimatedOverlays(enabledEffects);
     };
     

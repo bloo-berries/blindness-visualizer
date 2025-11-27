@@ -249,4 +249,43 @@ html {
   100% { 
     transform: translateY(1px) rotate(-0.5deg);
   }
+}
+
+/* Animation for Vitreous Hemorrhage floaters - slow drift and movement */
+@keyframes vitreousFloaterDrift {
+  0% { 
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  25% { 
+    transform: translate(1px, -0.5px) rotate(0.2deg);
+  }
+  50% { 
+    transform: translate(-0.5px, 1px) rotate(-0.2deg);
+  }
+  75% { 
+    transform: translate(0.5px, 0.5px) rotate(0.1deg);
+  }
+  100% { 
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+}
+
+/* Animation for gravitational settling - blood moves downward over time */
+/* Note: Actual gravitational settling is handled by JavaScript animation updates */
+@keyframes vitreousGravitationalSettle {
+  0% { 
+    opacity: 0.85;
+  }
+  50% { 
+    opacity: 0.9;
+  }
+  100% { 
+    opacity: 0.85;
+  }
+}
+
+/* Apply animations to vitreous hemorrhage overlay */
+.vitreous-hemorrhage-animated {
+  animation: vitreousFloaterDrift 8s ease-in-out infinite;
+  will-change: background;
 } 

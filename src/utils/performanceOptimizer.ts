@@ -496,6 +496,7 @@ export class OverlayManager {
   updateAnimatedOverlays(effects: VisualEffect[]): void {
     const scotoma = effects.find(e => e.id === 'scotoma' && e.enabled);
     const visualFloaters = effects.find(e => e.id === 'visualFloaters' && e.enabled);
+    const vitreousHemorrhage = effects.find(e => e.id === 'vitreousHemorrhage' && e.enabled);
 
     if (scotoma) {
       this.updateScotomaAnimation(scotoma.intensity);
@@ -503,6 +504,10 @@ export class OverlayManager {
 
     if (visualFloaters) {
       this.updateFloatersAnimation(visualFloaters.intensity);
+    }
+
+    if (vitreousHemorrhage) {
+      this.updateVitreousHemorrhageAnimation(vitreousHemorrhage.intensity);
     }
   }
 
@@ -545,6 +550,90 @@ export class OverlayManager {
       rgba(0,0,0,${0.3 * intensity}) 50%,
       rgba(0,0,0,0) 80%
     )`;
+  }
+
+  /**
+   * Updates vitreous hemorrhage animation with gravitational settling
+   * Blood settles to the bottom of the visual field over time
+   */
+  private updateVitreousHemorrhageAnimation(intensity: number): void {
+    const overlay = document.getElementById('visual-field-overlay-vitreousHemorrhage');
+    if (!overlay) return;
+
+    // Get stored floater data
+    const floatersData = overlay.getAttribute('data-floaters');
+    if (!floatersData) return;
+
+    try {
+      const floaters: Array<{type: string, x: number, y: number, size: number, opacity: number, angle?: number}> = JSON.parse(floatersData);
+      const storedIntensity = parseFloat(overlay.getAttribute('data-intensity') || '0');
+      
+      // Calculate time-based gravitational settling
+      // Blood settles to bottom over time (simulating hours/days)
+      const now = Date.now();
+      const timeElapsed = (now % 3600000) / 3600000; // Cycle every hour for demo
+      const settleAmount = timeElapsed * 15; // Blood settles up to 15% downward
+      
+      // Generate updated floater positions with gravitational settling
+      const floaterGradients = floaters.map(floater => {
+        // Apply gravitational settling - blood moves downward - increased reddish hue
+        const settledY = Math.min(100, floater.y + settleAmount);
+        const baseColor = `rgba(180,0,0,${floater.opacity * storedIntensity})`; // More saturated red
+        const darkRed = `rgba(120,0,0,${floater.opacity * storedIntensity * 0.8})`; // More saturated dark red
+        
+        // Add slight horizontal drift (blood doesn't fall straight down)
+        const driftX = floater.x + Math.sin(now * 0.0001 + floater.x) * 0.5;
+        
+        switch (floater.type) {
+          case 'dot':
+            // Make dots more visible with a solid center and gradual fade
+            return `radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, ${baseColor} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+          case 'cobweb':
+            const webAngle = (floater.angle || 0) + Math.sin(now * 0.0002) * 2;
+            return `
+              linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+              linear-gradient(${webAngle + 60}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+              linear-gradient(${webAngle + 120}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
+              radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, transparent ${floater.size * 0.5}%)
+            `;
+          case 'streak':
+            const streakAngle = (floater.angle || 0) + Math.sin(now * 0.00015) * 1;
+            return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${floater.size * 0.2}%, transparent ${floater.size}%)`;
+          case 'blob':
+            return `radial-gradient(ellipse ${floater.size * 1.2}% ${floater.size}% at ${driftX}% ${settledY}%, ${baseColor} 0%, ${darkRed} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+          default:
+            return '';
+        }
+      }).filter(g => g).join(', ');
+      
+      // Haze/fog effect - increased reddish hue
+      const hazeGradient = `
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.12 * storedIntensity}) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,0,0,${0.1 * storedIntensity}) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,0,0,${0.1 * storedIntensity}) 0%, transparent 60%)
+      `;
+      
+      // Red tint overlay - increased reddish hue
+      const redTint = `rgba(220,20,20,${0.25 * storedIntensity})`;
+      
+      // Enhanced bottom accumulation (blood pools at bottom due to gravity) - increased reddish hue
+      const bottomAccumulation = `
+        linear-gradient(to bottom, transparent 70%, rgba(180,0,0,${0.25 * storedIntensity * (0.5 + settleAmount / 30)}) 85%, rgba(180,0,0,${0.5 * storedIntensity * (0.5 + settleAmount / 30)}) 100%)
+      `;
+      
+      // Combine all layers
+      const background = `
+        ${floaterGradients},
+        ${hazeGradient},
+        ${bottomAccumulation},
+        ${redTint}
+      `.trim().replace(/,\s*$/, '').replace(/\s+/g, ' ');
+      
+      overlay.style.background = background;
+    } catch (e) {
+      // If parsing fails, skip animation update
+      console.warn('Failed to parse vitreous hemorrhage floater data:', e);
+    }
   }
 }
 

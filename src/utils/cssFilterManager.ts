@@ -698,13 +698,15 @@ const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
   
   if (vitreousHemorrhage) {
     // Vitreous Hemorrhage - Blood in vitreous humor
-    // Use minimal CSS filters - let the overlay handle the red tint
-    // CSS filters should only provide blur, dimming, and contrast reduction
-    // The red tint comes from the overlay with blood streaks and pools
+    // CSS filters provide: haze/fog (blur), dimming, and contrast reduction
+    // The red tint and floaters come from the overlay layer
     const intensity = vitreousHemorrhage.intensity;
-    filters.push(`blur(${intensity * 8}px)`);
-    filters.push(`brightness(${100 - intensity * 50}%)`); // Dimming from blood
-    filters.push(`contrast(${100 - intensity * 45}%)`);
+    // Haze/fog effect - diffuse blood scatters light (reduced by 30% total)
+    filters.push(`blur(${intensity * 4.32}px)`); // Reduced by 10% from 4.8px
+    filters.push(`brightness(${100 - intensity * 40}%)`); // Dimming from blood (reduced for better visibility)
+    filters.push(`contrast(${100 - intensity * 35}%)`); // Contrast reduction (reduced for better visibility)
+    // Add slight saturation reduction to enhance haze effect
+    filters.push(`saturate(${100 - intensity * 10}%)`);
     // NO sepia or hue-rotate - these create yellow/brown tint that conflicts with red overlay
     // The red tint is provided entirely by the overlay layer
   }

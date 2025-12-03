@@ -632,7 +632,7 @@ export class OverlayManager {
       overlay.style.background = background;
     } catch (e) {
       // If parsing fails, skip animation update
-      console.warn('Failed to parse vitreous hemorrhage floater data:', e);
+      // Silently fail to avoid console warnings in production
     }
   }
 }

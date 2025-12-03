@@ -1,12 +1,11 @@
 import { VisualEffect } from '../types/visualEffects';
-import { OVERLAY_BASE_STYLES, Z_INDEX, getOverlayZIndex } from './overlayConstants';
+import { OVERLAY_BASE_STYLES, Z_INDEX } from './overlayConstants';
 import { createEffectMap, getEffectById } from './effectLookup';
 import { createVisualFieldLossOverlays } from './overlays/visualFieldLossOverlays';
 import { createVisualDisturbanceOverlays } from './overlays/visualDisturbanceOverlays';
 import { createRetinalDiseaseOverlays } from './overlays/retinalDiseaseOverlays';
 import { createFamousPeopleOverlays } from './overlays/famousPeopleOverlays';
 import { createOverlay as createOverlayHelper, createOverlayWithContainer as createOverlayWithContainerHelper } from './overlays/overlayHelpers';
-import { CONTAINER_SELECTORS } from './appConstants';
 
 /**
  * Creates a simple overlay element with consistent styling

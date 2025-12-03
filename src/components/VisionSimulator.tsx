@@ -59,6 +59,9 @@ const VisionSimulator: React.FC = () => {
         }))
       );
 
+      // Enable comparison mode immediately for famous people
+      setShowComparison(true);
+
       // Skip to the simulation step
       setActiveStep(2);
     }

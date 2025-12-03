@@ -13,7 +13,7 @@ export const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but 
 /**
  * YouTube embed URL template
  */
-export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`;
+export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?si=0pCMD96TZDgBDRCM&autoplay=1&mute=1&controls=0&enablejsapi=1`;
 
 /**
  * Get contextually appropriate video URL for famous people
@@ -24,7 +24,7 @@ export const getFamousPersonVideoUrl = (personId?: string): string => {
   // For now, use the same demo video for all famous people
   // In the future, this could be customized per person with specific videos
   const videoId = FAMOUS_PEOPLE_VIDEO_ID;
-  return `https://www.youtube.com/embed/${videoId}?si=0pCMD96TZDgBDRCM&autoplay=1&controls=0&enablejsapi=1`;
+  return `https://www.youtube.com/embed/${videoId}?si=0pCMD96TZDgBDRCM&autoplay=1&mute=1&controls=0&enablejsapi=1`;
 };
 
 /**

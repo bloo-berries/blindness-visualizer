@@ -353,6 +353,40 @@ const Visualizer: React.FC<VisualizerProps> = ({ effects, inputSource, diplopiaS
     }
   }, [effects, inputSource.type, showComparison, isFamousPeopleMode]);
 
+  // Additional effect to ensure overlays are created when container becomes available
+  // This handles the case where the container ref isn't ready on first render
+  useEffect(() => {
+    if (!showComparison) return;
+    
+    const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+    const nonDiplopiaEffects = enabledEffects.filter(e => 
+      e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+    );
+    
+    if (nonDiplopiaEffects.length > 0 && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
+      // Check if container is available, with retry mechanism
+      const checkAndCreateOverlays = () => {
+        const targetContainer = simulationContainerRef.current || containerRef.current;
+        if (targetContainer) {
+          overlayManager.current.clearOverlays();
+          overlayManager.current.updateOverlays(nonDiplopiaEffects, targetContainer, showComparison);
+          return true;
+        }
+        return false;
+      };
+      
+      // Try immediately
+      if (!checkAndCreateOverlays()) {
+        // If container not ready, retry after a short delay
+        const timeoutId = setTimeout(() => {
+          checkAndCreateOverlays();
+        }, 100);
+        
+        return () => clearTimeout(timeoutId);
+      }
+    }
+  }, [showComparison, effects, inputSource.type]);
+
   // Optimized CSS filter calculation with caching
   const getEffectStyles = useCallback(() => {
     const baseStyle: React.CSSProperties = {

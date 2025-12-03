@@ -82,20 +82,38 @@ export const createRetinalDiseaseOverlays = (
     const intensity = stargardt.intensity;
     const scotomaRadius = 17 + intensity * 53;
     
-    createOverlay(
-      'visual-field-overlay-stargardt',
-      `radial-gradient(circle at 50% 50%, 
-        rgba(10,10,10,${0.99 * intensity}) 0%, 
-        rgba(15,15,15,${0.98 * intensity}) ${scotomaRadius - 5}%,
-        rgba(20,20,20,${0.95 * intensity}) ${scotomaRadius}%,
-        rgba(0,0,0,0) ${scotomaRadius + 5}%
-      )`,
-      'multiply',
-      Math.min(0.95, intensity).toString(),
-      `saturate(${1 - intensity * 0.4})`,
-      undefined,
-      'stargardt'
-    );
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-stargardt',
+        `radial-gradient(circle at 50% 50%, 
+          rgba(10,10,10,${0.99 * intensity}) 0%, 
+          rgba(15,15,15,${0.98 * intensity}) ${scotomaRadius - 5}%,
+          rgba(20,20,20,${0.95 * intensity}) ${scotomaRadius}%,
+          rgba(0,0,0,0) ${scotomaRadius + 5}%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        `saturate(${1 - intensity * 0.4})`,
+        undefined,
+        'stargardt',
+        container
+      );
+    } else {
+      createOverlay(
+        'visual-field-overlay-stargardt',
+        `radial-gradient(circle at 50% 50%, 
+          rgba(10,10,10,${0.99 * intensity}) 0%, 
+          rgba(15,15,15,${0.98 * intensity}) ${scotomaRadius - 5}%,
+          rgba(20,20,20,${0.95 * intensity}) ${scotomaRadius}%,
+          rgba(0,0,0,0) ${scotomaRadius + 5}%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        `saturate(${1 - intensity * 0.4})`,
+        undefined,
+        'stargardt'
+      );
+    }
   }
 
   // Age-Related Macular Degeneration (AMD)
@@ -103,21 +121,40 @@ export const createRetinalDiseaseOverlays = (
     const intensity = amd.intensity;
     const amdRadius = Math.max(15, 52 - intensity * 37);
     
-    createOverlay(
-      'visual-field-overlay-amd',
-      `radial-gradient(circle at 50% 50%, 
-        rgba(0,0,0,${0.95 * intensity}) 0%, 
-        rgba(0,0,0,${0.95 * intensity}) ${amdRadius - 5}%,
-        rgba(0,0,0,${0.7 * intensity}) ${amdRadius}%,
-        rgba(0,0,0,${0.3 * intensity}) ${amdRadius + 5}%,
-        rgba(0,0,0,0) ${amdRadius + 10}%
-      )`,
-      'multiply',
-      Math.min(0.95, intensity).toString(),
-      undefined,
-      undefined,
-      'amd'
-    );
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-amd',
+        `radial-gradient(circle at 50% 50%, 
+          rgba(0,0,0,${0.95 * intensity}) 0%, 
+          rgba(0,0,0,${0.95 * intensity}) ${amdRadius - 5}%,
+          rgba(0,0,0,${0.7 * intensity}) ${amdRadius}%,
+          rgba(0,0,0,${0.3 * intensity}) ${amdRadius + 5}%,
+          rgba(0,0,0,0) ${amdRadius + 10}%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        undefined,
+        undefined,
+        'amd',
+        container
+      );
+    } else {
+      createOverlay(
+        'visual-field-overlay-amd',
+        `radial-gradient(circle at 50% 50%, 
+          rgba(0,0,0,${0.95 * intensity}) 0%, 
+          rgba(0,0,0,${0.95 * intensity}) ${amdRadius - 5}%,
+          rgba(0,0,0,${0.7 * intensity}) ${amdRadius}%,
+          rgba(0,0,0,${0.3 * intensity}) ${amdRadius + 5}%,
+          rgba(0,0,0,0) ${amdRadius + 10}%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        undefined,
+        undefined,
+        'amd'
+      );
+    }
   }
 
   // Diabetic Retinopathy
@@ -186,37 +223,70 @@ export const createRetinalDiseaseOverlays = (
     
     const diabeticRetinopathyBackground = `${microaneurysms}, ${cottonWoolSpots}, ${vitreousHemorrhage}`;
     
-    createOverlay(
-      'visual-field-overlay-diabeticRetinopathy',
-      diabeticRetinopathyBackground,
-      'normal',
-      Math.min(0.9, intensity).toString(),
-      `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) saturate(${100 - intensity * 15}%) sepia(${intensity * 20}%)`,
-      undefined,
-      'diabeticRetinopathy'
-    );
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-diabeticRetinopathy',
+        diabeticRetinopathyBackground,
+        'normal',
+        Math.min(0.9, intensity).toString(),
+        `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) saturate(${100 - intensity * 15}%) sepia(${intensity * 20}%)`,
+        undefined,
+        'diabeticRetinopathy',
+        container
+      );
+    } else {
+      createOverlay(
+        'visual-field-overlay-diabeticRetinopathy',
+        diabeticRetinopathyBackground,
+        'normal',
+        Math.min(0.9, intensity).toString(),
+        `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) saturate(${100 - intensity * 15}%) sepia(${intensity * 20}%)`,
+        undefined,
+        'diabeticRetinopathy'
+      );
+    }
   }
 
   // Retinal Detachment
   if (retinalDetachment?.enabled) {
     const intensity = retinalDetachment.intensity;
     
-    createOverlay(
-      'visual-field-overlay-retinalDetachment',
-      `linear-gradient(to bottom, 
-        rgba(0,0,0,${0.9 * intensity}) 0%,
-        rgba(0,0,0,${0.8 * intensity}) 15%,
-        rgba(0,0,0,${0.6 * intensity}) 30%,
-        rgba(0,0,0,${0.4 * intensity}) 45%,
-        rgba(0,0,0,${0.2 * intensity}) 60%,
-        rgba(0,0,0,0) 75%
-      )`,
-      'multiply',
-      Math.min(0.8, intensity).toString(),
-      `blur(${intensity * 3}px) hue-rotate(${intensity * 2}deg)`,
-      undefined,
-      'retinalDetachment'
-    );
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-retinalDetachment',
+        `linear-gradient(to bottom, 
+          rgba(0,0,0,${0.9 * intensity}) 0%,
+          rgba(0,0,0,${0.8 * intensity}) 15%,
+          rgba(0,0,0,${0.6 * intensity}) 30%,
+          rgba(0,0,0,${0.4 * intensity}) 45%,
+          rgba(0,0,0,${0.2 * intensity}) 60%,
+          rgba(0,0,0,0) 75%
+        )`,
+        'multiply',
+        Math.min(0.8, intensity).toString(),
+        `blur(${intensity * 3}px) hue-rotate(${intensity * 2}deg)`,
+        undefined,
+        'retinalDetachment',
+        container
+      );
+    } else {
+      createOverlay(
+        'visual-field-overlay-retinalDetachment',
+        `linear-gradient(to bottom, 
+          rgba(0,0,0,${0.9 * intensity}) 0%,
+          rgba(0,0,0,${0.8 * intensity}) 15%,
+          rgba(0,0,0,${0.6 * intensity}) 30%,
+          rgba(0,0,0,${0.4 * intensity}) 45%,
+          rgba(0,0,0,${0.2 * intensity}) 60%,
+          rgba(0,0,0,0) 75%
+        )`,
+        'multiply',
+        Math.min(0.8, intensity).toString(),
+        `blur(${intensity * 3}px) hue-rotate(${intensity * 2}deg)`,
+        undefined,
+        'retinalDetachment'
+      );
+    }
   }
 
   // Retinitis Pigmentosa
@@ -224,21 +294,44 @@ export const createRetinalDiseaseOverlays = (
     const intensity = retinitisPigmentosa.intensity;
     const tunnelRadius = Math.max(3, 30 - intensity * 27);
     
-    createOverlay(
-      'visual-field-overlay-retinitisPigmentosa',
-      `radial-gradient(ellipse 100% 130% at 50% 50%, 
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) ${tunnelRadius - 2}%,
-        rgba(0,0,0,${0.3 * intensity}) ${tunnelRadius}%,
-        rgba(0,0,0,${0.7 * intensity}) ${tunnelRadius + 3}%,
-        rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 8}%,
-        rgba(0,0,0,${0.95 * intensity}) 100%
-      )`,
-      'multiply',
-      Math.min(0.95, intensity).toString(),
-      undefined,
-      undefined,
-      'retinitisPigmentosa'
-    );
+    // Always use createOverlayWithContainer when container is provided (for comparison mode)
+    // This ensures the overlay is placed in the correct container
+    if (container) {
+      createOverlayWithContainer(
+        'visual-field-overlay-retinitisPigmentosa',
+        `radial-gradient(ellipse 100% 130% at 50% 50%, 
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) ${tunnelRadius - 2}%,
+          rgba(0,0,0,${0.3 * intensity}) ${tunnelRadius}%,
+          rgba(0,0,0,${0.7 * intensity}) ${tunnelRadius + 3}%,
+          rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 8}%,
+          rgba(0,0,0,${0.95 * intensity}) 100%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        undefined,
+        undefined,
+        'retinitisPigmentosa',
+        container
+      );
+    } else {
+      // Fallback to createOverlay if no container provided (shouldn't happen in comparison mode)
+      createOverlay(
+        'visual-field-overlay-retinitisPigmentosa',
+        `radial-gradient(ellipse 100% 130% at 50% 50%, 
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) ${tunnelRadius - 2}%,
+          rgba(0,0,0,${0.3 * intensity}) ${tunnelRadius}%,
+          rgba(0,0,0,${0.7 * intensity}) ${tunnelRadius + 3}%,
+          rgba(0,0,0,${0.95 * intensity}) ${tunnelRadius + 8}%,
+          rgba(0,0,0,${0.95 * intensity}) 100%
+        )`,
+        'multiply',
+        Math.min(0.95, intensity).toString(),
+        undefined,
+        undefined,
+        'retinitisPigmentosa'
+      );
+    }
   }
 };

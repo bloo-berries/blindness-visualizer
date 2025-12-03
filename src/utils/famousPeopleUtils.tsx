@@ -28,6 +28,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'minkara-end-stage-complete': ['minkaraEndStageComplete'],
     'joshua-complete-blindness': ['joshuaMieleBlindness'],
     'paul-retinitis-pigmentosa': ['retinitisPigmentosa'],
+    'casey-retinitis-pigmentosa': ['retinitisPigmentosa'],
+    'molly-retinitis-pigmentosa': ['retinitisPigmentosa'],
     'mila-iritis-cataracts': ['cataracts', 'glaucoma'],
     'judi-amd-progression': ['amd', 'stargardt'],
     'bono-glaucoma-sensitivity': ['glaucoma', 'photophobia'],

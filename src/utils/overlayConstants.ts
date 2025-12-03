@@ -9,7 +9,7 @@
 export const VISUAL_FIELD_LOSS_CONDITIONS = [
   'blindnessLeftEye', 'blindnessRightEye', 'hemianopiaLeft', 'hemianopiaRight', 
   'bitemporalHemianopia', 'quadrantanopiaRight', 'quadrantanopiaInferior', 
-  'quadrantanopiaSuperior', 'scotoma', 'tunnelVision'
+  'quadrantanopiaSuperior', 'scotoma', 'tunnelVision', 'retinitisPigmentosa'
 ];
 
 /**

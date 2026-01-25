@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
@@ -12,11 +12,31 @@ interface EffectPreviewProps {
   highlightedEffect: VisualEffect | null;
 }
 
+// Effects that need animation
+const ANIMATED_EFFECTS = ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'hallucinations'];
+
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
   enabledEffects,
   enabledEffectsCount,
   highlightedEffect
 }) => {
+  // Animation ticker - forces re-render for animated effects
+  const [, setTick] = useState(0);
+
+  // Check if any enabled effect needs animation
+  const needsAnimation = enabledEffects.some(e => ANIMATED_EFFECTS.includes(e.id));
+
+  useEffect(() => {
+    if (!needsAnimation) return;
+
+    // Update every 100ms for smooth animation
+    const interval = setInterval(() => {
+      setTick(t => t + 1);
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [needsAnimation]);
+
   return (
     <>
       {/* Right side: Preview image */}
@@ -91,10 +111,50 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                     // Ensure overlays are clipped to image boundaries
                     overflow: 'hidden'
                   }}>
+                    {/* Diplopia ghost image - rendered first so it appears behind */}
+                    {enabledEffects.some(e => e.id === 'diplopiaMonocular' || e.id === 'diplopiaBinocular') && (() => {
+                      const diplopiaEffect = enabledEffects.find(e => e.id === 'diplopiaMonocular' || e.id === 'diplopiaBinocular');
+                      if (!diplopiaEffect) return null;
+
+                      const isMonocular = diplopiaEffect.id === 'diplopiaMonocular';
+                      const intensity = diplopiaEffect.intensity;
+
+                      // Calculate offset based on intensity (5-15px offset)
+                      const offsetX = 5 + intensity * 10;
+                      const offsetY = 3 + intensity * 6;
+
+                      return (
+                        <Box
+                          component="img"
+                          src={`${process.env.PUBLIC_URL || ''}/images/garden.png`}
+                          alt="Diplopia ghost image"
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            width: 'auto',
+                            height: 'auto',
+                            objectFit: 'contain',
+                            borderRadius: 1,
+                            transform: `translate(${offsetX}px, ${offsetY}px)`,
+                            // Monocular: ghost is blurry and faded; Binocular: both images are clear
+                            filter: isMonocular
+                              ? `blur(${1 + intensity * 2}px)`
+                              : 'none',
+                            opacity: isMonocular
+                              ? 0.3 + intensity * 0.25 // 30-55% opacity for monocular ghost
+                              : 0.75, // 75% opacity for binocular - more visible
+                            pointerEvents: 'none',
+                          }}
+                        />
+                      );
+                    })()}
                     {/* Base image with color vision filters applied directly */}
-                    <Box 
-                      component="img" 
-                      src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
+                    <Box
+                      component="img"
+                      src={`${process.env.PUBLIC_URL || ''}/images/garden.png`}
                       alt="Base reference image"
                       sx={{ 
                         display: 'block',
@@ -208,6 +268,14 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                               return 'none';
                           }
                         }).join(' ');
+                      })(),
+                      // Adjust base image opacity for binocular diplopia (both images need equal visibility)
+                      opacity: (() => {
+                        const binocularDiplopia = enabledEffects.find(e => e.id === 'diplopiaBinocular');
+                        if (binocularDiplopia) {
+                          return 0.75; // 75% opacity - more visible while still showing double
+                        }
+                        return 1;
                       })()
                     }}
                   />
@@ -229,11 +297,12 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                         'lossOfContrast', 'starbursting'
                       ];
                       
-                      // Exclude diplopia conditions (handled by special overlay effects)
-                      // const diplopiaTypes = [
-                      //   'diplopiaMonocular', 'diplopiaBinocular'
-                      // ];
-                      
+                      // Exclude diplopia conditions (handled by special duplicate image effect above)
+                      const diplopiaTypes = [
+                        'diplopiaMonocular', 'diplopiaBinocular'
+                      ];
+                      if (diplopiaTypes.includes(id)) return false;
+
                       // vitreousHemorrhage needs both CSS filters AND overlay, so don't exclude it
                       if (id === 'vitreousHemorrhage') return true;
                       
@@ -248,12 +317,70 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                     }
                     
                     return (
-                      <Box 
+                      <Box
                         key={effect.id}
                         sx={overlayStyle}
                       />
                     );
                   })}
+
+                  {/* Additional scotoma blur layer for visual aura - with heat wave distortion */}
+                  {enabledEffects.some(e => ['visualAura', 'visualAuraLeft', 'visualAuraRight'].includes(e.id)) && (() => {
+                    const auraEffect = enabledEffects.find(e => ['visualAura', 'visualAuraLeft', 'visualAuraRight'].includes(e.id));
+                    if (!auraEffect) return null;
+
+                    const intensity = auraEffect.intensity;
+                    // Position based on variant
+                    const baseScotomaX = auraEffect.id === 'visualAuraLeft' ? 35 :
+                                         auraEffect.id === 'visualAuraRight' ? 65 : 55;
+
+                    // Heat wave distortion timing (half of original speed)
+                    const now = Math.floor(Date.now() / 100);
+                    const time = now / 60;
+                    const heatWave1 = Math.sin(time * 0.6) * 3;
+                    const heatWave2 = Math.sin(time * 0.45 + 1.5) * 2.5;
+                    const heatWave3 = Math.cos(time * 0.55 + 2.2) * 2;
+
+                    const wobbleX = Math.sin(time * 0.075) * 2 + heatWave1 * 0.3;
+                    const wobbleY = Math.cos(time * 0.06) * 1.5 + heatWave2 * 0.25;
+                    const pulse = Math.sin(time * 0.15) * 0.08 + 1;
+
+                    // Heat wave distorted dimensions
+                    const baseWidth = 50 + intensity * 30;
+                    const baseHeight = 55 + intensity * 25;
+                    const width = baseWidth + heatWave1 + heatWave3 * 0.5;
+                    const height = baseHeight + heatWave2 + heatWave1 * 0.4;
+
+                    return (
+                      <Box
+                        key="visual-aura-scotoma"
+                        sx={{
+                          position: 'absolute',
+                          top: `calc(45% + ${wobbleY}%)`,
+                          left: `calc(${baseScotomaX}% + ${wobbleX}%)`,
+                          transform: 'translate(-50%, -50%)',
+                          width: `${width}%`,
+                          height: `${height}%`,
+                          borderRadius: '50%',
+                          background: `
+                            radial-gradient(
+                              ellipse 100% 100% at 50% 50%,
+                              rgba(230,230,238,${0.5 * intensity * pulse}) 0%,
+                              rgba(225,228,235,${0.4 * intensity}) 25%,
+                              rgba(220,225,235,${0.3 * intensity}) 45%,
+                              rgba(215,220,232,${0.2 * intensity}) 65%,
+                              rgba(210,218,230,${0.1 * intensity}) 80%,
+                              transparent 100%
+                            )
+                          `,
+                          filter: `blur(${12 + intensity * 10}px)`,
+                          opacity: 0.85,
+                          pointerEvents: 'none',
+                          zIndex: 4, // Below the main overlay
+                        }}
+                      />
+                    );
+                  })()}
                   </Box>
                 </Box>
               ) : (

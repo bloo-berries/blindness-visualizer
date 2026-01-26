@@ -288,4 +288,152 @@ html {
 .vitreous-hemorrhage-animated {
   animation: vitreousFloaterDrift 8s ease-in-out infinite;
   will-change: background;
-} 
+}
+
+/* ===== VISUAL SNOW SYNDROME ANIMATIONS ===== */
+/* Gentle, slow movements like particles in a snow globe - NO strobing or rapid flashing */
+
+/* Primary dot layer drift - slow floating movement */
+@keyframes visualSnowDrift {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(1.5px, -1px);
+  }
+  50% {
+    transform: translate(0.5px, 1px);
+  }
+  75% {
+    transform: translate(-1px, 0.5px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/* Fine grain layer - subtle position shift for TV static effect */
+@keyframes visualSnowGrain {
+  0% {
+    background-position: 0px 0px, 0px 0px;
+  }
+  25% {
+    background-position: 1px 0px, 0px 1px;
+  }
+  50% {
+    background-position: 0px 1px, 1px 0px;
+  }
+  75% {
+    background-position: 1px 1px, 1px 1px;
+  }
+  100% {
+    background-position: 0px 0px, 0px 0px;
+  }
+}
+
+/* Combined visual snow animation class for the main overlay */
+.visual-snow-animated {
+  animation: visualSnowDrift 6s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* ===== VISUAL HALLUCINATIONS ANIMATIONS ===== */
+/* Gentle fade and movement effects - hallucinations appear and fade gradually */
+
+/* Geometric pattern layer - slow fade in/out */
+@keyframes hallucinationPatternFade {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.01);
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+/* Light phenomena - gentle pulsing glow */
+@keyframes hallucinationLightPulse {
+  0% {
+    opacity: 0.4;
+    filter: blur(0px);
+  }
+  25% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(0.5px);
+  }
+  75% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0.4;
+    filter: blur(0px);
+  }
+}
+
+/* Shadowy figures - slow drift in periphery */
+@keyframes hallucinationFigureDrift {
+  0% {
+    opacity: 0.5;
+    transform: translate(0px, 0px);
+  }
+  25% {
+    opacity: 0.7;
+    transform: translate(2px, -1px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-1px, 1px);
+  }
+  75% {
+    opacity: 0.8;
+    transform: translate(1px, 2px);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate(0px, 0px);
+  }
+}
+
+/* Face-like patterns - very slow fade (pareidolia effect) */
+@keyframes hallucinationFaceFade {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  40% {
+    opacity: 0.6;
+    transform: scale(1.03);
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+}
+
+/* Combined hallucination animation class */
+.hallucination-animated {
+  animation: hallucinationFigureDrift 12s ease-in-out infinite;
+  will-change: opacity, transform;
+}

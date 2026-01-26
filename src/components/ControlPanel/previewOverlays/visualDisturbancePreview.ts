@@ -24,87 +24,210 @@ export const generateVisualDisturbancePreviewStyle = (
     }
     
     case 'visualSnow': {
-      const snowIntensity = Math.min(intensity * 1.5, 1.0);
-      const snowDensity = Math.min(intensity * 0.8, 0.6);
-      const visualSnowBackground = `
+      // Visual Snow Syndrome - persistent static overlay like TV noise or shaken snow globe
+      // NO rapid flashing/strobing - gentle movement only
+      const snowIntensity = Math.min(intensity * 1.2, 1.0);
+
+      // Slow drift animation phase (not rapid flickering)
+      const driftX = Math.sin(now / 2000) * 2; // Very slow horizontal drift
+      const driftY = Math.cos(now / 2500) * 1.5; // Very slow vertical drift
+
+      // Generate static dot patterns - mix of light, dark, and grayish dots
+      const dotPatterns: string[] = [];
+      for (let i = 0; i < 30; i++) {
+        const x = (i * 17.3 + driftX) % 100;
+        const y = (i * 23.7 + driftY) % 100;
+        const size = 0.5 + (i % 4) * 0.5; // Tiny dots
+        const dotType = i % 5;
+        let color: string;
+        const baseOpacity = (0.15 + (i % 10) * 0.035) * intensity;
+
+        if (dotType === 0) {
+          color = `rgba(255,255,255,${baseOpacity})`; // White
+        } else if (dotType === 1) {
+          color = `rgba(0,0,0,${baseOpacity * 0.8})`; // Dark
+        } else if (dotType === 2) {
+          color = `rgba(180,180,180,${baseOpacity * 0.9})`; // Gray
+        } else if (dotType === 3) {
+          color = `rgba(200,210,230,${baseOpacity * 0.7})`; // Slight blue tint
+        } else {
+          color = `rgba(220,220,220,${baseOpacity * 0.5})`; // Faint
+        }
+        dotPatterns.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color} 0%, transparent 100%)`);
+      }
+
+      // Second layer of dots at different positions for depth
+      const dotPatterns2: string[] = [];
+      for (let i = 0; i < 20; i++) {
+        const x = (i * 31.1 + 13 - driftX * 0.5) % 100;
+        const y = (i * 19.9 + 7 - driftY * 0.5) % 100;
+        const size = 0.8 + (i % 3) * 0.5;
+        const opacity = (0.1 + (i % 8) * 0.025) * intensity;
+        const isLight = i % 2 === 0;
+        const color = isLight
+          ? `rgba(240,240,245,${opacity})`
+          : `rgba(60,60,70,${opacity * 0.7})`;
+        dotPatterns2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color} 0%, transparent 100%)`);
+      }
+
+      // Fine grain texture (TV static pattern)
+      const grainOpacity = 0.08 + intensity * 0.1;
+      const grainPattern = `
         repeating-linear-gradient(
           0deg,
           transparent 0px,
-          transparent 2px,
-          rgba(255,255,255,${snowDensity * 0.3}) 2px,
-          rgba(255,255,255,${snowDensity * 0.3}) 3px
+          transparent 1px,
+          rgba(200,200,200,${grainOpacity}) 1px,
+          rgba(200,200,200,${grainOpacity}) 2px
         ),
         repeating-linear-gradient(
           90deg,
           transparent 0px,
-          transparent 2px,
-          rgba(255,255,255,${snowDensity * 0.2}) 2px,
-          rgba(255,255,255,${snowDensity * 0.2}) 3px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          transparent 0px,
-          transparent 3px,
-          rgba(255,255,255,${snowDensity * 0.1}) 3px,
-          rgba(255,255,255,${snowDensity * 0.1}) 4px
+          transparent 1px,
+          rgba(150,150,150,${grainOpacity * 0.7}) 1px,
+          rgba(150,150,150,${grainOpacity * 0.7}) 2px
         )
       `;
+
+      const allPatterns = [
+        ...dotPatterns,
+        ...dotPatterns2,
+        grainPattern
+      ].join(', ');
+
       return {
-        background: visualSnowBackground,
-        backgroundSize: '4px 4px, 4px 4px, 6px 6px',
-        mixBlendMode: 'screen' as const,
-        opacity: Math.min(0.8, snowIntensity)
+        background: allPatterns,
+        backgroundSize: '100% 100%',
+        mixBlendMode: 'overlay' as const,
+        opacity: Math.min(0.85, 0.6 + snowIntensity * 0.25)
       };
     }
     
     case 'hallucinations': {
-      const hallucinationIntensity = Math.min(intensity * 1.8, 1.0);
-      const hallucinationElements: string[] = [];
-      
-      // Human-like figures
-      for (let i = 0; i < 2 + Math.floor(intensity * 3); i++) {
-        const baseX = 20 + (i * 25) % 60;
-        const baseY = 30 + (i * 35) % 40;
-        const figureOpacity = 0.3 + (i % 3) * 0.1;
-        hallucinationElements.push(`
-          radial-gradient(ellipse 15px 25px at ${baseX}% ${baseY}%, 
-            rgba(0,0,0,${figureOpacity * hallucinationIntensity}) 0%, 
-            rgba(0,0,0,${figureOpacity * 0.6 * hallucinationIntensity}) 40%,
-            rgba(0,0,0,${figureOpacity * 0.3 * hallucinationIntensity}) 70%,
-            rgba(0,0,0,0) 100%
+      // Visual Hallucinations - Mixed type with patterns, lights, shadows, and figures
+      const fadePhase = Math.sin(now / 3000) * 0.5 + 0.5; // Slow fade in/out
+      const driftPhase = Math.sin(now / 4000) * 0.5 + 0.5;
+
+      const elements: string[] = [];
+
+      // Geometric lattice pattern (fades in periphery)
+      const patternOpacity = (0.1 + intensity * 0.15) * fadePhase;
+      elements.push(`
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px,
+          transparent 12px,
+          rgba(100,80,120,${patternOpacity * 0.4}) 12px,
+          rgba(100,80,120,${patternOpacity * 0.4}) 13px
+        )
+      `);
+      elements.push(`
+        repeating-linear-gradient(
+          60deg,
+          transparent 0px,
+          transparent 12px,
+          rgba(80,100,120,${patternOpacity * 0.3}) 12px,
+          rgba(80,100,120,${patternOpacity * 0.3}) 13px
+        )
+      `);
+
+      // Light phenomena - colored glows
+      const lightPositions = [
+        { x: 75, y: 25, hue: 200 },
+        { x: 20, y: 70, hue: 280 },
+        { x: 85, y: 60, hue: 40 },
+      ];
+      for (let i = 0; i < lightPositions.length; i++) {
+        const pos = lightPositions[i];
+        const lightOpacity = (0.15 + (i % 2) * 0.1) * intensity * (0.7 + fadePhase * 0.3);
+        const drift = driftPhase * 3;
+        elements.push(`
+          radial-gradient(circle 12px at ${pos.x + drift}% ${pos.y - drift}%,
+            hsla(${pos.hue},50%,65%,${lightOpacity}) 0%,
+            hsla(${pos.hue},40%,55%,${lightOpacity * 0.4}) 50%,
+            transparent 100%
           )
         `);
       }
-      
-      // Objects and shapes
-      for (let i = 0; i < 3 + Math.floor(intensity * 4); i++) {
-        const baseX = 10 + (i * 30) % 70;
-        const baseY = 20 + (i * 25) % 60;
-        const objectOpacity = 0.2 + (i % 2) * 0.1;
-        const objectSize = 8 + (i % 3) * 2;
-        if (i % 2 === 0) {
-          hallucinationElements.push(`
-            radial-gradient(circle ${objectSize}px at ${baseX}% ${baseY}%, 
-              rgba(100,100,100,${objectOpacity * hallucinationIntensity}) 0%, 
-              rgba(100,100,100,${objectOpacity * 0.5 * hallucinationIntensity}) 60%,
-              rgba(100,100,100,0) 100%
-            )
-          `);
-        } else {
-          hallucinationElements.push(`
-            radial-gradient(ellipse ${objectSize}px ${objectSize * 1.5}px at ${baseX}% ${baseY}%, 
-              rgba(80,80,80,${objectOpacity * hallucinationIntensity}) 0%, 
-              rgba(80,80,80,${objectOpacity * 0.4 * hallucinationIntensity}) 70%,
-              rgba(80,80,80,0) 100%
-            )
-          `);
-        }
+
+      // Bright flash spots
+      elements.push(`
+        radial-gradient(circle 5px at 30% 40%,
+          rgba(255,255,255,${0.25 * intensity * fadePhase}) 0%,
+          transparent 100%
+        )
+      `);
+
+      // Shadowy figures in periphery
+      const figurePositions = [
+        { x: 8, y: 45 },
+        { x: 92, y: 40 },
+      ];
+      for (let i = 0; i < figurePositions.length; i++) {
+        const pos = figurePositions[i];
+        const figureOpacity = (0.2 + i * 0.05) * intensity * (0.6 + driftPhase * 0.4);
+        // Head
+        elements.push(`
+          radial-gradient(ellipse 8px 10px at ${pos.x}% ${pos.y - 6}%,
+            rgba(20,20,30,${figureOpacity}) 0%,
+            transparent 100%
+          )
+        `);
+        // Body
+        elements.push(`
+          radial-gradient(ellipse 12px 22px at ${pos.x}% ${pos.y + 8}%,
+            rgba(15,15,25,${figureOpacity * 0.8}) 0%,
+            rgba(15,15,25,${figureOpacity * 0.3}) 60%,
+            transparent 100%
+          )
+        `);
       }
-      
+
+      // Small shadowy shapes
+      for (let i = 0; i < 2; i++) {
+        const x = 25 + i * 50;
+        const y = 70 + (i * 10);
+        const shapeOpacity = 0.12 * intensity * driftPhase;
+        elements.push(`
+          radial-gradient(ellipse 15px 8px at ${x}% ${y}%,
+            rgba(30,25,35,${shapeOpacity}) 0%,
+            transparent 100%
+          )
+        `);
+      }
+
+      // Face-like suggestion (pareidolia)
+      const faceOpacity = 0.1 * intensity * fadePhase;
+      elements.push(`
+        radial-gradient(ellipse 15px 18px at 70% 30%,
+          transparent 65%,
+          rgba(60,50,70,${faceOpacity * 0.4}) 85%,
+          transparent 100%
+        )
+      `);
+      // Eyes
+      elements.push(`
+        radial-gradient(ellipse 3px 2px at 67% 27%,
+          rgba(20,20,30,${faceOpacity}) 0%,
+          transparent 100%
+        )
+      `);
+      elements.push(`
+        radial-gradient(ellipse 3px 2px at 73% 27%,
+          rgba(20,20,30,${faceOpacity}) 0%,
+          transparent 100%
+        )
+      `);
+
+      // Vignette to emphasize peripheral hallucinations
+      elements.push(`
+        radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.15) 100%)
+      `);
+
       return {
-        background: hallucinationElements.join(', '),
+        background: elements.join(', '),
         mixBlendMode: 'normal' as const,
-        opacity: Math.min(0.9, hallucinationIntensity)
+        opacity: Math.min(0.85, 0.5 + intensity * 0.35)
       };
     }
     

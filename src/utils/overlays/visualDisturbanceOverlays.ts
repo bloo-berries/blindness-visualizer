@@ -19,24 +19,245 @@ export const createVisualDisturbanceOverlays = (
   const visualSnow = getEffect('visualSnow');
   const hallucinations = getEffect('hallucinations');
 
-  // Visual Floaters
+  // Visual Floaters - Realistic implementation with varied morphologies and movement
   if (visualFloaters?.enabled) {
     const intensity = visualFloaters.intensity;
-    const floaterPattern = `
-      radial-gradient(ellipse 15% 6% at 30% 30%, rgba(0,0,0,${0.6 * intensity}) 0%, rgba(0,0,0,0) 70%),
-      radial-gradient(ellipse 12% 5% at 70% 40%, rgba(0,0,0,${0.5 * intensity}) 0%, rgba(0,0,0,0) 65%),
-      radial-gradient(circle 8% at 50% 70%, rgba(0,0,0,${0.4 * intensity}) 0%, rgba(0,0,0,0) 60%)
-    `;
 
-    createOverlay(
-      'visual-field-overlay-visualFloaters',
-      floaterPattern,
-      'multiply',
-      Math.min(0.8, intensity).toString(),
-      undefined,
-      undefined,
-      'visualFloaters'
-    );
+    // Create or get the main container overlay
+    let overlayElement = document.getElementById('visual-field-overlay-visualFloaters');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualFloaters';
+
+      let container: Element | null = null;
+      for (const selector of CONTAINER_SELECTORS) {
+        if (selector === 'iframe[src*="youtube"]') {
+          const iframe = document.querySelector(selector);
+          if (iframe) {
+            container = iframe.parentElement;
+            break;
+          }
+        } else if (selector === 'canvas') {
+          const canvas = document.querySelector(selector);
+          if (canvas) {
+            container = canvas.parentElement;
+            break;
+          }
+        } else {
+          container = document.querySelector(selector);
+          if (container) {
+            break;
+          }
+        }
+      }
+
+      if (container) {
+        container.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+
+      if (container && container instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(container);
+        if (computedStyle.position === 'static') {
+          container.style.position = 'relative';
+        }
+      }
+    }
+
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualFloaters', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
+    // Generate varied floater morphologies
+    const floaterPatterns: string[] = [];
+    const numFloaters = Math.floor(8 + intensity * 15); // More floaters with higher intensity
+
+    // Seeded pseudo-random for consistent floater positions
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed * 12.9898) * 43758.5453;
+      return x - Math.floor(x);
+    };
+
+    for (let i = 0; i < numFloaters; i++) {
+      const seed = i * 7.31;
+      const x = seededRandom(seed) * 80 + 10; // 10-90% range
+      const y = seededRandom(seed + 1) * 80 + 10;
+      const floaterType = i % 6;
+      const baseOpacity = (0.3 + seededRandom(seed + 2) * 0.4) * intensity;
+
+      if (floaterType === 0) {
+        // Cobweb/string floaters - elongated wavy shapes
+        const width = 3 + seededRandom(seed + 3) * 8;
+        const height = 15 + seededRandom(seed + 4) * 25;
+        floaterPatterns.push(`
+          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
+            rgba(40,35,30,${baseOpacity}) 0%,
+            rgba(40,35,30,${baseOpacity * 0.6}) 40%,
+            rgba(40,35,30,${baseOpacity * 0.3}) 70%,
+            transparent 100%
+          )
+        `);
+        // Add a second part for the cobweb branching effect
+        const branchX = x + (seededRandom(seed + 6) - 0.5) * 10;
+        const branchY = y + (seededRandom(seed + 7) - 0.5) * 15;
+        floaterPatterns.push(`
+          radial-gradient(ellipse ${width * 0.6}% ${height * 0.5}% at ${branchX}% ${branchY}%,
+            rgba(35,30,25,${baseOpacity * 0.7}) 0%,
+            transparent 100%
+          )
+        `);
+      } else if (floaterType === 1) {
+        // Ring/donut floaters - hollow circles
+        const size = 4 + seededRandom(seed + 3) * 6;
+        const innerSize = size * 0.4;
+        floaterPatterns.push(`
+          radial-gradient(circle ${size}% at ${x}% ${y}%,
+            transparent 0%,
+            transparent ${innerSize}%,
+            rgba(50,45,40,${baseOpacity * 0.8}) ${innerSize + 1}%,
+            rgba(50,45,40,${baseOpacity}) ${size * 0.7}%,
+            rgba(50,45,40,${baseOpacity * 0.5}) ${size * 0.85}%,
+            transparent 100%
+          )
+        `);
+      } else if (floaterType === 2) {
+        // Dot floaters - small dark spots
+        const size = 1 + seededRandom(seed + 3) * 3;
+        floaterPatterns.push(`
+          radial-gradient(circle ${size}% at ${x}% ${y}%,
+            rgba(30,25,20,${baseOpacity * 1.2}) 0%,
+            rgba(30,25,20,${baseOpacity * 0.8}) 50%,
+            transparent 100%
+          )
+        `);
+      } else if (floaterType === 3) {
+        // Cloud/blob floaters - larger diffuse shapes
+        const width = 8 + seededRandom(seed + 3) * 12;
+        const height = 6 + seededRandom(seed + 4) * 10;
+        floaterPatterns.push(`
+          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
+            rgba(60,55,50,${baseOpacity * 0.5}) 0%,
+            rgba(60,55,50,${baseOpacity * 0.3}) 40%,
+            rgba(60,55,50,${baseOpacity * 0.1}) 70%,
+            transparent 100%
+          )
+        `);
+      } else if (floaterType === 4) {
+        // Squiggly/worm floaters - multiple connected dots
+        const segments = 3 + Math.floor(seededRandom(seed + 3) * 4);
+        for (let j = 0; j < segments; j++) {
+          const segX = x + (seededRandom(seed + j * 2) - 0.5) * 8;
+          const segY = y + j * 3 - segments * 1.5;
+          const segSize = 1.5 + seededRandom(seed + j) * 1.5;
+          floaterPatterns.push(`
+            radial-gradient(circle ${segSize}% at ${segX}% ${segY}%,
+              rgba(45,40,35,${baseOpacity * 0.9}) 0%,
+              rgba(45,40,35,${baseOpacity * 0.5}) 60%,
+              transparent 100%
+            )
+          `);
+        }
+      } else {
+        // Translucent membrane floaters - very faint large shapes
+        const width = 12 + seededRandom(seed + 3) * 18;
+        const height = 10 + seededRandom(seed + 4) * 15;
+        floaterPatterns.push(`
+          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
+            rgba(80,75,70,${baseOpacity * 0.25}) 0%,
+            rgba(80,75,70,${baseOpacity * 0.15}) 50%,
+            rgba(80,75,70,${baseOpacity * 0.05}) 80%,
+            transparent 100%
+          )
+        `);
+      }
+    }
+
+    // Create main floater layer with animation
+    let floaterLayer = document.getElementById('visual-floaters-main-layer');
+    if (!floaterLayer) {
+      floaterLayer = document.createElement('div');
+      floaterLayer.id = 'visual-floaters-main-layer';
+      overlayElement.appendChild(floaterLayer);
+    }
+
+    Object.assign(floaterLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: floaterPatterns.join(', '),
+      mixBlendMode: 'multiply',
+      opacity: Math.min(0.9, 0.6 + intensity * 0.3).toString(),
+      pointerEvents: 'none',
+      // Slow drifting movement simulating floaters lagging behind eye movement
+      animation: 'floaterDrift 8s ease-in-out infinite alternate'
+    });
+
+    // Add second layer with offset timing for depth effect
+    let floaterLayer2 = document.getElementById('visual-floaters-depth-layer');
+    if (!floaterLayer2) {
+      floaterLayer2 = document.createElement('div');
+      floaterLayer2.id = 'visual-floaters-depth-layer';
+      overlayElement.appendChild(floaterLayer2);
+    }
+
+    // Generate additional floaters for depth layer (fewer, more diffuse)
+    const depthPatterns: string[] = [];
+    const numDepthFloaters = Math.floor(4 + intensity * 8);
+
+    for (let i = 0; i < numDepthFloaters; i++) {
+      const seed = (i + 100) * 5.17;
+      const x = seededRandom(seed) * 70 + 15;
+      const y = seededRandom(seed + 1) * 70 + 15;
+      const width = 6 + seededRandom(seed + 2) * 10;
+      const height = 5 + seededRandom(seed + 3) * 8;
+      const opacity = (0.15 + seededRandom(seed + 4) * 0.2) * intensity;
+
+      depthPatterns.push(`
+        radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
+          rgba(70,65,60,${opacity}) 0%,
+          rgba(70,65,60,${opacity * 0.4}) 60%,
+          transparent 100%
+        )
+      `);
+    }
+
+    Object.assign(floaterLayer2.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: depthPatterns.join(', '),
+      mixBlendMode: 'multiply',
+      opacity: Math.min(0.7, 0.4 + intensity * 0.3).toString(),
+      pointerEvents: 'none',
+      // Different timing creates parallax depth effect
+      animation: 'floaterDrift 12s ease-in-out infinite alternate-reverse'
+    });
+
+    // Inject CSS animation if not already present
+    if (!document.getElementById('floater-animations')) {
+      const style = document.createElement('style');
+      style.id = 'floater-animations';
+      style.textContent = `
+        @keyframes floaterDrift {
+          0% { transform: translate(0, 0); }
+          25% { transform: translate(-2px, 3px); }
+          50% { transform: translate(1px, -2px); }
+          75% { transform: translate(3px, 1px); }
+          100% { transform: translate(-1px, -3px); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    overlayElement.style.opacity = Math.min(0.95, 0.7 + intensity * 0.25).toString();
   }
 
   // Visual Snow Syndrome - persistent static overlay like TV noise or shaken snow globe
@@ -581,93 +802,265 @@ export const createVisualDisturbanceOverlays = (
     overlayElement.style.opacity = Math.min(0.95, 0.6 + intensity * 0.35).toString();
   }
 
-  // Visual Aura
+  // Visual Aura - Improved with zigzag fortification pattern and proper scintillation
   if (visualAura?.enabled) {
     const intensity = visualAura.intensity;
-    const scotomaSize = 25;
+
+    // Create or get the main container overlay for aura
+    let overlayElement = document.getElementById('visual-field-overlay-visualAura');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualAura';
+
+      let container: Element | null = null;
+      for (const selector of CONTAINER_SELECTORS) {
+        if (selector === 'iframe[src*="youtube"]') {
+          const iframe = document.querySelector(selector);
+          if (iframe) {
+            container = iframe.parentElement;
+            break;
+          }
+        } else if (selector === 'canvas') {
+          const canvas = document.querySelector(selector);
+          if (canvas) {
+            container = canvas.parentElement;
+            break;
+          }
+        } else {
+          container = document.querySelector(selector);
+          if (container) {
+            break;
+          }
+        }
+      }
+
+      if (container) {
+        container.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+
+      if (container && container instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(container);
+        if (computedStyle.position === 'static') {
+          container.style.position = 'relative';
+        }
+      }
+    }
+
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualAura', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
     const scotomaCenterX = 50;
     const scotomaCenterY = 50;
-    
-    const cShapeScotoma = `
-      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(0,0,0,${0.95 * intensity}) 0%, 
-        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
-        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
-        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
-        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
-        rgba(0,0,0,0) ${scotomaSize + 8}%
-      )
-    `;
-    
-    const scintillatingEdges = `
-      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(255,0,0,${0.6 * intensity}) 0deg,
-        rgba(255,165,0,${0.7 * intensity}) 30deg,
-        rgba(255,255,0,${0.5 * intensity}) 60deg,
-        rgba(0,255,0,${0.6 * intensity}) 90deg,
-        rgba(0,255,255,${0.4 * intensity}) 120deg,
-        rgba(0,0,255,${0.5 * intensity}) 150deg,
-        rgba(128,0,128,${0.6 * intensity}) 180deg,
-        rgba(255,0,255,${0.4 * intensity}) 210deg,
-        rgba(255,255,255,${0.7 * intensity}) 240deg,
-        rgba(255,192,203,${0.3 * intensity}) 270deg,
-        rgba(255,255,0,${0.5 * intensity}) 300deg,
-        rgba(255,165,0,${0.6 * intensity}) 330deg,
-        rgba(255,0,0,${0.6 * intensity}) 360deg
-      )
-    `;
-    
-    createOverlay(
-      'visual-field-overlay-visualAura',
-      `${cShapeScotoma}, ${scintillatingEdges}`,
-      'overlay',
-      Math.min(0.9, intensity).toString(),
-      undefined,
-      undefined,
-      'visualAura'
-    );
+    const scotomaSize = 18 + intensity * 8;
+    const auraRingStart = scotomaSize + 3;
+    const auraRingEnd = scotomaSize + 12 + intensity * 8;
+
+    // Central scotoma (dark blind spot) - this is the actual visual loss
+    let scotomaLayer = document.getElementById('aura-scotoma-layer');
+    if (!scotomaLayer) {
+      scotomaLayer = document.createElement('div');
+      scotomaLayer.id = 'aura-scotoma-layer';
+      overlayElement.appendChild(scotomaLayer);
+    }
+
+    const scotomaGradient = `radial-gradient(ellipse 85% 70% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      rgba(40,35,45,${0.85 * intensity}) 0%,
+      rgba(40,35,45,${0.8 * intensity}) ${scotomaSize - 5}%,
+      rgba(50,45,55,${0.5 * intensity}) ${scotomaSize}%,
+      rgba(60,55,65,${0.2 * intensity}) ${scotomaSize + 2}%,
+      transparent ${scotomaSize + 5}%
+    )`;
+
+    Object.assign(scotomaLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: scotomaGradient,
+      mixBlendMode: 'multiply',
+      opacity: Math.min(0.9, intensity).toString(),
+      pointerEvents: 'none'
+    });
+
+    // Zigzag fortification pattern layer (the characteristic "fortification spectra")
+    let zigzagLayer = document.getElementById('aura-zigzag-layer');
+    if (!zigzagLayer) {
+      zigzagLayer = document.createElement('div');
+      zigzagLayer.id = 'aura-zigzag-layer';
+      overlayElement.appendChild(zigzagLayer);
+    }
+
+    // Create zigzag pattern using repeating gradients
+    // Real aura has angular, castle-wall-like patterns
+    const zigzagPatterns: string[] = [];
+    const numSegments = 24; // Number of zigzag segments around the ring
+
+    for (let i = 0; i < numSegments; i++) {
+      const angle = (i / numSegments) * 360;
+      const nextAngle = ((i + 1) / numSegments) * 360;
+
+      // Alternate colors - muted/pale tones typical of real auras
+      const colorIndex = i % 4;
+      let color: string;
+      const baseOpacity = (0.4 + (i % 3) * 0.15) * intensity;
+
+      if (colorIndex === 0) {
+        color = `rgba(200,180,220,${baseOpacity})`; // Pale lavender
+      } else if (colorIndex === 1) {
+        color = `rgba(180,200,220,${baseOpacity})`; // Pale blue
+      } else if (colorIndex === 2) {
+        color = `rgba(220,220,180,${baseOpacity})`; // Pale yellow
+      } else {
+        color = `rgba(255,255,255,${baseOpacity * 1.2})`; // Bright white (scintillating)
+      }
+
+      // Create angular segments for zigzag effect
+      zigzagPatterns.push(`
+        conic-gradient(from ${angle}deg at ${scotomaCenterX}% ${scotomaCenterY}%,
+          transparent 0deg,
+          ${color} ${(nextAngle - angle) * 0.3}deg,
+          transparent ${(nextAngle - angle) * 0.6}deg,
+          ${color} ${nextAngle - angle}deg,
+          transparent ${nextAngle - angle}deg
+        )
+      `);
+    }
+
+    // Ring mask to constrain the zigzag to the aura ring area
+    const ringMask = `radial-gradient(ellipse 85% 70% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      transparent 0%,
+      transparent ${auraRingStart - 2}%,
+      white ${auraRingStart}%,
+      white ${auraRingEnd}%,
+      transparent ${auraRingEnd + 2}%
+    )`;
+
+    Object.assign(zigzagLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: zigzagPatterns.slice(0, 8).join(', '),
+      maskImage: ringMask,
+      WebkitMaskImage: ringMask,
+      mixBlendMode: 'screen',
+      opacity: Math.min(0.8, intensity * 0.9).toString(),
+      pointerEvents: 'none',
+      // Scintillation animation (flickering at ~2-3 Hz)
+      animation: 'auraScintillate 0.4s steps(2) infinite'
+    });
+
+    // Bright edge layer (the characteristic bright flickering edge)
+    let brightEdgeLayer = document.getElementById('aura-bright-edge-layer');
+    if (!brightEdgeLayer) {
+      brightEdgeLayer = document.createElement('div');
+      brightEdgeLayer.id = 'aura-bright-edge-layer';
+      overlayElement.appendChild(brightEdgeLayer);
+    }
+
+    const brightEdge = `radial-gradient(ellipse 85% 70% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      transparent 0%,
+      transparent ${auraRingStart - 1}%,
+      rgba(255,255,255,${0.6 * intensity}) ${auraRingStart}%,
+      rgba(255,255,240,${0.4 * intensity}) ${auraRingStart + 2}%,
+      rgba(240,240,255,${0.3 * intensity}) ${(auraRingStart + auraRingEnd) / 2}%,
+      rgba(255,255,255,${0.5 * intensity}) ${auraRingEnd - 2}%,
+      rgba(255,255,255,${0.3 * intensity}) ${auraRingEnd}%,
+      transparent ${auraRingEnd + 2}%
+    )`;
+
+    Object.assign(brightEdgeLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: brightEdge,
+      mixBlendMode: 'screen',
+      opacity: Math.min(0.85, intensity).toString(),
+      pointerEvents: 'none',
+      animation: 'auraFlicker 0.35s ease-in-out infinite alternate'
+    });
+
+    // Inject CSS animations for scintillation if not already present
+    if (!document.getElementById('aura-animations')) {
+      const style = document.createElement('style');
+      style.id = 'aura-animations';
+      style.textContent = `
+        @keyframes auraScintillate {
+          0% { opacity: 0.7; transform: rotate(0deg); }
+          50% { opacity: 0.9; transform: rotate(3deg); }
+          100% { opacity: 0.7; transform: rotate(0deg); }
+        }
+        @keyframes auraFlicker {
+          0% { opacity: 0.6; filter: brightness(1); }
+          50% { opacity: 0.9; filter: brightness(1.3); }
+          100% { opacity: 0.6; filter: brightness(1); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    overlayElement.style.opacity = Math.min(0.95, 0.7 + intensity * 0.25).toString();
   }
 
-  // Visual Aura Left
+  // Visual Aura Left - Improved with zigzag pattern
   if (visualAuraLeft?.enabled) {
     const intensity = visualAuraLeft.intensity;
-    const scotomaSize = 20;
     const scotomaCenterX = 25;
     const scotomaCenterY = 50;
-    
-    const cShapeScotoma = `
-      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(0,0,0,${0.95 * intensity}) 0%, 
-        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
-        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
-        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
-        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
-        rgba(0,0,0,0) ${scotomaSize + 8}%
-      )
-    `;
-    
-    const scintillatingEdges = `
-      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(255,0,0,${0.6 * intensity}) 0deg,
-        rgba(255,165,0,${0.7 * intensity}) 30deg,
-        rgba(255,255,0,${0.5 * intensity}) 60deg,
-        rgba(0,255,0,${0.6 * intensity}) 90deg,
-        rgba(0,255,255,${0.4 * intensity}) 120deg,
-        rgba(0,0,255,${0.5 * intensity}) 150deg,
-        rgba(128,0,128,${0.6 * intensity}) 180deg,
-        rgba(255,0,255,${0.4 * intensity}) 210deg,
-        rgba(255,255,255,${0.7 * intensity}) 240deg,
-        rgba(255,192,203,${0.3 * intensity}) 270deg,
-        rgba(255,255,0,${0.5 * intensity}) 300deg,
-        rgba(255,165,0,${0.6 * intensity}) 330deg,
-        rgba(255,0,0,${0.6 * intensity}) 360deg
-      )
-    `;
-    
+    const scotomaSize = 15 + intensity * 6;
+    const auraRingStart = scotomaSize + 2;
+    const auraRingEnd = scotomaSize + 10 + intensity * 6;
+
+    // Scotoma with soft gray edges
+    const scotomaGradient = `radial-gradient(ellipse 70% 55% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      rgba(40,35,45,${0.8 * intensity}) 0%,
+      rgba(50,45,55,${0.5 * intensity}) ${scotomaSize}%,
+      transparent ${scotomaSize + 4}%
+    )`;
+
+    // Zigzag fortification ring with pale colors
+    const zigzagSegments: string[] = [];
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * 360;
+      const colorIndex = i % 4;
+      const baseOpacity = (0.35 + (i % 3) * 0.12) * intensity;
+      let color: string;
+
+      if (colorIndex === 0) color = `rgba(200,180,220,${baseOpacity})`;
+      else if (colorIndex === 1) color = `rgba(180,200,220,${baseOpacity})`;
+      else if (colorIndex === 2) color = `rgba(220,220,180,${baseOpacity})`;
+      else color = `rgba(255,255,255,${baseOpacity * 1.1})`;
+
+      zigzagSegments.push(`
+        conic-gradient(from ${angle}deg at ${scotomaCenterX}% ${scotomaCenterY}%,
+          transparent 0deg, ${color} 8deg, transparent 16deg, ${color} 22.5deg, transparent 22.5deg
+        )
+      `);
+    }
+
+    // Bright edge
+    const brightEdge = `radial-gradient(ellipse 70% 55% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      transparent ${auraRingStart - 1}%,
+      rgba(255,255,255,${0.5 * intensity}) ${auraRingStart}%,
+      rgba(240,240,255,${0.3 * intensity}) ${(auraRingStart + auraRingEnd) / 2}%,
+      rgba(255,255,255,${0.4 * intensity}) ${auraRingEnd}%,
+      transparent ${auraRingEnd + 2}%
+    )`;
+
     createOverlay(
       'visual-field-overlay-visualAuraLeft',
-      `${cShapeScotoma}, ${scintillatingEdges}`,
-      'overlay',
+      `${scotomaGradient}, ${brightEdge}, ${zigzagSegments.slice(0, 6).join(', ')}`,
+      'screen',
       Math.min(0.9, intensity).toString(),
       undefined,
       undefined,
@@ -675,46 +1068,55 @@ export const createVisualDisturbanceOverlays = (
     );
   }
 
-  // Visual Aura Right
+  // Visual Aura Right - Improved with zigzag pattern
   if (visualAuraRight?.enabled) {
     const intensity = visualAuraRight.intensity;
-    const scotomaSize = 20;
     const scotomaCenterX = 75;
     const scotomaCenterY = 50;
-    
-    const cShapeScotoma = `
-      radial-gradient(ellipse 80% 60% at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(0,0,0,${0.95 * intensity}) 0%, 
-        rgba(0,0,0,${0.95 * intensity}) ${scotomaSize - 5}%,
-        rgba(0,0,0,${0.7 * intensity}) ${scotomaSize - 2}%,
-        rgba(0,0,0,${0.4 * intensity}) ${scotomaSize}%,
-        rgba(0,0,0,${0.1 * intensity}) ${scotomaSize + 3}%,
-        rgba(0,0,0,0) ${scotomaSize + 8}%
-      )
-    `;
-    
-    const scintillatingEdges = `
-      conic-gradient(from 45deg at ${scotomaCenterX}% ${scotomaCenterY}%, 
-        rgba(255,0,0,${0.6 * intensity}) 0deg,
-        rgba(255,165,0,${0.7 * intensity}) 30deg,
-        rgba(255,255,0,${0.5 * intensity}) 60deg,
-        rgba(0,255,0,${0.6 * intensity}) 90deg,
-        rgba(0,255,255,${0.4 * intensity}) 120deg,
-        rgba(0,0,255,${0.5 * intensity}) 150deg,
-        rgba(128,0,128,${0.6 * intensity}) 180deg,
-        rgba(255,0,255,${0.4 * intensity}) 210deg,
-        rgba(255,255,255,${0.7 * intensity}) 240deg,
-        rgba(255,192,203,${0.3 * intensity}) 270deg,
-        rgba(255,255,0,${0.5 * intensity}) 300deg,
-        rgba(255,165,0,${0.6 * intensity}) 330deg,
-        rgba(255,0,0,${0.6 * intensity}) 360deg
-      )
-    `;
-    
+    const scotomaSize = 15 + intensity * 6;
+    const auraRingStart = scotomaSize + 2;
+    const auraRingEnd = scotomaSize + 10 + intensity * 6;
+
+    // Scotoma with soft gray edges
+    const scotomaGradient = `radial-gradient(ellipse 70% 55% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      rgba(40,35,45,${0.8 * intensity}) 0%,
+      rgba(50,45,55,${0.5 * intensity}) ${scotomaSize}%,
+      transparent ${scotomaSize + 4}%
+    )`;
+
+    // Zigzag fortification ring with pale colors
+    const zigzagSegments: string[] = [];
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * 360;
+      const colorIndex = i % 4;
+      const baseOpacity = (0.35 + (i % 3) * 0.12) * intensity;
+      let color: string;
+
+      if (colorIndex === 0) color = `rgba(200,180,220,${baseOpacity})`;
+      else if (colorIndex === 1) color = `rgba(180,200,220,${baseOpacity})`;
+      else if (colorIndex === 2) color = `rgba(220,220,180,${baseOpacity})`;
+      else color = `rgba(255,255,255,${baseOpacity * 1.1})`;
+
+      zigzagSegments.push(`
+        conic-gradient(from ${angle}deg at ${scotomaCenterX}% ${scotomaCenterY}%,
+          transparent 0deg, ${color} 8deg, transparent 16deg, ${color} 22.5deg, transparent 22.5deg
+        )
+      `);
+    }
+
+    // Bright edge
+    const brightEdge = `radial-gradient(ellipse 70% 55% at ${scotomaCenterX}% ${scotomaCenterY}%,
+      transparent ${auraRingStart - 1}%,
+      rgba(255,255,255,${0.5 * intensity}) ${auraRingStart}%,
+      rgba(240,240,255,${0.3 * intensity}) ${(auraRingStart + auraRingEnd) / 2}%,
+      rgba(255,255,255,${0.4 * intensity}) ${auraRingEnd}%,
+      transparent ${auraRingEnd + 2}%
+    )`;
+
     createOverlay(
       'visual-field-overlay-visualAuraRight',
-      `${cShapeScotoma}, ${scintillatingEdges}`,
-      'overlay',
+      `${scotomaGradient}, ${brightEdge}, ${zigzagSegments.slice(0, 6).join(', ')}`,
+      'screen',
       Math.min(0.9, intensity).toString(),
       undefined,
       undefined,

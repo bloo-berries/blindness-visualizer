@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Box,
   Typography,
@@ -13,9 +13,11 @@ import {
   Chip,
   FormControlLabel,
   Tooltip,
-  IconButton
+  IconButton,
+  TextField,
+  InputAdornment
 } from '@mui/material';
-import { Info, ExpandMore } from '@mui/icons-material';
+import { Info, ExpandMore, Search, Clear } from '@mui/icons-material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
@@ -46,18 +48,90 @@ export const EffectList: React.FC<EffectListProps> = ({
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange
 }) => {
-  // Group effects by category
-  const effectsByCategory = Object.entries(conditionCategories).map(([category, conditionTypes]) => {
-    const categoryEffects = effects.filter(effect => 
-      conditionTypes.includes(effect.id as ConditionType)
+  // Search state
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Track which accordion is expanded (null means none, or category name)
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  // Handle accordion expand/collapse - only one open at a time
+  const handleAccordionChange = (category: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    setExpandedCategory(isExpanded ? category : null);
+  };
+
+  // Filter effects based on search query
+  const filteredEffects = useMemo(() => {
+    if (!searchQuery.trim()) return effects;
+    const query = searchQuery.toLowerCase().trim();
+    return effects.filter(effect =>
+      effect.name.toLowerCase().includes(query) ||
+      effect.description.toLowerCase().includes(query)
     );
-    return { category, effects: categoryEffects };
-  }).filter(({ effects }) => effects.length > 0);
+  }, [effects, searchQuery]);
+
+  // Group effects by category (using filtered effects when searching)
+  const effectsByCategory = useMemo(() => {
+    const sourceEffects = searchQuery.trim() ? filteredEffects : effects;
+    return Object.entries(conditionCategories).map(([category, conditionTypes]) => {
+      const categoryEffects = sourceEffects.filter(effect =>
+        conditionTypes.includes(effect.id as ConditionType)
+      );
+      return { category, effects: categoryEffects };
+    }).filter(({ effects }) => effects.length > 0);
+  }, [effects, filteredEffects, searchQuery]);
+
+  // Helper to highlight matching text
+  const highlightMatch = (text: string, query: string) => {
+    if (!query.trim()) return text;
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, i) =>
+      regex.test(part) ? (
+        <span key={i} style={{ backgroundColor: '#fff3cd', fontWeight: 600 }}>{part}</span>
+      ) : part
+    );
+  };
 
   return (
     <Box sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '350px', md: '500px' } }}>
+      {/* Search Input */}
+      <TextField
+        fullWidth
+        size="small"
+        placeholder="Search conditions..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        sx={{ mb: 2 }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search color="action" />
+            </InputAdornment>
+          ),
+          endAdornment: searchQuery && (
+            <InputAdornment position="end">
+              <IconButton
+                size="small"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                <Clear fontSize="small" />
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
+        aria-label="Search vision conditions"
+      />
+
+      {/* Search Results Count */}
+      {searchQuery.trim() && (
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          {filteredEffects.length} result{filteredEffects.length !== 1 ? 's' : ''} found
+        </Typography>
+      )}
+
       {enabledEffectsCount > 0 && (
-        <Chip 
+        <Chip
           label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
           color="primary"
           sx={{ mb: 2 }}
@@ -65,8 +139,12 @@ export const EffectList: React.FC<EffectListProps> = ({
       )}
       
       {effectsByCategory.map(({ category, effects }) => (
-        <Accordion key={category}>
-          <AccordionSummary 
+        <Accordion
+          key={category}
+          expanded={searchQuery.trim() ? true : expandedCategory === category}
+          onChange={handleAccordionChange(category)}
+        >
+          <AccordionSummary
             expandIcon={<ExpandMore />}
             aria-controls={`${category}-content`}
             id={`${category}-header`}
@@ -83,12 +161,16 @@ export const EffectList: React.FC<EffectListProps> = ({
             <List dense>
               {effects.map(effect => (
                 <React.Fragment key={effect.id}>
-                  <ListItem 
-                    button 
-                    onClick={() => onEffectClick(effect)}
+                  <ListItem
+                    button
+                    onClick={(e) => {
+                      // Toggle the effect when clicking anywhere on the row
+                      onToggleAndSelect(effect, e);
+                    }}
                     selected={highlightedEffect?.id === effect.id}
-                    sx={{ 
+                    sx={{
                       borderRadius: 1,
+                      cursor: 'pointer',
                       mb: 1,
                       bgcolor: effect.enabled ? 'rgba(33, 150, 243, 0.08)' : 'transparent',
                       '&.Mui-selected': {
@@ -118,8 +200,8 @@ export const EffectList: React.FC<EffectListProps> = ({
                     >
                       {effect.description}
                     </Box>
-                    <ListItemText 
-                      primary={effect.name}
+                    <ListItemText
+                      primary={highlightMatch(effect.name, searchQuery)}
                       secondary={
                         <>
                           {effect.enabled && (

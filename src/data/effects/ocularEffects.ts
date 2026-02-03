@@ -20,6 +20,13 @@ export const ocularEffects: VisualEffect[] = [
     description: 'Small central area of light scatter behind the pupil, causing pronounced glare sensitivity and loss of contrast in bright lighting. Creates a bright halo or cloudy patch that grows with brightness intensity, disproportionately affecting near and backlit vision. Peripheral vision may remain clearer.'
   },
   {
+    id: 'corticalCataract',
+    name: 'Cortical Cataract',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Wedge-shaped opacities (spokes) that start in the peripheral lens cortex and extend inward toward the center. Creates radial streaking patterns, glare from light scatter through the spoke-like opacities, and difficulty with depth perception. Often affects both near and distance vision as the spokes progress centrally.'
+  },
+  {
     id: 'glaucoma',
     name: 'Glaucoma',
     enabled: false,

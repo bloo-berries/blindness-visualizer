@@ -663,20 +663,22 @@ const generateCataractsFilter = (effects: VisualEffect[]): string => {
  * Generates CSS filters for new ocular diseases from specialty.vision
  */
 const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
-  const ocularEffects = effects.filter(e => 
-    (e.id === 'keratoconus' || e.id === 'dryEye' || e.id === 'vitreousHemorrhage' || 
-     e.id === 'retinalDetachment' || e.id === 'posteriorSubcapsularCataract') && e.enabled
+  const ocularEffects = effects.filter(e =>
+    (e.id === 'keratoconus' || e.id === 'dryEye' || e.id === 'vitreousHemorrhage' ||
+     e.id === 'retinalDetachment' || e.id === 'posteriorSubcapsularCataract' ||
+     e.id === 'corticalCataract') && e.enabled
   );
-  
+
   if (ocularEffects.length === 0) return '';
-  
+
   const filters: string[] = [];
-  
+
   const keratoconus = effects.find(e => e.id === 'keratoconus' && e.enabled);
   const dryEye = effects.find(e => e.id === 'dryEye' && e.enabled);
   const vitreousHemorrhage = effects.find(e => e.id === 'vitreousHemorrhage' && e.enabled);
   const retinalDetachment = effects.find(e => e.id === 'retinalDetachment' && e.enabled);
   const posteriorSubcapsularCataract = effects.find(e => e.id === 'posteriorSubcapsularCataract' && e.enabled);
+  const corticalCataract = effects.find(e => e.id === 'corticalCataract' && e.enabled);
   
   if (keratoconus) {
     // Irregular astigmatism and distortion
@@ -729,7 +731,19 @@ const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
     // Add slight desaturation for glare effect
     filters.push(`saturate(${100 - posteriorSubcapsularCataract.intensity * 20}%)`);
   }
-  
+
+  if (corticalCataract) {
+    // Cortical cataract - wedge-shaped opacities cause light scatter and glare
+    // Less yellowing than nuclear, more radial streaking/glare
+    const intensity = corticalCataract.intensity;
+    filters.push(`brightness(${100 + intensity * 15}%)`); // Light scatter
+    filters.push(`contrast(${100 - intensity * 25}%)`); // Contrast reduction
+    filters.push(`blur(${intensity * 2}px)`); // Mild blur from spoke opacities
+    filters.push(`saturate(${100 - intensity * 15}%)`); // Slight desaturation
+    // Less sepia than nuclear cataract (cortical doesn't yellow as much)
+    filters.push(`sepia(${intensity * 20}%)`);
+  }
+
   return filters.join(' ');
 };
 

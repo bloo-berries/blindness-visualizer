@@ -860,14 +860,6 @@ export const personData: Record<string, PersonData> = {
     simulation: "fred-rogers-deuteranopia",
     description: "Fred Rogers, best known as Mister Rogers from the beloved children's television program 'Mister Rogers' Neighborhood,' lived with deuteranopia, a form of red-green color deficiency. Deuteranopia is a more severe lack of functional green cones, resulting in complete green-blindness. Despite this color vision deficiency, Rogers created one of the most influential and beloved children's programs in television history, teaching generations of children about kindness, empathy, and understanding. His gentle approach and commitment to children's emotional well-being made him an icon of children's television. Learn more at misterrogers.org."
   },
-  billGates: {
-    name: "Bill Gates",
-    condition: "Deuteranomaly (Red-Green Color Deficiency)",
-    years: "Born 1955",
-    onset: "From birth",
-    simulation: "bill-gates-deuteranomaly",
-    description: "Bill Gates, co-founder of Microsoft and philanthropist, has deuteranomaly, a type of red-green color deficiency. Deuteranomaly is the most common form of color vision deficiency, affecting reduced sensitivity to green light. Despite this condition, Gates built one of the world's largest technology companies and has become one of the most influential figures in the tech industry. Through the Bill & Melinda Gates Foundation, he has also become one of the world's leading philanthropists, focusing on global health, education, and poverty reduction. Learn more at en.wikipedia.org/wiki/Bill_Gates."
-  },
   johnKay: {
     name: "John Kay",
     condition: "Congenital Achromatopsia (Total Color Blindness)",
@@ -887,7 +879,7 @@ export const personData: Record<string, PersonData> = {
 };
 
 export const categories = [
-  { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "marilee", "fredRogers", "billGates"] },
+  { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "marilee", "fredRogers"] },
   { name: "Athletes", people: ["erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "tofiri", "ross", "trischa"] },
   { name: "Scientists & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler", "wanda", "abraham"] },
   { name: "Musicians", people: ["ray", "stevie", "bocelli", "casey", "bono", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "rachael", "johnKay", "jonnyGreenwood"] },

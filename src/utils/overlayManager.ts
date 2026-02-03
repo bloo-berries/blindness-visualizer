@@ -5,6 +5,7 @@ import { createVisualFieldLossOverlays } from './overlays/visualFieldLossOverlay
 import { createVisualDisturbanceOverlays } from './overlays/visualDisturbanceOverlays';
 import { createRetinalDiseaseOverlays } from './overlays/retinalDiseaseOverlays';
 import { createFamousPeopleOverlays } from './overlays/famousPeopleOverlays';
+import { createOcularOverlays } from './overlays/ocularOverlays';
 import { createOverlay as createOverlayHelper, createOverlayWithContainer as createOverlayWithContainerHelper } from './overlays/overlayHelpers';
 
 /**
@@ -100,7 +101,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   
   // Famous People Overlays
   createFamousPeopleOverlays(effectMap, container);
-  
+
+  // Ocular Condition Overlays (cataracts, etc.)
+  createOcularOverlays(effectMap);
+
   // Get remaining effects for other categories (not handled by category modules)
   const [
     keratoconus, vitreousHemorrhage

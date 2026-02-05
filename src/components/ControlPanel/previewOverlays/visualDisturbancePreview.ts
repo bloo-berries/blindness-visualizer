@@ -7,7 +7,8 @@ import {
   getEpisodeTiming,
   selectEpisodeConfig,
   generateEpisodePatterns,
-  createVisionLossGradient
+  createVisionLossGradient,
+  getHallucinationsStartTime
 } from '../../../utils/overlays/cbsHallucinationPatterns';
 
 export const generateVisualDisturbancePreviewStyle = (
@@ -117,7 +118,9 @@ export const generateVisualDisturbancePreviewStyle = (
       // Uses shared pattern generators for sync with main visualizer
 
       // Episode system - patterns change every 8-15 seconds with smooth transitions
-      const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity);
+      // Using shared start time ensures preview and main visualizer stay in sync
+      const startTime = getHallucinationsStartTime();
+      const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity, startTime);
       const episodeConfig = selectEpisodeConfig(episodeSeed, intensity);
 
       // Animation phases for subtle movement

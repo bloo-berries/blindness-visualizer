@@ -7,7 +7,9 @@ import {
   selectEpisodeConfig,
   generateEpisodePatterns,
   createVisionLossGradient,
-  CBS_KEYFRAME_ANIMATIONS
+  CBS_KEYFRAME_ANIMATIONS,
+  getHallucinationsStartTime,
+  resetHallucinationsStartTime
 } from './cbsHallucinationPatterns';
 
 /**
@@ -839,6 +841,8 @@ export const createVisualDisturbanceOverlays = (
   if (hallucinations?.enabled) {
     const intensity = hallucinations.intensity;
     const now = Date.now();
+    // Get or initialize start time - ensures effect starts at beginning of episode
+    const startTime = getHallucinationsStartTime();
 
     // Create or get the main container overlay
     let overlayElement = document.getElementById('visual-field-overlay-hallucinations');
@@ -870,7 +874,8 @@ export const createVisualDisturbanceOverlays = (
     });
 
     // Episode System - patterns change every 8-15 seconds with smooth transitions
-    const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity);
+    // Using startTime ensures effect begins at optimal point with full visibility
+    const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity, startTime);
     const episodeConfig = selectEpisodeConfig(episodeSeed, intensity);
 
     // Animation phases for subtle movement
@@ -986,6 +991,9 @@ export const createVisualDisturbanceOverlays = (
     });
 
     overlayElement.style.opacity = '1';
+  } else {
+    // Reset start time when hallucinations are disabled so next enable starts fresh
+    resetHallucinationsStartTime();
   }
 
   // Visual Aura - Improved with zigzag fortification pattern and proper scintillation

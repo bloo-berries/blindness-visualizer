@@ -34,8 +34,14 @@ export function seededRandom(seed: number): number {
 /**
  * Calculate episode timing and opacity based on current time
  * Episodes change every 8-15 seconds with smooth fade transitions
+ *
+ * @param now - Current timestamp (Date.now())
+ * @param intensity - Effect intensity (0-1)
+ * @param startTime - Optional start time to offset episodes. When provided,
+ *                    ensures the effect starts at the beginning of an episode
+ *                    with full visibility.
  */
-export function getEpisodeTiming(now: number, intensity: number): {
+export function getEpisodeTiming(now: number, intensity: number, startTime?: number): {
   episodeSeed: number;
   episodeOpacity: number;
   episodeProgress: number;
@@ -46,8 +52,15 @@ export function getEpisodeTiming(now: number, intensity: number): {
   const durationSeed = Math.floor(intensity * 1000);
   const episodeDuration = baseDuration + seededRandom(durationSeed) * variationRange;
 
-  const episodeSeed = Math.floor(now / episodeDuration);
-  const episodeProgress = (now % episodeDuration) / episodeDuration;
+  // If startTime is provided, calculate time relative to it
+  // This ensures the effect starts at the beginning of an episode
+  const effectiveTime = startTime !== undefined ? (now - startTime) : now;
+
+  // Add a small offset (10% into episode) to skip the fade-in and show patterns immediately
+  const offsetTime = startTime !== undefined ? effectiveTime + episodeDuration * 0.1 : effectiveTime;
+
+  const episodeSeed = Math.floor(offsetTime / episodeDuration);
+  const episodeProgress = (offsetTime % episodeDuration) / episodeDuration;
 
   // Smooth fade transitions (20% fade in, 20% fade out)
   const fadeIn = Math.min(1, episodeProgress * 5);
@@ -55,6 +68,27 @@ export function getEpisodeTiming(now: number, intensity: number): {
   const episodeOpacity = Math.min(fadeIn, fadeOut);
 
   return { episodeSeed, episodeOpacity, episodeProgress };
+}
+
+// Store the start time for hallucinations effect to ensure consistent episode timing
+let hallucinationsStartTime: number | null = null;
+
+/**
+ * Get or initialize the hallucinations start time
+ * Called when the effect is first enabled to ensure episodes start fresh
+ */
+export function getHallucinationsStartTime(): number {
+  if (hallucinationsStartTime === null) {
+    hallucinationsStartTime = Date.now();
+  }
+  return hallucinationsStartTime;
+}
+
+/**
+ * Reset the hallucinations start time (called when effect is disabled)
+ */
+export function resetHallucinationsStartTime(): void {
+  hallucinationsStartTime = null;
 }
 
 /**

@@ -208,9 +208,11 @@ export const EffectList: React.FC<EffectListProps> = ({
                             <Slider
                               size="small"
                               value={effect.intensity * 100}
-                              onChange={(_, value) => 
+                              onChange={(_, value) =>
                                 onIntensityChange(effect.id, (value as number) / 100)
                               }
+                              onClick={(e) => e.stopPropagation()}
+                              onMouseDown={(e) => e.stopPropagation()}
                               valueLabelDisplay="auto"
                               valueLabelFormat={value => `${value}%`}
                               aria-label={`Adjust ${effect.name} intensity`}
@@ -227,9 +229,11 @@ export const EffectList: React.FC<EffectListProps> = ({
                               <Slider
                                 size="small"
                                 value={diplopiaSeparation * 100}
-                                onChange={(_, value) => 
+                                onChange={(_, value) =>
                                   onDiplopiaSeparationChange?.((value as number) / 100)
                                 }
+                                onClick={(e) => e.stopPropagation()}
+                                onMouseDown={(e) => e.stopPropagation()}
                                 valueLabelDisplay="auto"
                                 valueLabelFormat={value => `${value}%`}
                                 aria-label="Adjust diplopia separation"
@@ -241,9 +245,11 @@ export const EffectList: React.FC<EffectListProps> = ({
                               <Slider
                                 size="small"
                                 value={diplopiaDirection * 100}
-                                onChange={(_, value) => 
+                                onChange={(_, value) =>
                                   onDiplopiaDirectionChange?.((value as number) / 100)
                                 }
+                                onClick={(e) => e.stopPropagation()}
+                                onMouseDown={(e) => e.stopPropagation()}
                                 valueLabelDisplay="auto"
                                 valueLabelFormat={value => {
                                   const direction = (value as number) / 100;

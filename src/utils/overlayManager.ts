@@ -92,10 +92,10 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   // Use category-based overlay generators for better organization
   // Visual Field Loss Overlays
   createVisualFieldLossOverlays(effectMap, container);
-  
+
   // Visual Disturbance Overlays
-  createVisualDisturbanceOverlays(effectMap);
-  
+  createVisualDisturbanceOverlays(effectMap, container);
+
   // Retinal Disease Overlays
   createRetinalDiseaseOverlays(effectMap, container);
   

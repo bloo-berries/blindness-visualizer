@@ -2,21 +2,58 @@ import { VisualEffect } from '../../types/visualEffects';
 import { createOverlay } from './overlayHelpers';
 import { OVERLAY_BASE_STYLES, getOverlayZIndex, Z_INDEX } from '../overlayConstants';
 import { CONTAINER_SELECTORS } from '../appConstants';
+import {
+  getEpisodeTiming,
+  selectEpisodeConfig,
+  generateEpisodePatterns,
+  createVisionLossGradient,
+  CBS_KEYFRAME_ANIMATIONS
+} from './cbsHallucinationPatterns';
 
 /**
  * Creates overlays for visual disturbance conditions
  * Includes: floaters, aura, visual snow, hallucinations
  */
 export const createVisualDisturbanceOverlays = (
-  effects: Map<string, VisualEffect>
+  effects: Map<string, VisualEffect>,
+  container?: HTMLElement
 ): void => {
   const getEffect = (id: string) => effects.get(id);
+
+  // Helper to find container - uses passed container or falls back to selectors
+  const findContainer = (): Element | null => {
+    if (container) return container;
+
+    for (const selector of CONTAINER_SELECTORS) {
+      if (selector === 'iframe[src*="youtube"]') {
+        const iframe = document.querySelector(selector);
+        if (iframe) {
+          return iframe.parentElement;
+        }
+      } else if (selector === 'canvas') {
+        const canvas = document.querySelector(selector);
+        if (canvas) {
+          return canvas.parentElement;
+        }
+      } else {
+        const element = document.querySelector(selector);
+        if (element) {
+          return element;
+        }
+      }
+    }
+    return null;
+  };
 
   const visualFloaters = getEffect('visualFloaters');
   const visualAura = getEffect('visualAura');
   const visualAuraLeft = getEffect('visualAuraLeft');
   const visualAuraRight = getEffect('visualAuraRight');
   const visualSnow = getEffect('visualSnow');
+  const visualSnowFlashing = getEffect('visualSnowFlashing');
+  const visualSnowColored = getEffect('visualSnowColored');
+  const visualSnowTransparent = getEffect('visualSnowTransparent');
+  const visualSnowDense = getEffect('visualSnowDense');
   const hallucinations = getEffect('hallucinations');
 
   // Visual Floaters - Realistic implementation with varied morphologies and movement
@@ -30,38 +67,18 @@ export const createVisualDisturbanceOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-visualFloaters';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const targetContainer = findContainer();
 
-      if (container) {
-        container.appendChild(overlayElement);
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
       } else {
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
         if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
+          targetContainer.style.position = 'relative';
         }
       }
     }
@@ -72,117 +89,28 @@ export const createVisualDisturbanceOverlays = (
       overflow: 'hidden'
     });
 
-    // Generate varied floater morphologies
-    const floaterPatterns: string[] = [];
-    const numFloaters = Math.floor(8 + intensity * 15); // More floaters with higher intensity
+    // Generate visible black floaters matching the preview panel implementation
+    const opacity = 0.6 + intensity * 0.3;
 
-    // Seeded pseudo-random for consistent floater positions
-    const seededRandom = (seed: number) => {
-      const x = Math.sin(seed * 12.9898) * 43758.5453;
-      return x - Math.floor(x);
-    };
-
-    for (let i = 0; i < numFloaters; i++) {
-      const seed = i * 7.31;
-      const x = seededRandom(seed) * 80 + 10; // 10-90% range
-      const y = seededRandom(seed + 1) * 80 + 10;
-      const floaterType = i % 6;
-      const baseOpacity = (0.3 + seededRandom(seed + 2) * 0.4) * intensity;
-
-      if (floaterType === 0) {
-        // Cobweb/string floaters - elongated wavy shapes
-        const width = 3 + seededRandom(seed + 3) * 8;
-        const height = 15 + seededRandom(seed + 4) * 25;
-        floaterPatterns.push(`
-          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
-            rgba(40,35,30,${baseOpacity}) 0%,
-            rgba(40,35,30,${baseOpacity * 0.6}) 40%,
-            rgba(40,35,30,${baseOpacity * 0.3}) 70%,
-            transparent 100%
-          )
-        `);
-        // Add a second part for the cobweb branching effect
-        const branchX = x + (seededRandom(seed + 6) - 0.5) * 10;
-        const branchY = y + (seededRandom(seed + 7) - 0.5) * 15;
-        floaterPatterns.push(`
-          radial-gradient(ellipse ${width * 0.6}% ${height * 0.5}% at ${branchX}% ${branchY}%,
-            rgba(35,30,25,${baseOpacity * 0.7}) 0%,
-            transparent 100%
-          )
-        `);
-      } else if (floaterType === 1) {
-        // Ring/donut floaters - hollow circles
-        const size = 4 + seededRandom(seed + 3) * 6;
-        const innerSize = size * 0.4;
-        floaterPatterns.push(`
-          radial-gradient(circle ${size}% at ${x}% ${y}%,
-            transparent 0%,
-            transparent ${innerSize}%,
-            rgba(50,45,40,${baseOpacity * 0.8}) ${innerSize + 1}%,
-            rgba(50,45,40,${baseOpacity}) ${size * 0.7}%,
-            rgba(50,45,40,${baseOpacity * 0.5}) ${size * 0.85}%,
-            transparent 100%
-          )
-        `);
-      } else if (floaterType === 2) {
-        // Dot floaters - small dark spots
-        const size = 1 + seededRandom(seed + 3) * 3;
-        floaterPatterns.push(`
-          radial-gradient(circle ${size}% at ${x}% ${y}%,
-            rgba(30,25,20,${baseOpacity * 1.2}) 0%,
-            rgba(30,25,20,${baseOpacity * 0.8}) 50%,
-            transparent 100%
-          )
-        `);
-      } else if (floaterType === 3) {
-        // Cloud/blob floaters - larger diffuse shapes
-        const width = 8 + seededRandom(seed + 3) * 12;
-        const height = 6 + seededRandom(seed + 4) * 10;
-        floaterPatterns.push(`
-          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
-            rgba(60,55,50,${baseOpacity * 0.5}) 0%,
-            rgba(60,55,50,${baseOpacity * 0.3}) 40%,
-            rgba(60,55,50,${baseOpacity * 0.1}) 70%,
-            transparent 100%
-          )
-        `);
-      } else if (floaterType === 4) {
-        // Squiggly/worm floaters - multiple connected dots
-        const segments = 3 + Math.floor(seededRandom(seed + 3) * 4);
-        for (let j = 0; j < segments; j++) {
-          const segX = x + (seededRandom(seed + j * 2) - 0.5) * 8;
-          const segY = y + j * 3 - segments * 1.5;
-          const segSize = 1.5 + seededRandom(seed + j) * 1.5;
-          floaterPatterns.push(`
-            radial-gradient(circle ${segSize}% at ${segX}% ${segY}%,
-              rgba(45,40,35,${baseOpacity * 0.9}) 0%,
-              rgba(45,40,35,${baseOpacity * 0.5}) 60%,
-              transparent 100%
-            )
-          `);
-        }
-      } else {
-        // Translucent membrane floaters - very faint large shapes
-        const width = 12 + seededRandom(seed + 3) * 18;
-        const height = 10 + seededRandom(seed + 4) * 15;
-        floaterPatterns.push(`
-          radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
-            rgba(80,75,70,${baseOpacity * 0.25}) 0%,
-            rgba(80,75,70,${baseOpacity * 0.15}) 50%,
-            rgba(80,75,70,${baseOpacity * 0.05}) 80%,
-            transparent 100%
-          )
-        `);
-      }
-    }
-
-    // Create main floater layer with animation
+    // Create main floater layer - using pure black for visibility against any background
     let floaterLayer = document.getElementById('visual-floaters-main-layer');
     if (!floaterLayer) {
       floaterLayer = document.createElement('div');
       floaterLayer.id = 'visual-floaters-main-layer';
       overlayElement.appendChild(floaterLayer);
     }
+
+    // Fixed positions for consistent, visible floaters (pixel-based sizes work better)
+    const floaterPatterns = [
+      `radial-gradient(ellipse 60px 25px at 25% 30%, rgba(0,0,0,${opacity}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 50px 20px at 70% 40%, rgba(0,0,0,${opacity * 0.9}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(circle 30px at 50% 65%, rgba(0,0,0,${opacity * 0.85}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 45px 18px at 60% 25%, rgba(0,0,0,${opacity * 0.8}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 35px 15px at 35% 75%, rgba(0,0,0,${opacity * 0.75}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(circle 20px at 80% 55%, rgba(0,0,0,${opacity * 0.7}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 55px 22px at 15% 50%, rgba(0,0,0,${opacity * 0.85}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(circle 25px at 85% 30%, rgba(0,0,0,${opacity * 0.65}) 0%, rgba(0,0,0,0) 70%)`
+    ];
 
     Object.assign(floaterLayer.style, {
       position: 'absolute',
@@ -191,8 +119,7 @@ export const createVisualDisturbanceOverlays = (
       width: '100%',
       height: '100%',
       background: floaterPatterns.join(', '),
-      mixBlendMode: 'multiply',
-      opacity: Math.min(0.9, 0.6 + intensity * 0.3).toString(),
+      opacity: '1',
       pointerEvents: 'none',
       // Slow drifting movement simulating floaters lagging behind eye movement
       animation: 'floaterDrift 8s ease-in-out infinite alternate'
@@ -206,26 +133,13 @@ export const createVisualDisturbanceOverlays = (
       overlayElement.appendChild(floaterLayer2);
     }
 
-    // Generate additional floaters for depth layer (fewer, more diffuse)
-    const depthPatterns: string[] = [];
-    const numDepthFloaters = Math.floor(4 + intensity * 8);
-
-    for (let i = 0; i < numDepthFloaters; i++) {
-      const seed = (i + 100) * 5.17;
-      const x = seededRandom(seed) * 70 + 15;
-      const y = seededRandom(seed + 1) * 70 + 15;
-      const width = 6 + seededRandom(seed + 2) * 10;
-      const height = 5 + seededRandom(seed + 3) * 8;
-      const opacity = (0.15 + seededRandom(seed + 4) * 0.2) * intensity;
-
-      depthPatterns.push(`
-        radial-gradient(ellipse ${width}% ${height}% at ${x}% ${y}%,
-          rgba(70,65,60,${opacity}) 0%,
-          rgba(70,65,60,${opacity * 0.4}) 60%,
-          transparent 100%
-        )
-      `);
-    }
+    // Second layer of floaters at different positions for depth
+    const depthPatterns = [
+      `radial-gradient(ellipse 40px 18px at 40% 20%, rgba(0,0,0,${opacity * 0.7}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(circle 22px at 65% 70%, rgba(0,0,0,${opacity * 0.65}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 48px 20px at 20% 60%, rgba(0,0,0,${opacity * 0.75}) 0%, rgba(0,0,0,0) 70%)`,
+      `radial-gradient(ellipse 32px 14px at 75% 45%, rgba(0,0,0,${opacity * 0.6}) 0%, rgba(0,0,0,0) 70%)`
+    ];
 
     Object.assign(floaterLayer2.style, {
       position: 'absolute',
@@ -234,8 +148,7 @@ export const createVisualDisturbanceOverlays = (
       width: '100%',
       height: '100%',
       background: depthPatterns.join(', '),
-      mixBlendMode: 'multiply',
-      opacity: Math.min(0.7, 0.4 + intensity * 0.3).toString(),
+      opacity: '1',
       pointerEvents: 'none',
       // Different timing creates parallax depth effect
       animation: 'floaterDrift 12s ease-in-out infinite alternate-reverse'
@@ -257,13 +170,15 @@ export const createVisualDisturbanceOverlays = (
       document.head.appendChild(style);
     }
 
-    overlayElement.style.opacity = Math.min(0.95, 0.7 + intensity * 0.25).toString();
+    overlayElement.style.opacity = '1';
   }
 
-  // Visual Snow Syndrome - persistent static overlay like TV noise or shaken snow globe
+  // Visual Snow Syndrome - persistent static throughout entire visual field
+  // Based on medical descriptions: small, bilateral, diffuse, mobile, asynchronous dots
+  // Two types: Pulse (dots match background) and Broadband (dots contrast with background)
+  // Associated: blue field entoptic phenomenon, photopsia (light flashes), reduced contrast
   if (visualSnow?.enabled) {
     const intensity = visualSnow.intensity;
-    const snowIntensity = Math.min(intensity * 1.2, 1.0);
 
     // Create or get the main container overlay
     let overlayElement = document.getElementById('visual-field-overlay-visualSnow');
@@ -272,38 +187,18 @@ export const createVisualDisturbanceOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-visualSnow';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const targetContainer = findContainer();
 
-      if (container) {
-        container.appendChild(overlayElement);
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
       } else {
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
         if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
+          targetContainer.style.position = 'relative';
         }
       }
     }
@@ -315,190 +210,635 @@ export const createVisualDisturbanceOverlays = (
       overflow: 'hidden'
     });
 
-    // Create SVG noise filter for persistent static effect (slow, gentle movement - not strobing)
-    let svgFilter = document.getElementById('visual-snow-svg-filter');
-    if (!svgFilter) {
-      svgFilter = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svgFilter.id = 'visual-snow-svg-filter';
-      svgFilter.setAttribute('width', '0');
-      svgFilter.setAttribute('height', '0');
-      svgFilter.style.position = 'absolute';
-      // Slow animation (8s and 12s) for gentle drift, not rapid flashing
-      svgFilter.innerHTML = `
-        <defs>
-          <filter id="visualSnowNoise" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="1" result="noise1">
-              <animate attributeName="seed" from="1" to="10" dur="8s" repeatCount="indefinite"/>
-            </feTurbulence>
-            <feTurbulence type="fractalNoise" baseFrequency="1.8" numOctaves="3" seed="50" result="noise2">
-              <animate attributeName="seed" from="50" to="60" dur="12s" repeatCount="indefinite"/>
-            </feTurbulence>
-            <feBlend in="noise1" in2="noise2" mode="overlay" result="blendedNoise"/>
-            <feColorMatrix type="saturate" values="0" result="grayNoise"/>
-            <feComponentTransfer result="contrastNoise">
-              <feFuncR type="linear" slope="1.8" intercept="-0.4"/>
-              <feFuncG type="linear" slope="1.8" intercept="-0.4"/>
-              <feFuncB type="linear" slope="1.8" intercept="-0.4"/>
-              <feFuncA type="linear" slope="1" intercept="0"/>
-            </feComponentTransfer>
-          </filter>
-        </defs>
-      `;
-      document.body.appendChild(svgFilter);
+    // Layer 1: Dense static dots - the core "TV static" / "snow globe" effect
+    // Mix of black and white dots for visibility against any background (broadband type)
+    let staticDotsLayer = document.getElementById('visual-snow-static-dots');
+    if (!staticDotsLayer) {
+      staticDotsLayer = document.createElement('div');
+      staticDotsLayer.id = 'visual-snow-static-dots';
+      overlayElement.appendChild(staticDotsLayer);
     }
 
-    // Create primary static noise layer (persistent TV-static dots)
-    let staticLayer = document.getElementById('visual-snow-static-layer');
-    if (!staticLayer) {
-      staticLayer = document.createElement('div');
-      staticLayer.id = 'visual-snow-static-layer';
-      overlayElement.appendChild(staticLayer);
+    const staticDots: string[] = [];
+    const numStaticDots = Math.floor(80 + intensity * 120); // Dense coverage
+
+    for (let i = 0; i < numStaticDots; i++) {
+      // Distribute dots across entire field
+      const x = (i * 13.7 + (i * i * 0.3)) % 100;
+      const y = (i * 17.3 + (i * 0.7)) % 100;
+      const size = 1 + (i % 3); // 1-3px dots
+
+      // Alternate between black and white dots (broadband type - visible on any background)
+      const isBlack = i % 2 === 0;
+      const baseOpacity = (0.4 + (i % 5) * 0.1) * intensity;
+
+      if (isBlack) {
+        staticDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        staticDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
     }
-    Object.assign(staticLayer.style, {
+
+    Object.assign(staticDotsLayer.style, {
       position: 'absolute',
       top: '0',
       left: '0',
       width: '100%',
       height: '100%',
-      filter: 'url(#visualSnowNoise)',
-      opacity: (0.2 + intensity * 0.35).toString(),
+      background: staticDots.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 6s ease-in-out infinite alternate'
+    });
+
+    // Layer 2: Secondary dots at different positions for asynchronous movement
+    let staticDotsLayer2 = document.getElementById('visual-snow-static-dots-2');
+    if (!staticDotsLayer2) {
+      staticDotsLayer2 = document.createElement('div');
+      staticDotsLayer2.id = 'visual-snow-static-dots-2';
+      overlayElement.appendChild(staticDotsLayer2);
+    }
+
+    const staticDots2: string[] = [];
+    const numStaticDots2 = Math.floor(50 + intensity * 80);
+
+    for (let i = 0; i < numStaticDots2; i++) {
+      const x = (i * 23.1 + 7) % 100;
+      const y = (i * 19.3 + 11) % 100;
+      const size = 1 + (i % 2);
+      const isBlack = (i + 1) % 2 === 0;
+      const baseOpacity = (0.35 + (i % 4) * 0.08) * intensity;
+
+      if (isBlack) {
+        staticDots2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        staticDots2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(staticDotsLayer2.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: staticDots2.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 9s ease-in-out infinite alternate-reverse'
+    });
+
+    // Layer 3: Blue field entoptic phenomenon - tiny bright dots that shoot across vision
+    // Especially noticeable against bright backgrounds (like blue sky)
+    let blueFieldLayer = document.getElementById('visual-snow-blue-field');
+    if (!blueFieldLayer) {
+      blueFieldLayer = document.createElement('div');
+      blueFieldLayer.id = 'visual-snow-blue-field';
+      overlayElement.appendChild(blueFieldLayer);
+    }
+
+    const blueFieldDots: string[] = [];
+    const numBlueFieldDots = Math.floor(8 + intensity * 12);
+
+    for (let i = 0; i < numBlueFieldDots; i++) {
+      // Scattered bright dots
+      const x = (i * 29.3 + 5) % 100;
+      const y = (i * 37.1 + 15) % 100;
+      const size = 2 + (i % 2);
+      const brightness = 0.6 + (i % 3) * 0.15;
+
+      // Bright white/cyan dots characteristic of blue field entoptic phenomenon
+      blueFieldDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${brightness * intensity}) 0%, rgba(200,230,255,${brightness * intensity * 0.5}) 50%, transparent 100%)`);
+    }
+
+    Object.assign(blueFieldLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: blueFieldDots.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      // Faster movement - these dots "shoot" across the visual field
+      animation: 'blueFieldShoot 4s linear infinite'
+    });
+
+    // Layer 4: Photopsia - occasional spontaneous light flashes
+    let photopsiaLayer = document.getElementById('visual-snow-photopsia');
+    if (!photopsiaLayer) {
+      photopsiaLayer = document.createElement('div');
+      photopsiaLayer.id = 'visual-snow-photopsia';
+      overlayElement.appendChild(photopsiaLayer);
+    }
+
+    const flashSpots: string[] = [];
+    const numFlashes = Math.floor(3 + intensity * 5);
+
+    for (let i = 0; i < numFlashes; i++) {
+      const x = (i * 31.7 + 20) % 80 + 10; // Keep away from edges
+      const y = (i * 41.3 + 15) % 70 + 15;
+      const size = 8 + (i % 3) * 4;
+      const flashOpacity = (0.15 + (i % 2) * 0.1) * intensity;
+
+      // Soft white/yellow flashes
+      flashSpots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,240,${flashOpacity}) 0%, rgba(255,255,200,${flashOpacity * 0.3}) 50%, transparent 100%)`);
+    }
+
+    Object.assign(photopsiaLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: flashSpots.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      // Slow pulsing for flash effect
+      animation: 'photopsiaFlash 5s ease-in-out infinite'
+    });
+
+    // Layer 5: Slight contrast reduction (photophobia effect)
+    let contrastLayer = document.getElementById('visual-snow-contrast');
+    if (!contrastLayer) {
+      contrastLayer = document.createElement('div');
+      contrastLayer.id = 'visual-snow-contrast';
+      overlayElement.appendChild(contrastLayer);
+    }
+
+    Object.assign(contrastLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: `rgba(128,128,128,${0.05 + intensity * 0.1})`,
       mixBlendMode: 'overlay',
       pointerEvents: 'none'
     });
 
-    // Create dot layer with grayish, semi-transparent dots (like snow globe particles)
-    let dotLayer = document.getElementById('visual-snow-dot-layer');
-    if (!dotLayer) {
-      dotLayer = document.createElement('div');
-      dotLayer.id = 'visual-snow-dot-layer';
-      overlayElement.appendChild(dotLayer);
+    // Inject CSS animations if not already present
+    if (!document.getElementById('visual-snow-animations')) {
+      const style = document.createElement('style');
+      style.id = 'visual-snow-animations';
+      style.textContent = `
+        @keyframes blueFieldShoot {
+          0% { transform: translate(0, 0); }
+          25% { transform: translate(3px, -2px); }
+          50% { transform: translate(-2px, 3px); }
+          75% { transform: translate(2px, 1px); }
+          100% { transform: translate(0, 0); }
+        }
+        @keyframes photopsiaFlash {
+          0%, 100% { opacity: 0.3; }
+          15% { opacity: 1; }
+          30% { opacity: 0.2; }
+          50% { opacity: 0.8; }
+          70% { opacity: 0.1; }
+          85% { opacity: 0.6; }
+        }
+      `;
+      document.head.appendChild(style);
     }
 
-    // Generate many tiny dots across the field - mix of light, dark, and slightly colored
-    const dotPatterns: string[] = [];
-    const numDots = Math.floor(40 + intensity * 60);
-    for (let i = 0; i < numDots; i++) {
-      const x = (i * 17.3) % 100; // Deterministic spread for consistency
-      const y = (i * 23.7) % 100;
-      const size = 0.5 + (i % 4) * 0.5; // Tiny dots: 0.5px to 2px
-      const dotType = i % 5;
-      let color: string;
-      const baseOpacity = (0.15 + (i % 10) * 0.04) * intensity;
+    overlayElement.style.opacity = '1';
+  }
 
-      if (dotType === 0) {
-        // White/light dots
-        color = `rgba(255,255,255,${baseOpacity})`;
-      } else if (dotType === 1) {
-        // Dark/black dots
-        color = `rgba(0,0,0,${baseOpacity * 0.8})`;
-      } else if (dotType === 2) {
-        // Grayish dots
-        color = `rgba(180,180,180,${baseOpacity * 0.9})`;
-      } else if (dotType === 3) {
-        // Slightly blue-tinted (common in visual snow)
-        color = `rgba(200,210,230,${baseOpacity * 0.7})`;
+  // Visual Snow (Flashing Static) - Rapid flickering variant
+  if (visualSnowFlashing?.enabled) {
+    const intensity = visualSnowFlashing.intensity;
+
+    let overlayElement = document.getElementById('visual-field-overlay-visualSnowFlashing');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualSnowFlashing';
+
+      const targetContainer = findContainer();
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
       } else {
-        // Transparent/faint dots
-        color = `rgba(220,220,220,${baseOpacity * 0.5})`;
+        document.body.appendChild(overlayElement);
       }
-      dotPatterns.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color} 0%, transparent 100%)`);
+
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
+        if (computedStyle.position === 'static') {
+          targetContainer.style.position = 'relative';
+        }
+      }
     }
 
-    Object.assign(dotLayer.style, {
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualSnowFlashing', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
+    // Flashing static - same dots but with rapid flicker animation
+    let flashingDotsLayer = document.getElementById('visual-snow-flashing-dots');
+    if (!flashingDotsLayer) {
+      flashingDotsLayer = document.createElement('div');
+      flashingDotsLayer.id = 'visual-snow-flashing-dots';
+      overlayElement.appendChild(flashingDotsLayer);
+    }
+
+    const flashingDots: string[] = [];
+    const numDots = Math.floor(100 + intensity * 150);
+
+    for (let i = 0; i < numDots; i++) {
+      const x = (i * 13.7 + (i * i * 0.3)) % 100;
+      const y = (i * 17.3 + (i * 0.7)) % 100;
+      const size = 1 + (i % 3);
+      const isBlack = i % 2 === 0;
+      const baseOpacity = (0.5 + (i % 4) * 0.1) * intensity;
+
+      if (isBlack) {
+        flashingDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        flashingDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(flashingDotsLayer.style, {
       position: 'absolute',
       top: '0',
       left: '0',
       width: '100%',
       height: '100%',
-      background: dotPatterns.join(', '),
-      mixBlendMode: 'overlay',
-      opacity: Math.min(0.85, snowIntensity).toString(),
+      background: flashingDots.join(', '),
+      opacity: '1',
       pointerEvents: 'none',
-      // Slow, gentle drifting movement like particles in a snow globe
+      animation: 'visualSnowFlicker 0.15s steps(2) infinite'
+    });
+
+    // Inject flicker animation
+    if (!document.getElementById('visual-snow-flashing-animations')) {
+      const style = document.createElement('style');
+      style.id = 'visual-snow-flashing-animations';
+      style.textContent = `
+        @keyframes visualSnowFlicker {
+          0%, 49% { opacity: 1; transform: translate(0, 0); }
+          50%, 100% { opacity: 0.7; transform: translate(1px, -1px); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    overlayElement.style.opacity = '1';
+  }
+
+  // Visual Snow (Colored Static) - Chromatic variant with colored dots
+  if (visualSnowColored?.enabled) {
+    const intensity = visualSnowColored.intensity;
+
+    let overlayElement = document.getElementById('visual-field-overlay-visualSnowColored');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualSnowColored';
+
+      const targetContainer = findContainer();
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
+        if (computedStyle.position === 'static') {
+          targetContainer.style.position = 'relative';
+        }
+      }
+    }
+
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualSnowColored', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
+    // Colored static - dots in various colors (red, green, blue, cyan, magenta, yellow)
+    let coloredDotsLayer = document.getElementById('visual-snow-colored-dots');
+    if (!coloredDotsLayer) {
+      coloredDotsLayer = document.createElement('div');
+      coloredDotsLayer.id = 'visual-snow-colored-dots';
+      overlayElement.appendChild(coloredDotsLayer);
+    }
+
+    const coloredDots: string[] = [];
+    const numDots = Math.floor(80 + intensity * 120);
+    const colors = [
+      'rgba(255,100,100', // Red
+      'rgba(100,255,100', // Green
+      'rgba(100,100,255', // Blue
+      'rgba(100,255,255', // Cyan
+      'rgba(255,100,255', // Magenta
+      'rgba(255,255,100', // Yellow
+      'rgba(255,150,50',  // Orange
+      'rgba(150,100,255'  // Purple
+    ];
+
+    for (let i = 0; i < numDots; i++) {
+      const x = (i * 13.7 + (i * i * 0.3)) % 100;
+      const y = (i * 17.3 + (i * 0.7)) % 100;
+      const size = 1 + (i % 3);
+      const color = colors[i % colors.length];
+      const baseOpacity = (0.4 + (i % 5) * 0.1) * intensity;
+
+      coloredDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color},${baseOpacity}) 0%, transparent 100%)`);
+    }
+
+    // Add second layer with different positions
+    for (let i = 0; i < numDots / 2; i++) {
+      const x = (i * 23.1 + 7) % 100;
+      const y = (i * 19.3 + 11) % 100;
+      const size = 1 + (i % 2);
+      const color = colors[(i + 3) % colors.length];
+      const baseOpacity = (0.35 + (i % 4) * 0.08) * intensity;
+
+      coloredDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color},${baseOpacity}) 0%, transparent 100%)`);
+    }
+
+    Object.assign(coloredDotsLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: coloredDots.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
       animation: 'visualSnowDrift 6s ease-in-out infinite alternate'
     });
 
-    // Create secondary moving dot layer for depth (particles at different "distances")
-    let dotLayer2 = document.getElementById('visual-snow-dot-layer-2');
-    if (!dotLayer2) {
-      dotLayer2 = document.createElement('div');
-      dotLayer2.id = 'visual-snow-dot-layer-2';
-      overlayElement.appendChild(dotLayer2);
-    }
-
-    const dotPatterns2: string[] = [];
-    const numDots2 = Math.floor(25 + intensity * 35);
-    for (let i = 0; i < numDots2; i++) {
-      const x = (i * 31.1 + 13) % 100;
-      const y = (i * 19.9 + 7) % 100;
-      const size = 0.8 + (i % 3) * 0.6;
-      const opacity = (0.1 + (i % 8) * 0.03) * intensity;
-      const isLight = i % 2 === 0;
-      const color = isLight
-        ? `rgba(240,240,245,${opacity})`
-        : `rgba(60,60,70,${opacity * 0.7})`;
-      dotPatterns2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, ${color} 0%, transparent 100%)`);
-    }
-
-    Object.assign(dotLayer2.style, {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      background: dotPatterns2.join(', '),
-      mixBlendMode: 'overlay',
-      opacity: Math.min(0.7, snowIntensity * 0.8).toString(),
-      pointerEvents: 'none',
-      // Different timing for parallax-like depth effect
-      animation: 'visualSnowDrift 9s ease-in-out infinite alternate-reverse'
-    });
-
-    // Fine grain texture layer (the dense "poor TV reception" static)
-    let grainLayer = document.getElementById('visual-snow-grain-layer');
-    if (!grainLayer) {
-      grainLayer = document.createElement('div');
-      grainLayer.id = 'visual-snow-grain-layer';
-      overlayElement.appendChild(grainLayer);
-    }
-
-    const grainOpacity = 0.08 + intensity * 0.12;
-    Object.assign(grainLayer.style, {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      background: `
-        repeating-linear-gradient(
-          0deg,
-          transparent 0px,
-          transparent 1px,
-          rgba(200,200,200,${grainOpacity}) 1px,
-          rgba(200,200,200,${grainOpacity}) 2px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent 0px,
-          transparent 1px,
-          rgba(150,150,150,${grainOpacity * 0.7}) 1px,
-          rgba(150,150,150,${grainOpacity * 0.7}) 2px
-        )
-      `,
-      backgroundSize: '2px 2px, 2px 2px',
-      mixBlendMode: 'overlay',
-      opacity: Math.min(0.6, intensity * 0.7).toString(),
-      pointerEvents: 'none',
-      animation: 'visualSnowGrain 4s linear infinite'
-    });
-
-    // Overall container opacity
-    overlayElement.style.opacity = Math.min(0.95, 0.75 + snowIntensity * 0.2).toString();
+    overlayElement.style.opacity = '1';
   }
 
-  // Visual Hallucinations - Mixed type with patterns, lights, shadows, and figures
+  // Visual Snow (Transparent Static) - Subtle, semi-transparent variant
+  if (visualSnowTransparent?.enabled) {
+    const intensity = visualSnowTransparent.intensity;
+
+    let overlayElement = document.getElementById('visual-field-overlay-visualSnowTransparent');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualSnowTransparent';
+
+      const targetContainer = findContainer();
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
+        if (computedStyle.position === 'static') {
+          targetContainer.style.position = 'relative';
+        }
+      }
+    }
+
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualSnowTransparent', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
+    // Transparent static - very faint, glass-like dots
+    let transparentDotsLayer = document.getElementById('visual-snow-transparent-dots');
+    if (!transparentDotsLayer) {
+      transparentDotsLayer = document.createElement('div');
+      transparentDotsLayer.id = 'visual-snow-transparent-dots';
+      overlayElement.appendChild(transparentDotsLayer);
+    }
+
+    const transparentDots: string[] = [];
+    const numDots = Math.floor(100 + intensity * 150);
+
+    for (let i = 0; i < numDots; i++) {
+      const x = (i * 13.7 + (i * i * 0.3)) % 100;
+      const y = (i * 17.3 + (i * 0.7)) % 100;
+      const size = 2 + (i % 4);
+      // Very low opacity for transparent effect
+      const baseOpacity = (0.15 + (i % 5) * 0.05) * intensity;
+
+      // Mix of slightly darker and lighter transparent dots
+      if (i % 2 === 0) {
+        transparentDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        transparentDots.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(transparentDotsLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: transparentDots.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 8s ease-in-out infinite alternate'
+    });
+
+    // Add subtle glass-like distortion layer
+    let glassLayer = document.getElementById('visual-snow-transparent-glass');
+    if (!glassLayer) {
+      glassLayer = document.createElement('div');
+      glassLayer.id = 'visual-snow-transparent-glass';
+      overlayElement.appendChild(glassLayer);
+    }
+
+    Object.assign(glassLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: `rgba(200,200,200,${0.03 + intensity * 0.05})`,
+      mixBlendMode: 'overlay',
+      pointerEvents: 'none'
+    });
+
+    overlayElement.style.opacity = '1';
+  }
+
+  // Visual Snow (Dense Static) - Severe, high-density variant
+  if (visualSnowDense?.enabled) {
+    const intensity = visualSnowDense.intensity;
+
+    let overlayElement = document.getElementById('visual-field-overlay-visualSnowDense');
+
+    if (!overlayElement) {
+      overlayElement = document.createElement('div');
+      overlayElement.id = 'visual-field-overlay-visualSnowDense';
+
+      const targetContainer = findContainer();
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
+      } else {
+        document.body.appendChild(overlayElement);
+      }
+
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
+        if (computedStyle.position === 'static') {
+          targetContainer.style.position = 'relative';
+        }
+      }
+    }
+
+    Object.assign(overlayElement.style, {
+      ...OVERLAY_BASE_STYLES,
+      zIndex: getOverlayZIndex('visualSnowDense', Z_INDEX.BASE),
+      overflow: 'hidden'
+    });
+
+    // Dense static - many more dots, larger, more opaque
+    let denseDotsLayer1 = document.getElementById('visual-snow-dense-dots-1');
+    if (!denseDotsLayer1) {
+      denseDotsLayer1 = document.createElement('div');
+      denseDotsLayer1.id = 'visual-snow-dense-dots-1';
+      overlayElement.appendChild(denseDotsLayer1);
+    }
+
+    const denseDots1: string[] = [];
+    const numDots1 = Math.floor(150 + intensity * 200);
+
+    for (let i = 0; i < numDots1; i++) {
+      const x = (i * 11.3 + (i * i * 0.2)) % 100;
+      const y = (i * 13.7 + (i * 0.5)) % 100;
+      const size = 2 + (i % 4);
+      const isBlack = i % 2 === 0;
+      const baseOpacity = (0.5 + (i % 4) * 0.12) * intensity;
+
+      if (isBlack) {
+        denseDots1.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        denseDots1.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(denseDotsLayer1.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: denseDots1.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 5s ease-in-out infinite alternate'
+    });
+
+    // Second dense layer
+    let denseDotsLayer2 = document.getElementById('visual-snow-dense-dots-2');
+    if (!denseDotsLayer2) {
+      denseDotsLayer2 = document.createElement('div');
+      denseDotsLayer2.id = 'visual-snow-dense-dots-2';
+      overlayElement.appendChild(denseDotsLayer2);
+    }
+
+    const denseDots2: string[] = [];
+    const numDots2 = Math.floor(120 + intensity * 180);
+
+    for (let i = 0; i < numDots2; i++) {
+      const x = (i * 17.1 + 5) % 100;
+      const y = (i * 21.3 + 9) % 100;
+      const size = 2 + (i % 3);
+      const isBlack = (i + 1) % 2 === 0;
+      const baseOpacity = (0.45 + (i % 5) * 0.1) * intensity;
+
+      if (isBlack) {
+        denseDots2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        denseDots2.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(denseDotsLayer2.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: denseDots2.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 7s ease-in-out infinite alternate-reverse'
+    });
+
+    // Third layer for maximum density
+    let denseDotsLayer3 = document.getElementById('visual-snow-dense-dots-3');
+    if (!denseDotsLayer3) {
+      denseDotsLayer3 = document.createElement('div');
+      denseDotsLayer3.id = 'visual-snow-dense-dots-3';
+      overlayElement.appendChild(denseDotsLayer3);
+    }
+
+    const denseDots3: string[] = [];
+    const numDots3 = Math.floor(80 + intensity * 120);
+
+    for (let i = 0; i < numDots3; i++) {
+      const x = (i * 23.7 + 13) % 100;
+      const y = (i * 19.1 + 17) % 100;
+      const size = 3 + (i % 3);
+      const isBlack = i % 2 === 0;
+      const baseOpacity = (0.4 + (i % 4) * 0.1) * intensity;
+
+      if (isBlack) {
+        denseDots3.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(0,0,0,${baseOpacity}) 0%, transparent 100%)`);
+      } else {
+        denseDots3.push(`radial-gradient(circle ${size}px at ${x}% ${y}%, rgba(255,255,255,${baseOpacity}) 0%, transparent 100%)`);
+      }
+    }
+
+    Object.assign(denseDotsLayer3.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: denseDots3.join(', '),
+      opacity: '1',
+      pointerEvents: 'none',
+      animation: 'visualSnowDrift 9s ease-in-out infinite alternate'
+    });
+
+    // Contrast reduction layer - more severe for dense type
+    let denseContrastLayer = document.getElementById('visual-snow-dense-contrast');
+    if (!denseContrastLayer) {
+      denseContrastLayer = document.createElement('div');
+      denseContrastLayer.id = 'visual-snow-dense-contrast';
+      overlayElement.appendChild(denseContrastLayer);
+    }
+
+    Object.assign(denseContrastLayer.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: `rgba(128,128,128,${0.1 + intensity * 0.15})`,
+      mixBlendMode: 'overlay',
+      pointerEvents: 'none'
+    });
+
+    overlayElement.style.opacity = '1';
+  }
+
+  // Visual Hallucinations - Charles Bonnet Syndrome / Release Hallucinations
+  // Common after stroke/TBI affecting visual pathways
+  // Episodic variation: different hallucinations appear/disappear every 8-15 seconds
+  // Simple: honeycomb, spiral, tessellation, concentric circles, zigzag, grid, photopsia
+  // Complex: human silhouettes, faces, flowers, cats, buildings
   if (hallucinations?.enabled) {
     const intensity = hallucinations.intensity;
+    const now = Date.now();
 
     // Create or get the main container overlay
     let overlayElement = document.getElementById('visual-field-overlay-hallucinations');
@@ -507,38 +847,18 @@ export const createVisualDisturbanceOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-hallucinations';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const targetContainer = findContainer();
 
-      if (container) {
-        container.appendChild(overlayElement);
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
       } else {
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
         if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
+          targetContainer.style.position = 'relative';
         }
       }
     }
@@ -549,7 +869,18 @@ export const createVisualDisturbanceOverlays = (
       overflow: 'hidden'
     });
 
-    // Layer 1: Geometric patterns (lattices, honeycomb-like structures)
+    // Episode System - patterns change every 8-15 seconds with smooth transitions
+    const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity);
+    const episodeConfig = selectEpisodeConfig(episodeSeed, intensity);
+
+    // Animation phases for subtle movement
+    const animationPhase = Math.sin(now / 3000) * 0.5 + 0.5;
+    const flashPhase = Math.sin(now / 1500) * 0.5 + 0.5;
+
+    // Base opacity scales with intensity
+    const baseOpacity = (0.25 + intensity * 0.35) * episodeOpacity;
+
+    // Layer 1: Episode-based patterns (simple + complex hallucinations combined)
     let patternLayer = document.getElementById('hallucination-pattern-layer');
     if (!patternLayer) {
       patternLayer = document.createElement('div');
@@ -557,32 +888,13 @@ export const createVisualDisturbanceOverlays = (
       overlayElement.appendChild(patternLayer);
     }
 
-    // Create honeycomb/lattice pattern that fades in peripheral areas
-    const patternOpacity = 0.15 + intensity * 0.2;
-    const latticePattern = `
-      repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        transparent 20px,
-        rgba(100,80,120,${patternOpacity * 0.4}) 20px,
-        rgba(100,80,120,${patternOpacity * 0.4}) 22px
-      ),
-      repeating-linear-gradient(
-        60deg,
-        transparent 0px,
-        transparent 20px,
-        rgba(80,100,120,${patternOpacity * 0.3}) 20px,
-        rgba(80,100,120,${patternOpacity * 0.3}) 22px
-      ),
-      repeating-linear-gradient(
-        120deg,
-        transparent 0px,
-        transparent 20px,
-        rgba(120,100,80,${patternOpacity * 0.3}) 20px,
-        rgba(120,100,80,${patternOpacity * 0.3}) 22px
-      ),
-      radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.3) 100%)
-    `;
+    const patternElements = generateEpisodePatterns(
+      episodeConfig,
+      intensity,
+      baseOpacity,
+      animationPhase,
+      episodeSeed
+    );
 
     Object.assign(patternLayer.style, {
       position: 'absolute',
@@ -590,216 +902,90 @@ export const createVisualDisturbanceOverlays = (
       left: '0',
       width: '100%',
       height: '100%',
-      background: latticePattern,
-      mixBlendMode: 'overlay',
-      opacity: Math.min(0.6, intensity * 0.5).toString(),
+      background: patternElements.join(', ') || 'transparent',
+      opacity: Math.min(0.85, 0.5 + intensity * 0.35).toString(),
       pointerEvents: 'none',
-      animation: 'hallucinationPatternFade 8s ease-in-out infinite'
+      animation: 'cbsPatternDrift 8s ease-in-out infinite',
+      transition: 'opacity 0.5s ease-in-out'
     });
 
-    // Layer 2: Light phenomena (phosphene-like glows, bright spots)
-    let lightLayer = document.getElementById('hallucination-light-layer');
-    if (!lightLayer) {
-      lightLayer = document.createElement('div');
-      lightLayer.id = 'hallucination-light-layer';
-      overlayElement.appendChild(lightLayer);
+    // Layer 2: Persistent photopsia flashes (always present, intensity varies)
+    let flashLayer = document.getElementById('hallucination-flash-layer');
+    if (!flashLayer) {
+      flashLayer = document.createElement('div');
+      flashLayer.id = 'hallucination-flash-layer';
+      overlayElement.appendChild(flashLayer);
     }
 
-    const lightElements: string[] = [];
-    const numLights = Math.floor(4 + intensity * 6);
-    for (let i = 0; i < numLights; i++) {
-      // Position lights more toward periphery
-      const angle = (i / numLights) * Math.PI * 2;
-      const radius = 25 + (i % 3) * 10;
-      const x = 50 + Math.cos(angle) * radius;
-      const y = 50 + Math.sin(angle) * radius;
-      const size = 15 + (i % 4) * 10;
-      const lightOpacity = (0.2 + (i % 3) * 0.1) * intensity;
+    const flashElements: string[] = [];
+    const numFlashes = Math.floor(3 + intensity * 6);
+    const flashOpacityBase = (0.25 + intensity * 0.25) * flashPhase;
 
-      // Vary colors - warm and cool tones
-      const hue = (i * 47) % 360;
-      const saturation = 40 + (i % 3) * 20;
-      lightElements.push(`
+    for (let i = 0; i < numFlashes; i++) {
+      const x = 15 + (i * 19.7 + now / 5000) % 70;
+      const y = 15 + (i * 23.3) % 70;
+      const size = 6 + (i % 4) * 5;
+      const flashOpacity = flashOpacityBase * (0.5 + (i % 3) * 0.25);
+
+      flashElements.push(`
         radial-gradient(circle ${size}px at ${x}% ${y}%,
-          hsla(${hue},${saturation}%,70%,${lightOpacity}) 0%,
-          hsla(${hue},${saturation}%,60%,${lightOpacity * 0.5}) 40%,
+          rgba(255,255,255,${flashOpacity}) 0%,
+          rgba(255,255,220,${flashOpacity * 0.5}) 40%,
+          rgba(255,245,200,${flashOpacity * 0.2}) 70%,
           transparent 100%
         )
       `);
     }
 
-    // Add some bright flash-like spots
-    for (let i = 0; i < 3; i++) {
-      const x = 20 + (i * 30);
-      const y = 30 + (i * 20) % 40;
-      lightElements.push(`
-        radial-gradient(circle 8px at ${x}% ${y}%,
-          rgba(255,255,255,${0.4 * intensity}) 0%,
-          rgba(255,255,200,${0.2 * intensity}) 50%,
-          transparent 100%
-        )
-      `);
-    }
-
-    Object.assign(lightLayer.style, {
+    Object.assign(flashLayer.style, {
       position: 'absolute',
       top: '0',
       left: '0',
       width: '100%',
       height: '100%',
-      background: lightElements.join(', '),
+      background: flashElements.join(', '),
       mixBlendMode: 'screen',
-      opacity: Math.min(0.7, intensity * 0.6).toString(),
+      opacity: '1',
       pointerEvents: 'none',
-      animation: 'hallucinationLightPulse 6s ease-in-out infinite'
+      animation: 'cbsFlashPulse 4s ease-in-out infinite'
     });
 
-    // Layer 3: Shadowy figures (silhouettes in peripheral vision)
-    let figureLayer = document.getElementById('hallucination-figure-layer');
-    if (!figureLayer) {
-      figureLayer = document.createElement('div');
-      figureLayer.id = 'hallucination-figure-layer';
-      overlayElement.appendChild(figureLayer);
+    // Layer 3: Vision loss area indicator
+    let visionLossLayer = document.getElementById('hallucination-vision-loss');
+    if (!visionLossLayer) {
+      visionLossLayer = document.createElement('div');
+      visionLossLayer.id = 'hallucination-vision-loss';
+      overlayElement.appendChild(visionLossLayer);
     }
 
-    const figureElements: string[] = [];
-    const numFigures = Math.floor(2 + intensity * 3);
-
-    // Human-like silhouettes positioned in peripheral areas
-    const peripheralPositions = [
-      { x: 8, y: 40 },   // Left edge
-      { x: 92, y: 35 },  // Right edge
-      { x: 15, y: 75 },  // Bottom left
-      { x: 85, y: 70 },  // Bottom right
-      { x: 10, y: 15 },  // Top left
-    ];
-
-    for (let i = 0; i < Math.min(numFigures, peripheralPositions.length); i++) {
-      const pos = peripheralPositions[i];
-      const figureOpacity = (0.25 + (i % 3) * 0.1) * intensity;
-      const heightScale = 1 + (i % 2) * 0.3;
-
-      // Head
-      figureElements.push(`
-        radial-gradient(ellipse 12px 14px at ${pos.x}% ${pos.y - 8 * heightScale}%,
-          rgba(20,20,30,${figureOpacity}) 0%,
-          rgba(20,20,30,${figureOpacity * 0.6}) 60%,
-          transparent 100%
-        )
-      `);
-
-      // Body
-      figureElements.push(`
-        radial-gradient(ellipse 18px ${35 * heightScale}px at ${pos.x}% ${pos.y + 10}%,
-          rgba(15,15,25,${figureOpacity * 0.9}) 0%,
-          rgba(15,15,25,${figureOpacity * 0.5}) 50%,
-          rgba(15,15,25,${figureOpacity * 0.2}) 80%,
-          transparent 100%
-        )
-      `);
-    }
-
-    // Add some smaller shadowy shapes (could be perceived as animals or objects)
-    for (let i = 0; i < 3 + Math.floor(intensity * 2); i++) {
-      const x = 15 + (i * 23) % 70;
-      const y = 60 + (i * 17) % 30;
-      const shapeOpacity = (0.15 + (i % 2) * 0.1) * intensity;
-      const width = 20 + (i % 3) * 8;
-      const height = 12 + (i % 2) * 6;
-
-      figureElements.push(`
-        radial-gradient(ellipse ${width}px ${height}px at ${x}% ${y}%,
-          rgba(30,25,35,${shapeOpacity}) 0%,
-          rgba(30,25,35,${shapeOpacity * 0.4}) 60%,
-          transparent 100%
-        )
-      `);
-    }
-
-    Object.assign(figureLayer.style, {
+    Object.assign(visionLossLayer.style, {
       position: 'absolute',
       top: '0',
       left: '0',
       width: '100%',
       height: '100%',
-      background: figureElements.join(', '),
-      mixBlendMode: 'multiply',
-      opacity: Math.min(0.8, intensity * 0.7).toString(),
-      pointerEvents: 'none',
-      animation: 'hallucinationFigureDrift 12s ease-in-out infinite'
+      background: createVisionLossGradient(intensity),
+      pointerEvents: 'none'
     });
 
-    // Layer 4: Face-like patterns (pareidolia - subtle suggestions of faces)
-    let faceLayer = document.getElementById('hallucination-face-layer');
-    if (!faceLayer) {
-      faceLayer = document.createElement('div');
-      faceLayer.id = 'hallucination-face-layer';
-      overlayElement.appendChild(faceLayer);
+    // Inject CBS-specific animations
+    if (!document.getElementById('cbs-hallucination-animations')) {
+      const style = document.createElement('style');
+      style.id = 'cbs-hallucination-animations';
+      style.textContent = CBS_KEYFRAME_ANIMATIONS;
+      document.head.appendChild(style);
     }
 
-    const faceElements: string[] = [];
-    const numFaces = Math.floor(1 + intensity * 2);
-    const facePositions = [
-      { x: 75, y: 25 },
-      { x: 25, y: 30 },
-      { x: 60, y: 65 },
-    ];
-
-    for (let i = 0; i < Math.min(numFaces, facePositions.length); i++) {
-      const pos = facePositions[i];
-      const faceOpacity = (0.12 + (i % 2) * 0.08) * intensity;
-      const scale = 0.8 + (i % 2) * 0.3;
-
-      // Face oval outline
-      faceElements.push(`
-        radial-gradient(ellipse ${25 * scale}px ${32 * scale}px at ${pos.x}% ${pos.y}%,
-          transparent 70%,
-          rgba(60,50,70,${faceOpacity * 0.5}) 85%,
-          transparent 100%
-        )
-      `);
-
-      // Eye-like shadows (left)
-      faceElements.push(`
-        radial-gradient(ellipse ${5 * scale}px ${3 * scale}px at ${pos.x - 5 * scale}% ${pos.y - 5 * scale}%,
-          rgba(20,20,30,${faceOpacity}) 0%,
-          transparent 100%
-        )
-      `);
-
-      // Eye-like shadows (right)
-      faceElements.push(`
-        radial-gradient(ellipse ${5 * scale}px ${3 * scale}px at ${pos.x + 5 * scale}% ${pos.y - 5 * scale}%,
-          rgba(20,20,30,${faceOpacity}) 0%,
-          transparent 100%
-        )
-      `);
-
-      // Mouth-like shadow
-      faceElements.push(`
-        radial-gradient(ellipse ${8 * scale}px ${3 * scale}px at ${pos.x}% ${pos.y + 8 * scale}%,
-          rgba(30,20,35,${faceOpacity * 0.7}) 0%,
-          transparent 100%
-        )
-      `);
-    }
-
-    Object.assign(faceLayer.style, {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      background: faceElements.join(', '),
-      mixBlendMode: 'multiply',
-      opacity: Math.min(0.6, intensity * 0.5).toString(),
-      pointerEvents: 'none',
-      filter: 'blur(1px)',
-      animation: 'hallucinationFaceFade 10s ease-in-out infinite'
+    // Clean up old layers that are no longer used
+    const oldLayers = ['hallucination-geometric-layer', 'hallucination-figure-layer', 'hallucination-object-layer'];
+    oldLayers.forEach(id => {
+      const oldLayer = document.getElementById(id);
+      if (oldLayer) {
+        oldLayer.remove();
+      }
     });
 
-    // Overall container opacity
-    overlayElement.style.opacity = Math.min(0.95, 0.6 + intensity * 0.35).toString();
+    overlayElement.style.opacity = '1';
   }
 
   // Visual Aura - Improved with zigzag fortification pattern and proper scintillation
@@ -813,38 +999,18 @@ export const createVisualDisturbanceOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-visualAura';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const targetContainer = findContainer();
 
-      if (container) {
-        container.appendChild(overlayElement);
+      if (targetContainer) {
+        targetContainer.appendChild(overlayElement);
       } else {
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
+      if (targetContainer && targetContainer instanceof HTMLElement) {
+        const computedStyle = window.getComputedStyle(targetContainer);
         if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
+          targetContainer.style.position = 'relative';
         }
       }
     }

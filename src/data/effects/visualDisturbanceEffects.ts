@@ -70,10 +70,10 @@ export const visualDisturbanceEffects: VisualEffect[] = [
   },
   {
     id: 'hallucinations',
-    name: 'Visual Hallucinations',
+    name: 'Visual Hallucinations (CBS)',
     enabled: false,
     intensity: 1.0,
-    description: 'Seeing things that are not actually present. Can be simple (lights, shapes) or complex (people, animals). Associated with various neurological conditions and medications.'
+    description: 'Charles Bonnet Syndrome / Release hallucinations common after stroke or traumatic brain injury. Simple hallucinations include flashes of light, geometric patterns, and colored spots. Complex hallucinations show formed images of people, animals, or objects, often appearing in areas of vision loss. Patients retain insight that these are not real.'
   },
   {
     id: 'blueFieldPhenomena',

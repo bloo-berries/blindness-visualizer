@@ -3,6 +3,12 @@
  */
 import React from 'react';
 import { ConditionType } from '../../../types/visualEffects';
+import {
+  getEpisodeTiming,
+  selectEpisodeConfig,
+  generateEpisodePatterns,
+  createVisionLossGradient
+} from '../../../utils/overlays/cbsHallucinationPatterns';
 
 export const generateVisualDisturbancePreviewStyle = (
   effectType: ConditionType,
@@ -11,15 +17,17 @@ export const generateVisualDisturbancePreviewStyle = (
 ): Partial<React.CSSProperties> | null => {
   switch (effectType) {
     case 'visualFloaters': {
-      const floaterPattern = `
-        radial-gradient(ellipse 15% 6% at 30% 30%, rgba(0,0,0,${0.6 * intensity}) 0%, rgba(0,0,0,0) 70%),
-        radial-gradient(ellipse 12% 5% at 70% 40%, rgba(0,0,0,${0.5 * intensity}) 0%, rgba(0,0,0,0) 65%),
-        radial-gradient(circle 8% at 50% 70%, rgba(0,0,0,${0.4 * intensity}) 0%, rgba(0,0,0,0) 60%)
-      `;
+      // Note: visualFloaters is now handled directly in generatePreviewOverlayStyle
+      // This case is kept as a fallback
+      const baseOpacity = 0.4 + intensity * 0.4;
       return {
-        background: floaterPattern,
+        background: `
+          radial-gradient(ellipse 25% 10% at 25% 25%, rgba(40,35,30,${baseOpacity}) 0%, transparent 100%),
+          radial-gradient(ellipse 20% 8% at 70% 35%, rgba(35,30,25,${baseOpacity * 0.9}) 0%, transparent 100%),
+          radial-gradient(circle 12% at 45% 65%, rgba(30,25,20,${baseOpacity * 0.85}) 0%, transparent 100%)
+        `,
         mixBlendMode: 'multiply' as const,
-        opacity: Math.min(0.8, intensity)
+        opacity: Math.max(0.6, Math.min(0.95, intensity))
       };
     }
     
@@ -104,130 +112,59 @@ export const generateVisualDisturbancePreviewStyle = (
     }
     
     case 'hallucinations': {
-      // Visual Hallucinations - Mixed type with patterns, lights, shadows, and figures
-      const fadePhase = Math.sin(now / 3000) * 0.5 + 0.5; // Slow fade in/out
-      const driftPhase = Math.sin(now / 4000) * 0.5 + 0.5;
+      // Charles Bonnet Syndrome / Release Hallucinations (Stroke/TBI)
+      // Episodic variation: different hallucinations appear/disappear every 8-15 seconds
+      // Uses shared pattern generators for sync with main visualizer
+
+      // Episode system - patterns change every 8-15 seconds with smooth transitions
+      const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity);
+      const episodeConfig = selectEpisodeConfig(episodeSeed, intensity);
+
+      // Animation phases for subtle movement
+      const animationPhase = Math.sin(now / 3000) * 0.5 + 0.5;
+      const flashPhase = Math.sin(now / 1500) * 0.5 + 0.5;
+
+      // Base opacity scales with intensity
+      const baseOpacity = (0.25 + intensity * 0.35) * episodeOpacity;
 
       const elements: string[] = [];
 
-      // Geometric lattice pattern (fades in periphery)
-      const patternOpacity = (0.1 + intensity * 0.15) * fadePhase;
-      elements.push(`
-        repeating-linear-gradient(
-          0deg,
-          transparent 0px,
-          transparent 12px,
-          rgba(100,80,120,${patternOpacity * 0.4}) 12px,
-          rgba(100,80,120,${patternOpacity * 0.4}) 13px
-        )
-      `);
-      elements.push(`
-        repeating-linear-gradient(
-          60deg,
-          transparent 0px,
-          transparent 12px,
-          rgba(80,100,120,${patternOpacity * 0.3}) 12px,
-          rgba(80,100,120,${patternOpacity * 0.3}) 13px
-        )
-      `);
+      // Episode-based patterns (simple + complex hallucinations)
+      const patternElements = generateEpisodePatterns(
+        episodeConfig,
+        intensity,
+        baseOpacity,
+        animationPhase,
+        episodeSeed
+      );
+      elements.push(...patternElements);
 
-      // Light phenomena - colored glows
-      const lightPositions = [
-        { x: 75, y: 25, hue: 200 },
-        { x: 20, y: 70, hue: 280 },
-        { x: 85, y: 60, hue: 40 },
-      ];
-      for (let i = 0; i < lightPositions.length; i++) {
-        const pos = lightPositions[i];
-        const lightOpacity = (0.15 + (i % 2) * 0.1) * intensity * (0.7 + fadePhase * 0.3);
-        const drift = driftPhase * 3;
+      // Persistent photopsia flashes (always present)
+      const numFlashes = Math.floor(2 + intensity * 3);
+      const flashOpacityBase = (0.25 + intensity * 0.25) * flashPhase;
+
+      for (let i = 0; i < numFlashes; i++) {
+        const x = 20 + (i * 25 + now / 5000) % 60;
+        const y = 20 + (i * 30) % 60;
+        const size = 5 + (i % 3) * 4;
+        const flashOpacity = flashOpacityBase * (0.5 + (i % 3) * 0.25);
+
         elements.push(`
-          radial-gradient(circle 12px at ${pos.x + drift}% ${pos.y - drift}%,
-            hsla(${pos.hue},50%,65%,${lightOpacity}) 0%,
-            hsla(${pos.hue},40%,55%,${lightOpacity * 0.4}) 50%,
+          radial-gradient(circle ${size}px at ${x}% ${y}%,
+            rgba(255,255,255,${flashOpacity}) 0%,
+            rgba(255,255,220,${flashOpacity * 0.5}) 40%,
             transparent 100%
           )
         `);
       }
 
-      // Bright flash spots
-      elements.push(`
-        radial-gradient(circle 5px at 30% 40%,
-          rgba(255,255,255,${0.25 * intensity * fadePhase}) 0%,
-          transparent 100%
-        )
-      `);
-
-      // Shadowy figures in periphery
-      const figurePositions = [
-        { x: 8, y: 45 },
-        { x: 92, y: 40 },
-      ];
-      for (let i = 0; i < figurePositions.length; i++) {
-        const pos = figurePositions[i];
-        const figureOpacity = (0.2 + i * 0.05) * intensity * (0.6 + driftPhase * 0.4);
-        // Head
-        elements.push(`
-          radial-gradient(ellipse 8px 10px at ${pos.x}% ${pos.y - 6}%,
-            rgba(20,20,30,${figureOpacity}) 0%,
-            transparent 100%
-          )
-        `);
-        // Body
-        elements.push(`
-          radial-gradient(ellipse 12px 22px at ${pos.x}% ${pos.y + 8}%,
-            rgba(15,15,25,${figureOpacity * 0.8}) 0%,
-            rgba(15,15,25,${figureOpacity * 0.3}) 60%,
-            transparent 100%
-          )
-        `);
-      }
-
-      // Small shadowy shapes
-      for (let i = 0; i < 2; i++) {
-        const x = 25 + i * 50;
-        const y = 70 + (i * 10);
-        const shapeOpacity = 0.12 * intensity * driftPhase;
-        elements.push(`
-          radial-gradient(ellipse 15px 8px at ${x}% ${y}%,
-            rgba(30,25,35,${shapeOpacity}) 0%,
-            transparent 100%
-          )
-        `);
-      }
-
-      // Face-like suggestion (pareidolia)
-      const faceOpacity = 0.1 * intensity * fadePhase;
-      elements.push(`
-        radial-gradient(ellipse 15px 18px at 70% 30%,
-          transparent 65%,
-          rgba(60,50,70,${faceOpacity * 0.4}) 85%,
-          transparent 100%
-        )
-      `);
-      // Eyes
-      elements.push(`
-        radial-gradient(ellipse 3px 2px at 67% 27%,
-          rgba(20,20,30,${faceOpacity}) 0%,
-          transparent 100%
-        )
-      `);
-      elements.push(`
-        radial-gradient(ellipse 3px 2px at 73% 27%,
-          rgba(20,20,30,${faceOpacity}) 0%,
-          transparent 100%
-        )
-      `);
-
-      // Vignette to emphasize peripheral hallucinations
-      elements.push(`
-        radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.15) 100%)
-      `);
+      // Vision loss area gradient
+      elements.push(createVisionLossGradient(intensity));
 
       return {
         background: elements.join(', '),
         mixBlendMode: 'normal' as const,
-        opacity: Math.min(0.85, 0.5 + intensity * 0.35)
+        opacity: Math.min(0.9, 0.6 + intensity * 0.3)
       };
     }
     

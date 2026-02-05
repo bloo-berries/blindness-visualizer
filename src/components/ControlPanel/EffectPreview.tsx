@@ -13,7 +13,11 @@ interface EffectPreviewProps {
 }
 
 // Effects that need animation
-const ANIMATED_EFFECTS = ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'hallucinations'];
+const ANIMATED_EFFECTS = [
+  'visualAura', 'visualAuraLeft', 'visualAuraRight',
+  'visualSnow', 'visualSnowFlashing', 'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense',
+  'hallucinations', 'visualFloaters'
+];
 
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
   enabledEffects,
@@ -305,7 +309,15 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
 
                       // vitreousHemorrhage needs both CSS filters AND overlay, so don't exclude it
                       if (id === 'vitreousHemorrhage') return true;
-                      
+
+                      // Visual disturbance overlays - explicitly include
+                      if (id === 'visualFloaters' || id === 'hallucinations' ||
+                          id === 'visualSnow' || id === 'visualSnowFlashing' || id === 'visualSnowColored' ||
+                          id === 'visualSnowTransparent' || id === 'visualSnowDense' ||
+                          id === 'visualAura' || id === 'visualAuraLeft' || id === 'visualAuraRight') {
+                        return true;
+                      }
+
                       return !filterBasedTypes.includes(id);
                     })
                     .map(effect => {

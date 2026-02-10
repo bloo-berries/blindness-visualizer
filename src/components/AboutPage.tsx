@@ -133,7 +133,7 @@ const AboutPage: React.FC = () => {
                       }}
                     >
                       <iframe
-                        src="https://fast.wistia.net/embed/iframe/qjdv24o4kb?web_component=true&seo=true"
+                        src="https://fast.wistia.com/embed/iframe/qjdv24o4kb?web_component=true&seo=true"
                         title="my-vision Video"
                         allow="autoplay; fullscreen"
                         allowTransparency={true}

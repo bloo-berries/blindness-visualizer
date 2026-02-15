@@ -32,10 +32,10 @@ export const generateCataractsFilter = (effects: VisualEffect[]): string => {
  * Generates CSS filters for new ocular diseases from specialty.vision
  */
 export const generateOcularDiseaseFilters = (effects: VisualEffect[]): string => {
+  // Note: retinalDetachment is handled entirely by overlay (no CSS filters needed)
   const ocularEffects = effects.filter(e =>
     (e.id === 'keratoconus' || e.id === 'dryEye' || e.id === 'vitreousHemorrhage' ||
-     e.id === 'retinalDetachment' || e.id === 'posteriorSubcapsularCataract' ||
-     e.id === 'corticalCataract') && e.enabled
+     e.id === 'posteriorSubcapsularCataract' || e.id === 'corticalCataract') && e.enabled
   );
 
   if (ocularEffects.length === 0) return '';
@@ -45,7 +45,7 @@ export const generateOcularDiseaseFilters = (effects: VisualEffect[]): string =>
   const keratoconus = effects.find(e => e.id === 'keratoconus' && e.enabled);
   const dryEye = effects.find(e => e.id === 'dryEye' && e.enabled);
   const vitreousHemorrhage = effects.find(e => e.id === 'vitreousHemorrhage' && e.enabled);
-  const retinalDetachment = effects.find(e => e.id === 'retinalDetachment' && e.enabled);
+  // Note: retinalDetachment is handled entirely by overlay (no CSS filters needed)
   const posteriorSubcapsularCataract = effects.find(e => e.id === 'posteriorSubcapsularCataract' && e.enabled);
   const corticalCataract = effects.find(e => e.id === 'corticalCataract' && e.enabled);
 
@@ -82,15 +82,9 @@ export const generateOcularDiseaseFilters = (effects: VisualEffect[]): string =>
     // The red tint is provided entirely by the overlay layer
   }
 
-  if (retinalDetachment) {
-    // Curtain-like shadow effect with margin distortion (metamorphopsia)
-    filters.push(`brightness(${100 - retinalDetachment.intensity * 50}%)`);
-    filters.push(`contrast(${100 - retinalDetachment.intensity * 40}%)`);
-    // Add slight blur for margin distortion (metamorphopsia)
-    filters.push(`blur(${retinalDetachment.intensity * 3}px)`);
-    // Add slight hue rotation for color distortion at margins
-    filters.push(`hue-rotate(${retinalDetachment.intensity * 2}deg)`);
-  }
+  // Retinal Detachment - handled entirely by overlay (curtain-like gradient)
+  // No CSS filters needed - the overlay provides the shadow effect from top down
+  // Adding filters here would double-darken the image
 
   if (posteriorSubcapsularCataract) {
     // Severe glare and halos effect

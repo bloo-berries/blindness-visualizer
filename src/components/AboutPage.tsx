@@ -14,12 +14,11 @@ const AboutPage: React.FC = () => {
 
   // Load Wistia player script if not already loaded
   useEffect(() => {
-    const existingScript = document.querySelector('script[src*="wistia.net/player.js"]') || 
-                          document.querySelector('script[src*="wistia.com/player.js"]');
-    
+    const existingScript = document.querySelector('script[src*="wistia.com/player.js"]');
+
     if (!existingScript) {
       const script = document.createElement('script');
-      script.src = 'https://fast.wistia.net/player.js';
+      script.src = 'https://fast.wistia.com/player.js';
       script.async = true;
       document.head.appendChild(script);
     }

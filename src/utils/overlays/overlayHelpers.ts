@@ -1,5 +1,5 @@
 import { OVERLAY_BASE_STYLES, getOverlayZIndex, Z_INDEX } from '../overlayConstants';
-import { CONTAINER_SELECTORS } from '../appConstants';
+import { findOverlayContainer, ensureRelativePositioning } from './sharedOverlayUtils';
 
 /**
  * Creates a visual field overlay element with specified styles
@@ -22,47 +22,17 @@ export const createOverlay = (
       ...OVERLAY_BASE_STYLES,
       zIndex: getOverlayZIndex(conditionId || '', Z_INDEX.BASE)
     });
-    
-    // Try multiple selectors to find the container
-    let container: Element | null = null;
-    
-    for (const selector of CONTAINER_SELECTORS) {
-      if (selector === 'iframe[src*="youtube"]') {
-        // Special handling for iframe - get its parent
-        const iframe = document.querySelector(selector);
-        if (iframe) {
-          container = iframe.parentElement;
-          break;
-        }
-      } else if (selector === 'canvas') {
-        // Special handling for canvas - get its parent
-        const canvas = document.querySelector(selector);
-        if (canvas) {
-          container = canvas.parentElement;
-          break;
-        }
-      } else {
-        container = document.querySelector(selector);
-        if (container) {
-          break;
-        }
-      }
-    }
-    
+
+    const container = findOverlayContainer();
+
     if (container) {
       container.appendChild(overlayElement);
     } else {
       // Try to append to body as fallback
       document.body.appendChild(overlayElement);
     }
-    
-    // Force the container to have relative positioning if it doesn't
-    if (container && container instanceof HTMLElement) {
-      const computedStyle = window.getComputedStyle(container);
-      if (computedStyle.position === 'static') {
-        container.style.position = 'relative';
-      }
-    }
+
+    ensureRelativePositioning(container);
   }
   
   Object.assign(overlayElement.style, {
@@ -90,33 +60,7 @@ export const createOverlayWithContainer = (
   let overlayElement = document.getElementById(id);
   
   // Use provided container or try to find one
-  let container: Element | null = targetContainer || null;
-  
-  if (!container) {
-    // Try multiple selectors to find the container
-    for (const selector of CONTAINER_SELECTORS) {
-      if (selector === 'iframe[src*="youtube"]') {
-        // Special handling for iframe - get its parent
-        const iframe = document.querySelector(selector);
-        if (iframe) {
-          container = iframe.parentElement;
-          break;
-        }
-      } else if (selector === 'canvas') {
-        // Special handling for canvas - get its parent
-        const canvas = document.querySelector(selector);
-        if (canvas) {
-          container = canvas.parentElement;
-          break;
-        }
-      } else {
-        container = document.querySelector(selector);
-        if (container) {
-          break;
-        }
-      }
-    }
-  }
+  let container: Element | null = targetContainer || findOverlayContainer();
   
   // If container is provided and has a child with position: relative, use that child instead
   // This handles the case where simulationContainerRef is the outer div but we need the inner div
@@ -175,13 +119,7 @@ export const createOverlayWithContainer = (
     }
   }
   
-  // Force the container to have relative positioning if it doesn't
-  if (container && container instanceof HTMLElement) {
-    const computedStyle = window.getComputedStyle(container);
-    if (computedStyle.position === 'static') {
-      container.style.position = 'relative';
-    }
-  }
+  ensureRelativePositioning(container);
 
   // Apply styles
   overlayElement.style.background = backgroundStyle;

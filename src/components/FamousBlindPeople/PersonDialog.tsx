@@ -12,7 +12,7 @@ import {
   Chip
 } from '@mui/material';
 import { Close as CloseIcon, ArrowBack, ArrowForward } from '@mui/icons-material';
-import { PersonData } from '../../data/famousPeopleData';
+import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
 

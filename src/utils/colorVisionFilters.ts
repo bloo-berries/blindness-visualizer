@@ -11,7 +11,7 @@ import { ConditionType } from '../types/visualEffects';
 
 // Machado 2009 transformation matrices for dichromatic conditions
 // These are the scientifically accurate matrices for color vision deficiency simulation
-export const ColorVisionMatrices = {
+const ColorVisionMatrices = {
   // Protanopia (red-blind) - affects 1.0-1.3% of males, 0.02% of females
   // Complete absence of L-cones (long-wavelength sensitive)
   protanopia: [
@@ -38,7 +38,7 @@ export const ColorVisionMatrices = {
 };
 
 // Severity-based matrices for anomalous trichromacy
-export const AnomalyMatrices = {
+const AnomalyMatrices = {
   // Protanomaly severity matrices (0.0 = normal, 1.0 = protanopia)
   protanomaly: {
     0.0: [1.000, 0.000, 0.000, 0.000, 1.000, 0.000, 0.000, 0.000, 1.000],
@@ -65,49 +65,11 @@ export const AnomalyMatrices = {
 };
 
 // Achromatopsia matrix (complete color blindness)
-export const AchromatopsiaMatrix = [
+const AchromatopsiaMatrix = [
   0.2126, 0.7152, 0.0722,
   0.2126, 0.7152, 0.0722,
   0.2126, 0.7152, 0.0722
 ];
-
-/**
- * Converts sRGB to linear RGB color space
- */
-export const srgbToLinear = (rgb: number[]): number[] => {
-  return rgb.map(c => {
-    const normalized = c / 255;
-    return normalized <= 0.04045 
-      ? normalized / 12.92 
-      : Math.pow((normalized + 0.055) / 1.055, 2.4);
-  });
-};
-
-/**
- * Converts linear RGB to sRGB color space
- */
-export const linearToSrgb = (rgb: number[]): number[] => {
-  return rgb.map(c => {
-    const srgb = c <= 0.0031308 
-      ? c * 12.92 
-      : 1.055 * Math.pow(c, 1/2.4) - 0.055;
-    return Math.max(0, Math.min(255, Math.round(srgb * 255)));
-  });
-};
-
-/**
- * Applies a color matrix transformation
- */
-export const applyColorMatrix = (rgb: number[], matrix: number[]): number[] => {
-  const [r, g, b] = rgb;
-  
-  // Apply 3x3 matrix transformation
-  const newR = r * matrix[0] + g * matrix[1] + b * matrix[2];
-  const newG = r * matrix[3] + g * matrix[4] + b * matrix[5];
-  const newB = r * matrix[6] + g * matrix[7] + b * matrix[8];
-  
-  return [newR, newG, newB];
-};
 
 /**
  * Interpolates between severity matrices for anomalous trichromacy
@@ -177,18 +139,6 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
   // For dichromatic conditions, return the full matrix without blending
   // The blending will be handled in getColorVisionFilter based on intensity
   return fullMatrix;
-};
-
-/**
- * Converts a color matrix to CSS filter values using available CSS filter functions
- * Since CSS doesn't support arbitrary matrix transformations, we'll use a combination
- * of available filters to approximate the color vision deficiency
- */
-export const matrixToCSSFilter = (matrix: number[]): string => {
-  // CSS filters don't support arbitrary matrix transformations
-  // We'll use a combination of available filters to approximate the effect
-  // For now, return an empty string to indicate no direct matrix support
-  return '';
 };
 
 /**

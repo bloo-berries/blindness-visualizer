@@ -26,7 +26,6 @@ const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeStep, setActiveStep] = useState(0);
-  // const [showFixedNav, setShowFixedNav] = useState(true);
   const [inputSource, setInputSource] = useState<InputSource>({
     type: 'youtube',
   });

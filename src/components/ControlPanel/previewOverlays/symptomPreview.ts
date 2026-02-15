@@ -169,11 +169,11 @@ export const generateSymptomPreviewStyle = (
     case 'halos':
     case 'lossOfContrast':
     case 'starbursting':
-    case 'blueFieldPhenomena':
     case 'persistentPositiveVisualPhenomenon':
     case 'palinopsia':
     case 'trails':
       return null; // Handled by CSS filters in EffectPreview.tsx
+    // Note: blueFieldPhenomena is now handled by visualDisturbancePreview.ts
     
     default:
       return null;

@@ -1,0 +1,71 @@
+import { VisualEffect } from '../../types/visualEffects';
+import { generateColorBlindnessFilter } from './colorBlindnessFilters';
+import { generateBlurFilter, generateRefractiveErrorFilters } from './blurFilters';
+import { generateVisualSnowFilters, generateSymptomFilters } from './symptomFilters';
+import { generateCataractsFilter, generateOcularDiseaseFilters } from './ocularFilters';
+import {
+  generateGalileoFilters,
+  generateMonetFilters,
+  generateChristineFilters,
+  generateLucyFilters,
+  generateDavidFilters,
+  generateMarlaFilters,
+  generateMinkaraFilters,
+  generateJoshuaFilters,
+  generateCustomFamousPeopleFilters
+} from './famousPeopleFilters';
+
+/**
+ * Generates complete CSS filter string for all effects
+ */
+export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: number = 1.0, diplopiaDirection: number = 0.0): string => {
+  const enabledEffects = effects.filter(e => e.enabled);
+
+  if (enabledEffects.length === 0) {
+    return '';
+  }
+
+  // Check if vitreousHemorrhage is enabled - if so, skip cataracts filter to avoid conflicts
+  const hasVitreousHemorrhage = enabledEffects.some(e => e.id === 'vitreousHemorrhage');
+
+  const filterComponents = [
+    generateColorBlindnessFilter(effects),
+    generateBlurFilter(effects),
+    // Only apply cataracts filter if vitreousHemorrhage is NOT enabled (to avoid yellow/brown tint conflict)
+    ...(hasVitreousHemorrhage ? [] : [generateCataractsFilter(effects)]),
+    generateGalileoFilters(effects),
+    generateMonetFilters(effects),
+    generateChristineFilters(effects),
+    generateLucyFilters(effects),
+    generateDavidFilters(effects),
+    generateMarlaFilters(effects),
+    generateMinkaraFilters(effects),
+    generateJoshuaFilters(effects),
+    generateVisualSnowFilters(effects),
+    generateCustomFamousPeopleFilters(effects),
+    generateOcularDiseaseFilters(effects),
+    generateSymptomFilters(effects),
+    generateRefractiveErrorFilters(effects)
+  ].filter(Boolean);
+
+  const finalFilter = filterComponents.join(' ');
+
+  return finalFilter;
+};
+
+/**
+ * Generates base styles for media elements
+ */
+export const generateBaseStyles = (): React.CSSProperties => {
+  return {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain'
+  };
+};

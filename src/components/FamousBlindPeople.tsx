@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import { personData, categories } from '../data/famousPeopleData';
+import { personData, categories } from '../data/famousPeople';
 import { getSimulationConditions } from '../utils/famousPeopleUtils';
 import { PersonCard } from './FamousBlindPeople/PersonCard';
 import { PersonDialog } from './FamousBlindPeople/PersonDialog';

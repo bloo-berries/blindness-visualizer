@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, Typography, Grid, Box, Skeleton } from '@mui/material';
-import { PersonData } from '../../data/famousPeopleData';
+import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 
 interface PersonCardProps {

@@ -6,74 +6,7 @@ import { createVisualDisturbanceOverlays } from './overlays/visualDisturbanceOve
 import { createRetinalDiseaseOverlays } from './overlays/retinalDiseaseOverlays';
 import { createFamousPeopleOverlays } from './overlays/famousPeopleOverlays';
 import { createOcularOverlays } from './overlays/ocularOverlays';
-import { createOverlay as createOverlayHelper, createOverlayWithContainer as createOverlayWithContainerHelper } from './overlays/overlayHelpers';
-
-/**
- * Creates a simple overlay element with consistent styling
- * @param id - The ID for the overlay element
- * @param container - The container element to append to
- * @param additionalStyles - Additional styles to apply
- * @returns The created overlay element
- */
-export const createSimpleOverlay = (
-  id: string,
-  container: HTMLElement,
-  additionalStyles: React.CSSProperties = {}
-): HTMLElement => {
-  const overlay = document.createElement('div');
-  overlay.id = id;
-  
-  Object.assign(overlay.style, {
-    ...OVERLAY_BASE_STYLES,
-    zIndex: Z_INDEX.ANIMATED.toString(),
-    ...additionalStyles
-  });
-  
-  container.appendChild(overlay);
-  return overlay;
-};
-
-/**
- * Finds the appropriate container for overlays
- * @returns The container element or null if not found
- */
-export const findOverlayContainer = (): HTMLElement | null => {
-  const selectors = [
-    '.visualizer-container',
-    '[class*="visualizer"]',
-    '[style*="position: relative"]',
-    'iframe[src*="youtube"]', // For YouTube videos, find the iframe parent
-    'canvas' // For WebGL content, find the canvas parent
-  ];
-  
-  for (const selector of selectors) {
-    const element = document.querySelector(selector);
-    if (element && element instanceof HTMLElement) {
-      // For iframe and canvas, get their parent container
-      if (selector.includes('iframe') || selector.includes('canvas')) {
-        const parent = element.parentElement;
-        if (parent && parent instanceof HTMLElement) {
-          return parent;
-        }
-      }
-      return element;
-    }
-  }
-  
-  return null;
-};
-
-/**
- * Creates a visual field overlay element with specified styles
- * Re-exported from overlayHelpers for backward compatibility
- */
-export const createOverlay = createOverlayHelper;
-
-/**
- * Creates an overlay with a specific container
- * Re-exported from overlayHelpers for backward compatibility
- */
-export const createOverlayWithContainer = createOverlayWithContainerHelper;
+import { createOverlay } from './overlays/overlayHelpers';
 
 /**
  * Creates visual field overlays for all enabled effects
@@ -448,13 +381,3 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
     }
   }
 };
-
-/**
- * Removes all visual field overlays
- */
-export const removeVisualFieldOverlays = (): void => {
-  const overlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
-  overlays.forEach(overlay => overlay.remove());
-  
-  // Diplopia effects are now handled by WebGL shaders, no DOM cleanup needed
-}; 

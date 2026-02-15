@@ -1,7 +1,7 @@
 import { VisualEffect } from '../../types/visualEffects';
 import { createOverlay } from './overlayHelpers';
 import { OVERLAY_BASE_STYLES, getOverlayZIndex, Z_INDEX } from '../overlayConstants';
-import { CONTAINER_SELECTORS } from '../appConstants';
+import { findOverlayContainer, ensureRelativePositioning, seededRandom } from './sharedOverlayUtils';
 
 /**
  * Creates overlays for ocular conditions
@@ -58,27 +58,7 @@ export const createOcularOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-posteriorSubcapsular';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const container = findOverlayContainer();
 
       if (container) {
         container.appendChild(overlayElement);
@@ -86,12 +66,7 @@ export const createOcularOverlays = (
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
-        if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
-        }
-      }
+      ensureRelativePositioning(container);
     }
 
     Object.assign(overlayElement.style, {
@@ -181,27 +156,7 @@ export const createOcularOverlays = (
       overlayElement = document.createElement('div');
       overlayElement.id = 'visual-field-overlay-corticalCataract';
 
-      let container: Element | null = null;
-      for (const selector of CONTAINER_SELECTORS) {
-        if (selector === 'iframe[src*="youtube"]') {
-          const iframe = document.querySelector(selector);
-          if (iframe) {
-            container = iframe.parentElement;
-            break;
-          }
-        } else if (selector === 'canvas') {
-          const canvas = document.querySelector(selector);
-          if (canvas) {
-            container = canvas.parentElement;
-            break;
-          }
-        } else {
-          container = document.querySelector(selector);
-          if (container) {
-            break;
-          }
-        }
-      }
+      const container = findOverlayContainer();
 
       if (container) {
         container.appendChild(overlayElement);
@@ -209,12 +164,7 @@ export const createOcularOverlays = (
         document.body.appendChild(overlayElement);
       }
 
-      if (container && container instanceof HTMLElement) {
-        const computedStyle = window.getComputedStyle(container);
-        if (computedStyle.position === 'static') {
-          container.style.position = 'relative';
-        }
-      }
+      ensureRelativePositioning(container);
     }
 
     Object.assign(overlayElement.style, {
@@ -234,12 +184,6 @@ export const createOcularOverlays = (
     // Generate wedge-shaped spokes extending from periphery toward center
     const spokePatterns: string[] = [];
     const numSpokes = 8 + Math.floor(intensity * 6); // More spokes as condition progresses
-
-    // Seeded pseudo-random for consistent spoke positions
-    const seededRandom = (seed: number) => {
-      const x = Math.sin(seed * 12.9898) * 43758.5453;
-      return x - Math.floor(x);
-    };
 
     for (let i = 0; i < numSpokes; i++) {
       const seed = i * 3.71;

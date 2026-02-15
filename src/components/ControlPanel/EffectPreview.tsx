@@ -16,7 +16,7 @@ interface EffectPreviewProps {
 const ANIMATED_EFFECTS = [
   'visualAura', 'visualAuraLeft', 'visualAuraRight',
   'visualSnow', 'visualSnowFlashing', 'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense',
-  'hallucinations', 'visualFloaters'
+  'hallucinations', 'visualFloaters', 'blueFieldPhenomena'
 ];
 
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
@@ -311,7 +311,7 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                       if (id === 'vitreousHemorrhage') return true;
 
                       // Visual disturbance overlays - explicitly include
-                      if (id === 'visualFloaters' || id === 'hallucinations' ||
+                      if (id === 'visualFloaters' || id === 'hallucinations' || id === 'blueFieldPhenomena' ||
                           id === 'visualSnow' || id === 'visualSnowFlashing' || id === 'visualSnowColored' ||
                           id === 'visualSnowTransparent' || id === 'visualSnowDense' ||
                           id === 'visualAura' || id === 'visualAuraLeft' || id === 'visualAuraRight') {

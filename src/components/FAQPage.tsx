@@ -310,16 +310,6 @@ const FAQPage: React.FC = () => {
     }
   ];
 
-  // const categories = [
-  //   'Vision & Perception',
-  //   'Technology & Accessibility', 
-  //   'Daily Life',
-  //   'Navigation & Mobility',
-  //   'Social Interaction',
-  //   'Employment & Career',
-  //   'Medical & Treatment'
-  // ];
-
   const handleFAQChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpandedFAQ(isExpanded ? panel : false);
   };

@@ -75,7 +75,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'wanda-diabetic-retinopathy': ['diabeticRetinopathy', 'visualFloaters', 'blurryVision'],
 
     // ===== RETINAL DETACHMENT =====
-    'sugar-retinal-detachment': ['retinalDetachment', 'visualFloaters'],
+    'sugar-retinal-detachment': ['sugarRetinalDetachmentComplete'],
     'jeff-retinoblastoma': ['retinalDetachment', 'blindnessLeftEye'],
     'lex-rop': ['retinalDetachment', 'tunnelVision'],
 

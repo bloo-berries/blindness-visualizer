@@ -29,9 +29,9 @@ export const athletes: Record<string, PersonData> = {
     name: "Sugar Ray Leonard",
     condition: "Partial Retinal Detachment",
     years: "Born 1956",
-    onset: "Left eye in 1982",
+    onset: "Left eye in 1982, surgery May 1982",
     simulation: "sugar-retinal-detachment",
-    description: "Sugar Ray Leonard, the former professional boxer, suffered a partial retinal detachment in his left eye in 1982. This condition affected his depth perception and peripheral vision, ultimately contributing to his decision to retire from boxing. He has since become an advocate for eye health and safety in sports. Learn more at en.wikipedia.org."
+    description: "Sugar Ray Leonard suffered a partial retinal detachment in his left eye in 1982. Symptoms included a dark curtain/shadow encroaching from the periphery, numerous floaters, and flashes of light at the edges of vision. The condition caused progressive vision loss that threatened to engulf his central vision. After surgery, he initially retired but later returned to boxing. Learn more at en.wikipedia.org."
   },
   stephen: {
     name: "Stephen Curry",

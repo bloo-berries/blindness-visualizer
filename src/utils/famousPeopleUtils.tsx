@@ -6,77 +6,105 @@ import React from 'react';
 
 /**
  * Maps simulation types to actual condition IDs for navigation
+ * Uses standard vision condition effect IDs that have working YouTube overlays
  */
 export const getSimulationConditions = (simulation: string): string[] => {
   const simulationMap: Record<string, string[]> = {
-    'glaucoma-halos progressive-loss': ['johnMiltonBlindness', 'miltonGlaucomaHalos'],
-    'complete-blindness': ['helenKellerBlindness', 'louisBrailleBlindness', 'rayCharlesBlindness', 'stevieWonderROP', 'andreaBocelliBlindness'],
-    'acute-glaucoma-attacks': ['galileoAcuteAttackMode', 'galileoChronicProgression'],
-    'tunnel-vision glaucoma-halos': ['glaucoma', 'cataracts'],
-    'progressive-loss tunnel-vision': ['glaucoma', 'monochromatic'],
-    'nmo-blur': ['cataracts', 'astigmatism'],
-    'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'monochromatic'],
-    'central-scotoma metamorphopsia': ['stargardt', 'amd'],
-    'central-scotoma progressive-loss': ['stargardt', 'amd'],
-    'cataracts color-distortion': ['monetCataractsProgression'],
-    'ved-spatial-awareness': ['vedMehtaBlindness'],
-    'christine-nmo-complete': ['christineNMOComplete'],
-    'lucy-complete-vision': ['lucyCompleteVision'],
-    'david-hemispheric-vision': ['davidPatersonBlindness'],
-    'erik-retinoschisis-islands': ['erikWeihenmayerRetinoschisis'],
-    'marla-stargardt-complete': ['marlaRunyanStargardt'],
-    'minkara-end-stage-complete': ['minkaraEndStageComplete'],
-    'joshua-complete-blindness': ['joshuaMieleBlindness'],
-    'paul-retinitis-pigmentosa': ['retinitisPigmentosa'],
-    'casey-retinitis-pigmentosa': ['retinitisPigmentosa'],
-    'molly-retinitis-pigmentosa': ['retinitisPigmentosa'],
-    'mila-iritis-cataracts': ['cataracts', 'glaucoma'],
-    'judi-amd-progression': ['amd', 'stargardt'],
-    'bono-glaucoma-sensitivity': ['glaucoma', 'photophobia'],
-    'georgia-amd-central-loss': ['amd', 'stargardt'],
-    'ella-diabetic-retinopathy': ['diabeticRetinopathy', 'glaucoma'],
-    'sugar-retinal-detachment': ['retinalDetachment', 'glaucoma'],
-    'stephen-keratoconus': ['keratoconus', 'astigmatism'],
-    'allan-nystagmus': ['nystagmus', 'astigmatism'],
-    'fetty-glaucoma-prosthetic': ['glaucoma', 'complete-blindness'],
-    'slick-rick-blindness': ['hemianopia', 'glaucoma'],
-    'abraham-congenital-blindness': ['complete-blindness'],
-    'moon-complete-blindness': ['complete-blindness'],
-    'sharon-stroke-visual-distortions': ['visual-auras', 'metamorphopsia', 'hallucinations'],
-    'jose-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
-    'art-congenital-cataracts': ['cataracts', 'complete-blindness'],
-    'ronnie-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
-    'doc-eye-infection': ['complete-blindness'],
-    'jeff-retinoblastoma': ['complete-blindness'],
-    'diane-congenital-cataracts': ['cataracts', 'complete-blindness'],
-    'nobuyuki-congenital-blindness': ['complete-blindness'],
-    'rahsaan-childhood-blindness': ['complete-blindness'],
-    'borges-progressive-blindness': ['glaucoma', 'progressive-loss'],
-    'thurber-eye-injury': ['hemianopia', 'glaucoma'],
-    'fanny-iatrogenic-blindness': ['complete-blindness'],
-    'homer-traditional-blindness': ['complete-blindness'],
-    'lex-rop': ['retinopathyOfPrematurity', 'complete-blindness'],
-    'david-brown-kawasaki': ['complete-blindness'],
-    'blunkett-congenital-blindness': ['complete-blindness'],
-    'saunderson-smallpox-blindness': ['complete-blindness'],
-    'geerat-congenital-glaucoma': ['glaucoma', 'complete-blindness'],
-    'holman-complete-blindness': ['complete-blindness'],
-    'chris-retinitis-pigmentosa': ['retinitisPigmentosa'],
-    'euler-progressive-blindness': ['glaucoma', 'progressive-loss'],
-    'marilee-legal-blindness': ['low-vision', 'glaucoma'],
-    'rachael-retinitis-pigmentosa': ['retinitisPigmentosa'],
-    'tiffany-complete-blindness': ['complete-blindness'],
-    'ross-complete-blindness': ['complete-blindness'],
-    'tofiri-complete-blindness': ['complete-blindness'],
-    'trischa-aniridia': ['complete-blindness'],
-    'wanda-diabetic-retinopathy': ['diabeticRetinopathy', 'glaucoma'],
+    // ===== COMPLETE BLINDNESS / NO LIGHT PERCEPTION =====
+    'complete-blindness': ['completeBlindness'],
+    'abraham-congenital-blindness': ['completeBlindness'],
+    'moon-complete-blindness': ['completeBlindness'],
+    'doc-eye-infection': ['completeBlindness'],
+    'nobuyuki-congenital-blindness': ['completeBlindness'],
+    'rahsaan-childhood-blindness': ['completeBlindness'],
+    'fanny-iatrogenic-blindness': ['completeBlindness'],
+    'homer-traditional-blindness': ['completeBlindness'],
+    'david-brown-kawasaki': ['completeBlindness'],
+    'blunkett-congenital-blindness': ['completeBlindness'],
+    'saunderson-smallpox-blindness': ['completeBlindness'],
+    'holman-complete-blindness': ['completeBlindness'],
+    'tiffany-complete-blindness': ['completeBlindness'],
+    'ross-complete-blindness': ['completeBlindness'],
+    'tofiri-complete-blindness': ['completeBlindness'],
+    'joshua-complete-blindness': ['completeBlindness'],
+    'ved-spatial-awareness': ['completeBlindness'],
+
+    // ===== RETINITIS PIGMENTOSA (Tunnel Vision) =====
+    'paul-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'casey-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'molly-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'chris-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'rachael-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'nightBlindness'],
+    'progressive-loss tunnel-vision': ['retinitisPigmentosa', 'nightBlindness', 'lossOfContrast'],
+    'minkara-end-stage-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
+    'erik-retinoschisis-islands': ['retinitisPigmentosa', 'scotoma'],
+
+    // ===== GLAUCOMA =====
+    'glaucoma-halos progressive-loss': ['glaucoma', 'halos', 'tunnelVision'],
+    'acute-glaucoma-attacks': ['glaucoma', 'halos', 'blurryVision'],
+    'tunnel-vision glaucoma-halos': ['glaucoma', 'halos', 'tunnelVision'],
+    'jose-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
+    'ronnie-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
+    'geerat-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
+    'bono-glaucoma-sensitivity': ['glaucoma', 'halos', 'glare'],
+    'borges-progressive-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
+    'euler-progressive-blindness': ['glaucoma', 'tunnelVision', 'blurryVision'],
+    'fetty-glaucoma-prosthetic': ['glaucoma', 'blindnessLeftEye'],
+
+    // ===== CATARACTS =====
+    'cataracts color-distortion': ['cataracts', 'glare', 'lossOfContrast'],
+    'art-congenital-cataracts': ['cataracts', 'blurryVision', 'glare'],
+    'diane-congenital-cataracts': ['cataracts', 'blurryVision'],
+    'mila-iritis-cataracts': ['cataracts', 'glare', 'blurryVision'],
+    'nmo-blur': ['cataracts', 'blurryVision', 'glare'],
+
+    // ===== NMO / OPTIC NEURITIS (Christine Ha, Lucy Edwards) =====
+    'christine-nmo-complete': ['blurryVision', 'glare', 'lossOfContrast', 'scotoma'],
+    'lucy-complete-vision': ['blurryVision', 'lossOfContrast', 'glare'],
+
+    // ===== MACULAR DEGENERATION / STARGARDT =====
+    'central-scotoma metamorphopsia': ['amd', 'scotoma'],
+    'central-scotoma progressive-loss': ['stargardt', 'scotoma'],
+    'judi-amd-progression': ['amd', 'scotoma', 'blurryVision'],
+    'georgia-amd-central-loss': ['amd', 'scotoma', 'lossOfContrast'],
+    'marla-stargardt-complete': ['stargardt', 'scotoma', 'lossOfContrast'],
+
+    // ===== DIABETIC RETINOPATHY =====
+    'ella-diabetic-retinopathy': ['diabeticRetinopathy', 'visualFloaters'],
+    'wanda-diabetic-retinopathy': ['diabeticRetinopathy', 'visualFloaters', 'blurryVision'],
+
+    // ===== RETINAL DETACHMENT =====
+    'sugar-retinal-detachment': ['retinalDetachment', 'visualFloaters'],
+    'jeff-retinoblastoma': ['retinalDetachment', 'blindnessLeftEye'],
+    'lex-rop': ['retinalDetachment', 'tunnelVision'],
+
+    // ===== HEMIANOPIA / PARTIAL VISION LOSS =====
+    'david-hemispheric-vision': ['hemianopiaRight', 'blurryVision'],
+    'slick-rick-blindness': ['blindnessRightEye'],
+    'thurber-eye-injury': ['blindnessLeftEye', 'blurryVision'],
+
+    // ===== KERATOCONUS / ASTIGMATISM =====
+    'stephen-keratoconus': ['keratoconus', 'astigmatism', 'starbursting'],
+    'allan-nystagmus': ['astigmatism', 'blurryVision'],
+
+    // ===== VISUAL DISTURBANCES =====
+    'sharon-stroke-visual-distortions': ['visualAura', 'hallucinations', 'visualFloaters'],
+
+    // ===== ANIRIDIA =====
+    'trischa-aniridia': ['glare', 'blurryVision', 'lossOfContrast'],
+
+    // ===== COLOR BLINDNESS =====
     'fred-rogers-deuteranopia': ['deuteranopia'],
     'bill-gates-deuteranomaly': ['deuteranomaly'],
     'john-kay-achromatopsia': ['monochromacy'],
-    'jonny-greenwood-color-blindness': ['deuteranomaly']
+    'jonny-greenwood-color-blindness': ['deuteranomaly'],
+
+    // ===== LEGAL BLINDNESS / LOW VISION =====
+    'marilee-legal-blindness': ['blurryVision', 'lossOfContrast', 'glare']
   };
-  
-  return simulationMap[simulation] || ['glaucoma'];
+
+  return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];
 };
 
 /**

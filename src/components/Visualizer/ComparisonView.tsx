@@ -78,6 +78,26 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         }
       </Box>
 
+      {/* Complete blindness notification */}
+      {effects.some(e => e.id === 'completeBlindness' && e.enabled) && (
+        <Box sx={{
+          position: 'absolute',
+          top: '50px',
+          left: '25%',
+          transform: 'translateX(-50%)',
+          zIndex: 1002,
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          color: 'white',
+          padding: '8px 16px',
+          borderRadius: '4px',
+          fontSize: '12px',
+          textAlign: 'center',
+          maxWidth: '45%'
+        }}>
+          Complete blindness - The blackness shown is the accurate visualization. Audio is still playing.
+        </Box>
+      )}
+
       {/* Left side - Simulation video */}
       <Box sx={{
         position: 'absolute',

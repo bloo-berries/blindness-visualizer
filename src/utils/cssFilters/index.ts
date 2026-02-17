@@ -16,6 +16,18 @@ import {
 } from './famousPeopleFilters';
 
 /**
+ * Generates filter for complete blindness (total darkness)
+ */
+const generateCompleteBlindnessFilter = (effects: VisualEffect[]): string => {
+  const completeBlindness = effects.find(e => e.id === 'completeBlindness' && e.enabled);
+  if (completeBlindness) {
+    // Complete blindness = total darkness (brightness 0)
+    return 'brightness(0)';
+  }
+  return '';
+};
+
+/**
  * Generates complete CSS filter string for all effects
  */
 export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: number = 1.0, diplopiaDirection: number = 0.0): string => {
@@ -23,6 +35,12 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
 
   if (enabledEffects.length === 0) {
     return '';
+  }
+
+  // Check for complete blindness first - if enabled, return only that filter
+  const completeBlindnessFilter = generateCompleteBlindnessFilter(effects);
+  if (completeBlindnessFilter) {
+    return completeBlindnessFilter;
   }
 
   // Check if vitreousHemorrhage is enabled - if so, skip cataracts filter to avoid conflicts

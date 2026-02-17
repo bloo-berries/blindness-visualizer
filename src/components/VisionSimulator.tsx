@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
+import {
   Container,
   Paper,
   Typography,
@@ -8,8 +8,7 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Button,
-  Tooltip
+  Button
 } from '@mui/material';
 import Visualizer from './Visualizer';
 import ControlPanel from './ControlPanel';
@@ -67,15 +66,15 @@ const VisionSimulator: React.FC = () => {
   }, [location.state]);
 
   const handleToggle = useCallback((id: string) => {
-    setEffects(prevEffects => 
+    setEffects(prevEffects =>
       prevEffects.map(effect => {
         if (effect.id === id) {
-          // When enabling an effect, set intensity to 1.0 (100%) for maximum effect
+          // When enabling an effect, set intensity to 0.5 (50%) as default
           // When disabling, keep the current intensity for when it's re-enabled
-          return { 
-            ...effect, 
+          return {
+            ...effect,
             enabled: !effect.enabled,
-            intensity: !effect.enabled ? 1.0 : effect.intensity
+            intensity: !effect.enabled ? 0.5 : effect.intensity
           };
         }
         return effect;
@@ -107,16 +106,6 @@ const VisionSimulator: React.FC = () => {
       navigate('/famous-people');
     } else {
       setActiveStep((prevStep) => prevStep - 1);
-    }
-  };
-
-  const handleFinish = () => {
-    // If user came from famous people page, redirect back there
-    // Otherwise, redirect to homepage
-    if (preconfiguredPerson) {
-      navigate('/famous-people');
-    } else {
-      navigate('/');
     }
   };
 
@@ -152,7 +141,7 @@ const VisionSimulator: React.FC = () => {
       case 1:
         return (
           <Box sx={{ p: 1.5 }}>
-            <ControlPanel 
+            <ControlPanel
               effects={effects}
               onToggle={handleToggle}
               onIntensityChange={handleIntensityChange}
@@ -161,6 +150,7 @@ const VisionSimulator: React.FC = () => {
               diplopiaDirection={diplopiaDirection}
               onDiplopiaSeparationChange={setDiplopiaSeparation}
               onDiplopiaDirectionChange={setDiplopiaDirection}
+              onViewSimulation={handleNext}
             />
           </Box>
         );
@@ -245,19 +235,19 @@ const VisionSimulator: React.FC = () => {
       >
         Skip to content
       </a>
-      <Container 
+      <Container
         maxWidth={false}
-        sx={{ maxWidth: '1000px', py: 2, pt: 5 }}
+        sx={{ maxWidth: '1000px', py: 2, pt: 10 }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"
         id="main-content"
       >
-        <Paper 
-          elevation={0} 
-          sx={{ 
+        <Paper
+          elevation={0}
+          sx={{
             p: 2,
-            pt: 3,
+            pt: 1.5,
             borderRadius: 3,
             border: '1px solid #e2e8f0',
             backgroundColor: 'background.paper'
@@ -265,33 +255,21 @@ const VisionSimulator: React.FC = () => {
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          <Typography 
-            variant="h4" 
-            component="h1" 
-            gutterBottom 
+          <Typography
+            variant="h5"
+            component="h1"
+            gutterBottom
             align="center"
             id="simulator-heading"
-            sx={{ 
+            sx={{
               fontWeight: 700,
               color: 'text.primary',
-              mb: 2,
-              mt: 3
+              mb: 1,
+              mt: 0
             }}
           >
             Vision Condition Simulator
           </Typography>
-          <Typography 
-            variant="body2" 
-            component="p"
-            align="center"
-            color="text.secondary"
-            sx={{ mb: 1 }}
-            id="simulator-description"
-          >
-            Use Tab to move, Arrows to adjust, and Enter/Space to activate. 
-            Press Alt+A (Win/Linux) or Option+A (Mac) for accessibility settings.
-          </Typography>
-
           {preconfiguredPerson && (
             <Box 
               sx={{ 
@@ -354,52 +332,37 @@ const VisionSimulator: React.FC = () => {
 
           {getStepContent(activeStep)}
 
-          {/* Navigation buttons positioned at the bottom of the content */}
-          <Box 
-            sx={{ 
-              mt: 2,
-              p: 1.5,
-              backgroundColor: 'background.paper',
-              borderTop: '1px solid #e2e8f0',
-              borderRadius: '0 0 12px 12px'
-            }}
-          >
+          {/* Navigation buttons - only show on final step (View Simulation) */}
+          {activeStep === 2 && (
+            <Box
+              sx={{
+                mt: 2,
+                p: 1.5,
+                backgroundColor: 'background.paper',
+                borderTop: '1px solid #e2e8f0',
+                borderRadius: '0 0 12px 12px'
+              }}
+            >
               <Box
                 sx={{
                   display: 'flex',
-                  justifyContent: 'space-between',
+                  justifyContent: 'flex-start',
                   maxWidth: '100%'
                 }}
                 role="navigation"
                 aria-label="Wizard navigation"
               >
                 <Button
-                  disabled={activeStep === 0}
                   onClick={handleBack}
-                  aria-label="Go back to previous step"
+                  aria-label="Go back to select conditions"
                   variant="outlined"
                   size="large"
                 >
                   BACK
                 </Button>
-                <Tooltip 
-                  title={inputSource.type === 'webcam' && activeStep === 0 ? "Camera feature is coming soon as a premium feature" : ""}
-                  placement="top"
-                >
-                  <span>
-                    <Button
-                      variant="contained"
-                      onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}
-                      aria-label={`Go to ${activeStep < steps.length - 1 ? 'next step' : 'finish'}`}
-                      size="large"
-                      disabled={inputSource.type === 'webcam' && activeStep === 0}
-                    >
-                      {activeStep === steps.length - 1 ? 'FINISH' : 'NEXT'}
-                    </Button>
-                  </span>
-                </Tooltip>
               </Box>
-          </Box>
+            </Box>
+          )}
         </Paper>
         <Footer />
       </Container>

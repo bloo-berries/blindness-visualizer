@@ -15,13 +15,48 @@ import {
   Tooltip,
   IconButton,
   TextField,
-  InputAdornment
+  InputAdornment,
+  Link,
+  Collapse
 } from '@mui/material';
-import { Info, ExpandMore, Search, Clear } from '@mui/icons-material';
+import { Info, ExpandMore, Search, Clear, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
 import { conditionCategories } from './ControlPanelConstants';
+
+// Helper to render description text with clickable links
+const renderDescriptionWithLinks = (text: string): React.ReactNode => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (urlRegex.test(part)) {
+      urlRegex.lastIndex = 0;
+      return (
+        <Link
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ color: 'primary.light', wordBreak: 'break-word' }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          Learn more
+        </Link>
+      );
+    }
+    return part;
+  });
+};
+
+// Quick filter definitions
+const QUICK_FILTERS = [
+  { id: 'common', label: 'Most Common', conditions: ['deuteranomaly', 'deuteranopia', 'protanopia', 'cataracts', 'astigmatism', 'nearSighted'] },
+  { id: 'red-green', label: 'Red-Green', conditions: ['protanopia', 'deuteranopia', 'protanomaly', 'deuteranomaly'] },
+  { id: 'field-loss', label: 'Field Loss', conditions: ['hemianopiaLeft', 'hemianopiaRight', 'tunnelVision', 'scotoma', 'quadrantanopiaRight'] },
+  { id: 'age-related', label: 'Age-Related', conditions: ['cataracts', 'amd', 'glaucoma', 'presbyopia'] },
+];
 
 interface EffectListProps {
   effects: VisualEffect[];
@@ -54,31 +89,67 @@ export const EffectList: React.FC<EffectListProps> = ({
   // Track which accordion is expanded (null means none, or category name)
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
+  // Track if selected conditions summary is expanded
+  const [showSelectedConditions, setShowSelectedConditions] = useState(false);
+
+  // Active quick filter
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  // Get enabled effects for display
+  const enabledEffectsList = useMemo(() =>
+    effects.filter(effect => effect.enabled),
+    [effects]
+  );
+
   // Handle accordion expand/collapse - only one open at a time
   const handleAccordionChange = (category: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpandedCategory(isExpanded ? category : null);
   };
 
-  // Filter effects based on search query
+  // Filter effects based on search query and quick filter
   const filteredEffects = useMemo(() => {
-    if (!searchQuery.trim()) return effects;
-    const query = searchQuery.toLowerCase().trim();
-    return effects.filter(effect =>
-      effect.name.toLowerCase().includes(query) ||
-      effect.description.toLowerCase().includes(query)
-    );
-  }, [effects, searchQuery]);
+    let result = effects;
 
-  // Group effects by category (using filtered effects when searching)
+    // Apply quick filter if active
+    if (activeFilter) {
+      const filter = QUICK_FILTERS.find(f => f.id === activeFilter);
+      if (filter) {
+        result = result.filter(effect => filter.conditions.includes(effect.id));
+      }
+    }
+
+    // Apply search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim();
+      result = result.filter(effect =>
+        effect.name.toLowerCase().includes(query) ||
+        effect.description.toLowerCase().includes(query)
+      );
+    }
+
+    return result;
+  }, [effects, searchQuery, activeFilter]);
+
+  // Handle quick filter click
+  const handleFilterClick = (filterId: string) => {
+    setActiveFilter(prev => prev === filterId ? null : filterId);
+    // Clear search when using filter
+    if (activeFilter !== filterId) {
+      setSearchQuery('');
+    }
+  };
+
+  // Group effects by category (using filtered effects when searching or filtering)
   const effectsByCategory = useMemo(() => {
-    const sourceEffects = searchQuery.trim() ? filteredEffects : effects;
+    const isFiltering = searchQuery.trim() || activeFilter;
+    const sourceEffects = isFiltering ? filteredEffects : effects;
     return Object.entries(conditionCategories).map(([category, conditionTypes]) => {
       const categoryEffects = sourceEffects.filter(effect =>
         conditionTypes.includes(effect.id as ConditionType)
       );
       return { category, effects: categoryEffects };
     }).filter(({ effects }) => effects.length > 0);
-  }, [effects, filteredEffects, searchQuery]);
+  }, [effects, filteredEffects, searchQuery, activeFilter]);
 
   // Helper to highlight matching text
   const highlightMatch = (text: string, query: string) => {
@@ -123,19 +194,84 @@ export const EffectList: React.FC<EffectListProps> = ({
         aria-label="Search vision conditions"
       />
 
+      {/* Quick Filter Chips */}
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 2 }}>
+        {QUICK_FILTERS.map(filter => (
+          <Chip
+            key={filter.id}
+            label={filter.label}
+            size="small"
+            variant={activeFilter === filter.id ? 'filled' : 'outlined'}
+            color={activeFilter === filter.id ? 'primary' : 'default'}
+            onClick={() => handleFilterClick(filter.id)}
+            sx={{
+              cursor: 'pointer',
+              '&:hover': {
+                backgroundColor: activeFilter === filter.id ? undefined : 'rgba(33, 150, 243, 0.08)'
+              }
+            }}
+          />
+        ))}
+      </Box>
+
       {/* Search Results Count */}
-      {searchQuery.trim() && (
+      {(searchQuery.trim() || activeFilter) && (
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
           {filteredEffects.length} result{filteredEffects.length !== 1 ? 's' : ''} found
+          {activeFilter && (
+            <IconButton
+              size="small"
+              onClick={() => setActiveFilter(null)}
+              sx={{ ml: 1, p: 0.25 }}
+              aria-label="Clear filter"
+            >
+              <Clear fontSize="small" />
+            </IconButton>
+          )}
         </Typography>
       )}
 
+      {/* Selected Conditions Summary - Expandable */}
       {enabledEffectsCount > 0 && (
-        <Chip
-          label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
-          color="primary"
-          sx={{ mb: 2 }}
-        />
+        <Box sx={{ mb: 2 }}>
+          <Chip
+            label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
+            color="primary"
+            onClick={() => setShowSelectedConditions(!showSelectedConditions)}
+            onDelete={() => setShowSelectedConditions(!showSelectedConditions)}
+            deleteIcon={showSelectedConditions ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+            sx={{ cursor: 'pointer' }}
+          />
+          <Collapse in={showSelectedConditions}>
+            <Box sx={{
+              mt: 1,
+              p: 1.5,
+              backgroundColor: 'rgba(33, 150, 243, 0.08)',
+              borderRadius: 1,
+              maxHeight: '120px',
+              overflowY: 'auto'
+            }}>
+              {enabledEffectsList.map((effect, index) => (
+                <Typography
+                  key={effect.id}
+                  variant="body2"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    py: 0.25,
+                    borderBottom: index < enabledEffectsList.length - 1 ? '1px solid rgba(0,0,0,0.08)' : 'none'
+                  }}
+                >
+                  <span>{effect.name}</span>
+                  <Typography variant="caption" color="text.secondary">
+                    {Math.round(effect.intensity * 100)}%
+                  </Typography>
+                </Typography>
+              ))}
+            </Box>
+          </Collapse>
+        </Box>
       )}
       
       {effectsByCategory.map(({ category, effects }) => (
@@ -163,9 +299,10 @@ export const EffectList: React.FC<EffectListProps> = ({
                 <React.Fragment key={effect.id}>
                   <ListItem
                     button
-                    onClick={(e) => {
-                      // Toggle the effect when clicking anywhere on the row
-                      onToggleAndSelect(effect, e);
+                    onClick={() => {
+                      // Only select/highlight the effect for preview - don't toggle
+                      // Toggle is handled exclusively by the Switch component
+                      onEffectClick(effect);
                     }}
                     selected={highlightedEffect?.id === effect.id}
                     sx={{
@@ -213,6 +350,9 @@ export const EffectList: React.FC<EffectListProps> = ({
                               }
                               onClick={(e) => e.stopPropagation()}
                               onMouseDown={(e) => e.stopPropagation()}
+                              onTouchStart={(e) => e.stopPropagation()}
+                              onTouchEnd={(e) => e.stopPropagation()}
+                              onPointerDown={(e) => e.stopPropagation()}
                               valueLabelDisplay="auto"
                               valueLabelFormat={value => `${value}%`}
                               aria-label={`Adjust ${effect.name} intensity`}
@@ -234,6 +374,9 @@ export const EffectList: React.FC<EffectListProps> = ({
                                 }
                                 onClick={(e) => e.stopPropagation()}
                                 onMouseDown={(e) => e.stopPropagation()}
+                                onTouchStart={(e) => e.stopPropagation()}
+                                onTouchEnd={(e) => e.stopPropagation()}
+                                onPointerDown={(e) => e.stopPropagation()}
                                 valueLabelDisplay="auto"
                                 valueLabelFormat={value => `${value}%`}
                                 aria-label="Adjust diplopia separation"
@@ -250,6 +393,9 @@ export const EffectList: React.FC<EffectListProps> = ({
                                 }
                                 onClick={(e) => e.stopPropagation()}
                                 onMouseDown={(e) => e.stopPropagation()}
+                                onTouchStart={(e) => e.stopPropagation()}
+                                onTouchEnd={(e) => e.stopPropagation()}
+                                onPointerDown={(e) => e.stopPropagation()}
                                 valueLabelDisplay="auto"
                                 valueLabelFormat={value => {
                                   const direction = (value as number) / 100;
@@ -294,14 +440,36 @@ export const EffectList: React.FC<EffectListProps> = ({
                         component: 'div'
                       }}
                     />
-                    <Tooltip title={
-                      isColorVisionCondition(effect.id as ConditionType) 
-                        ? getColorVisionDescription(effect.id as ConditionType)
-                        : effect.description
-                    }>
-                      <IconButton 
+                    <Tooltip
+                      title={
+                        <Box sx={{ maxWidth: 280 }}>
+                          {renderDescriptionWithLinks(
+                            isColorVisionCondition(effect.id as ConditionType)
+                              ? getColorVisionDescription(effect.id as ConditionType)
+                              : effect.description
+                          )}
+                        </Box>
+                      }
+                      arrow
+                      enterTouchDelay={0}
+                      leaveTouchDelay={3000}
+                      componentsProps={{
+                        tooltip: {
+                          sx: {
+                            bgcolor: 'rgba(50, 50, 50, 0.95)',
+                            '& .MuiTooltip-arrow': {
+                              color: 'rgba(50, 50, 50, 0.95)',
+                            },
+                            p: 1.5,
+                            fontSize: '0.875rem'
+                          }
+                        }
+                      }}
+                    >
+                      <IconButton
                         size="small"
                         aria-label={`Learn more about ${effect.name}`}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <Info />
                       </IconButton>

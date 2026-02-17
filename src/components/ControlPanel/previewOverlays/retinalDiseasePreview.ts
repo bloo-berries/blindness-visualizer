@@ -57,79 +57,80 @@ export const generateRetinalDiseasePreviewStyle = (
     }
     
     case 'diabeticRetinopathy': {
+      // Microaneurysms - dark hemorrhage spots (larger sizes for visibility)
       const microaneurysms = `
-        radial-gradient(circle 3px at 25% 35%, 
-          rgba(0,0,0,${0.9 * intensity}) 0%, 
+        radial-gradient(circle 8px at 25% 35%,
+          rgba(0,0,0,${0.9 * intensity}) 0%,
           rgba(0,0,0,${0.6 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         ),
-        radial-gradient(circle 2px at 65% 55%, 
-          rgba(0,0,0,${0.8 * intensity}) 0%, 
+        radial-gradient(circle 6px at 65% 55%,
+          rgba(0,0,0,${0.8 * intensity}) 0%,
           rgba(0,0,0,${0.5 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         ),
-        radial-gradient(circle 4px at 45% 75%, 
-          rgba(0,0,0,${0.7 * intensity}) 0%, 
+        radial-gradient(circle 10px at 45% 75%,
+          rgba(0,0,0,${0.7 * intensity}) 0%,
           rgba(0,0,0,${0.4 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         ),
-        radial-gradient(circle 2.5px at 80% 25%, 
-          rgba(0,0,0,${0.85 * intensity}) 0%, 
+        radial-gradient(circle 7px at 80% 25%,
+          rgba(0,0,0,${0.85 * intensity}) 0%,
           rgba(0,0,0,${0.55 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         ),
-        radial-gradient(circle 3px at 30% 60%, 
-          rgba(0,0,0,${0.75 * intensity}) 0%, 
+        radial-gradient(circle 9px at 30% 60%,
+          rgba(0,0,0,${0.75 * intensity}) 0%,
           rgba(0,0,0,${0.45 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         ),
-        radial-gradient(circle 2px at 70% 40%, 
-          rgba(0,0,0,${0.8 * intensity}) 0%, 
+        radial-gradient(circle 6px at 70% 40%,
+          rgba(0,0,0,${0.8 * intensity}) 0%,
           rgba(0,0,0,${0.5 * intensity}) 50%,
+          rgba(0,0,0,0) 100%
+        ),
+        radial-gradient(circle 8px at 15% 20%,
+          rgba(0,0,0,${0.7 * intensity}) 0%,
+          rgba(0,0,0,${0.4 * intensity}) 50%,
+          rgba(0,0,0,0) 100%
+        ),
+        radial-gradient(circle 5px at 85% 70%,
+          rgba(0,0,0,${0.75 * intensity}) 0%,
+          rgba(0,0,0,${0.45 * intensity}) 50%,
           rgba(0,0,0,0) 100%
         )
       `;
-      
+
+      // Cotton wool spots - fluffy white patches (larger sizes for visibility)
       const cottonWoolSpots = `
-        radial-gradient(ellipse 15px 10px at 60% 40%, 
-          rgba(255,255,255,${0.6 * intensity}) 0%, 
+        radial-gradient(ellipse 30px 20px at 60% 40%,
+          rgba(255,255,255,${0.6 * intensity}) 0%,
           rgba(255,255,255,${0.3 * intensity}) 50%,
           rgba(255,255,255,0) 100%
         ),
-        radial-gradient(ellipse 12px 8px at 30% 70%, 
-          rgba(255,255,255,${0.5 * intensity}) 0%, 
+        radial-gradient(ellipse 25px 18px at 30% 70%,
+          rgba(255,255,255,${0.5 * intensity}) 0%,
           rgba(255,255,255,${0.25 * intensity}) 50%,
           rgba(255,255,255,0) 100%
         ),
-        radial-gradient(ellipse 10px 7px at 55% 20%, 
-          rgba(255,255,255,${0.4 * intensity}) 0%, 
+        radial-gradient(ellipse 22px 15px at 55% 20%,
+          rgba(255,255,255,${0.4 * intensity}) 0%,
           rgba(255,255,255,${0.2 * intensity}) 50%,
           rgba(255,255,255,0) 100%
         )
       `;
-      
-      // Vitreous Hemorrhage with floaters, haze, and red tint - increased reddish hue
-      const vitreousHemorrhage = `
-        /* Floaters - dots, cobwebs, streaks, blobs */
-        radial-gradient(circle at 30% 40%, rgba(180,0,0,${0.5 * intensity}) 0%, transparent 2%),
-        radial-gradient(circle at 70% 60%, rgba(180,0,0,${0.45 * intensity}) 0%, transparent 1.5%),
-        radial-gradient(circle at 20% 80%, rgba(180,0,0,${0.4 * intensity}) 0%, transparent 1.8%),
-        linear-gradient(45deg, rgba(180,0,0,${0.35 * intensity}) 0%, transparent 3%),
-        linear-gradient(135deg, rgba(120,0,0,${0.4 * intensity}) 0%, transparent 2.5%),
-        radial-gradient(ellipse 4% 3% at 50% 50%, rgba(180,0,0,${0.3 * intensity}) 0%, rgba(120,0,0,${0.25 * intensity}) 30%, transparent 100%),
-        /* Haze/fog effect */
-        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 70%),
-        /* Red tint */
-        rgba(220,20,20,${0.2 * intensity}),
-        /* Bottom accumulation (gravitational settling) */
-        linear-gradient(to bottom, transparent 75%, rgba(180,0,0,${0.25 * intensity}) 90%, rgba(180,0,0,${0.45 * intensity}) 100%)
+
+      // Red tint from blood vessel damage
+      const redTint = `
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.15 * intensity}) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 70%, rgba(180,0,0,${0.3 * intensity}) 90%, rgba(150,0,0,${0.5 * intensity}) 100%)
       `;
-      
+
       return {
-        background: `${microaneurysms}, ${cottonWoolSpots}, ${vitreousHemorrhage}`,
+        background: `${microaneurysms}, ${cottonWoolSpots}, ${redTint}`,
         mixBlendMode: 'normal' as const,
         opacity: Math.min(0.9, intensity),
-        filter: `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) saturate(${100 - intensity * 15}%) sepia(${intensity * 20}%)`
+        filter: `blur(${intensity * 1.5}px) brightness(${100 - intensity * 8}%) contrast(${100 + intensity * 12}%) sepia(${intensity * 20}%)`
       };
     }
     

@@ -69,12 +69,14 @@ export const OVERLAY_BASE_STYLES = {
 
 /**
  * Z-index constants for different overlay types
+ * Note: YouTube iframes can have varying z-index, so we use high values
+ * to ensure overlays appear above all embedded content
  */
 export const Z_INDEX = {
-  BASE: 1000,
-  VISUAL_FIELD_LOSS: 1100,
-  VISUAL_DISTURBANCE: 900,
-  DIPLOPIA: 1001,
+  BASE: 5000,
+  VISUAL_FIELD_LOSS: 9000,
+  VISUAL_DISTURBANCE: 4000,
+  DIPLOPIA: 5001,
   ANIMATED: 10,
   ANIMATED_VISUAL_FIELD_LOSS: 110,
 } as const;

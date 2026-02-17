@@ -3,6 +3,8 @@
  * More detailed hallucinations often reported in CBS
  */
 
+import { seededRandom } from '../sharedOverlayUtils';
+
 /**
  * Human silhouette - improved with neck, shoulders, separate legs
  */
@@ -322,6 +324,133 @@ export function createBuildingPattern(
       )
     `);
   });
+
+  return elements.join(', ');
+}
+
+/**
+ * Bird silhouette - flying bird shape, common in CBS peripheral hallucinations
+ * Dark fuzzy shadow that appears to dart across vision
+ */
+export function createBirdPattern(
+  opacity: number,
+  colored: boolean,
+  x: number = 60,
+  y: number = 35,
+  scale: number = 1,
+  seed: number = 0
+): string {
+  const elements: string[] = [];
+  // Dark shadow color - very black and fuzzy
+  const shadowColor = colored ? '40,30,50' : '20,15,25';
+
+  // Randomize wing angle slightly for variety
+  const wingAngle = 15 + seededRandom(seed) * 20;
+  const wingSpread = 0.8 + seededRandom(seed + 1) * 0.4;
+
+  // Body (small central oval)
+  elements.push(`
+    radial-gradient(ellipse ${12 * scale}px ${8 * scale}px at ${x}% ${y}%,
+      rgba(${shadowColor},${opacity * 0.9}) 0%,
+      rgba(${shadowColor},${opacity * 0.5}) 60%,
+      transparent 100%
+    )
+  `);
+
+  // Head
+  elements.push(`
+    radial-gradient(ellipse ${6 * scale}px ${5 * scale}px at ${x - 8 * scale}% ${y - 2 * scale}%,
+      rgba(${shadowColor},${opacity * 0.85}) 0%,
+      rgba(${shadowColor},${opacity * 0.4}) 70%,
+      transparent 100%
+    )
+  `);
+
+  // Left wing (angled up)
+  const leftWingX = x - 5 * scale * wingSpread;
+  const leftWingY = y - wingAngle * 0.3 * scale;
+  elements.push(`
+    radial-gradient(ellipse ${25 * scale * wingSpread}px ${8 * scale}px at ${leftWingX}% ${leftWingY}%,
+      rgba(${shadowColor},${opacity * 0.75}) 0%,
+      rgba(${shadowColor},${opacity * 0.35}) 60%,
+      transparent 100%
+    )
+  `);
+
+  // Right wing (angled up)
+  const rightWingX = x + 5 * scale * wingSpread;
+  const rightWingY = y - wingAngle * 0.3 * scale;
+  elements.push(`
+    radial-gradient(ellipse ${25 * scale * wingSpread}px ${8 * scale}px at ${rightWingX}% ${rightWingY}%,
+      rgba(${shadowColor},${opacity * 0.75}) 0%,
+      rgba(${shadowColor},${opacity * 0.35}) 60%,
+      transparent 100%
+    )
+  `);
+
+  // Tail feathers
+  elements.push(`
+    radial-gradient(ellipse ${10 * scale}px ${6 * scale}px at ${x + 10 * scale}% ${y + 3 * scale}%,
+      rgba(${shadowColor},${opacity * 0.65}) 0%,
+      rgba(${shadowColor},${opacity * 0.25}) 70%,
+      transparent 100%
+    )
+  `);
+
+  return elements.join(', ');
+}
+
+/**
+ * Shadow blob - amorphous dark shape that appears in peripheral vision
+ * Very common in CBS - undefined shadowy masses
+ */
+export function createShadowBlobPattern(
+  opacity: number,
+  colored: boolean,
+  x: number = 80,
+  y: number = 60,
+  scale: number = 1,
+  seed: number = 0
+): string {
+  const elements: string[] = [];
+  // Very dark, fuzzy shadow
+  const shadowColor = colored ? '35,25,45' : '15,10,20';
+
+  // Create an irregular blob using multiple overlapping gradients
+  const numBlobs = 4 + Math.floor(seededRandom(seed) * 3);
+
+  for (let i = 0; i < numBlobs; i++) {
+    // Randomized positions clustered around center
+    const offsetX = (seededRandom(seed + i * 7) - 0.5) * 30 * scale;
+    const offsetY = (seededRandom(seed + i * 11) - 0.5) * 25 * scale;
+    const blobX = x + offsetX;
+    const blobY = y + offsetY;
+
+    // Randomized sizes for organic feel
+    const sizeX = (15 + seededRandom(seed + i * 13) * 25) * scale;
+    const sizeY = (12 + seededRandom(seed + i * 17) * 20) * scale;
+
+    // Variable opacity for depth
+    const blobOpacity = opacity * (0.5 + seededRandom(seed + i * 19) * 0.5);
+
+    elements.push(`
+      radial-gradient(ellipse ${sizeX}px ${sizeY}px at ${blobX}% ${blobY}%,
+        rgba(${shadowColor},${blobOpacity}) 0%,
+        rgba(${shadowColor},${blobOpacity * 0.6}) 40%,
+        rgba(${shadowColor},${blobOpacity * 0.2}) 70%,
+        transparent 100%
+      )
+    `);
+  }
+
+  // Add a fuzzy edge/halo around the blob
+  elements.push(`
+    radial-gradient(ellipse ${40 * scale}px ${35 * scale}px at ${x}% ${y}%,
+      rgba(${shadowColor},${opacity * 0.3}) 0%,
+      rgba(${shadowColor},${opacity * 0.1}) 50%,
+      transparent 100%
+    )
+  `);
 
   return elements.join(', ');
 }

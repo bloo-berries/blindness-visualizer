@@ -169,49 +169,39 @@ export class OverlayManager {
 
       // New ocular diseases from Richmond Eye Associates
       case 'vitreousHemorrhage':
-        // Highly intensified blood veil effect with extensive blood streaks and pools
+        // Blood splatter effect - enhanced red saturation for visibility
         overlay.style.background = `
-          /* Blood streaks at various angles - intensified */
-          linear-gradient(45deg, rgba(139,0,0,${0.7 * intensity}) 0%, transparent 30%),
-          linear-gradient(-45deg, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 25%),
-          linear-gradient(90deg, rgba(139,0,0,${0.65 * intensity}) 0%, transparent 35%),
-          linear-gradient(135deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 22%),
-          linear-gradient(15deg, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 18%),
-          linear-gradient(75deg, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 15%),
-          linear-gradient(105deg, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 25%),
-          linear-gradient(165deg, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 20%),
-          linear-gradient(30deg, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 16%),
-          linear-gradient(60deg, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 14%),
-          linear-gradient(120deg, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 12%),
-          linear-gradient(150deg, rgba(139,0,0,${0.35 * intensity}) 0%, transparent 10%),
-          /* Blood pools and dots - intensified */
-          radial-gradient(circle at 30% 40%, rgba(139,0,0,${0.6 * intensity}) 0%, transparent 15%),
-          radial-gradient(circle at 70% 60%, rgba(139,0,0,${0.55 * intensity}) 0%, transparent 12%),
-          radial-gradient(circle at 20% 80%, rgba(139,0,0,${0.5 * intensity}) 0%, transparent 10%),
-          radial-gradient(circle at 80% 20%, rgba(139,0,0,${0.45 * intensity}) 0%, transparent 8%),
-          radial-gradient(circle at 50% 50%, rgba(139,0,0,${0.4 * intensity}) 0%, transparent 18%),
-          radial-gradient(circle at 15% 25%, rgba(139,0,0,${0.52 * intensity}) 0%, transparent 9%),
-          radial-gradient(circle at 85% 35%, rgba(139,0,0,${0.48 * intensity}) 0%, transparent 11%),
-          radial-gradient(circle at 25% 75%, rgba(139,0,0,${0.46 * intensity}) 0%, transparent 7%),
-          radial-gradient(circle at 75% 85%, rgba(139,0,0,${0.44 * intensity}) 0%, transparent 10%),
-          radial-gradient(circle at 40% 15%, rgba(139,0,0,${0.42 * intensity}) 0%, transparent 8%),
-          radial-gradient(circle at 60% 90%, rgba(139,0,0,${0.40 * intensity}) 0%, transparent 6%),
-          radial-gradient(circle at 10% 60%, rgba(139,0,0,${0.38 * intensity}) 0%, transparent 5%),
-          radial-gradient(circle at 90% 40%, rgba(139,0,0,${0.36 * intensity}) 0%, transparent 7%),
-          radial-gradient(circle at 35% 85%, rgba(139,0,0,${0.34 * intensity}) 0%, transparent 6%),
-          radial-gradient(circle at 65% 10%, rgba(139,0,0,${0.32 * intensity}) 0%, transparent 8%),
-          /* Irregular blood patches - intensified */
-          radial-gradient(ellipse at 35% 65%, rgba(139,0,0,${0.28 * intensity}) 0%, transparent 16%),
-          radial-gradient(ellipse at 65% 25%, rgba(139,0,0,${0.26 * intensity}) 0%, transparent 13%),
-          radial-gradient(ellipse at 10% 50%, rgba(139,0,0,${0.24 * intensity}) 0%, transparent 11%),
-          radial-gradient(ellipse at 90% 70%, rgba(139,0,0,${0.22 * intensity}) 0%, transparent 9%),
-          radial-gradient(ellipse at 20% 30%, rgba(139,0,0,${0.20 * intensity}) 0%, transparent 8%),
-          radial-gradient(ellipse at 80% 80%, rgba(139,0,0,${0.18 * intensity}) 0%, transparent 7%),
-          radial-gradient(ellipse at 45% 10%, rgba(139,0,0,${0.16 * intensity}) 0%, transparent 6%),
-          radial-gradient(ellipse at 55% 90%, rgba(139,0,0,${0.14 * intensity}) 0%, transparent 5%)
+          /* Small dots - more visible */
+          radial-gradient(circle at 36% 12%, rgba(200,15,15,${0.7 * intensity}) 0%, transparent 3%),
+          radial-gradient(circle at 67% 54%, rgba(200,15,15,${0.75 * intensity}) 0%, transparent 3.5%),
+          radial-gradient(circle at 98% 38%, rgba(200,15,15,${0.8 * intensity}) 0%, transparent 4%),
+          radial-gradient(circle at 15% 30%, rgba(200,15,15,${0.65 * intensity}) 0%, transparent 2.5%),
+          radial-gradient(circle at 80% 70%, rgba(200,15,15,${0.7 * intensity}) 0%, transparent 3%),
+          /* Cobweb strands */
+          radial-gradient(circle at 29% 61%, rgba(200,15,15,${0.7 * intensity}) 0%, transparent 3%),
+          linear-gradient(201deg, rgba(200,15,15,${0.6 * intensity}) 0%, transparent 2.5%),
+          radial-gradient(circle at 60% 45%, rgba(200,15,15,${0.75 * intensity}) 0%, transparent 3.5%),
+          linear-gradient(268deg, rgba(200,15,15,${0.65 * intensity}) 0%, transparent 3%),
+          /* Dark streaks */
+          linear-gradient(89deg, rgba(160,10,10,${0.7 * intensity}) 0%, rgba(200,15,15,${0.6 * intensity}) 1%, transparent 4%),
+          linear-gradient(178deg, rgba(160,10,10,${0.75 * intensity}) 0%, rgba(200,15,15,${0.65 * intensity}) 1.5%, transparent 5%),
+          linear-gradient(45deg, rgba(160,10,10,${0.6 * intensity}) 0%, rgba(200,15,15,${0.5 * intensity}) 1%, transparent 3%),
+          /* Irregular blobs - larger and more visible */
+          radial-gradient(ellipse 6% 4% at 22% 68%, rgba(200,15,15,${0.75 * intensity}) 0%, rgba(160,10,10,${0.7 * intensity}) 2%, transparent 6%),
+          radial-gradient(ellipse 8% 6% at 53% 21%, rgba(200,15,15,${0.8 * intensity}) 0%, rgba(160,10,10,${0.75 * intensity}) 3%, transparent 8%),
+          radial-gradient(ellipse 10% 8% at 84% 75%, rgba(200,15,15,${0.7 * intensity}) 0%, rgba(160,10,10,${0.65 * intensity}) 4%, transparent 10%),
+          radial-gradient(ellipse 7% 5% at 45% 85%, rgba(200,15,15,${0.75 * intensity}) 0%, rgba(160,10,10,${0.7 * intensity}) 3%, transparent 7%),
+          /* Strong red haze */
+          radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,15,15,${0.35 * intensity}) 0%, transparent 70%),
+          radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,15,15,${0.3 * intensity}) 0%, transparent 60%),
+          radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,15,15,${0.3 * intensity}) 0%, transparent 60%),
+          /* Bottom accumulation - blood pooling */
+          linear-gradient(to bottom, transparent 60%, rgba(170,10,10,${0.45 * intensity}) 80%, rgba(150,5,5,${0.6 * intensity}) 100%),
+          /* Strong red tint overlay */
+          rgba(200,20,20,${0.3 * intensity})
         `;
         overlay.style.mixBlendMode = 'multiply';
-        overlay.style.opacity = Math.min(0.9, intensity).toString();
+        overlay.style.opacity = Math.min(0.95, 0.7 + intensity * 0.25).toString();
         break;
 
       case 'retinalDetachment':
@@ -421,56 +411,56 @@ export class OverlayManager {
       const storedIntensity = parseFloat(overlay.getAttribute('data-intensity') || '0');
 
       // Calculate time-based gravitational settling
-      // Blood settles to bottom over time (simulating hours/days)
       const now = Date.now();
       const timeElapsed = (now % 3600000) / 3600000; // Cycle every hour for demo
       const settleAmount = timeElapsed * 15; // Blood settles up to 15% downward
 
       // Generate updated floater positions with gravitational settling
+      // Using enhanced saturated red colors for visibility
       const floaterGradients = floaters.map(floater => {
-        // Apply gravitational settling - blood moves downward - increased reddish hue
         const settledY = Math.min(100, floater.y + settleAmount);
-        const baseColor = `rgba(180,0,0,${floater.opacity * storedIntensity})`; // More saturated red
-        const darkRed = `rgba(120,0,0,${floater.opacity * storedIntensity * 0.8})`; // More saturated dark red
+        // Enhanced opacity multiplier for more visible blood
+        const opacityMult = Math.min(1, floater.opacity * storedIntensity * 1.4);
+        const baseColor = `rgba(200,15,15,${opacityMult})`;
+        const darkRed = `rgba(160,10,10,${opacityMult * 0.9})`;
 
-        // Add slight horizontal drift (blood doesn't fall straight down)
+        // Add slight horizontal drift
         const driftX = floater.x + Math.sin(now * 0.0001 + floater.x) * 0.5;
+        // Larger size multiplier for more visible splatters
+        const sizeMult = floater.size * 1.5;
 
         switch (floater.type) {
           case 'dot':
-            // Make dots more visible with a solid center and gradual fade
-            return `radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, ${baseColor} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+            return `radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, transparent ${sizeMult}%)`;
           case 'cobweb':
             const webAngle = (floater.angle || 0) + Math.sin(now * 0.0002) * 2;
             return `
-              linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-              linear-gradient(${webAngle + 60}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-              linear-gradient(${webAngle + 120}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-              radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, transparent ${floater.size * 0.5}%)
+              radial-gradient(circle at ${driftX}% ${settledY}%, ${baseColor} 0%, transparent ${sizeMult * 0.6}%),
+              linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${sizeMult * 0.5}%)
             `;
           case 'streak':
             const streakAngle = (floater.angle || 0) + Math.sin(now * 0.00015) * 1;
-            return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${floater.size * 0.2}%, transparent ${floater.size}%)`;
+            return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${sizeMult * 0.3}%, transparent ${sizeMult}%)`;
           case 'blob':
-            return `radial-gradient(ellipse ${floater.size * 1.2}% ${floater.size}% at ${driftX}% ${settledY}%, ${baseColor} 0%, ${darkRed} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+            return `radial-gradient(ellipse ${sizeMult * 1.3}% ${sizeMult}% at ${driftX}% ${settledY}%, ${baseColor} 0%, ${darkRed} ${sizeMult * 0.4}%, transparent ${sizeMult}%)`;
           default:
             return '';
         }
       }).filter(g => g).join(', ');
 
-      // Haze/fog effect - increased reddish hue
+      // Strong red haze effect
       const hazeGradient = `
-        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.12 * storedIntensity}) 0%, transparent 70%),
-        radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,0,0,${0.1 * storedIntensity}) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,0,0,${0.1 * storedIntensity}) 0%, transparent 60%)
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,15,15,${0.35 * storedIntensity}) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,15,15,${0.3 * storedIntensity}) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,15,15,${0.3 * storedIntensity}) 0%, transparent 60%)
       `;
 
-      // Red tint overlay - increased reddish hue
-      const redTint = `rgba(220,20,20,${0.25 * storedIntensity})`;
+      // Strong red tint overlay
+      const redTint = `rgba(200,20,20,${0.3 * storedIntensity})`;
 
-      // Enhanced bottom accumulation (blood pools at bottom due to gravity) - increased reddish hue
+      // Bottom accumulation (blood pools at bottom)
       const bottomAccumulation = `
-        linear-gradient(to bottom, transparent 70%, rgba(180,0,0,${0.25 * storedIntensity * (0.5 + settleAmount / 30)}) 85%, rgba(180,0,0,${0.5 * storedIntensity * (0.5 + settleAmount / 30)}) 100%)
+        linear-gradient(to bottom, transparent 60%, rgba(170,10,10,${0.45 * storedIntensity}) 80%, rgba(150,5,5,${0.6 * storedIntensity}) 100%)
       `;
 
       // Combine all layers
@@ -482,9 +472,10 @@ export class OverlayManager {
       `.trim().replace(/,\s*$/, '').replace(/\s+/g, ' ');
 
       overlay.style.background = background;
+      // Ensure high opacity
+      overlay.style.opacity = Math.min(0.95, 0.7 + storedIntensity * 0.25).toString();
     } catch (e) {
       // If parsing fails, skip animation update
-      // Silently fail to avoid console warnings in production
     }
   }
 }

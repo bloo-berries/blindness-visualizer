@@ -1,21 +1,47 @@
 /**
  * Shader function code for color blindness effects
+ * Using Machado, Oliveira & Fernandes 2009 matrices for accurate simulation
  */
 export const COLOR_BLINDNESS_FUNCTIONS = `
+  // sRGB gamma correction functions for accurate color simulation
+  vec3 srgbToLinear(vec3 srgb) {
+    vec3 linear;
+    linear.r = srgb.r <= 0.04045 ? srgb.r / 12.92 : pow((srgb.r + 0.055) / 1.055, 2.4);
+    linear.g = srgb.g <= 0.04045 ? srgb.g / 12.92 : pow((srgb.g + 0.055) / 1.055, 2.4);
+    linear.b = srgb.b <= 0.04045 ? srgb.b / 12.92 : pow((srgb.b + 0.055) / 1.055, 2.4);
+    return linear;
+  }
+
+  vec3 linearToSrgb(vec3 linear) {
+    vec3 srgb;
+    srgb.r = linear.r <= 0.0031308 ? 12.92 * linear.r : 1.055 * pow(linear.r, 1.0/2.4) - 0.055;
+    srgb.g = linear.g <= 0.0031308 ? 12.92 * linear.g : 1.055 * pow(linear.g, 1.0/2.4) - 0.055;
+    srgb.b = linear.b <= 0.0031308 ? 12.92 * linear.b : 1.055 * pow(linear.b, 1.0/2.4) - 0.055;
+    return clamp(srgb, 0.0, 1.0);
+  }
+
   vec3 applyProtanopia(vec3 color) {
-    return vec3(
-      0.567 * color.r + 0.433 * color.g + 0.000 * color.b,
-      0.558 * color.r + 0.442 * color.g + 0.000 * color.b,
-      0.000 * color.r + 0.242 * color.g + 0.758 * color.b
+    // Convert to linear RGB for accurate matrix transformation
+    vec3 linear = srgbToLinear(color);
+    // Machado, Oliveira & Fernandes 2009 protanopia matrix
+    vec3 result = vec3(
+      0.152286 * linear.r + 1.052583 * linear.g - 0.204868 * linear.b,
+      0.114503 * linear.r + 0.786281 * linear.g + 0.099216 * linear.b,
+     -0.003882 * linear.r - 0.048116 * linear.g + 1.051998 * linear.b
     );
+    return linearToSrgb(result);
   }
 
   vec3 applyDeuteranopia(vec3 color) {
-    return vec3(
-      0.625 * color.r + 0.375 * color.g + 0.000 * color.b,
-      0.700 * color.r + 0.300 * color.g + 0.000 * color.b,
-      0.000 * color.r + 0.300 * color.g + 0.700 * color.b
+    // Convert to linear RGB for accurate matrix transformation
+    vec3 linear = srgbToLinear(color);
+    // Machado, Oliveira & Fernandes 2009 deuteranopia matrix
+    vec3 result = vec3(
+      0.367322 * linear.r + 0.860646 * linear.g - 0.227968 * linear.b,
+      0.280085 * linear.r + 0.672501 * linear.g + 0.047413 * linear.b,
+     -0.011820 * linear.r + 0.042940 * linear.g + 0.968881 * linear.b
     );
+    return linearToSrgb(result);
   }
 
   vec3 applyTritanopia(vec3 color) {
@@ -29,47 +55,57 @@ export const COLOR_BLINDNESS_FUNCTIONS = `
   vec3 applyProtanomaly(vec3 color, float intensity) {
     float t = intensity;
     float scaledIntensity = t * t * (3.0 - 2.0 * t);
-    
+
+    // Convert to linear RGB
+    vec3 linear = srgbToLinear(color);
+
     vec3 normalR = vec3(1.000, 0.000, 0.000);
     vec3 normalG = vec3(0.000, 1.000, 0.000);
     vec3 normalB = vec3(0.000, 0.000, 1.000);
-    
-    vec3 protanopiaR = vec3(0.567, 0.433, 0.000);
-    vec3 protanopiaG = vec3(0.558, 0.442, 0.000);
-    vec3 protanopiaB = vec3(0.000, 0.242, 0.758);
-    
+
+    // Machado 2009 protanopia endpoint matrix
+    vec3 protanopiaR = vec3(0.152286, 1.052583, -0.204868);
+    vec3 protanopiaG = vec3(0.114503, 0.786281, 0.099216);
+    vec3 protanopiaB = vec3(-0.003882, -0.048116, 1.051998);
+
     vec3 r = mix(normalR, protanopiaR, scaledIntensity);
     vec3 g = mix(normalG, protanopiaG, scaledIntensity);
     vec3 b = mix(normalB, protanopiaB, scaledIntensity);
-    
-    return vec3(
-      dot(color, r),
-      dot(color, g),
-      dot(color, b)
+
+    vec3 result = vec3(
+      dot(linear, r),
+      dot(linear, g),
+      dot(linear, b)
     );
+    return linearToSrgb(result);
   }
 
   vec3 applyDeuteranomaly(vec3 color, float intensity) {
     float t = intensity;
     float scaledIntensity = t * t * (3.0 - 2.0 * t);
-    
+
+    // Convert to linear RGB
+    vec3 linear = srgbToLinear(color);
+
     vec3 normalR = vec3(1.000, 0.000, 0.000);
     vec3 normalG = vec3(0.000, 1.000, 0.000);
     vec3 normalB = vec3(0.000, 0.000, 1.000);
-    
-    vec3 deuteranopiaR = vec3(0.625, 0.375, 0.000);
-    vec3 deuteranopiaG = vec3(0.700, 0.300, 0.000);
-    vec3 deuteranopiaB = vec3(0.000, 0.300, 0.700);
-    
+
+    // Machado 2009 deuteranopia endpoint matrix
+    vec3 deuteranopiaR = vec3(0.367322, 0.860646, -0.227968);
+    vec3 deuteranopiaG = vec3(0.280085, 0.672501, 0.047413);
+    vec3 deuteranopiaB = vec3(-0.011820, 0.042940, 0.968881);
+
     vec3 r = mix(normalR, deuteranopiaR, scaledIntensity);
     vec3 g = mix(normalG, deuteranopiaG, scaledIntensity);
     vec3 b = mix(normalB, deuteranopiaB, scaledIntensity);
-    
-    return vec3(
-      dot(color, r),
-      dot(color, g),
-      dot(color, b)
+
+    vec3 result = vec3(
+      dot(linear, r),
+      dot(linear, g),
+      dot(linear, b)
     );
+    return linearToSrgb(result);
   }
 
   vec3 applyTritanomaly(vec3 color, float intensity) {

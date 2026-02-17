@@ -123,9 +123,9 @@ export const generateVisualDisturbancePreviewStyle = (
       const { episodeSeed, episodeOpacity } = getEpisodeTiming(now, intensity, startTime);
       const episodeConfig = selectEpisodeConfig(episodeSeed, intensity);
 
-      // Animation phases for subtle movement
-      const animationPhase = Math.sin(now / 3000) * 0.5 + 0.5;
-      const flashPhase = Math.sin(now / 1500) * 0.5 + 0.5;
+      // Animation phases for subtle movement (slowed down for more natural feel)
+      const animationPhase = Math.sin(now / 5000) * 0.5 + 0.5;
+      const flashPhase = Math.sin(now / 2500) * 0.5 + 0.5;
 
       // Base opacity scales with intensity
       const baseOpacity = (0.25 + intensity * 0.35) * episodeOpacity;

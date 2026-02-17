@@ -40,7 +40,8 @@ export function createFloaterOverlay(
   });
 
   // Generate visible black floaters matching the preview panel implementation
-  const opacity = 0.6 + intensity * 0.3;
+  // Higher opacity for darker, more visible floaters
+  const opacity = 0.8 + intensity * 0.2;
 
   // Create main floater layer - using pure black for visibility against any background
   let floaterLayer = document.getElementById('visual-floaters-main-layer');

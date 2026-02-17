@@ -49,7 +49,8 @@ export const generatePreviewOverlayStyle = (
 
   // Direct handling for visualFloaters with slow drifting animation
   if (effectType === 'visualFloaters') {
-    const opacity = 0.6 + intensity * 0.3;
+    // Higher opacity for darker, more visible floaters
+    const opacity = 0.8 + intensity * 0.2;
     const time = now / 1000; // Convert to seconds for slower movement
 
     // Each floater drifts with different speeds and patterns

@@ -10,55 +10,55 @@ export const colorVisionEffects: VisualEffect[] = [
     name: 'Protanopia (Red-Blind)',
     enabled: false,
     intensity: 1.0,
-    description: 'Complete inability to distinguish between red and green colors. Red appears as black, and green appears as yellow. Affects about 1% of males and 0.01% of females.'
+    description: 'Complete inability to distinguish between red and green colors. Red appears as black, and green appears as yellow. Affects about 1% of males and 0.01% of females. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'deuteranopia',
     name: 'Deuteranopia (Green-Blind)',
     enabled: false,
     intensity: 1.0,
-    description: 'Complete inability to distinguish between red and green colors. Green appears as light gray or beige, and red appears as brown. Most common form of color blindness.'
+    description: 'Complete inability to distinguish between red and green colors. Green appears as light gray or beige, and red appears as brown. Most common form of color blindness. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'tritanopia',
     name: 'Tritanopia (Blue-Blind)',
     enabled: false,
     intensity: 1.0,
-    description: 'Inability to distinguish between blue and yellow colors. Blue appears as green, and yellow appears as light gray or violet. Very rare form of color blindness.'
+    description: 'Inability to distinguish between blue and yellow colors. Blue appears as green, and yellow appears as light gray or violet. Very rare form of color blindness. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'protanomaly',
     name: 'Protanomaly (Red-Weak)',
     enabled: false,
     intensity: 1.0,
-    description: 'Reduced sensitivity to red light. Red appears darker and less bright than normal. Difficulty distinguishing between red and green, especially in low light.'
+    description: 'Reduced sensitivity to red light. Red appears darker and less bright than normal. Difficulty distinguishing between red and green, especially in low light. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'deuteranomaly',
     name: 'Deuteranomaly (Green-Weak)',
     enabled: false,
     intensity: 1.0,
-    description: 'Reduced sensitivity to green light. Green appears more red than normal. Most common form of color vision deficiency, affecting about 6% of males.'
+    description: 'Reduced sensitivity to green light. Green appears more red than normal. Most common form of color vision deficiency, affecting about 6% of males. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'tritanomaly',
     name: 'Tritanomaly (Blue-Weak)',
     enabled: false,
     intensity: 1.0,
-    description: 'Reduced sensitivity to blue light. Blue appears greener than normal, and yellow appears lighter. Very rare form of color vision deficiency.'
+    description: 'Reduced sensitivity to blue light. Blue appears greener than normal, and yellow appears lighter. Very rare form of color vision deficiency. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'monochromacy',
     name: 'Monochromacy (Complete Color Blindness)',
     enabled: false,
     intensity: 1.0,
-    description: 'Complete inability to see any colors. Vision is limited to shades of gray. Extremely rare, affecting only about 1 in 33,000 people.'
+    description: 'Complete inability to see any colors. Vision is limited to shades of gray. Extremely rare, affecting only about 1 in 33,000 people. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   },
   {
     id: 'monochromatic',
     name: 'Monochromatic Vision',
     enabled: false,
     intensity: 1.0,
-    description: 'Seeing only in shades of one color (usually blue). Different from complete color blindness as some color perception remains. Very rare condition.'
+    description: 'Seeing only in shades of one color (usually blue). Different from complete color blindness as some color perception remains. Very rare condition. Learn more: https://en.wikipedia.org/wiki/Color_blindness'
   }
 ];

@@ -121,15 +121,17 @@ export const generateVisualFieldLossPreviewStyle = (
     }
       
     case 'scotoma': {
-      const offsetX = 50 + Math.sin(now/2000) * 10;
-      const offsetY = 50 + Math.cos(now/2000) * 10;
+      // Match the main visualizer's sizing formula
+      const scotomaSize = Math.max(15, 10 + intensity * 20);
+      const blackIntensity = intensity;
       return {
         background: `
-          radial-gradient(circle at ${offsetX}% ${offsetY}%, 
-            rgba(0,0,0,${0.95 * intensity}) 0%, 
-            rgba(0,0,0,${0.85 * intensity}) ${Math.max(5, 10 - intensity * 5)}%,
-            rgba(0,0,0,${0.5 * intensity}) ${Math.max(10, 20 - intensity * 10)}%,
-            rgba(0,0,0,0) ${Math.max(20, 35 - intensity * 15)}%
+          radial-gradient(circle at 50% 50%,
+            rgba(0,0,0,${blackIntensity}) 0%,
+            rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%,
+            rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%,
+            rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%,
+            transparent ${scotomaSize + 10}%
           )
         `,
         mixBlendMode: 'multiply',

@@ -9,10 +9,10 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-    <Box 
-      component="footer" 
-      sx={{ 
-        py: { xs: 1, sm: 2 }, 
+    <Box
+      component="footer"
+      sx={{
+        py: { xs: 0.75, sm: 1 },
         bgcolor: 'grey.50',
         position: 'fixed',
         bottom: 0,
@@ -151,13 +151,13 @@ const Footer: React.FC = () => {
             href="https://linktr.ee/bloomedhealth"
             target="_blank"
             rel="noopener"
-            startIcon={<Favorite />}
+            startIcon={<Favorite sx={{ fontSize: '18px' }} />}
             sx={{
               backgroundColor: '#E53935',
               color: '#FFFFFF',
               fontWeight: 'bold',
-              fontSize: '16px',
-              padding: '8px 24px',
+              fontSize: '14px',
+              padding: '6px 20px',
               textTransform: 'none',
               position: 'relative',
               zIndex: 10002,

@@ -49,203 +49,159 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   // Visual disturbances (visualSnow, hallucinations, visualAura, etc.) are handled by createVisualDisturbanceOverlays above
 
   // Keratoconus - Progressive corneal thinning with irregular cone shape
+  // Creates multiple focal points causing ghost images, streaking, and halos
   if (keratoconus?.enabled) {
     const intensity = keratoconus.intensity;
-    
-    // Create multiple ghost images (monocular diplopia/polyopia)
-    // 2-8+ overlapping copies with slight offsets - ENHANCED CONTRAST
-    const ghostCount = Math.max(2, Math.floor(2 + intensity * 6)); // 2-8 ghosts based on intensity
-    const ghostOffsets = [];
-    
+
+    // Keratoconus visual symptoms:
+    // 1. Multiple ghost images (polyopia) - cone shape creates multiple focal points
+    // 2. Streaking/comet tails from light sources
+    // 3. Halos around bright areas
+    // 4. High-order aberrations causing irregular distortion
+
+    const ghostCount = Math.max(3, Math.floor(3 + intensity * 5)); // 3-8 ghost images
+    const streakOpacity = 0.15 + intensity * 0.25;
+    const haloOpacity = 0.2 + intensity * 0.3;
+
+    // Create ghost image effect using multiple offset radial gradients
+    const ghostLayers: string[] = [];
     for (let i = 0; i < ghostCount; i++) {
       const angle = (i / ghostCount) * Math.PI * 2;
-      const distance = 2 + intensity * 5; // 2-7px offset (increased for higher contrast)
-      const offsetX = Math.cos(angle) * distance;
-      const offsetY = Math.sin(angle) * distance;
-      ghostOffsets.push(`translate(${offsetX}px, ${offsetY}px)`);
+      const distance = 3 + intensity * 8; // 3-11% offset
+      const offsetX = 50 + Math.cos(angle) * distance;
+      const offsetY = 50 + Math.sin(angle) * distance;
+      const ghostOpacity = (0.08 + intensity * 0.12) * (1 - i * 0.1);
+
+      ghostLayers.push(
+        `radial-gradient(ellipse 80% 80% at ${offsetX}% ${offsetY}%, rgba(255,255,255,${ghostOpacity}) 0%, rgba(255,255,255,${ghostOpacity * 0.5}) 30%, transparent 70%)`
+      );
     }
-    
-    // Create streaking and comet tails effect - ENHANCED CONTRAST
-    const streakIntensity = intensity * 1.2; // Increased intensity
-    const streakLength = 30 + intensity * 40; // 30-70px streaks (longer for more dramatic effect)
-    
-    // Create halos around lights - ENHANCED CONTRAST
-    const haloIntensity = intensity * 1.0; // Increased intensity
-    const haloSize = 15 + intensity * 25; // 15-40px halos (larger for more visibility)
-    
-    // Create wavy distortion for text - ENHANCED
-    const waveIntensity = intensity * 0.8; // Increased distortion
-    
-    // High contrast loss - ENHANCED
-    const contrastLoss = intensity * 1.0; // Increased contrast loss
-    
-    // Create comprehensive keratoconus overlay with ENHANCED CONTRAST
+
+    // Streaking effect - elongated gradients simulating comet tails
+    const streaks = [
+      `linear-gradient(180deg, transparent 0%, rgba(255,255,255,${streakOpacity}) 20%, rgba(255,255,255,${streakOpacity * 0.6}) 50%, transparent 100%)`,
+      `linear-gradient(160deg, transparent 0%, rgba(255,255,255,${streakOpacity * 0.7}) 30%, transparent 70%)`,
+      `linear-gradient(200deg, transparent 0%, rgba(255,255,255,${streakOpacity * 0.7}) 30%, transparent 70%)`,
+      `linear-gradient(135deg, transparent 20%, rgba(255,255,255,${streakOpacity * 0.5}) 40%, rgba(255,255,255,${streakOpacity * 0.3}) 60%, transparent 80%)`,
+      `linear-gradient(225deg, transparent 20%, rgba(255,255,255,${streakOpacity * 0.4}) 40%, transparent 70%)`
+    ];
+
+    // Halos around simulated light sources
+    const halos = [
+      `radial-gradient(ellipse 60% 70% at 50% 45%, rgba(255,255,255,${haloOpacity}) 0%, rgba(255,255,255,${haloOpacity * 0.5}) 40%, transparent 70%)`,
+      `radial-gradient(circle at 30% 25%, rgba(255,255,255,${haloOpacity * 0.6}) 0%, transparent 20%)`,
+      `radial-gradient(circle at 70% 35%, rgba(255,255,255,${haloOpacity * 0.5}) 0%, transparent 18%)`,
+      `radial-gradient(circle at 50% 75%, rgba(255,255,255,${haloOpacity * 0.4}) 0%, transparent 15%)`
+    ];
+
+    // Combine all effects
+    const background = [...ghostLayers, ...streaks, ...halos].join(', ');
+
     createOverlay(
       'visual-field-overlay-keratoconus',
-      `
-        /* Multiple ghost images - ENHANCED CONTRAST */
-        ${ghostOffsets.map((offset, i) => `
-          linear-gradient(${45 + i * 15}deg, 
-            rgba(255,255,255,${intensity * 0.3}) 0%, 
-            rgba(255,255,255,${intensity * 0.2}) 50%, 
-            rgba(255,255,255,${intensity * 0.1}) 80%,
-            transparent 100%
-          )
-        `).join(', ')}
-        /* Streaking and comet tails - ENHANCED CONTRAST */
-        , linear-gradient(90deg, 
-          rgba(255,255,255,${streakIntensity * 0.6}) 0%, 
-          rgba(255,255,255,${streakIntensity * 0.4}) ${streakLength * 0.3}%, 
-          rgba(255,255,255,${streakIntensity * 0.2}) ${streakLength * 0.6}%,
-          rgba(255,255,255,${streakIntensity * 0.1}) ${streakLength}%, 
-          transparent 100%
-        )
-        , linear-gradient(45deg, 
-          rgba(255,255,255,${streakIntensity * 0.5}) 0%, 
-          rgba(255,255,255,${streakIntensity * 0.3}) ${streakLength * 0.4}%, 
-          rgba(255,255,255,${streakIntensity * 0.15}) ${streakLength * 0.8}%, 
-          transparent 100%
-        )
-        , linear-gradient(135deg, 
-          rgba(255,255,255,${streakIntensity * 0.4}) 0%, 
-          rgba(255,255,255,${streakIntensity * 0.2}) ${streakLength * 0.5}%, 
-          transparent 100%
-        )
-        /* Halos around lights - ENHANCED CONTRAST */
-        , radial-gradient(circle at 20% 20%, 
-          rgba(255,255,255,${haloIntensity * 0.8}) 0%, 
-          rgba(255,255,255,${haloIntensity * 0.6}) ${haloSize * 0.3}%, 
-          rgba(255,255,255,${haloIntensity * 0.4}) ${haloSize * 0.6}%,
-          rgba(255,255,255,${haloIntensity * 0.2}) ${haloSize}%, 
-          transparent ${haloSize * 2}%
-        )
-        , radial-gradient(circle at 80% 30%, 
-          rgba(255,255,255,${haloIntensity * 0.7}) 0%, 
-          rgba(255,255,255,${haloIntensity * 0.5}) ${haloSize * 0.4}%, 
-          rgba(255,255,255,${haloIntensity * 0.3}) ${haloSize * 0.8}%,
-          rgba(255,255,255,${haloIntensity * 0.15}) ${haloSize * 1.2}%, 
-          transparent ${haloSize * 2}%
-        )
-        , radial-gradient(circle at 50% 80%, 
-          rgba(255,255,255,${haloIntensity * 0.6}) 0%, 
-          rgba(255,255,255,${haloIntensity * 0.4}) ${haloSize * 0.5}%, 
-          rgba(255,255,255,${haloIntensity * 0.2}) ${haloSize}%, 
-          transparent ${haloSize * 1.5}%
-        )
-        /* High contrast loss - ENHANCED */
-        , rgba(0,0,0,${contrastLoss * 0.5})
-        , rgba(128,128,128,${contrastLoss * 0.3})
-      `,
-      'multiply',
-      intensity.toString(),
-      `
-        /* Enhanced wavy distortion filter */
-        blur(${waveIntensity * 3}px) 
-        contrast(${100 - contrastLoss * 60}%) 
-        brightness(${100 + intensity * 30}%)
-        saturate(${100 - intensity * 40}%)
-      `,
+      background,
+      'screen', // Use screen blend mode for additive light effect
+      Math.min(1, 0.5 + intensity * 0.5).toString(),
+      `blur(${intensity * 2}px)`, // Slight blur for the overlay itself
       undefined,
       'keratoconus'
     );
   }
 
   // Vitreous Hemorrhage - Blood in the vitreous humor causing red-tinted vision
-  // Implementation with animated floaters, gravitational settling, haze, and red tint
+  // Individual randomized blob/splatter shapes with enhanced red coloring
   if (vitreousHemorrhage?.enabled) {
     const intensity = vitreousHemorrhage.intensity;
-    
+
     // Generate floater positions (pre-computed for performance)
-    // Different types: small dots, cobweb strands, dark streaks, large blobs
-    const floaterCount = Math.max(8, Math.floor(8 + intensity * 20)); // 8-28 floaters based on intensity
+    // Different types: small dots, cobweb strands, dark streaks, irregular blobs
+    const floaterCount = Math.max(10, Math.floor(10 + intensity * 18)); // 10-28 floaters
     const floaters: Array<{type: 'dot' | 'cobweb' | 'streak' | 'blob', x: number, y: number, size: number, opacity: number, angle?: number}> = [];
-    
+
     for (let i = 0; i < floaterCount; i++) {
-      const rand = Math.random();
+      const rand = (i * 0.618) % 1; // Deterministic pseudo-random
       let type: 'dot' | 'cobweb' | 'streak' | 'blob';
       let size: number;
       let opacity: number;
       let angle: number | undefined;
-      
-      if (rand < 0.3) {
-        // Small dots (30% of floaters) - increased size for visibility
+
+      if (rand < 0.25) {
+        // Small dots
         type = 'dot';
-        size = 1.5 + Math.random() * 2.5; // 1.5-4% of screen (increased from 0.5-2%)
-        opacity = 0.5 + Math.random() * 0.4; // 0.5-0.9 (increased from 0.4-0.8)
-      } else if (rand < 0.6) {
-        // Cobweb/spider-web strands (30% of floaters)
+        size = 1.5 + (i % 4) * 0.8;
+        opacity = 0.5 + (i % 5) * 0.1;
+      } else if (rand < 0.5) {
+        // Cobweb strands
         type = 'cobweb';
-        size = 2 + Math.random() * 3; // 2-5% of screen
-        opacity = 0.3 + Math.random() * 0.3; // 0.3-0.6
-        angle = Math.random() * 360;
-      } else if (rand < 0.85) {
-        // Dark streaks/lines (25% of floaters)
+        size = 2 + (i % 4) * 1.2;
+        opacity = 0.5 + (i % 5) * 0.1;
+        angle = (i * 67) % 360;
+      } else if (rand < 0.75) {
+        // Dark streaks
         type = 'streak';
-        size = 1.5 + Math.random() * 2.5; // 1.5-4% of screen
-        opacity = 0.5 + Math.random() * 0.3; // 0.5-0.8
-        angle = Math.random() * 360;
+        size = 1.5 + (i % 3) * 1.5;
+        opacity = 0.5 + (i % 5) * 0.1;
+        angle = (i * 89) % 360;
       } else {
-        // Large amorphous blobs (15% of floaters)
+        // Irregular blobs/splatters
         type = 'blob';
-        size = 3 + Math.random() * 4; // 3-7% of screen
-        opacity = 0.6 + Math.random() * 0.3; // 0.6-0.9
+        size = 2.5 + (i % 5) * 1.5;
+        opacity = 0.5 + (i % 5) * 0.1;
       }
-      
+
       floaters.push({
         type,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
+        x: ((i * 31) % 90) + 5,
+        y: ((i * 47) % 85) + 7,
         size,
         opacity: opacity * intensity,
         angle
       });
     }
-    
-    // Generate background gradients for floaters - increased reddish hue
+
+    // Generate background gradients for floaters
     const floaterGradients = floaters.map(floater => {
-      const baseColor = `rgba(180,0,0,${floater.opacity})`; // More saturated red
-      const darkRed = `rgba(120,0,0,${floater.opacity * 0.8})`; // More saturated dark red
-      
+      const baseColor = `rgba(180,20,20,${floater.opacity})`;
+      const darkRed = `rgba(140,10,10,${floater.opacity * 0.9})`;
+
       switch (floater.type) {
         case 'dot':
-          // Make dots more visible with a solid center and gradual fade
-          return `radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, ${baseColor} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+          return `radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, transparent ${floater.size}%)`;
         case 'cobweb':
-          // Create spider-web like pattern
           const webAngle = floater.angle || 0;
           return `
-            linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-            linear-gradient(${webAngle + 60}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-            linear-gradient(${webAngle + 120}deg, ${baseColor} 0%, transparent ${floater.size * 0.3}%),
-            radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, transparent ${floater.size * 0.5}%)
+            radial-gradient(circle at ${floater.x}% ${floater.y}%, ${baseColor} 0%, transparent ${floater.size * 0.6}%),
+            linear-gradient(${webAngle}deg, ${baseColor} 0%, transparent ${floater.size * 0.4}%)
           `;
         case 'streak':
-          // Create dark streak along vitreous fibers
           const streakAngle = floater.angle || 0;
-          return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${floater.size * 0.2}%, transparent ${floater.size}%)`;
+          return `linear-gradient(${streakAngle}deg, ${darkRed} 0%, ${baseColor} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
         case 'blob':
-          // Large amorphous blob
-          return `radial-gradient(ellipse ${floater.size * 1.2}% ${floater.size}% at ${floater.x}% ${floater.y}%, ${baseColor} 0%, ${darkRed} ${floater.size * 0.3}%, transparent ${floater.size}%)`;
+          return `radial-gradient(ellipse ${floater.size * 1.3}% ${floater.size}% at ${floater.x}% ${floater.y}%, ${baseColor} 0%, ${darkRed} ${floater.size * 0.4}%, transparent ${floater.size}%)`;
         default:
           return '';
       }
     }).filter(g => g).join(', ');
-    
-    // Overall red/pink tint overlay (light filtering from blood) - increased reddish hue
-    const redTint = `rgba(220,20,20,${0.25 * intensity})`;
-    
-    // Haze/fog effect (diffuse blood scattering light) - increased reddish hue
+
+    // Red tint overlay
+    const redTint = `rgba(180,25,25,${0.18 * intensity})`;
+
+    // Enhanced red haze effect
     const hazeGradient = `
-      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(180,0,0,${0.12 * intensity}) 0%, transparent 70%),
-      radial-gradient(ellipse 80% 80% at 30% 40%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 60%),
-      radial-gradient(ellipse 80% 80% at 70% 60%, rgba(180,0,0,${0.1 * intensity}) 0%, transparent 60%)
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(160,20,20,${0.2 * intensity}) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 80% at 30% 40%, rgba(160,20,20,${0.15 * intensity}) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 80% at 70% 60%, rgba(160,20,20,${0.15 * intensity}) 0%, transparent 60%)
     `;
-    
-    // Combine all layers: floaters + haze + red tint
-    // Note: Gravitational settling will be handled by animation updates
+
+    // Bottom accumulation (blood settles at bottom)
+    const bottomAccumulation = `
+      linear-gradient(to bottom, transparent 75%, rgba(150,15,15,${0.3 * intensity}) 90%, rgba(130,10,10,${0.4 * intensity}) 100%)
+    `;
+
     let vitreousBackground = `
       ${floaterGradients},
       ${hazeGradient},
+      ${bottomAccumulation},
       ${redTint}
     `;
     
@@ -270,7 +226,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
         zIndex: (Z_INDEX.BASE + 50).toString(), // Higher z-index to appear above YouTube iframe
         background: vitreousBackground,
         mixBlendMode: 'multiply',
-        opacity: Math.min(0.81, intensity).toString(),
+        opacity: Math.min(0.85, 0.55 + intensity * 0.3).toString(),
       });
       
       // Add CSS animation class for floater movement
@@ -329,7 +285,7 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
       overlayElement.setAttribute('data-floaters', JSON.stringify(floaters));
       overlayElement.setAttribute('data-intensity', intensity.toString());
       overlayElement.style.background = vitreousBackground;
-      overlayElement.style.opacity = Math.min(0.81, intensity).toString();
+      overlayElement.style.opacity = Math.min(0.9, 0.6 + intensity * 0.3).toString();
       overlayElement.style.zIndex = (Z_INDEX.BASE + 50).toString(); // Ensure z-index is correct
       
       // Ensure animation class is present

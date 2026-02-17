@@ -29,7 +29,8 @@ export {
   createConcentricCirclesPattern,
   createZigzagPattern,
   createGridPattern,
-  createPhotopsiaPattern
+  createPhotopsiaPattern,
+  createSparklesPattern
 } from './simplePatterns';
 
 // Export complex patterns
@@ -38,7 +39,9 @@ export {
   createFacePattern,
   createFlowerPattern,
   createCatPattern,
-  createBuildingPattern
+  createBuildingPattern,
+  createBirdPattern,
+  createShadowBlobPattern
 } from './complexPatterns';
 
 // Export animations and combined generation

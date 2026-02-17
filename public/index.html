@@ -55,22 +55,22 @@
     <!-- SVG Filter Definitions for Color Blindness Simulation -->
     <svg style="display: none;">
       <defs>
-        <!-- Protanopia (Red-Blind) -->
-        <filter id="protanopia">
+        <!-- Protanopia (Red-Blind) - Machado, Oliveira & Fernandes 2009 -->
+        <filter id="protanopia" color-interpolation-filters="linearRGB">
           <feColorMatrix type="matrix" values="
-            0.567, 0.433, 0,     0, 0
-            0.558, 0.442, 0,     0, 0
-            0,     0.242, 0.758, 0, 0
-            0,     0,     0,     1, 0"/>
+            0.152286,  1.052583, -0.204868, 0, 0
+            0.114503,  0.786281,  0.099216, 0, 0
+           -0.003882, -0.048116,  1.051998, 0, 0
+            0,         0,         0,        1, 0"/>
         </filter>
-        
-        <!-- Deuteranopia (Green-Blind) -->
-        <filter id="deuteranopia">
+
+        <!-- Deuteranopia (Green-Blind) - Machado, Oliveira & Fernandes 2009 -->
+        <filter id="deuteranopia" color-interpolation-filters="linearRGB">
           <feColorMatrix type="matrix" values="
-            0.625, 0.375, 0,   0, 0
-            0.7,   0.3,   0,   0, 0
-            0,     0.3,   0.7, 0, 0
-            0,     0,     0,   1, 0"/>
+            0.367322,  0.860646, -0.227968, 0, 0
+            0.280085,  0.672501,  0.047413, 0, 0
+           -0.011820,  0.042940,  0.968881, 0, 0
+            0,         0,         0,        1, 0"/>
         </filter>
         
         <!-- Tritanopia (Blue-Blind) -->

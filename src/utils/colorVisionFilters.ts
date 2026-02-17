@@ -9,23 +9,26 @@ import { ConditionType } from '../types/visualEffects';
  * Based on established color science algorithms for realistic CVD simulation.
  */
 
-// Machado 2009 transformation matrices for dichromatic conditions
-// These are the scientifically accurate matrices for color vision deficiency simulation
+// Machado, Oliveira & Fernandes 2009 transformation matrices for dichromatic conditions
+// These are physiologically accurate matrices for color vision deficiency simulation
+// Applied in linearRGB space for proper gamma correction
 const ColorVisionMatrices = {
   // Protanopia (red-blind) - affects 1.0-1.3% of males, 0.02% of females
   // Complete absence of L-cones (long-wavelength sensitive)
+  // Red appears as black/dark, colors shift toward blue-yellow spectrum
   protanopia: [
-    0.567, 0.433, 0.000,
-    0.558, 0.442, 0.000,
-    0.000, 0.242, 0.758
+    0.152286,  1.052583, -0.204868,
+    0.114503,  0.786281,  0.099216,
+   -0.003882, -0.048116,  1.051998
   ],
-  
+
   // Deuteranopia (green-blind) - affects 1-1.2% of males, <0.01% of females
   // Complete absence of M-cones (medium-wavelength sensitive)
+  // Green appears as beige/tan, red-green confusion with different luminosity
   deuteranopia: [
-    0.625, 0.375, 0.000,
-    0.700, 0.300, 0.000,
-    0.000, 0.300, 0.700
+    0.367322,  0.860646, -0.227968,
+    0.280085,  0.672501,  0.047413,
+   -0.011820,  0.042940,  0.968881
   ],
   
   // Tritanopia (blue-blind) - affects <0.01% of population
@@ -38,21 +41,22 @@ const ColorVisionMatrices = {
 };
 
 // Severity-based matrices for anomalous trichromacy
+// Interpolated from normal vision to full dichromacy using Machado 2009 endpoints
 const AnomalyMatrices = {
   // Protanomaly severity matrices (0.0 = normal, 1.0 = protanopia)
   protanomaly: {
     0.0: [1.000, 0.000, 0.000, 0.000, 1.000, 0.000, 0.000, 0.000, 1.000],
-    0.3: [0.800, 0.200, 0.000, 0.100, 0.900, 0.000, 0.000, 0.000, 1.000],
-    0.6: [0.600, 0.400, 0.000, 0.200, 0.800, 0.000, 0.000, 0.000, 1.000],
-    1.0: [0.567, 0.433, 0.000, 0.558, 0.442, 0.000, 0.000, 0.242, 0.758]
+    0.3: [0.746, 0.316, -0.061, 0.034, 0.936, 0.030, -0.001, -0.014, 1.016],
+    0.6: [0.449, 0.684, -0.133, 0.069, 0.857, 0.069, -0.003, -0.029, 1.032],
+    1.0: [0.152286, 1.052583, -0.204868, 0.114503, 0.786281, 0.099216, -0.003882, -0.048116, 1.051998]
   },
-  
+
   // Deuteranomaly severity matrices (0.0 = normal, 1.0 = deuteranopia)
   deuteranomaly: {
     0.0: [1.000, 0.000, 0.000, 0.000, 1.000, 0.000, 0.000, 0.000, 1.000],
-    0.3: [0.800, 0.200, 0.000, 0.200, 0.800, 0.000, 0.000, 0.000, 1.000],
-    0.6: [0.700, 0.300, 0.000, 0.300, 0.700, 0.000, 0.000, 0.000, 1.000],
-    1.0: [0.625, 0.375, 0.000, 0.700, 0.300, 0.000, 0.000, 0.300, 0.700]
+    0.3: [0.790, 0.258, -0.068, 0.084, 0.902, 0.014, -0.004, 0.013, 0.991],
+    0.6: [0.578, 0.517, -0.148, 0.168, 0.804, 0.028, -0.007, 0.026, 0.982],
+    1.0: [0.367322, 0.860646, -0.227968, 0.280085, 0.672501, 0.047413, -0.011820, 0.042940, 0.968881]
   },
   
   // Tritanomaly severity matrices (0.0 = normal, 1.0 = severe blue-weakness, NOT tritanopia)

@@ -54,13 +54,15 @@ export function createRetinitisPigmentosaOverlay(
 
   const combinedBackground = `${tunnelGradient}${scotomaPatterns.length > 0 ? ', ' + scotomaPatterns.join(', ') : ''}`;
   const filters = `saturate(${100 - intensity * 35}%) contrast(${100 - intensity * 15}%) brightness(${100 - intensity * 10}%)`;
+  const opacity = Math.min(0.95, intensity);
 
+  // Use the same pattern as other working overlays (glaucoma, retinal detachment)
   if (container) {
     createOverlayWithContainer(
       'visual-field-overlay-retinitisPigmentosa',
       combinedBackground,
       'normal',
-      Math.min(0.95, intensity).toString(),
+      opacity.toString(),
       filters,
       undefined,
       'retinitisPigmentosa',
@@ -71,7 +73,7 @@ export function createRetinitisPigmentosaOverlay(
       'visual-field-overlay-retinitisPigmentosa',
       combinedBackground,
       'normal',
-      Math.min(0.95, intensity).toString(),
+      opacity.toString(),
       filters,
       undefined,
       'retinitisPigmentosa'

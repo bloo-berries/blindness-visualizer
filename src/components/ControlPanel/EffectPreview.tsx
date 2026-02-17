@@ -1,9 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper, Link } from '@mui/material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { isColorVisionCondition, getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { generatePreviewOverlayStyle } from './previewOverlays/generatePreviewOverlayStyle';
+
+// Helper to render description text with clickable links
+const renderDescriptionWithLinks = (text: string): React.ReactNode => {
+  // Regex to match URLs
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (urlRegex.test(part)) {
+      // Reset regex lastIndex
+      urlRegex.lastIndex = 0;
+      return (
+        <Link
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ wordBreak: 'break-word' }}
+        >
+          Learn more
+        </Link>
+      );
+    }
+    return part;
+  });
+};
 
 interface EffectPreviewProps {
   effects: VisualEffect[];
@@ -44,22 +70,20 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
   return (
     <>
       {/* Right side: Preview image */}
-        <Box 
-          sx={{ 
-            flex: '1', 
-            position: 'sticky', 
-            top: 24,
-            display: 'flex', 
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
           }}
         >
-          <Paper 
-            elevation={3} 
-            sx={{ 
-              p: 1.5, 
-              width: '100%', 
-              height: '100%', 
+          <Paper
+            elevation={3}
+            sx={{
+              p: 1.5,
+              width: '100%',
+              height: '100%',
               minHeight: '350px',
               maxHeight: '500px',
               display: 'flex',
@@ -77,7 +101,7 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
             
             {highlightedEffect && (
               <Typography variant="body2" sx={{ mb: 2 }}>
-                {highlightedEffect.description}
+                {renderDescriptionWithLinks(highlightedEffect.description)}
               </Typography>
             )}
             
@@ -181,7 +205,8 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                             'cataracts', 'astigmatism', 'nearSighted', 'farSighted',
                             'dryEye', 'posteriorSubcapsularCataract', 'presbyopia',
                             'glare', 'blurryVision', 'nightBlindness', 'halos',
-                            'lossOfContrast', 'starbursting', 'vitreousHemorrhage'
+                            'lossOfContrast', 'starbursting', 'vitreousHemorrhage',
+                            'keratoconus'
                           ];
                           
                           return filterBasedTypes.includes(id);
@@ -242,9 +267,14 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                               return `brightness(${100 + intensity * 40}%) blur(${intensity * 1.5}px) contrast(${100 + intensity * 20}%)`;
                             
                             case 'vitreousHemorrhage':
-                              // Apply blur and dimming to base image - red tint comes from overlay
-                              return `blur(${intensity * 8}px) brightness(${100 - intensity * 50}%) contrast(${100 - intensity * 45}%)`;
-                            
+                              // Apply strong red tint using sepia + hue-rotate, plus blur and dimming
+                              return `sepia(${50 + intensity * 40}%) hue-rotate(-25deg) saturate(${120 + intensity * 80}%) brightness(${100 - intensity * 20}%) contrast(${100 - intensity * 15}%) blur(${intensity * 4}px)`;
+
+                            case 'keratoconus':
+                              // Irregular astigmatism, blur, contrast loss, and slight distortion
+                              // The overlay handles ghost images and streaking
+                              return `blur(${intensity * 4}px) contrast(${100 - intensity * 35}%) brightness(${100 + intensity * 10}%) saturate(${100 - intensity * 20}%)`;
+
                             // Retinal Disorders - handled by shaders or overlays
                             case 'amd':
                             case 'diabeticRetinopathy':
@@ -259,7 +289,6 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                             case 'visualAuraLeft':
                             case 'visualAuraRight':
                             case 'visualSnow':
-                            case 'keratoconus':
                             case 'retinalDetachment':
                             case 'blueFieldPhenomena':
                             case 'persistentPositiveVisualPhenomenon':

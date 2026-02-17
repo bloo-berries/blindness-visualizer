@@ -278,3 +278,60 @@ export function createPhotopsiaPattern(
 
   return elements.join(', ');
 }
+
+/**
+ * Sparkles - random twinkling points of light that appear sporadically
+ * Common in CBS as brief, bright flashes scattered across vision
+ */
+export function createSparklesPattern(
+  opacity: number,
+  colored: boolean,
+  seed: number,
+  animationPhase: number = 0
+): string {
+  const elements: string[] = [];
+  const numSparkles = 12 + Math.floor(seededRandom(seed) * 8);
+
+  for (let i = 0; i < numSparkles; i++) {
+    // Highly randomized positions using multiple seed offsets
+    const x = seededRandom(seed + i * 17.3 + animationPhase * 0.06) * 100;
+    const y = seededRandom(seed + i * 23.7 + animationPhase * 0.09) * 100;
+
+    // Sporadic visibility - some sparkles visible, some not (slowed down)
+    const visibilityPhase = Math.sin(animationPhase * 1.8 + seededRandom(seed + i * 31) * 10);
+    const isVisible = visibilityPhase > -0.3;
+
+    if (!isVisible) continue;
+
+    // Variable sizes for twinkling effect
+    const baseSize = 2 + seededRandom(seed + i * 41) * 6;
+    const pulseSize = baseSize * (0.8 + Math.abs(visibilityPhase) * 0.4);
+
+    // Sparkle intensity varies
+    const sparkleOpacity = opacity * (0.4 + Math.abs(visibilityPhase) * 0.6);
+
+    if (colored && seededRandom(seed + i * 53) > 0.6) {
+      // Colored sparkle
+      const hue = seededRandom(seed + i * 61) * 360;
+      elements.push(`
+        radial-gradient(circle ${pulseSize}px at ${x}% ${y}%,
+          hsla(${hue},80%,90%,${sparkleOpacity}) 0%,
+          hsla(${hue},70%,80%,${sparkleOpacity * 0.5}) 30%,
+          transparent 100%
+        )
+      `);
+    } else {
+      // White sparkle with slight glow
+      elements.push(`
+        radial-gradient(circle ${pulseSize}px at ${x}% ${y}%,
+          rgba(255,255,255,${sparkleOpacity}) 0%,
+          rgba(255,255,240,${sparkleOpacity * 0.6}) 25%,
+          rgba(255,250,220,${sparkleOpacity * 0.3}) 50%,
+          transparent 100%
+        )
+      `);
+    }
+  }
+
+  return elements.join(', ');
+}

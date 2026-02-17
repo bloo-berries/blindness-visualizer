@@ -35,19 +35,32 @@ export const generateSymptomFilters = (effects: VisualEffect[]): string => {
     (e.id === 'blueFieldPhenomena' || e.id === 'glare' ||
      e.id === 'blurryVision' || e.id === 'nightBlindness' || e.id === 'halos' ||
      e.id === 'persistentPositiveVisualPhenomenon' || e.id === 'palinopsia' ||
-     e.id === 'trails' || e.id === 'lossOfContrast' || e.id === 'starbursting') && e.enabled
+     e.id === 'trails' || e.id === 'lossOfContrast' || e.id === 'starbursting' ||
+     e.id === 'vitreousHemorrhage') && e.enabled
   );
 
   if (symptomEffects.length === 0) return '';
 
   const filters: string[] = [];
 
+  const vitreousHemorrhage = effects.find(e => e.id === 'vitreousHemorrhage' && e.enabled);
   const glare = effects.find(e => e.id === 'glare' && e.enabled);
   const blurryVision = effects.find(e => e.id === 'blurryVision' && e.enabled);
   const nightBlindness = effects.find(e => e.id === 'nightBlindness' && e.enabled);
   const halos = effects.find(e => e.id === 'halos' && e.enabled);
   const lossOfContrast = effects.find(e => e.id === 'lossOfContrast' && e.enabled);
   const starbursting = effects.find(e => e.id === 'starbursting' && e.enabled);
+
+  // Vitreous Hemorrhage - strong red tint from blood in vitreous humor
+  if (vitreousHemorrhage) {
+    const intensity = vitreousHemorrhage.intensity;
+    // Apply strong red tint using sepia + hue-rotate combination
+    filters.push(`sepia(${50 + intensity * 40}%)`); // 50-90% sepia for strong warm base
+    filters.push(`hue-rotate(-25deg)`); // Stronger shift toward blood red
+    filters.push(`saturate(${120 + intensity * 80}%)`); // 120-200% saturation boost
+    filters.push(`brightness(${100 - intensity * 20}%)`); // Darkening from blood
+    filters.push(`contrast(${100 - intensity * 15}%)`); // Contrast reduction
+  }
 
   if (glare) {
     // Excessive brightness and reduced contrast

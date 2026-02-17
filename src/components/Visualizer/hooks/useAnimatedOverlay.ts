@@ -15,7 +15,7 @@ import {
 /**
  * Effects that require animation updates
  */
-export const ANIMATED_EFFECTS = ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena'];
+export const ANIMATED_EFFECTS = ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena', 'persistentPositiveVisualPhenomenon', 'palinopsia', 'starbursting'];
 
 /**
  * Generate visual aura overlay styles
@@ -386,7 +386,397 @@ function generateBlueFieldOverlay(
 }
 
 /**
- * Hook that generates animated overlay styles for visual aura, hallucinations, and blue field effects
+ * Generate Persistent Positive Visual Phenomenon overlay styles
+ * Afterimages that persist much longer than normal, bright spots, and complementary colored shapes
+ */
+function generatePersistentPositiveOverlay(
+  intensity: number,
+  now: number
+): React.CSSProperties {
+  const elements: string[] = [];
+  const time = now / 1000;
+
+  // Pulsing phase for persistence effect
+  const pulsePhase = Math.sin(time * 0.3) * 0.15 + 0.85;
+  const slowPulse = Math.sin(time * 0.15) * 0.1 + 0.9;
+
+  // Number of afterimage spots based on intensity
+  const numSpots = Math.floor(5 + intensity * 8); // 5-13 spots
+
+  // Generate persistent afterimage spots
+  for (let i = 0; i < numSpots; i++) {
+    // Deterministic positioning
+    const seed = i * 3.17;
+    const x = 15 + (Math.sin(seed * 1.1) * 0.5 + 0.5) * 70;
+    const y = 15 + (Math.cos(seed * 1.3) * 0.5 + 0.5) * 70;
+
+    // Slight drift for "lingering" effect
+    const driftX = Math.sin(time * 0.2 + seed) * 2;
+    const driftY = Math.cos(time * 0.15 + seed * 1.2) * 2;
+    const actualX = x + driftX;
+    const actualY = y + driftY;
+
+    // Size varies
+    const size = 8 + (i % 5) * 6;
+
+    // Alternate between complementary colors (negative afterimages)
+    // and bright spots (positive afterimages)
+    const colorType = i % 6;
+    let color: string;
+    const baseOpacity = (0.3 + (i % 4) * 0.1) * intensity * pulsePhase;
+
+    switch (colorType) {
+      case 0: // Cyan (complementary to red)
+        color = `rgba(0,255,255,${baseOpacity})`;
+        break;
+      case 1: // Magenta (complementary to green)
+        color = `rgba(255,0,255,${baseOpacity * 0.9})`;
+        break;
+      case 2: // Yellow (complementary to blue)
+        color = `rgba(255,255,0,${baseOpacity * 0.85})`;
+        break;
+      case 3: // Bright white (positive afterimage)
+        color = `rgba(255,255,255,${baseOpacity})`;
+        break;
+      case 4: // Pale blue
+        color = `rgba(150,200,255,${baseOpacity * 0.9})`;
+        break;
+      default: // Pale green
+        color = `rgba(180,255,180,${baseOpacity * 0.85})`;
+    }
+
+    // Create soft, glowing afterimage spots
+    elements.push(`
+      radial-gradient(
+        ellipse ${size}% ${size * 0.8}% at ${actualX}% ${actualY}%,
+        ${color} 0%,
+        ${color.replace(/[\d.]+\)$/, `${baseOpacity * 0.5})`)} 40%,
+        transparent 100%
+      )
+    `);
+  }
+
+  // Add larger, more diffuse "ghost" shapes that persist
+  const numGhosts = Math.floor(2 + intensity * 3);
+  for (let i = 0; i < numGhosts; i++) {
+    const seed = i * 7.23 + 100;
+    const x = 20 + (Math.sin(seed * 0.9) * 0.5 + 0.5) * 60;
+    const y = 20 + (Math.cos(seed * 1.1) * 0.5 + 0.5) * 60;
+    const driftX = Math.sin(time * 0.1 + seed) * 3;
+    const driftY = Math.cos(time * 0.08 + seed) * 3;
+    const actualX = x + driftX;
+    const actualY = y + driftY;
+    const width = 15 + (i % 3) * 8;
+    const height = 12 + (i % 4) * 6;
+    const ghostOpacity = (0.15 + (i % 3) * 0.08) * intensity * slowPulse;
+
+    // Faded ghost image effect
+    elements.push(`
+      radial-gradient(
+        ellipse ${width}% ${height}% at ${actualX}% ${actualY}%,
+        rgba(255,255,255,${ghostOpacity}) 0%,
+        rgba(240,245,255,${ghostOpacity * 0.6}) 30%,
+        rgba(220,235,255,${ghostOpacity * 0.3}) 60%,
+        transparent 100%
+      )
+    `);
+  }
+
+  // Add geometric pattern persistence (common in PPVP)
+  const patternOpacity = 0.12 * intensity * pulsePhase;
+  elements.push(`
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(255,200,100,${patternOpacity}) 0%,
+      transparent 15%
+    )
+  `);
+  elements.push(`
+    radial-gradient(
+      circle at 70% 35%,
+      rgba(100,200,255,${patternOpacity * 0.9}) 0%,
+      transparent 12%
+    )
+  `);
+  elements.push(`
+    radial-gradient(
+      circle at 55% 65%,
+      rgba(255,150,200,${patternOpacity * 0.85}) 0%,
+      transparent 18%
+    )
+  `);
+
+  // Overall slight brightness/haze to simulate visual interference
+  elements.push(`
+    radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      rgba(255,255,255,${0.08 * intensity * slowPulse}) 0%,
+      transparent 70%
+    )
+  `);
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    background: elements.join(', '),
+    mixBlendMode: 'screen' as const,
+    opacity: Math.min(0.95, 0.6 + intensity * 0.35),
+    pointerEvents: 'none' as const,
+    zIndex: 9999
+  };
+}
+
+/**
+ * Generate Palinopsia (Visual Perseveration) overlay styles
+ * Trailing images, light streaking, and prolonged afterimages
+ */
+function generatePalinopsiaOverlay(
+  intensity: number,
+  now: number
+): React.CSSProperties {
+  const elements: string[] = [];
+  const time = now / 1000;
+
+  // Subtle animation for the trailing effect
+  const trailPhase = Math.sin(time * 0.4) * 0.1 + 0.9;
+  const driftPhase = Math.sin(time * 0.2) * 2;
+
+  // Number of trail copies based on intensity (3-8 trails)
+  const numTrails = Math.floor(3 + intensity * 5);
+
+  // Create trailing ghost images - offset in a direction to simulate motion trail
+  const trailAngle = (time * 0.1) % (Math.PI * 2);
+  const baseTrailDistance = 3 + intensity * 8;
+
+  for (let i = 1; i <= numTrails; i++) {
+    const distance = baseTrailDistance * i * 0.4;
+    const offsetX = Math.cos(trailAngle) * distance + driftPhase * 0.3;
+    const offsetY = Math.sin(trailAngle) * distance;
+
+    const trailOpacity = (0.25 - i * 0.03) * intensity * trailPhase;
+
+    elements.push(`
+      radial-gradient(
+        ellipse 100% 100% at ${50 + offsetX}% ${50 + offsetY}%,
+        rgba(200,200,200,${trailOpacity}) 0%,
+        rgba(180,180,180,${trailOpacity * 0.7}) 30%,
+        rgba(150,150,150,${trailOpacity * 0.4}) 60%,
+        transparent 85%
+      )
+    `);
+  }
+
+  // Light streaking effect
+  const streakOpacity = 0.15 * intensity * trailPhase;
+  const streakAngle = (trailAngle * 180 / Math.PI);
+
+  elements.push(`
+    linear-gradient(
+      ${streakAngle}deg,
+      transparent 0%,
+      rgba(255,255,255,${streakOpacity}) 20%,
+      rgba(255,255,255,${streakOpacity * 1.2}) 40%,
+      rgba(255,255,255,${streakOpacity * 0.8}) 60%,
+      rgba(255,255,255,${streakOpacity * 0.4}) 80%,
+      transparent 100%
+    )
+  `);
+
+  // Prolonged afterimage spots
+  const numAfterimages = Math.floor(2 + intensity * 4);
+  for (let i = 0; i < numAfterimages; i++) {
+    const seed = i * 5.17;
+    const x = 20 + (Math.sin(seed * 1.3) * 0.5 + 0.5) * 60;
+    const y = 20 + (Math.cos(seed * 1.1) * 0.5 + 0.5) * 60;
+
+    const driftX = Math.sin(time * 0.15 + seed) * 3;
+    const driftY = Math.cos(time * 0.12 + seed * 0.8) * 3;
+    const actualX = x + driftX;
+    const actualY = y + driftY;
+
+    const size = 10 + (i % 4) * 5;
+    const afterimageOpacity = (0.12 + (i % 3) * 0.05) * intensity * trailPhase;
+
+    elements.push(`
+      radial-gradient(
+        ellipse ${size}% ${size * 0.8}% at ${actualX}% ${actualY}%,
+        rgba(255,255,255,${afterimageOpacity}) 0%,
+        rgba(240,240,240,${afterimageOpacity * 0.6}) 40%,
+        transparent 100%
+      )
+    `);
+  }
+
+  // Overall haze
+  elements.push(`
+    radial-gradient(
+      ellipse 100% 100% at 50% 50%,
+      rgba(255,255,255,${0.05 * intensity * trailPhase}) 0%,
+      transparent 70%
+    )
+  `);
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    background: elements.join(', '),
+    mixBlendMode: 'screen' as const,
+    opacity: Math.min(0.9, 0.5 + intensity * 0.4),
+    pointerEvents: 'none' as const,
+    zIndex: 9999
+  };
+}
+
+/**
+ * Generate animated Starbursting overlay
+ * Creates dynamic starbursts that move across the frame to catch various light sources
+ */
+function generateStarburstingOverlay(
+  intensity: number,
+  now: number
+): React.CSSProperties {
+  const elements: string[] = [];
+  const time = now / 1000;
+
+  // Many light source positions that slowly drift to catch various bright spots
+  // Covers common light source areas: upper sky, middle where lights/windows appear, scattered
+  const baseLightSources = [
+    // Upper row (sky, sun, overhead lights)
+    { baseX: 15, baseY: 8, size: 0.5, phase: 0 },
+    { baseX: 35, baseY: 12, size: 0.7, phase: 1.2 },
+    { baseX: 50, baseY: 6, size: 0.9, phase: 0.5 },
+    { baseX: 65, baseY: 10, size: 0.75, phase: 1.8 },
+    { baseX: 85, baseY: 8, size: 0.55, phase: 2.5 },
+    // Upper-middle row (street lights, signs, windows)
+    { baseX: 10, baseY: 25, size: 0.5, phase: 0.8 },
+    { baseX: 30, baseY: 22, size: 0.6, phase: 2.1 },
+    { baseX: 50, baseY: 28, size: 0.65, phase: 1.5 },
+    { baseX: 70, baseY: 24, size: 0.55, phase: 0.3 },
+    { baseX: 90, baseY: 26, size: 0.5, phase: 2.8 },
+    // Middle row (shop windows, car lights, reflections)
+    { baseX: 20, baseY: 42, size: 0.45, phase: 1.0 },
+    { baseX: 40, baseY: 38, size: 0.5, phase: 2.3 },
+    { baseX: 60, baseY: 45, size: 0.55, phase: 0.7 },
+    { baseX: 80, baseY: 40, size: 0.5, phase: 1.9 },
+    // Lower-middle row (ground reflections, low lights)
+    { baseX: 25, baseY: 60, size: 0.4, phase: 1.6 },
+    { baseX: 50, baseY: 58, size: 0.45, phase: 2.6 },
+    { baseX: 75, baseY: 62, size: 0.4, phase: 0.4 },
+  ];
+
+  // Number of rays (8 is classic starburst)
+  const numRays = 8;
+  const rayWidth = 0.8 + intensity * 0.7;
+
+  for (const source of baseLightSources) {
+    // Slow drift movement for each starburst
+    const driftX = Math.sin(time * 0.15 + source.phase) * 8;
+    const driftY = Math.cos(time * 0.12 + source.phase * 1.3) * 6;
+    const x = source.baseX + driftX;
+    const y = source.baseY + driftY;
+
+    // Pulsing intensity - each source pulses at different rates
+    const pulsePhase = Math.sin(time * 0.4 + source.phase * 2) * 0.3 + 0.7;
+    const baseOpacity = (0.35 + intensity * 0.45) * source.size * pulsePhase;
+
+    // Skip if opacity too low (performance optimization)
+    if (baseOpacity < 0.1) continue;
+
+    const rayLength = (20 + intensity * 35) * source.size;
+
+    // Build conic gradient stops for sharp, thin rays
+    const conicStops: string[] = [];
+    const angleStep = 360 / numRays;
+
+    for (let i = 0; i < numRays; i++) {
+      const rayAngle = i * angleStep;
+
+      conicStops.push(`transparent ${rayAngle - rayWidth}deg`);
+      conicStops.push(`rgba(255,255,255,${baseOpacity * 0.4}) ${rayAngle - rayWidth * 0.5}deg`);
+      conicStops.push(`rgba(255,255,255,${baseOpacity}) ${rayAngle}deg`);
+      conicStops.push(`rgba(255,255,255,${baseOpacity * 0.4}) ${rayAngle + rayWidth * 0.5}deg`);
+      conicStops.push(`transparent ${rayAngle + rayWidth}deg`);
+    }
+
+    // Conic gradient for the star rays pattern
+    elements.push(`
+      conic-gradient(
+        from 22.5deg at ${x}% ${y}%,
+        ${conicStops.join(', ')}
+      )
+    `);
+
+    // Radial gradient to fade the rays outward
+    elements.push(`
+      radial-gradient(
+        ellipse ${rayLength * 1.2}% ${rayLength}% at ${x}% ${y}%,
+        transparent 0%,
+        transparent 3%,
+        rgba(0,0,0,0.3) 15%,
+        rgba(0,0,0,0.7) 40%,
+        rgba(0,0,0,0.95) 70%,
+        black 100%
+      )
+    `);
+
+    // Bright central glow/core
+    const coreSize = 2 + intensity * 3;
+    elements.push(`
+      radial-gradient(
+        circle at ${x}% ${y}%,
+        rgba(255,255,255,${Math.min(1, baseOpacity * 1.4)}) 0%,
+        rgba(255,255,240,${baseOpacity * 0.9}) ${coreSize * 0.4}%,
+        rgba(255,255,220,${baseOpacity * 0.5}) ${coreSize * 0.7}%,
+        transparent ${coreSize * 1.5}%
+      )
+    `);
+
+    // Secondary thin rays for extra sharpness
+    const secondaryStops: string[] = [];
+    const thinRayWidth = rayWidth * 0.35;
+    for (let i = 0; i < numRays; i++) {
+      const rayAngle = i * angleStep + angleStep / 2;
+      secondaryStops.push(`transparent ${rayAngle - thinRayWidth}deg`);
+      secondaryStops.push(`rgba(255,255,255,${baseOpacity * 0.25}) ${rayAngle}deg`);
+      secondaryStops.push(`transparent ${rayAngle + thinRayWidth}deg`);
+    }
+
+    elements.push(`
+      conic-gradient(
+        from 22.5deg at ${x}% ${y}%,
+        ${secondaryStops.join(', ')}
+      )
+    `);
+  }
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    background: elements.join(', '),
+    mixBlendMode: 'screen' as const,
+    opacity: Math.min(0.95, 0.5 + intensity * 0.45),
+    pointerEvents: 'none' as const,
+    zIndex: 9999
+  };
+}
+
+/**
+ * Hook that generates animated overlay styles for visual aura, hallucinations, blue field, PPVP, palinopsia, and starbursting effects
  */
 export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.CSSProperties | null => {
   return useMemo(() => {
@@ -409,6 +799,24 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     const blueFieldEffect = effects.find(e => e.id === 'blueFieldPhenomena' && e.enabled);
     if (blueFieldEffect) {
       return generateBlueFieldOverlay(blueFieldEffect.intensity, now);
+    }
+
+    // Check for Persistent Positive Visual Phenomenon
+    const ppvpEffect = effects.find(e => e.id === 'persistentPositiveVisualPhenomenon' && e.enabled);
+    if (ppvpEffect) {
+      return generatePersistentPositiveOverlay(ppvpEffect.intensity, now);
+    }
+
+    // Check for Palinopsia
+    const palinopsiaEffect = effects.find(e => e.id === 'palinopsia' && e.enabled);
+    if (palinopsiaEffect) {
+      return generatePalinopsiaOverlay(palinopsiaEffect.intensity, now);
+    }
+
+    // Check for Starbursting
+    const starburstingEffect = effects.find(e => e.id === 'starbursting' && e.enabled);
+    if (starburstingEffect) {
+      return generateStarburstingOverlay(starburstingEffect.intensity, now);
     }
 
     return null;

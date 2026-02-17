@@ -29,12 +29,15 @@ export const getFamousPersonVideoUrl = (personId?: string): string => {
 
 /**
  * YouTube iframe properties
+ * loading="eager" ensures iframes load immediately for better sync
  */
 export const YOUTUBE_IFRAME_PROPS = {
   width: "100%",
   height: "100%",
   allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
   frameBorder: "0",
+  loading: "eager" as const,
+  allowFullScreen: true,
   style: { width: "100%", height: "100%", border: "none" }
 } as const;
 

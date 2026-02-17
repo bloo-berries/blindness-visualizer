@@ -106,23 +106,43 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
               width: '100%',
               height: '100%',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-              <iframe
-                {...YOUTUBE_IFRAME_PROPS}
-                src={getVideoUrl()}
-                title="Vision simulation video with applied visual effects"
-                aria-label="YouTube video with vision condition simulation applied"
-                style={{ width: '100%', height: '100%' }}
-              />
-              {/* React-based visual field overlay for reliable rendering */}
-              {visualFieldOverlayStyle && (
-                <div style={visualFieldOverlayStyle} aria-hidden="true" />
-              )}
-              {/* Animated overlay for visual aura effects */}
-              {animatedOverlayStyle && (
-                <div style={animatedOverlayStyle} aria-hidden="true" />
-              )}
+              {/* Aspect ratio wrapper - constrains content to 16:9 video area */}
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                aspectRatio: '16 / 9',
+                overflow: 'hidden'
+              }}>
+                <iframe
+                  {...YOUTUBE_IFRAME_PROPS}
+                  src={YOUTUBE_EMBED_URL}
+                  title="Vision simulation video with applied visual effects"
+                  aria-label="YouTube video with vision condition simulation applied"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    border: 'none'
+                  }}
+                />
+                {/* React-based visual field overlay for reliable rendering */}
+                {visualFieldOverlayStyle && (
+                  <div style={visualFieldOverlayStyle} aria-hidden="true" />
+                )}
+                {/* Animated overlay for visual aura effects */}
+                {animatedOverlayStyle && (
+                  <div style={animatedOverlayStyle} aria-hidden="true" />
+                )}
+              </div>
             </div>
           ) : inputSource.type === 'image' && inputSource.url ? (
             <div style={{
@@ -188,12 +208,39 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           Original
         </Box>
         {inputSource.type === 'youtube' ? (
-          <iframe
-            {...YOUTUBE_IFRAME_PROPS}
-            src={YOUTUBE_EMBED_URL}
-            title="Original YouTube video"
-            style={{ width: '100%', height: '100%' }}
-          />
+          <div style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            {/* Aspect ratio wrapper - matches simulation side */}
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              aspectRatio: '16 / 9',
+              overflow: 'hidden'
+            }}>
+              <iframe
+                {...YOUTUBE_IFRAME_PROPS}
+                src={YOUTUBE_EMBED_URL}
+                title="Original YouTube video"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none'
+                }}
+              />
+            </div>
+          </div>
         ) : inputSource.type === 'image' && inputSource.url ? (
           <img
             src={inputSource.url}

@@ -29,12 +29,30 @@ The rendering pipeline uses multiple techniques simultaneously, each handling di
 
 | Layer | File | Purpose |
 |-------|------|---------|
-| WebGL Shaders | `shaderManager.ts`, `shaders/` | Color blindness matrix transformations |
+| WebGL Shaders | `shaders/` directory | Color blindness matrix transformations |
 | SVG Filters | `svgFilterManager.ts` | Additional color vision effects |
 | CSS Filters | `cssFilterManager.ts` | Blur, contrast adjustments |
 | DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters |
 
 Overlay z-index hierarchy is defined in `overlayConstants.ts` - new overlays must respect this ordering.
+
+### Visualizer Hooks (`src/components/Visualizer/hooks/`)
+
+The Visualizer component uses modular hooks:
+- `useMediaSetup` - Webcam/video/image source initialization
+- `useEffectProcessor` - Main effect processing pipeline
+- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field effects (animated)
+- `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision overlays
+- `useScreenshot` - Screenshot capture functionality
+
+### Shader System (`src/utils/shaders/`)
+
+The shader system is modular:
+- `fragmentShader.ts` - GLSL code organized by category (color blindness, retinal, diplopia, etc.)
+- `shaderUniforms.ts` - Uniform declarations for Three.js
+- `uniformUpdater.ts` - Updates uniform values based on active effects
+- `shaderMaterial.ts` - Creates the Three.js ShaderMaterial
+- `shaderFunctions.ts` - Additional GLSL helper functions
 
 ### Key Type: `ConditionType`
 
@@ -84,9 +102,9 @@ Deployed to GitHub Pages at `https://bloo-berries.github.io/blindness-visualizer
 
 For effects requiring color/pixel manipulation:
 
-1. Add uniform in `shaderManager.ts`: `myEffectIntensity: { value: 0.0 }`
-2. Add GLSL function in `shaders/shaderFunctions.ts`
-3. Update `updateShaderUniforms()` to pass the intensity value
+1. Add uniform in `shaders/shaderUniforms.ts`
+2. Add GLSL function in `shaders/fragmentShader.ts` (in appropriate category section)
+3. Update `shaders/uniformUpdater.ts` to pass the intensity value
 4. Add to `ConditionType` union and create effect definition in `src/data/effects/`
 
 ### Overlay-Based Effects
@@ -99,9 +117,9 @@ For effects requiring DOM elements (scotomas, field loss):
 
 ### Animated Effects
 
-These effects require continuous re-rendering (defined in `EffectPreview.tsx`):
+These effects require continuous re-rendering (exported from `hooks/useAnimatedOverlay.ts`):
 ```typescript
-['visualAura', 'visualAuraLeft', 'visualAuraRight', 'visualSnow', 'hallucinations']
+['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena']
 ```
 
 ## Performance
@@ -124,3 +142,9 @@ The `AccessibilityContext` persists user preferences to localStorage and applies
 | Reduced Motion | `reduced-motion-mode` |
 
 Styles for these classes are defined in `styles/Accessibility.css`.
+
+## Bundle Analysis
+
+```bash
+npm run build:analyze  # Build and open webpack bundle analyzer
+```

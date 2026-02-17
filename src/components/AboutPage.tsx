@@ -41,9 +41,6 @@ const AboutPage: React.FC = () => {
             }}>
               About VisionSim
             </Typography>
-            <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto' }}>
-              Empowering understanding through accurate visual simulations of blindness and vision conditions
-            </Typography>
           </Box>
 
           {/* Personal Story Section */}
@@ -132,7 +129,7 @@ const AboutPage: React.FC = () => {
                       }}
                     >
                       <iframe
-                        src="https://fast.wistia.com/embed/iframe/qjdv24o4kb?web_component=true&seo=true"
+                        src="https://fast.wistia.com/embed/iframe/qjdv24o4kb?autoPlay=true&silentAutoPlay=true&muted=true&seo=true"
                         title="my-vision Video"
                         allow="autoplay; fullscreen"
                         allowTransparency={true}

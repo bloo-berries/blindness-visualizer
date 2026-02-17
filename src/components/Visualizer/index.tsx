@@ -11,7 +11,7 @@ import { updateSVGFilters } from '../../utils/svgFilterManager';
 import { getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../../utils/appConstants';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../../utils/performance';
-import { useScreenshot } from './hooks';
+import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
 import ComparisonView from './ComparisonView';
 import { useDiplopiaOverlay } from './DiplopiaOverlay';
 
@@ -77,6 +77,29 @@ const Visualizer: React.FC<VisualizerProps> = ({
     diplopiaDirection,
     isLoading
   );
+
+  // Animation state for animated effects (used in full simulation view)
+  const [now, setNow] = useState(Date.now());
+
+  // Check if any enabled effect needs animation
+  const needsAnimatedOverlay = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
+
+  // Animation loop for animated effects
+  useEffect(() => {
+    if (!needsAnimatedOverlay || showComparison) return;
+
+    const interval = setInterval(() => {
+      setNow(Date.now());
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [needsAnimatedOverlay, showComparison]);
+
+  // Get visual field overlay styles for React-based rendering (full simulation view)
+  const visualFieldOverlayStyle = useVisualFieldOverlay(effects);
+
+  // Get animated overlay styles (for visual aura, PPVP, etc.) (full simulation view)
+  const animatedOverlayStyle = useAnimatedOverlay(effects, now);
 
   // Retry camera access
   const handleRetryCamera = useCallback(() => {
@@ -452,46 +475,80 @@ const Visualizer: React.FC<VisualizerProps> = ({
             </Box>
           )}
 
+          {/* Outer container for centering */}
           <div style={{
-            position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-            maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain',
-            filter: (() => {
-              const { enabledEffects } = effectProcessor.current.updateEffects(effects);
-              const colorVisionEffect = enabledEffects.find(e =>
-                ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-              );
-
-              const otherEffects = enabledEffects.filter(e =>
-                !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-              );
-
-              const filters: string[] = [];
-
-              if (colorVisionEffect) {
-                const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-                if (cssFilter) filters.push(cssFilter);
-              }
-
-              if (otherEffects.length > 0) {
-                const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
-                const nonDiplopiaEffects = nonColorEffects.filter(e =>
-                  e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden'
+          }}>
+            {/* Aspect ratio wrapper - constrains content to 16:9 video area */}
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              aspectRatio: '16 / 9',
+              overflow: 'hidden',
+              filter: (() => {
+                const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+                const colorVisionEffect = enabledEffects.find(e =>
+                  ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
                 );
 
-                if (nonDiplopiaEffects.length > 0) {
-                  const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-                  if (otherFilters) filters.push(otherFilters);
-                }
-              }
+                const otherEffects = enabledEffects.filter(e =>
+                  !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+                );
 
-              return filters.length > 0 ? filters.join(' ') : 'none';
-            })()
-          }}>
-            <iframe
-              {...YOUTUBE_IFRAME_PROPS}
-              src={YOUTUBE_EMBED_URL}
-              title="YouTube video player"
-            />
+                const filters: string[] = [];
+
+                if (colorVisionEffect) {
+                  const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+                  if (cssFilter) filters.push(cssFilter);
+                }
+
+                if (otherEffects.length > 0) {
+                  const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
+                  const nonDiplopiaEffects = nonColorEffects.filter(e =>
+                    e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+                  );
+
+                  if (nonDiplopiaEffects.length > 0) {
+                    const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
+                    if (otherFilters) filters.push(otherFilters);
+                  }
+                }
+
+                return filters.length > 0 ? filters.join(' ') : 'none';
+              })()
+            }}>
+              <iframe
+                {...YOUTUBE_IFRAME_PROPS}
+                src={YOUTUBE_EMBED_URL}
+                title="YouTube video player"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none'
+                }}
+              />
+              {/* React-based visual field overlay for reliable rendering */}
+              {visualFieldOverlayStyle && (
+                <div style={visualFieldOverlayStyle} aria-hidden="true" />
+              )}
+              {/* Animated overlay for visual aura, PPVP, and other animated effects */}
+              {animatedOverlayStyle && (
+                <div style={animatedOverlayStyle} aria-hidden="true" />
+              )}
+            </div>
           </div>
           {getDiplopiaOverlay()}
         </Box>

@@ -11,8 +11,23 @@
     />
     <!-- Content Security Policy -->
     <!-- Note: CSP is set permissively for development. For production, consider using a more restrictive policy via server headers. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com blob:; script-src-elem 'self' 'unsafe-inline' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com; connect-src 'self' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com https://www.youtube.com https://youtube.com ws://localhost:* wss://localhost:*; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; child-src 'self' blob:; frame-src 'self' https://fast.wistia.com https://*.wistia.com https://www.youtube.com https://youtube.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com blob:; script-src-elem 'self' 'unsafe-inline' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com https://i.ytimg.com https://s.ytimg.com https://yt3.ggpht.com; connect-src 'self' http://localhost:* https://localhost:* https://fast.wistia.com https://*.wistia.com https://www.youtube.com https://youtube.com https://i.ytimg.com https://s.ytimg.com ws://localhost:* wss://localhost:*; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self' blob:; child-src 'self' blob:; frame-src 'self' https://fast.wistia.com https://*.wistia.com https://www.youtube.com https://youtube.com;">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Preconnect to YouTube domains for faster video loading -->
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+    <link rel="preconnect" href="https://s.ytimg.com" crossorigin />
+    <link rel="preconnect" href="https://yt3.ggpht.com" crossorigin />
+
+    <!-- DNS prefetch as fallback for browsers that don't support preconnect -->
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://i.ytimg.com" />
+    <link rel="dns-prefetch" href="https://s.ytimg.com" />
+    <link rel="dns-prefetch" href="https://yt3.ggpht.com" />
+
     <title>Vision Condition Visualizer</title>
     <!-- Wistia Player Scripts -->
     <script>

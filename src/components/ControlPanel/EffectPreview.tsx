@@ -42,7 +42,7 @@ interface EffectPreviewProps {
 const ANIMATED_EFFECTS = [
   'visualAura', 'visualAuraLeft', 'visualAuraRight',
   'visualSnow', 'visualSnowFlashing', 'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense',
-  'hallucinations', 'visualFloaters', 'blueFieldPhenomena'
+  'hallucinations', 'visualFloaters', 'blueFieldPhenomena', 'persistentPositiveVisualPhenomenon', 'palinopsia'
 ];
 
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
@@ -343,7 +343,9 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                       if (id === 'visualFloaters' || id === 'hallucinations' || id === 'blueFieldPhenomena' ||
                           id === 'visualSnow' || id === 'visualSnowFlashing' || id === 'visualSnowColored' ||
                           id === 'visualSnowTransparent' || id === 'visualSnowDense' ||
-                          id === 'visualAura' || id === 'visualAuraLeft' || id === 'visualAuraRight') {
+                          id === 'visualAura' || id === 'visualAuraLeft' || id === 'visualAuraRight' ||
+                          id === 'persistentPositiveVisualPhenomenon' || id === 'palinopsia' ||
+                          id === 'starbursting') {
                         return true;
                       }
 

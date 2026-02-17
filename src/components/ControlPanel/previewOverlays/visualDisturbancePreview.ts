@@ -242,6 +242,342 @@ export const generateVisualDisturbancePreviewStyle = (
       };
     }
 
+    case 'starbursting': {
+      // Starbursting - sharp star-like rays/spikes radiating from light sources
+      // Based on reference images: thin, crisp rays at regular angles (typically 6-8 rays)
+      // Uses conic gradients to create the distinctive star pattern
+      // Caused by astigmatism, cataracts, LASIK, keratoconus, etc.
+
+      const elements: string[] = [];
+
+      // Light sources positioned at typical bright spots in an outdoor scene
+      const lightSources = [
+        { x: 50, y: 10, size: 1.0 },    // Top center (sky/sun) - primary
+        { x: 20, y: 20, size: 0.55 },   // Upper left
+        { x: 80, y: 15, size: 0.6 },    // Upper right
+        { x: 65, y: 35, size: 0.4 },    // Mid right
+        { x: 30, y: 55, size: 0.35 },   // Lower left
+      ];
+
+      // Number of rays (6-8 is typical for starbursting)
+      const numRays = 8;
+      const rayWidth = 0.8 + intensity * 0.7; // Thin rays: 0.8-1.5 degrees
+
+      for (const source of lightSources) {
+        const baseOpacity = (0.5 + intensity * 0.45) * source.size;
+        const rayLength = (25 + intensity * 40) * source.size;
+
+        // Build conic gradient stops for sharp, thin rays
+        const conicStops: string[] = [];
+        const angleStep = 360 / numRays;
+
+        for (let i = 0; i < numRays; i++) {
+          const rayAngle = i * angleStep;
+
+          // Create sharp ray with quick fade at edges
+          conicStops.push(`transparent ${rayAngle - rayWidth}deg`);
+          conicStops.push(`rgba(255,255,255,${baseOpacity * 0.4}) ${rayAngle - rayWidth * 0.5}deg`);
+          conicStops.push(`rgba(255,255,255,${baseOpacity}) ${rayAngle}deg`);
+          conicStops.push(`rgba(255,255,255,${baseOpacity * 0.4}) ${rayAngle + rayWidth * 0.5}deg`);
+          conicStops.push(`transparent ${rayAngle + rayWidth}deg`);
+        }
+
+        // Conic gradient for the star rays pattern
+        elements.push(`
+          conic-gradient(
+            from 22.5deg at ${source.x}% ${source.y}%,
+            ${conicStops.join(', ')}
+          )
+        `);
+
+        // Radial gradient to fade the rays outward (brighter near center, fading out)
+        // This overlays and modulates the conic gradient intensity
+        elements.push(`
+          radial-gradient(
+            ellipse ${rayLength * 1.2}% ${rayLength}% at ${source.x}% ${source.y}%,
+            transparent 0%,
+            transparent 3%,
+            rgba(0,0,0,0.3) 15%,
+            rgba(0,0,0,0.7) 40%,
+            rgba(0,0,0,0.95) 70%,
+            black 100%
+          )
+        `);
+
+        // Bright central glow/core at each light source
+        const coreSize = 3 + intensity * 4;
+        elements.push(`
+          radial-gradient(
+            circle at ${source.x}% ${source.y}%,
+            rgba(255,255,255,${Math.min(1, baseOpacity * 1.3)}) 0%,
+            rgba(255,255,240,${baseOpacity * 0.9}) ${coreSize * 0.4}%,
+            rgba(255,255,220,${baseOpacity * 0.5}) ${coreSize * 0.7}%,
+            rgba(255,255,200,${baseOpacity * 0.2}) ${coreSize}%,
+            transparent ${coreSize * 1.5}%
+          )
+        `);
+
+        // Secondary thin rays for extra sharpness (offset by half the angle step)
+        const secondaryStops: string[] = [];
+        const thinRayWidth = rayWidth * 0.4;
+        for (let i = 0; i < numRays; i++) {
+          const rayAngle = i * angleStep + angleStep / 2; // Offset
+
+          secondaryStops.push(`transparent ${rayAngle - thinRayWidth}deg`);
+          secondaryStops.push(`rgba(255,255,255,${baseOpacity * 0.3}) ${rayAngle}deg`);
+          secondaryStops.push(`transparent ${rayAngle + thinRayWidth}deg`);
+        }
+
+        elements.push(`
+          conic-gradient(
+            from 22.5deg at ${source.x}% ${source.y}%,
+            ${secondaryStops.join(', ')}
+          )
+        `);
+      }
+
+      return {
+        background: elements.join(', '),
+        mixBlendMode: 'screen' as const,
+        opacity: Math.min(0.95, 0.5 + intensity * 0.45)
+      };
+    }
+
+    case 'palinopsia': {
+      // Palinopsia (Visual Perseveration) - trailing images and afterimages
+      // Creates multiple faded "ghost" copies offset to simulate trailing effect
+      // Based on descriptions of visual trailing and prolonged afterimages
+
+      const elements: string[] = [];
+      const time = now / 1000;
+
+      // Subtle animation for the trailing effect
+      const trailPhase = Math.sin(time * 0.4) * 0.1 + 0.9;
+      const driftPhase = Math.sin(time * 0.2) * 2;
+
+      // Number of trail copies based on intensity (3-8 trails)
+      const numTrails = Math.floor(3 + intensity * 5);
+
+      // Create trailing ghost images - offset in a direction to simulate motion trail
+      // The trail direction shifts slowly to simulate different movement
+      const trailAngle = (time * 0.1) % (Math.PI * 2);
+      const baseTrailDistance = 3 + intensity * 8; // How far apart the trails are
+
+      for (let i = 1; i <= numTrails; i++) {
+        // Each trail is progressively more offset and more faded
+        const distance = baseTrailDistance * i * 0.4;
+        const offsetX = Math.cos(trailAngle) * distance + driftPhase * 0.3;
+        const offsetY = Math.sin(trailAngle) * distance;
+
+        // Opacity decreases for each successive trail (oldest = faintest)
+        const trailOpacity = (0.25 - i * 0.03) * intensity * trailPhase;
+
+        // Create a large semi-transparent overlay shifted in the trail direction
+        // This simulates the "ghost" of the previous image position
+        elements.push(`
+          radial-gradient(
+            ellipse 100% 100% at ${50 + offsetX}% ${50 + offsetY}%,
+            rgba(200,200,200,${trailOpacity}) 0%,
+            rgba(180,180,180,${trailOpacity * 0.7}) 30%,
+            rgba(150,150,150,${trailOpacity * 0.4}) 60%,
+            transparent 85%
+          )
+        `);
+      }
+
+      // Add light streaking effect (common in palinopsia)
+      const streakOpacity = 0.15 * intensity * trailPhase;
+      const streakAngle = (trailAngle * 180 / Math.PI);
+
+      elements.push(`
+        linear-gradient(
+          ${streakAngle}deg,
+          transparent 0%,
+          rgba(255,255,255,${streakOpacity}) 20%,
+          rgba(255,255,255,${streakOpacity * 1.2}) 40%,
+          rgba(255,255,255,${streakOpacity * 0.8}) 60%,
+          rgba(255,255,255,${streakOpacity * 0.4}) 80%,
+          transparent 100%
+        )
+      `);
+
+      // Add prolonged afterimage spots (positive afterimages - same color, not complementary)
+      const numAfterimages = Math.floor(2 + intensity * 4);
+      for (let i = 0; i < numAfterimages; i++) {
+        const seed = i * 5.17;
+        const x = 20 + (Math.sin(seed * 1.3) * 0.5 + 0.5) * 60;
+        const y = 20 + (Math.cos(seed * 1.1) * 0.5 + 0.5) * 60;
+
+        // Slow drift for lingering effect
+        const driftX = Math.sin(time * 0.15 + seed) * 3;
+        const driftY = Math.cos(time * 0.12 + seed * 0.8) * 3;
+        const actualX = x + driftX;
+        const actualY = y + driftY;
+
+        const size = 10 + (i % 4) * 5;
+        const afterimageOpacity = (0.12 + (i % 3) * 0.05) * intensity * trailPhase;
+
+        // Bright, persistent afterimage
+        elements.push(`
+          radial-gradient(
+            ellipse ${size}% ${size * 0.8}% at ${actualX}% ${actualY}%,
+            rgba(255,255,255,${afterimageOpacity}) 0%,
+            rgba(240,240,240,${afterimageOpacity * 0.6}) 40%,
+            transparent 100%
+          )
+        `);
+      }
+
+      // Subtle overall haze to simulate visual persistence
+      elements.push(`
+        radial-gradient(
+          ellipse 100% 100% at 50% 50%,
+          rgba(255,255,255,${0.05 * intensity * trailPhase}) 0%,
+          transparent 70%
+        )
+      `);
+
+      return {
+        background: elements.join(', '),
+        mixBlendMode: 'screen' as const,
+        opacity: Math.min(0.9, 0.5 + intensity * 0.4)
+      };
+    }
+
+    case 'persistentPositiveVisualPhenomenon': {
+      // Persistent Positive Visual Phenomena
+      // Afterimages that persist much longer than normal, bright spots, shapes, and patterns
+      // Can appear as positive (same color) or negative (complementary color) afterimages
+
+      const elements: string[] = [];
+      const time = now / 1000;
+
+      // Pulsing phase for persistence effect
+      const pulsePhase = Math.sin(time * 0.3) * 0.15 + 0.85;
+      const slowPulse = Math.sin(time * 0.15) * 0.1 + 0.9;
+
+      // Number of afterimage spots based on intensity
+      const numSpots = Math.floor(5 + intensity * 8); // 5-13 spots
+
+      // Generate persistent afterimage spots
+      for (let i = 0; i < numSpots; i++) {
+        // Deterministic positioning
+        const seed = i * 3.17;
+        const x = 15 + (Math.sin(seed * 1.1) * 0.5 + 0.5) * 70;
+        const y = 15 + (Math.cos(seed * 1.3) * 0.5 + 0.5) * 70;
+
+        // Slight drift for "lingering" effect
+        const driftX = Math.sin(time * 0.2 + seed) * 2;
+        const driftY = Math.cos(time * 0.15 + seed * 1.2) * 2;
+        const actualX = x + driftX;
+        const actualY = y + driftY;
+
+        // Size varies
+        const size = 8 + (i % 5) * 6;
+
+        // Alternate between complementary colors (negative afterimages)
+        // and bright spots (positive afterimages)
+        const colorType = i % 6;
+        let color: string;
+        const baseOpacity = (0.3 + (i % 4) * 0.1) * intensity * pulsePhase;
+
+        switch (colorType) {
+          case 0: // Cyan (complementary to red)
+            color = `rgba(0,255,255,${baseOpacity})`;
+            break;
+          case 1: // Magenta (complementary to green)
+            color = `rgba(255,0,255,${baseOpacity * 0.9})`;
+            break;
+          case 2: // Yellow (complementary to blue)
+            color = `rgba(255,255,0,${baseOpacity * 0.85})`;
+            break;
+          case 3: // Bright white (positive afterimage)
+            color = `rgba(255,255,255,${baseOpacity})`;
+            break;
+          case 4: // Pale blue
+            color = `rgba(150,200,255,${baseOpacity * 0.9})`;
+            break;
+          default: // Pale green
+            color = `rgba(180,255,180,${baseOpacity * 0.85})`;
+        }
+
+        // Create soft, glowing afterimage spots
+        elements.push(`
+          radial-gradient(
+            ellipse ${size}% ${size * 0.8}% at ${actualX}% ${actualY}%,
+            ${color} 0%,
+            ${color.replace(/[\d.]+\)$/, `${baseOpacity * 0.5})`)} 40%,
+            transparent 100%
+          )
+        `);
+      }
+
+      // Add larger, more diffuse "ghost" shapes that persist
+      const numGhosts = Math.floor(2 + intensity * 3);
+      for (let i = 0; i < numGhosts; i++) {
+        const seed = i * 7.23 + 100;
+        const x = 20 + (Math.sin(seed * 0.9) * 0.5 + 0.5) * 60;
+        const y = 20 + (Math.cos(seed * 1.1) * 0.5 + 0.5) * 60;
+        const driftX = Math.sin(time * 0.1 + seed) * 3;
+        const driftY = Math.cos(time * 0.08 + seed) * 3;
+        const actualX = x + driftX;
+        const actualY = y + driftY;
+        const width = 15 + (i % 3) * 8;
+        const height = 12 + (i % 4) * 6;
+        const ghostOpacity = (0.15 + (i % 3) * 0.08) * intensity * slowPulse;
+
+        // Faded ghost image effect
+        elements.push(`
+          radial-gradient(
+            ellipse ${width}% ${height}% at ${actualX}% ${actualY}%,
+            rgba(255,255,255,${ghostOpacity}) 0%,
+            rgba(240,245,255,${ghostOpacity * 0.6}) 30%,
+            rgba(220,235,255,${ghostOpacity * 0.3}) 60%,
+            transparent 100%
+          )
+        `);
+      }
+
+      // Add geometric pattern persistence (common in PPVP)
+      const patternOpacity = 0.12 * intensity * pulsePhase;
+      elements.push(`
+        radial-gradient(
+          circle at 30% 40%,
+          rgba(255,200,100,${patternOpacity}) 0%,
+          transparent 15%
+        )
+      `);
+      elements.push(`
+        radial-gradient(
+          circle at 70% 35%,
+          rgba(100,200,255,${patternOpacity * 0.9}) 0%,
+          transparent 12%
+        )
+      `);
+      elements.push(`
+        radial-gradient(
+          circle at 55% 65%,
+          rgba(255,150,200,${patternOpacity * 0.85}) 0%,
+          transparent 18%
+        )
+      `);
+
+      // Overall slight brightness/haze to simulate visual interference
+      elements.push(`
+        radial-gradient(
+          ellipse 100% 100% at 50% 50%,
+          rgba(255,255,255,${0.08 * intensity * slowPulse}) 0%,
+          transparent 70%
+        )
+      `);
+
+      return {
+        background: elements.join(', '),
+        mixBlendMode: 'screen' as const,
+        opacity: Math.min(0.95, 0.6 + intensity * 0.35)
+      };
+    }
+
     case 'visualAura':
     case 'visualAuraLeft':
     case 'visualAuraRight': {

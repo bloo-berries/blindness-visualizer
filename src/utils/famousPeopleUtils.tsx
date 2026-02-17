@@ -85,7 +85,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'thurber-eye-injury': ['blindnessLeftEye', 'blurryVision'],
 
     // ===== KERATOCONUS / ASTIGMATISM =====
-    'stephen-keratoconus': ['keratoconus', 'astigmatism', 'starbursting'],
+    'stephen-keratoconus': ['stephenKeratoconusComplete'],
     'allan-nystagmus': ['astigmatism', 'blurryVision'],
 
     // ===== VISUAL DISTURBANCES =====

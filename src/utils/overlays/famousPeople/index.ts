@@ -17,6 +17,7 @@ import { createJoshuaMieleOverlays } from './joshuaMieleOverlays';
 import { createMilaKunisOverlays } from './milaKunisOverlays';
 import { createJudiDenchOverlays } from './judiDenchOverlays';
 import { createSugarRayLeonardOverlays } from './sugarRayLeonardOverlays';
+import { createStephenCurryOverlays } from './stephenCurryOverlays';
 
 // Re-export individual functions
 export { createMiltonOverlays } from './miltonOverlays';
@@ -32,6 +33,7 @@ export { createJoshuaMieleOverlays } from './joshuaMieleOverlays';
 export { createMilaKunisOverlays } from './milaKunisOverlays';
 export { createJudiDenchOverlays } from './judiDenchOverlays';
 export { createSugarRayLeonardOverlays } from './sugarRayLeonardOverlays';
+export { createStephenCurryOverlays } from './stephenCurryOverlays';
 
 /**
  * Creates all famous people overlays
@@ -53,4 +55,5 @@ export const createAllFamousPeopleOverlays = (
   createMilaKunisOverlays(effects);
   createJudiDenchOverlays(effects);
   createSugarRayLeonardOverlays(effects);
+  createStephenCurryOverlays(effects);
 };

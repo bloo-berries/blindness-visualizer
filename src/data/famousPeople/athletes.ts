@@ -39,7 +39,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1988",
     onset: "Diagnosed in college",
     simulation: "stephen-keratoconus",
-    description: "Stephen Curry, the NBA superstar and Golden State Warriors point guard, has keratoconus, a condition where the cornea becomes thin and cone-shaped, causing distorted vision. Despite this visual impairment, he has become one of the greatest shooters in NBA history, winning multiple championships and MVP awards. He uses specialized contact lenses to manage his condition. Learn more at en.wikipedia.org."
+    description: "Stephen Curry has keratoconus, where the cornea thins into an irregular cone shape. Before correction, his vision featured directional blur (coma aberration) where every edge smeared into comet-like tails, multiple ghost images offset from objects, irregular halos streaming from lights, and wavy distortion of straight lines. He described the moment he got corrective lenses as seeing the world 'open up' for the first time. Despite shooting at a basketball hoop that appeared as a blurred, ghosted, wavering ring with multiple faint echoes, he became the greatest shooter in NBA history. Learn more at en.wikipedia.org."
   },
   lex: {
     name: "Lex Gillette",

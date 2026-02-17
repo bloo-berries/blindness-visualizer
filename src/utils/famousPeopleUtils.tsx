@@ -56,7 +56,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'cataracts color-distortion': ['cataracts', 'glare', 'lossOfContrast'],
     'art-congenital-cataracts': ['cataracts', 'blurryVision', 'glare'],
     'diane-congenital-cataracts': ['cataracts', 'blurryVision'],
-    'mila-iritis-cataracts': ['cataracts', 'glare', 'blurryVision'],
+    'mila-iritis-cataracts': ['milaCompleteVision'],
     'nmo-blur': ['cataracts', 'blurryVision', 'glare'],
 
     // ===== NMO / OPTIC NEURITIS (Christine Ha, Lucy Edwards) =====

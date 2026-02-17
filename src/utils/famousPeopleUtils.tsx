@@ -58,6 +58,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'diane-congenital-cataracts': ['cataracts', 'blurryVision'],
     'mila-iritis-cataracts': ['milaCompleteVision'],
     'nmo-blur': ['cataracts', 'blurryVision', 'glare'],
+    'amadou-cataract-progression': ['amadouCataractProgression'],
 
     // ===== NMO / OPTIC NEURITIS (Christine Ha, Lucy Edwards) =====
     'christine-nmo-complete': ['christineNMOComplete', 'christineFluctuatingVision'],
@@ -232,7 +233,8 @@ const getWikipediaUrl = (personId: string): string => {
     'slick': 'https://en.wikipedia.org/wiki/Slick_Rick',
     'abraham': 'https://en.wikipedia.org/wiki/Abraham_Nemeth',
     'sharon': 'https://en.wikipedia.org/wiki/Sharon_Stone',
-    'daredevil': 'https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)'
+    'daredevil': 'https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)',
+    'amadou': 'https://en.wikipedia.org/wiki/Amadou_%26_Mariam'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };

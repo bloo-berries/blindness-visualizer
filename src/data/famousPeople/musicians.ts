@@ -224,5 +224,13 @@ export const musicians: Record<string, PersonData> = {
     onset: "From birth",
     simulation: "jonny-greenwood-color-blindness",
     description: "Jonny Greenwood is the lead guitarist and multi-instrumentalist for the English rock band Radiohead, known for their innovative and experimental music. He has red-green color blindness, which affects his ability to distinguish between red and green colors. Despite this color vision deficiency, Greenwood has become one of the most acclaimed guitarists and composers in modern music, known for his innovative use of electronic instruments and orchestral arrangements. He has also composed numerous film scores, including for films like 'There Will Be Blood' and 'The Master.' Learn more at en.wikipedia.org."
+  },
+  amadou: {
+    name: "Amadou Bagayoko",
+    condition: "Congenital Cataracts to Total Blindness",
+    years: "Born 1954",
+    onset: "Congenital, blind by age 16",
+    simulation: "amadou-cataract-progression",
+    description: "Amadou Bagayoko, one half of the legendary Malian duo Amadou & Mariam, was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened throughout childhood. By age 16, the cataracts had matured completely, leaving him in total darkness. For over five decades, he has created some of the most joyful, vibrant music Africa has ever produced while living in complete blindness. As he and Mariam tell their audiences: 'Beyond our vision, we can imagine.' Learn more at en.wikipedia.org."
   }
 };

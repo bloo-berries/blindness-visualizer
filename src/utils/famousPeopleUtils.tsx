@@ -60,8 +60,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'nmo-blur': ['cataracts', 'blurryVision', 'glare'],
 
     // ===== NMO / OPTIC NEURITIS (Christine Ha, Lucy Edwards) =====
-    'christine-nmo-complete': ['blurryVision', 'glare', 'lossOfContrast', 'scotoma'],
-    'lucy-complete-vision': ['blurryVision', 'lossOfContrast', 'glare'],
+    'christine-nmo-complete': ['christineNMOComplete', 'christineFluctuatingVision'],
+    'lucy-complete-vision': ['lucyCompleteVision'],
 
     // ===== MACULAR DEGENERATION / STARGARDT =====
     'central-scotoma metamorphopsia': ['amd', 'scotoma'],

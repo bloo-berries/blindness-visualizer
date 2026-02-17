@@ -49,12 +49,16 @@ const VisionSimulator: React.FC = () => {
         conditions: preconfiguredConditions
       });
 
-      // Enable the pre-configured conditions
-      setEffects(prevEffects => 
-        prevEffects.map(effect => ({
-          ...effect,
-          enabled: preconfiguredConditions.includes(effect.id)
-        }))
+      // Enable the pre-configured conditions with full intensity
+      setEffects(prevEffects =>
+        prevEffects.map(effect => {
+          const isEnabled = preconfiguredConditions.includes(effect.id);
+          return {
+            ...effect,
+            enabled: isEnabled,
+            intensity: isEnabled ? 1.0 : effect.intensity
+          };
+        })
       );
 
       // Enable comparison mode immediately for famous people

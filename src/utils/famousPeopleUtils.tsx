@@ -66,7 +66,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== MACULAR DEGENERATION / STARGARDT =====
     'central-scotoma metamorphopsia': ['amd', 'scotoma'],
     'central-scotoma progressive-loss': ['stargardt', 'scotoma'],
-    'judi-amd-progression': ['amd', 'scotoma', 'blurryVision'],
+    'judi-amd-progression': ['judiAMDComplete'],
     'georgia-amd-central-loss': ['amd', 'scotoma', 'lossOfContrast'],
     'marla-stargardt-complete': ['stargardt', 'scotoma', 'lossOfContrast'],
 

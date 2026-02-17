@@ -13,6 +13,7 @@ import {
   generateMinkaraFilters,
   generateJoshuaFilters,
   generateMilaFilters,
+  generateJudiFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters';
 
@@ -61,6 +62,7 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateMinkaraFilters(effects),
     generateJoshuaFilters(effects),
     generateMilaFilters(effects),
+    generateJudiFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

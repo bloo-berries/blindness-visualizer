@@ -53,9 +53,9 @@ export const contemporaryFigures: Record<string, PersonData> = {
     name: "Dame Judi Dench",
     condition: "Age-Related Macular Degeneration (AMD)",
     years: "Born 1934",
-    onset: "Dry AMD in one eye, wet AMD in the other",
+    onset: "Diagnosed 2012, wet AMD requiring injections",
     simulation: "judi-amd-progression",
-    description: "Dame Judi Dench, the acclaimed British actress, has been living with age-related macular degeneration. She has dry AMD in one eye and wet AMD in the other, which affects her central vision. Despite her visual challenges, she continues to act and has adapted her career to work with her condition. Learn more at en.wikipedia.org."
+    description: "Dame Judi Dench describes her AMD vision: \"I can see your outline\" but \"I can't recognize anybody now...I can't see the television...I can't see to read.\" AMD destroys central vision while preserving peripheral sight. She relies on friends to read scripts aloud and cannot attend events alone. Learn more at en.wikipedia.org."
   },
   sharon: {
     name: "Sharon Stone",

@@ -148,10 +148,13 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
 
   return (
     <Grid item xs={4} sm={2} md={2} lg={2} xl={2}>
-      <Card 
+      <Card
         ref={cardRef}
-        sx={{ 
-          height: '100%', 
+        role="button"
+        tabIndex={0}
+        aria-label={`View details about ${person.name}, ${person.condition || 'vision condition'}`}
+        sx={{
+          height: '100%',
           cursor: 'pointer',
           transition: 'transform 0.2s, box-shadow 0.2s',
           overflow: 'hidden',
@@ -160,9 +163,19 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
           '&:hover': {
             transform: 'translateY(-2px)',
             boxShadow: 3
+          },
+          '&:focus-visible': {
+            outline: '3px solid #1976d2',
+            outlineOffset: '2px'
           }
         }}
         onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick();
+          }
+        }}
       >
         <Box sx={{ position: 'relative', width: '100%', height: '100px', overflow: 'hidden', backgroundColor: '#f5f5f5' }}>
           {!imageLoaded && !imageError && shouldLoad && (

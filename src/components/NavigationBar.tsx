@@ -130,14 +130,21 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
                 mr: 2,
                 cursor: 'pointer',
+                borderRadius: '8px',
+                padding: '4px 8px',
+                margin: '-4px -8px',
                 '&:hover': {
                   opacity: 0.8,
+                },
+                '&:focus-visible': {
+                  outline: '3px solid #60a5fa',
+                  outlineOffset: '2px'
                 },
                 transition: 'opacity 0.2s ease-in-out'
               }}
@@ -203,6 +210,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                       color: '#60a5fa',
                       backgroundColor: 'rgba(96, 165, 250, 0.15)',
                       transform: 'translateY(-1px)',
+                    },
+                    '&:focus-visible': {
+                      outline: '2px solid #60a5fa',
+                      outlineOffset: '2px'
                     },
                     '&:active': {
                       transform: 'translateY(0)',

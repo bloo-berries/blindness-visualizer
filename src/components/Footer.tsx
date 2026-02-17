@@ -42,15 +42,15 @@ const Footer: React.FC = () => {
             left: 0,
             flexShrink: 0
           }}>
-            <Link 
-              href="#" 
+            <Link
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setAccessibilityDialogOpen(true);
               }}
               aria-label="View accessibility statement"
-              sx={{ 
-                color: 'text.secondary',
+              sx={{
+                color: '#374151',
                 textDecoration: 'none',
                 fontWeight: 500,
                 fontSize: { xs: '0.65rem', sm: '0.875rem' },
@@ -58,6 +58,11 @@ const Footer: React.FC = () => {
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
                 }
               }}
             >
@@ -97,15 +102,15 @@ const Footer: React.FC = () => {
             right: 0,
             flexShrink: 0
           }}>
-            <Link 
-              href="#" 
+            <Link
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/feedback');
               }}
               aria-label="Provide feedback"
-              sx={{ 
-                color: 'text.secondary',
+              sx={{
+                color: '#374151',
                 textDecoration: 'none',
                 fontWeight: 500,
                 fontSize: { xs: '0.65rem', sm: '0.875rem' },
@@ -113,6 +118,11 @@ const Footer: React.FC = () => {
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
                 }
               }}
             >
@@ -177,39 +187,49 @@ const Footer: React.FC = () => {
             position: 'absolute',
             right: 0
           }}>
-            <Link 
-              href="#" 
+            <Link
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 setAccessibilityDialogOpen(true);
               }}
               aria-label="View accessibility statement"
-              sx={{ 
-                color: 'text.secondary',
+              sx={{
+                color: '#374151',
                 textDecoration: 'none',
                 fontWeight: 500,
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
                 }
               }}
             >
               Accessibility
             </Link>
-            <Link 
-              href="#" 
+            <Link
+              href="#"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/feedback');
               }}
               aria-label="Provide feedback"
-              sx={{ 
-                color: 'text.secondary',
+              sx={{
+                color: '#374151',
                 textDecoration: 'none',
                 fontWeight: 500,
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
                 }
               }}
             >
@@ -223,11 +243,16 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 aria-label="View project on GitHub"
                 size="small"
-                sx={{ 
-                  color: 'text.secondary',
+                sx={{
+                  color: '#374151',
                   '&:hover': {
                     color: 'primary.main',
                     backgroundColor: 'transparent'
+                  },
+                  '&:focus-visible': {
+                    outline: '2px solid #1976d2',
+                    outlineOffset: '2px',
+                    borderRadius: '4px'
                   }
                 }}
               >

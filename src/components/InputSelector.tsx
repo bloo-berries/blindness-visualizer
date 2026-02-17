@@ -61,9 +61,9 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
           .filter(option => option.type === 'youtube')
           .map((option) => (
             <Grid item xs={12} key={option.type}>
-              <Card 
+              <Card
                 className={option.type === 'youtube' ? 'demo-video-card' : ''}
-                sx={{ 
+                sx={{
                   cursor: option.isPremium ? 'not-allowed' : 'pointer',
                   height: '100%',
                   transition: '0.3s',
@@ -71,6 +71,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   '&:hover': {
                     transform: option.isPremium ? 'none' : 'translateY(-4px)',
                     boxShadow: option.isPremium ? 1 : 3
+                  },
+                  '&:focus-visible': {
+                    outline: '3px solid #1976d2',
+                    outlineOffset: '2px',
+                    boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
                   },
                   border: currentSource.type === option.type ? 2 : 0,
                   borderColor: 'primary.main',
@@ -175,8 +180,8 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
               .filter(option => option.type !== 'youtube')
               .map((option) => (
                 <Grid item xs={12} sm={6} md={5} key={option.type}>
-                  <Card 
-                    sx={{ 
+                  <Card
+                    sx={{
                       cursor: option.isPremium ? 'not-allowed' : 'pointer',
                       height: '100%',
                       transition: '0.3s',
@@ -184,6 +189,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                       '&:hover': {
                         transform: option.isPremium ? 'none' : 'translateY(-4px)',
                         boxShadow: option.isPremium ? 1 : 3
+                      },
+                      '&:focus-visible': {
+                        outline: '3px solid #1976d2',
+                        outlineOffset: '2px',
+                        boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
                       },
                       border: currentSource.type === option.type ? 2 : 0,
                       borderColor: 'primary.main',

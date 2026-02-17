@@ -2,7 +2,7 @@
 
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.
 
-## 📸 Site Preview & Demo
+## Site Preview & Demo
 
 ### Homepage
 
@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 
 *Personal journey and mission statement explaining the tool's purpose and creator's experience*
 
-## 🎯 Features
+## Features
 
 ### Vision Condition Simulator
 
@@ -62,7 +62,7 @@ https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 - **Font size adjustments**
 - **Focus indicators** for better visibility
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -87,7 +87,7 @@ npm start
 
 The application will open at `http://localhost:3000`
 
-## 📖 Usage
+## Usage
 
 ### Home Page
 
@@ -109,7 +109,7 @@ The application will open at `http://localhost:3000`
 3. **View Details**: Click on any person to see detailed information
 4. **Experience Simulation**: Click "Experience Simulation" to try their specific vision condition
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```bash
 src/
@@ -133,7 +133,7 @@ src/
         └── people/               # Famous people images
 ```
 
-## 🎨 Key Technologies
+## Key Technologies
 
 - **React 18** with TypeScript
 - **Material-UI (MUI)** for UI components
@@ -142,7 +142,7 @@ src/
 - **WebRTC** for webcam integration
 - **YouTube API** for video integration
 
-## 🔧 Development
+## Development
 
 ### Available Scripts
 
@@ -173,7 +173,7 @@ npm run eject
 3. Update the `imageMap` in the `getPersonImage` function
 4. Add them to the appropriate category in the `categories` array
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how you can help:
 
@@ -192,12 +192,12 @@ We welcome contributions! Here's how you can help:
 - **Mobile experience**: Enhance touch interactions
 - **Documentation**: Improve guides and tutorials
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
-## 📞 Support
+## Support
 
 If you encounter any issues or have questions:
 

@@ -27,6 +27,8 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoUrl, onReady }) => {
         },
       }}
       onReady={onReady}
+      title="Vision condition simulation demo video"
+      iframeClassName="vision-simulator-video"
     />
   );
 };

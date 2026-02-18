@@ -63,7 +63,7 @@ export const contemporaryFigures: Record<string, PersonData> = {
     years: "Born 1958",
     onset: "Age 43, from stroke",
     simulation: "sharon-stroke-visual-distortions",
-    description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. It took years for her vision to return to normal. She also had difficulty reading and memorizing lines, which brought her career to a screeching halt. Beyond vision, Stone experienced aphasia (speech difficulties) and an ongoing stutter, lost directional hearing in her right ear, lost feeling from the knee up in her left leg, had a tilted walk with her right leg dragging, the left side of her face became distorted, lost short-term memory, and had balance problems, constant fatigue, and periodic seizures. Learn more at en.wikipedia.org."
+    description: "Sharon Stone suffered a hemorrhagic stroke when the vertebral artery in her brain ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival and underwent an emergency procedure where doctors used 22 platinum coils to repair the damaged blood vessel. She experienced 'odd' vision problems that lasted for years - some of which she still experiences. She couldn't read for a couple of years after the stroke, saw color patterns that weren't really there, and things appeared stretched and distorted. She described seeing 'blocks of colors on the walls' that weren't actually there. Learn more at en.wikipedia.org."
   },
   chris: {
     name: "Chris McCausland",
@@ -79,7 +79,7 @@ export const contemporaryFigures: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Legally blind from birth or early life",
     simulation: "marilee-legal-blindness",
-    description: "Marilee Talkington is a legally blind actor, writer, director, and disability advocate. She earned her M.F.A. in Acting from the American Conservatory Theater and has originated over 80 characters on stage and screen, including roles in TV series such as 'SEE' (Apple TV+), 'FBI: Most Wanted' (NBC), and 'Law & Order: SVU' (NBC). She made history as the first self-identified legally blind actress cast in a principal role on Broadway, portraying Morgan Le Fey in Aaron Sorkin's adaptation of 'Camelot.' Talkington is the founder of Access Acting Academy, the world's first acting studio for blind and low vision performers. In 2024, she received the Helen Keller Achievement Award from the American Foundation for the Blind. In her youth, she was a competitive basketball player and was named a California State Regional All-Star. Learn more at imdb.com."
+    description: "Marilee Talkington is a legally blind actor, writer, director, and disability advocate. She made history as the first self-identified legally blind actress cast in a principal role on Broadway, portraying Morgan Le Fey in Aaron Sorkin's adaptation of 'Camelot.' Talkington is the founder of Access Acting Academy, the world's first acting studio for blind and low vision performers. In 2024, she received the Helen Keller Achievement Award from the American Foundation for the Blind. Learn more at imdb.com."
   },
   fredRogers: {
     name: "Fred Rogers",
@@ -87,6 +87,6 @@ export const contemporaryFigures: Record<string, PersonData> = {
     years: "1928-2003",
     onset: "From birth",
     simulation: "fred-rogers-deuteranopia",
-    description: "Fred Rogers, best known as Mister Rogers from the beloved children's television program 'Mister Rogers' Neighborhood,' lived with deuteranopia, a form of red-green color deficiency. Deuteranopia is a more severe lack of functional green cones, resulting in complete green-blindness. Despite this color vision deficiency, Rogers created one of the most influential and beloved children's programs in television history, teaching generations of children about kindness, empathy, and understanding. His gentle approach and commitment to children's emotional well-being made him an icon of children's television. Learn more at misterrogers.org."
+    description: "Fred Rogers, best known as Mister Rogers from the beloved children's television program 'Mister Rogers' Neighborhood,' lived with deuteranopia, a form of red-green color deficiency. Deuteranopia is a more severe lack of functional green cones, resulting in complete green-blindness. Despite this color vision deficiency, Rogers created one of the most influential and beloved children's programs in television history, teaching generations of children about kindness, empathy, and understanding. Learn more at misterrogers.org."
   }
 };

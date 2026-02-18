@@ -8,13 +8,13 @@ import {
   Box,
   Typography,
   Grid,
-  IconButton,
-  Chip
+  IconButton
 } from '@mui/material';
 import { Close as CloseIcon, ArrowBack, ArrowForward } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
+import { EmbeddedVisualization } from './EmbeddedVisualization';
 
 interface PersonDialogProps {
   open: boolean;
@@ -113,17 +113,12 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
               {parseDescriptionWithLinks(person.description, personId)}
             </Typography>
             
-            <Box sx={{ mt: 3 }}>
-              <Typography variant="h6" gutterBottom className="simulation-type-label">
-                Simulation Type
-              </Typography>
-              <Chip 
-                label={person.simulation} 
-                variant="outlined" 
-                color="primary"
-                className="simulation-type-chip"
-              />
-            </Box>
+            {/* Embedded visualization preview */}
+            <EmbeddedVisualization
+              personId={personId}
+              simulation={person.simulation}
+              personName={person.name}
+            />
           </Grid>
         </Grid>
       </DialogContent>

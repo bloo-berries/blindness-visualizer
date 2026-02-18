@@ -39,7 +39,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1988",
     onset: "Diagnosed in college",
     simulation: "stephen-keratoconus",
-    description: "Stephen Curry has keratoconus, where the cornea thins into an irregular cone shape. Before correction, his vision featured directional blur (coma aberration) where every edge smeared into comet-like tails, multiple ghost images offset from objects, irregular halos streaming from lights, and wavy distortion of straight lines. He described the moment he got corrective lenses as seeing the world 'open up' for the first time. Despite shooting at a basketball hoop that appeared as a blurred, ghosted, wavering ring with multiple faint echoes, he became the greatest shooter in NBA history. Learn more at en.wikipedia.org."
+    description: "Stephen Curry has keratoconus, where the cornea thins into an irregular cone shape. Before correction, his vision featured directional blur (coma aberration) where every edge smeared into comet-like tails, multiple ghost images offset from objects, irregular halos streaming from lights, and wavy distortion of straight lines. Despite shooting at a basketball hoop that appeared as a blurred, ghosted, wavering ring with multiple faint echoes, he became the greatest shooter in NBA history. Learn more at en.wikipedia.org."
   },
   lex: {
     name: "Lex Gillette",
@@ -47,7 +47,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1984",
     onset: "Left eye blind from birth; right eye progressive loss age 8+",
     simulation: "lex-rop",
-    description: "Lex Gillette was born premature with retinopathy of prematurity, leaving his left eye blind from birth. His right eye functioned until age 8 when recurrent retinal detachments began - cycles of hope and loss as surgery would restore vision only for the retina to detach again, leaving more damage each time. The clear zone shrank with each cycle until one day, as he describes it, there was simply 'a little less each morning' until nothing remained. Despite total blindness, he became a four-time Paralympic silver medalist in long jump, guided only by his coach's voice and claps. Learn more at teamusa.com."
+    description: "Lex Gillette was born premature with retinopathy of prematurity, leaving his left eye blind from birth. His right eye functioned until age 8 when recurrent retinal detachments began - cycles of hope and loss as surgery would restore vision only for the retina to detach again, leaving more damage each time. The clear zone shrank with each cycle until one day, as he describes it, there was simply 'a little less each morning' until nothing remained. Despite total blindness, he became a four-time Paralympic silver medalist in long jump. Learn more at teamusa.com."
   },
   davidBrown: {
     name: "David Brown",
@@ -55,7 +55,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1992",
     onset: "Left eye age 3; right eye progressive loss to age 13",
     simulation: "david-brown-kawasaki",
-    description: "David Brown's vision was destroyed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3 - not gradually, but simply ceasing to function. His right eye continued, damaged but functional, seeing through a dirty-glass haze with rainbow halos around every light. He thought everyone saw like he did - shapes and shadows without detail, terrified of both blinding outdoor glare and impenetrable indoor darkness. At 13, the glaucoma claimed his remaining eye in sudden collapse. Despite ongoing pain from elevated eye pressure, he became the fastest totally blind man in history, winning Paralympic gold in 2016. Learn more at teamusa.com."
+    description: "David Brown's vision changed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3, and his right eye is described as seeing through a dirty-glass haze with rainbow halos around every light. At 13, Glaucoma took his remaining vision. Despite ongoing pain from elevated eye pressure, he became the fastest totally blind man in history, winning Paralympic gold in 2016. Learn more at teamusa.com."
   },
   anthonyClarke: {
     name: "Anthony Clarke",
@@ -79,7 +79,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Age 13",
     simulation: "tofiri-complete-blindness",
-    description: "Tofiri Kibuuka is a Ugandan-Norwegian Paralympic athlete and physiotherapist who made history as Africa's first winter Para athlete at the 1976 Paralympic Winter Games in Ornskoldsvik, Sweden, competing in cross-country skiing for Uganda. He lost his sight at age 13 due to a degenerative sight disease. Kibuuka later acquired Norwegian citizenship and switched to athletics, winning five silver medals and one bronze medal at Paralympic Games between 1984 and 1992. He was honored as Norway's flag bearer at the 1996 Atlanta Paralympic Games, becoming the first black man to carry the Norwegian flag at a Paralympics. Kibuuka also became one of the first blind people to climb Mount Kilimanjaro. He graduated as a physiotherapist and worked in Norway, where he settled and raised a family. Learn more at paralympic.org."
+    description: "Tofiri Kibuuka is a Ugandan-Norwegian Paralympic athlete and physiotherapist who made history as Africa's first winter Para athlete at the 1976 Paralympic Winter Games in Sweden, competing in cross-country skiing for Uganda. He lost his sight at age 13 due to a degenerative disease. Kibuuka later acquired Norwegian citizenship and switched to athletics, winning five silver medals and one bronze medal at Paralympic Games between 1984 & 1992. He was honored as Norway's flag bearer at the 1996 Atlanta Paralympic Games, becoming the first black man to carry the Norwegian flag at a Paralympics. Kibuuka also became one of the first blind people to climb Mount Kilimanjaro. Learn more at paralympic.org."
   },
   ross: {
     name: "Ross Minor",
@@ -87,7 +87,7 @@ export const athletes: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Age 8",
     simulation: "ross-complete-blindness",
-    description: "Ross Minor is an American accessibility consultant, content creator, and former para swimmer. He lost his sight at the age of eight and has dedicated his career to promoting accessibility in gaming, media, and technology. Minor works as an accessibility consultant helping companies make their products and services more accessible to people with disabilities. He is also a content creator who shares his experiences and insights about living with blindness and advocating for accessibility. As a former para swimmer, he competed in swimming events for athletes with disabilities. Minor's work focuses on breaking down barriers and creating more inclusive digital experiences for people with visual impairments. Learn more at rossminor.com."
+    description: "Ross Minor is an American accessibility consultant, content creator, and former para swimmer. He lost his sight at the age of eight and has dedicated his career to promoting accessibility in gaming, media, and technology. Minor works as an accessibility consultant helping companies make their products and services more accessible to people with disabilities. As a former para swimmer, he competed in swimming events for athletes with disabilities. Learn more at rossminor.com."
   },
   trischa: {
     name: "Trischa Zorn",
@@ -95,6 +95,6 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1964",
     onset: "From birth",
     simulation: "trischa-aniridia",
-    description: "Trischa Zorn was born with aniridia, a rare congenital genetic eye disorder in which the iris fails to develop properly. The condition stems from a mutation in the PAX6 gene, which controls eye formation during embryonic development. Born legally blind, Zorn became the most successful athlete in Paralympic history, competing in seven consecutive Paralympic Games from 1980 to 2004 and winning 55 medals (41 gold, 9 silver, 5 bronze). She was the first visually impaired athlete to earn an NCAA Division I scholarship, attending the University of Nebraska as a four-time All-American backstroker. After her swimming career, she earned a Juris Doctor degree and works for the Department of Veterans Affairs. Zorn has been inducted into the International Paralympic Hall of Fame, the U.S. Olympic & Paralympic Hall of Fame, and the International Swimming Hall of Fame. Learn more at ishof.org."
+    description: "Trischa Zorn was born with Aniridia, a rare congenital genetic eye disorder in which the iris fails to develop properly. Born legally blind, Zorn became the most successful athlete in Paralympic history, competing in seven consecutive Paralympic Games from 1980 to 2004 and winning 55 medals (41 gold, 9 silver, 5 bronze). After her swimming career, she earned a Juris Doctor degree and works for the Department of Veterans Affairs. Zorn has been inducted into the International Paralympic Hall of Fame, the U.S. Olympic & Paralympic Hall of Fame, and the International Swimming Hall of Fame. Learn more at ishof.org."
   }
 };

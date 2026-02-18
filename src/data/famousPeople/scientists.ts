@@ -39,7 +39,7 @@ export const scientists: Record<string, PersonData> = {
     years: "1869-1937",
     onset: "Age 43, from explosion in 1912",
     simulation: "complete-blindness",
-    description: "Gustaf Dalén was a Swedish engineer and inventor who was awarded the Nobel Prize in Physics in 1912 for his invention of automatic regulators for use in conjunction with gas accumulators for illuminating lighthouses and buoys. He became completely blind later that same year due to an explosion accident during an acetylene experiment. Despite his blindness, he continued to work as the managing director of AGA (the company he worked for) and made further significant contributions to technology, including the development of the AGA cooker. Learn more at en.wikipedia.org."
+    description: "Gustaf Dalén was a Swedish engineer and inventor who was awarded the Nobel Prize in Physics in 1912 for his invention of automatic regulators for use in conjunction with gas accumulators for illuminating lighthouses and buoys. He became completely blind later that same year due to an explosion accident during an acetylene experiment. Despite his blindness, he continued to work as the managing director of AGA and made further significant contributions to technology, including the development of the AGA cooker. Learn more at en.wikipedia.org."
   },
   jacobBolotin: {
     name: "Jacob Bolotin",
@@ -71,7 +71,7 @@ export const scientists: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Early twenties",
     simulation: "wanda-diabetic-retinopathy",
-    description: "Wanda Díaz-Merced is a Puerto Rican astronomer and astrophysicist known for pioneering the use of sonification to turn large astronomical data sets into audible sound. She lost her sight in her early twenties due to complications with degenerative diabetic retinopathy. Rather than abandon her career, she developed innovative techniques to study stellar radiation and astrophysical data using sound, discovering that she could detect patterns in stellar radio data through audio that might be obscured in visual representations. Currently the Director of the Arecibo Observatory and working at the European Gravitational Observatory, Díaz-Merced has brought attention to increasing equality of access to astronomy and has been recognized as one of the 7 most trailblazing women in science by the BBC. She received her doctorate in computer science from the University of Glasgow and has worked at NASA Goddard Space Flight Center, the Center for Astrophysics Harvard & Smithsonian, and the South African Astronomical Observatory. Learn more at en.wikipedia.org."
+    description: "Wanda Díaz-Merced is a Puerto Rican astronomer and astrophysicist known for pioneering the use of sonification to turn large astronomical data sets into audible sound. She lost her sight in her early twenties due to complications with degenerative diabetic retinopathy. Rather than abandon her career, she developed innovative techniques to study stellar radiation and astrophysical data using sound, discovering that she could detect patterns in stellar radio data through audio that might be obscured in visual representations. Currently the Director of the Arecibo Observatory and working at the European Gravitational Observatory, Díaz-Merced has been recognized as one of the 7 most trailblazing women in science by the BBC. Learn more at en.wikipedia.org."
   },
   abraham: {
     name: "Abraham Nemeth",

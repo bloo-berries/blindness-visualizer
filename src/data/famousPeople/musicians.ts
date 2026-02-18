@@ -247,6 +247,6 @@ export const musicians: Record<string, PersonData> = {
     years: "1916-1999",
     onset: "Age 16, dynamite cap explosion",
     simulation: "moondog-complete-blindness",
-    description: "Louis Thomas Hardin, known as Moondog, was an American composer who lost his sight at 16 when a dynamite cap exploded. He became a legendary figure in NYC, standing on 54th Street dressed as a Viking while selling poetry and playing custom-built instruments. Philip Glass and Steve Reich cite him as a major influence. He wrote over 80 symphonies while completely blind and moved to Germany in 1974, where he lived until his death. Learn more at en.wikipedia.org."
+    description: "Moondog, was an American composer who lost his sight at 16 when a dynamite cap exploded. He became a legendary figure in NYC, standing on 54th Street dressed as a Viking while selling poetry and playing custom-built instruments. He was a composer and actor, known for Pineapple Express (2008), The Big Lebowski (1998) and What a Girl Wants (2003). He wrote over 80 symphonies while completely blind and moved to Germany in 1974, where he lived until his death. Learn more at en.wikipedia.org."
   }
 };

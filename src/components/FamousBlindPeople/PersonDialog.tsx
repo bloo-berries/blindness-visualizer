@@ -143,15 +143,12 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
             </IconButton>
           )}
         </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button onClick={onClose}>Close</Button>
-          <Button 
-            variant="contained" 
-            onClick={onExperienceSimulation}
-          >
-            Experience Simulation
-          </Button>
-        </Box>
+        <Button
+          variant="contained"
+          onClick={onExperienceSimulation}
+        >
+          Experience Simulation
+        </Button>
       </DialogActions>
     </Dialog>
   );

@@ -396,7 +396,7 @@ const FamousBlindPeople: React.FC = () => {
 
             return (
               <Box key={category.name} sx={{ mb: 4 }}>
-                <Typography variant="h5" component="h3" gutterBottom sx={{ mb: 2 }}>
+                <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
                   {category.name}
                 </Typography>
                 <Grid container spacing={2}>

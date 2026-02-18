@@ -110,7 +110,10 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'joyce-progressive-eye-disease': ['glaucoma', 'cataracts', 'blurryVision', 'glare', 'lossOfContrast'],
     'huxley-keratitis': ['cataracts', 'blurryVision', 'glare', 'lossOfContrast', 'blindnessLeftEye'],
     'sartre-monocular-vision': ['blindnessRightEye'],
-    'taha-complete-blindness': ['completeBlindness']
+    'taha-complete-blindness': ['completeBlindness'],
+    'nana-myopia-astigmatism': ['astigmatism'],
+    'esref-congenital-blindness': ['completeBlindness'],
+    'moondog-complete-blindness': ['completeBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

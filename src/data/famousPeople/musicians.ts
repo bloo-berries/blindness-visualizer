@@ -232,5 +232,21 @@ export const musicians: Record<string, PersonData> = {
     onset: "Congenital, blind by age 16",
     simulation: "amadou-cataract-progression",
     description: "Amadou Bagayoko, one half of the legendary Malian duo Amadou & Mariam, was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened throughout childhood. By age 16, the cataracts had matured completely, leaving him in total darkness. For over five decades, he has created some of the most joyful, vibrant music Africa has ever produced while living in complete blindness. As he and Mariam tell their audiences: 'Beyond our vision, we can imagine.' Learn more at en.wikipedia.org."
+  },
+  nanaMouskouri: {
+    name: "Nana Mouskouri",
+    condition: "Myopia & Astigmatism",
+    years: "Born 1934",
+    onset: "From childhood",
+    simulation: "nana-myopia-astigmatism",
+    description: "Nana Mouskouri is a Greek singer with over 300 million records sold worldwide. She has myopia (nearsightedness) and astigmatism, requiring her signature black-rimmed glasses which became her trademark. When Harry Belafonte asked her to remove her glasses on tour, she nearly quit rather than perform without them. She has said: 'All my life I wanted to be on stage as I am in life.' Her glasses became a symbol that you could wear glasses and still be beautiful, while also serving as a shield for her inner vulnerability on stage. Learn more at en.wikipedia.org."
+  },
+  moondog: {
+    name: "Moondog",
+    condition: "Complete Blindness",
+    years: "1916-1999",
+    onset: "Age 16, dynamite cap explosion",
+    simulation: "moondog-complete-blindness",
+    description: "Louis Thomas Hardin, known as Moondog, was an American composer who lost his sight at 16 when a dynamite cap exploded. He became a legendary figure in NYC, standing on 54th Street dressed as a Viking while selling poetry and playing custom-built instruments. Philip Glass and Steve Reich cite him as a major influence. He wrote over 80 symphonies while completely blind and moved to Germany in 1974, where he lived until his death. Learn more at en.wikipedia.org."
   }
 };

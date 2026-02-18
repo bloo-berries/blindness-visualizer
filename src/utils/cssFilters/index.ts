@@ -17,6 +17,8 @@ import {
   generateSugarFilters,
   generateStephenFilters,
   generateAmadouFilters,
+  generateDavidBrownFilters,
+  generateLexFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters';
 
@@ -69,6 +71,8 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateSugarFilters(effects),
     generateStephenFilters(effects),
     generateAmadouFilters(effects),
+    generateDavidBrownFilters(effects),
+    generateLexFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

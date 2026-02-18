@@ -705,6 +705,321 @@ export const generateStephenFilters = (effects: VisualEffect[]): string => {
 };
 
 /**
+ * Generates CSS filters for David Brown's Kawasaki Disease to Glaucoma
+ * Dual-phase asymmetric progression:
+ * 0-12%: Kawasaki eyes (bilateral haze, rainbow halos)
+ * 13-25%: Left eye loss + monocular haze
+ * 26-50%: Light extremes (outdoor/indoor nightmares)
+ * 51-75%: Advancing tunnel + sweet spot + pain intrusions
+ * 76-90%: Rapid final collapse
+ * 91-100%: Total blindness with ongoing pain
+ */
+export const generateDavidBrownFilters = (effects: VisualEffect[]): string => {
+  const davidEffects = effects.filter(e =>
+    e.id.startsWith('david') && e.enabled
+  );
+
+  if (davidEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const kawasakiComplete = effects.find(e => e.id === 'davidKawasakiGlaucomaComplete' && e.enabled);
+  const kawasakiEyes = effects.find(e => e.id === 'davidKawasakiEyes' && e.enabled);
+  const leftEyeLoss = effects.find(e => e.id === 'davidLeftEyeLoss' && e.enabled);
+  const monocularHaze = effects.find(e => e.id === 'davidMonocularHaze' && e.enabled);
+  const outdoorNightmare = effects.find(e => e.id === 'davidOutdoorNightmare' && e.enabled);
+  const indoorNightmare = effects.find(e => e.id === 'davidIndoorNightmare' && e.enabled);
+  const sweetSpot = effects.find(e => e.id === 'davidSweetSpot' && e.enabled);
+  const painIntrusions = effects.find(e => e.id === 'davidPainIntrusions' && e.enabled);
+  const finalCollapse = effects.find(e => e.id === 'davidFinalCollapse' && e.enabled);
+  const ongoingPain = effects.find(e => e.id === 'davidOngoingPain' && e.enabled);
+
+  // Complete Kawasaki-Glaucoma progression
+  if (kawasakiComplete) {
+    const i = kawasakiComplete.intensity;
+
+    if (i <= 0.12) {
+      // Phase 1: Kawasaki Eyes (0-12%) - bilateral damage, haze, halos
+      const phaseI = i / 0.12; // 0-1 within phase
+      // Dirty glass haze effect
+      filters.push(`blur(${1 + phaseI * 2}px)`);
+      // Washed out colors
+      filters.push(`contrast(${100 - phaseI * 20}%)`);
+      filters.push(`saturate(${100 - phaseI * 25}%)`);
+      // Slight brightness increase from corneal edema
+      filters.push(`brightness(${100 + phaseI * 8}%)`);
+    } else if (i <= 0.25) {
+      // Phase 2: Left eye loss + monocular haze (13-25%)
+      const phaseI = (i - 0.12) / 0.13; // 0-1 within phase
+      // Dirty glass effect intensifies
+      filters.push(`blur(${3 + phaseI * 1.5}px)`);
+      // Reduced contrast (40-50% less)
+      filters.push(`contrast(${80 - phaseI * 15}%)`);
+      filters.push(`saturate(${75 - phaseI * 15}%)`);
+      filters.push(`brightness(${108 - phaseI * 5}%)`);
+    } else if (i <= 0.50) {
+      // Phase 3: Light extremes (26-50%) - this varies based on sub-phase
+      const phaseI = (i - 0.25) / 0.25; // 0-1 within phase
+
+      if (phaseI < 0.4) {
+        // Outdoor nightmare - too bright (26-35%)
+        const subI = phaseI / 0.4;
+        filters.push(`brightness(${120 + subI * 80}%)`); // Blown out
+        filters.push(`contrast(${65 - subI * 40}%)`); // Washed out
+        filters.push(`saturate(${60 - subI * 35}%)`);
+        filters.push(`blur(${4 + subI * 3}px)`);
+      } else if (phaseI < 0.7) {
+        // Indoor nightmare - too dark (36-42%)
+        const subI = (phaseI - 0.4) / 0.3;
+        filters.push(`brightness(${30 + subI * 15}%)`); // Very dark
+        filters.push(`contrast(${25 + subI * 20}%)`); // Low contrast in darkness
+        filters.push(`saturate(${25 + subI * 15}%)`);
+        filters.push(`blur(${5 - subI * 1}px)`);
+      } else {
+        // Sweet spot - tolerable band (43-50%)
+        const subI = (phaseI - 0.7) / 0.3;
+        filters.push(`brightness(${95 - subI * 10}%)`);
+        filters.push(`contrast(${65 - subI * 10}%)`);
+        filters.push(`saturate(${60 - subI * 15}%)`);
+        filters.push(`blur(${4 + subI * 1}px)`);
+      }
+    } else if (i <= 0.75) {
+      // Phase 4: Advancing tunnel + sweet spot + pain (51-75%)
+      const phaseI = (i - 0.50) / 0.25; // 0-1 within phase
+      filters.push(`blur(${5 + phaseI * 3}px)`);
+      filters.push(`contrast(${55 - phaseI * 20}%)`);
+      filters.push(`saturate(${45 - phaseI * 20}%)`);
+      filters.push(`brightness(${85 - phaseI * 20}%)`);
+    } else if (i <= 0.90) {
+      // Phase 5: Rapid final collapse (76-90%)
+      const phaseI = (i - 0.75) / 0.15; // 0-1 within phase
+      // Rapid deterioration
+      filters.push(`blur(${8 - phaseI * 4}px)`); // Blur decreases as darkness takes over
+      filters.push(`contrast(${35 - phaseI * 30}%)`);
+      filters.push(`saturate(${25 - phaseI * 25}%)`);
+      filters.push(`brightness(${65 - phaseI * 60}%)`);
+      // Sepia shift as colors drain to gray-brown
+      filters.push(`sepia(${phaseI * 40}%)`);
+    } else {
+      // Phase 6: Total blindness with ongoing pain (91-100%)
+      const phaseI = (i - 0.90) / 0.10; // 0-1 within phase
+      // Complete darkness
+      filters.push(`brightness(${5 - phaseI * 5}%)`);
+      filters.push(`contrast(${5 - phaseI * 5}%)`);
+      filters.push(`saturate(0%)`);
+    }
+  }
+
+  // Individual phase effects
+  if (kawasakiEyes && !kawasakiComplete) {
+    const i = kawasakiEyes.intensity;
+    filters.push(`blur(${1 + i * 2}px)`);
+    filters.push(`contrast(${100 - i * 20}%)`);
+    filters.push(`saturate(${100 - i * 25}%)`);
+    filters.push(`brightness(${100 + i * 8}%)`);
+  }
+
+  if (leftEyeLoss && !kawasakiComplete) {
+    // Left eye loss is handled by overlays, minimal filter
+    const i = leftEyeLoss.intensity;
+    filters.push(`contrast(${100 - i * 10}%)`);
+  }
+
+  if (monocularHaze && !kawasakiComplete) {
+    const i = monocularHaze.intensity;
+    filters.push(`blur(${3 + i * 2}px)`);
+    filters.push(`contrast(${80 - i * 20}%)`);
+    filters.push(`saturate(${75 - i * 20}%)`);
+    filters.push(`brightness(${103 - i * 8}%)`);
+  }
+
+  if (outdoorNightmare && !kawasakiComplete) {
+    const i = outdoorNightmare.intensity;
+    filters.push(`brightness(${140 + i * 80}%)`);
+    filters.push(`contrast(${50 - i * 30}%)`);
+    filters.push(`saturate(${50 - i * 30}%)`);
+    filters.push(`blur(${5 + i * 4}px)`);
+  }
+
+  if (indoorNightmare && !kawasakiComplete) {
+    const i = indoorNightmare.intensity;
+    filters.push(`brightness(${35 - i * 20}%)`);
+    filters.push(`contrast(${30 + i * 15}%)`);
+    filters.push(`saturate(${30 - i * 15}%)`);
+    filters.push(`blur(${4 + i * 2}px)`);
+  }
+
+  if (sweetSpot && !kawasakiComplete) {
+    const i = sweetSpot.intensity;
+    filters.push(`brightness(${90 - i * 15}%)`);
+    filters.push(`contrast(${60 - i * 15}%)`);
+    filters.push(`saturate(${55 - i * 20}%)`);
+    filters.push(`blur(${4 + i * 2}px)`);
+  }
+
+  if (painIntrusions && !kawasakiComplete) {
+    const i = painIntrusions.intensity;
+    // Pain creates visual distortion
+    filters.push(`contrast(${70 - i * 25}%)`);
+    filters.push(`brightness(${90 + i * 20}%)`);
+    filters.push(`blur(${i * 4}px)`);
+  }
+
+  if (finalCollapse && !kawasakiComplete) {
+    const i = finalCollapse.intensity;
+    filters.push(`brightness(${70 - i * 70}%)`);
+    filters.push(`contrast(${40 - i * 40}%)`);
+    filters.push(`saturate(${30 - i * 30}%)`);
+    filters.push(`sepia(${i * 50}%)`);
+  }
+
+  if (ongoingPain && !kawasakiComplete) {
+    const i = ongoingPain.intensity;
+    // Total darkness
+    filters.push(`brightness(${100 - i * 100}%)`);
+    filters.push(`contrast(0%)`);
+    filters.push(`saturate(0%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Lex Gillette's Recurrent Retinal Detachments
+ * Cyclical pattern reflecting hope and loss:
+ * 0-15%: Monocular normal (right eye only)
+ * 16-30%: First detachment symptoms
+ * 31-45%: Post-surgery restoration (improved but scarred)
+ * 46-60%: Re-detachment (larger shadow)
+ * 61-80%: Cumulative damage (shrinking clear zone)
+ * 81-100%: Daily fading to total blindness
+ */
+export const generateLexFilters = (effects: VisualEffect[]): string => {
+  const lexEffects = effects.filter(e =>
+    e.id.startsWith('lex') && e.enabled
+  );
+
+  if (lexEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const recurrentCycle = effects.find(e => e.id === 'lexRecurrentDetachmentCycle' && e.enabled);
+  const monocular = effects.find(e => e.id === 'lexMonocularVision' && e.enabled);
+  const firstDetachment = effects.find(e => e.id === 'lexFirstDetachment' && e.enabled);
+  const postSurgery = effects.find(e => e.id === 'lexPostSurgeryRestoration' && e.enabled);
+  const redetachment = effects.find(e => e.id === 'lexRedetachment' && e.enabled);
+  const cumulative = effects.find(e => e.id === 'lexCumulativeDamage' && e.enabled);
+  const dailyFading = effects.find(e => e.id === 'lexDailyFading' && e.enabled);
+
+  // Complete recurrent detachment cycle
+  if (recurrentCycle) {
+    const i = recurrentCycle.intensity;
+
+    if (i <= 0.15) {
+      // Phase 1: Monocular normal vision (0-15%)
+      // Right eye working, left eye always blind from ROP
+      // Minimal filter effects - vision is relatively clear
+      const phaseI = i / 0.15; // 0-1 within phase
+      filters.push(`contrast(${100 - phaseI * 5}%)`);
+      filters.push(`brightness(${100 - phaseI * 3}%)`);
+    } else if (i <= 0.30) {
+      // Phase 2: First detachment symptoms (16-30%)
+      // Floaters, flashes, encroaching shadow (15-20%)
+      const phaseI = (i - 0.15) / 0.15; // 0-1 within phase
+      filters.push(`contrast(${95 - phaseI * 12}%)`);
+      filters.push(`brightness(${97 - phaseI * 8}%)`);
+      filters.push(`saturate(${100 - phaseI * 15}%)`);
+      // Slight blur from floaters
+      filters.push(`blur(${phaseI * 0.8}px)`);
+    } else if (i <= 0.45) {
+      // Phase 3: Post-surgery restoration (31-45%)
+      // Vision returns but imperfect - better than detachment
+      const phaseI = (i - 0.30) / 0.15; // 0-1 within phase
+      // Improving clarity (going "up" not down)
+      filters.push(`contrast(${83 + phaseI * 10}%)`);
+      filters.push(`brightness(${89 + phaseI * 6}%)`);
+      filters.push(`saturate(${85 + phaseI * 8}%)`);
+      filters.push(`blur(${0.8 - phaseI * 0.5}px)`);
+    } else if (i <= 0.60) {
+      // Phase 4: Re-detachment (46-60%)
+      // Shadow returns, larger this time (30-40%)
+      const phaseI = (i - 0.45) / 0.15; // 0-1 within phase
+      filters.push(`contrast(${93 - phaseI * 18}%)`);
+      filters.push(`brightness(${95 - phaseI * 15}%)`);
+      filters.push(`saturate(${93 - phaseI * 22}%)`);
+      filters.push(`blur(${0.3 + phaseI * 1.2}px)`);
+    } else if (i <= 0.80) {
+      // Phase 5: Cumulative damage (61-80%)
+      // Multiple cycles leave permanent damage, shrinking clear zone
+      const phaseI = (i - 0.60) / 0.20; // 0-1 within phase
+      filters.push(`contrast(${75 - phaseI * 25}%)`);
+      filters.push(`brightness(${80 - phaseI * 25}%)`);
+      filters.push(`saturate(${71 - phaseI * 30}%)`);
+      filters.push(`blur(${1.5 + phaseI * 2}px)`);
+    } else {
+      // Phase 6: Daily fading to total blindness (81-100%)
+      // "A little less each morning" - gradual dimming
+      const phaseI = (i - 0.80) / 0.20; // 0-1 within phase
+      // Transition to complete darkness
+      filters.push(`brightness(${55 - phaseI * 55}%)`);
+      filters.push(`contrast(${50 - phaseI * 50}%)`);
+      filters.push(`saturate(${41 - phaseI * 41}%)`);
+      filters.push(`blur(${3.5 - phaseI * 2}px)`); // Blur decreases as darkness takes over
+    }
+  }
+
+  // Individual phase effects
+  if (monocular && !recurrentCycle) {
+    const i = monocular.intensity;
+    // Monocular vision - slight depth perception issues
+    filters.push(`contrast(${100 - i * 5}%)`);
+    filters.push(`brightness(${100 - i * 3}%)`);
+  }
+
+  if (firstDetachment && !recurrentCycle) {
+    const i = firstDetachment.intensity;
+    filters.push(`contrast(${95 - i * 12}%)`);
+    filters.push(`brightness(${97 - i * 10}%)`);
+    filters.push(`saturate(${100 - i * 18}%)`);
+    filters.push(`blur(${i * 1}px)`);
+  }
+
+  if (postSurgery && !recurrentCycle) {
+    const i = postSurgery.intensity;
+    // Better but not perfect
+    filters.push(`contrast(${92 - i * 8}%)`);
+    filters.push(`brightness(${95 - i * 5}%)`);
+    filters.push(`saturate(${95 - i * 10}%)`);
+  }
+
+  if (redetachment && !recurrentCycle) {
+    const i = redetachment.intensity;
+    filters.push(`contrast(${90 - i * 20}%)`);
+    filters.push(`brightness(${92 - i * 18}%)`);
+    filters.push(`saturate(${88 - i * 25}%)`);
+    filters.push(`blur(${i * 1.5}px)`);
+  }
+
+  if (cumulative && !recurrentCycle) {
+    const i = cumulative.intensity;
+    filters.push(`contrast(${80 - i * 30}%)`);
+    filters.push(`brightness(${75 - i * 30}%)`);
+    filters.push(`saturate(${70 - i * 35}%)`);
+    filters.push(`blur(${i * 3}px)`);
+  }
+
+  if (dailyFading && !recurrentCycle) {
+    const i = dailyFading.intensity;
+    // Gradual fade to black
+    filters.push(`brightness(${100 - i * 100}%)`);
+    filters.push(`contrast(${100 - i * 100}%)`);
+    filters.push(`saturate(${100 - i * 100}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
  * Generates CSS filters for custom famous people effects
  */
 export const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {

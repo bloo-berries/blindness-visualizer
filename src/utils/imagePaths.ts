@@ -144,7 +144,8 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   fredRogers: 'fred-rogers.webp',
   billGates: 'bill-gates.webp',
   johnKay: 'John-Kay.webp',
-  jonnyGreenwood: 'Jonny-Greenwood.webp'
+  jonnyGreenwood: 'Jonny-Greenwood.webp',
+  amadou: 'Amadou-Bagayoko.webp'
 };
 
 /**

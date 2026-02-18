@@ -19,7 +19,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'rahsaan-childhood-blindness': ['completeBlindness'],
     'fanny-iatrogenic-blindness': ['completeBlindness'],
     'homer-traditional-blindness': ['completeBlindness'],
-    'david-brown-kawasaki': ['completeBlindness'],
+    'david-brown-kawasaki': ['davidKawasakiGlaucomaComplete'],
     'blunkett-congenital-blindness': ['completeBlindness'],
     'saunderson-smallpox-blindness': ['completeBlindness'],
     'holman-complete-blindness': ['completeBlindness'],
@@ -78,7 +78,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== RETINAL DETACHMENT =====
     'sugar-retinal-detachment': ['sugarRetinalDetachmentComplete'],
     'jeff-retinoblastoma': ['retinalDetachment', 'blindnessLeftEye'],
-    'lex-rop': ['retinalDetachment', 'tunnelVision'],
+    'lex-rop': ['lexRecurrentDetachmentCycle'],
 
     // ===== HEMIANOPIA / PARTIAL VISION LOSS =====
     'david-hemispheric-vision': ['hemianopiaRight', 'blurryVision'],

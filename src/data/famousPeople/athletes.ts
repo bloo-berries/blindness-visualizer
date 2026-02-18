@@ -43,19 +43,19 @@ export const athletes: Record<string, PersonData> = {
   },
   lex: {
     name: "Lex Gillette",
-    condition: "Retinopathy of Prematurity",
+    condition: "Recurrent Retinal Detachments (ROP)",
     years: "Born 1984",
-    onset: "From birth (premature)",
+    onset: "Left eye blind from birth; right eye progressive loss age 8+",
     simulation: "lex-rop",
-    description: "Lex Gillette is a Paralympic long jumper who was born premature and lost his sight to retinopathy of prematurity. Despite his blindness, he has won four silver medals in the Paralympic Games and is one of the most successful blind track and field athletes in history. Learn more at teamusa.com."
+    description: "Lex Gillette was born premature with retinopathy of prematurity, leaving his left eye blind from birth. His right eye functioned until age 8 when recurrent retinal detachments began - cycles of hope and loss as surgery would restore vision only for the retina to detach again, leaving more damage each time. The clear zone shrank with each cycle until one day, as he describes it, there was simply 'a little less each morning' until nothing remained. Despite total blindness, he became a four-time Paralympic silver medalist in long jump, guided only by his coach's voice and claps. Learn more at teamusa.com."
   },
   davidBrown: {
     name: "David Brown",
-    condition: "Kawasaki Disease",
+    condition: "Kawasaki Disease → Glaucoma",
     years: "Born 1992",
-    onset: "Childhood",
+    onset: "Left eye age 3; right eye progressive loss to age 13",
     simulation: "david-brown-kawasaki",
-    description: "David Brown is a Paralympic sprinter who lost his sight due to complications from Kawasaki disease in childhood. Despite his blindness, he won a gold medal in the 100-meter dash at the 2016 Paralympic Games, setting a world record. He is one of the fastest blind sprinters in the world. Learn more at teamusa.com."
+    description: "David Brown's vision was destroyed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3 - not gradually, but simply ceasing to function. His right eye continued, damaged but functional, seeing through a dirty-glass haze with rainbow halos around every light. He thought everyone saw like he did - shapes and shadows without detail, terrified of both blinding outdoor glare and impenetrable indoor darkness. At 13, the glaucoma claimed his remaining eye in sudden collapse. Despite ongoing pain from elevated eye pressure, he became the fastest totally blind man in history, winning Paralympic gold in 2016. Learn more at teamusa.com."
   },
   anthonyClarke: {
     name: "Anthony Clarke",

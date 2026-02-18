@@ -762,6 +762,133 @@ export const famousPeopleEffects: VisualEffect[] = [
     description: 'Complete simulation of Stephen Curry\'s mild-to-moderate keratoconus before contact lens correction: directional coma aberration smearing, monocular polyopia ghosting, irregular streaking halos around lights, wavy distortion, reduced contrast with diffuse haze, and asymmetric distortion between eyes. The world refuses to come into sharp focus - every edge bleeds, every light smears, every detail is a soft, ghosted, wavy approximation.'
   },
 
+  // Lex Gillette - Recurrent Retinal Detachments (ROP → Multiple Detachments → Total Blindness)
+  // Cyclical pattern: hope → loss → hope → loss → final darkness
+  // Right eye only (left always blind from ROP), cycles of detachment and surgical restoration
+  {
+    id: 'lexMonocularVision',
+    name: 'Monocular Vision (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Single-eye vision from right eye only. Left eye blind from birth (ROP). Creates slight depth perception loss with the left visual field showing complete blackness. The "normal" Lex knew before the first detachment.'
+  },
+  {
+    id: 'lexFirstDetachment',
+    name: 'First Detachment (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'First retinal detachment symptoms in the right eye at age 8. Floaters drifting across vision, peripheral flashes like distant lightning, and a dark shadow beginning to creep from the upper edge - covering 15-20% of remaining vision.'
+  },
+  {
+    id: 'lexPostSurgeryRestoration',
+    name: 'Post-Surgery Restoration (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'After surgical reattachment - vision returns but not quite the same. Clearer center with peripheral scotomas where laser scarring occurred. A fragile restoration, better but imperfect, with hope tinged by uncertainty.'
+  },
+  {
+    id: 'lexRedetachment',
+    name: 'Re-Detachment (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'The retina detaches again despite surgery. Larger shadow now covering 30-40% of vision, more floaters, the curtain advancing faster this time. The familiar terror returning - "not again."'
+  },
+  {
+    id: 'lexCumulativeDamage',
+    name: 'Cumulative Damage (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Multiple cycles of detachment and repair leave cumulative damage. Clear zone shrinking to a small central island (50-70% occluded), permanent floater clouds, surgical scars creating blind patches. Each "fix" leaves the retina weaker.'
+  },
+  {
+    id: 'lexDailyFading',
+    name: 'Daily Fading (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'The final stage - "a little less each morning." No dramatic event, just gradual dimming day by day. The central island shrinking, edges going dark, until one morning there\'s nothing left. The quiet ending of a long fight.'
+  },
+  {
+    id: 'lexRecurrentDetachmentCycle',
+    name: 'Complete Recurrent Detachment Cycle (Lex Gillette)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete cyclical simulation of Lex Gillette\'s recurrent retinal detachments. Use intensity slider to experience: 0-15% (monocular normal), 16-30% (first detachment), 31-45% (post-surgery restoration), 46-60% (re-detachment), 61-80% (cumulative damage), 81-100% (daily fading to total blindness). NOT straight progression but oscillating hope and loss.'
+  },
+
+  // David Brown - Kawasaki Disease to Glaucoma: Dual-Phase Asymmetric Progression
+  // Left eye lost at age 3, right eye progressive glaucoma until sudden collapse at 13
+  // Key elements: dirty-glass haze, rainbow halos, extreme light sensitivity, ongoing pain
+  {
+    id: 'davidKawasakiEyes',
+    name: 'Phase 1: Kawasaki Eyes (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Infancy to age 3 (1993-1995): Both eyes under assault from Kawasaki-induced glaucoma. Subtle overall haze like petroleum jelly on lens, washed-out colors, soft rainbow-tinged halos around light sources from corneal edema, peripheral edges beginning to soften and dim.'
+  },
+  {
+    id: 'davidLeftEyeLoss',
+    name: 'Left Eye Catastrophe (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Age 3: The left eye, damaged beyond repair by inflammation and pressure, stops sending meaningful signal. Not gradual - it simply ceases. Flat uniform dark gray (not black - a dead eye may still transmit some non-visual light sensation before atrophy).'
+  },
+  {
+    id: 'davidMonocularHaze',
+    name: 'Phase 2: Monocular Haze (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Ages 3-8 (1995-2000): Right eye only, carrying entire burden. Overall dirty-glass haze, reduced contrast (40-50% less), beginning peripheral loss (soft vignette to 60-70% field), muted colors, shapes without detail. David thought everyone saw like this.'
+  },
+  {
+    id: 'davidOutdoorNightmare',
+    name: 'Outdoor Nightmare - Too Bright (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Ages 6-12: The terror of going outside. Damaged retina cannot handle bright light - scene BLOWN OUT with painful glare. Sky becomes featureless white blaze, reflective surfaces produce searing starbursts, rainbow halos explode and overlap. Painful white fog with vague shapes swimming in it.'
+  },
+  {
+    id: 'davidIndoorNightmare',
+    name: 'Indoor Nightmare - Too Dark (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Ages 6-12: The terror of dim interiors. Without sufficient light for compromised optic nerve, scene barely registers. Murky soupy near-darkness, furniture as slightly darker shadows, doorways as slightly lighter rectangles. The haze absorbs what little light exists.'
+  },
+  {
+    id: 'davidSweetSpot',
+    name: 'Sweet Spot - Narrow Tolerable Band (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'The narrow range between blinding outdoor glare and impenetrable indoor darkness where David can function: overcast days, shaded areas, well-lit indoor spaces. Tunnel vision advancing (40-50% field), thickening haze, intensifying halos, periodic pain intrusions.'
+  },
+  {
+    id: 'davidPainIntrusions',
+    name: 'Pain Intrusions (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Elevated eye pressure triggers waves of intense pain - crushing, migraine-like sensation behind the eye. During episodes, vision blurs further and flashes with visual artifacts (photopsias). A pulse of distortion - warping, constricting, throbbing - before settling to degraded baseline.'
+  },
+  {
+    id: 'davidFinalCollapse',
+    name: 'Phase 4: Final Collapse (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Age 13 (2005): Unlike slow fading, David\'s loss was sudden and catastrophic. The tunnel constricts rapidly, peripheral darkness rushes inward, haze thickens to near-opacity, colors drain to gray-brown then dim, a tiny island of dim light perception, then nothing. The optic nerve goes silent.'
+  },
+  {
+    id: 'davidOngoingPain',
+    name: 'Total Blindness with Ongoing Pain (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Age 13 onward: Complete permanent darkness, but not silent. The glaucoma continues building pressure, generating excruciating pain episodes. The darkness is periodically punctuated by waves of crushing pain behind an eye that can no longer see. The visual system is dead; the pain system is alive.'
+  },
+  {
+    id: 'davidKawasakiGlaucomaComplete',
+    name: 'Complete Kawasaki-Glaucoma Progression (David Brown)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of David Brown\'s vision journey. Use intensity slider: 0-12% (Kawasaki eyes - bilateral haze/halos), 13-25% (left eye loss + monocular haze), 26-50% (light extremes - outdoor/indoor nightmares), 51-75% (advancing tunnel + sweet spot + pain), 76-90% (rapid final collapse), 91-100% (total blindness with ongoing pain). Confused adaptation → sudden devastation.'
+  },
+
   // Sugar Ray Leonard - Partial Retinal Detachment (Left Eye, 1982)
   // Dark curtain encroaching, floaters, peripheral flashes, monocular
   {

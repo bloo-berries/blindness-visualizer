@@ -3,11 +3,11 @@ import { PersonData } from './types';
 export const fictionalCharacters: Record<string, PersonData> = {
   odin: {
     name: "Odin",
-    condition: "Partial Blindness (Symbolic)",
+    condition: "Monocular Vision (One Eye)",
     years: "Norse Mythology",
     onset: "Sacrificed eye for wisdom",
-    simulation: "complete-blindness",
-    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge. His partial blindness is symbolic rather than total, representing the price of knowledge and the ability to see beyond the physical world. He is often depicted with an eye patch or missing eye. Learn more at en.wikipedia.org."
+    simulation: "odin-monocular-vision",
+    description: "Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge.\n\nHis partial blindness is symbolic, representing the price of knowledge and the ability to see beyond the physical world.\n\n• All-Father of the Norse gods\n\n• Often depicted with an eye patch or missing eye\n\n• His sacrifice represents gaining inner sight through physical loss"
   },
   daredevil: {
     name: "Daredevil / Matt Murdock",
@@ -15,7 +15,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Marvel Comics / Netflix Series",
     onset: "Radioactive chemical accident",
     simulation: "complete-blindness",
-    description: "Matt Murdock is a lawyer turned vigilante from Marvel Comics. As a child, he was blinded by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels. He uses his enhanced hearing, smell, touch, and a form of 'radar sense' to navigate and fight crime as Daredevil. Learn more at en.wikipedia.org."
+    description: "Matt Murdock was blinded as a child by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels.\n\nHe uses enhanced hearing, smell, touch, and a 'radar sense' to navigate.\n\n• Lawyer by day, vigilante by night protecting Hell's Kitchen\n\n• First appeared in Daredevil #1 (1964)\n\n• Portrayed in Netflix/Marvel series by Charlie Cox"
   },
   geordi: {
     name: "Geordi La Forge",
@@ -23,7 +23,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Star Trek: The Next Generation",
     onset: "Born blind (birth defect)",
     simulation: "complete-blindness",
-    description: "Geordi La Forge is the chief engineer of the USS Enterprise-D in Star Trek: The Next Generation. Born blind, he uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision. Later, he receives ocular implants that provide similar capabilities. Learn more at en.wikipedia.org."
+    description: "Geordi La Forge was born blind and uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision.\n\n• Chief Engineer of the USS Enterprise-D\n\n• Later receives ocular implants with similar capabilities\n\n• One of the most prominent blind characters in science fiction"
   },
   blindspot: {
     name: "Blindspot (Samuel 'Sam' Baines)",
@@ -31,7 +31,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Batman (DC Comics)",
     onset: "Eyes burned by villain",
     simulation: "complete-blindness",
-    description: "Blindspot, also known as Samuel 'Sam' Baines, is a villain in DC Comics' Batman series. Despite being blind, he uses advanced sonar-based technology to navigate and fight, making him a formidable opponent who can 'see' through sound waves and echolocation. Learn more at en.wikipedia.org."
+    description: "Blindspot, also known as Samuel 'Sam' Baines, had his eyes burned by a villain in the DC Comics Batman series.\n\nDespite being blind, he uses advanced sonar-based technology to navigate.\n\n• Uses echolocation and sound waves to 'see'\n\n• Formidable opponent in Batman's rogues gallery\n\n• Demonstrates how technology can compensate for vision loss"
   },
   toph: {
     name: "Toph Beifong",
@@ -39,7 +39,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Avatar: The Last Airbender",
     onset: "Born blind",
     simulation: "complete-blindness",
-    description: "Toph Beifong is a master earthbender from Avatar: The Last Airbender who was born blind. She developed a unique ability called 'seismic sense,' which allows her to perceive her surroundings through vibrations in the earth by grounding herself barefoot. This ability makes her one of the most powerful and perceptive characters in the series, able to 'see' through the ground with incredible precision. Learn more at en.wikipedia.org."
+    description: "Toph Beifong is a master earthbender who was born blind.\n\nShe developed 'seismic sense,' perceiving surroundings through vibrations in the earth by grounding herself barefoot.\n\n• One of the most powerful earthbenders in the Avatar universe\n\n• Inventor of metalbending\n\n• Fan favorite character known for her fierce independence"
   },
   kenshi: {
     name: "Kenshi Takahashi",
@@ -47,7 +47,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Mortal Kombat",
     onset: "Tricked by sorcerer",
     simulation: "complete-blindness",
-    description: "Kenshi Takahashi is a blind swordsman and Special Forces operative from the Mortal Kombat series. He was blinded when he opened a tomb containing the ancient sword Sento, which released imprisoned souls that took his sight. Despite his blindness, he possesses powerful telekinetic abilities and uses his sword skills to fight. Learn more at en.wikipedia.org."
+    description: "Kenshi Takahashi was blinded when he opened a tomb containing the ancient sword Sento, which released imprisoned souls that took his sight.\n\nDespite his blindness, he possesses powerful telekinetic abilities.\n\n• Blind swordsman and Special Forces operative\n\n• Uses telekinetic powers to sense his surroundings\n\n• First appeared in Mortal Kombat: Deadly Alliance (2002)"
   },
   neo: {
     name: "Neo (Thomas Anderson)",
@@ -55,7 +55,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "The Matrix trilogy",
     onset: "Burned by Agent Smith",
     simulation: "complete-blindness",
-    description: "Neo, also known as Thomas Anderson, is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation with Agent Smith, but gains the ability to 'see' through a different perception, allowing him to perceive the code of the Matrix itself. Learn more at en.wikipedia.org."
+    description: "Neo is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation but gains the ability to perceive the code of the Matrix itself.\n\n• 'The One' prophesied to end the war between humans and machines\n\n• His blindness represents seeing beyond physical reality\n\n• Portrayed by Keanu Reeves"
   },
   eli: {
     name: "Eli",
@@ -63,7 +63,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "The Book of Eli",
     onset: "Unknown/ambiguous",
     simulation: "complete-blindness",
-    description: "Eli is the protagonist of The Book of Eli, a post-apocalyptic film. Despite being blind, he travels across the wasteland protecting a valuable book, using his heightened senses and combat skills to survive. His blindness is revealed at the end of the film, demonstrating his remarkable abilities. Learn more at book-of-eli.fandom.com."
+    description: "Eli is the protagonist of The Book of Eli, a post-apocalyptic film.\n\nDespite being blind (revealed at the end), he travels across the wasteland protecting a valuable book, using heightened senses and combat skills.\n\n• His blindness is a twist revelation\n\n• Demonstrates remarkable survival abilities without sight\n\n• Portrayed by Denzel Washington"
   },
   blinkin: {
     name: "Blinkin",
@@ -71,7 +71,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Robin Hood: Men in Tights",
     onset: "Unspecified (parody character)",
     simulation: "complete-blindness",
-    description: "Blinkin is a comedic character from the film Robin Hood: Men in Tights, a parody of the classic Robin Hood story. He serves as Robin Hood's blind servant, providing comic relief with his inability to see and his humorous misunderstandings. Learn more at en.wikipedia.org."
+    description: "Blinkin is a comedic character from the Mel Brooks parody film Robin Hood: Men in Tights. He serves as Robin Hood's blind servant, providing comic relief.\n\n• Parody of the character Azeem from Robin Hood: Prince of Thieves\n\n• Played by Mark Blankfield\n\n• Famous quote: 'I heard that coming a mile away'"
   },
   juliaCarpenter: {
     name: "Julia Carpenter (Arachne)",
@@ -79,23 +79,23 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Marvel Comics",
     onset: "Inherited Madame Web powers",
     simulation: "complete-blindness",
-    description: "Julia Carpenter, also known as Arachne, is a Marvel Comics character who has experienced blindness in certain storylines. As a superhero with spider-like abilities, she has demonstrated remarkable adaptability despite visual impairment. Learn more at marvel.com."
+    description: "Julia Carpenter, also known as Arachne, is a Marvel Comics character who became blind when she inherited Madame Web's psychic powers.\n\nShe has demonstrated remarkable adaptability.\n\n• Former Spider-Woman and current Madame Web\n\n• Possesses precognitive and telepathic abilities\n\n• Her blindness came with enhanced psychic vision"
   },
   mrMagoo: {
     name: "Mr. Magoo",
     condition: "Severe Nearsightedness",
     years: "Animated series and films",
     onset: "Extreme nearsightedness",
-    simulation: "nearSighted",
-    description: "Mr. Magoo is a cartoon character known for his extreme nearsightedness. Despite his poor vision, he manages to navigate through various adventures, often mistaking objects and situations due to his inability to see clearly. The character has appeared in animated shorts, television series, and films. Learn more at en.wikipedia.org."
+    simulation: "magoo-severe-myopia",
+    description: "Mr. Magoo is a cartoon character known for his extreme nearsightedness.\n\nDespite his poor vision, he manages to navigate through various adventures, often mistaking objects and situations.\n\n• Created by United Productions of America (UPA) in 1949\n\n• Academy Award-winning animated shorts\n\n• Voiced by Jim Backus for decades"
   },
   doctorMidNite: {
     name: "Doctor Mid-Nite",
-    condition: "Blindness",
+    condition: "Light-Induced Blindness",
     years: "DC Comics",
     onset: "Grenade explosion",
-    simulation: "complete-blindness",
-    description: "Doctor Mid-Nite is a DC Comics superhero who is blind but uses special infrared lenses that allow him to see in darkness. Despite his blindness in normal light, he fights crime using his enhanced night vision and medical expertise. Learn more at en.wikipedia.org."
+    simulation: "doctor-midnite-photophobia",
+    description: "Doctor Mid-Nite is a DC Comics superhero who was blinded by a grenade explosion but discovered he could see perfectly in total darkness.\n\nHis condition is the inverse of night blindness - blind in light, seeing in dark.\n\n• First blind superhero in comics (1941)\n\n• Developed infrared goggles and 'blackout bombs'\n\n• Member of the Justice Society of America"
   },
   wallyKarew: {
     name: "Wally Karew",
@@ -103,7 +103,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "See No Evil, Hear No Evil",
     onset: "Unspecified backstory",
     simulation: "complete-blindness",
-    description: "Wally Karew is a character from the film See No Evil, Hear No Evil, played by Richard Pryor. Wally is blind and teams up with a deaf character to solve a crime, using his other heightened senses to navigate and help solve the mystery. Learn more at en.wikipedia.org."
+    description: "Wally Karew is a blind character from the comedy film See No Evil, Hear No Evil.\n\nHe teams up with a deaf character to solve a crime, using his heightened senses.\n\n• Played by Richard Pryor\n\n• Partners with Gene Wilder's deaf character Dave\n\n• 1989 comedy exploring how disability doesn't prevent heroism"
   },
   mohammad: {
     name: "Mohammad",
@@ -111,7 +111,7 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "The Color of Paradise",
     onset: "Born blind",
     simulation: "complete-blindness",
-    description: "Mohammad is the protagonist of the Iranian film The Color of Paradise. He is a blind boy who attends a school for the blind in Tehran and has a deep connection with nature, using his sense of touch and hearing to experience the world around him. Learn more at en.wikipedia.org."
+    description: "Mohammad is the protagonist of the Iranian film The Color of Paradise (1999). He is a blind boy who attends a school for the blind in Tehran and has a deep connection with nature.\n\n• Uses touch and hearing to experience the world beautifully\n\n• Directed by Majid Majidi\n\n• Critically acclaimed portrayal of blindness in cinema"
   },
   chirrutImwe: {
     name: "Chirrut Îmwe",
@@ -119,15 +119,15 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "Star Wars: Rogue One",
     onset: "Born blind",
     simulation: "complete-blindness",
-    description: "Chirrut Îmwe was a Guardian of the Whills from the planet Jedha in the Star Wars universe. Despite being blind, he was a skilled warrior who used the Force to guide him, believing that 'the Force moves darkly near a thing that's about to kill.' He fought alongside the Rebel Alliance during the mission to steal the Death Star plans, demonstrating remarkable combat abilities despite his blindness. Learn more at starwars.fandom.com."
+    description: "Chirrut Îmwe was a Guardian of the Whills from Jedha in the Star Wars universe.\n\nDespite being blind, he was a skilled warrior who used the Force to guide him.\n\n• Famous quote: 'I am one with the Force. The Force is with me.'\n\n• Fought alongside the Rebel Alliance to steal Death Star plans\n\n• Portrayed by Donnie Yen"
   },
   murphyMason: {
     name: "Murphy Mason",
-    condition: "Retinitis Pigmentosa",
+    condition: "Retinitis Pigmentosa (Complete)",
     years: "In the Dark (TV Series)",
-    onset: "Age 14",
-    simulation: "complete-blindness",
-    description: "Murphy Mason is the main character of the CW television series In the Dark. She lost her sight completely at age 14 due to retinitis pigmentosa. Despite being blind, she becomes determined to solve her best friend Tyson's murder when she is the only eyewitness. She is known for her hard-drinking lifestyle and her determination to navigate a world of crime and mystery despite her visual impairment. Learn more at in-the-dark-cw.fandom.com."
+    onset: "Age 14, now fully blind",
+    simulation: "murphy-rp-complete",
+    description: "Murphy Mason lost her sight completely at age 14 due to retinitis pigmentosa, a degenerative condition that first causes night blindness and tunnel vision before progressing to total blindness.\n\n• Main character of CW series 'In the Dark'\n\n• Investigates her best friend's murder\n\n• Notable for portraying a flawed, complex blind protagonist"
   },
   fujitora: {
     name: "Fujitora (Issho)",
@@ -135,6 +135,6 @@ export const fictionalCharacters: Record<string, PersonData> = {
     years: "One Piece",
     onset: "Blinded himself",
     simulation: "complete-blindness",
-    description: "Fujitora, also known as Issho, is a Marine Admiral in the One Piece series. He blinded himself, choosing to live without sight because he did not want to see the world's wickedness. Despite his blindness, he is one of the most powerful fighters in the series, using Observation Haki (a form of spiritual perception) to 'see' his surroundings and sense the presence, emotions, and intentions of others. He fights with a sword and can manipulate gravity through his Devil Fruit powers. Learn more at onepiece.fandom.com."
+    description: "Fujitora, also known as Issho, is a Marine Admiral who blinded himself because he did not want to see the world's wickedness.\n\nHe uses Observation Haki to sense his surroundings.\n\n• One of the most powerful fighters in the One Piece series\n\n• Can manipulate gravity through his Devil Fruit powers\n\n• Represents moral blindness to injustice vs. physical blindness"
   }
 };

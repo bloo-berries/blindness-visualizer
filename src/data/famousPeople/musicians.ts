@@ -7,7 +7,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1930-2004",
     onset: "Ages 4-5, blind by 7",
     simulation: "complete-blindness",
-    description: "Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7. His right eye was later removed due to pain. He had no light perception in his remaining eye. Visit raycharles.com for more information."
+    description: "Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7.\n\nHis right eye was later removed due to pain. He had no light perception.\n\n• 'Father of Soul' - pioneered soul music by combining gospel, R&B, and blues\n\n• 17 Grammy Awards including Lifetime Achievement Award\n\n• Rock and Roll Hall of Fame inductee\n\n• His song 'Georgia on My Mind' became Georgia's state song"
   },
   stevie: {
     name: "Stevie Wonder",
@@ -15,7 +15,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1950",
     onset: "From birth (6 weeks premature)",
     simulation: "complete-blindness",
-    description: "Born premature, Stevie received excess oxygen in his incubator which caused abnormal blood vessel growth in his retinas. This led to retinal detachment and complete blindness from infancy. Visit steviewonder.net for more information."
+    description: "Born six weeks premature, Stevie received excess oxygen in his incubator which caused abnormal blood vessel growth in his retinas.\n\nThis led to retinal detachment and complete blindness from infancy.\n\n• 25 Grammy Awards - most awarded male solo artist\n\n• Signed to Motown at age 11\n\n• Rock and Roll Hall of Fame inductee\n\n• Pioneered synthesizers in popular music\n\n• Hits include 'Superstition,' 'Isn't She Lovely,' and 'I Just Called to Say I Love You'"
   },
   bocelli: {
     name: "Andrea Bocelli",
@@ -23,7 +23,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1958",
     onset: "Congenital, complete at 12",
     simulation: "complete-blindness",
-    description: "Born with congenital glaucoma, Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception. Visit andreabocelli.com for more information."
+    description: "Born with congenital glaucoma, Andrea Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception.\n\n• Best-selling classical artist in history with over 90 million records sold\n\n• Performed at major world events including the Olympics and World Cup\n\n• Golden Globe and Grammy nominated\n\n• Famous duets include 'Time to Say Goodbye' with Sarah Brightman"
   },
   casey: {
     name: "Casey Harris",
@@ -31,7 +31,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1989",
     onset: "Age 5, progressive",
     simulation: "casey-retinitis-pigmentosa",
-    description: "Casey Harris is the keyboardist for the band X Ambassadors and has been living with retinitis pigmentosa since childhood. Despite his visual impairment, he has become a successful musician and advocate for disability representation in the music industry. His story inspires many to pursue their dreams regardless of physical limitations. Learn more at disabilitytalent.org."
+    description: "Casey Harris has lived with retinitis pigmentosa since age 5, experiencing progressive tunnel vision, night blindness, and gradual visual field loss.\n\n• Keyboardist for Grammy-nominated band X Ambassadors\n\n• Helped write hits including 'Renegades' and 'Unsteady'\n\n• Advocate for disability representation in music industry"
   },
   bono: {
     name: "Bono",
@@ -39,7 +39,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1960",
     onset: "Adult onset",
     simulation: "bono-glaucoma-sensitivity",
-    description: "Bono, the lead singer of U2, has glaucoma and wears sunglasses due to light sensitivity. He has been open about his condition and how it affects his daily life, including his need for protective eyewear. His advocacy has helped raise awareness about glaucoma and vision health. Learn more at en.wikipedia.org."
+    description: "Bono, lead singer of U2, has glaucoma which causes extreme light sensitivity. He has worn his trademark sunglasses for over two decades due to the condition, not as a fashion statement.\n\n• Lead singer of U2 - one of the best-selling bands in history\n\n• 22 Grammy Awards with U2\n\n• Rock and Roll Hall of Fame inductee\n\n• Humanitarian work with ONE Campaign and (RED) fighting AIDS and poverty"
   },
   ella: {
     name: "Ella Fitzgerald",
@@ -47,7 +47,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1917-1996",
     onset: "Progressive, eventually went blind",
     simulation: "ella-diabetic-retinopathy",
-    description: "Ella Fitzgerald, the legendary jazz singer, developed diabetic retinopathy which eventually led to blindness. Despite her visual impairment, she continued to perform and record music, becoming one of the most celebrated vocalists in jazz history. Her condition was a result of diabetes complications. Learn more at en.wikipedia.org."
+    description: "Ella Fitzgerald developed diabetic retinopathy as a complication of diabetes, causing progressive vision loss that eventually led to blindness.\n\nThe condition damages blood vessels in the retina, creating floaters, blurred vision, and dark areas.\n\n• 'First Lady of Song' and 'Queen of Jazz'\n\n• 13 Grammy Awards including Lifetime Achievement\n\n• Sold over 40 million albums\n\n• Pioneered scat singing\n\n• Performed at Carnegie Hall, Royal Albert Hall, and with every major jazz artist"
   },
   allan: {
     name: "Allan Pineda Lindo (Apl.de.ap)",
@@ -55,7 +55,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1974",
     onset: "From birth",
     simulation: "allan-nystagmus",
-    description: "Allan Pineda Lindo, known as Apl.de.ap, is a Filipino-American rapper, singer, and record producer, best known as a founding member of the Black Eyed Peas. He was born with nystagmus, a condition that causes involuntary eye movements and reduced vision. Despite his visual impairment, he has achieved international success in music and continues to be an advocate for disability awareness. Learn more at en.wikipedia.org."
+    description: "Apl.de.ap was born with nystagmus, a condition causing involuntary rapid eye movements and severely reduced vision.\n\nThe constant movement makes focusing difficult and causes visual instability.\n\n• Founding member of Black Eyed Peas - one of the best-selling groups of all time\n\n• Multiple Grammy Awards\n\n• Philanthropist supporting education in the Philippines through Apl.de.ap Foundation"
   },
   fetty: {
     name: "Fetty Wap",
@@ -63,7 +63,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1991",
     onset: "Childhood glaucoma, lost eye",
     simulation: "fetty-glaucoma-prosthetic",
-    description: "Fetty Wap, the American rapper and singer, lost his left eye to glaucoma as a child and wears a prosthetic eye. Despite this visual impairment, he rose to fame with his hit single 'Trap Queen' and has become a successful recording artist. He has been open about his condition and how it has shaped his perspective on life and music. Learn more at en.wikipedia.org."
+    description: "Fetty Wap lost his left eye to childhood glaucoma and now wears a prosthetic eye. The glaucoma caused irreversible damage to his optic nerve, and the eye was eventually removed.\n\n• Breakthrough hit 'Trap Queen' reached #2 on Billboard Hot 100\n\n• Debut album reached #1 on Billboard 200\n\n• Known for not hiding his condition and normalizing visible differences"
   },
   slick: {
     name: "Slick Rick",
@@ -71,55 +71,55 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1965",
     onset: "Infancy, from broken glass",
     simulation: "slick-rick-blindness",
-    description: "Slick Rick, the legendary British-American rapper and hip-hop pioneer, was blinded in his right eye as an infant when broken glass from a bottle hit his eye. Despite this visual impairment, he became one of the most influential figures in hip-hop, known for his storytelling abilities and distinctive style. He often wears an eye patch and has incorporated his visual condition into his artistic persona. Learn more at en.wikipedia.org."
+    description: "Slick Rick was blinded in his right eye as an infant when broken glass from a bottle hit his eye. He incorporated his eye patch into his distinctive visual persona.\n\n• Hip-hop pioneer and master storyteller\n\n• 'Children's Story' considered one of the greatest hip-hop songs ever\n\n• Influenced generations of rappers including Snoop Dogg and Nas\n\n• Rock and Roll Hall of Fame nominee"
   },
   jose: {
     name: "José Feliciano",
-    condition: "Congenital Glaucoma",
+    condition: "Congenital Glaucoma (Complete Blindness)",
     years: "Born 1945",
-    onset: "From birth",
-    simulation: "jose-congenital-glaucoma",
-    description: "José Feliciano is a legendary guitarist and singer who was born with congenital glaucoma. Despite being blind from birth, he became one of the most influential Latin musicians of all time, known for his virtuosic guitar playing and soulful voice. He has won multiple Grammy Awards and is celebrated for his contributions to music. Learn more at en.wikipedia.org."
+    onset: "Blind from birth",
+    simulation: "jose-complete-blindness",
+    description: "José Feliciano was born in Lares, Puerto Rico, permanently blind from birth due to congenital glaucoma.\n\nHe navigates with a guide dog, which became his trademark onstage.\n\n• Virtuoso guitarist who pioneered Latin crossover music\n\n• Multiple Grammy Awards including Latin Grammy Lifetime Achievement\n\n• His 'Feliz Navidad' is one of the most-played Christmas songs worldwide\n\n• First Latin artist to cross over into English-language pop charts"
   },
   art: {
     name: "Art Tatum",
-    condition: "Congenital Cataracts",
+    condition: "Cataracts & Monocular Vision",
     years: "1909-1956",
-    onset: "From birth",
-    simulation: "art-congenital-cataracts",
-    description: "Art Tatum was a jazz piano virtuoso who was born with congenital cataracts. Despite being blind from birth, he became one of the greatest jazz pianists in history, known for his incredible technique, harmonic sophistication, and improvisational skills. His recordings continue to inspire musicians today. Learn more at en.wikipedia.org."
+    onset: "From birth, worsened after assault at 20",
+    simulation: "art-partial-blindness",
+    description: "Art Tatum was born with congenital cataracts. After surgeries at age 11, he could see close objects and distinguish colors.\n\nAn assault at age 20 left him completely blind in his left eye with very limited vision in his right. Despite being legally blind, he could still play cards and pool.\n\n• Considered the greatest jazz pianist of all time by many critics\n\n• Technical abilities remain unmatched - could play at superhuman speed\n\n• Grammy Lifetime Achievement Award\n\n• Jazz at Lincoln Center Hall of Fame"
   },
   ronnie: {
     name: "Ronnie Milsap",
-    condition: "Congenital Glaucoma",
+    condition: "Congenital Glaucoma (Complete Blindness)",
     years: "Born 1943",
-    onset: "From birth",
-    simulation: "ronnie-congenital-glaucoma",
-    description: "Ronnie Milsap is a country music icon who was born with congenital glaucoma. Despite being blind from birth, he became one of the most successful country artists of all time, with numerous number-one hits and Grammy Awards. His music has influenced generations of country musicians. Learn more at en.wikipedia.org."
+    onset: "Light perception only at birth, complete by 14",
+    simulation: "ronnie-complete-blindness",
+    description: "Ronnie Milsap was born with congenital glaucoma and cataracts. He had only light perception in his left eye (right eye blind), which was destroyed by trauma at age 14.\n\nBoth eyes were eventually surgically removed.\n\n• 40 number-one country hits\n\n• 6 Grammy Awards\n\n• Country Music Hall of Fame inductee\n\n• Pioneered country-pop crossover sound"
   },
   doc: {
     name: "Doc Watson",
-    condition: "Eye Infection in Infancy",
+    condition: "Light Perception Only",
     years: "1923-2012",
-    onset: "Infancy",
-    simulation: "doc-eye-infection",
-    description: "Doc Watson was a legendary bluegrass and folk guitarist who lost his sight due to an eye infection in infancy. Despite his blindness, he became one of the most influential flatpicking guitarists in American music history, known for his mastery of traditional Appalachian music. Learn more at en.wikipedia.org."
+    onset: "Infancy, from eye infection",
+    simulation: "doc-light-perception",
+    description: "Doc Watson lost most of his sight to an eye infection before age one. He stated: 'I have a little bit of light perception left. I am conscious of bright lights.'\n\nHe could not see shapes or details.\n\n• One of the most influential flatpicking guitarists in American music history\n\n• 8 Grammy Awards including Lifetime Achievement\n\n• National Medal of Arts recipient\n\n• Preserved and popularized Appalachian folk music"
   },
   jeff: {
     name: "Jeff Healey",
-    condition: "Retinoblastoma",
+    condition: "Retinoblastoma (Eyes Removed)",
     years: "1966-2008",
-    onset: "From birth",
-    simulation: "jeff-retinoblastoma",
-    description: "Jeff Healey was a blues-rock guitarist who lost his sight to retinoblastoma as an infant. He developed a unique guitar technique, playing the instrument flat on his lap. Despite his blindness, he became a celebrated musician known for his powerful blues guitar playing and soulful vocals. Learn more at en.wikipedia.org."
+    onset: "Eyes removed at 8 and 11 months old",
+    simulation: "jeff-complete-blindness",
+    description: "Jeff Healey was diagnosed with retinoblastoma, a rare eye cancer, in infancy. His right eye was removed at 8 months and left eye at 11 months to prevent the cancer spreading.\n\nHe had prosthetic eyes and no memory of sight.\n\n• Developed unique technique playing guitar flat on his lap\n\n• Featured in movie 'Road House' starring Patrick Swayze\n\n• 'Angel Eyes' reached #5 on Billboard Hot 100\n\n• Juno Award winner"
   },
   diane: {
     name: "Diane Schuur",
-    condition: "Congenital Cataracts",
+    condition: "Retinopathy of Prematurity (ROP)",
     years: "Born 1953",
-    onset: "From birth",
-    simulation: "diane-congenital-cataracts",
-    description: "Diane Schuur is a jazz vocalist who was born with congenital cataracts. Despite being blind from birth, she became a Grammy Award-winning jazz singer known for her powerful voice and impressive vocal range. She has performed with many jazz legends and continues to record and perform. Learn more at en.wikipedia.org."
+    onset: "From birth (premature, oxygen treatment)",
+    simulation: "diane-complete-blindness",
+    description: "Diane Schuur was born two months premature weighing less than three pounds. Oxygen treatment in her incubator caused retinopathy of prematurity (ROP), leaving her completely blind.\n\n• Two-time Grammy Award winner for Best Jazz Vocal Album\n\n• Helen Keller Achievement Award recipient (2000)\n\n• Performed with Count Basie Orchestra, Quincy Jones, and Ray Charles\n\n• Known as 'Deedles' - one of the premier jazz vocalists of her generation"
   },
   nobuyuki: {
     name: "Nobuyuki Tsujii",
@@ -127,7 +127,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1988",
     onset: "From birth",
     simulation: "nobuyuki-congenital-blindness",
-    description: "Nobuyuki Tsujii is a classical pianist who was born blind. Despite his congenital blindness, he won the prestigious Van Cliburn International Piano Competition in 2009, becoming one of the most celebrated classical pianists of his generation. He performs internationally and has recorded numerous albums. Learn more at en.wikipedia.org."
+    description: "Nobuyuki Tsujii was born with microphthalmia, a developmental disorder leaving him completely blind from birth with no visual memory.\n\n• Won Van Cliburn International Piano Competition (2009) - first blind winner\n\n• Learns entire orchestral scores by ear\n\n• Internationally touring classical pianist\n\n• Multiple platinum-selling albums in Japan"
   },
   rahsaan: {
     name: "Rahsaan Roland Kirk",
@@ -135,7 +135,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1935-1977",
     onset: "Childhood",
     simulation: "rahsaan-childhood-blindness",
-    description: "Rahsaan Roland Kirk was a jazz multi-instrumentalist who became blind in childhood. He was known for his ability to play multiple instruments simultaneously, including several saxophones at once. Despite his blindness, he became one of the most innovative and influential jazz musicians of the 20th century. Learn more at en.wikipedia.org."
+    description: "Rahsaan Roland Kirk became blind at age 2 due to improper medical treatment. He was left with no light perception.\n\n• Revolutionary jazz multi-instrumentalist\n\n• Famous for playing three saxophones simultaneously\n\n• Invented several instruments including the 'stritch' and 'manzello'\n\n• Grammy Lifetime Achievement Award"
   },
   blindLemonJefferson: {
     name: "Blind Lemon Jefferson",
@@ -143,7 +143,7 @@ export const musicians: Record<string, PersonData> = {
     years: "c. 1893-1929",
     onset: "From birth or early childhood",
     simulation: "complete-blindness",
-    description: "Blind Lemon Jefferson was an American blues and gospel singer, guitarist, and songwriter. He was one of the most popular blues singers of the 1920s and is considered one of the most influential early blues musicians. Despite being blind from birth or early childhood, he became one of the first commercially successful blues artists, recording over 100 songs. His distinctive guitar style and powerful voice influenced generations of blues musicians. Learn more at en.wikipedia.org."
+    description: "Blind Lemon Jefferson was blind from birth or early childhood, the exact cause unknown. He had no visual experience and learned to navigate the world entirely by sound and touch.\n\n• 'Father of Texas Blues'\n\n• First commercially successful blues artist - recorded over 100 songs\n\n• Influenced nearly every major blues musician who followed\n\n• Rock and Roll Hall of Fame inductee"
   },
   charlottaSeuerling: {
     name: "Charlotta Seuerling",
@@ -151,7 +151,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1782/84-1828",
     onset: "Age 4, from smallpox vaccination",
     simulation: "complete-blindness",
-    description: "Charlotta Seuerling was a Swedish concert singer, harpsichordist, composer, and poet, known as 'The Blind Song-Maiden.' She became blind at age 4 due to complications from a smallpox vaccination. Despite her blindness, she had a successful career performing in Sweden, Finland, and Russia, and authored the popular song 'Sång i en melankolisk stund.' She also assisted in the development of Valentin Haüy's Institute for the Blind in Saint Petersburg. Learn more at en.wikipedia.org."
+    description: "Charlotta Seuerling became blind at age 4 due to complications from smallpox vaccination. Known as 'The Blind Song-Maiden,' she lost all vision permanently.\n\n• Concert singer, harpsichordist, composer, and poet\n\n• Performed throughout Sweden, Finland, and Russia\n\n• Authored the popular song 'Sång i en melankolisk stund'\n\n• Helped develop Valentin Haüy's Institute for the Blind in Saint Petersburg"
   },
   francescoLandini: {
     name: "Francesco Landini",
@@ -159,7 +159,7 @@ export const musicians: Record<string, PersonData> = {
     years: "c. 1325-1397",
     onset: "Blind from childhood (smallpox)",
     simulation: "complete-blindness",
-    description: "Francesco Landini was an Italian composer, organist, singer, poet, and instrument maker who was blind from childhood, likely due to smallpox. Despite his blindness, he became one of the most famous and prolific composers of the 14th century, known for his madrigals, ballate, and other secular works. He was also an accomplished organist and is considered one of the most important composers of the Italian Trecento. Learn more at en.wikipedia.org."
+    description: "Francesco Landini was blind from childhood, likely due to smallpox which destroyed his vision completely.\n\n• Most famous composer of the 14th-century Italian Trecento\n\n• Virtuoso organist who won competitions against sighted musicians\n\n• Composed over 150 works including madrigals and ballate\n\n• Also known as an instrument maker and poet"
   },
   garretBarry: {
     name: "Garret Barry",
@@ -167,7 +167,7 @@ export const musicians: Record<string, PersonData> = {
     years: "c. 1780-1860",
     onset: "Blind from birth or early childhood",
     simulation: "complete-blindness",
-    description: "Garret Barry was an Irish uilleann piper who became blind during childhood due to an illness. Despite his blindness, he became one of the most celebrated traditional Irish musicians of his time, known for his mastery of the uilleann pipes. His music and style influenced generations of Irish musicians, and he is remembered as one of the great figures in Irish traditional music. Learn more at en.wikipedia.org."
+    description: "Garret Barry became blind during childhood due to an illness, leaving him with complete vision loss.\n\n• One of the most celebrated traditional Irish uilleann pipers\n\n• Master of the uilleann pipes - influenced generations of Irish musicians\n\n• Remembered as one of the great figures in Irish traditional music"
   },
   gurrumulYunupingu: {
     name: "Geoffrey Gurrumul Yunupingu",
@@ -175,7 +175,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1971-2017",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Geoffrey Gurrumul Yunupingu was an Australian Indigenous musician who was born blind. Despite his congenital blindness, he became one of Australia's most celebrated musicians, known for his soulful voice and mastery of multiple instruments including guitar, keyboards, drums, and didgeridoo. He sang in both his native Yolngu language and English, and his music brought Indigenous Australian culture to a global audience. Learn more at en.wikipedia.org."
+    description: "Geoffrey Gurrumul Yunupingu was born blind in Arnhem Land, Australia. He had no visual experience but developed extraordinary musical abilities.\n\n• One of Australia's most celebrated musicians\n\n• Multi-instrumentalist: guitar, keyboards, drums, didgeridoo\n\n• Sang in his native Yolngu language, bringing Indigenous culture to global audiences\n\n• Multiple ARIA Award winner\n\n• Subject of documentary 'Gurrumul'"
   },
   geraldineLawhorn: {
     name: "Geraldine Lawhorn",
@@ -183,7 +183,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1916-2016",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Geraldine 'Jerrie' Lawhorn was an American deaf-blind performer, actress, pianist, and educator. She was the first deaf-blind African American to earn a college degree in the United States. Despite being both deaf and blind from birth, she had a successful career as a performer, giving one-woman shows, and later became an educator at the Hadley Institute for the Blind and Visually Impaired. She was a trailblazer for people with multiple disabilities. Learn more at en.wikipedia.org."
+    description: "Geraldine 'Jerrie' Lawhorn was both deaf and blind from birth, living in complete silence and darkness.\n\n• First deaf-blind African American to earn a college degree in the United States\n\n• Concert pianist and actress who performed one-woman shows\n\n• Educator at Hadley Institute for the Blind\n\n• Trailblazer for people with multiple disabilities"
   },
   heatherHutchison: {
     name: "Heather Hutchison",
@@ -191,7 +191,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1970s",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Heather Hutchison is an award-winning Canadian singer-songwriter and author who has been blind from birth. She has released multiple albums and is known for her advocacy on disability and mental health awareness through her music and writing. Her work has helped raise awareness about the experiences of people with disabilities and mental health challenges. Visit her website at heather-hutchison.com."
+    description: "Heather Hutchison has been completely blind from birth with no visual memory.\n\n• Award-winning Canadian singer-songwriter and author\n\n• Multiple album releases\n\n• Advocate for disability and mental health awareness\n\n• Visit heather-hutchison.com"
   },
   joaquinRodrigo: {
     name: "Joaquín Rodrigo",
@@ -199,7 +199,7 @@ export const musicians: Record<string, PersonData> = {
     years: "1901-1999",
     onset: "Age 3, from diphtheria",
     simulation: "complete-blindness",
-    description: "Joaquín Rodrigo was a Spanish composer and virtuoso pianist who became blind at age 3 due to complications from diphtheria. Despite his blindness, he became one of the most important Spanish composers of the 20th century, best known for his composition 'Concierto de Aranjuez,' a cornerstone of the classical guitar repertoire. His works have been performed by orchestras worldwide and continue to be celebrated today. Learn more at en.wikipedia.org."
+    description: "Joaquín Rodrigo became completely blind at age 3 due to complications from diphtheria. He retained no visual memory.\n\n• Composed 'Concierto de Aranjuez' - cornerstone of classical guitar repertoire\n\n• Most important Spanish composer of the 20th century\n\n• Marquess of the Gardens of Aranjuez (nobility title)\n\n• Prince of Asturias Award for the Arts"
   },
   rachael: {
     name: "Rachael Leahcar",
@@ -207,7 +207,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1994",
     onset: "From birth or early life",
     simulation: "rachael-retinitis-pigmentosa",
-    description: "Rachael Leahcar is an Australian singer-songwriter from Adelaide, South Australia. She is legally blind due to retinitis pigmentosa, retaining only 10% of her vision. Despite this, Leahcar has pursued a successful music career, showcasing her talents in multiple languages including English, French, Italian, and Spanish. She gained national recognition in 2012 as a contestant on the first season of The Voice Australia, where she finished in third place. Following the show, she signed a record deal with Universal Music Australia and released her debut album, Shooting Star, which debuted at number five on the ARIA Albums Chart. She has since released several albums including Romantique (2013), Here Comes the Sun (2014), Shadows (2017), and Together For Christmas (2019). Leahcar is an ambassador for the Royal Society for the Blind and has been involved in various charitable activities. Learn more at rachaelleahcar.com.au."
+    description: "Rachael Leahcar is legally blind due to retinitis pigmentosa, retaining only 10% of her vision. She experiences tunnel vision, night blindness, and progressive visual field loss.\n\n• Finished third on The Voice Australia Season 1 (2012)\n\n• Debut album reached #5 on ARIA Albums Chart\n\n• Performs in multiple languages: English, French, Italian, Spanish\n\n• Ambassador for the Royal Society for the Blind"
   },
   johnKay: {
     name: "John Kay",
@@ -215,7 +215,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1944",
     onset: "From birth",
     simulation: "john-kay-achromatopsia",
-    description: "John Kay is the lead singer, songwriter, and founding member of the rock band Steppenwolf, best known for hits like 'Born to Be Wild' and 'Magic Carpet Ride.' He was born with congenital achromatopsia, a rare form of total color blindness that eliminates functional cone cells, leaving him to see essentially in black-and-white and making him highly sensitive to light. Despite this condition, Kay has had a successful music career spanning over five decades, writing and performing some of rock music's most iconic songs. Learn more at steppenwolf.com."
+    description: "John Kay was born with congenital achromatopsia, a rare condition eliminating functional cone cells. He sees essentially in black-and-white with extreme light sensitivity.\n\n• Lead singer and founding member of Steppenwolf\n\n• 'Born to Be Wild' coined the phrase 'heavy metal' in music\n\n• Rock and Roll Hall of Fame nominee\n\n• Environmentalist and animal rights activist"
   },
   jonnyGreenwood: {
     name: "Jonny Greenwood",
@@ -223,7 +223,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1971",
     onset: "From birth",
     simulation: "jonny-greenwood-color-blindness",
-    description: "Jonny Greenwood is the lead guitarist and multi-instrumentalist for the English rock band Radiohead, known for their innovative and experimental music. He has red-green color blindness, which affects his ability to distinguish between red and green colors. Despite this color vision deficiency, Greenwood has become one of the most acclaimed guitarists and composers in modern music, known for his innovative use of electronic instruments and orchestral arrangements. He has also composed numerous film scores, including for films like 'There Will Be Blood' and 'The Master.' Learn more at en.wikipedia.org."
+    description: "Jonny Greenwood has red-green color blindness, affecting his ability to distinguish between red and green colors.\n\nThis is one of the most common forms of color vision deficiency.\n\n• Lead guitarist and multi-instrumentalist for Radiohead\n\n• Acclaimed film composer: 'There Will Be Blood,' 'Phantom Thread,' 'The Power of the Dog'\n\n• Academy Award nominee\n\n• BBC Composer in Association"
   },
   amadou: {
     name: "Amadou Bagayoko",
@@ -231,7 +231,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1954",
     onset: "Congenital, blind by age 16",
     simulation: "amadou-cataract-progression",
-    description: "Amadou Bagayoko, one half of the legendary Malian duo Amadou & Mariam, was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened throughout childhood. By age 16, the cataracts had matured completely, leaving him in total darkness. For over five decades, he has created some of the most joyful, vibrant music Africa has ever produced while living in complete blindness. As he and Mariam tell their audiences: 'Beyond our vision, we can imagine.' Learn more at en.wikipedia.org."
+    description: "Amadou Bagayoko was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened until total blindness at age 16.\n\n• One half of legendary Malian duo Amadou & Mariam\n\n• Created joyful, vibrant music for over five decades\n\n• Grammy-nominated\n\n• Quote: 'Beyond our vision, we can imagine'"
   },
   nanaMouskouri: {
     name: "Nana Mouskouri",
@@ -239,7 +239,7 @@ export const musicians: Record<string, PersonData> = {
     years: "Born 1934",
     onset: "From childhood",
     simulation: "nana-myopia-astigmatism",
-    description: "Nana Mouskouri is a Greek singer with over 300 million records sold worldwide. She has myopia (nearsightedness) and astigmatism, requiring her signature black-rimmed glasses which became her trademark. When Harry Belafonte asked her to remove her glasses on tour, she nearly quit rather than perform without them. She has said: 'All my life I wanted to be on stage as I am in life.' Her glasses became a symbol that you could wear glasses and still be beautiful, while also serving as a shield for her inner vulnerability on stage. Learn more at en.wikipedia.org."
+    description: "Nana Mouskouri has severe myopia (nearsightedness) and astigmatism, requiring her signature black-rimmed glasses.\n\nWhen Harry Belafonte asked her to remove them on tour, she nearly quit rather than perform without them.\n\n• Over 300 million records sold worldwide\n\n• UNICEF Goodwill Ambassador\n\n• Member of European Parliament (1994-1999)\n\n• 'All my life I wanted to be on stage as I am in life'"
   },
   moondog: {
     name: "Moondog",
@@ -247,6 +247,38 @@ export const musicians: Record<string, PersonData> = {
     years: "1916-1999",
     onset: "Age 16, dynamite cap explosion",
     simulation: "moondog-complete-blindness",
-    description: "Moondog, was an American composer who lost his sight at 16 when a dynamite cap exploded. He became a legendary figure in NYC, standing on 54th Street dressed as a Viking while selling poetry and playing custom-built instruments. He was a composer and actor, known for Pineapple Express (2008), The Big Lebowski (1998) and What a Girl Wants (2003). He wrote over 80 symphonies while completely blind and moved to Germany in 1974, where he lived until his death. Learn more at en.wikipedia.org."
+    description: "Moondog lost his sight at 16 when a dynamite cap exploded, leaving him completely blind with no light perception.\n\n• Legendary NYC street performer known as 'The Viking of 6th Avenue'\n\n• Wrote over 80 symphonies while completely blind\n\n• Built custom instruments\n\n• Collaborated with Philip Glass and influenced minimalist composers"
+  },
+  ravindraJain: {
+    name: "Ravindra Jain",
+    condition: "Congenital Blindness",
+    years: "1944-2015",
+    onset: "From birth",
+    simulation: "ravindra-complete-blindness",
+    description: "Ravindra Jain was born completely blind in Aligarh, India. He had no visual experience but developed extraordinary musical abilities.\n\n• Composed music for over 200 Bollywood films\n\n• Created iconic music for TV Ramayana series\n\n• Three Filmfare Awards\n\n• Introduced K.J. Yesudas to Hindi cinema\n\n• Padma Shri award recipient (2015)"
+  },
+  kimioEto: {
+    name: "Kimio Eto",
+    condition: "Childhood Blindness",
+    years: "1924-2012",
+    onset: "Age 5",
+    simulation: "kimio-complete-blindness",
+    description: "Kimio Eto became completely blind at age 5. He retained no visual memory and learned music entirely by ear.\n\n• Virtuoso koto player who introduced Japanese music to Western audiences\n\n• Won three consecutive national prizes by age 16\n\n• Performed with Philadelphia Orchestra under Leopold Stokowski (1964)\n\n• Collaborated with Gene Krupa and Harry Belafonte"
+  },
+  dianaGurtskaya: {
+    name: "Diana Gurtskaya",
+    condition: "Congenital Blindness",
+    years: "Born 1978",
+    onset: "From birth",
+    simulation: "diana-complete-blindness",
+    description: "Diana Gurtskaya was completely blind from birth with no visual experience.\n\n• First blind singer from Eastern Europe to compete at Eurovision (2008, Georgia)\n\n• Performed duets with Ray Charles, Toto Cutugno, Demis Roussos\n\n• 'Honored Artist of Russia' (2006)\n\n• Founded Diana Gurtskaya Foundation for visually impaired children\n\n• Sochi 2014 Paralympic Ambassador"
+  },
+  asikVeysel: {
+    name: "Âşık Veysel",
+    condition: "Smallpox & Accident Blindness",
+    years: "1894-1973",
+    onset: "Age 7 (one eye), later complete",
+    simulation: "asik-complete-blindness",
+    description: "Âşık Veysel lost one eye to smallpox at age 7 and the other in an accident, leaving him completely blind.\n\nHis last visual memory was the color red from blood when he fell.\n\n• Turkey's most beloved folk poet and bağlama player\n\n• National treasure whose songs blend joy and melancholy\n\n• Inspired Joe Satriani's tribute songs 'Andalusia' and 'Asik Veysel'\n\n• Turkish Parliament honored him with lifetime salary"
   }
 };

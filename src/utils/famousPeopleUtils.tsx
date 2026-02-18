@@ -28,6 +28,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'tofiri-complete-blindness': ['completeBlindness'],
     'joshua-complete-blindness': ['completeBlindness'],
     'ved-spatial-awareness': ['completeBlindness'],
+    'srikanth-complete-blindness': ['completeBlindness'],
+    'henry-stroke-blindness': ['completeBlindness'],
 
     // ===== RETINITIS PIGMENTOSA (Tunnel Vision) =====
     'paul-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
@@ -102,7 +104,13 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'jonny-greenwood-color-blindness': ['deuteranomaly'],
 
     // ===== LEGAL BLINDNESS / LOW VISION =====
-    'marilee-legal-blindness': ['blurryVision', 'lossOfContrast', 'glare']
+    'marilee-legal-blindness': ['blurryVision', 'lossOfContrast', 'glare'],
+
+    // ===== COMPLEX MULTI-CONDITION =====
+    'joyce-progressive-eye-disease': ['glaucoma', 'cataracts', 'blurryVision', 'glare', 'lossOfContrast'],
+    'huxley-keratitis': ['cataracts', 'blurryVision', 'glare', 'lossOfContrast', 'blindnessLeftEye'],
+    'sartre-monocular-vision': ['blindnessRightEye'],
+    'taha-complete-blindness': ['completeBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];
@@ -315,9 +323,10 @@ export const parseDescriptionWithLinks = (description: string, personId: string)
     'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
     'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
     'heather-hutchison.com': 'https://www.heather-hutchison.com/',
-    'bramblitt.com': 'https://bramblitt.com/'
+    'bramblitt.com': 'https://bramblitt.com/',
+    'kenyanheroes.com': 'https://kenyanheroes.com/hero/henry-wanyoike/'
   };
-  
+
   const domainPattern = Object.keys(websiteMap)
     .map(domain => domain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
     .join('|');

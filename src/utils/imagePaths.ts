@@ -145,7 +145,13 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   billGates: 'bill-gates.webp',
   johnKay: 'John-Kay.webp',
   jonnyGreenwood: 'Jonny-Greenwood.webp',
-  amadou: 'Amadou-Bagayoko.webp'
+  amadou: 'Amadou-Bagayoko.webp',
+  srikanth: 'srikanth-bolla.webp',
+  henry: 'henry-wanyoike.webp',
+  jamesJoyce: 'james-joyce.webp',
+  aldousHuxley: 'aldous-huxley.webp',
+  jeanPaulSartre: 'jean-paul-sartre.webp',
+  tahaHussein: 'Taha-Hussein.webp'
 };
 
 /**

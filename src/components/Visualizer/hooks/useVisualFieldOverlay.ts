@@ -276,6 +276,62 @@ function generateScotomaOverlay(intensity: number): React.CSSProperties {
 }
 
 /**
+ * Generate Blindness Left Eye overlay (monocular vision loss - left side)
+ */
+function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSProperties {
+  const eyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    background: `linear-gradient(to right,
+      rgba(0,0,0,${eyeIntensity}) 0%,
+      rgba(0,0,0,${eyeIntensity}) 47.5%,
+      rgba(0,0,0,${eyeIntensity * 0.7}) 48.75%,
+      rgba(0,0,0,${eyeIntensity * 0.4}) 50%,
+      rgba(0,0,0,${eyeIntensity * 0.1}) 51.25%,
+      rgba(0,0,0,0) 52.5%
+    )`,
+    mixBlendMode: intensity === 1 ? 'normal' as const : 'multiply' as const,
+    opacity: intensity === 1 ? 1 : Math.min(0.95, intensity)
+  };
+}
+
+/**
+ * Generate Blindness Right Eye overlay (monocular vision loss - right side)
+ */
+function generateBlindnessRightEyeOverlay(intensity: number): React.CSSProperties {
+  const eyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    background: `linear-gradient(to left,
+      rgba(0,0,0,${eyeIntensity}) 0%,
+      rgba(0,0,0,${eyeIntensity}) 47.5%,
+      rgba(0,0,0,${eyeIntensity * 0.7}) 48.75%,
+      rgba(0,0,0,${eyeIntensity * 0.4}) 50%,
+      rgba(0,0,0,${eyeIntensity * 0.1}) 51.25%,
+      rgba(0,0,0,0) 52.5%
+    )`,
+    mixBlendMode: intensity === 1 ? 'normal' as const : 'multiply' as const,
+    opacity: intensity === 1 ? 1 : Math.min(0.95, intensity)
+  };
+}
+
+/**
  * Hook that generates overlay styles for visual field effects
  * Returns null if animated effects are enabled (handled by useAnimatedOverlay)
  */
@@ -337,6 +393,18 @@ export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSPropert
     const scotomaEffect = effects.find(e => e.id === 'scotoma' && e.enabled);
     if (scotomaEffect) {
       return generateScotomaOverlay(scotomaEffect.intensity);
+    }
+
+    // Check for blindness left eye
+    const blindnessLeftEyeEffect = effects.find(e => e.id === 'blindnessLeftEye' && e.enabled);
+    if (blindnessLeftEyeEffect) {
+      return generateBlindnessLeftEyeOverlay(blindnessLeftEyeEffect.intensity);
+    }
+
+    // Check for blindness right eye
+    const blindnessRightEyeEffect = effects.find(e => e.id === 'blindnessRightEye' && e.enabled);
+    if (blindnessRightEyeEffect) {
+      return generateBlindnessRightEyeOverlay(blindnessRightEyeEffect.intensity);
     }
 
     return null;

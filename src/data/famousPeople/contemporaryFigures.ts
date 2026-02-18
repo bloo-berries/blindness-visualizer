@@ -88,5 +88,13 @@ export const contemporaryFigures: Record<string, PersonData> = {
     onset: "From birth",
     simulation: "fred-rogers-deuteranopia",
     description: "Fred Rogers, best known as Mister Rogers from the beloved children's television program 'Mister Rogers' Neighborhood,' lived with deuteranopia, a form of red-green color deficiency. Deuteranopia is a more severe lack of functional green cones, resulting in complete green-blindness. Despite this color vision deficiency, Rogers created one of the most influential and beloved children's programs in television history, teaching generations of children about kindness, empathy, and understanding. Learn more at misterrogers.org."
+  },
+  srikanth: {
+    name: "Srikanth Bolla",
+    condition: "Anophthalmia (Born Without Eyes)",
+    years: "Born 1991",
+    onset: "From birth",
+    simulation: "srikanth-complete-blindness",
+    description: "Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite relatives suggesting his parents abandon him, he persevered to become the first international blind student at MIT and the first visually impaired student in Management Science at MIT Sloan. In 2012, he founded Bollant Industries with backing from Ratan Tata, manufacturing eco-friendly products while employing over 650 people - half with disabilities. He was named to Forbes 30 Under 30 Asia in 2017. Learn more at en.wikipedia.org."
   }
 };

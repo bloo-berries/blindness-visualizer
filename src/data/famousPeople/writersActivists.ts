@@ -112,5 +112,37 @@ export const writersActivists: Record<string, PersonData> = {
     onset: "Age 6 months",
     simulation: "tiffany-complete-blindness",
     description: "Tiffany Brar is an Indian social activist and founder of the Jyothirgamaya Foundation, a non-profit organization that teaches life skills to blind people of all ages. She became blind at six months due to oxygen toxicity (Terry Syndrome). Brar is a trainer, campaigner for disability awareness, and advocate for an inclusive society. She founded Jyothirgamaya (meaning 'leading to light') mobile school for the blind in July 2012, with the motto 'If the blind cannot go to school then the school shall go to them.' Through the foundation, she trains blind people in Braille, mobility, basic computer use, and life skills. Brar designed the Tiffy template, a device that identifies Indian currency notes to prevent blind people from being cheated. She has received numerous awards including the National Award from the President of India for Best Role Model, the Holman Prize (first Indian recipient), and the Nari Shakti Puraskar, the highest civilian honor for women in India. Learn more at en.wikipedia.org."
+  },
+  jamesJoyce: {
+    name: "James Joyce",
+    condition: "Iritis, Glaucoma & Cataracts",
+    years: "1882-1941",
+    onset: "Age 25, progressive deterioration",
+    simulation: "joyce-progressive-eye-disease",
+    description: "James Joyce suffered from recurring iritis (uveitis) starting at age 25, which led to glaucoma and cataracts. The inflammation caused his irises to attach to the lenses, increasing eye pressure and eroding his optic nerves. He underwent about 12 eye surgeries without general anesthetic and wore his signature eye patch for years. By age 48, his left eye functioned at 1/800th normal capacity. He wrote Finnegans Wake using red crayon on large white sheets, wore a white jacket to reflect light, and eventually dictated to typists. He named his daughter Lucia after the patron saint of the blind. Learn more at en.wikipedia.org."
+  },
+  aldousHuxley: {
+    name: "Aldous Huxley",
+    condition: "Keratitis Punctata",
+    years: "1894-1963",
+    onset: "Age 16, from eye infection",
+    simulation: "huxley-keratitis",
+    description: "At age 16, Aldous Huxley suffered a bout of keratitis punctata that left him nearly totally blind for 18 months. He had to learn Braille and use a guide for walking. One eye recovered to only light perception, while the other improved enough to read with special thick glasses. He wrote: 'I started writing when I was 17, during a period when I was almost totally blind and could hardly do anything else.' Author of Brave New World. Learn more at en.wikipedia.org."
+  },
+  jeanPaulSartre: {
+    name: "Jean-Paul Sartre",
+    condition: "Corneal Leukoma & Exotropia",
+    years: "1905-1980",
+    onset: "Age 3, from childhood illness",
+    simulation: "sartre-monocular-vision",
+    description: "At age three, Jean-Paul Sartre contracted a severe flu that evolved into corneal leukoma, leaving him almost completely blind in his right eye. The lack of vision caused sensory exotropia (outward drifting eye), which made him a target for bullying in school. Despite writing mostly one-eyed, he became one of the most influential philosophers of the 20th century. His eye condition later exempted him from frontline combat in WWII. Author of Being and Nothingness and No Exit. Learn more at en.wikipedia.org."
+  },
+  tahaHussein: {
+    name: "Taha Hussein",
+    condition: "Ophthalmia (Trachoma)",
+    years: "1889-1973",
+    onset: "Age 2-3, blind by age 5",
+    simulation: "taha-complete-blindness",
+    description: "Taha Hussein contracted ophthalmia (likely trachoma) at age two in rural Egypt, where such infections were endemic. Faulty treatment by an unskilled local practitioner led to complete blindness by age five. Known as 'The Dean of Arabic Literature,' he became the first Egyptian to hold a PhD from Cairo University and later earned a second PhD from the Sorbonne. As Egypt's Minister of Education in 1950, he made public education free, famously declaring 'education is like the water we drink and the air we breathe.' He was nominated for the Nobel Prize in Literature 21 times. Learn more at en.wikipedia.org."
   }
 };

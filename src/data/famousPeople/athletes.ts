@@ -96,5 +96,13 @@ export const athletes: Record<string, PersonData> = {
     onset: "From birth",
     simulation: "trischa-aniridia",
     description: "Trischa Zorn was born with Aniridia, a rare congenital genetic eye disorder in which the iris fails to develop properly. Born legally blind, Zorn became the most successful athlete in Paralympic history, competing in seven consecutive Paralympic Games from 1980 to 2004 and winning 55 medals (41 gold, 9 silver, 5 bronze). After her swimming career, she earned a Juris Doctor degree and works for the Department of Veterans Affairs. Zorn has been inducted into the International Paralympic Hall of Fame, the U.S. Olympic & Paralympic Hall of Fame, and the International Swimming Hall of Fame. Learn more at ishof.org."
+  },
+  henry: {
+    name: "Henry Wanyoike",
+    condition: "Stroke-Induced Blindness",
+    years: "Born 1974",
+    onset: "Age 21, from stroke in 1995",
+    simulation: "henry-stroke-blindness",
+    description: "Henry Wanyoike lost 95% of his vision overnight on May 1, 1995, when a stroke damaged his optic nerves. He lost the remaining vision gradually over the following years. After struggling with depression, he discovered he could run with a guide and became a world-class Paralympic athlete. He won gold medals at the Sydney 2000 Paralympics (5000m) and Athens 2004 Paralympics (10000m), setting world records. His famous quote: 'I lost my sight, but I gained a vision.' He founded the Henry Wanyoike Foundation and has visited over 700 schools advocating for disability rights. Learn more at kenyanheroes.com."
   }
 };

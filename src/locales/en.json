@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "About",
+    "simulator": "Vision Simulator",
+    "famousPeople": "Famous Blind People",
+    "glossary": "Glossary & FAQ",
+    "resources": "Resources",
+    "navigation": "Navigation",
+    "viewOnGithub": "View on GitHub",
+    "openMenu": "open navigation menu",
+    "startSimulator": "Start Simulator",
+    "home": "Navigate to home page"
+  },
+  "buttons": {
+    "back": "BACK",
+    "next": "Next",
+    "viewSimulation": "View Simulation",
+    "clearFilters": "Clear Filters",
+    "deselectAll": "Deselect All",
+    "support": "Support",
+    "supportDonate": "Support & Donate",
+    "experienceSimulation": "Experience Simulation",
+    "close": "Close",
+    "submit": "Submit",
+    "reset": "Reset"
+  },
+  "home": {
+    "title": "Understanding",
+    "titleHighlight": "Vision Conditions",
+    "subtitle": "Experience visual impairments to build empathy and understanding",
+    "card1Title": "Recreate Vision Conditions in Real-time",
+    "card1Description": "Create your unique visualization",
+    "card1Button": "Start Vision Condition Simulator",
+    "card2Title": "Experience Sight of Famous Blind and Visually Impaired People",
+    "card2Button": "Explore Famous People"
+  },
+  "simulator": {
+    "title": "Vision Condition Simulator",
+    "step1": "Choose Input Source",
+    "step2": "Select Vision Conditions",
+    "step3": "View Simulation",
+    "selectConditions": "Select Vision Conditions",
+    "visionPreview": "Vision Preview",
+    "combinedPreview": "Combined Vision Preview ({{count}} conditions)",
+    "selectToStart": "Select conditions to continue",
+    "viewSimulationCount": "View Simulation ({{count}} condition)",
+    "viewSimulationCountPlural": "View Simulation ({{count}} conditions)",
+    "simulating": "Simulating: {{name}}",
+    "condition": "Condition: {{condition}}",
+    "screenReaderStep1": "Step 1: Choose your input source - webcam, image upload, or YouTube video",
+    "screenReaderStep2": "Step 2: Select vision conditions to simulate",
+    "screenReaderStep3": "Step 3: View your vision simulation",
+    "goBack": "Go back to select conditions"
+  },
+  "inputSelector": {
+    "title": "Choose Your Input Source",
+    "demoVideo": "Use Demo Video",
+    "demoVideoDesc": "Pre-recorded video to explore conditions",
+    "uploadImage": "Upload an Image",
+    "uploadImageDesc": "Upload from your device",
+    "webcam": "Use Webcam",
+    "webcamDesc": "Real-time camera feed",
+    "selected": "Selected",
+    "recommended": "(Recommended)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Search conditions...",
+    "mostCommon": "Most Common",
+    "redGreen": "Red-Green",
+    "fieldLoss": "Field Loss",
+    "ageRelated": "Age-Related",
+    "intensity": "Intensity",
+    "separation": "Separation",
+    "direction": "Direction"
+  },
+  "categories": {
+    "visualFieldLoss": "Visual Field Loss",
+    "colorVision": "Color Vision",
+    "eyeConditions": "Eye Conditions",
+    "refractiveErrors": "Refractive Errors",
+    "retinalDisorders": "Retinal Disorders",
+    "visualDisturbances": "Visual Disturbances",
+    "doubleVision": "Double Vision"
+  },
+  "famousPeople": {
+    "title": "Famous Blind and Visually Impaired People",
+    "subtitle": "Explore how notable figures throughout history have experienced vision conditions",
+    "searchPlaceholder": "Search by name, condition, or profession...",
+    "allCategories": "All Categories",
+    "filterByCategory": "Filter by Category",
+    "noResults": "No results found",
+    "noResultsDesc": "Try adjusting your search or filters",
+    "showingResults": "Showing {{count}} of {{total}} people",
+    "categories": {
+      "contemporaryFigures": "Contemporary Figures",
+      "athletes": "Athletes",
+      "musicians": "Musicians",
+      "artists": "Artists",
+      "writersActivists": "Writers & Activists",
+      "historicalFigures": "Historical Figures",
+      "scientists": "Scientists",
+      "fictionalCharacters": "Fictional Characters"
+    }
+  },
+  "conditions": {
+    "title": "Vision Conditions Glossary",
+    "subtitle": "Learn about different types of visual impairments and eye conditions",
+    "searchPlaceholder": "Search conditions...",
+    "viewAll": "View All",
+    "colorBlindness": "Color Blindness",
+    "fieldLoss": "Field Loss",
+    "ageRelated": "Age-Related",
+    "genetic": "Genetic"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Common questions about vision conditions and this simulator"
+  },
+  "about": {
+    "title": "About VisionSim",
+    "subtitle": "Understanding our mission and approach",
+    "mission": "Our Mission",
+    "missionText": "VisionSim helps people understand what it's like to live with various vision conditions through accurate, research-based simulations.",
+    "howItWorks": "How It Works",
+    "disclaimer": "Medical Disclaimer",
+    "disclaimerText": "These simulations are for educational purposes only and may not perfectly represent how individuals experience their conditions."
+  },
+  "feedback": {
+    "title": "Share Your Feedback",
+    "subtitle": "Help us improve VisionSim",
+    "nameLabel": "Your Name",
+    "namePlaceholder": "Enter your name",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "messageLabel": "Your Feedback",
+    "messagePlaceholder": "Tell us what you think...",
+    "submitButton": "Submit Feedback",
+    "successMessage": "Thank you for your feedback!",
+    "errorMessage": "Something went wrong. Please try again."
+  },
+  "resources": {
+    "title": "Vision Resources",
+    "subtitle": "Helpful links and information about vision conditions",
+    "organizations": "Organizations",
+    "research": "Research",
+    "support": "Support Groups"
+  },
+  "accessibility": {
+    "menu": "Accessibility Settings",
+    "highContrast": "High Contrast",
+    "highContrastDesc": "Increase color contrast for better visibility",
+    "largeText": "Large Text",
+    "largeTextDesc": "Increase text size throughout the site",
+    "increasedSpacing": "Increased Spacing",
+    "increasedSpacingDesc": "Add more space between elements",
+    "enhancedFocus": "Enhanced Focus",
+    "enhancedFocusDesc": "Make focus indicators more visible",
+    "reducedMotion": "Reduced Motion",
+    "reducedMotionDesc": "Minimize animations and transitions",
+    "resetAll": "Reset All",
+    "skipToContent": "Skip to main content"
+  },
+  "language": {
+    "select": "Select Language",
+    "current": "Language"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Feedback",
+    "resources": "Resources"
+  },
+  "visualizer": {
+    "comparison": "Comparison",
+    "original": "Original",
+    "simulated": "Simulated",
+    "toggleComparison": "Toggle comparison view",
+    "screenshot": "Screenshot",
+    "takeScreenshot": "Take screenshot",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "learnMore": "Learn more",
+    "seeMore": "See more",
+    "seeLess": "See less",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "cancel": "Cancel"
+  }
+}

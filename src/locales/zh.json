@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "关于",
+    "simulator": "视觉模拟器",
+    "famousPeople": "著名盲人",
+    "glossary": "术语表和常见问题",
+    "resources": "资源",
+    "navigation": "导航",
+    "viewOnGithub": "在GitHub上查看",
+    "openMenu": "打开导航菜单",
+    "startSimulator": "启动模拟器",
+    "home": "返回首页"
+  },
+  "buttons": {
+    "back": "返回",
+    "next": "下一步",
+    "viewSimulation": "查看模拟",
+    "clearFilters": "清除筛选",
+    "deselectAll": "取消全选",
+    "support": "支持",
+    "supportDonate": "支持与捐赠",
+    "experienceSimulation": "体验模拟",
+    "close": "关闭",
+    "submit": "提交",
+    "reset": "重置"
+  },
+  "home": {
+    "title": "了解",
+    "titleHighlight": "视觉障碍",
+    "subtitle": "体验视觉障碍，培养同理心和理解",
+    "card1Title": "实时模拟视觉障碍",
+    "card1Description": "创建您独特的可视化效果",
+    "card1Button": "启动视觉障碍模拟器",
+    "card2Title": "体验著名盲人和视障人士的视觉世界",
+    "card2Button": "探索名人"
+  },
+  "simulator": {
+    "title": "视觉障碍模拟器",
+    "step1": "选择输入源",
+    "step2": "选择视觉障碍",
+    "step3": "查看模拟",
+    "selectConditions": "选择视觉障碍",
+    "visionPreview": "视觉预览",
+    "combinedPreview": "组合预览（{{count}}种障碍）",
+    "selectToStart": "选择障碍以继续",
+    "viewSimulationCount": "查看模拟（{{count}}种障碍）",
+    "viewSimulationCountPlural": "查看模拟（{{count}}种障碍）",
+    "simulating": "正在模拟：{{name}}",
+    "condition": "障碍：{{condition}}",
+    "screenReaderStep1": "第1步：选择输入源 - 网络摄像头、图片或YouTube视频",
+    "screenReaderStep2": "第2步：选择要模拟的视觉障碍",
+    "screenReaderStep3": "第3步：查看您的视觉模拟",
+    "goBack": "返回选择障碍"
+  },
+  "inputSelector": {
+    "title": "选择您的输入源",
+    "demoVideo": "使用演示视频",
+    "demoVideoDesc": "预录视频用于探索障碍",
+    "uploadImage": "上传图片",
+    "uploadImageDesc": "从您的设备上传",
+    "webcam": "使用网络摄像头",
+    "webcamDesc": "实时摄像头画面",
+    "selected": "已选择",
+    "recommended": "（推荐）"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "搜索障碍...",
+    "mostCommon": "最常见",
+    "redGreen": "红绿色盲",
+    "fieldLoss": "视野缺损",
+    "ageRelated": "年龄相关",
+    "intensity": "强度",
+    "separation": "分离",
+    "direction": "方向"
+  },
+  "categories": {
+    "visualFieldLoss": "视野缺损",
+    "colorVision": "色觉",
+    "eyeConditions": "眼部疾病",
+    "refractiveErrors": "屈光不正",
+    "retinalDisorders": "视网膜疾病",
+    "visualDisturbances": "视觉障碍",
+    "doubleVision": "复视"
+  },
+  "famousPeople": {
+    "title": "著名盲人和视障人士",
+    "subtitle": "探索历史上著名人物如何经历视觉障碍",
+    "searchPlaceholder": "按姓名、障碍或职业搜索...",
+    "allCategories": "所有类别",
+    "filterByCategory": "按类别筛选",
+    "noResults": "未找到结果",
+    "noResultsDesc": "尝试调整您的搜索或筛选条件",
+    "showingResults": "显示{{total}}人中的{{count}}人",
+    "categories": {
+      "contemporaryFigures": "当代人物",
+      "athletes": "运动员",
+      "musicians": "音乐家",
+      "artists": "艺术家",
+      "writersActivists": "作家和活动家",
+      "historicalFigures": "历史人物",
+      "scientists": "科学家",
+      "fictionalCharacters": "虚构人物"
+    }
+  },
+  "conditions": {
+    "title": "视觉障碍术语表",
+    "subtitle": "了解不同类型的视觉障碍和眼部疾病",
+    "searchPlaceholder": "搜索障碍...",
+    "viewAll": "查看全部",
+    "colorBlindness": "色盲",
+    "fieldLoss": "视野缺损",
+    "ageRelated": "年龄相关",
+    "genetic": "遗传性"
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "关于视觉障碍和此模拟器的常见问题"
+  },
+  "about": {
+    "title": "关于VisionSim",
+    "subtitle": "了解我们的使命和方法",
+    "mission": "我们的使命",
+    "missionText": "VisionSim通过基于研究的精确模拟，帮助人们理解各种视觉障碍的生活体验。",
+    "howItWorks": "工作原理",
+    "disclaimer": "医学免责声明",
+    "disclaimerText": "这些模拟仅供教育目的，可能无法完美代表个人实际体验其障碍的方式。"
+  },
+  "feedback": {
+    "title": "分享您的反馈",
+    "subtitle": "帮助我们改进VisionSim",
+    "nameLabel": "您的姓名",
+    "namePlaceholder": "输入您的姓名",
+    "emailLabel": "电子邮箱",
+    "emailPlaceholder": "输入您的邮箱",
+    "messageLabel": "您的反馈",
+    "messagePlaceholder": "告诉我们您的想法...",
+    "submitButton": "提交反馈",
+    "successMessage": "感谢您的反馈！",
+    "errorMessage": "出现问题，请重试。"
+  },
+  "resources": {
+    "title": "视觉资源",
+    "subtitle": "关于视觉障碍的有用链接和信息",
+    "organizations": "组织机构",
+    "research": "研究",
+    "support": "支持团体"
+  },
+  "accessibility": {
+    "menu": "无障碍设置",
+    "highContrast": "高对比度",
+    "highContrastDesc": "增加颜色对比度以提高可见性",
+    "largeText": "大字体",
+    "largeTextDesc": "增加整个网站的文字大小",
+    "increasedSpacing": "增加间距",
+    "increasedSpacingDesc": "在元素之间添加更多空间",
+    "enhancedFocus": "增强焦点",
+    "enhancedFocusDesc": "使焦点指示器更加明显",
+    "reducedMotion": "减少动画",
+    "reducedMotionDesc": "最小化动画和过渡效果",
+    "resetAll": "全部重置",
+    "skipToContent": "跳转到主要内容"
+  },
+  "language": {
+    "select": "选择语言",
+    "current": "语言"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "反馈",
+    "resources": "资源"
+  },
+  "visualizer": {
+    "comparison": "对比",
+    "original": "原始",
+    "simulated": "模拟",
+    "toggleComparison": "切换对比视图",
+    "screenshot": "截图",
+    "takeScreenshot": "截取屏幕",
+    "fullscreen": "全屏",
+    "exitFullscreen": "退出全屏"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "retry": "重试",
+    "learnMore": "了解更多",
+    "seeMore": "查看更多",
+    "seeLess": "收起",
+    "yes": "是",
+    "no": "否",
+    "ok": "确定",
+    "cancel": "取消"
+  }
+}

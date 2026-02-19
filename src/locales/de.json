@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "Über uns",
+    "simulator": "Sicht-Simulator",
+    "famousPeople": "Berühmte Blinde Menschen",
+    "glossary": "Glossar & FAQ",
+    "resources": "Ressourcen",
+    "navigation": "Navigation",
+    "viewOnGithub": "Auf GitHub ansehen",
+    "openMenu": "Navigationsmenü öffnen",
+    "startSimulator": "Simulator starten",
+    "home": "Zur Startseite"
+  },
+  "buttons": {
+    "back": "ZURÜCK",
+    "next": "Weiter",
+    "viewSimulation": "Simulation ansehen",
+    "clearFilters": "Filter löschen",
+    "deselectAll": "Alle abwählen",
+    "support": "Unterstützen",
+    "supportDonate": "Unterstützen & Spenden",
+    "experienceSimulation": "Simulation erleben",
+    "close": "Schließen",
+    "submit": "Absenden",
+    "reset": "Zurücksetzen"
+  },
+  "home": {
+    "title": "Verständnis von",
+    "titleHighlight": "Sehbeeinträchtigungen",
+    "subtitle": "Erleben Sie Sehbeeinträchtigungen, um Empathie und Verständnis aufzubauen",
+    "card1Title": "Simulieren Sie Sehbeeinträchtigungen in Echtzeit",
+    "card1Description": "Erstellen Sie Ihre eigene Visualisierung",
+    "card1Button": "Sehbeeinträchtigung-Simulator starten",
+    "card2Title": "Erleben Sie die Sicht berühmter blinder und sehbehinderter Menschen",
+    "card2Button": "Berühmte Menschen erkunden"
+  },
+  "simulator": {
+    "title": "Sehbeeinträchtigung-Simulator",
+    "step1": "Eingabequelle wählen",
+    "step2": "Sehbeeinträchtigungen auswählen",
+    "step3": "Simulation ansehen",
+    "selectConditions": "Sehbeeinträchtigungen auswählen",
+    "visionPreview": "Sicht-Vorschau",
+    "combinedPreview": "Kombinierte Vorschau ({{count}} Beeinträchtigungen)",
+    "selectToStart": "Wählen Sie Beeinträchtigungen zum Fortfahren",
+    "viewSimulationCount": "Simulation ansehen ({{count}} Beeinträchtigung)",
+    "viewSimulationCountPlural": "Simulation ansehen ({{count}} Beeinträchtigungen)",
+    "simulating": "Simuliere: {{name}}",
+    "condition": "Beeinträchtigung: {{condition}}",
+    "screenReaderStep1": "Schritt 1: Wählen Sie Ihre Eingabequelle - Webcam, Bild oder YouTube-Video",
+    "screenReaderStep2": "Schritt 2: Wählen Sie die zu simulierenden Sehbeeinträchtigungen",
+    "screenReaderStep3": "Schritt 3: Sehen Sie Ihre Sicht-Simulation",
+    "goBack": "Zurück zur Beeinträchtigungs-Auswahl"
+  },
+  "inputSelector": {
+    "title": "Wählen Sie Ihre Eingabequelle",
+    "demoVideo": "Demo-Video verwenden",
+    "demoVideoDesc": "Aufgezeichnetes Video zum Erkunden von Beeinträchtigungen",
+    "uploadImage": "Bild hochladen",
+    "uploadImageDesc": "Von Ihrem Gerät hochladen",
+    "webcam": "Webcam verwenden",
+    "webcamDesc": "Echtzeit-Kamerabild",
+    "selected": "Ausgewählt",
+    "recommended": "(Empfohlen)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Beeinträchtigungen suchen...",
+    "mostCommon": "Häufigste",
+    "redGreen": "Rot-Grün",
+    "fieldLoss": "Gesichtsfeldverlust",
+    "ageRelated": "Altersbedingt",
+    "intensity": "Intensität",
+    "separation": "Trennung",
+    "direction": "Richtung"
+  },
+  "categories": {
+    "visualFieldLoss": "Gesichtsfeldverlust",
+    "colorVision": "Farbsehen",
+    "eyeConditions": "Augenerkrankungen",
+    "refractiveErrors": "Brechungsfehler",
+    "retinalDisorders": "Netzhauterkrankungen",
+    "visualDisturbances": "Sehstörungen",
+    "doubleVision": "Doppeltsehen"
+  },
+  "famousPeople": {
+    "title": "Berühmte Blinde und Sehbehinderte Menschen",
+    "subtitle": "Erfahren Sie, wie berühmte Persönlichkeiten der Geschichte Sehbeeinträchtigungen erlebt haben",
+    "searchPlaceholder": "Nach Name, Beeinträchtigung oder Beruf suchen...",
+    "allCategories": "Alle Kategorien",
+    "filterByCategory": "Nach Kategorie filtern",
+    "noResults": "Keine Ergebnisse gefunden",
+    "noResultsDesc": "Versuchen Sie, Ihre Suche oder Filter anzupassen",
+    "showingResults": "Zeige {{count}} von {{total}} Personen",
+    "categories": {
+      "contemporaryFigures": "Zeitgenössische Persönlichkeiten",
+      "athletes": "Sportler",
+      "musicians": "Musiker",
+      "artists": "Künstler",
+      "writersActivists": "Schriftsteller & Aktivisten",
+      "historicalFigures": "Historische Persönlichkeiten",
+      "scientists": "Wissenschaftler",
+      "fictionalCharacters": "Fiktive Charaktere"
+    }
+  },
+  "conditions": {
+    "title": "Glossar der Sehbeeinträchtigungen",
+    "subtitle": "Erfahren Sie mehr über verschiedene Arten von Sehbeeinträchtigungen und Augenerkrankungen",
+    "searchPlaceholder": "Beeinträchtigungen suchen...",
+    "viewAll": "Alle anzeigen",
+    "colorBlindness": "Farbenblindheit",
+    "fieldLoss": "Gesichtsfeldverlust",
+    "ageRelated": "Altersbedingt",
+    "genetic": "Genetisch"
+  },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "subtitle": "Häufige Fragen zu Sehbeeinträchtigungen und diesem Simulator"
+  },
+  "about": {
+    "title": "Über VisionSim",
+    "subtitle": "Unsere Mission und Herangehensweise verstehen",
+    "mission": "Unsere Mission",
+    "missionText": "VisionSim hilft Menschen zu verstehen, wie es ist, mit verschiedenen Sehbeeinträchtigungen zu leben, durch genaue, forschungsbasierte Simulationen.",
+    "howItWorks": "Wie es funktioniert",
+    "disclaimer": "Medizinischer Hinweis",
+    "disclaimerText": "Diese Simulationen dienen nur zu Bildungszwecken und stellen möglicherweise nicht perfekt dar, wie Betroffene ihre Beeinträchtigungen erleben."
+  },
+  "feedback": {
+    "title": "Teilen Sie Ihr Feedback",
+    "subtitle": "Helfen Sie uns, VisionSim zu verbessern",
+    "nameLabel": "Ihr Name",
+    "namePlaceholder": "Geben Sie Ihren Namen ein",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
+    "messageLabel": "Ihr Feedback",
+    "messagePlaceholder": "Sagen Sie uns Ihre Meinung...",
+    "submitButton": "Feedback absenden",
+    "successMessage": "Vielen Dank für Ihr Feedback!",
+    "errorMessage": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+  "resources": {
+    "title": "Sicht-Ressourcen",
+    "subtitle": "Hilfreiche Links und Informationen zu Sehbeeinträchtigungen",
+    "organizations": "Organisationen",
+    "research": "Forschung",
+    "support": "Selbsthilfegruppen"
+  },
+  "accessibility": {
+    "menu": "Barrierefreiheits-Einstellungen",
+    "highContrast": "Hoher Kontrast",
+    "highContrastDesc": "Farbkontrast für bessere Sichtbarkeit erhöhen",
+    "largeText": "Großer Text",
+    "largeTextDesc": "Textgröße auf der gesamten Seite erhöhen",
+    "increasedSpacing": "Erhöhter Abstand",
+    "increasedSpacingDesc": "Mehr Abstand zwischen Elementen hinzufügen",
+    "enhancedFocus": "Verbesserter Fokus",
+    "enhancedFocusDesc": "Fokus-Indikatoren sichtbarer machen",
+    "reducedMotion": "Reduzierte Bewegung",
+    "reducedMotionDesc": "Animationen und Übergänge minimieren",
+    "resetAll": "Alles zurücksetzen",
+    "skipToContent": "Zum Hauptinhalt springen"
+  },
+  "language": {
+    "select": "Sprache auswählen",
+    "current": "Sprache"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Feedback",
+    "resources": "Ressourcen"
+  },
+  "visualizer": {
+    "comparison": "Vergleich",
+    "original": "Original",
+    "simulated": "Simuliert",
+    "toggleComparison": "Vergleichsansicht umschalten",
+    "screenshot": "Screenshot",
+    "takeScreenshot": "Screenshot aufnehmen",
+    "fullscreen": "Vollbild",
+    "exitFullscreen": "Vollbild beenden"
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "retry": "Erneut versuchen",
+    "learnMore": "Mehr erfahren",
+    "seeMore": "Mehr anzeigen",
+    "seeLess": "Weniger anzeigen",
+    "yes": "Ja",
+    "no": "Nein",
+    "ok": "OK",
+    "cancel": "Abbrechen"
+  }
+}

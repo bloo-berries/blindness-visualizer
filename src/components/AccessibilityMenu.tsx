@@ -26,6 +26,7 @@ import {
   Visibility as FocusIcon,
   Speed as MotionIcon
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AccessibilityMenu: React.FC = () => {
@@ -34,6 +35,7 @@ const AccessibilityMenu: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { preferences, toggleHighContrast, toggleLargeText, toggleIncreasedSpacing, toggleEnhancedFocus, toggleReducedMotion } = useAccessibility();
+  const { t } = useTranslation();
 
   // Count active accessibility features
   const activeFeaturesCount = Object.values(preferences).filter(Boolean).length;
@@ -91,8 +93,8 @@ const AccessibilityMenu: React.FC = () => {
   const menuItems = [
     {
       id: 'high-contrast',
-      label: 'High Contrast Mode',
-      description: 'White text on black background for better visibility',
+      label: t('accessibility.highContrast'),
+      description: t('accessibility.highContrastDesc'),
       icon: <ContrastIcon />,
       checked: preferences.highContrast,
       toggle: toggleHighContrast,
@@ -100,8 +102,8 @@ const AccessibilityMenu: React.FC = () => {
     },
     {
       id: 'large-text',
-      label: 'Large Text Mode',
-      description: 'Increases all font sizes by 25%',
+      label: t('accessibility.largeText'),
+      description: t('accessibility.largeTextDesc'),
       icon: <TextFieldsIcon />,
       checked: preferences.largeText,
       toggle: toggleLargeText,
@@ -109,8 +111,8 @@ const AccessibilityMenu: React.FC = () => {
     },
     {
       id: 'increased-spacing',
-      label: 'Increased Spacing',
-      description: 'More line height and letter spacing for readability',
+      label: t('accessibility.increasedSpacing'),
+      description: t('accessibility.increasedSpacingDesc'),
       icon: <SpacingIcon />,
       checked: preferences.increasedSpacing,
       toggle: toggleIncreasedSpacing,
@@ -118,8 +120,8 @@ const AccessibilityMenu: React.FC = () => {
     },
     {
       id: 'enhanced-focus',
-      label: 'Enhanced Focus Indicators',
-      description: 'Clear blue outlines for keyboard navigation',
+      label: t('accessibility.enhancedFocus'),
+      description: t('accessibility.enhancedFocusDesc'),
       icon: <FocusIcon />,
       checked: preferences.enhancedFocus,
       toggle: toggleEnhancedFocus,
@@ -127,8 +129,8 @@ const AccessibilityMenu: React.FC = () => {
     },
     {
       id: 'reduced-motion',
-      label: 'Reduced Motion',
-      description: 'Reduces animations and transitions',
+      label: t('accessibility.reducedMotion'),
+      description: t('accessibility.reducedMotionDesc'),
       icon: <MotionIcon />,
       checked: preferences.reducedMotion,
       toggle: toggleReducedMotion,
@@ -138,7 +140,7 @@ const AccessibilityMenu: React.FC = () => {
 
   return (
     <>
-      <Tooltip title="Accessibility Settings">
+      <Tooltip title={t('accessibility.menu')}>
         <IconButton
           onClick={handleClick}
           aria-label={`Open accessibility settings${activeFeaturesCount > 0 ? ` (${activeFeaturesCount} active)` : ''}`}
@@ -212,10 +214,10 @@ const AccessibilityMenu: React.FC = () => {
         >
           <Box sx={{ p: 2, pb: 1 }}>
             <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
-              Accessibility Settings
+              {t('accessibility.menu')}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Customize your viewing experience to meet WCAG 2.1 AA standards
+              WCAG 2.1 AA
             </Typography>
           </Box>
           
@@ -336,10 +338,10 @@ const AccessibilityMenu: React.FC = () => {
             {/* Header */}
             <Box sx={{ px: 3, pb: 2 }}>
               <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
-                Accessibility Settings
+                {t('accessibility.menu')}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Customize your viewing experience to meet WCAG 2.1 AA standards
+                WCAG 2.1 AA
               </Typography>
             </Box>
             

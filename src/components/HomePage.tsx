@@ -1,18 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, 
-  Typography, 
-  Box, 
-  Button, 
-  Grid, 
-  Card, 
+import { useTranslation } from 'react-i18next';
+import {
+  Container,
+  Typography,
+  Box,
+  Button,
+  Grid,
+  Card,
   CardContent,
   CardActions
 } from '@mui/material';
-import { 
-  Visibility as VisibilityIcon, 
-  People as PeopleIcon 
+import {
+  Visibility as VisibilityIcon,
+  People as PeopleIcon
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -22,6 +23,7 @@ import { getPersonImagePath } from '../utils/imagePaths';
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { preferences } = useAccessibility();
+  const { t } = useTranslation();
 
   const handleStartSimulator = () => {
     navigate('/simulator');
@@ -59,22 +61,22 @@ const HomePage: React.FC = () => {
               }}
             >
               <Box component="span" sx={{ color: 'primary.main' }}>
-                Understanding
+                {t('home.title')}
               </Box>
-              {' '}Vision Conditions
+              {' '}{t('home.titleHighlight')}
             </Typography>
-            <Typography 
-              variant="h6" 
-              color="text.primary" 
-              sx={{ 
-                maxWidth: '600px', 
+            <Typography
+              variant="h6"
+              color="text.primary"
+              sx={{
+                maxWidth: '600px',
                 mx: 'auto',
                 fontWeight: 600,
                 lineHeight: 1.5,
                 mb: 1.5
               }}
             >
-              Experience visual impairments to build empathy and understanding
+              {t('home.subtitle')}
             </Typography>
 
           </Box>
@@ -117,19 +119,19 @@ const HomePage: React.FC = () => {
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}
                       >
-                        Recreate Vision Conditions in Real-time
+                        {t('home.card1Title')}
                       </Typography>
-                      <Typography 
-                        variant="body2" 
+                      <Typography
+                        variant="body2"
                         color={preferences.highContrast ? undefined : "text.primary"}
                         className="homepage-card-description homepage-card-description-left"
-                        sx={{ 
-                          mb: 2, 
+                        sx={{
+                          mb: 2,
                           lineHeight: 1.5,
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}
                       >
-                        Create your unique visualization
+                        {t('home.card1Description')}
                       </Typography>
                       <Box sx={{ mb: 2, mt: 5.5, width: '100%' }}>
                         <img 
@@ -161,7 +163,7 @@ const HomePage: React.FC = () => {
                       fontWeight: 600
                     }}
                   >
-                    Start Vision Condition Simulator
+                    {t('home.card1Button')}
                   </Button>
                 </CardActions>
               </Card>
@@ -203,7 +205,7 @@ const HomePage: React.FC = () => {
                           ...(preferences.highContrast && { color: '#000000 !important' })
                         }}
                       >
-                        Experience Sight of Famous Blind and Visually Impaired People
+                        {t('home.card2Title')}
                       </Typography>
                     </Box>
                     
@@ -400,7 +402,7 @@ const HomePage: React.FC = () => {
                       fontWeight: 600
                     }}
                   >
-                    Explore Famous People
+                    {t('home.card2Button')}
                   </Button>
                 </CardActions>
               </Card>

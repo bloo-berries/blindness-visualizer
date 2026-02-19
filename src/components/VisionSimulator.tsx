@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Paper,
@@ -19,11 +20,10 @@ import Footer from './Footer';
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
 
-const steps = ['Choose Input Source', 'Select Vision Conditions', 'View Simulation'];
-
 const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [inputSource, setInputSource] = useState<InputSource>({
     type: 'youtube',
@@ -155,6 +155,7 @@ const VisionSimulator: React.FC = () => {
               onDiplopiaSeparationChange={setDiplopiaSeparation}
               onDiplopiaDirectionChange={setDiplopiaDirection}
               onViewSimulation={handleNext}
+              inputSource={inputSource}
             />
           </Box>
         );
@@ -181,14 +182,14 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'ArrowRight' && activeStep < steps.length - 1) {
+    if (event.key === 'ArrowRight' && activeStep < 2) {
       handleNext();
     } else if (event.key === 'ArrowLeft' && activeStep > 0) {
       handleBack();
     } else if (event.key === 'Home') {
       setActiveStep(0);
     } else if (event.key === 'End') {
-      setActiveStep(steps.length - 1);
+      setActiveStep(2);
     }
   };
 
@@ -228,9 +229,9 @@ const VisionSimulator: React.FC = () => {
           overflow: 'hidden'
         }}
       >
-        {activeStep === 0 && "Step 1: Choose your input source - webcam, image upload, or YouTube video"}
-        {activeStep === 1 && "Step 2: Select vision conditions to simulate"}
-        {activeStep === 2 && "Step 3: View your vision simulation"}
+        {activeStep === 0 && t('simulator.screenReaderStep1')}
+        {activeStep === 1 && t('simulator.screenReaderStep2')}
+        {activeStep === 2 && t('simulator.screenReaderStep3')}
       </Box>
       <a 
         href="#main-content" 
@@ -272,24 +273,24 @@ const VisionSimulator: React.FC = () => {
               mt: 0
             }}
           >
-            Vision Condition Simulator
+            {t('simulator.title')}
           </Typography>
           {preconfiguredPerson && (
-            <Box 
-              sx={{ 
-                mb: 2, 
-                p: 2, 
-                backgroundColor: 'primary.light', 
+            <Box
+              sx={{
+                mb: 2,
+                p: 2,
+                backgroundColor: 'primary.light',
                 borderRadius: 2,
                 border: '1px solid',
                 borderColor: 'primary.main'
               }}
             >
               <Typography variant="h6" gutterBottom sx={{ color: 'white', fontWeight: 600 }}>
-                Simulating: {preconfiguredPerson.name}
+                {t('simulator.simulating', { name: preconfiguredPerson.name })}
               </Typography>
               <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
-                Condition: {preconfiguredPerson.condition}
+                {t('simulator.condition', { condition: preconfiguredPerson.condition })}
               </Typography>
               {/* Hidden technical details for cleaner UI */}
               {/* <Typography variant="body2" sx={{ color: 'white' }}>
@@ -299,9 +300,9 @@ const VisionSimulator: React.FC = () => {
           )}
 
 
-          <Stepper 
-            activeStep={activeStep} 
-            sx={{ 
+          <Stepper
+            activeStep={activeStep}
+            sx={{
               my: 1,
               '& .MuiStepLabel-root .Mui-completed': {
                 color: 'primary.main',
@@ -322,16 +323,17 @@ const VisionSimulator: React.FC = () => {
                 fontWeight: 600,
               }
             }}
-            aria-label={`Step ${activeStep + 1} of ${steps.length}: ${steps[activeStep]}`}
+            aria-label={`Step ${activeStep + 1} of 3`}
           >
-            {steps.map((label, index) => (
-              <Step 
-                key={label}
-                aria-current={activeStep === index ? "step" : undefined}
-              >
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
+            <Step aria-current={activeStep === 0 ? "step" : undefined}>
+              <StepLabel>{t('simulator.step1')}</StepLabel>
+            </Step>
+            <Step aria-current={activeStep === 1 ? "step" : undefined}>
+              <StepLabel>{t('simulator.step2')}</StepLabel>
+            </Step>
+            <Step aria-current={activeStep === 2 ? "step" : undefined}>
+              <StepLabel>{t('simulator.step3')}</StepLabel>
+            </Step>
           </Stepper>
 
           {getStepContent(activeStep)}
@@ -358,11 +360,11 @@ const VisionSimulator: React.FC = () => {
               >
                 <Button
                   onClick={handleBack}
-                  aria-label="Go back to select conditions"
+                  aria-label={t('simulator.goBack')}
                   variant="outlined"
                   size="large"
                 >
-                  BACK
+                  {t('buttons.back')}
                 </Button>
               </Box>
             </Box>

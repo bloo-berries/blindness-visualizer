@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Button, 
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
   Container,
   IconButton,
   Tooltip,
@@ -19,11 +19,12 @@ import {
   Divider
 } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import HomeIcon from '@mui/icons-material/Home';
+import { useTranslation } from 'react-i18next';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AccessibilityMenu from './AccessibilityMenu';
+import LanguageSelector from './LanguageSelector';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 interface NavigationBarProps {
@@ -31,9 +32,9 @@ interface NavigationBarProps {
   onHomeClick?: () => void;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ 
+const NavigationBar: React.FC<NavigationBarProps> = ({
   showHomeButton = true,
-  onHomeClick 
+  onHomeClick
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -41,6 +42,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { preferences } = useAccessibility();
+  const { t } = useTranslation();
 
   const handleHomeClick = () => {
     if (onHomeClick) {
@@ -50,12 +52,15 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     }
   };
 
+  const handleStartSimulator = () => {
+    navigate('/simulator');
+  };
+
   const navItems = [
-    { label: 'About', path: '/about' },
-    { label: 'Vision Simulator', path: '/simulator' },
-    { label: 'Famous Blind People', path: '/famous-people' },
-    { label: 'Glossary & FAQ', path: '/conditions' },
-    { label: 'Resources', path: '/resources' }
+    { label: t('nav.about'), path: '/about' },
+    { label: t('nav.simulator'), path: '/simulator' },
+    { label: t('nav.famousPeople'), path: '/famous-people' },
+    { label: t('nav.glossary'), path: '/conditions' }
   ];
 
   const handleMobileMenuToggle = () => {
@@ -94,7 +99,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             }
           }}
         >
-          Skip to main content
+          {t('accessibility.skipToContent')}
         </Box>
       )}
       <AppBar 
@@ -151,7 +156,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               onClick={handleHomeClick}
               role="button"
               tabIndex={0}
-              aria-label="Navigate to home page"
+              aria-label={t('nav.home')}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -232,7 +237,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="open navigation menu"
+              aria-label={t('nav.openMenu')}
               onClick={handleMobileMenuToggle}
               sx={{
                 ml: 1,
@@ -246,12 +251,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             </IconButton>
           )}
 
-          {/* Home Button */}
+          {/* Start Simulator Button */}
           {showHomeButton && (
-            <Tooltip title="Start Simulator">
+            <Tooltip title={t('nav.startSimulator')}>
               <IconButton
-                onClick={handleHomeClick}
-                aria-label="Start vision simulator"
+                onClick={handleStartSimulator}
+                aria-label={t('nav.startSimulator')}
                 size="large"
                 sx={{
                   ml: 2,
@@ -265,10 +270,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                 }}
               >
-                <HomeIcon fontSize="medium" />
+                <VisibilityIcon fontSize="medium" />
               </IconButton>
             </Tooltip>
           )}
+
+          {/* Language Selector */}
+          <LanguageSelector />
 
           {/* Accessibility Menu */}
           <AccessibilityMenu />
@@ -314,7 +322,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 fontSize: '1.25rem',
               }}
             >
-              Navigation
+              {t('nav.navigation')}
             </Typography>
           </Box>
           <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
@@ -370,7 +378,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <GitHubIcon />
               </ListItemIcon>
               <ListItemText
-                primary="View on GitHub"
+                primary={t('nav.viewOnGithub')}
                 primaryTypographyProps={{
                   color: 'white',
                   fontSize: '1rem',

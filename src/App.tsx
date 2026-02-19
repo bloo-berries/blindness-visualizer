@@ -1,9 +1,11 @@
-import React from 'react';
-import { 
-  ThemeProvider, 
-  createTheme, 
+import React, { Suspense } from 'react';
+import {
+  ThemeProvider,
+  createTheme,
   CssBaseline,
-  responsiveFontSizes
+  responsiveFontSizes,
+  CircularProgress,
+  Box
 } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
@@ -16,6 +18,7 @@ import FeedbackPage from './components/FeedbackPage';
 import ResourcesPage from './components/ResourcesPage';
 import { AccessibilityProvider } from './contexts/AccessibilityContext';
 import ErrorBoundary from './components/ErrorBoundary';
+import './i18n'; // Initialize i18n
 import './styles/App.css';
 
 let theme = createTheme({
@@ -145,6 +148,7 @@ let theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
+          borderRadius: 0,
           borderTop: 'none !important',
           boxShadow: 'none',
           top: 0,
@@ -193,24 +197,40 @@ const App: React.FC = () => {
       <AccessibilityProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Router
-            basename={getBasename()}
-            future={{
-              v7_startTransition: true,
-              v7_relativeSplatPath: true
-            }}
+          <Suspense
+            fallback={
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: '100vh',
+                  bgcolor: 'background.default'
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            }
           >
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/simulator" element={<VisionSimulator />} />
-              <Route path="/famous-people" element={<FamousBlindPeople />} />
-              <Route path="/conditions" element={<ConditionsPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/feedback" element={<FeedbackPage />} />
-              <Route path="/resources" element={<ResourcesPage />} />
-            </Routes>
-          </Router>
+            <Router
+              basename={getBasename()}
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true
+              }}
+            >
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/simulator" element={<VisionSimulator />} />
+                <Route path="/famous-people" element={<FamousBlindPeople />} />
+                <Route path="/conditions" element={<ConditionsPage />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/feedback" element={<FeedbackPage />} />
+                <Route path="/resources" element={<ResourcesPage />} />
+              </Routes>
+            </Router>
+          </Suspense>
         </ThemeProvider>
       </AccessibilityProvider>
     </ErrorBoundary>

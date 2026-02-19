@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "حول",
+    "simulator": "محاكي الرؤية",
+    "famousPeople": "مشاهير المكفوفين",
+    "glossary": "المصطلحات والأسئلة الشائعة",
+    "resources": "الموارد",
+    "navigation": "التنقل",
+    "viewOnGithub": "عرض على GitHub",
+    "openMenu": "فتح قائمة التنقل",
+    "startSimulator": "بدء المحاكي",
+    "home": "الانتقال إلى الصفحة الرئيسية"
+  },
+  "buttons": {
+    "back": "رجوع",
+    "next": "التالي",
+    "viewSimulation": "عرض المحاكاة",
+    "clearFilters": "مسح الفلاتر",
+    "deselectAll": "إلغاء تحديد الكل",
+    "support": "الدعم",
+    "supportDonate": "الدعم والتبرع",
+    "experienceSimulation": "تجربة المحاكاة",
+    "close": "إغلاق",
+    "submit": "إرسال",
+    "reset": "إعادة تعيين"
+  },
+  "home": {
+    "title": "فهم",
+    "titleHighlight": "حالات الرؤية",
+    "subtitle": "اختبر إعاقات الرؤية لبناء التعاطف والفهم",
+    "card1Title": "أعد إنشاء حالات الرؤية في الوقت الفعلي",
+    "card1Description": "أنشئ تصورك الفريد",
+    "card1Button": "بدء محاكي حالات الرؤية",
+    "card2Title": "اختبر رؤية المكفوفين وضعاف البصر المشهورين",
+    "card2Button": "استكشف المشاهير"
+  },
+  "simulator": {
+    "title": "محاكي حالات الرؤية",
+    "step1": "اختر مصدر الإدخال",
+    "step2": "حدد حالات الرؤية",
+    "step3": "عرض المحاكاة",
+    "selectConditions": "حدد حالات الرؤية",
+    "visionPreview": "معاينة الرؤية",
+    "combinedPreview": "معاينة مجمعة ({{count}} حالات)",
+    "selectToStart": "حدد الحالات للمتابعة",
+    "viewSimulationCount": "عرض المحاكاة ({{count}} حالة)",
+    "viewSimulationCountPlural": "عرض المحاكاة ({{count}} حالات)",
+    "simulating": "جارٍ المحاكاة: {{name}}",
+    "condition": "الحالة: {{condition}}",
+    "screenReaderStep1": "الخطوة 1: اختر مصدر الإدخال - كاميرا الويب أو الصورة أو فيديو YouTube",
+    "screenReaderStep2": "الخطوة 2: حدد حالات الرؤية للمحاكاة",
+    "screenReaderStep3": "الخطوة 3: شاهد محاكاة رؤيتك",
+    "goBack": "العودة لاختيار الحالات"
+  },
+  "inputSelector": {
+    "title": "اختر مصدر الإدخال",
+    "demoVideo": "استخدم فيديو توضيحي",
+    "demoVideoDesc": "فيديو مسجل مسبقاً لاستكشاف الحالات",
+    "uploadImage": "رفع صورة",
+    "uploadImageDesc": "الرفع من جهازك",
+    "webcam": "استخدام كاميرا الويب",
+    "webcamDesc": "بث مباشر من الكاميرا",
+    "selected": "محدد",
+    "recommended": "(موصى به)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "البحث عن الحالات...",
+    "mostCommon": "الأكثر شيوعاً",
+    "redGreen": "أحمر-أخضر",
+    "fieldLoss": "فقدان المجال",
+    "ageRelated": "متعلق بالعمر",
+    "intensity": "الشدة",
+    "separation": "الفصل",
+    "direction": "الاتجاه"
+  },
+  "categories": {
+    "visualFieldLoss": "فقدان المجال البصري",
+    "colorVision": "رؤية الألوان",
+    "eyeConditions": "حالات العين",
+    "refractiveErrors": "أخطاء الانكسار",
+    "retinalDisorders": "اضطرابات الشبكية",
+    "visualDisturbances": "الاضطرابات البصرية",
+    "doubleVision": "الرؤية المزدوجة"
+  },
+  "famousPeople": {
+    "title": "المكفوفون وضعاف البصر المشهورون",
+    "subtitle": "اكتشف كيف عاش المشاهير عبر التاريخ مع حالات الرؤية",
+    "searchPlaceholder": "البحث بالاسم أو الحالة أو المهنة...",
+    "allCategories": "جميع الفئات",
+    "filterByCategory": "تصفية حسب الفئة",
+    "noResults": "لم يتم العثور على نتائج",
+    "noResultsDesc": "حاول تعديل البحث أو الفلاتر",
+    "showingResults": "عرض {{count}} من {{total}} شخص",
+    "categories": {
+      "contemporaryFigures": "شخصيات معاصرة",
+      "athletes": "رياضيون",
+      "musicians": "موسيقيون",
+      "artists": "فنانون",
+      "writersActivists": "كتاب وناشطون",
+      "historicalFigures": "شخصيات تاريخية",
+      "scientists": "علماء",
+      "fictionalCharacters": "شخصيات خيالية"
+    }
+  },
+  "conditions": {
+    "title": "مسرد حالات الرؤية",
+    "subtitle": "تعرف على أنواع مختلفة من إعاقات الرؤية وحالات العين",
+    "searchPlaceholder": "البحث عن الحالات...",
+    "viewAll": "عرض الكل",
+    "colorBlindness": "عمى الألوان",
+    "fieldLoss": "فقدان المجال",
+    "ageRelated": "متعلق بالعمر",
+    "genetic": "وراثي"
+  },
+  "faq": {
+    "title": "الأسئلة الشائعة",
+    "subtitle": "أسئلة شائعة حول حالات الرؤية وهذا المحاكي"
+  },
+  "about": {
+    "title": "حول VisionSim",
+    "subtitle": "فهم مهمتنا ونهجنا",
+    "mission": "مهمتنا",
+    "missionText": "يساعد VisionSim الناس على فهم ما يعنيه العيش مع حالات رؤية مختلفة من خلال محاكاة دقيقة قائمة على الأبحاث.",
+    "howItWorks": "كيف يعمل",
+    "disclaimer": "إخلاء المسؤولية الطبية",
+    "disclaimerText": "هذه المحاكاة للأغراض التعليمية فقط وقد لا تمثل بشكل مثالي كيف يختبر الأفراد حالاتهم."
+  },
+  "feedback": {
+    "title": "شارك ملاحظاتك",
+    "subtitle": "ساعدنا في تحسين VisionSim",
+    "nameLabel": "اسمك",
+    "namePlaceholder": "أدخل اسمك",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "messageLabel": "ملاحظاتك",
+    "messagePlaceholder": "أخبرنا برأيك...",
+    "submitButton": "إرسال الملاحظات",
+    "successMessage": "شكراً لملاحظاتك!",
+    "errorMessage": "حدث خطأ. يرجى المحاولة مرة أخرى."
+  },
+  "resources": {
+    "title": "موارد الرؤية",
+    "subtitle": "روابط ومعلومات مفيدة حول حالات الرؤية",
+    "organizations": "المنظمات",
+    "research": "البحث",
+    "support": "مجموعات الدعم"
+  },
+  "accessibility": {
+    "menu": "إعدادات إمكانية الوصول",
+    "highContrast": "تباين عالٍ",
+    "highContrastDesc": "زيادة تباين الألوان لرؤية أفضل",
+    "largeText": "نص كبير",
+    "largeTextDesc": "زيادة حجم النص في جميع أنحاء الموقع",
+    "increasedSpacing": "تباعد متزايد",
+    "increasedSpacingDesc": "إضافة مساحة أكبر بين العناصر",
+    "enhancedFocus": "تركيز محسن",
+    "enhancedFocusDesc": "جعل مؤشرات التركيز أكثر وضوحاً",
+    "reducedMotion": "حركة مخفضة",
+    "reducedMotionDesc": "تقليل الرسوم المتحركة والانتقالات",
+    "resetAll": "إعادة تعيين الكل",
+    "skipToContent": "الانتقال إلى المحتوى الرئيسي"
+  },
+  "language": {
+    "select": "اختر اللغة",
+    "current": "اللغة"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "الملاحظات",
+    "resources": "الموارد"
+  },
+  "visualizer": {
+    "comparison": "المقارنة",
+    "original": "الأصلي",
+    "simulated": "المحاكاة",
+    "toggleComparison": "تبديل عرض المقارنة",
+    "screenshot": "لقطة شاشة",
+    "takeScreenshot": "التقاط لقطة شاشة",
+    "fullscreen": "ملء الشاشة",
+    "exitFullscreen": "الخروج من ملء الشاشة"
+  },
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ",
+    "retry": "إعادة المحاولة",
+    "learnMore": "معرفة المزيد",
+    "seeMore": "عرض المزيد",
+    "seeLess": "عرض أقل",
+    "yes": "نعم",
+    "no": "لا",
+    "ok": "موافق",
+    "cancel": "إلغاء"
+  }
+}

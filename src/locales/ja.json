@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "概要",
+    "simulator": "視覚シミュレーター",
+    "famousPeople": "有名な視覚障害者",
+    "glossary": "用語集とFAQ",
+    "resources": "リソース",
+    "navigation": "ナビゲーション",
+    "viewOnGithub": "GitHubで見る",
+    "openMenu": "ナビゲーションメニューを開く",
+    "startSimulator": "シミュレーターを開始",
+    "home": "ホームページへ移動"
+  },
+  "buttons": {
+    "back": "戻る",
+    "next": "次へ",
+    "viewSimulation": "シミュレーションを見る",
+    "clearFilters": "フィルターをクリア",
+    "deselectAll": "すべて選択解除",
+    "support": "サポート",
+    "supportDonate": "サポート＆寄付",
+    "experienceSimulation": "シミュレーションを体験",
+    "close": "閉じる",
+    "submit": "送信",
+    "reset": "リセット"
+  },
+  "home": {
+    "title": "理解する",
+    "titleHighlight": "視覚障害",
+    "subtitle": "視覚障害を体験して共感と理解を深める",
+    "card1Title": "リアルタイムで視覚障害を再現",
+    "card1Description": "独自の視覚化を作成",
+    "card1Button": "視覚障害シミュレーターを開始",
+    "card2Title": "有名な視覚障害者の視界を体験",
+    "card2Button": "有名人を探索"
+  },
+  "simulator": {
+    "title": "視覚障害シミュレーター",
+    "step1": "入力ソースを選択",
+    "step2": "視覚障害を選択",
+    "step3": "シミュレーションを見る",
+    "selectConditions": "視覚障害を選択",
+    "visionPreview": "視覚プレビュー",
+    "combinedPreview": "複合プレビュー（{{count}}件の障害）",
+    "selectToStart": "続行するには障害を選択してください",
+    "viewSimulationCount": "シミュレーションを見る（{{count}}件の障害）",
+    "viewSimulationCountPlural": "シミュレーションを見る（{{count}}件の障害）",
+    "simulating": "シミュレーション中：{{name}}",
+    "condition": "障害：{{condition}}",
+    "screenReaderStep1": "ステップ1：入力ソースを選択 - ウェブカメラ、画像、またはYouTube動画",
+    "screenReaderStep2": "ステップ2：シミュレートする視覚障害を選択",
+    "screenReaderStep3": "ステップ3：視覚シミュレーションを見る",
+    "goBack": "障害の選択に戻る"
+  },
+  "inputSelector": {
+    "title": "入力ソースを選択",
+    "demoVideo": "デモ動画を使用",
+    "demoVideoDesc": "障害を探索するための録画済み動画",
+    "uploadImage": "画像をアップロード",
+    "uploadImageDesc": "デバイスからアップロード",
+    "webcam": "ウェブカメラを使用",
+    "webcamDesc": "リアルタイムカメラ映像",
+    "selected": "選択済み",
+    "recommended": "（推奨）"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "障害を検索...",
+    "mostCommon": "最も一般的",
+    "redGreen": "赤緑色覚異常",
+    "fieldLoss": "視野欠損",
+    "ageRelated": "加齢関連",
+    "intensity": "強度",
+    "separation": "分離",
+    "direction": "方向"
+  },
+  "categories": {
+    "visualFieldLoss": "視野欠損",
+    "colorVision": "色覚",
+    "eyeConditions": "眼疾患",
+    "refractiveErrors": "屈折異常",
+    "retinalDisorders": "網膜疾患",
+    "visualDisturbances": "視覚障害",
+    "doubleVision": "複視"
+  },
+  "famousPeople": {
+    "title": "有名な視覚障害者",
+    "subtitle": "歴史上の著名人がどのように視覚障害を経験したかを探る",
+    "searchPlaceholder": "名前、障害、職業で検索...",
+    "allCategories": "すべてのカテゴリ",
+    "filterByCategory": "カテゴリで絞り込む",
+    "noResults": "結果が見つかりません",
+    "noResultsDesc": "検索やフィルターを調整してみてください",
+    "showingResults": "{{total}}人中{{count}}人を表示",
+    "categories": {
+      "contemporaryFigures": "現代の人物",
+      "athletes": "アスリート",
+      "musicians": "ミュージシャン",
+      "artists": "アーティスト",
+      "writersActivists": "作家・活動家",
+      "historicalFigures": "歴史上の人物",
+      "scientists": "科学者",
+      "fictionalCharacters": "架空のキャラクター"
+    }
+  },
+  "conditions": {
+    "title": "視覚障害用語集",
+    "subtitle": "さまざまな視覚障害や眼疾患について学ぶ",
+    "searchPlaceholder": "障害を検索...",
+    "viewAll": "すべて表示",
+    "colorBlindness": "色覚異常",
+    "fieldLoss": "視野欠損",
+    "ageRelated": "加齢関連",
+    "genetic": "遺伝性"
+  },
+  "faq": {
+    "title": "よくある質問",
+    "subtitle": "視覚障害とこのシミュレーターに関する一般的な質問"
+  },
+  "about": {
+    "title": "VisionSimについて",
+    "subtitle": "私たちの使命とアプローチを理解する",
+    "mission": "私たちの使命",
+    "missionText": "VisionSimは、研究に基づいた正確なシミュレーションを通じて、さまざまな視覚障害を持つ人々の生活を理解する手助けをします。",
+    "howItWorks": "仕組み",
+    "disclaimer": "医療に関する免責事項",
+    "disclaimerText": "これらのシミュレーションは教育目的のみであり、個人が実際に経験する障害を完全に表現していない場合があります。"
+  },
+  "feedback": {
+    "title": "フィードバックを共有",
+    "subtitle": "VisionSimの改善にご協力ください",
+    "nameLabel": "お名前",
+    "namePlaceholder": "名前を入力",
+    "emailLabel": "メールアドレス",
+    "emailPlaceholder": "メールを入力",
+    "messageLabel": "フィードバック",
+    "messagePlaceholder": "ご意見をお聞かせください...",
+    "submitButton": "フィードバックを送信",
+    "successMessage": "フィードバックありがとうございます！",
+    "errorMessage": "エラーが発生しました。もう一度お試しください。"
+  },
+  "resources": {
+    "title": "視覚リソース",
+    "subtitle": "視覚障害に関する有用なリンクと情報",
+    "organizations": "組織",
+    "research": "研究",
+    "support": "サポートグループ"
+  },
+  "accessibility": {
+    "menu": "アクセシビリティ設定",
+    "highContrast": "高コントラスト",
+    "highContrastDesc": "視認性を高めるためにカラーコントラストを上げる",
+    "largeText": "大きなテキスト",
+    "largeTextDesc": "サイト全体のテキストサイズを大きくする",
+    "increasedSpacing": "間隔を広げる",
+    "increasedSpacingDesc": "要素間のスペースを追加",
+    "enhancedFocus": "強化されたフォーカス",
+    "enhancedFocusDesc": "フォーカスインジケーターをより目立たせる",
+    "reducedMotion": "モーションを減らす",
+    "reducedMotionDesc": "アニメーションとトランジションを最小化",
+    "resetAll": "すべてリセット",
+    "skipToContent": "メインコンテンツへスキップ"
+  },
+  "language": {
+    "select": "言語を選択",
+    "current": "言語"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "フィードバック",
+    "resources": "リソース"
+  },
+  "visualizer": {
+    "comparison": "比較",
+    "original": "オリジナル",
+    "simulated": "シミュレート",
+    "toggleComparison": "比較ビューを切り替え",
+    "screenshot": "スクリーンショット",
+    "takeScreenshot": "スクリーンショットを撮る",
+    "fullscreen": "フルスクリーン",
+    "exitFullscreen": "フルスクリーンを終了"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "retry": "再試行",
+    "learnMore": "詳細を見る",
+    "seeMore": "もっと見る",
+    "seeLess": "閉じる",
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK",
+    "cancel": "キャンセル"
+  }
+}

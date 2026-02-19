@@ -13,6 +13,7 @@ import {
   YouTube,
   Star
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { InputSource } from '../types/visualEffects';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
@@ -24,27 +25,28 @@ interface InputSelectorProps {
 const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceChange }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { preferences } = useAccessibility();
+  const { t } = useTranslation();
 
   const inputOptions = [
     {
       type: 'webcam',
       icon: <Videocam sx={{ fontSize: 36 }} aria-hidden="true" />,
-      title: 'Use Camera',
-      description: 'Use your device camera to see effects in real-time',
+      title: t('inputSelector.webcam'),
+      description: t('inputSelector.webcamDesc'),
       isPremium: true
     },
     {
       type: 'image',
       icon: <Image sx={{ fontSize: 36 }} aria-hidden="true" />,
-      title: 'Upload Image',
-      description: 'Upload an image from your device',
+      title: t('inputSelector.uploadImage'),
+      description: t('inputSelector.uploadImageDesc'),
       isPremium: false
     },
     {
       type: 'youtube',
       icon: <YouTube sx={{ fontSize: 36 }} aria-hidden="true" />,
-      title: 'Demo Video',
-      description: 'Watch our demo video with applied effects',
+      title: t('inputSelector.demoVideo'),
+      description: t('inputSelector.demoVideoDesc'),
       isPremium: false
     }
   ];

@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "소개",
+    "simulator": "시각 시뮬레이터",
+    "famousPeople": "유명한 시각장애인",
+    "glossary": "용어집 및 FAQ",
+    "resources": "자료",
+    "navigation": "탐색",
+    "viewOnGithub": "GitHub에서 보기",
+    "openMenu": "탐색 메뉴 열기",
+    "startSimulator": "시뮬레이터 시작",
+    "home": "홈페이지로 이동"
+  },
+  "buttons": {
+    "back": "뒤로",
+    "next": "다음",
+    "viewSimulation": "시뮬레이션 보기",
+    "clearFilters": "필터 지우기",
+    "deselectAll": "모두 선택 해제",
+    "support": "후원",
+    "supportDonate": "후원 및 기부",
+    "experienceSimulation": "시뮬레이션 체험",
+    "close": "닫기",
+    "submit": "제출",
+    "reset": "초기화"
+  },
+  "home": {
+    "title": "이해하기",
+    "titleHighlight": "시각 장애",
+    "subtitle": "시각 장애를 체험하여 공감과 이해를 구축하세요",
+    "card1Title": "실시간으로 시각 장애 재현",
+    "card1Description": "나만의 시각화 만들기",
+    "card1Button": "시각 장애 시뮬레이터 시작",
+    "card2Title": "유명한 시각장애인의 시각 체험",
+    "card2Button": "유명인 탐색"
+  },
+  "simulator": {
+    "title": "시각 장애 시뮬레이터",
+    "step1": "입력 소스 선택",
+    "step2": "시각 장애 선택",
+    "step3": "시뮬레이션 보기",
+    "selectConditions": "시각 장애 선택",
+    "visionPreview": "시각 미리보기",
+    "combinedPreview": "복합 미리보기 ({{count}}개 장애)",
+    "selectToStart": "계속하려면 장애를 선택하세요",
+    "viewSimulationCount": "시뮬레이션 보기 ({{count}}개 장애)",
+    "viewSimulationCountPlural": "시뮬레이션 보기 ({{count}}개 장애)",
+    "simulating": "시뮬레이션 중: {{name}}",
+    "condition": "장애: {{condition}}",
+    "screenReaderStep1": "1단계: 입력 소스 선택 - 웹캠, 이미지 또는 YouTube 동영상",
+    "screenReaderStep2": "2단계: 시뮬레이션할 시각 장애 선택",
+    "screenReaderStep3": "3단계: 시각 시뮬레이션 보기",
+    "goBack": "장애 선택으로 돌아가기"
+  },
+  "inputSelector": {
+    "title": "입력 소스 선택",
+    "demoVideo": "데모 비디오 사용",
+    "demoVideoDesc": "장애를 탐색하기 위한 녹화된 비디오",
+    "uploadImage": "이미지 업로드",
+    "uploadImageDesc": "기기에서 업로드",
+    "webcam": "웹캠 사용",
+    "webcamDesc": "실시간 카메라 피드",
+    "selected": "선택됨",
+    "recommended": "(권장)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "장애 검색...",
+    "mostCommon": "가장 일반적",
+    "redGreen": "적녹색맹",
+    "fieldLoss": "시야 손실",
+    "ageRelated": "연령 관련",
+    "intensity": "강도",
+    "separation": "분리",
+    "direction": "방향"
+  },
+  "categories": {
+    "visualFieldLoss": "시야 손실",
+    "colorVision": "색각",
+    "eyeConditions": "안과 질환",
+    "refractiveErrors": "굴절 이상",
+    "retinalDisorders": "망막 질환",
+    "visualDisturbances": "시각 장애",
+    "doubleVision": "복시"
+  },
+  "famousPeople": {
+    "title": "유명한 시각장애인",
+    "subtitle": "역사 속 저명인물들이 어떻게 시각 장애를 경험했는지 알아보세요",
+    "searchPlaceholder": "이름, 장애 또는 직업으로 검색...",
+    "allCategories": "모든 카테고리",
+    "filterByCategory": "카테고리별 필터",
+    "noResults": "결과를 찾을 수 없습니다",
+    "noResultsDesc": "검색어나 필터를 조정해 보세요",
+    "showingResults": "{{total}}명 중 {{count}}명 표시",
+    "categories": {
+      "contemporaryFigures": "현대 인물",
+      "athletes": "운동선수",
+      "musicians": "음악가",
+      "artists": "예술가",
+      "writersActivists": "작가 및 활동가",
+      "historicalFigures": "역사적 인물",
+      "scientists": "과학자",
+      "fictionalCharacters": "가상의 캐릭터"
+    }
+  },
+  "conditions": {
+    "title": "시각 장애 용어집",
+    "subtitle": "다양한 유형의 시각 장애 및 안과 질환에 대해 알아보세요",
+    "searchPlaceholder": "장애 검색...",
+    "viewAll": "모두 보기",
+    "colorBlindness": "색맹",
+    "fieldLoss": "시야 손실",
+    "ageRelated": "연령 관련",
+    "genetic": "유전성"
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "subtitle": "시각 장애와 이 시뮬레이터에 관한 일반적인 질문"
+  },
+  "about": {
+    "title": "VisionSim 소개",
+    "subtitle": "우리의 사명과 접근 방식 이해하기",
+    "mission": "우리의 사명",
+    "missionText": "VisionSim은 연구 기반의 정확한 시뮬레이션을 통해 다양한 시각 장애를 가진 사람들의 삶을 이해하도록 돕습니다.",
+    "howItWorks": "작동 방식",
+    "disclaimer": "의료 면책 조항",
+    "disclaimerText": "이 시뮬레이션은 교육 목적으로만 제공되며 개인이 실제로 경험하는 장애를 완벽하게 나타내지 않을 수 있습니다."
+  },
+  "feedback": {
+    "title": "피드백 공유",
+    "subtitle": "VisionSim 개선에 도움을 주세요",
+    "nameLabel": "이름",
+    "namePlaceholder": "이름을 입력하세요",
+    "emailLabel": "이메일 주소",
+    "emailPlaceholder": "이메일을 입력하세요",
+    "messageLabel": "피드백",
+    "messagePlaceholder": "의견을 알려주세요...",
+    "submitButton": "피드백 제출",
+    "successMessage": "피드백 감사합니다!",
+    "errorMessage": "문제가 발생했습니다. 다시 시도해 주세요."
+  },
+  "resources": {
+    "title": "시각 자료",
+    "subtitle": "시각 장애에 관한 유용한 링크 및 정보",
+    "organizations": "조직",
+    "research": "연구",
+    "support": "지원 그룹"
+  },
+  "accessibility": {
+    "menu": "접근성 설정",
+    "highContrast": "고대비",
+    "highContrastDesc": "더 나은 가시성을 위해 색상 대비 증가",
+    "largeText": "큰 텍스트",
+    "largeTextDesc": "사이트 전체의 텍스트 크기 증가",
+    "increasedSpacing": "간격 증가",
+    "increasedSpacingDesc": "요소 사이에 더 많은 공간 추가",
+    "enhancedFocus": "향상된 포커스",
+    "enhancedFocusDesc": "포커스 표시기를 더 눈에 띄게",
+    "reducedMotion": "모션 감소",
+    "reducedMotionDesc": "애니메이션 및 전환 최소화",
+    "resetAll": "모두 초기화",
+    "skipToContent": "메인 콘텐츠로 건너뛰기"
+  },
+  "language": {
+    "select": "언어 선택",
+    "current": "언어"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "피드백",
+    "resources": "자료"
+  },
+  "visualizer": {
+    "comparison": "비교",
+    "original": "원본",
+    "simulated": "시뮬레이션",
+    "toggleComparison": "비교 보기 전환",
+    "screenshot": "스크린샷",
+    "takeScreenshot": "스크린샷 찍기",
+    "fullscreen": "전체 화면",
+    "exitFullscreen": "전체 화면 종료"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "retry": "다시 시도",
+    "learnMore": "더 알아보기",
+    "seeMore": "더 보기",
+    "seeLess": "접기",
+    "yes": "예",
+    "no": "아니오",
+    "ok": "확인",
+    "cancel": "취소"
+  }
+}

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Box, Container, Typography, Link, Dialog, DialogContent, Button, IconButton, Tooltip } from '@mui/material';
+import React from 'react';
+import { Box, Container, Typography, Link, Button, IconButton, Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Favorite, GitHub as GitHubIcon } from '@mui/icons-material';
-import AccessibilityStatement from './AccessibilityStatement';
 
 const Footer: React.FC = () => {
-  const [accessibilityDialogOpen, setAccessibilityDialogOpen] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   return (
     <Box
@@ -36,40 +36,6 @@ const Footer: React.FC = () => {
             position: 'relative'
           }}
         >
-          {/* Left side - Accessibility */}
-          <Box sx={{ 
-            position: 'absolute',
-            left: 0,
-            flexShrink: 0
-          }}>
-            <Link
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setAccessibilityDialogOpen(true);
-              }}
-              aria-label="View accessibility statement"
-              sx={{
-                color: '#374151',
-                textDecoration: 'none',
-                fontWeight: 500,
-                fontSize: { xs: '0.65rem', sm: '0.875rem' },
-                whiteSpace: 'nowrap',
-                '&:hover': {
-                  color: 'primary.main',
-                  textDecoration: 'underline'
-                },
-                '&:focus-visible': {
-                  outline: '2px solid #1976d2',
-                  outlineOffset: '2px',
-                  borderRadius: '2px'
-                }
-              }}
-            >
-              Accessibility
-            </Link>
-          </Box>
-          
           {/* Center - Support Button */}
           <Button
             variant="contained"
@@ -93,22 +59,24 @@ const Footer: React.FC = () => {
               }
             }}
           >
-            Support
+            {t('buttons.support')}
           </Button>
           
-          {/* Right side - Feedback */}
-          <Box sx={{ 
+          {/* Right side - Resources & Feedback */}
+          <Box sx={{
             position: 'absolute',
             right: 0,
-            flexShrink: 0
+            flexShrink: 0,
+            display: 'flex',
+            gap: 1
           }}>
             <Link
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                navigate('/feedback');
+                navigate('/resources');
               }}
-              aria-label="Provide feedback"
+              aria-label={t('nav.resources')}
               sx={{
                 color: '#374151',
                 textDecoration: 'none',
@@ -126,7 +94,33 @@ const Footer: React.FC = () => {
                 }
               }}
             >
-              Feedback
+              {t('nav.resources')}
+            </Link>
+            <Link
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/feedback');
+              }}
+              aria-label={t('footer.feedback')}
+              sx={{
+                color: '#374151',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              {t('footer.feedback')}
             </Link>
           </Box>
         </Box>
@@ -143,16 +137,16 @@ const Footer: React.FC = () => {
           }}
         >
           {/* Left section - Copyright */}
-          <Typography 
-            variant="body2" 
+          <Typography
+            variant="body2"
             color="text.secondary"
-            sx={{ 
+            sx={{
               fontWeight: 500,
               position: 'absolute',
               left: 0
             }}
           >
-            © {new Date().getFullYear()} VisionSim
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </Typography>
           
           {/* Center section - Support & Donate */}
@@ -177,13 +171,14 @@ const Footer: React.FC = () => {
               }
             }}
           >
-            Support & Donate
+            {t('buttons.supportDonate')}
           </Button>
-          
+
           {/* Right section - Other links */}
-          <Box sx={{ 
-            display: 'flex', 
+          <Box sx={{
+            display: 'flex',
             gap: 3,
+            alignItems: 'center',
             position: 'absolute',
             right: 0
           }}>
@@ -191,9 +186,9 @@ const Footer: React.FC = () => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                setAccessibilityDialogOpen(true);
+                navigate('/resources');
               }}
-              aria-label="View accessibility statement"
+              aria-label={t('nav.resources')}
               sx={{
                 color: '#374151',
                 textDecoration: 'none',
@@ -209,7 +204,7 @@ const Footer: React.FC = () => {
                 }
               }}
             >
-              Accessibility
+              {t('nav.resources')}
             </Link>
             <Link
               href="#"
@@ -217,7 +212,7 @@ const Footer: React.FC = () => {
                 e.preventDefault();
                 navigate('/feedback');
               }}
-              aria-label="Provide feedback"
+              aria-label={t('footer.feedback')}
               sx={{
                 color: '#374151',
                 textDecoration: 'none',
@@ -233,15 +228,15 @@ const Footer: React.FC = () => {
                 }
               }}
             >
-              Feedback
+              {t('footer.feedback')}
             </Link>
-            <Tooltip title="View on GitHub">
+            <Tooltip title={t('nav.viewOnGithub')}>
               <IconButton
                 component="a"
                 href="https://github.com/bloo-berries/blindness-visualizer"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="View project on GitHub"
+                aria-label={t('nav.viewOnGithub')}
                 size="small"
                 sx={{
                   color: '#374151',
@@ -262,18 +257,6 @@ const Footer: React.FC = () => {
           </Box>
         </Box>
       </Container>
-      
-      <Dialog 
-        open={accessibilityDialogOpen} 
-        onClose={() => setAccessibilityDialogOpen(false)}
-        maxWidth="md"
-        fullWidth
-        aria-labelledby="accessibility-statement-title"
-      >
-        <DialogContent sx={{ p: 0 }}>
-          <AccessibilityStatement />
-        </DialogContent>
-      </Dialog>
     </Box>
   );
 };

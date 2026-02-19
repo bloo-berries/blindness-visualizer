@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "À propos",
+    "simulator": "Simulateur de Vision",
+    "famousPeople": "Personnes Aveugles Célèbres",
+    "glossary": "Glossaire et FAQ",
+    "resources": "Ressources",
+    "navigation": "Navigation",
+    "viewOnGithub": "Voir sur GitHub",
+    "openMenu": "ouvrir le menu de navigation",
+    "startSimulator": "Démarrer le Simulateur",
+    "home": "Aller à la page d'accueil"
+  },
+  "buttons": {
+    "back": "RETOUR",
+    "next": "Suivant",
+    "viewSimulation": "Voir la Simulation",
+    "clearFilters": "Effacer les Filtres",
+    "deselectAll": "Tout Désélectionner",
+    "support": "Soutenir",
+    "supportDonate": "Soutenir et Donner",
+    "experienceSimulation": "Expérimenter la Simulation",
+    "close": "Fermer",
+    "submit": "Soumettre",
+    "reset": "Réinitialiser"
+  },
+  "home": {
+    "title": "Comprendre les",
+    "titleHighlight": "Conditions Visuelles",
+    "subtitle": "Expérimentez les déficiences visuelles pour développer l'empathie et la compréhension",
+    "card1Title": "Recréez des Conditions Visuelles en Temps Réel",
+    "card1Description": "Créez votre visualisation unique",
+    "card1Button": "Démarrer le Simulateur de Conditions Visuelles",
+    "card2Title": "Expérimentez la Vision de Personnes Aveugles et Malvoyantes Célèbres",
+    "card2Button": "Explorer les Personnes Célèbres"
+  },
+  "simulator": {
+    "title": "Simulateur de Conditions Visuelles",
+    "step1": "Choisir la Source d'Entrée",
+    "step2": "Sélectionner les Conditions Visuelles",
+    "step3": "Voir la Simulation",
+    "selectConditions": "Sélectionner les Conditions Visuelles",
+    "visionPreview": "Aperçu de la Vision",
+    "combinedPreview": "Aperçu Combiné ({{count}} conditions)",
+    "selectToStart": "Sélectionnez des conditions pour continuer",
+    "viewSimulationCount": "Voir la Simulation ({{count}} condition)",
+    "viewSimulationCountPlural": "Voir la Simulation ({{count}} conditions)",
+    "simulating": "Simulation: {{name}}",
+    "condition": "Condition: {{condition}}",
+    "screenReaderStep1": "Étape 1: Choisissez votre source d'entrée - webcam, image ou vidéo YouTube",
+    "screenReaderStep2": "Étape 2: Sélectionnez les conditions visuelles à simuler",
+    "screenReaderStep3": "Étape 3: Visualisez votre simulation",
+    "goBack": "Retourner à la sélection des conditions"
+  },
+  "inputSelector": {
+    "title": "Choisissez Votre Source d'Entrée",
+    "demoVideo": "Utiliser la Vidéo de Démonstration",
+    "demoVideoDesc": "Vidéo préenregistrée pour explorer les conditions",
+    "uploadImage": "Télécharger une Image",
+    "uploadImageDesc": "Télécharger depuis votre appareil",
+    "webcam": "Utiliser la Webcam",
+    "webcamDesc": "Flux vidéo en temps réel",
+    "selected": "Sélectionné",
+    "recommended": "(Recommandé)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Rechercher des conditions...",
+    "mostCommon": "Les Plus Courantes",
+    "redGreen": "Rouge-Vert",
+    "fieldLoss": "Perte de Champ",
+    "ageRelated": "Liées à l'Âge",
+    "intensity": "Intensité",
+    "separation": "Séparation",
+    "direction": "Direction"
+  },
+  "categories": {
+    "visualFieldLoss": "Perte du Champ Visuel",
+    "colorVision": "Vision des Couleurs",
+    "eyeConditions": "Conditions Oculaires",
+    "refractiveErrors": "Erreurs de Réfraction",
+    "retinalDisorders": "Troubles de la Rétine",
+    "visualDisturbances": "Perturbations Visuelles",
+    "doubleVision": "Vision Double"
+  },
+  "famousPeople": {
+    "title": "Personnes Aveugles et Malvoyantes Célèbres",
+    "subtitle": "Découvrez comment des personnalités notables de l'histoire ont vécu avec des conditions visuelles",
+    "searchPlaceholder": "Rechercher par nom, condition ou profession...",
+    "allCategories": "Toutes les Catégories",
+    "filterByCategory": "Filtrer par Catégorie",
+    "noResults": "Aucun résultat trouvé",
+    "noResultsDesc": "Essayez d'ajuster votre recherche ou vos filtres",
+    "showingResults": "Affichage de {{count}} sur {{total}} personnes",
+    "categories": {
+      "contemporaryFigures": "Personnalités Contemporaines",
+      "athletes": "Athlètes",
+      "musicians": "Musiciens",
+      "artists": "Artistes",
+      "writersActivists": "Écrivains et Activistes",
+      "historicalFigures": "Personnalités Historiques",
+      "scientists": "Scientifiques",
+      "fictionalCharacters": "Personnages Fictifs"
+    }
+  },
+  "conditions": {
+    "title": "Glossaire des Conditions Visuelles",
+    "subtitle": "Apprenez-en plus sur les différents types de déficiences visuelles et conditions oculaires",
+    "searchPlaceholder": "Rechercher des conditions...",
+    "viewAll": "Voir Tout",
+    "colorBlindness": "Daltonisme",
+    "fieldLoss": "Perte de Champ",
+    "ageRelated": "Liées à l'Âge",
+    "genetic": "Génétique"
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "subtitle": "Questions courantes sur les conditions visuelles et ce simulateur"
+  },
+  "about": {
+    "title": "À propos de VisionSim",
+    "subtitle": "Comprendre notre mission et notre approche",
+    "mission": "Notre Mission",
+    "missionText": "VisionSim aide les gens à comprendre ce que c'est que de vivre avec différentes conditions visuelles grâce à des simulations précises basées sur la recherche.",
+    "howItWorks": "Comment Ça Marche",
+    "disclaimer": "Avertissement Médical",
+    "disclaimerText": "Ces simulations sont à des fins éducatives uniquement et peuvent ne pas représenter parfaitement la façon dont les individus vivent leurs conditions."
+  },
+  "feedback": {
+    "title": "Partagez Vos Commentaires",
+    "subtitle": "Aidez-nous à améliorer VisionSim",
+    "nameLabel": "Votre Nom",
+    "namePlaceholder": "Entrez votre nom",
+    "emailLabel": "Adresse Email",
+    "emailPlaceholder": "Entrez votre email",
+    "messageLabel": "Vos Commentaires",
+    "messagePlaceholder": "Dites-nous ce que vous pensez...",
+    "submitButton": "Envoyer les Commentaires",
+    "successMessage": "Merci pour vos commentaires!",
+    "errorMessage": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "resources": {
+    "title": "Ressources sur la Vision",
+    "subtitle": "Liens utiles et informations sur les conditions visuelles",
+    "organizations": "Organisations",
+    "research": "Recherche",
+    "support": "Groupes de Soutien"
+  },
+  "accessibility": {
+    "menu": "Paramètres d'Accessibilité",
+    "highContrast": "Contraste Élevé",
+    "highContrastDesc": "Augmenter le contraste des couleurs pour une meilleure visibilité",
+    "largeText": "Grand Texte",
+    "largeTextDesc": "Augmenter la taille du texte sur tout le site",
+    "increasedSpacing": "Espacement Augmenté",
+    "increasedSpacingDesc": "Ajouter plus d'espace entre les éléments",
+    "enhancedFocus": "Focus Amélioré",
+    "enhancedFocusDesc": "Rendre les indicateurs de focus plus visibles",
+    "reducedMotion": "Mouvement Réduit",
+    "reducedMotionDesc": "Minimiser les animations et transitions",
+    "resetAll": "Tout Réinitialiser",
+    "skipToContent": "Aller au contenu principal"
+  },
+  "language": {
+    "select": "Sélectionner la Langue",
+    "current": "Langue"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Commentaires",
+    "resources": "Ressources"
+  },
+  "visualizer": {
+    "comparison": "Comparaison",
+    "original": "Original",
+    "simulated": "Simulé",
+    "toggleComparison": "Basculer la vue de comparaison",
+    "screenshot": "Capture d'écran",
+    "takeScreenshot": "Prendre une capture d'écran",
+    "fullscreen": "Plein écran",
+    "exitFullscreen": "Quitter le plein écran"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "learnMore": "En savoir plus",
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
+    "yes": "Oui",
+    "no": "Non",
+    "ok": "OK",
+    "cancel": "Annuler"
+  }
+}

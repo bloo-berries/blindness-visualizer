@@ -17,6 +17,11 @@ import uk from '../locales/uk.json';
 import ru from '../locales/ru.json';
 import ga from '../locales/ga.json';
 import ca from '../locales/ca.json';
+import vi from '../locales/vi.json';
+import tr from '../locales/tr.json';
+import el from '../locales/el.json';
+import hi from '../locales/hi.json';
+import bn from '../locales/bn.json';
 
 export const supportedLanguages = {
   en: { name: 'English', nativeName: 'English', dir: 'ltr' as const },
@@ -33,6 +38,11 @@ export const supportedLanguages = {
   ru: { name: 'Russian', nativeName: 'Русский', dir: 'ltr' as const },
   ga: { name: 'Irish', nativeName: 'Gaeilge', dir: 'ltr' as const },
   ca: { name: 'Catalan', nativeName: 'Català', dir: 'ltr' as const },
+  vi: { name: 'Vietnamese', nativeName: 'Tiếng Việt', dir: 'ltr' as const },
+  tr: { name: 'Turkish', nativeName: 'Türkçe', dir: 'ltr' as const },
+  el: { name: 'Greek', nativeName: 'Ελληνικά', dir: 'ltr' as const },
+  hi: { name: 'Hindi', nativeName: 'हिन्दी', dir: 'ltr' as const },
+  bn: { name: 'Bengali', nativeName: 'বাংলা', dir: 'ltr' as const },
 };
 
 export type SupportedLanguage = keyof typeof supportedLanguages;
@@ -52,6 +62,11 @@ const resources = {
   ru: { translation: ru },
   ga: { translation: ga },
   ca: { translation: ca },
+  vi: { translation: vi },
+  tr: { translation: tr },
+  el: { translation: el },
+  hi: { translation: hi },
+  bn: { translation: bn },
 };
 
 i18n

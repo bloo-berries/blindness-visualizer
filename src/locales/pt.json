@@ -119,6 +119,11 @@
   "about": {
     "title": "Sobre o VisionSim",
     "subtitle": "Compreendendo nossa missão e abordagem",
+    "personalJourney": "Uma Jornada Pessoal",
+    "greeting": "Olá à comunidade de pessoas cegas e com deficiência visual — e a todos os curiosos para aprender mais!",
+    "story": "Em 2020, perdi minha visão em um instante devido a um AVC, e lutei sozinho durante o isolamento da COVID, sem conseguir encontrar reabilitação presencial, terapia, aulas de orientação ou qualquer coisa. Pesquisando online, não encontrei quase nada sobre perda de visão relacionada a AVC na escala que experimentei. Descrever com precisão como eu \"vejo\" o mundo era dolorosamente difícil, e só aumentava o isolamento.",
+    "purpose": "Criei este site para que as pessoas estejam melhor equipadas com ferramentas para articular e representar com mais precisão sua cegueira e/ou condições visuais.",
+    "previewVideo": "Prévia de Como Eu Vejo",
     "mission": "Nossa Missão",
     "missionText": "O VisionSim ajuda as pessoas a entender como é viver com várias condições visuais através de simulações precisas baseadas em pesquisa.",
     "howItWorks": "Como Funciona",

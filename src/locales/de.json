@@ -119,6 +119,11 @@
   "about": {
     "title": "Über VisionSim",
     "subtitle": "Unsere Mission und Herangehensweise verstehen",
+    "personalJourney": "Eine Persönliche Reise",
+    "greeting": "Hallo an die Gemeinschaft der Blinden und Sehbehinderten — und an alle, die neugierig sind, mehr zu erfahren!",
+    "story": "Im Jahr 2020 verlor ich mein Sehvermögen in einem Augenblick durch einen Schlaganfall, und ich kämpfte während des COVID-Lockdowns allein, ohne persönliche Rehabilitation, Therapie, Orientierungskurse oder irgendetwas finden zu können. Bei der Online-Suche fand ich fast nichts über schlaganfallbedingten Sehverlust in dem Ausmaß, wie ich ihn erlebt habe. Genau zu beschreiben, wie ich die Welt \"sehe\", war schmerzhaft schwierig und verstärkte nur die Isolation.",
+    "purpose": "Ich habe diese Website erstellt, damit Menschen besser mit Werkzeugen ausgestattet sind, um ihre Blindheit und/oder Sehbeeinträchtigungen genauer zu artikulieren und darzustellen.",
+    "previewVideo": "Vorschau: Wie Ich Sehe",
     "mission": "Unsere Mission",
     "missionText": "VisionSim hilft Menschen zu verstehen, wie es ist, mit verschiedenen Sehbeeinträchtigungen zu leben, durch genaue, forschungsbasierte Simulationen.",
     "howItWorks": "Wie es funktioniert",

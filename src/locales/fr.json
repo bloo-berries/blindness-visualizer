@@ -119,6 +119,11 @@
   "about": {
     "title": "À propos de VisionSim",
     "subtitle": "Comprendre notre mission et notre approche",
+    "personalJourney": "Un Parcours Personnel",
+    "greeting": "Bonjour à la communauté des personnes aveugles et malvoyantes — et à tous ceux qui sont curieux d'en apprendre davantage !",
+    "story": "En 2020, j'ai perdu la vue en un instant à cause d'un AVC, et j'ai lutté seul pendant le confinement COVID, incapable de trouver une rééducation en personne, une thérapie, des cours d'orientation, ou quoi que ce soit. En cherchant en ligne, je n'ai presque rien trouvé concernant la perte de vision liée à un AVC à l'échelle que j'ai vécue. Décrire avec précision comment je \"vois\" le monde était douloureusement difficile, et ne faisait qu'ajouter à l'isolement.",
+    "purpose": "J'ai créé ce site pour que les gens soient mieux équipés d'outils pour articuler et représenter plus précisément leur cécité et/ou leurs conditions visuelles.",
+    "previewVideo": "Aperçu de Comment Je Vois",
     "mission": "Notre Mission",
     "missionText": "VisionSim aide les gens à comprendre ce que c'est que de vivre avec différentes conditions visuelles grâce à des simulations précises basées sur la recherche.",
     "howItWorks": "Comment Ça Marche",

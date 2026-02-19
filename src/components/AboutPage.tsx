@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
-import { 
-  Container, 
-  Typography, 
-  Box, 
+import {
+  Container,
+  Typography,
+  Box,
   Paper
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AboutPage: React.FC = () => {
+  const { t } = useTranslation();
   const { preferences } = useAccessibility();
 
   // Load Wistia player script if not already loaded
@@ -31,7 +33,7 @@ const AboutPage: React.FC = () => {
         <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>
           {/* Hero Section */}
           <Box sx={{ textAlign: 'center', mb: 3 }}>
-            <Typography variant="h2" component="h1" gutterBottom sx={{ 
+            <Typography variant="h2" component="h1" gutterBottom sx={{
               fontWeight: 700,
               background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
               backgroundClip: 'text',
@@ -39,7 +41,7 @@ const AboutPage: React.FC = () => {
               WebkitTextFillColor: 'transparent',
               mb: 2
             }}>
-              About VisionSim
+              {t('about.title')}
             </Typography>
           </Box>
 
@@ -50,41 +52,37 @@ const AboutPage: React.FC = () => {
             background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
             border: '1px solid #e2e8f0'
           }}>
-            <Typography variant="h4" component="h2" className="personal-journey-title" gutterBottom sx={{ 
+            <Typography variant="h4" component="h2" className="personal-journey-title" gutterBottom sx={{
               fontWeight: 600,
               color: '#1976d2',
               mb: 3
             }}>
-              A Personal Journey
+              {t('about.personalJourney')}
             </Typography>
             
-            <Typography variant="body1" className="personal-journey-text" sx={{ 
+            <Typography variant="body1" className="personal-journey-text" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
               mb: 3
             }}>
-              Hello to the Blind and Visually Impaired community — and to everyone curious to learn more!
+              {t('about.greeting')}
             </Typography>
 
-            <Typography variant="body1" className="personal-journey-text" sx={{ 
+            <Typography variant="body1" className="personal-journey-text" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
               mb: 3
             }}>
-              In 2020 I lost my vision in an instant due to a stroke, and I struggled alone during the COVID shutdown, 
-              unable to find in-person rehabilitation, therapy, orientation classes, or anything. Looking online, I found next 
-              to nothing regarding stroke-related vision loss at the scale I experienced it. Accurately describing how I "see" 
-              the world was painfully difficult, and only added to the isolation.
+              {t('about.story')}
             </Typography>
 
-            <Typography variant="body1" className="personal-journey-text personal-journey-highlight" sx={{ 
+            <Typography variant="body1" className="personal-journey-text personal-journey-highlight" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
               fontWeight: 600,
               color: '#1976d2'
             }}>
-              I created this site so that people would be better equipped with tools to more accurately 
-              articulate and represent their blindness and/or vision conditions.
+              {t('about.purpose')}
             </Typography>
 
             {/* Video Section */}
@@ -146,18 +144,18 @@ const AboutPage: React.FC = () => {
                   </Box>
                 </Box>
                 
-                <Typography 
-                  variant="body2" 
+                <Typography
+                  variant="body2"
                   className="preview-how-i-see-text"
-                  sx={{ 
-                    textAlign: 'center', 
-                    mt: 2, 
+                  sx={{
+                    textAlign: 'center',
+                    mt: 2,
                     fontStyle: 'italic',
                     color: preferences.highContrast ? '#000000' : 'text.secondary',
                     ...(preferences.highContrast && { color: '#000000 !important' })
                   }}
                 >
-                  Preview How I See
+                  {t('about.previewVideo')}
                 </Typography>
               </Box>
             </Box>

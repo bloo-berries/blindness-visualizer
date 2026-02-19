@@ -1,0 +1,199 @@
+{
+  "nav": {
+    "about": "Giới thiệu",
+    "simulator": "Trình mô phỏng thị giác",
+    "famousPeople": "Người khiếm thị nổi tiếng",
+    "glossary": "Thuật ngữ & FAQ",
+    "resources": "Tài nguyên",
+    "navigation": "Điều hướng",
+    "viewOnGithub": "Xem trên GitHub",
+    "openMenu": "mở menu điều hướng",
+    "startSimulator": "Bắt đầu mô phỏng",
+    "home": "Về trang chủ"
+  },
+  "buttons": {
+    "back": "QUAY LẠI",
+    "next": "Tiếp theo",
+    "viewSimulation": "Xem mô phỏng",
+    "clearFilters": "Xóa bộ lọc",
+    "deselectAll": "Bỏ chọn tất cả",
+    "support": "Hỗ trợ",
+    "supportDonate": "Hỗ trợ & Quyên góp",
+    "experienceSimulation": "Trải nghiệm mô phỏng",
+    "close": "Đóng",
+    "submit": "Gửi",
+    "reset": "Đặt lại"
+  },
+  "home": {
+    "title": "Hiểu về",
+    "titleHighlight": "Tình trạng thị giác",
+    "subtitle": "Trải nghiệm khiếm thị để xây dựng sự đồng cảm và thấu hiểu",
+    "card1Title": "Tái tạo tình trạng thị giác theo thời gian thực",
+    "card1Description": "Tạo hình ảnh trực quan độc đáo của bạn",
+    "card1Button": "Bắt đầu trình mô phỏng tình trạng thị giác",
+    "card2Title": "Trải nghiệm tầm nhìn của người khiếm thị nổi tiếng",
+    "card2Button": "Khám phá người nổi tiếng"
+  },
+  "simulator": {
+    "title": "Trình mô phỏng tình trạng thị giác",
+    "step1": "Chọn nguồn đầu vào",
+    "step2": "Chọn tình trạng thị giác",
+    "step3": "Xem mô phỏng",
+    "selectConditions": "Chọn tình trạng thị giác",
+    "visionPreview": "Xem trước thị giác",
+    "combinedPreview": "Xem trước kết hợp ({{count}} tình trạng)",
+    "selectToStart": "Chọn tình trạng để tiếp tục",
+    "viewSimulationCount": "Xem mô phỏng ({{count}} tình trạng)",
+    "viewSimulationCountPlural": "Xem mô phỏng ({{count}} tình trạng)",
+    "simulating": "Đang mô phỏng: {{name}}",
+    "condition": "Tình trạng: {{condition}}",
+    "screenReaderStep1": "Bước 1: Chọn nguồn đầu vào - webcam, hình ảnh hoặc video YouTube",
+    "screenReaderStep2": "Bước 2: Chọn tình trạng thị giác để mô phỏng",
+    "screenReaderStep3": "Bước 3: Xem mô phỏng thị giác của bạn",
+    "goBack": "Quay lại chọn tình trạng"
+  },
+  "inputSelector": {
+    "title": "Chọn nguồn đầu vào của bạn",
+    "demoVideo": "Sử dụng video demo",
+    "demoVideoDesc": "Video ghi sẵn để khám phá các tình trạng",
+    "uploadImage": "Tải lên hình ảnh",
+    "uploadImageDesc": "Tải lên từ thiết bị của bạn",
+    "webcam": "Sử dụng Webcam",
+    "webcamDesc": "Nguồn camera thời gian thực",
+    "selected": "Đã chọn",
+    "recommended": "(Khuyến nghị)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Tìm kiếm tình trạng...",
+    "mostCommon": "Phổ biến nhất",
+    "redGreen": "Đỏ-Xanh lá",
+    "fieldLoss": "Mất trường thị giác",
+    "ageRelated": "Liên quan đến tuổi tác",
+    "intensity": "Cường độ",
+    "separation": "Khoảng cách",
+    "direction": "Hướng"
+  },
+  "categories": {
+    "visualFieldLoss": "Mất trường thị giác",
+    "colorVision": "Thị giác màu sắc",
+    "eyeConditions": "Bệnh về mắt",
+    "refractiveErrors": "Tật khúc xạ",
+    "retinalDisorders": "Rối loạn võng mạc",
+    "visualDisturbances": "Rối loạn thị giác",
+    "doubleVision": "Nhìn đôi"
+  },
+  "famousPeople": {
+    "title": "Người khiếm thị nổi tiếng",
+    "subtitle": "Khám phá cách các nhân vật nổi tiếng trong lịch sử đã trải qua các tình trạng thị giác",
+    "searchPlaceholder": "Tìm theo tên, tình trạng hoặc nghề nghiệp...",
+    "allCategories": "Tất cả danh mục",
+    "filterByCategory": "Lọc theo danh mục",
+    "noResults": "Không tìm thấy kết quả",
+    "noResultsDesc": "Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc",
+    "showingResults": "Hiển thị {{count}} trong số {{total}} người",
+    "categories": {
+      "contemporaryFigures": "Nhân vật đương đại",
+      "athletes": "Vận động viên",
+      "musicians": "Nhạc sĩ",
+      "artists": "Nghệ sĩ",
+      "writersActivists": "Nhà văn & Nhà hoạt động",
+      "historicalFigures": "Nhân vật lịch sử",
+      "scientists": "Nhà khoa học",
+      "fictionalCharacters": "Nhân vật hư cấu"
+    }
+  },
+  "conditions": {
+    "title": "Thuật ngữ tình trạng thị giác",
+    "subtitle": "Tìm hiểu về các loại khiếm thị và bệnh về mắt khác nhau",
+    "searchPlaceholder": "Tìm kiếm tình trạng...",
+    "viewAll": "Xem tất cả",
+    "colorBlindness": "Mù màu",
+    "fieldLoss": "Mất trường thị giác",
+    "ageRelated": "Liên quan đến tuổi tác",
+    "genetic": "Di truyền"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "subtitle": "Các câu hỏi phổ biến về tình trạng thị giác và trình mô phỏng này"
+  },
+  "about": {
+    "title": "Giới thiệu VisionSim",
+    "subtitle": "Hiểu về sứ mệnh và cách tiếp cận của chúng tôi",
+    "personalJourney": "Hành trình cá nhân",
+    "greeting": "Xin chào cộng đồng người khiếm thị — và tất cả những ai muốn tìm hiểu thêm!",
+    "story": "Năm 2020, tôi mất thị lực trong tích tắc do đột quỵ, và tôi đã vật lộn một mình trong thời gian phong tỏa COVID, không thể tìm được phục hồi chức năng trực tiếp, trị liệu, lớp định hướng, hay bất cứ điều gì. Tìm kiếm trực tuyến, tôi hầu như không tìm thấy gì liên quan đến mất thị lực do đột quỵ ở mức độ mà tôi đã trải qua. Mô tả chính xác cách tôi \"nhìn\" thế giới là cực kỳ khó khăn, và chỉ làm tăng thêm sự cô lập.",
+    "purpose": "Tôi tạo trang web này để mọi người được trang bị tốt hơn với các công cụ để diễn đạt và thể hiện chính xác hơn tình trạng mù và/hoặc khiếm thị của họ.",
+    "previewVideo": "Xem trước cách tôi nhìn",
+    "mission": "Sứ mệnh của chúng tôi",
+    "missionText": "VisionSim giúp mọi người hiểu cảm giác sống với các tình trạng thị giác khác nhau thông qua các mô phỏng chính xác dựa trên nghiên cứu.",
+    "howItWorks": "Cách hoạt động",
+    "disclaimer": "Tuyên bố miễn trừ y tế",
+    "disclaimerText": "Các mô phỏng này chỉ dành cho mục đích giáo dục và có thể không thể hiện hoàn hảo cách mỗi người trải nghiệm tình trạng của họ."
+  },
+  "feedback": {
+    "title": "Chia sẻ phản hồi của bạn",
+    "subtitle": "Giúp chúng tôi cải thiện VisionSim",
+    "nameLabel": "Tên của bạn",
+    "namePlaceholder": "Nhập tên của bạn",
+    "emailLabel": "Địa chỉ email",
+    "emailPlaceholder": "Nhập email của bạn",
+    "messageLabel": "Phản hồi của bạn",
+    "messagePlaceholder": "Cho chúng tôi biết suy nghĩ của bạn...",
+    "submitButton": "Gửi phản hồi",
+    "successMessage": "Cảm ơn phản hồi của bạn!",
+    "errorMessage": "Đã xảy ra lỗi. Vui lòng thử lại."
+  },
+  "resources": {
+    "title": "Tài nguyên thị giác",
+    "subtitle": "Liên kết và thông tin hữu ích về tình trạng thị giác",
+    "organizations": "Tổ chức",
+    "research": "Nghiên cứu",
+    "support": "Nhóm hỗ trợ"
+  },
+  "accessibility": {
+    "menu": "Cài đặt trợ năng",
+    "highContrast": "Độ tương phản cao",
+    "highContrastDesc": "Tăng độ tương phản màu để nhìn rõ hơn",
+    "largeText": "Chữ lớn",
+    "largeTextDesc": "Tăng kích thước chữ trên toàn trang",
+    "increasedSpacing": "Tăng khoảng cách",
+    "increasedSpacingDesc": "Thêm khoảng cách giữa các phần tử",
+    "enhancedFocus": "Tăng cường tiêu điểm",
+    "enhancedFocusDesc": "Làm cho chỉ báo tiêu điểm rõ ràng hơn",
+    "reducedMotion": "Giảm chuyển động",
+    "reducedMotionDesc": "Giảm thiểu hoạt ảnh và hiệu ứng chuyển đổi",
+    "resetAll": "Đặt lại tất cả",
+    "skipToContent": "Chuyển đến nội dung chính"
+  },
+  "language": {
+    "select": "Chọn ngôn ngữ",
+    "current": "Ngôn ngữ"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Phản hồi",
+    "resources": "Tài nguyên"
+  },
+  "visualizer": {
+    "comparison": "So sánh",
+    "original": "Gốc",
+    "simulated": "Mô phỏng",
+    "toggleComparison": "Chuyển đổi chế độ so sánh",
+    "screenshot": "Chụp màn hình",
+    "takeScreenshot": "Chụp ảnh màn hình",
+    "fullscreen": "Toàn màn hình",
+    "exitFullscreen": "Thoát toàn màn hình"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "learnMore": "Tìm hiểu thêm",
+    "seeMore": "Xem thêm",
+    "seeLess": "Thu gọn",
+    "yes": "Có",
+    "no": "Không",
+    "ok": "OK",
+    "cancel": "Hủy"
+  }
+}

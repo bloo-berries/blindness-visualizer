@@ -119,6 +119,11 @@
   "about": {
     "title": "Acerca de VisionSim",
     "subtitle": "Comprendiendo nuestra misión y enfoque",
+    "personalJourney": "Un Viaje Personal",
+    "greeting": "¡Hola a la comunidad de personas ciegas y con discapacidad visual, y a todos los curiosos por aprender más!",
+    "story": "En 2020 perdí la visión en un instante debido a un derrame cerebral, y luché solo durante el cierre por COVID, sin poder encontrar rehabilitación presencial, terapia, clases de orientación, ni nada. Buscando en línea, no encontré casi nada sobre la pérdida de visión relacionada con derrames cerebrales a la escala que yo la experimenté. Describir con precisión cómo \"veo\" el mundo era dolorosamente difícil, y solo aumentaba el aislamiento.",
+    "purpose": "Creé este sitio para que las personas estén mejor equipadas con herramientas para articular y representar con mayor precisión su ceguera y/o condiciones visuales.",
+    "previewVideo": "Vista Previa de Cómo Veo",
     "mission": "Nuestra Misión",
     "missionText": "VisionSim ayuda a las personas a entender cómo es vivir con diversas condiciones visuales a través de simulaciones precisas basadas en investigación.",
     "howItWorks": "Cómo Funciona",

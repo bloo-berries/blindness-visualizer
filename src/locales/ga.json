@@ -119,6 +119,11 @@
   "about": {
     "title": "Maidir le VisionSim",
     "subtitle": "Ár misean agus cur chuige a thuiscint",
+    "personalJourney": "Turas Pearsanta",
+    "greeting": "Dia daoibh go léir sa phobal dall agus lagamhairc — agus do gach duine ar mhaith leo tuilleadh a fhoghlaim!",
+    "story": "In 2020, chaill mé mo radharc go tobann mar gheall ar stróc, agus bhí orm streachailt liom féin le linn dhúnadh COVID, gan a bheith in ann athshlánú pearsanta, teiripe, ranganna treoshuímh, nó aon rud a fháil. Ag cuardach ar líne, níor aimsigh mé beagnach tada maidir le caillteanas radhairc a bhaineann le stróc ar an scála a d'fhulaing mé. Bhí sé pianmhar deacair cur síos cruinn a dhéanamh ar conas a \"fheicim\" an domhan, agus níor chuir sé ach leis an uaigneas.",
+    "purpose": "Chruthaigh mé an suíomh seo ionas go mbeadh uirlisí níos fearr ag daoine chun a gcuid daille agus/nó riocht radhairc a chur in iúl agus a léiriú níos cruinne.",
+    "previewVideo": "Réamhamharc ar Conas a Fheicim",
     "mission": "Ár Misean",
     "missionText": "Cabhraíonn VisionSim le daoine a thuiscint conas atá sé maireachtáil le riocht radhairc éagsúla trí insamhladh cruinn bunaithe ar thaighde.",
     "howItWorks": "Conas a Oibríonn Sé",

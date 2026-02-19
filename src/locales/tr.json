@@ -1,0 +1,199 @@
+{
+  "nav": {
+    "about": "Hakkında",
+    "simulator": "Görme Simülatörü",
+    "famousPeople": "Ünlü Görme Engelliler",
+    "glossary": "Sözlük ve SSS",
+    "resources": "Kaynaklar",
+    "navigation": "Gezinme",
+    "viewOnGithub": "GitHub'da Görüntüle",
+    "openMenu": "gezinme menüsünü aç",
+    "startSimulator": "Simülatörü Başlat",
+    "home": "Ana sayfaya git"
+  },
+  "buttons": {
+    "back": "GERİ",
+    "next": "İleri",
+    "viewSimulation": "Simülasyonu Görüntüle",
+    "clearFilters": "Filtreleri Temizle",
+    "deselectAll": "Tümünü Kaldır",
+    "support": "Destek",
+    "supportDonate": "Destek ve Bağış",
+    "experienceSimulation": "Simülasyonu Dene",
+    "close": "Kapat",
+    "submit": "Gönder",
+    "reset": "Sıfırla"
+  },
+  "home": {
+    "title": "Anlamak",
+    "titleHighlight": "Görme Durumları",
+    "subtitle": "Empati ve anlayış oluşturmak için görme bozukluklarını deneyimleyin",
+    "card1Title": "Görme Durumlarını Gerçek Zamanlı Yeniden Oluşturun",
+    "card1Description": "Benzersiz görselleştirmenizi oluşturun",
+    "card1Button": "Görme Durumu Simülatörünü Başlat",
+    "card2Title": "Ünlü Görme Engellilerin Görüşünü Deneyimleyin",
+    "card2Button": "Ünlüleri Keşfet"
+  },
+  "simulator": {
+    "title": "Görme Durumu Simülatörü",
+    "step1": "Giriş Kaynağı Seçin",
+    "step2": "Görme Durumlarını Seçin",
+    "step3": "Simülasyonu Görüntüle",
+    "selectConditions": "Görme Durumlarını Seçin",
+    "visionPreview": "Görme Önizlemesi",
+    "combinedPreview": "Birleşik Önizleme ({{count}} durum)",
+    "selectToStart": "Devam etmek için durumları seçin",
+    "viewSimulationCount": "Simülasyonu Görüntüle ({{count}} durum)",
+    "viewSimulationCountPlural": "Simülasyonu Görüntüle ({{count}} durum)",
+    "simulating": "Simüle ediliyor: {{name}}",
+    "condition": "Durum: {{condition}}",
+    "screenReaderStep1": "Adım 1: Giriş kaynağınızı seçin - web kamerası, görüntü veya YouTube videosu",
+    "screenReaderStep2": "Adım 2: Simüle edilecek görme durumlarını seçin",
+    "screenReaderStep3": "Adım 3: Görme simülasyonunuzu görüntüleyin",
+    "goBack": "Durum seçimine geri dön"
+  },
+  "inputSelector": {
+    "title": "Giriş Kaynağınızı Seçin",
+    "demoVideo": "Demo Video Kullan",
+    "demoVideoDesc": "Durumları keşfetmek için önceden kaydedilmiş video",
+    "uploadImage": "Görüntü Yükle",
+    "uploadImageDesc": "Cihazınızdan yükleyin",
+    "webcam": "Web Kamerası Kullan",
+    "webcamDesc": "Gerçek zamanlı kamera akışı",
+    "selected": "Seçildi",
+    "recommended": "(Önerilen)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Durumları ara...",
+    "mostCommon": "En Yaygın",
+    "redGreen": "Kırmızı-Yeşil",
+    "fieldLoss": "Alan Kaybı",
+    "ageRelated": "Yaşa Bağlı",
+    "intensity": "Yoğunluk",
+    "separation": "Ayrım",
+    "direction": "Yön"
+  },
+  "categories": {
+    "visualFieldLoss": "Görme Alanı Kaybı",
+    "colorVision": "Renk Görüşü",
+    "eyeConditions": "Göz Rahatsızlıkları",
+    "refractiveErrors": "Kırma Kusurları",
+    "retinalDisorders": "Retina Bozuklukları",
+    "visualDisturbances": "Görsel Bozukluklar",
+    "doubleVision": "Çift Görme"
+  },
+  "famousPeople": {
+    "title": "Ünlü Görme Engelli Kişiler",
+    "subtitle": "Tarih boyunca önemli isimlerin görme durumlarını nasıl deneyimlediğini keşfedin",
+    "searchPlaceholder": "İsim, durum veya mesleğe göre ara...",
+    "allCategories": "Tüm Kategoriler",
+    "filterByCategory": "Kategoriye Göre Filtrele",
+    "noResults": "Sonuç bulunamadı",
+    "noResultsDesc": "Aramanızı veya filtrelerinizi ayarlamayı deneyin",
+    "showingResults": "{{total}} kişiden {{count}} tanesi gösteriliyor",
+    "categories": {
+      "contemporaryFigures": "Çağdaş Figürler",
+      "athletes": "Sporcular",
+      "musicians": "Müzisyenler",
+      "artists": "Sanatçılar",
+      "writersActivists": "Yazarlar ve Aktivistler",
+      "historicalFigures": "Tarihi Figürler",
+      "scientists": "Bilim İnsanları",
+      "fictionalCharacters": "Kurgusal Karakterler"
+    }
+  },
+  "conditions": {
+    "title": "Görme Durumları Sözlüğü",
+    "subtitle": "Farklı görme bozukluğu türleri ve göz rahatsızlıkları hakkında bilgi edinin",
+    "searchPlaceholder": "Durumları ara...",
+    "viewAll": "Tümünü Görüntüle",
+    "colorBlindness": "Renk Körlüğü",
+    "fieldLoss": "Alan Kaybı",
+    "ageRelated": "Yaşa Bağlı",
+    "genetic": "Genetik"
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Görme durumları ve bu simülatör hakkında sık sorulan sorular"
+  },
+  "about": {
+    "title": "VisionSim Hakkında",
+    "subtitle": "Misyonumuzu ve yaklaşımımızı anlamak",
+    "personalJourney": "Kişisel Yolculuk",
+    "greeting": "Görme engelliler topluluğuna ve daha fazlasını öğrenmek isteyen herkese merhaba!",
+    "story": "2020'de bir inme nedeniyle bir anda görüşümü kaybettim ve COVID kapanması sırasında yalnız başıma mücadele ettim, yüz yüze rehabilitasyon, terapi, oryantasyon dersleri ya da hiçbir şey bulamadım. İnternette araştırırken, yaşadığım ölçekte inmeye bağlı görme kaybı hakkında neredeyse hiçbir şey bulamadım. Dünyayı nasıl \"gördüğümü\" doğru bir şekilde tarif etmek acı verici derecede zordu ve yalnızca izolasyonu artırdı.",
+    "purpose": "Bu siteyi, insanların körlüklerini ve/veya görme durumlarını daha doğru bir şekilde ifade etmek ve temsil etmek için daha iyi araçlarla donatılması için oluşturdum.",
+    "previewVideo": "Nasıl Gördüğümün Önizlemesi",
+    "mission": "Misyonumuz",
+    "missionText": "VisionSim, insanların çeşitli görme durumlarıyla yaşamanın nasıl bir şey olduğunu doğru, araştırmaya dayalı simülasyonlar aracılığıyla anlamalarına yardımcı olur.",
+    "howItWorks": "Nasıl Çalışır",
+    "disclaimer": "Tıbbi Sorumluluk Reddi",
+    "disclaimerText": "Bu simülasyonlar yalnızca eğitim amaçlıdır ve bireylerin durumlarını nasıl deneyimlediklerini mükemmel bir şekilde temsil etmeyebilir."
+  },
+  "feedback": {
+    "title": "Geri Bildiriminizi Paylaşın",
+    "subtitle": "VisionSim'i geliştirmemize yardımcı olun",
+    "nameLabel": "Adınız",
+    "namePlaceholder": "Adınızı girin",
+    "emailLabel": "E-posta Adresi",
+    "emailPlaceholder": "E-postanızı girin",
+    "messageLabel": "Geri Bildiriminiz",
+    "messagePlaceholder": "Ne düşündüğünüzü bize söyleyin...",
+    "submitButton": "Geri Bildirim Gönder",
+    "successMessage": "Geri bildiriminiz için teşekkürler!",
+    "errorMessage": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin."
+  },
+  "resources": {
+    "title": "Görme Kaynakları",
+    "subtitle": "Görme durumları hakkında yararlı bağlantılar ve bilgiler",
+    "organizations": "Kuruluşlar",
+    "research": "Araştırma",
+    "support": "Destek Grupları"
+  },
+  "accessibility": {
+    "menu": "Erişilebilirlik Ayarları",
+    "highContrast": "Yüksek Kontrast",
+    "highContrastDesc": "Daha iyi görünürlük için renk kontrastını artırın",
+    "largeText": "Büyük Metin",
+    "largeTextDesc": "Site genelinde metin boyutunu artırın",
+    "increasedSpacing": "Artırılmış Boşluk",
+    "increasedSpacingDesc": "Elemanlar arasına daha fazla boşluk ekleyin",
+    "enhancedFocus": "Geliştirilmiş Odak",
+    "enhancedFocusDesc": "Odak göstergelerini daha görünür yapın",
+    "reducedMotion": "Azaltılmış Hareket",
+    "reducedMotionDesc": "Animasyonları ve geçişleri en aza indirin",
+    "resetAll": "Tümünü Sıfırla",
+    "skipToContent": "Ana içeriğe atla"
+  },
+  "language": {
+    "select": "Dil Seçin",
+    "current": "Dil"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Geri Bildirim",
+    "resources": "Kaynaklar"
+  },
+  "visualizer": {
+    "comparison": "Karşılaştırma",
+    "original": "Orijinal",
+    "simulated": "Simüle Edilmiş",
+    "toggleComparison": "Karşılaştırma görünümünü değiştir",
+    "screenshot": "Ekran Görüntüsü",
+    "takeScreenshot": "Ekran görüntüsü al",
+    "fullscreen": "Tam Ekran",
+    "exitFullscreen": "Tam ekrandan çık"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "retry": "Tekrar dene",
+    "learnMore": "Daha fazla bilgi",
+    "seeMore": "Daha fazla gör",
+    "seeLess": "Daha az gör",
+    "yes": "Evet",
+    "no": "Hayır",
+    "ok": "Tamam",
+    "cancel": "İptal"
+  }
+}

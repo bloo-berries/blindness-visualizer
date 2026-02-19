@@ -119,6 +119,11 @@
   "about": {
     "title": "About VisionSim",
     "subtitle": "Understanding our mission and approach",
+    "personalJourney": "A Personal Journey",
+    "greeting": "Hello to the Blind and Visually Impaired community — and to everyone curious to learn more!",
+    "story": "In 2020 I lost my vision in an instant due to a stroke, and I struggled alone during the COVID shutdown, unable to find in-person rehabilitation, therapy, orientation classes, or anything. Looking online, I found next to nothing regarding stroke-related vision loss at the scale I experienced it. Accurately describing how I \"see\" the world was painfully difficult, and only added to the isolation.",
+    "purpose": "I created this site so that people would be better equipped with tools to more accurately articulate and represent their blindness and/or vision conditions.",
+    "previewVideo": "Preview How I See",
     "mission": "Our Mission",
     "missionText": "VisionSim helps people understand what it's like to live with various vision conditions through accurate, research-based simulations.",
     "howItWorks": "How It Works",

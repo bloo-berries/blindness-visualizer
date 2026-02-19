@@ -119,6 +119,11 @@
   "about": {
     "title": "Sobre VisionSim",
     "subtitle": "Entenent la nostra missió i enfocament",
+    "personalJourney": "Un Viatge Personal",
+    "greeting": "Hola a la comunitat de persones cegues i amb discapacitat visual — i a tots els que tenen curiositat per saber-ne més!",
+    "story": "El 2020 vaig perdre la visió en un instant a causa d'un ictus, i vaig lluitar sol durant el confinament per COVID, sense poder trobar rehabilitació presencial, teràpia, classes d'orientació ni res. Buscant en línia, no vaig trobar gairebé res sobre la pèrdua de visió relacionada amb l'ictus a l'escala que vaig experimentar. Descriure amb precisió com \"veig\" el món era dolorosament difícil, i només augmentava l'aïllament.",
+    "purpose": "Vaig crear aquest lloc perquè les persones estiguin millor equipades amb eines per articular i representar més acuradament la seva ceguesa i/o condicions visuals.",
+    "previewVideo": "Previsualització de Com Veig",
     "mission": "La Nostra Missió",
     "missionText": "VisionSim ajuda les persones a entendre com és viure amb diverses condicions visuals a través de simulacions precises basades en investigació.",
     "howItWorks": "Com Funciona",

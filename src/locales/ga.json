@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "Maidir Linn",
+    "simulator": "Insamhlóir Radhairc",
+    "famousPeople": "Daoine Cáiliúla Dalla",
+    "glossary": "Gluais & CC",
+    "resources": "Acmhainní",
+    "navigation": "Nascleanúint",
+    "viewOnGithub": "Féach ar GitHub",
+    "openMenu": "oscail roghchlár nascleanúna",
+    "startSimulator": "Tosaigh an tInsamhlóir",
+    "home": "Téigh go dtí an leathanach baile"
+  },
+  "buttons": {
+    "back": "AR AIS",
+    "next": "Ar Aghaidh",
+    "viewSimulation": "Féach ar an Insamhladh",
+    "clearFilters": "Glan Scagairí",
+    "deselectAll": "Díroghnaigh Uile",
+    "support": "Tacaíocht",
+    "supportDonate": "Tacaigh & Tabhair",
+    "experienceSimulation": "Bain Triail as an Insamhladh",
+    "close": "Dún",
+    "submit": "Seol",
+    "reset": "Athshocraigh"
+  },
+  "home": {
+    "title": "Ag Tuiscint",
+    "titleHighlight": "Riocht Radhairc",
+    "subtitle": "Bain taithí ar lagú radhairc chun comhbhá agus tuiscint a fhorbairt",
+    "card1Title": "Athchruthaigh Riocht Radhairc i bhFíor-Am",
+    "card1Description": "Cruthaigh d'amharcléiriú uathúil féin",
+    "card1Button": "Tosaigh Insamhlóir Riocht Radhairc",
+    "card2Title": "Bain Taithí ar Radharc Daoine Cáiliúla Dalla agus Lagamhairc",
+    "card2Button": "Taiscéal Daoine Cáiliúla"
+  },
+  "simulator": {
+    "title": "Insamhlóir Riocht Radhairc",
+    "step1": "Roghnaigh Foinse Ionchuir",
+    "step2": "Roghnaigh Riocht Radhairc",
+    "step3": "Féach ar an Insamhladh",
+    "selectConditions": "Roghnaigh Riocht Radhairc",
+    "visionPreview": "Réamhamharc Radhairc",
+    "combinedPreview": "Réamhamharc Comhcheangailte ({{count}} riocht)",
+    "selectToStart": "Roghnaigh riocht chun leanúint ar aghaidh",
+    "viewSimulationCount": "Féach ar an Insamhladh ({{count}} riocht)",
+    "viewSimulationCountPlural": "Féach ar an Insamhladh ({{count}} riocht)",
+    "simulating": "Ag Insamhladh: {{name}}",
+    "condition": "Riocht: {{condition}}",
+    "screenReaderStep1": "Céim 1: Roghnaigh do fhoinse ionchuir - ceamara gréasáin, íomhá nó físeán YouTube",
+    "screenReaderStep2": "Céim 2: Roghnaigh riocht radhairc le hinsamhladh",
+    "screenReaderStep3": "Céim 3: Féach ar d'insamhladh radhairc",
+    "goBack": "Téigh ar ais chun riocht a roghnú"
+  },
+  "inputSelector": {
+    "title": "Roghnaigh Do Fhoinse Ionchuir",
+    "demoVideo": "Úsáid Físeán Taispeána",
+    "demoVideoDesc": "Físeán réamhthaifeadta chun riocht a iniúchadh",
+    "uploadImage": "Uaslódáil Íomhá",
+    "uploadImageDesc": "Uaslódáil ó do ghléas",
+    "webcam": "Úsáid Ceamara Gréasáin",
+    "webcamDesc": "Fotha ceamara beo",
+    "selected": "Roghnaithe",
+    "recommended": "(Molta)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Cuardaigh riocht...",
+    "mostCommon": "Is Coitianta",
+    "redGreen": "Dearg-Glas",
+    "fieldLoss": "Caillteanas Réimse",
+    "ageRelated": "Gaolmhar le hAois",
+    "intensity": "Déine",
+    "separation": "Scaradh",
+    "direction": "Treo"
+  },
+  "categories": {
+    "visualFieldLoss": "Caillteanas Réimse Radhairc",
+    "colorVision": "Radharc Dathanna",
+    "eyeConditions": "Riocht Súl",
+    "refractiveErrors": "Earráidí Athraonta",
+    "retinalDisorders": "Neamhoird Reitine",
+    "visualDisturbances": "Suaiteachais Radhairc",
+    "doubleVision": "Radharc Dúbailte"
+  },
+  "famousPeople": {
+    "title": "Daoine Cáiliúla Dalla agus Lagamhairc",
+    "subtitle": "Foghlaim conas a d'fhulaing daoine cáiliúla le riocht radhairc ar fud na staire",
+    "searchPlaceholder": "Cuardaigh de réir ainm, riocht nó gairm...",
+    "allCategories": "Gach Catagóir",
+    "filterByCategory": "Scag de réir Catagóire",
+    "noResults": "Níor aimsíodh torthaí",
+    "noResultsDesc": "Bain triail as do chuardach nó scagairí a choigeartú",
+    "showingResults": "Ag taispeáint {{count}} as {{total}} duine",
+    "categories": {
+      "contemporaryFigures": "Pearsana Comhaimseartha",
+      "athletes": "Lúthchleasaithe",
+      "musicians": "Ceoltóirí",
+      "artists": "Ealaíontóirí",
+      "writersActivists": "Scríbhneoirí & Gníomhaithe",
+      "historicalFigures": "Pearsana Stairiúla",
+      "scientists": "Eolaithe",
+      "fictionalCharacters": "Carachtair Fhicseanacha"
+    }
+  },
+  "conditions": {
+    "title": "Gluais Riocht Radhairc",
+    "subtitle": "Foghlaim faoi chineálacha éagsúla lagú radhairc agus riocht súl",
+    "searchPlaceholder": "Cuardaigh riocht...",
+    "viewAll": "Féach ar Fad",
+    "colorBlindness": "Daille Dathanna",
+    "fieldLoss": "Caillteanas Réimse",
+    "ageRelated": "Gaolmhar le hAois",
+    "genetic": "Géiniteach"
+  },
+  "faq": {
+    "title": "Ceisteanna Coitianta",
+    "subtitle": "Ceisteanna coitianta faoi riocht radhairc agus an t-insamhlóir seo"
+  },
+  "about": {
+    "title": "Maidir le VisionSim",
+    "subtitle": "Ár misean agus cur chuige a thuiscint",
+    "mission": "Ár Misean",
+    "missionText": "Cabhraíonn VisionSim le daoine a thuiscint conas atá sé maireachtáil le riocht radhairc éagsúla trí insamhladh cruinn bunaithe ar thaighde.",
+    "howItWorks": "Conas a Oibríonn Sé",
+    "disclaimer": "Séanadh Leighis",
+    "disclaimerText": "Tá na hinsamhladh seo chun críocha oideachasúla amháin agus b'fhéidir nach léiríonn siad go foirfe conas a bhíonn taithí ag daoine ar a gcuid riocht."
+  },
+  "feedback": {
+    "title": "Roinn d'Aiseolas",
+    "subtitle": "Cabhraigh linn VisionSim a fheabhsú",
+    "nameLabel": "D'Ainm",
+    "namePlaceholder": "Cuir d'ainm isteach",
+    "emailLabel": "Seoladh Ríomhphoist",
+    "emailPlaceholder": "Cuir do ríomhphost isteach",
+    "messageLabel": "D'Aiseolas",
+    "messagePlaceholder": "Inis dúinn cad a cheapann tú...",
+    "submitButton": "Seol Aiseolas",
+    "successMessage": "Go raibh maith agat as d'aiseolas!",
+    "errorMessage": "Chuaigh rud éigin mícheart. Bain triail eile as."
+  },
+  "resources": {
+    "title": "Acmhainní Radhairc",
+    "subtitle": "Naisc úsáideacha agus eolas faoi riocht radhairc",
+    "organizations": "Eagraíochtaí",
+    "research": "Taighde",
+    "support": "Grúpaí Tacaíochta"
+  },
+  "accessibility": {
+    "menu": "Socruithe Inrochtaineachta",
+    "highContrast": "Codarsnacht Ard",
+    "highContrastDesc": "Méadaigh codarsnacht dathanna le haghaidh infheictheacht níos fearr",
+    "largeText": "Téacs Mór",
+    "largeTextDesc": "Méadaigh méid an téacs ar fud an láithreáin",
+    "increasedSpacing": "Spásáil Mhéadaithe",
+    "increasedSpacingDesc": "Cuir níos mó spáis idir eilimintí",
+    "enhancedFocus": "Fócas Feabhsaithe",
+    "enhancedFocusDesc": "Déan táscairí fócais níos sofheicthe",
+    "reducedMotion": "Gluaiseacht Laghdaithe",
+    "reducedMotionDesc": "Íoslaghdaigh beochana agus aistrithe",
+    "resetAll": "Athshocraigh Uile",
+    "skipToContent": "Téigh go dtí an príomhábhar"
+  },
+  "language": {
+    "select": "Roghnaigh Teanga",
+    "current": "Teanga"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Aiseolas",
+    "resources": "Acmhainní"
+  },
+  "visualizer": {
+    "comparison": "Comparáid",
+    "original": "Bunaidh",
+    "simulated": "Insamhlaithe",
+    "toggleComparison": "Scoránaigh amharc comparáide",
+    "screenshot": "Gabháil Scáileáin",
+    "takeScreenshot": "Tóg gabháil scáileáin",
+    "fullscreen": "Lánscáileán",
+    "exitFullscreen": "Scoir den lánscáileán"
+  },
+  "common": {
+    "loading": "Ag Lódáil...",
+    "error": "Tharla earráid",
+    "retry": "Bain triail eile as",
+    "learnMore": "Foghlaim níos mó",
+    "seeMore": "Féach níos mó",
+    "seeLess": "Féach níos lú",
+    "yes": "Tá",
+    "no": "Níl",
+    "ok": "OK",
+    "cancel": "Cealaigh"
+  }
+}

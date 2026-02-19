@@ -15,6 +15,8 @@ import it from '../locales/it.json';
 import ar from '../locales/ar.json';
 import uk from '../locales/uk.json';
 import ru from '../locales/ru.json';
+import ga from '../locales/ga.json';
+import ca from '../locales/ca.json';
 
 export const supportedLanguages = {
   en: { name: 'English', nativeName: 'English', dir: 'ltr' as const },
@@ -29,6 +31,8 @@ export const supportedLanguages = {
   ar: { name: 'Arabic', nativeName: 'العربية', dir: 'rtl' as const },
   uk: { name: 'Ukrainian', nativeName: 'Українська', dir: 'ltr' as const },
   ru: { name: 'Russian', nativeName: 'Русский', dir: 'ltr' as const },
+  ga: { name: 'Irish', nativeName: 'Gaeilge', dir: 'ltr' as const },
+  ca: { name: 'Catalan', nativeName: 'Català', dir: 'ltr' as const },
 };
 
 export type SupportedLanguage = keyof typeof supportedLanguages;
@@ -46,6 +50,8 @@ const resources = {
   ar: { translation: ar },
   uk: { translation: uk },
   ru: { translation: ru },
+  ga: { translation: ga },
+  ca: { translation: ca },
 };
 
 i18n

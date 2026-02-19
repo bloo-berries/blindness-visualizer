@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "Sobre",
+    "simulator": "Simulador de Visió",
+    "famousPeople": "Persones Cegues Famoses",
+    "glossary": "Glossari i FAQ",
+    "resources": "Recursos",
+    "navigation": "Navegació",
+    "viewOnGithub": "Veure a GitHub",
+    "openMenu": "obrir menú de navegació",
+    "startSimulator": "Iniciar Simulador",
+    "home": "Anar a la pàgina d'inici"
+  },
+  "buttons": {
+    "back": "ENRERE",
+    "next": "Següent",
+    "viewSimulation": "Veure Simulació",
+    "clearFilters": "Esborrar Filtres",
+    "deselectAll": "Desseleccionar Tot",
+    "support": "Suport",
+    "supportDonate": "Suport i Donació",
+    "experienceSimulation": "Experimentar Simulació",
+    "close": "Tancar",
+    "submit": "Enviar",
+    "reset": "Restablir"
+  },
+  "home": {
+    "title": "Entenent les",
+    "titleHighlight": "Condicions Visuals",
+    "subtitle": "Experimenta discapacitats visuals per construir empatia i comprensió",
+    "card1Title": "Recrea Condicions Visuals en Temps Real",
+    "card1Description": "Crea la teva visualització única",
+    "card1Button": "Iniciar Simulador de Condicions Visuals",
+    "card2Title": "Experimenta la Visió de Persones Cegues i amb Discapacitat Visual Famoses",
+    "card2Button": "Explorar Persones Famoses"
+  },
+  "simulator": {
+    "title": "Simulador de Condicions Visuals",
+    "step1": "Triar Font d'Entrada",
+    "step2": "Seleccionar Condicions Visuals",
+    "step3": "Veure Simulació",
+    "selectConditions": "Seleccionar Condicions Visuals",
+    "visionPreview": "Previsualització de Visió",
+    "combinedPreview": "Previsualització Combinada ({{count}} condicions)",
+    "selectToStart": "Selecciona condicions per continuar",
+    "viewSimulationCount": "Veure Simulació ({{count}} condició)",
+    "viewSimulationCountPlural": "Veure Simulació ({{count}} condicions)",
+    "simulating": "Simulant: {{name}}",
+    "condition": "Condició: {{condition}}",
+    "screenReaderStep1": "Pas 1: Tria la teva font d'entrada - càmera web, imatge o vídeo de YouTube",
+    "screenReaderStep2": "Pas 2: Selecciona les condicions visuals a simular",
+    "screenReaderStep3": "Pas 3: Veure la teva simulació de visió",
+    "goBack": "Tornar a seleccionar condicions"
+  },
+  "inputSelector": {
+    "title": "Tria la Teva Font d'Entrada",
+    "demoVideo": "Usar Vídeo de Demostració",
+    "demoVideoDesc": "Vídeo pre-gravat per explorar condicions",
+    "uploadImage": "Pujar una Imatge",
+    "uploadImageDesc": "Pujar des del teu dispositiu",
+    "webcam": "Usar Càmera Web",
+    "webcamDesc": "Transmissió de càmera en temps real",
+    "selected": "Seleccionat",
+    "recommended": "(Recomanat)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Cercar condicions...",
+    "mostCommon": "Més Comunes",
+    "redGreen": "Vermell-Verd",
+    "fieldLoss": "Pèrdua de Camp",
+    "ageRelated": "Relacionat amb l'Edat",
+    "intensity": "Intensitat",
+    "separation": "Separació",
+    "direction": "Direcció"
+  },
+  "categories": {
+    "visualFieldLoss": "Pèrdua de Camp Visual",
+    "colorVision": "Visió del Color",
+    "eyeConditions": "Condicions Oculars",
+    "refractiveErrors": "Errors Refractius",
+    "retinalDisorders": "Trastorns de Retina",
+    "visualDisturbances": "Pertorbacions Visuals",
+    "doubleVision": "Visió Doble"
+  },
+  "famousPeople": {
+    "title": "Persones Cegues i amb Discapacitat Visual Famoses",
+    "subtitle": "Explora com figures notables al llarg de la història han experimentat condicions visuals",
+    "searchPlaceholder": "Cercar per nom, condició o professió...",
+    "allCategories": "Totes les Categories",
+    "filterByCategory": "Filtrar per Categoria",
+    "noResults": "No s'han trobat resultats",
+    "noResultsDesc": "Prova d'ajustar la cerca o els filtres",
+    "showingResults": "Mostrant {{count}} de {{total}} persones",
+    "categories": {
+      "contemporaryFigures": "Figures Contemporànies",
+      "athletes": "Atletes",
+      "musicians": "Músics",
+      "artists": "Artistes",
+      "writersActivists": "Escriptors i Activistes",
+      "historicalFigures": "Figures Històriques",
+      "scientists": "Científics",
+      "fictionalCharacters": "Personatges de Ficció"
+    }
+  },
+  "conditions": {
+    "title": "Glossari de Condicions Visuals",
+    "subtitle": "Aprèn sobre diferents tipus de discapacitats visuals i condicions oculars",
+    "searchPlaceholder": "Cercar condicions...",
+    "viewAll": "Veure Tot",
+    "colorBlindness": "Daltonisme",
+    "fieldLoss": "Pèrdua de Camp",
+    "ageRelated": "Relacionat amb l'Edat",
+    "genetic": "Genètic"
+  },
+  "faq": {
+    "title": "Preguntes Freqüents",
+    "subtitle": "Preguntes comunes sobre condicions visuals i aquest simulador"
+  },
+  "about": {
+    "title": "Sobre VisionSim",
+    "subtitle": "Entenent la nostra missió i enfocament",
+    "mission": "La Nostra Missió",
+    "missionText": "VisionSim ajuda les persones a entendre com és viure amb diverses condicions visuals a través de simulacions precises basades en investigació.",
+    "howItWorks": "Com Funciona",
+    "disclaimer": "Avís Mèdic",
+    "disclaimerText": "Aquestes simulacions són només per a propòsits educatius i poden no representar perfectament com els individus experimenten les seves condicions."
+  },
+  "feedback": {
+    "title": "Comparteix el Teu Feedback",
+    "subtitle": "Ajuda'ns a millorar VisionSim",
+    "nameLabel": "El Teu Nom",
+    "namePlaceholder": "Introdueix el teu nom",
+    "emailLabel": "Adreça de Correu",
+    "emailPlaceholder": "Introdueix el teu correu",
+    "messageLabel": "El Teu Feedback",
+    "messagePlaceholder": "Explica'ns què en penses...",
+    "submitButton": "Enviar Feedback",
+    "successMessage": "Gràcies pel teu feedback!",
+    "errorMessage": "Alguna cosa ha anat malament. Si us plau, torna-ho a provar."
+  },
+  "resources": {
+    "title": "Recursos de Visió",
+    "subtitle": "Enllaços útils i informació sobre condicions visuals",
+    "organizations": "Organitzacions",
+    "research": "Investigació",
+    "support": "Grups de Suport"
+  },
+  "accessibility": {
+    "menu": "Configuració d'Accessibilitat",
+    "highContrast": "Alt Contrast",
+    "highContrastDesc": "Augmentar el contrast de colors per a millor visibilitat",
+    "largeText": "Text Gran",
+    "largeTextDesc": "Augmentar la mida del text a tot el lloc",
+    "increasedSpacing": "Espaiat Augmentat",
+    "increasedSpacingDesc": "Afegir més espai entre elements",
+    "enhancedFocus": "Focus Millorat",
+    "enhancedFocusDesc": "Fer els indicadors de focus més visibles",
+    "reducedMotion": "Moviment Reduït",
+    "reducedMotionDesc": "Minimitzar animacions i transicions",
+    "resetAll": "Restablir Tot",
+    "skipToContent": "Saltar al contingut principal"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "current": "Idioma"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Feedback",
+    "resources": "Recursos"
+  },
+  "visualizer": {
+    "comparison": "Comparació",
+    "original": "Original",
+    "simulated": "Simulat",
+    "toggleComparison": "Alternar vista de comparació",
+    "screenshot": "Captura de Pantalla",
+    "takeScreenshot": "Fer captura de pantalla",
+    "fullscreen": "Pantalla Completa",
+    "exitFullscreen": "Sortir de pantalla completa"
+  },
+  "common": {
+    "loading": "Carregant...",
+    "error": "S'ha produït un error",
+    "retry": "Tornar a provar",
+    "learnMore": "Saber-ne més",
+    "seeMore": "Veure més",
+    "seeLess": "Veure menys",
+    "yes": "Sí",
+    "no": "No",
+    "ok": "D'acord",
+    "cancel": "Cancel·lar"
+  }
+}

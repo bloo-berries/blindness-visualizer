@@ -74,8 +74,23 @@ const LanguageSelector: React.FC = () => {
         }}
         PaperProps={{
           sx: {
-            maxHeight: 400,
+            maxHeight: 240, // Show ~5 items with scroll
             width: 200,
+            overflowY: 'auto',
+            '&::-webkit-scrollbar': {
+              width: '8px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
+              borderRadius: '4px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba(0, 0, 0, 0.2)',
+              borderRadius: '4px',
+              '&:hover': {
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              },
+            },
           }
         }}
       >

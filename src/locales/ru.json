@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "О нас",
+    "simulator": "Симулятор зрения",
+    "famousPeople": "Известные незрячие люди",
+    "glossary": "Глоссарий и FAQ",
+    "resources": "Ресурсы",
+    "navigation": "Навигация",
+    "viewOnGithub": "Посмотреть на GitHub",
+    "openMenu": "открыть меню навигации",
+    "startSimulator": "Запустить симулятор",
+    "home": "Перейти на главную страницу"
+  },
+  "buttons": {
+    "back": "НАЗАД",
+    "next": "Далее",
+    "viewSimulation": "Просмотр симуляции",
+    "clearFilters": "Очистить фильтры",
+    "deselectAll": "Отменить выбор",
+    "support": "Поддержать",
+    "supportDonate": "Поддержка и пожертвования",
+    "experienceSimulation": "Попробовать симуляцию",
+    "close": "Закрыть",
+    "submit": "Отправить",
+    "reset": "Сбросить"
+  },
+  "home": {
+    "title": "Понимание",
+    "titleHighlight": "нарушений зрения",
+    "subtitle": "Испытайте нарушения зрения для развития эмпатии и понимания",
+    "card1Title": "Воссоздавайте нарушения зрения в реальном времени",
+    "card1Description": "Создайте свою уникальную визуализацию",
+    "card1Button": "Запустить симулятор нарушений зрения",
+    "card2Title": "Испытайте зрение известных незрячих и слабовидящих людей",
+    "card2Button": "Исследовать известных людей"
+  },
+  "simulator": {
+    "title": "Симулятор нарушений зрения",
+    "step1": "Выберите источник",
+    "step2": "Выберите нарушения зрения",
+    "step3": "Просмотр симуляции",
+    "selectConditions": "Выберите нарушения зрения",
+    "visionPreview": "Предпросмотр",
+    "combinedPreview": "Комбинированный просмотр ({{count}} нарушений)",
+    "selectToStart": "Выберите нарушения для продолжения",
+    "viewSimulationCount": "Просмотр симуляции ({{count}} нарушение)",
+    "viewSimulationCountPlural": "Просмотр симуляции ({{count}} нарушений)",
+    "simulating": "Симуляция: {{name}}",
+    "condition": "Состояние: {{condition}}",
+    "screenReaderStep1": "Шаг 1: Выберите источник - веб-камера, изображение или видео YouTube",
+    "screenReaderStep2": "Шаг 2: Выберите нарушения зрения для симуляции",
+    "screenReaderStep3": "Шаг 3: Просмотрите симуляцию зрения",
+    "goBack": "Вернуться к выбору нарушений"
+  },
+  "inputSelector": {
+    "title": "Выберите источник",
+    "demoVideo": "Демонстрационное видео",
+    "demoVideoDesc": "Предварительно записанное видео для изучения нарушений",
+    "uploadImage": "Загрузить изображение",
+    "uploadImageDesc": "Загрузить с вашего устройства",
+    "webcam": "Веб-камера",
+    "webcamDesc": "Прямая трансляция с камеры",
+    "selected": "Выбрано",
+    "recommended": "(Рекомендуется)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Поиск нарушений...",
+    "mostCommon": "Наиболее распространённые",
+    "redGreen": "Красно-зелёный",
+    "fieldLoss": "Потеря поля зрения",
+    "ageRelated": "Возрастные",
+    "intensity": "Интенсивность",
+    "separation": "Разделение",
+    "direction": "Направление"
+  },
+  "categories": {
+    "visualFieldLoss": "Потеря поля зрения",
+    "colorVision": "Цветовое зрение",
+    "eyeConditions": "Заболевания глаз",
+    "refractiveErrors": "Рефракционные ошибки",
+    "retinalDisorders": "Заболевания сетчатки",
+    "visualDisturbances": "Зрительные нарушения",
+    "doubleVision": "Двойное зрение"
+  },
+  "famousPeople": {
+    "title": "Известные незрячие и слабовидящие люди",
+    "subtitle": "Узнайте, как известные личности в истории жили с нарушениями зрения",
+    "searchPlaceholder": "Поиск по имени, состоянию или профессии...",
+    "allCategories": "Все категории",
+    "filterByCategory": "Фильтр по категории",
+    "noResults": "Результаты не найдены",
+    "noResultsDesc": "Попробуйте изменить поиск или фильтры",
+    "showingResults": "Показано {{count}} из {{total}} человек",
+    "categories": {
+      "contemporaryFigures": "Современные личности",
+      "athletes": "Спортсмены",
+      "musicians": "Музыканты",
+      "artists": "Художники",
+      "writersActivists": "Писатели и активисты",
+      "historicalFigures": "Исторические личности",
+      "scientists": "Учёные",
+      "fictionalCharacters": "Вымышленные персонажи"
+    }
+  },
+  "conditions": {
+    "title": "Глоссарий нарушений зрения",
+    "subtitle": "Узнайте о различных типах нарушений зрения и заболеваниях глаз",
+    "searchPlaceholder": "Поиск нарушений...",
+    "viewAll": "Показать все",
+    "colorBlindness": "Дальтонизм",
+    "fieldLoss": "Потеря поля зрения",
+    "ageRelated": "Возрастные",
+    "genetic": "Генетические"
+  },
+  "faq": {
+    "title": "Часто задаваемые вопросы",
+    "subtitle": "Распространённые вопросы о нарушениях зрения и этом симуляторе"
+  },
+  "about": {
+    "title": "О VisionSim",
+    "subtitle": "Наша миссия и подход",
+    "mission": "Наша миссия",
+    "missionText": "VisionSim помогает людям понять, каково жить с различными нарушениями зрения, через точные симуляции на основе исследований.",
+    "howItWorks": "Как это работает",
+    "disclaimer": "Медицинское предупреждение",
+    "disclaimerText": "Эти симуляции предназначены только для образовательных целей и могут не полностью отражать индивидуальный опыт людей с нарушениями зрения."
+  },
+  "feedback": {
+    "title": "Поделитесь отзывом",
+    "subtitle": "Помогите нам улучшить VisionSim",
+    "nameLabel": "Ваше имя",
+    "namePlaceholder": "Введите ваше имя",
+    "emailLabel": "Электронная почта",
+    "emailPlaceholder": "Введите вашу электронную почту",
+    "messageLabel": "Ваш отзыв",
+    "messagePlaceholder": "Расскажите нам, что вы думаете...",
+    "submitButton": "Отправить отзыв",
+    "successMessage": "Спасибо за ваш отзыв!",
+    "errorMessage": "Что-то пошло не так. Попробуйте ещё раз."
+  },
+  "resources": {
+    "title": "Ресурсы о зрении",
+    "subtitle": "Полезные ссылки и информация о нарушениях зрения",
+    "organizations": "Организации",
+    "research": "Исследования",
+    "support": "Группы поддержки"
+  },
+  "accessibility": {
+    "menu": "Настройки доступности",
+    "highContrast": "Высокий контраст",
+    "highContrastDesc": "Увеличить контрастность цветов для лучшей видимости",
+    "largeText": "Крупный текст",
+    "largeTextDesc": "Увеличить размер текста на сайте",
+    "increasedSpacing": "Увеличенный интервал",
+    "increasedSpacingDesc": "Добавить больше пространства между элементами",
+    "enhancedFocus": "Улучшенный фокус",
+    "enhancedFocusDesc": "Сделать индикаторы фокуса более заметными",
+    "reducedMotion": "Уменьшенное движение",
+    "reducedMotionDesc": "Минимизировать анимации и переходы",
+    "resetAll": "Сбросить всё",
+    "skipToContent": "Перейти к основному содержимому"
+  },
+  "language": {
+    "select": "Выбрать язык",
+    "current": "Язык"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Отзывы",
+    "resources": "Ресурсы"
+  },
+  "visualizer": {
+    "comparison": "Сравнение",
+    "original": "Оригинал",
+    "simulated": "Симуляция",
+    "toggleComparison": "Переключить сравнение",
+    "screenshot": "Снимок экрана",
+    "takeScreenshot": "Сделать снимок экрана",
+    "fullscreen": "На весь экран",
+    "exitFullscreen": "Выйти из полноэкранного режима"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "retry": "Попробовать снова",
+    "learnMore": "Узнать больше",
+    "seeMore": "Показать больше",
+    "seeLess": "Показать меньше",
+    "yes": "Да",
+    "no": "Нет",
+    "ok": "OK",
+    "cancel": "Отмена"
+  }
+}

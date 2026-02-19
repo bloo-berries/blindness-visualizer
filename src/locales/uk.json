@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "about": "Про нас",
+    "simulator": "Симулятор зору",
+    "famousPeople": "Відомі незрячі люди",
+    "glossary": "Глосарій та FAQ",
+    "resources": "Ресурси",
+    "navigation": "Навігація",
+    "viewOnGithub": "Переглянути на GitHub",
+    "openMenu": "відкрити меню навігації",
+    "startSimulator": "Запустити симулятор",
+    "home": "Перейти на головну сторінку"
+  },
+  "buttons": {
+    "back": "НАЗАД",
+    "next": "Далі",
+    "viewSimulation": "Переглянути симуляцію",
+    "clearFilters": "Очистити фільтри",
+    "deselectAll": "Скасувати вибір",
+    "support": "Підтримати",
+    "supportDonate": "Підтримка та пожертви",
+    "experienceSimulation": "Спробувати симуляцію",
+    "close": "Закрити",
+    "submit": "Надіслати",
+    "reset": "Скинути"
+  },
+  "home": {
+    "title": "Розуміння",
+    "titleHighlight": "порушень зору",
+    "subtitle": "Відчуйте порушення зору для розвитку емпатії та розуміння",
+    "card1Title": "Відтворюйте порушення зору в реальному часі",
+    "card1Description": "Створіть власну візуалізацію",
+    "card1Button": "Запустити симулятор порушень зору",
+    "card2Title": "Відчуйте зір відомих незрячих та слабозорих людей",
+    "card2Button": "Дослідити відомих людей"
+  },
+  "simulator": {
+    "title": "Симулятор порушень зору",
+    "step1": "Виберіть джерело",
+    "step2": "Виберіть порушення зору",
+    "step3": "Переглянути симуляцію",
+    "selectConditions": "Виберіть порушення зору",
+    "visionPreview": "Попередній перегляд",
+    "combinedPreview": "Комбінований перегляд ({{count}} порушень)",
+    "selectToStart": "Виберіть порушення для продовження",
+    "viewSimulationCount": "Переглянути симуляцію ({{count}} порушення)",
+    "viewSimulationCountPlural": "Переглянути симуляцію ({{count}} порушень)",
+    "simulating": "Симуляція: {{name}}",
+    "condition": "Стан: {{condition}}",
+    "screenReaderStep1": "Крок 1: Виберіть джерело - веб-камера, зображення або відео YouTube",
+    "screenReaderStep2": "Крок 2: Виберіть порушення зору для симуляції",
+    "screenReaderStep3": "Крок 3: Перегляньте симуляцію зору",
+    "goBack": "Повернутися до вибору порушень"
+  },
+  "inputSelector": {
+    "title": "Виберіть джерело",
+    "demoVideo": "Демонстраційне відео",
+    "demoVideoDesc": "Попередньо записане відео для вивчення порушень",
+    "uploadImage": "Завантажити зображення",
+    "uploadImageDesc": "Завантажити з вашого пристрою",
+    "webcam": "Веб-камера",
+    "webcamDesc": "Пряма трансляція з камери",
+    "selected": "Вибрано",
+    "recommended": "(Рекомендовано)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Пошук порушень...",
+    "mostCommon": "Найпоширеніші",
+    "redGreen": "Червоно-зелений",
+    "fieldLoss": "Втрата поля зору",
+    "ageRelated": "Вікові",
+    "intensity": "Інтенсивність",
+    "separation": "Розділення",
+    "direction": "Напрямок"
+  },
+  "categories": {
+    "visualFieldLoss": "Втрата поля зору",
+    "colorVision": "Кольоровий зір",
+    "eyeConditions": "Захворювання очей",
+    "refractiveErrors": "Рефракційні помилки",
+    "retinalDisorders": "Захворювання сітківки",
+    "visualDisturbances": "Зорові порушення",
+    "doubleVision": "Подвійний зір"
+  },
+  "famousPeople": {
+    "title": "Відомі незрячі та слабозорі люди",
+    "subtitle": "Дізнайтеся, як відомі постаті в історії жили з порушеннями зору",
+    "searchPlaceholder": "Пошук за іменем, станом або професією...",
+    "allCategories": "Усі категорії",
+    "filterByCategory": "Фільтр за категорією",
+    "noResults": "Результатів не знайдено",
+    "noResultsDesc": "Спробуйте змінити пошук або фільтри",
+    "showingResults": "Показано {{count}} з {{total}} осіб",
+    "categories": {
+      "contemporaryFigures": "Сучасні постаті",
+      "athletes": "Спортсмени",
+      "musicians": "Музиканти",
+      "artists": "Художники",
+      "writersActivists": "Письменники та активісти",
+      "historicalFigures": "Історичні постаті",
+      "scientists": "Науковці",
+      "fictionalCharacters": "Вигадані персонажі"
+    }
+  },
+  "conditions": {
+    "title": "Глосарій порушень зору",
+    "subtitle": "Дізнайтеся про різні типи порушень зору та захворювання очей",
+    "searchPlaceholder": "Пошук порушень...",
+    "viewAll": "Переглянути всі",
+    "colorBlindness": "Дальтонізм",
+    "fieldLoss": "Втрата поля зору",
+    "ageRelated": "Вікові",
+    "genetic": "Генетичні"
+  },
+  "faq": {
+    "title": "Часті запитання",
+    "subtitle": "Поширені запитання про порушення зору та цей симулятор"
+  },
+  "about": {
+    "title": "Про VisionSim",
+    "subtitle": "Наша місія та підхід",
+    "mission": "Наша місія",
+    "missionText": "VisionSim допомагає людям зрозуміти, як це — жити з різними порушеннями зору, через точні симуляції на основі досліджень.",
+    "howItWorks": "Як це працює",
+    "disclaimer": "Медична застереження",
+    "disclaimerText": "Ці симуляції призначені лише для освітніх цілей і можуть не повністю відображати індивідуальний досвід людей з порушеннями зору."
+  },
+  "feedback": {
+    "title": "Поділіться відгуком",
+    "subtitle": "Допоможіть нам покращити VisionSim",
+    "nameLabel": "Ваше ім'я",
+    "namePlaceholder": "Введіть ваше ім'я",
+    "emailLabel": "Електронна пошта",
+    "emailPlaceholder": "Введіть вашу електронну пошту",
+    "messageLabel": "Ваш відгук",
+    "messagePlaceholder": "Розкажіть нам, що ви думаєте...",
+    "submitButton": "Надіслати відгук",
+    "successMessage": "Дякуємо за ваш відгук!",
+    "errorMessage": "Щось пішло не так. Спробуйте ще раз."
+  },
+  "resources": {
+    "title": "Ресурси про зір",
+    "subtitle": "Корисні посилання та інформація про порушення зору",
+    "organizations": "Організації",
+    "research": "Дослідження",
+    "support": "Групи підтримки"
+  },
+  "accessibility": {
+    "menu": "Налаштування доступності",
+    "highContrast": "Високий контраст",
+    "highContrastDesc": "Збільшити контрастність кольорів для кращої видимості",
+    "largeText": "Великий текст",
+    "largeTextDesc": "Збільшити розмір тексту на сайті",
+    "increasedSpacing": "Збільшений інтервал",
+    "increasedSpacingDesc": "Додати більше простору між елементами",
+    "enhancedFocus": "Покращений фокус",
+    "enhancedFocusDesc": "Зробити індикатори фокусу більш помітними",
+    "reducedMotion": "Зменшений рух",
+    "reducedMotionDesc": "Мінімізувати анімації та переходи",
+    "resetAll": "Скинути все",
+    "skipToContent": "Перейти до основного вмісту"
+  },
+  "language": {
+    "select": "Вибрати мову",
+    "current": "Мова"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Відгуки",
+    "resources": "Ресурси"
+  },
+  "visualizer": {
+    "comparison": "Порівняння",
+    "original": "Оригінал",
+    "simulated": "Симуляція",
+    "toggleComparison": "Перемкнути порівняння",
+    "screenshot": "Знімок екрана",
+    "takeScreenshot": "Зробити знімок екрана",
+    "fullscreen": "На весь екран",
+    "exitFullscreen": "Вийти з повноекранного режиму"
+  },
+  "common": {
+    "loading": "Завантаження...",
+    "error": "Сталася помилка",
+    "retry": "Спробувати ще раз",
+    "learnMore": "Дізнатися більше",
+    "seeMore": "Показати більше",
+    "seeLess": "Показати менше",
+    "yes": "Так",
+    "no": "Ні",
+    "ok": "OK",
+    "cancel": "Скасувати"
+  }
+}

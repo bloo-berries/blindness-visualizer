@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -35,10 +35,20 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
   onExperienceSimulation,
   onNavigate
 }) => {
+  // Ref for scrolling dialog content to top
+  const dialogContentRef = useRef<HTMLDivElement>(null);
+
   // Get current index in filtered list
   const currentIndex = personId ? filteredPeople.indexOf(personId) : -1;
   const hasPrevious = currentIndex > 0;
   const hasNext = currentIndex >= 0 && currentIndex < filteredPeople.length - 1;
+
+  // Scroll to top when person changes
+  useEffect(() => {
+    if (personId && dialogContentRef.current) {
+      dialogContentRef.current.scrollTop = 0;
+    }
+  }, [personId]);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -88,7 +98,7 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
           </IconButton>
         </Box>
       </DialogTitle>
-      <DialogContent>
+      <DialogContent ref={dialogContentRef}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
             <img 

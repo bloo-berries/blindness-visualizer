@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "Om",
+    "simulator": "Synsimulator",
+    "famousPeople": "Kända Blinda Personer",
+    "glossary": "Ordlista och FAQ",
+    "resources": "Resurser",
+    "navigation": "Navigation",
+    "viewOnGithub": "Visa på GitHub",
+    "openMenu": "öppna navigeringsmeny",
+    "startSimulator": "Starta Simulator",
+    "home": "Gå till startsidan"
+  },
+  "buttons": {
+    "back": "TILLBAKA",
+    "next": "Nästa",
+    "viewSimulation": "Visa Simulering",
+    "clearFilters": "Rensa Filter",
+    "deselectAll": "Avmarkera Alla",
+    "support": "Stöd",
+    "supportDonate": "Stöd och Donera",
+    "experienceSimulation": "Upplev Simulering",
+    "close": "Stäng",
+    "submit": "Skicka",
+    "reset": "Återställ"
+  },
+  "home": {
+    "title": "Upplev",
+    "titleHighlight": "Synstillstånd",
+    "card1Title": "Skapa din unika visualisering",
+    "card1Button": "Starta Synsimulator",
+    "card2Title": "Kända Blinda och Synskadade Personer",
+    "card2Button": "Upplev Deras Syn",
+    "libraryTitle": "Biblioteket för Blinda",
+    "libraryDescription": "Världens största katalog över punktskrift, taktila, ljud- och multimodala tillgänglighetssystem"
+  },
+  "simulator": {
+    "title": "Synstillstånd Simulator",
+    "step1": "Välj Ingångskälla",
+    "step2": "Välj Synstillstånd",
+    "step3": "Visa Simulering",
+    "selectConditions": "Välj Synstillstånd",
+    "visionPreview": "Synförhandsvisning",
+    "combinedPreview": "Kombinerad Synförhandsvisning ({{count}} tillstånd)",
+    "selectToStart": "Välj tillstånd för att fortsätta",
+    "viewSimulationCount": "Visa Simulering ({{count}} tillstånd)",
+    "viewSimulationCountPlural": "Visa Simulering ({{count}} tillstånd)",
+    "simulating": "Simulerar: {{name}}",
+    "condition": "Tillstånd: {{condition}}",
+    "screenReaderStep1": "Steg 1: Välj din ingångskälla - webbkamera, bilduppladdning eller YouTube-video",
+    "screenReaderStep2": "Steg 2: Välj synstillstånd att simulera",
+    "screenReaderStep3": "Steg 3: Visa din synsimulering",
+    "goBack": "Gå tillbaka för att välja tillstånd"
+  },
+  "inputSelector": {
+    "title": "Välj Din Ingångskälla",
+    "demoVideo": "Använd Demovideo",
+    "demoVideoDesc": "Förinspelad video för att utforska tillstånd",
+    "uploadImage": "Ladda Upp en Bild",
+    "uploadImageDesc": "Ladda upp från din enhet",
+    "webcam": "Använd Webbkamera",
+    "webcamDesc": "Realtids kameraflöde",
+    "selected": "Vald",
+    "recommended": "(Rekommenderad)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Sök tillstånd...",
+    "mostCommon": "Vanligast",
+    "redGreen": "Rödgrön",
+    "fieldLoss": "Synfältsbortfall",
+    "ageRelated": "Åldersrelaterad",
+    "intensity": "Intensitet",
+    "separation": "Separation",
+    "direction": "Riktning"
+  },
+  "categories": {
+    "visualFieldLoss": "Synfältsbortfall",
+    "colorVision": "Färgseende",
+    "eyeConditions": "Ögontillstånd",
+    "refractiveErrors": "Brytningsfel",
+    "retinalDisorders": "Näthinnesjukdomar",
+    "visualDisturbances": "Synstörningar",
+    "doubleVision": "Dubbelseende"
+  },
+  "famousPeople": {
+    "title": "Kända Blinda och Synskadade Personer",
+    "subtitle": "Utforska livet och synupplevelserna hos kända blinda och synskadade personer genom historien.",
+    "searchPlaceholder": "Sök efter namn eller tillstånd",
+    "categoryLabel": "Kategori",
+    "conditionLabel": "Tillstånd",
+    "allCategories": "Alla Kategorier",
+    "allConditions": "Alla Tillstånd",
+    "filterByCategory": "Filtrera efter kategori",
+    "noResults": "Inga personer hittades som matchar dina sökkriterier.",
+    "noResultsDesc": "Försök att justera din sökning eller dina filter",
+    "showingResults": "Visar {{count}} av {{total}} personer",
+    "hideTotalDarkness": "Dölj simuleringar av totalt mörker",
+    "clearAllFilters": "Rensa Alla Filter",
+    "categories": {
+      "contemporaryFigures": "Samtida Personligheter",
+      "athletes": "Idrottare",
+      "scientists": "Forskare och Medicinska Yrkespersoner",
+      "musicians": "Musiker",
+      "artists": "Konstnärer",
+      "writersActivists": "Författare, Aktivister, Politiker",
+      "historicalFigures": "Historiska Personligheter",
+      "fictionalCharacters": "Fiktiva Karaktärer"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Ögonproblem",
+      "neurologicIssues": "Neurologiska Problem",
+      "accidentInjury": "Olycka/Skada",
+      "congenitalDefects": "Medfödda Defekter",
+      "degenerativeEyeDiseases": "Degenerativa Ögonsjukdomar",
+      "illness": "Sjukdom",
+      "other": "Övrigt"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Förhandsgranskning av Synsimulering",
+      "experienceSimulation": "Testa Simuleringen",
+      "previous": "Föregående",
+      "next": "Nästa"
+    }
+  },
+  "glossaryPage": {
+    "title": "Ordlista och FAQ",
+    "subtitle": "Omfattande definitioner av synstillstånd, och FAQ om blindhet och synnedsättning.",
+    "tabGlossary": "Ordlista",
+    "tabFaq": "FAQ",
+    "searchConditions": "Sök tillstånd",
+    "category": "Kategori",
+    "allCategories": "Alla Kategorier",
+    "conditionsFound": "{{count}} tillstånd hittade",
+    "clearFilters": "Rensa Filter",
+    "viewInSimulator": "Visa i simulator",
+    "featuredIn": "Presenterad i: {{names}}",
+    "treatmentOptions": "Behandlingsalternativ",
+    "noConditionsFound": "Inga tillstånd hittades som matchar dina sökkriterier.",
+    "clearAllFilters": "Rensa Alla Filter",
+    "conditions": "tillstånd",
+    "aboutGlossary": {
+      "title": "Om Denna Ordlista",
+      "paragraph1": "Denna ordlista innehåller omfattande information om synstillstånd och synnedsättningar. Varje tillstånd inkluderar detaljerade beskrivningar av symtom, orsaker och effekter på det dagliga livet.",
+      "paragraph2": "Tillstånd markerade med \"Presenterad i:\" är kopplade till kända personer i vår simulator. Klicka på ögon-ikonen bredvid något tillstånd för att uppleva det i vår synsimulator.",
+      "paragraph3": "Denna resurs är utformad för att hjälpa användare att förstå de olika sätten synen kan påverkas, vare sig genom genetiska tillstånd, skada, sjukdom eller andra faktorer."
+    },
+    "aboutFaq": {
+      "title": "Om Dessa FAQ",
+      "paragraph1": "Dessa vanliga frågor är baserade på vanliga missuppfattningar och genuin nyfikenhet om blindhet och synnedsättning. Svaren återspeglar de mångfaldiga erfarenheterna hos blinda och synskadade personer.",
+      "paragraph2": "Kom ihåg att varje persons upplevelse av synförlust är unik. Det som fungerar för en person kanske inte fungerar för en annan, och det är alltid bäst att fråga individer om deras specifika behov och preferenser.",
+      "paragraph3": "För mer detaljerad information om specifika synstillstånd, besök vår <strong>Ordlista</strong>-flik ovan."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Synfältsbortfall", "description": "Tillstånd som påverkar specifika områden av synfältet" },
+      "colorVision": { "name": "Färgseendebrister", "description": "Tillstånd som påverkar färguppfattning och färgdiskriminering" },
+      "eyeConditions": { "name": "Ögontillstånd", "description": "Fysiska tillstånd som påverkar ögats struktur och funktion" },
+      "retinal": { "name": "Näthinnesjukdomar", "description": "Tillstånd som påverkar näthinnan och dess specialiserade celler" },
+      "neurological": { "name": "Neurologiska Synstillstånd", "description": "Synproblem orsakade av störningar i hjärnan och nervsystemet" },
+      "traumaInfection": { "name": "Trauma- och Infektionsrelaterade", "description": "Synförlust till följd av fysisk skada eller infektionssjukdomar" }
+    },
+    "faqCategories": {
+      "visionPerception": "Syn och Perception",
+      "technologyAccessibility": "Teknologi och Tillgänglighet",
+      "dailyLife": "Vardagsliv",
+      "navigationMobility": "Navigation och Mobilitet",
+      "socialInteraction": "Social Interaktion",
+      "employmentCareer": "Arbete och Karriär",
+      "medicalTreatment": "Medicin och Behandling"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Ser blinda människor fullständigt mörker/svärta?",
+        "answer": "Inte nödvändigtvis. Cirka 85% av juridiskt blinda har viss kvarvarande syn. Endast 10-15% upplever totalt mörker. Många ser ljus/skugga, färger eller suddiga former. Vissa som aldrig har haft syn upplever inte \"svärta\" som ett koncept - på samma sätt som du inte \"ser\" svärta bakom ditt huvud."
+      },
+      "technology": {
+        "question": "Hur använder blinda människor smartphones och datorer?",
+        "answer": "Skärmläsare (JAWS, NVDA, VoiceOver) konverterar text till tal eller punktskrift. Gester och kortkommandon ersätter musanvändning. Många använder vanliga smartphones med inbyggda tillgänglighetsfunktioner. Röstassistenter som Siri används flitigt."
+      },
+      "independence": {
+        "question": "Kan blinda människor leva självständigt?",
+        "answer": "Ja. Med rätt utbildning och adaptiva tekniker lagar blinda människor mat, städar, arbetar, uppfostrar familjer och lever fullt självständiga liv. De använder systematisk organisation, taktila markörer, hjälpmedelsteknik och mobilitetsverktyg."
+      },
+      "navigation": {
+        "question": "Hur navigerar och tar sig blinda människor runt?",
+        "answerIntro": "Blinda människor använder olika metoder för navigation och mobilitet:",
+        "answerItems": ["Vita käppar upptäcker hinder och höjdförändringar", "Ledarhundar ger intelligent olydnad och navigation", "GPS-appar med ljudvägledning (Soundscape, BlindSquare)", "Memorerade rutter och mental kartläggning", "Kollektivtrafik och samåkningsappar"]
+      },
+      "senses": {
+        "question": "Har blinda människor skärpta andra sinnen?",
+        "answer": "Nej, deras andra sinnen är inte biologiskt överlägsna. De utvecklar bättre uppmärksamhet på och bearbetning av ljud-/taktil information genom övning och nödvändighet. Det är förbättrad perception, inte förbättrad sensorik."
+      },
+      "interaction": {
+        "question": "Hur ska jag interagera med en blind person?",
+        "answerIntro": "Här är några viktiga riktlinjer för respektfull interaktion:",
+        "answerItems": ["Tala normalt och direkt till dem, inte genom medföljare", "Identifiera dig själv när du närmar dig", "Fråga innan du hjälper - grip inte tag i eller knuffa", "Ge verbala beskrivningar när det är relevant", "Använd normalt språk ('vi ses senare' är okej)", "Klappa aldrig på eller distrahera ledarhundar"]
+      },
+      "legalVsTotal": {
+        "question": "Vad är skillnaden mellan juridiskt blind och totalt blind?",
+        "legallyBlind": "Juridiskt blind:",
+        "legallyBlindDesc": "Syn 20/200 eller sämre med korrektion, ELLER synfält mindre än 20 grader",
+        "totallyBlind": "Totalt blind:",
+        "totallyBlindDesc": "Ingen ljusuppfattning (NLP)",
+        "mostBlind": "De flesta \"blinda\" människor hamnar någonstans mellan dessa ytterligheter."
+      },
+      "employment": {
+        "question": "Kan blinda människor arbeta med vanliga jobb?",
+        "answer": "Ja. Blinda människor arbetar som advokater, lärare, programmerare, musiker, psykologer, företagare och i otaliga andra yrken. Arbetsplatsanpassningar (skärmläsare, punktskriftsdisplayer) möjliggör de flesta jobb."
+      },
+      "identification": {
+        "question": "Hur identifierar blinda människor pengar, färger eller föremål?",
+        "answerIntro": "Blinda människor använder olika adaptiva tekniker för identifiering:",
+        "answerItems": ["Pengar: Appar som Seeing AI, olika vikningsmetoder, elektroniska identifierare och olika storlekar för olika valörer i olika länder", "Färger: Färgidentifieringsappar, fråga andra, köpa förmatchade kläder", "Föremål: Systematisk organisation, punktskrift-/taktila etiketter, röstinspelningsetiketter, minne"]
+      },
+      "causesTreatment": {
+        "question": "Vad orsakar blindhet och kan det botas?",
+        "leadingCauses": "Ledande orsaker globalt:",
+        "causeItems": ["Grå starr (reversibel)", "Grön starr", "Makuladegeneration", "Diabetisk retinopati", "Genetiska tillstånd"],
+        "treatmentInfo": "Behandling beror på orsaken. Vissa tillstånd kan förebyggas/behandlas, andra kan det för närvarande inte. Forskning fortsätter om behandlingar som genterapi, stamceller och bioniska ögon.",
+        "neurologicalNote": "Människor kan också förlora synen från neurologiska tillstånd som trauma eller stroke."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Synstillstånd Ordlista",
+    "subtitle": "Lär dig om olika typer av synnedsättningar och ögontillstånd",
+    "searchPlaceholder": "Sök tillstånd...",
+    "viewAll": "Visa Alla",
+    "colorBlindness": "Färgblindhet",
+    "fieldLoss": "Synfältsbortfall",
+    "ageRelated": "Åldersrelaterad",
+    "genetic": "Genetisk"
+  },
+  "faq": {
+    "title": "Vanliga Frågor",
+    "subtitle": "Vanliga frågor om synstillstånd och denna simulator"
+  },
+  "about": {
+    "title": "Om VisionSim",
+    "subtitle": "Förstå vårt uppdrag och tillvägagångssätt",
+    "personalJourney": "En Personlig Resa",
+    "greeting": "Hej till gemenskapen av blinda och synskadade — och till alla nyfikna som vill lära sig mer!",
+    "story": "År 2020 förlorade jag min syn på ett ögonblick på grund av en stroke, och jag kämpade ensam under COVID-nedstängningen utan att kunna hitta rehabilitering, terapi, orienteringskurser eller något. På internet hittade jag nästan ingenting om strokerelaterad synförlust i den omfattning jag upplevde. Att exakt beskriva hur jag \"ser\" världen var smärtsamt svårt och ökade bara isoleringen.",
+    "purpose": "Jag skapade denna webbplats så att människor skulle vara bättre utrustade med verktyg för att mer exakt formulera och representera sin blindhet och/eller synstillstånd.",
+    "previewVideo": "Förhandsvisning av Hur Jag Ser",
+    "mission": "Vårt Uppdrag",
+    "missionText": "VisionSim hjälper människor att förstå hur det är att leva med olika synstillstånd genom noggranna, forskningsbaserade simuleringar.",
+    "howItWorks": "Hur Det Fungerar",
+    "disclaimer": "Medicinsk Ansvarsfriskrivning",
+    "disclaimerText": "Dessa simuleringar är endast för utbildningsändamål och kanske inte perfekt representerar hur individer upplever sina tillstånd."
+  },
+  "feedback": {
+    "title": "Dela Din Feedback",
+    "subtitle": "Hjälp oss förbättra VisionSim",
+    "nameLabel": "Ditt Namn",
+    "namePlaceholder": "Ange ditt namn",
+    "emailLabel": "E-postadress",
+    "emailPlaceholder": "Ange din e-post",
+    "messageLabel": "Din Feedback",
+    "messagePlaceholder": "Berätta vad du tycker...",
+    "submitButton": "Skicka Feedback",
+    "successMessage": "Tack för din feedback!",
+    "errorMessage": "Något gick fel. Försök igen."
+  },
+  "resources": {
+    "title": "Synresurser",
+    "subtitle": "Hjälpsamma länkar och information om synstillstånd",
+    "organizations": "Organisationer",
+    "research": "Forskning",
+    "support": "Stödgrupper"
+  },
+  "accessibility": {
+    "menu": "Tillgänglighetsinställningar",
+    "highContrast": "Hög Kontrast",
+    "highContrastDesc": "Öka färgkontrasten för bättre synlighet",
+    "largeText": "Stor Text",
+    "largeTextDesc": "Öka textstorleken på hela webbplatsen",
+    "increasedSpacing": "Ökat Avstånd",
+    "increasedSpacingDesc": "Lägg till mer utrymme mellan element",
+    "enhancedFocus": "Förbättrat Fokus",
+    "enhancedFocusDesc": "Gör fokusindikatorer mer synliga",
+    "reducedMotion": "Reducerad Rörelse",
+    "reducedMotionDesc": "Minimera animationer och övergångar",
+    "resetAll": "Återställ Allt",
+    "skipToContent": "Hoppa till huvudinnehåll"
+  },
+  "language": {
+    "select": "Välj Språk",
+    "current": "Språk"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Feedback",
+    "resources": "Resurser"
+  },
+  "visualizer": {
+    "comparison": "Jämförelse",
+    "original": "Original",
+    "simulated": "Simulerad",
+    "toggleComparison": "Växla jämförelsevy",
+    "screenshot": "Skärmbild",
+    "takeScreenshot": "Ta skärmbild",
+    "fullscreen": "Helskärm",
+    "exitFullscreen": "Avsluta helskärm"
+  },
+  "common": {
+    "loading": "Laddar...",
+    "error": "Ett fel uppstod",
+    "retry": "Försök igen",
+    "learnMore": "Läs mer",
+    "seeMore": "Se mer",
+    "seeLess": "Se mindre",
+    "yes": "Ja",
+    "no": "Nej",
+    "ok": "OK",
+    "cancel": "Avbryt"
+  }
+}

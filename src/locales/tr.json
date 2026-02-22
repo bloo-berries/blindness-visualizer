@@ -32,7 +32,9 @@
     "card1Description": "Benzersiz görselleştirmenizi oluşturun",
     "card1Button": "Görme Durumu Simülatörünü Başlat",
     "card2Title": "Ünlü Görme Engellilerin Görüşünü Deneyimleyin",
-    "card2Button": "Ünlüleri Keşfet"
+    "card2Button": "Ünlüleri Keşfet",
+    "libraryTitle": "Görme Engelliler Kütüphanesi",
+    "libraryDescription": "Dünyanın en büyük Braille, dokunsal, sesli ve çok modlu erişilebilirlik sistemleri kataloğu"
   },
   "simulator": {
     "title": "Görme Durumu Simülatörü",
@@ -84,22 +86,181 @@
   },
   "famousPeople": {
     "title": "Ünlü Görme Engelli Kişiler",
-    "subtitle": "Tarih boyunca önemli isimlerin görme durumlarını nasıl deneyimlediğini keşfedin",
-    "searchPlaceholder": "İsim, durum veya mesleğe göre ara...",
+    "subtitle": "Tarih boyunca ünlü görme engelli kişilerin yaşamlarını ve görsel deneyimlerini keşfedin.",
+    "searchPlaceholder": "İsim veya durum ile ara",
+    "categoryLabel": "Kategori",
+    "conditionLabel": "Durum",
     "allCategories": "Tüm Kategoriler",
-    "filterByCategory": "Kategoriye Göre Filtrele",
-    "noResults": "Sonuç bulunamadı",
+    "allConditions": "Tüm Durumlar",
+    "filterByCategory": "Kategoriye göre filtrele",
+    "noResults": "Arama kriterlerinize uyan kişi bulunamadı.",
     "noResultsDesc": "Aramanızı veya filtrelerinizi ayarlamayı deneyin",
     "showingResults": "{{total}} kişiden {{count}} tanesi gösteriliyor",
+    "hideTotalDarkness": "Tam karanlık simülasyonlarını gizle",
+    "clearAllFilters": "Tüm Filtreleri Temizle",
     "categories": {
       "contemporaryFigures": "Çağdaş Figürler",
       "athletes": "Sporcular",
+      "scientists": "Bilim İnsanları ve Tıp Uzmanları",
       "musicians": "Müzisyenler",
       "artists": "Sanatçılar",
-      "writersActivists": "Yazarlar ve Aktivistler",
+      "writersActivists": "Yazarlar, Aktivistler, Politikacılar",
       "historicalFigures": "Tarihi Figürler",
-      "scientists": "Bilim İnsanları",
       "fictionalCharacters": "Kurgusal Karakterler"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Göz Sorunları",
+      "neurologicIssues": "Nörolojik Sorunlar",
+      "accidentInjury": "Kaza/Yaralanma",
+      "congenitalDefects": "Doğuştan Kusurlar",
+      "degenerativeEyeDiseases": "Dejeneratif Göz Hastalıkları",
+      "illness": "Hastalık",
+      "other": "Diğer"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Görme Simülasyonu Önizlemesi",
+      "experienceSimulation": "Simülasyonu Dene",
+      "previous": "Önceki",
+      "next": "Sonraki"
+    }
+  },
+  "glossaryPage": {
+    "title": "Sözlük ve SSS",
+    "subtitle": "Görme durumlarının kapsamlı tanımları ve körlük ve görme engeli hakkında SSS.",
+    "tabGlossary": "Sözlük",
+    "tabFaq": "SSS",
+    "searchConditions": "Durumları ara",
+    "category": "Kategori",
+    "allCategories": "Tüm Kategoriler",
+    "conditionsFound": "{{count}} durum bulundu",
+    "clearFilters": "Filtreleri Temizle",
+    "viewInSimulator": "Simülatörde görüntüle",
+    "featuredIn": "Öne çıkan: {{names}}",
+    "treatmentOptions": "Tedavi Seçenekleri",
+    "noConditionsFound": "Arama kriterlerinize uyan durum bulunamadı.",
+    "clearAllFilters": "Tüm Filtreleri Temizle",
+    "conditions": "durum",
+    "aboutGlossary": {
+      "title": "Bu Sözlük Hakkında",
+      "paragraph1": "Bu sözlük, görme durumları ve görme engelleri hakkında kapsamlı bilgiler içerir. Her durum, semptomların, nedenlerin ve günlük yaşam üzerindeki etkilerin ayrıntılı açıklamalarını içerir.",
+      "paragraph2": "\"Öne çıkan:\" ile işaretlenen durumlar simülatörümüzdeki ünlü kişilerle ilişkilidir. Görme simülatörümüzde deneyimlemek için herhangi bir durumun yanındaki göz simgesine tıklayın.",
+      "paragraph3": "Bu kaynak, kullanıcıların görmenin genetik durumlar, yaralanmalar, hastalıklar veya diğer faktörler tarafından etkilenebilecek çeşitli yolları anlamalarına yardımcı olmak için tasarlanmıştır."
+    },
+    "aboutFaq": {
+      "title": "Bu SSS'ler Hakkında",
+      "paragraph1": "Bu sık sorulan sorular, körlük ve görme engeli hakkındaki yaygın yanlış anlamalara ve gerçek merakla dayanmaktadır. Cevaplar, kör ve görme engelli bireylerin çeşitli deneyimlerini yansıtmaktadır.",
+      "paragraph2": "Her kişinin görme kaybı deneyiminin benzersiz olduğunu unutmayın. Bir kişi için işe yarayan şey başka biri için işe yaramayabilir ve bireylerin belirli ihtiyaçları ve tercihleri hakkında sormak her zaman en iyisidir.",
+      "paragraph3": "Belirli görme durumları hakkında daha ayrıntılı bilgi için yukarıdaki <strong>Sözlük</strong> sekmesini ziyaret edin."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Görme Alanı Kaybı",
+        "description": "Görme alanının belirli bölgelerini etkileyen durumlar"
+      },
+      "colorVision": {
+        "name": "Renk Görme Bozuklukları",
+        "description": "Renk algısını ve ayrımını etkileyen durumlar"
+      },
+      "eyeConditions": {
+        "name": "Göz Durumları",
+        "description": "Gözün yapısını ve işlevini etkileyen fiziksel durumlar"
+      },
+      "retinal": {
+        "name": "Retina Bozuklukları",
+        "description": "Retinayı ve özelleşmiş hücrelerini etkileyen durumlar"
+      },
+      "neurological": {
+        "name": "Nörolojik Görme Durumları",
+        "description": "Beyin ve sinir sistemi bozukluklarından kaynaklanan görme sorunları"
+      },
+      "traumaInfection": {
+        "name": "Travma ve Enfeksiyonla İlgili",
+        "description": "Fiziksel yaralanma veya bulaşıcı hastalıklardan kaynaklanan görme kaybı"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Görme ve Algı",
+      "technologyAccessibility": "Teknoloji ve Erişilebilirlik",
+      "dailyLife": "Günlük Yaşam",
+      "navigationMobility": "Navigasyon ve Hareket",
+      "socialInteraction": "Sosyal Etkileşim",
+      "employmentCareer": "İstihdam ve Kariyer",
+      "medicalTreatment": "Tıbbi ve Tedavi"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Kör insanlar tamamen karanlık/siyahlık mı görür?",
+        "answer": "Mutlaka değil. Yasal olarak kör insanların yaklaşık %85'i bir miktar kalıntı görmeye sahiptir. Sadece %10-15'i tam karanlık yaşar. Birçoğu ışık/gölge, renkler veya bulanık şekiller görür. Hiç görmemiş bazıları \"siyahlığı\" bir kavram olarak deneyimlemez - kafanızın arkasındaki \"siyahlığı\" \"görmemenize\" benzer."
+      },
+      "technology": {
+        "question": "Kör insanlar akıllı telefonları ve bilgisayarları nasıl kullanır?",
+        "answer": "Ekran okuyucular (JAWS, NVDA, VoiceOver) metni konuşmaya veya braille'e dönüştürür. Jestler ve klavye kısayolları fare kullanımının yerini alır. Birçoğu yerleşik erişilebilirlik özellikleriyle normal akıllı telefonlar kullanır. Siri gibi sesli asistanlar yoğun olarak kullanılır."
+      },
+      "independence": {
+        "question": "Kör insanlar bağımsız yaşayabilir mi?",
+        "answer": "Evet. Uygun eğitim ve uyarlanabilir tekniklerle, kör insanlar yemek yapar, temizlik yapar, çalışır, aile büyütür ve tamamen bağımsız hayatlar yaşar. Sistematik organizasyon, dokunsal işaretler, yardımcı teknoloji ve hareket araçları kullanırlar."
+      },
+      "navigation": {
+        "question": "Kör insanlar nasıl yön bulur ve dolaşır?",
+        "answerIntro": "Kör insanlar navigasyon ve hareket için çeşitli yöntemler kullanır:",
+        "answerItems": [
+          "Beyaz bastonlar engelleri ve yükseklik değişikliklerini tespit eder",
+          "Rehber köpekler akıllı itaatsizlik ve navigasyon sağlar",
+          "Sesli yönlendirmeli GPS uygulamaları (Soundscape, BlindSquare)",
+          "Ezberlenen rotalar ve zihinsel haritalama",
+          "Toplu taşıma ve araç paylaşım uygulamaları"
+        ]
+      },
+      "senses": {
+        "question": "Kör insanların diğer duyuları daha keskin midir?",
+        "answer": "Hayır, diğer duyuları biyolojik olarak üstün değildir. Pratik ve gereklilik yoluyla sesli/dokunsal bilgiye daha iyi dikkat ve işleme geliştirirler. Bu gelişmiş algıdır, gelişmiş his değil."
+      },
+      "interaction": {
+        "question": "Kör biriyle nasıl etkileşim kurmalıyım?",
+        "answerIntro": "Saygılı etkileşim için bazı önemli yönergeler:",
+        "answerItems": [
+          "Normal ve doğrudan onlarla konuşun, refakatçiler aracılığıyla değil",
+          "Yaklaşırken kendinizi tanıtın",
+          "Yardım etmeden önce sorun - kavramayın veya itmeyin",
+          "İlgili olduğunda sözlü açıklamalar verin",
+          "Normal dil kullanın ('görüşürüz' sorun değil)",
+          "Rehber köpekleri asla okşamayın veya dikkatini dağıtmayın"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Yasal olarak kör ile tamamen kör arasındaki fark nedir?",
+        "legallyBlind": "Yasal olarak kör:",
+        "legallyBlindDesc": "Düzeltmeyle 20/200 veya daha kötü görme, VEYA 20 dereceden az görme alanı",
+        "totallyBlind": "Tamamen kör:",
+        "totallyBlindDesc": "Işık algısı yok (NLP)",
+        "mostBlind": "Çoğu \"kör\" insan bu iki uç arasında bir yerdedir."
+      },
+      "employment": {
+        "question": "Kör insanlar normal işlerde çalışabilir mi?",
+        "answer": "Evet. Kör insanlar avukat, öğretmen, programcı, müzisyen, psikolog, işletme sahibi ve sayısız diğer mesleklerde çalışır. İşyeri uyarlamaları (ekran okuyucular, braille ekranlar) çoğu işi mümkün kılar."
+      },
+      "identification": {
+        "question": "Kör insanlar parayı, renkleri veya nesneleri nasıl tanımlar?",
+        "answerIntro": "Kör insanlar tanımlama için çeşitli uyarlanabilir teknikler kullanır:",
+        "answerItems": [
+          "Para: Seeing AI gibi uygulamalar, farklı katlama yöntemleri, elektronik tanımlayıcılar ve çeşitli ülkelerde farklı banknotlar için farklı boyutlar",
+          "Renkler: Renk tanımlama uygulamaları, başkalarına sormak, önceden eşleştirilmiş giysiler satın almak",
+          "Nesneler: Sistematik organizasyon, braille/dokunsal etiketler, ses kaydı etiketleri, hafıza"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Körlüğe ne sebep olur ve tedavi edilebilir mi?",
+        "leadingCauses": "Dünya genelinde önde gelen nedenler:",
+        "causeItems": [
+          "Katarakt (geri dönüşümlü)",
+          "Glokom",
+          "Makula dejenerasyonu",
+          "Diyabetik retinopati",
+          "Genetik durumlar"
+        ],
+        "treatmentInfo": "Tedavi nedene bağlıdır. Bazı durumlar önlenebilir/tedavi edilebilir, diğerleri şu anda değildir. Gen terapisi, kök hücreler ve biyonik gözler gibi tedaviler üzerine araştırmalar devam etmektedir.",
+        "neurologicalNote": "İnsanlar ayrıca travma veya inme gibi nörolojik durumlardan görme kaybı yaşayabilir."
+      }
     }
   },
   "conditions": {

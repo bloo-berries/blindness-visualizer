@@ -1,35 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, Paper, Link } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { isColorVisionCondition, getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { generatePreviewOverlayStyle } from './previewOverlays/generatePreviewOverlayStyle';
-
-// Helper to render description text with clickable links
-const renderDescriptionWithLinks = (text: string): React.ReactNode => {
-  // Regex to match URLs
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
-
-  return parts.map((part, index) => {
-    if (urlRegex.test(part)) {
-      // Reset regex lastIndex
-      urlRegex.lastIndex = 0;
-      return (
-        <Link
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ wordBreak: 'break-word' }}
-        >
-          Learn more
-        </Link>
-      );
-    }
-    return part;
-  });
-};
+import { ANIMATED_EFFECTS } from '../Visualizer/hooks';
+import { renderDescriptionWithLinks } from '../../utils/textRendering';
+import { useAnimationTicker } from '../../hooks';
 
 interface EffectPreviewProps {
   effects: VisualEffect[];
@@ -39,22 +16,12 @@ interface EffectPreviewProps {
   inputSource?: InputSource;
 }
 
-// Effects that need animation
-const ANIMATED_EFFECTS = [
-  'visualAura', 'visualAuraLeft', 'visualAuraRight',
-  'visualSnow', 'visualSnowFlashing', 'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense',
-  'hallucinations', 'visualFloaters', 'blueFieldPhenomena', 'persistentPositiveVisualPhenomenon', 'palinopsia'
-];
-
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
   enabledEffects,
   enabledEffectsCount,
   highlightedEffect,
   inputSource
 }) => {
-  // Animation ticker - forces re-render for animated effects
-  const [, setTick] = useState(0);
-
   // Track if uploaded image failed to load
   const [imageLoadError, setImageLoadError] = useState(false);
 
@@ -76,16 +43,8 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
   // Check if any enabled effect needs animation
   const needsAnimation = enabledEffects.some(e => ANIMATED_EFFECTS.includes(e.id));
 
-  useEffect(() => {
-    if (!needsAnimation) return;
-
-    // Update every 100ms for smooth animation
-    const interval = setInterval(() => {
-      setTick(t => t + 1);
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [needsAnimation]);
+  // Animation ticker - forces re-render for animated effects
+  useAnimationTicker(needsAnimation);
 
   return (
     <>
@@ -458,8 +417,6 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                     maxHeight: '100%',
                     objectFit: 'contain',
                     borderRadius: 1
-                  }}
-                  onLoad={() => {
                   }}
                   onError={handleImageError}
                 />

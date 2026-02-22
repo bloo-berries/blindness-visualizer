@@ -32,7 +32,9 @@
     "card1Description": "Crea la teva visualització única",
     "card1Button": "Iniciar Simulador de Condicions Visuals",
     "card2Title": "Experimenta la Visió de Persones Cegues i amb Discapacitat Visual Famoses",
-    "card2Button": "Explorar Persones Famoses"
+    "card2Button": "Explorar Persones Famoses",
+    "libraryTitle": "Biblioteca dels Cecs",
+    "libraryDescription": "El catàleg més gran del món de sistemes d'accessibilitat Braille, tàctils, d'àudio i multimodals"
   },
   "simulator": {
     "title": "Simulador de Condicions Visuals",
@@ -84,22 +86,140 @@
   },
   "famousPeople": {
     "title": "Persones Cegues i amb Discapacitat Visual Famoses",
-    "subtitle": "Explora com figures notables al llarg de la història han experimentat condicions visuals",
-    "searchPlaceholder": "Cercar per nom, condició o professió...",
+    "subtitle": "Explora les vides i experiències visuals de persones cegues i amb discapacitat visual famoses al llarg de la història.",
+    "searchPlaceholder": "Cerca per nom o condició",
+    "categoryLabel": "Categoria",
+    "conditionLabel": "Condició",
     "allCategories": "Totes les Categories",
-    "filterByCategory": "Filtrar per Categoria",
-    "noResults": "No s'han trobat resultats",
+    "allConditions": "Totes les Condicions",
+    "filterByCategory": "Filtrar per categoria",
+    "noResults": "No s'han trobat persones que coincideixin amb els teus criteris de cerca.",
     "noResultsDesc": "Prova d'ajustar la cerca o els filtres",
     "showingResults": "Mostrant {{count}} de {{total}} persones",
+    "hideTotalDarkness": "Amagar simulacions de foscor total",
+    "clearAllFilters": "Esborrar Tots els Filtres",
     "categories": {
       "contemporaryFigures": "Figures Contemporànies",
       "athletes": "Atletes",
+      "scientists": "Científics i Professionals Mèdics",
       "musicians": "Músics",
       "artists": "Artistes",
-      "writersActivists": "Escriptors i Activistes",
+      "writersActivists": "Escriptors, Activistes, Polítics",
       "historicalFigures": "Figures Històriques",
-      "scientists": "Científics",
       "fictionalCharacters": "Personatges de Ficció"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Problemes Oculars",
+      "neurologicIssues": "Problemes Neurològics",
+      "accidentInjury": "Accident/Lesió",
+      "congenitalDefects": "Defectes Congènits",
+      "degenerativeEyeDiseases": "Malalties Oculars Degeneratives",
+      "illness": "Malaltia",
+      "other": "Altres"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Previsualització de la Simulació de Visió",
+      "experienceSimulation": "Experimentar la Simulació",
+      "previous": "Anterior",
+      "next": "Següent"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossari i FAQ",
+    "subtitle": "Definicions completes de condicions visuals i FAQ sobre la ceguesa i la discapacitat visual.",
+    "tabGlossary": "Glossari",
+    "tabFaq": "FAQ",
+    "searchConditions": "Cercar condicions",
+    "category": "Categoria",
+    "allCategories": "Totes les Categories",
+    "conditionsFound": "{{count}} condicions trobades",
+    "clearFilters": "Esborrar Filtres",
+    "viewInSimulator": "Veure al simulador",
+    "featuredIn": "Presentat a: {{names}}",
+    "treatmentOptions": "Opcions de Tractament",
+    "noConditionsFound": "No s'han trobat condicions que coincideixin amb els teus criteris de cerca.",
+    "clearAllFilters": "Esborrar Tots els Filtres",
+    "conditions": "condicions",
+    "aboutGlossary": {
+      "title": "Sobre Aquest Glossari",
+      "paragraph1": "Aquest glossari conté informació completa sobre condicions visuals i discapacitats visuals. Cada condició inclou descripcions detallades dels símptomes, causes i efectes en la vida diària.",
+      "paragraph2": "Les condicions marcades amb \"Presentat a:\" estan associades amb persones famoses al nostre simulador. Fes clic a la icona de l'ull al costat de qualsevol condició per experimentar-la al nostre simulador de visió.",
+      "paragraph3": "Aquest recurs està dissenyat per ajudar els usuaris a entendre les diverses maneres en què la visió pot ser afectada, ja sigui per condicions genètiques, lesions, malalties o altres factors."
+    },
+    "aboutFaq": {
+      "title": "Sobre Aquestes FAQ",
+      "paragraph1": "Aquestes preguntes freqüents es basen en concepcions errònies comunes i curiositat genuïna sobre la ceguesa i la discapacitat visual. Les respostes reflecteixen les experiències diverses de persones cegues i amb discapacitat visual.",
+      "paragraph2": "Recorda que l'experiència de cada persona amb la pèrdua de visió és única. El que funciona per a una persona pot no funcionar per a una altra, i sempre és millor preguntar a les persones sobre les seves necessitats i preferències específiques.",
+      "paragraph3": "Per a informació més detallada sobre condicions visuals específiques, visita la nostra pestanya <strong>Glossari</strong> a dalt."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Pèrdua de Camp Visual", "description": "Condicions que afecten àrees específiques del camp visual" },
+      "colorVision": { "name": "Deficiències de Visió del Color", "description": "Condicions que afecten la percepció i discriminació del color" },
+      "eyeConditions": { "name": "Condicions Oculars", "description": "Condicions físiques que afecten l'estructura i funció de l'ull" },
+      "retinal": { "name": "Trastorns de Retina", "description": "Condicions que afecten la retina i les seves cèl·lules especialitzades" },
+      "neurological": { "name": "Condicions Visuals Neurològiques", "description": "Problemes de visió causats per trastorns del cervell i el sistema nerviós" },
+      "traumaInfection": { "name": "Relacionats amb Trauma i Infecció", "description": "Pèrdua de visió resultant de lesions físiques o malalties infeccioses" }
+    },
+    "faqCategories": {
+      "visionPerception": "Visió i Percepció",
+      "technologyAccessibility": "Tecnologia i Accessibilitat",
+      "dailyLife": "Vida Diària",
+      "navigationMobility": "Navegació i Mobilitat",
+      "socialInteraction": "Interacció Social",
+      "employmentCareer": "Ocupació i Carrera",
+      "medicalTreatment": "Mèdic i Tractament"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Les persones cegues veuen foscor/negre complet?",
+        "answer": "No necessàriament. Aproximadament el 85% de les persones legalment cegues tenen alguna visió residual. Només el 10-15% experimenten foscor total. Molts veuen llum/ombra, colors o formes borroses. Alguns que mai han tingut visió no experimenten la \"negror\" com a concepte - similar a com tu no \"veus\" negror darrere del teu cap."
+      },
+      "technology": {
+        "question": "Com utilitzen les persones cegues telèfons intel·ligents i ordinadors?",
+        "answer": "Els lectors de pantalla (JAWS, NVDA, VoiceOver) converteixen text a veu o braille. Els gestos i dreceres de teclat substitueixen l'ús del ratolí. Molts utilitzen telèfons intel·ligents normals amb funcions d'accessibilitat integrades. S'utilitzen molt els assistents de veu com Siri."
+      },
+      "independence": {
+        "question": "Poden les persones cegues viure independentment?",
+        "answer": "Sí. Amb formació adequada i tècniques adaptatives, les persones cegues cuinen, netegen, treballen, crien famílies i viuen vides completament independents. Utilitzen organització sistemàtica, marcadors tàctils, tecnologia d'assistència i eines de mobilitat."
+      },
+      "navigation": {
+        "question": "Com naveguen i es desplacen les persones cegues?",
+        "answerIntro": "Les persones cegues utilitzen diversos mètodes per a la navegació i mobilitat:",
+        "answerItems": ["Els bastons blancs detecten obstacles i canvis d'elevació", "Els gossos guia proporcionen desobediència intel·ligent i navegació", "Aplicacions GPS amb indicacions d'àudio (Soundscape, BlindSquare)", "Rutes memoritzades i mapeig mental", "Transport públic i aplicacions de viatges compartits"]
+      },
+      "senses": {
+        "question": "Les persones cegues tenen altres sentits més aguts?",
+        "answer": "No, els seus altres sentits no són biològicament superiors. Desenvolupen millor atenció i processament de la informació àudio/tàctil a través de la pràctica i la necessitat. És percepció millorada, no sensació millorada."
+      },
+      "interaction": {
+        "question": "Com hauria d'interactuar amb una persona cega?",
+        "answerIntro": "Aquí hi ha algunes directrius importants per a una interacció respectuosa:",
+        "answerItems": ["Parla normalment i directament amb ells, no a través d'acompanyants", "Identifica't quan t'apropes", "Pregunta abans d'ajudar - no agafis ni empenyis", "Dona descripcions verbals quan sigui rellevant", "Utilitza llenguatge normal ('ens veiem després' està bé)", "Mai acariciïs ni distreguis els gossos guia"]
+      },
+      "legalVsTotal": {
+        "question": "Quina és la diferència entre legalment cec i totalment cec?",
+        "legallyBlind": "Legalment cec:",
+        "legallyBlindDesc": "Visió 20/200 o pitjor amb correcció, O camp visual inferior a 20 graus",
+        "totallyBlind": "Totalment cec:",
+        "totallyBlindDesc": "Sense percepció de llum (NLP)",
+        "mostBlind": "La majoria de persones \"cegues\" cauen en algun punt entre aquests extrems."
+      },
+      "employment": {
+        "question": "Poden les persones cegues treballar en feines regulars?",
+        "answer": "Sí. Les persones cegues treballen com a advocats, professors, programadors, músics, psicòlegs, propietaris de negocis i innombrables altres professions. Les adaptacions del lloc de treball (lectors de pantalla, pantalles braille) permeten la majoria de feines."
+      },
+      "identification": {
+        "question": "Com identifiquen les persones cegues diners, colors o objectes?",
+        "answerIntro": "Les persones cegues utilitzen diverses tècniques adaptatives per a la identificació:",
+        "answerItems": ["Diners: Aplicacions com Seeing AI, diferents mètodes de doblegar, identificadors electrònics i diferents mides per a diferents denominacions en diversos països", "Colors: Aplicacions d'identificació de colors, preguntar a altres, comprar roba precoordinada", "Objectes: Organització sistemàtica, etiquetes braille/tàctils, etiquetes de gravació de veu, memòria"]
+      },
+      "causesTreatment": {
+        "question": "Què causa la ceguesa i es pot curar?",
+        "leadingCauses": "Causes principals a nivell mundial:",
+        "causeItems": ["Cataractes (reversibles)", "Glaucoma", "Degeneració macular", "Retinopatia diabètica", "Condicions genètiques"],
+        "treatmentInfo": "El tractament depèn de la causa. Algunes condicions són prevenibles/tractables, altres actualment no ho són. La investigació continua en tractaments com la teràpia gènica, cèl·lules mare i ulls biònics.",
+        "neurologicalNote": "Les persones també poden perdre la visió per condicions neurològiques com trauma o ictus."
+      }
     }
   },
   "conditions": {

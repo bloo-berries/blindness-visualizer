@@ -32,7 +32,9 @@
     "card1Description": "나만의 시각화 만들기",
     "card1Button": "시각 장애 시뮬레이터 시작",
     "card2Title": "유명한 시각장애인의 시각 체험",
-    "card2Button": "유명인 탐색"
+    "card2Button": "유명인 탐색",
+    "libraryTitle": "시각장애인 도서관",
+    "libraryDescription": "점자, 촉각, 오디오 및 다중 모드 접근성 시스템의 세계 최대 카탈로그"
   },
   "simulator": {
     "title": "시각 장애 시뮬레이터",
@@ -84,22 +86,181 @@
   },
   "famousPeople": {
     "title": "유명한 시각장애인",
-    "subtitle": "역사 속 저명인물들이 어떻게 시각 장애를 경험했는지 알아보세요",
-    "searchPlaceholder": "이름, 장애 또는 직업으로 검색...",
+    "subtitle": "역사 속 유명한 시각장애인들의 삶과 시각적 경험을 탐험하세요.",
+    "searchPlaceholder": "이름 또는 질환으로 검색",
+    "categoryLabel": "카테고리",
+    "conditionLabel": "질환",
     "allCategories": "모든 카테고리",
+    "allConditions": "모든 질환",
     "filterByCategory": "카테고리별 필터",
-    "noResults": "결과를 찾을 수 없습니다",
+    "noResults": "검색 조건과 일치하는 사람을 찾을 수 없습니다.",
     "noResultsDesc": "검색어나 필터를 조정해 보세요",
     "showingResults": "{{total}}명 중 {{count}}명 표시",
+    "hideTotalDarkness": "완전한 어둠 시뮬레이션 숨기기",
+    "clearAllFilters": "모든 필터 지우기",
     "categories": {
       "contemporaryFigures": "현대 인물",
       "athletes": "운동선수",
+      "scientists": "과학자 및 의료 전문가",
       "musicians": "음악가",
       "artists": "예술가",
-      "writersActivists": "작가 및 활동가",
+      "writersActivists": "작가, 활동가, 정치인",
       "historicalFigures": "역사적 인물",
-      "scientists": "과학자",
-      "fictionalCharacters": "가상의 캐릭터"
+      "fictionalCharacters": "가상의 인물"
+    },
+    "conditionCategories": {
+      "ocularIssues": "안과 문제",
+      "neurologicIssues": "신경학적 문제",
+      "accidentInjury": "사고/부상",
+      "congenitalDefects": "선천성 결함",
+      "degenerativeEyeDiseases": "퇴행성 안질환",
+      "illness": "질병",
+      "other": "기타"
+    },
+    "dialog": {
+      "visionSimulationPreview": "시각 시뮬레이션 미리보기",
+      "experienceSimulation": "시뮬레이션 체험하기",
+      "previous": "이전",
+      "next": "다음"
+    }
+  },
+  "glossaryPage": {
+    "title": "용어집 및 FAQ",
+    "subtitle": "시각 상태에 대한 포괄적인 정의와 실명 및 시각 장애에 관한 FAQ.",
+    "tabGlossary": "용어집",
+    "tabFaq": "FAQ",
+    "searchConditions": "상태 검색",
+    "category": "카테고리",
+    "allCategories": "모든 카테고리",
+    "conditionsFound": "{{count}}개의 상태를 찾았습니다",
+    "clearFilters": "필터 지우기",
+    "viewInSimulator": "시뮬레이터에서 보기",
+    "featuredIn": "관련 인물: {{names}}",
+    "treatmentOptions": "치료 옵션",
+    "noConditionsFound": "검색 기준에 맞는 상태를 찾을 수 없습니다.",
+    "clearAllFilters": "모든 필터 지우기",
+    "conditions": "상태",
+    "aboutGlossary": {
+      "title": "이 용어집에 대하여",
+      "paragraph1": "이 용어집에는 시각 상태와 시각 장애에 대한 포괄적인 정보가 포함되어 있습니다. 각 상태에는 증상, 원인 및 일상생활에 미치는 영향에 대한 자세한 설명이 포함되어 있습니다.",
+      "paragraph2": "\"관련 인물:\"로 표시된 상태는 시뮬레이터의 유명인과 연관되어 있습니다. 상태 옆의 눈 아이콘을 클릭하여 비전 시뮬레이터에서 체험해 보세요.",
+      "paragraph3": "이 리소스는 유전적 조건, 부상, 질병 또는 기타 요인으로 인해 시력이 영향을 받을 수 있는 다양한 방식을 이해하는 데 도움이 되도록 설계되었습니다."
+    },
+    "aboutFaq": {
+      "title": "이 FAQ에 대하여",
+      "paragraph1": "이러한 자주 묻는 질문은 실명과 시각 장애에 대한 일반적인 오해와 진정한 호기심을 기반으로 합니다. 답변은 시각 장애인의 다양한 경험을 반영합니다.",
+      "paragraph2": "시력 상실에 대한 각 개인의 경험은 고유하다는 것을 기억하세요. 한 사람에게 효과적인 것이 다른 사람에게는 효과적이지 않을 수 있으며, 항상 개인의 특정 요구 사항과 선호도에 대해 물어보는 것이 가장 좋습니다.",
+      "paragraph3": "특정 시각 상태에 대한 자세한 정보는 위의 <strong>용어집</strong> 탭을 방문하세요."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "시야 상실",
+        "description": "시야의 특정 영역에 영향을 미치는 상태"
+      },
+      "colorVision": {
+        "name": "색각 이상",
+        "description": "색상 인식과 구별에 영향을 미치는 상태"
+      },
+      "eyeConditions": {
+        "name": "눈 상태",
+        "description": "눈의 구조와 기능에 영향을 미치는 신체적 상태"
+      },
+      "retinal": {
+        "name": "망막 장애",
+        "description": "망막과 그 특수 세포에 영향을 미치는 상태"
+      },
+      "neurological": {
+        "name": "신경학적 시각 상태",
+        "description": "뇌와 신경계 장애로 인한 시각 문제"
+      },
+      "traumaInfection": {
+        "name": "외상 및 감염 관련",
+        "description": "신체적 부상이나 감염성 질환으로 인한 시력 상실"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "시각 및 인식",
+      "technologyAccessibility": "기술 및 접근성",
+      "dailyLife": "일상생활",
+      "navigationMobility": "내비게이션 및 이동",
+      "socialInteraction": "사회적 상호작용",
+      "employmentCareer": "고용 및 경력",
+      "medicalTreatment": "의료 및 치료"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "시각 장애인은 완전한 어둠을 보나요?",
+        "answer": "반드시 그런 것은 아닙니다. 법적 시각 장애인의 약 85%는 어느 정도의 잔존 시력이 있습니다. 완전한 어둠을 경험하는 것은 10-15%에 불과합니다. 많은 사람들이 빛/그림자, 색상 또는 흐릿한 형태를 봅니다. 시력을 가져본 적이 없는 일부 사람들은 \"어둠\"을 개념으로 경험하지 않습니다 - 머리 뒤의 \"어둠\"을 보지 않는 것과 비슷합니다."
+      },
+      "technology": {
+        "question": "시각 장애인은 스마트폰과 컴퓨터를 어떻게 사용하나요?",
+        "answer": "스크린 리더(JAWS, NVDA, VoiceOver)가 텍스트를 음성이나 점자로 변환합니다. 제스처와 키보드 단축키가 마우스 사용을 대체합니다. 많은 사람들이 내장 접근성 기능이 있는 일반 스마트폰을 사용합니다. Siri와 같은 음성 비서가 많이 활용됩니다."
+      },
+      "independence": {
+        "question": "시각 장애인은 독립적으로 살 수 있나요?",
+        "answer": "네. 적절한 훈련과 적응 기술을 통해 시각 장애인은 요리하고, 청소하고, 일하고, 가족을 부양하며 완전히 독립적인 삶을 살고 있습니다. 체계적인 조직, 촉각 마커, 보조 기술 및 이동 도구를 사용합니다."
+      },
+      "navigation": {
+        "question": "시각 장애인은 어떻게 탐색하고 이동하나요?",
+        "answerIntro": "시각 장애인은 탐색과 이동에 다양한 방법을 사용합니다:",
+        "answerItems": [
+          "흰 지팡이로 장애물과 높이 변화 감지",
+          "안내견이 지능적인 불복종과 내비게이션 제공",
+          "음성 안내가 있는 GPS 앱(Soundscape, BlindSquare)",
+          "기억된 경로와 정신적 매핑",
+          "대중교통 및 차량 공유 앱"
+        ]
+      },
+      "senses": {
+        "question": "시각 장애인은 다른 감각이 더 발달되어 있나요?",
+        "answer": "아니요, 다른 감각이 생물학적으로 우월한 것은 아닙니다. 연습과 필요에 의해 청각/촉각 정보에 대한 주의력과 처리 능력이 향상됩니다. 이것은 향상된 지각이지 향상된 감각이 아닙니다."
+      },
+      "interaction": {
+        "question": "시각 장애인과 어떻게 상호작용해야 하나요?",
+        "answerIntro": "존중하는 상호작용을 위한 중요한 지침:",
+        "answerItems": [
+          "동반자를 통하지 않고 직접 정상적으로 말하기",
+          "다가갈 때 자신을 소개하기",
+          "도움 전에 먼저 물어보기 - 잡거나 밀지 말기",
+          "관련이 있을 때 언어로 설명하기",
+          "일반적인 언어 사용하기('나중에 봐요'는 괜찮음)",
+          "안내견을 쓰다듬거나 주의를 분산시키지 않기"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "법적 실명과 완전 실명의 차이점은 무엇인가요?",
+        "legallyBlind": "법적 실명:",
+        "legallyBlindDesc": "교정 시력 20/200 이하, 또는 시야 20도 미만",
+        "totallyBlind": "완전 실명:",
+        "totallyBlindDesc": "광각 없음(NLP)",
+        "mostBlind": "대부분의 \"시각 장애인\"은 이 두 극단 사이 어딘가에 있습니다."
+      },
+      "employment": {
+        "question": "시각 장애인은 일반 직업을 가질 수 있나요?",
+        "answer": "네. 시각 장애인은 변호사, 교사, 프로그래머, 음악가, 심리학자, 사업주 및 수많은 다른 직업에서 일합니다. 직장 편의시설(스크린 리더, 점자 디스플레이)이 대부분의 직업을 가능하게 합니다."
+      },
+      "identification": {
+        "question": "시각 장애인은 돈, 색상 또는 물건을 어떻게 식별하나요?",
+        "answerIntro": "시각 장애인은 식별에 다양한 적응 기술을 사용합니다:",
+        "answerItems": [
+          "돈: Seeing AI와 같은 앱, 다양한 접는 방법, 전자 식별기, 여러 국가에서 다양한 액면가에 대한 다양한 크기",
+          "색상: 색상 식별 앱, 다른 사람에게 물어보기, 미리 코디된 옷 구매",
+          "물건: 체계적인 정리, 점자/촉각 라벨, 음성 녹음 라벨, 기억"
+        ]
+      },
+      "causesTreatment": {
+        "question": "실명의 원인은 무엇이며 치료할 수 있나요?",
+        "leadingCauses": "전 세계 주요 원인:",
+        "causeItems": [
+          "백내장(가역적)",
+          "녹내장",
+          "황반변성",
+          "당뇨병성 망막병증",
+          "유전적 조건"
+        ],
+        "treatmentInfo": "치료는 원인에 따라 다릅니다. 일부 상태는 예방/치료 가능하고 다른 상태는 현재 그렇지 않습니다. 유전자 치료, 줄기 세포, 생체 공학적 눈과 같은 치료법에 대한 연구가 계속되고 있습니다.",
+        "neurologicalNote": "외상이나 뇌졸중과 같은 신경학적 상태로 시력을 잃을 수도 있습니다."
+      }
     }
   },
   "conditions": {

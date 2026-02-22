@@ -421,7 +421,7 @@ const HomePage: React.FC = () => {
                   display: 'block'
                 }}
               >
-                Library of the Blind
+                {t('home.libraryTitle')}
               </Typography>
               <Typography
                 variant="body2"
@@ -432,7 +432,7 @@ const HomePage: React.FC = () => {
                   whiteSpace: 'nowrap'
                 }}
               >
-                The world's largest catalog of Braille, tactile, audio, and multimodal accessibility systems
+                {t('home.libraryDescription')}
               </Typography>
             </Box>
           </Card>

@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "Um",
+    "simulator": "Sjónhermir",
+    "famousPeople": "Frægt Blindt Fólk",
+    "glossary": "Orðalisti og FAQ",
+    "resources": "Úrræði",
+    "navigation": "Leiðsögn",
+    "viewOnGithub": "Skoða á GitHub",
+    "openMenu": "opna leiðsöguvalmynd",
+    "startSimulator": "Ræsa Hermi",
+    "home": "Fara á heimasíðu"
+  },
+  "buttons": {
+    "back": "TILBAKA",
+    "next": "Næsta",
+    "viewSimulation": "Skoða Hermun",
+    "clearFilters": "Hreinsa Síur",
+    "deselectAll": "Afvelja Allt",
+    "support": "Styðja",
+    "supportDonate": "Styðja og Gefa",
+    "experienceSimulation": "Upplifa Hermun",
+    "close": "Loka",
+    "submit": "Senda",
+    "reset": "Endurstilla"
+  },
+  "home": {
+    "title": "Upplifðu",
+    "titleHighlight": "Sjónástand",
+    "card1Title": "Búðu til þína einstöku sjónmynd",
+    "card1Button": "Ræsa Sjónhermi",
+    "card2Title": "Frægt Blindt og Sjónskert Fólk",
+    "card2Button": "Upplifðu Sjón Þeirra",
+    "libraryTitle": "Bókasafn Blindra",
+    "libraryDescription": "Stærsti heimslisti yfir blindraletur, snertingu, hljóð og fjölþætt aðgengiskerfi"
+  },
+  "simulator": {
+    "title": "Sjónástands Hermir",
+    "step1": "Veldu Inntaksheimild",
+    "step2": "Veldu Sjónástand",
+    "step3": "Skoða Hermun",
+    "selectConditions": "Veldu Sjónástand",
+    "visionPreview": "Sjónforskoðun",
+    "combinedPreview": "Sameinuð Sjónforskoðun ({{count}} ástand)",
+    "selectToStart": "Veldu ástand til að halda áfram",
+    "viewSimulationCount": "Skoða Hermun ({{count}} ástand)",
+    "viewSimulationCountPlural": "Skoða Hermun ({{count}} ástand)",
+    "simulating": "Hermun: {{name}}",
+    "condition": "Ástand: {{condition}}",
+    "screenReaderStep1": "Skref 1: Veldu inntaksheimild - vefmyndavél, myndaupphleðsla eða YouTube myndband",
+    "screenReaderStep2": "Skref 2: Veldu sjónástand til að herma",
+    "screenReaderStep3": "Skref 3: Skoðaðu sjónhermun þína",
+    "goBack": "Fara til baka til að velja ástand"
+  },
+  "inputSelector": {
+    "title": "Veldu Inntaksheimild",
+    "demoVideo": "Nota Sýnimyndband",
+    "demoVideoDesc": "Forinnspilað myndband til að kanna ástand",
+    "uploadImage": "Hlaða Upp Mynd",
+    "uploadImageDesc": "Hlaða upp úr tækinu þínu",
+    "webcam": "Nota Vefmyndavél",
+    "webcamDesc": "Rauntíma myndavélarstraumur",
+    "selected": "Valið",
+    "recommended": "(Mælt með)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Leita að ástandi...",
+    "mostCommon": "Algengast",
+    "redGreen": "Rauð-Græn",
+    "fieldLoss": "Sjónsvæðistap",
+    "ageRelated": "Aldurstengt",
+    "intensity": "Styrkur",
+    "separation": "Aðskilnaður",
+    "direction": "Stefna"
+  },
+  "categories": {
+    "visualFieldLoss": "Sjónsvæðistap",
+    "colorVision": "Litasjón",
+    "eyeConditions": "Augnástand",
+    "refractiveErrors": "Ljósbrotsgallar",
+    "retinalDisorders": "Sjónhimnusjúkdómar",
+    "visualDisturbances": "Sjóntruflanir",
+    "doubleVision": "Tvísýni"
+  },
+  "famousPeople": {
+    "title": "Frægt Blindt og Sjónskert Fólk",
+    "subtitle": "Kannaðu líf og sjónupplifun frægs blinds og sjónskertra einstaklinga í gegnum söguna.",
+    "searchPlaceholder": "Leita eftir nafni eða ástandi",
+    "categoryLabel": "Flokkur",
+    "conditionLabel": "Ástand",
+    "allCategories": "Allir Flokkar",
+    "allConditions": "Öll Ástand",
+    "filterByCategory": "Sía eftir Flokki",
+    "noResults": "Engir einstaklingar fundust sem passa við leitarskilyrði þín.",
+    "noResultsDesc": "Reyndu að breyta leit eða síum",
+    "showingResults": "Sýni {{count}} af {{total}} einstaklingum",
+    "hideTotalDarkness": "Fela hermingu algjörs myrkurs",
+    "clearAllFilters": "Hreinsa Allar Síur",
+    "categories": {
+      "contemporaryFigures": "Samtíðar Persónur",
+      "athletes": "Íþróttafólk",
+      "scientists": "Vísindamenn og Læknar",
+      "musicians": "Tónlistarmenn",
+      "artists": "Listamenn",
+      "writersActivists": "Rithöfundar, Aðgerðarsinnar, Stjórnmálamenn",
+      "historicalFigures": "Sögulegar Persónur",
+      "fictionalCharacters": "Skáldskaparperónur"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Augnvandamál",
+      "neurologicIssues": "Taugavandamál",
+      "accidentInjury": "Slys/Áverki",
+      "congenitalDefects": "Meðfæddir Gallar",
+      "degenerativeEyeDiseases": "Hrörandi Augnsjúkdómar",
+      "illness": "Veikindi",
+      "other": "Annað"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Forskoðun Sjónhermingar",
+      "experienceSimulation": "Upplifa Hermun",
+      "previous": "Fyrri",
+      "next": "Næsti"
+    }
+  },
+  "glossaryPage": {
+    "title": "Orðalisti og FAQ",
+    "subtitle": "Ítarlegar skilgreiningar á sjónástandi og algengar spurningar um blindu og sjónskerðingu.",
+    "tabGlossary": "Orðalisti",
+    "tabFaq": "FAQ",
+    "searchConditions": "Leita að ástandi",
+    "category": "Flokkur",
+    "allCategories": "Allir Flokkar",
+    "conditionsFound": "{{count}} ástand fundust",
+    "clearFilters": "Hreinsa Síur",
+    "viewInSimulator": "Skoða í hermi",
+    "featuredIn": "Tengist: {{names}}",
+    "treatmentOptions": "Meðferðarmöguleikar",
+    "noConditionsFound": "Engin ástand fundust sem passa við leitarskilyrði þín.",
+    "clearAllFilters": "Hreinsa Allar Síur",
+    "conditions": "ástand",
+    "aboutGlossary": {
+      "title": "Um Þennan Orðalista",
+      "paragraph1": "Þessi orðalisti inniheldur ítarlegar upplýsingar um sjónástand og sjónskerðingar. Hvert ástand inniheldur nákvæmar lýsingar á einkennum, orsökum og áhrifum á daglegt líf.",
+      "paragraph2": "Ástand merkt með \"Tengist:\" eru tengd frægu fólki í hermi okkar. Smelltu á augntáknið við hliðina á hvaða ástandi sem er til að upplifa það í sjónhermi okkar.",
+      "paragraph3": "Þetta úrræði er hannað til að hjálpa notendum að skilja hinar ýmsu leiðir sem sjón getur orðið fyrir áhrifum, hvort sem er vegna erfðasjúkdóma, áverka, sjúkdóma eða annarra þátta."
+    },
+    "aboutFaq": {
+      "title": "Um Þessar Algengu Spurningar",
+      "paragraph1": "Þessar algengu spurningar byggjast á algengum misskilningi og einlægri forvitni um blindu og sjónskerðingu. Svörin endurspegla fjölbreyttar reynslur blindra og sjónskertra einstaklinga.",
+      "paragraph2": "Mundu að reynsla hvers og eins af sjóntapi er einstök. Það sem virkar fyrir einn gæti ekki virkað fyrir annan og það er alltaf best að spyrja einstaklinga um sérstakar þarfir þeirra og óskir.",
+      "paragraph3": "Fyrir ítarlegri upplýsingar um tiltekin sjónástand, heimsæktu <strong>Orðalista</strong> flipann hér að ofan."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Sjónsvæðistap", "description": "Ástand sem hefur áhrif á ákveðin svæði sjónsviðsins" },
+      "colorVision": { "name": "Litaskynsgallar", "description": "Ástand sem hefur áhrif á litskynjun og litaaðgreiningu" },
+      "eyeConditions": { "name": "Augnástand", "description": "Líffræðileg ástand sem hefur áhrif á byggingu og virkni augans" },
+      "retinal": { "name": "Sjónhimnusjúkdómar", "description": "Ástand sem hefur áhrif á sjónhimnu og sérhæfðar frumur hennar" },
+      "neurological": { "name": "Taugafræðileg Sjónástand", "description": "Sjónvandamál af völdum truflana í heila og taugakerfi" },
+      "traumaInfection": { "name": "Áverka- og Sýkingatengd", "description": "Sjóntap vegna líkamlegra áverka eða smitsjúkdóma" }
+    },
+    "faqCategories": {
+      "visionPerception": "Sjón og Skynjun",
+      "technologyAccessibility": "Tækni og Aðgengi",
+      "dailyLife": "Daglegt Líf",
+      "navigationMobility": "Leiðsögn og Hreyfanleiki",
+      "socialInteraction": "Félagsleg Samskipti",
+      "employmentCareer": "Atvinna og Starfsferill",
+      "medicalTreatment": "Læknisfræði og Meðferð"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Sjá blindir algjört myrkur/sverta?",
+        "answer": "Ekki endilega. Um 85% lagalega blindra hafa einhverja eftirstöðva sjón. Aðeins 10-15% upplifa algjört myrkur. Margir sjá ljós/skugga, liti eða óskýr form. Sumir sem aldrei hafa séð upplifa ekki \"svert\" sem hugtak - svipað og þú \"sérð\" ekki svert fyrir aftan höfuðið á þér."
+      },
+      "technology": {
+        "question": "Hvernig nota blindir snjallsíma og tölvur?",
+        "answer": "Skjálesarar (JAWS, NVDA, VoiceOver) umbreyta texta í tal eða blindraletur. Snertingar og flýtilyklar á lyklaborði koma í stað músarnotkunar. Margir nota venjulega snjallsíma með innbyggðum aðgengiseiginleikum. Raddaðstoðarmenn eins og Siri eru mikið notaðir."
+      },
+      "independence": {
+        "question": "Geta blindir lifað sjálfstætt?",
+        "answer": "Já. Með réttri þjálfun og aðlögunartækni elda blindir, þrífa, vinna, ala upp fjölskyldur og lifa fullkomlega sjálfstæðu lífi. Þeir nota kerfisbundna skipulagningu, snertimerkingar, hjálpartækni og hreyfitæki."
+      },
+      "navigation": {
+        "question": "Hvernig rata blindir og komast um?",
+        "answerIntro": "Blindir nota ýmsar aðferðir til leiðsagnar og hreyfanleika:",
+        "answerItems": ["Hvítir stafir greina hindranir og hæðarbreytingar", "Leiðsöguhundar veita greindarleiðsögn og óhlýðni", "GPS forrit með hljóðleiðbeiningum (Soundscape, BlindSquare)", "Minndar leiðir og andlegt kort", "Almenningssamgöngur og akstursdeilingarforrit"]
+      },
+      "senses": {
+        "question": "Hafa blindir efldar aðrar skynjanir?",
+        "answer": "Nei, aðrar skynjanir þeirra eru ekki líffræðilega betri. Þeir þróa betri athygli á og vinnslu hljóð-/snerti upplýsinga með æfingu og nauðsyn. Það er efld skynjun, ekki efluð næming."
+      },
+      "interaction": {
+        "question": "Hvernig ætti ég að eiga samskipti við blindan einstakling?",
+        "answerIntro": "Hér eru nokkrar mikilvægar leiðbeiningar um virðingafull samskipti:",
+        "answerItems": ["Talaðu eðlilega og beint við þá, ekki í gegnum fylgdarmenn", "Kynntu þig þegar þú nálgast", "Spurðu áður en þú hjálpar - ekki grípa eða ýta", "Gefðu munnlegar lýsingar þegar við á", "Notaðu venjulegt tungumál ('sjáumst' er í lagi)", "Aldrei klappaðu eða truflaðu leiðsöguhunda"]
+      },
+      "legalVsTotal": {
+        "question": "Hver er munurinn á lagalegri blindu og algerri blindu?",
+        "legallyBlind": "Lagalega blindur:",
+        "legallyBlindDesc": "Sjón 20/200 eða verri með leiðréttingu, EÐA sjónsvið minna en 20 gráður",
+        "totallyBlind": "Algjörlega blindur:",
+        "totallyBlindDesc": "Engin ljósskynjun (NLP)",
+        "mostBlind": "Flestir \"blindir\" falla einhvers staðar á milli þessara öfga."
+      },
+      "employment": {
+        "question": "Geta blindir unnið venjuleg störf?",
+        "answer": "Já. Blindir vinna sem lögfræðingar, kennarar, forritarar, tónlistarmenn, sálfræðingar, fyrirtækjaeigendur og í óteljandi öðrum störfum. Vinnustaðaaðlögun (skjálesarar, blindraletur skjáir) gerir flest störf möguleg."
+      },
+      "identification": {
+        "question": "Hvernig bera blindir kennsl á peninga, liti eða hluti?",
+        "answerIntro": "Blindir nota ýmsar aðlögunaraðferðir til auðkenningar:",
+        "answerItems": ["Peningar: Forrit eins og Seeing AI, mismunandi brotaaðferðir, rafræn auðkenni og mismunandi stærðir fyrir mismunandi gengi í ýmsum löndum", "Litir: Litaauðkennisforrit, spyrja aðra, kaupa forsamsettan fatnað", "Hlutir: Kerfisbundin skipulagning, blindraletur/snertimerkingar, raddupptökumerkingar, minni"]
+      },
+      "causesTreatment": {
+        "question": "Hvað veldur blindu og er hægt að lækna hana?",
+        "leadingCauses": "Helstu orsakir á heimsvísu:",
+        "causeItems": ["Drer (afturkræft)", "Gláka", "Gulblettahrörnun", "Sykursýkis sjónhimnukvilli", "Erfðasjúkdómar"],
+        "treatmentInfo": "Meðferð fer eftir orsökum. Sum ástand er hægt að koma í veg fyrir/meðhöndla, önnur ekki núna. Rannsóknir halda áfram á meðferðum eins og genameðferð, stofnfrumum og lífvélaaugum.",
+        "neurologicalNote": "Fólk getur líka misst sjón af taugafræðilegum orsökum eins og áverka eða heilablóðfalli."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Sjónástands Orðalisti",
+    "subtitle": "Lærðu um mismunandi tegundir sjónskerðingar og augnástands",
+    "searchPlaceholder": "Leita að ástandi...",
+    "viewAll": "Skoða Allt",
+    "colorBlindness": "Litblinda",
+    "fieldLoss": "Sjónsvæðistap",
+    "ageRelated": "Aldurstengt",
+    "genetic": "Erfðafræðilegt"
+  },
+  "faq": {
+    "title": "Algengar Spurningar",
+    "subtitle": "Algengar spurningar um sjónástand og þennan hermi"
+  },
+  "about": {
+    "title": "Um VisionSim",
+    "subtitle": "Skilningur á verkefni okkar og nálgun",
+    "personalJourney": "Persónuleg Ferð",
+    "greeting": "Halló til samfélagsins blindra og sjónskertra — og til allra forvitinna sem vilja læra meira!",
+    "story": "Árið 2020 missti ég sjónina á augnabliki vegna heilablóðfalls og ég barðist ein á meðan COVID-lokuninni stóð, gat ekki fundið endurhæfingu, meðferð, áttunarnámskeið eða neitt. Á netinu fann ég næstum ekkert um heilablóðfallstengd sjóntap á þeim skala sem ég upplifði. Að lýsa nákvæmlega hvernig ég \"sé\" heiminn var sársaukafullt erfitt og jók aðeins einangrunina.",
+    "purpose": "Ég bjó til þessa síðu svo fólk væri betur búið verkfærum til að orða og tákna blindu sína og/eða sjónástand nákvæmari.",
+    "previewVideo": "Forskoða Hvernig Ég Sé",
+    "mission": "Verkefni Okkar",
+    "missionText": "VisionSim hjálpar fólki að skilja hvernig það er að lifa með mismunandi sjónástand í gegnum nákvæmar, rannsóknarstuddar hermur.",
+    "howItWorks": "Hvernig Þetta Virkar",
+    "disclaimer": "Læknisfræðileg Fyrirvari",
+    "disclaimerText": "Þessar hermur eru aðeins í fræðsluskyni og endurspegla kannski ekki fullkomlega hvernig einstaklingar upplifa ástand sitt."
+  },
+  "feedback": {
+    "title": "Deildu Viðbrögðum Þínum",
+    "subtitle": "Hjálpaðu okkur að bæta VisionSim",
+    "nameLabel": "Nafn Þitt",
+    "namePlaceholder": "Sláðu inn nafn þitt",
+    "emailLabel": "Netfang",
+    "emailPlaceholder": "Sláðu inn netfangið þitt",
+    "messageLabel": "Viðbrögð Þín",
+    "messagePlaceholder": "Segðu okkur hvað þú finnst...",
+    "submitButton": "Senda Viðbrögð",
+    "successMessage": "Takk fyrir viðbrögðin þín!",
+    "errorMessage": "Eitthvað fór úrskeiðis. Vinsamlegast reyndu aftur."
+  },
+  "resources": {
+    "title": "Sjónúrræði",
+    "subtitle": "Hjálplegar tenglar og upplýsingar um sjónástand",
+    "organizations": "Samtök",
+    "research": "Rannsóknir",
+    "support": "Stuðningshópar"
+  },
+  "accessibility": {
+    "menu": "Aðgengisstillingar",
+    "highContrast": "Mikill Birtuskil",
+    "highContrastDesc": "Auka litaandstæður fyrir betri sýnileika",
+    "largeText": "Stór Texti",
+    "largeTextDesc": "Auka textastærð á allri síðunni",
+    "increasedSpacing": "Aukin Bil",
+    "increasedSpacingDesc": "Bæta við meira plássi á milli þátta",
+    "enhancedFocus": "Bættur Fokus",
+    "enhancedFocusDesc": "Gera fokusvísa sýnilegri",
+    "reducedMotion": "Minnkuð Hreyfing",
+    "reducedMotionDesc": "Draga úr hreyfimyndum og umskiptum",
+    "resetAll": "Endurstilla Allt",
+    "skipToContent": "Fara í aðalefni"
+  },
+  "language": {
+    "select": "Veldu Tungumál",
+    "current": "Tungumál"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Viðbrögð",
+    "resources": "Úrræði"
+  },
+  "visualizer": {
+    "comparison": "Samanburður",
+    "original": "Upprunalegt",
+    "simulated": "Hermað",
+    "toggleComparison": "Skipta um samanburðarskjá",
+    "screenshot": "Skjámynd",
+    "takeScreenshot": "Taka skjámynd",
+    "fullscreen": "Allur Skjár",
+    "exitFullscreen": "Hætta í öllum skjá"
+  },
+  "common": {
+    "loading": "Hleður...",
+    "error": "Villa kom upp",
+    "retry": "Reyna aftur",
+    "learnMore": "Læra meira",
+    "seeMore": "Sjá meira",
+    "seeLess": "Sjá minna",
+    "yes": "Já",
+    "no": "Nei",
+    "ok": "Í lagi",
+    "cancel": "Hætta við"
+  }
+}

@@ -32,7 +32,9 @@
     "card1Description": "Crea la tua visualizzazione unica",
     "card1Button": "Avvia Simulatore di Condizioni Visive",
     "card2Title": "Sperimenta la Vista di Persone Cieche e Ipovedenti Famose",
-    "card2Button": "Esplora Persone Famose"
+    "card2Button": "Esplora Persone Famose",
+    "libraryTitle": "Biblioteca dei Ciechi",
+    "libraryDescription": "Il più grande catalogo al mondo di sistemi di accessibilità Braille, tattili, audio e multimodali"
   },
   "simulator": {
     "title": "Simulatore di Condizioni Visive",
@@ -83,23 +85,182 @@
     "doubleVision": "Visione Doppia"
   },
   "famousPeople": {
-    "title": "Persone Cieche e Ipovedenti Famose",
-    "subtitle": "Scopri come figure notevoli della storia hanno sperimentato condizioni visive",
-    "searchPlaceholder": "Cerca per nome, condizione o professione...",
+    "title": "Persone Famose Cieche e Ipovedenti",
+    "subtitle": "Esplora le vite e le esperienze visive di persone cieche e ipovedenti famose nel corso della storia.",
+    "searchPlaceholder": "Cerca per nome o condizione",
+    "categoryLabel": "Categoria",
+    "conditionLabel": "Condizione",
     "allCategories": "Tutte le Categorie",
+    "allConditions": "Tutte le Condizioni",
     "filterByCategory": "Filtra per Categoria",
-    "noResults": "Nessun risultato trovato",
-    "noResultsDesc": "Prova ad adattare la tua ricerca o i filtri",
-    "showingResults": "Mostrando {{count}} di {{total}} persone",
+    "noResults": "Nessuna persona trovata che corrisponda ai tuoi criteri di ricerca.",
+    "noResultsDesc": "Prova a modificare la ricerca o i filtri",
+    "showingResults": "Visualizzazione di {{count}} su {{total}} persone",
+    "hideTotalDarkness": "Nascondi simulazioni di oscurità totale",
+    "clearAllFilters": "Cancella Tutti i Filtri",
     "categories": {
-      "contemporaryFigures": "Figure Contemporanee",
+      "contemporaryFigures": "Personalità Contemporanee",
       "athletes": "Atleti",
+      "scientists": "Scienziati e Professionisti Medici",
       "musicians": "Musicisti",
       "artists": "Artisti",
-      "writersActivists": "Scrittori e Attivisti",
+      "writersActivists": "Scrittori, Attivisti, Politici",
       "historicalFigures": "Figure Storiche",
-      "scientists": "Scienziati",
-      "fictionalCharacters": "Personaggi Fittizi"
+      "fictionalCharacters": "Personaggi Immaginari"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Problemi Oculari",
+      "neurologicIssues": "Problemi Neurologici",
+      "accidentInjury": "Incidente/Infortunio",
+      "congenitalDefects": "Difetti Congeniti",
+      "degenerativeEyeDiseases": "Malattie Oculari Degenerative",
+      "illness": "Malattia",
+      "other": "Altro"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Anteprima Simulazione Visiva",
+      "experienceSimulation": "Prova la Simulazione",
+      "previous": "Precedente",
+      "next": "Successivo"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossario e FAQ",
+    "subtitle": "Definizioni complete delle condizioni visive e FAQ su cecità e disabilità visiva.",
+    "tabGlossary": "Glossario",
+    "tabFaq": "FAQ",
+    "searchConditions": "Cerca condizioni",
+    "category": "Categoria",
+    "allCategories": "Tutte le Categorie",
+    "conditionsFound": "{{count}} condizioni trovate",
+    "clearFilters": "Cancella Filtri",
+    "viewInSimulator": "Visualizza nel simulatore",
+    "featuredIn": "In evidenza: {{names}}",
+    "treatmentOptions": "Opzioni di Trattamento",
+    "noConditionsFound": "Nessuna condizione trovata corrispondente ai tuoi criteri di ricerca.",
+    "clearAllFilters": "Cancella Tutti i Filtri",
+    "conditions": "condizioni",
+    "aboutGlossary": {
+      "title": "Informazioni su Questo Glossario",
+      "paragraph1": "Questo glossario contiene informazioni complete sulle condizioni visive e le disabilità visive. Ogni condizione include descrizioni dettagliate di sintomi, cause ed effetti sulla vita quotidiana.",
+      "paragraph2": "Le condizioni contrassegnate con \"In evidenza:\" sono associate a persone famose nel nostro simulatore. Clicca sull'icona dell'occhio accanto a qualsiasi condizione per sperimentarla nel nostro simulatore di visione.",
+      "paragraph3": "Questa risorsa è progettata per aiutare gli utenti a comprendere i vari modi in cui la vista può essere influenzata, sia da condizioni genetiche, lesioni, malattie o altri fattori."
+    },
+    "aboutFaq": {
+      "title": "Informazioni su Queste FAQ",
+      "paragraph1": "Queste domande frequenti si basano su comuni malintesi e genuina curiosità riguardo cecità e disabilità visiva. Le risposte riflettono le diverse esperienze delle persone non vedenti e ipovedenti.",
+      "paragraph2": "Ricorda che l'esperienza di ogni persona con la perdita della vista è unica. Ciò che funziona per una persona potrebbe non funzionare per un'altra, ed è sempre meglio chiedere alle persone le loro esigenze e preferenze specifiche.",
+      "paragraph3": "Per informazioni più dettagliate su condizioni visive specifiche, visita la nostra scheda <strong>Glossario</strong> sopra."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Perdita del Campo Visivo",
+        "description": "Condizioni che influenzano aree specifiche del campo visivo"
+      },
+      "colorVision": {
+        "name": "Deficit della Visione dei Colori",
+        "description": "Condizioni che influenzano la percezione e la discriminazione dei colori"
+      },
+      "eyeConditions": {
+        "name": "Condizioni Oculari",
+        "description": "Condizioni fisiche che influenzano la struttura e la funzione dell'occhio"
+      },
+      "retinal": {
+        "name": "Disturbi Retinici",
+        "description": "Condizioni che influenzano la retina e le sue cellule specializzate"
+      },
+      "neurological": {
+        "name": "Condizioni Visive Neurologiche",
+        "description": "Problemi di vista causati da disturbi del cervello e del sistema nervoso"
+      },
+      "traumaInfection": {
+        "name": "Correlati a Trauma e Infezione",
+        "description": "Perdita della vista derivante da lesioni fisiche o malattie infettive"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Visione e Percezione",
+      "technologyAccessibility": "Tecnologia e Accessibilità",
+      "dailyLife": "Vita Quotidiana",
+      "navigationMobility": "Navigazione e Mobilità",
+      "socialInteraction": "Interazione Sociale",
+      "employmentCareer": "Lavoro e Carriera",
+      "medicalTreatment": "Medico e Trattamento"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Le persone non vedenti vedono oscurità/nero completo?",
+        "answer": "Non necessariamente. Circa l'85% delle persone legalmente cieche ha una certa visione residua. Solo il 10-15% sperimenta l'oscurità totale. Molti vedono luce/ombra, colori o forme sfocate. Alcuni che non hanno mai avuto la vista non sperimentano il \"nero\" come concetto - simile a come non \"vedi\" il nero dietro la tua testa."
+      },
+      "technology": {
+        "question": "Come usano smartphone e computer le persone non vedenti?",
+        "answer": "Gli screen reader (JAWS, NVDA, VoiceOver) convertono il testo in voce o braille. Gesti e scorciatoie da tastiera sostituiscono l'uso del mouse. Molti usano normali smartphone con funzioni di accessibilità integrate. Gli assistenti vocali come Siri sono ampiamente utilizzati."
+      },
+      "independence": {
+        "question": "Le persone non vedenti possono vivere in modo indipendente?",
+        "answer": "Sì. Con la formazione adeguata e tecniche adattive, le persone non vedenti cucinano, puliscono, lavorano, crescono famiglie e vivono vite completamente indipendenti. Usano organizzazione sistematica, marcatori tattili, tecnologia assistiva e strumenti di mobilità."
+      },
+      "navigation": {
+        "question": "Come navigano e si spostano le persone non vedenti?",
+        "answerIntro": "Le persone non vedenti usano vari metodi per la navigazione e la mobilità:",
+        "answerItems": [
+          "I bastoni bianchi rilevano ostacoli e cambiamenti di elevazione",
+          "I cani guida forniscono disobbedienza intelligente e navigazione",
+          "App GPS con indicazioni audio (Soundscape, BlindSquare)",
+          "Percorsi memorizzati e mappatura mentale",
+          "Trasporto pubblico e app di ride-sharing"
+        ]
+      },
+      "senses": {
+        "question": "Le persone non vedenti hanno altri sensi più sviluppati?",
+        "answer": "No, i loro altri sensi non sono biologicamente superiori. Sviluppano una migliore attenzione e elaborazione delle informazioni audio/tattili attraverso la pratica e la necessità. È percezione migliorata, non sensazione migliorata."
+      },
+      "interaction": {
+        "question": "Come dovrei interagire con una persona non vedente?",
+        "answerIntro": "Ecco alcune linee guida importanti per un'interazione rispettosa:",
+        "answerItems": [
+          "Parla normalmente e direttamente con loro, non attraverso accompagnatori",
+          "Identificati quando ti avvicini",
+          "Chiedi prima di aiutare - non afferrare o spingere",
+          "Dai descrizioni verbali quando rilevante",
+          "Usa un linguaggio normale ('ci vediamo' va bene)",
+          "Mai accarezzare o distrarre i cani guida"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Qual è la differenza tra legalmente cieco e totalmente cieco?",
+        "legallyBlind": "Legalmente cieco:",
+        "legallyBlindDesc": "Vista 20/200 o peggiore con correzione, O campo visivo inferiore a 20 gradi",
+        "totallyBlind": "Totalmente cieco:",
+        "totallyBlindDesc": "Nessuna percezione della luce (NPL)",
+        "mostBlind": "La maggior parte delle persone \"cieche\" si trova da qualche parte tra questi estremi."
+      },
+      "employment": {
+        "question": "Le persone non vedenti possono svolgere lavori normali?",
+        "answer": "Sì. Le persone non vedenti lavorano come avvocati, insegnanti, programmatori, musicisti, psicologi, imprenditori e innumerevoli altre professioni. Gli adattamenti sul posto di lavoro (screen reader, display braille) rendono possibile la maggior parte dei lavori."
+      },
+      "identification": {
+        "question": "Come identificano soldi, colori o oggetti le persone non vedenti?",
+        "answerIntro": "Le persone non vedenti usano varie tecniche adattive per l'identificazione:",
+        "answerItems": [
+          "Soldi: App come Seeing AI, diversi metodi di piegatura, identificatori elettronici e diverse dimensioni per diversi tagli in vari paesi",
+          "Colori: App di identificazione colori, chiedere ad altri, comprare vestiti pre-abbinati",
+          "Oggetti: Organizzazione sistematica, etichette braille/tattili, etichette con registrazione vocale, memoria"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Cosa causa la cecità e può essere curata?",
+        "leadingCauses": "Principali cause a livello globale:",
+        "causeItems": [
+          "Cataratta (reversibile)",
+          "Glaucoma",
+          "Degenerazione maculare",
+          "Retinopatia diabetica",
+          "Condizioni genetiche"
+        ],
+        "treatmentInfo": "Il trattamento dipende dalla causa. Alcune condizioni sono prevenibili/trattabili, altre attualmente no. La ricerca continua su trattamenti come terapia genica, cellule staminali e occhi bionici.",
+        "neurologicalNote": "Le persone possono anche perdere la vista a causa di condizioni neurologiche come traumi o ictus."
+      }
     }
   },
   "conditions": {

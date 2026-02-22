@@ -32,7 +32,9 @@
     "card1Description": "Erstellen Sie Ihre eigene Visualisierung",
     "card1Button": "Sehbeeinträchtigung-Simulator starten",
     "card2Title": "Erleben Sie die Sicht berühmter blinder und sehbehinderter Menschen",
-    "card2Button": "Berühmte Menschen erkunden"
+    "card2Button": "Berühmte Menschen erkunden",
+    "libraryTitle": "Bibliothek der Blinden",
+    "libraryDescription": "Der weltweit größte Katalog für Braille-, taktile, Audio- und multimodale Zugänglichkeitssysteme"
   },
   "simulator": {
     "title": "Sehbeeinträchtigung-Simulator",
@@ -83,23 +85,182 @@
     "doubleVision": "Doppeltsehen"
   },
   "famousPeople": {
-    "title": "Berühmte Blinde und Sehbehinderte Menschen",
-    "subtitle": "Erfahren Sie, wie berühmte Persönlichkeiten der Geschichte Sehbeeinträchtigungen erlebt haben",
-    "searchPlaceholder": "Nach Name, Beeinträchtigung oder Beruf suchen...",
+    "title": "Berühmte Blinde und Sehbehinderte",
+    "subtitle": "Erkunden Sie das Leben und die visuellen Erfahrungen berühmter blinder und sehbehinderter Menschen im Laufe der Geschichte.",
+    "searchPlaceholder": "Nach Name oder Erkrankung suchen",
+    "categoryLabel": "Kategorie",
+    "conditionLabel": "Erkrankung",
     "allCategories": "Alle Kategorien",
+    "allConditions": "Alle Erkrankungen",
     "filterByCategory": "Nach Kategorie filtern",
-    "noResults": "Keine Ergebnisse gefunden",
+    "noResults": "Keine Personen gefunden, die Ihren Suchkriterien entsprechen.",
     "noResultsDesc": "Versuchen Sie, Ihre Suche oder Filter anzupassen",
-    "showingResults": "Zeige {{count}} von {{total}} Personen",
+    "showingResults": "{{count}} von {{total}} Personen werden angezeigt",
+    "hideTotalDarkness": "Simulationen völliger Dunkelheit ausblenden",
+    "clearAllFilters": "Alle Filter löschen",
     "categories": {
       "contemporaryFigures": "Zeitgenössische Persönlichkeiten",
-      "athletes": "Sportler",
+      "athletes": "Athleten",
+      "scientists": "Wissenschaftler und Mediziner",
       "musicians": "Musiker",
       "artists": "Künstler",
-      "writersActivists": "Schriftsteller & Aktivisten",
+      "writersActivists": "Schriftsteller, Aktivisten, Politiker",
       "historicalFigures": "Historische Persönlichkeiten",
-      "scientists": "Wissenschaftler",
       "fictionalCharacters": "Fiktive Charaktere"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Augenprobleme",
+      "neurologicIssues": "Neurologische Probleme",
+      "accidentInjury": "Unfall/Verletzung",
+      "congenitalDefects": "Angeborene Defekte",
+      "degenerativeEyeDiseases": "Degenerative Augenkrankheiten",
+      "illness": "Krankheit",
+      "other": "Sonstiges"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Vorschau der Sehsimulation",
+      "experienceSimulation": "Simulation erleben",
+      "previous": "Vorherige",
+      "next": "Nächste"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossar & FAQ",
+    "subtitle": "Umfassende Definitionen von Sehbedingungen und FAQ über Blindheit und Sehbehinderung.",
+    "tabGlossary": "Glossar",
+    "tabFaq": "FAQ",
+    "searchConditions": "Bedingungen suchen",
+    "category": "Kategorie",
+    "allCategories": "Alle Kategorien",
+    "conditionsFound": "{{count}} Bedingungen gefunden",
+    "clearFilters": "Filter löschen",
+    "viewInSimulator": "Im Simulator ansehen",
+    "featuredIn": "Vorgestellt bei: {{names}}",
+    "treatmentOptions": "Behandlungsoptionen",
+    "noConditionsFound": "Keine Bedingungen gefunden, die Ihren Suchkriterien entsprechen.",
+    "clearAllFilters": "Alle Filter löschen",
+    "conditions": "Bedingungen",
+    "aboutGlossary": {
+      "title": "Über dieses Glossar",
+      "paragraph1": "Dieses Glossar enthält umfassende Informationen über Sehbedingungen und Sehbehinderungen. Jede Bedingung enthält detaillierte Beschreibungen von Symptomen, Ursachen und Auswirkungen auf das tägliche Leben.",
+      "paragraph2": "Bedingungen, die mit \"Vorgestellt bei:\" gekennzeichnet sind, sind mit berühmten Persönlichkeiten in unserem Simulator verbunden. Klicken Sie auf das Augensymbol neben einer Bedingung, um sie in unserem Sehsimulator zu erleben.",
+      "paragraph3": "Diese Ressource soll Benutzern helfen zu verstehen, wie das Sehen auf verschiedene Weise beeinträchtigt werden kann, sei es durch genetische Bedingungen, Verletzungen, Krankheiten oder andere Faktoren."
+    },
+    "aboutFaq": {
+      "title": "Über diese FAQs",
+      "paragraph1": "Diese häufig gestellten Fragen basieren auf verbreiteten Missverständnissen und echtem Interesse an Blindheit und Sehbehinderung. Die Antworten spiegeln die vielfältigen Erfahrungen von blinden und sehbehinderten Menschen wider.",
+      "paragraph2": "Denken Sie daran, dass die Erfahrung jeder Person mit Sehverlust einzigartig ist. Was für eine Person funktioniert, funktioniert möglicherweise nicht für eine andere, und es ist immer am besten, Einzelpersonen nach ihren spezifischen Bedürfnissen und Präferenzen zu fragen.",
+      "paragraph3": "Für detailliertere Informationen zu bestimmten Sehbedingungen besuchen Sie unsere <strong>Glossar</strong>-Registerkarte oben."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Gesichtsfeldverlust",
+        "description": "Bedingungen, die bestimmte Bereiche des Gesichtsfelds betreffen"
+      },
+      "colorVision": {
+        "name": "Farbsehschwächen",
+        "description": "Bedingungen, die die Farbwahrnehmung und -unterscheidung betreffen"
+      },
+      "eyeConditions": {
+        "name": "Augenerkrankungen",
+        "description": "Physische Bedingungen, die die Struktur und Funktion des Auges betreffen"
+      },
+      "retinal": {
+        "name": "Netzhauterkrankungen",
+        "description": "Bedingungen, die die Netzhaut und ihre spezialisierten Zellen betreffen"
+      },
+      "neurological": {
+        "name": "Neurologische Sehbedingungen",
+        "description": "Sehprobleme, die durch Gehirn- und Nervensystemstörungen verursacht werden"
+      },
+      "traumaInfection": {
+        "name": "Trauma- und Infektionsbedingt",
+        "description": "Sehverlust durch körperliche Verletzungen oder Infektionskrankheiten"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Sehen & Wahrnehmung",
+      "technologyAccessibility": "Technologie & Barrierefreiheit",
+      "dailyLife": "Alltag",
+      "navigationMobility": "Navigation & Mobilität",
+      "socialInteraction": "Soziale Interaktion",
+      "employmentCareer": "Beruf & Karriere",
+      "medicalTreatment": "Medizin & Behandlung"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Sehen blinde Menschen völlige Dunkelheit/Schwärze?",
+        "answer": "Nicht unbedingt. Etwa 85% der gesetzlich blinden Menschen haben noch etwas Restsicht. Nur 10-15% erleben völlige Dunkelheit. Viele sehen Licht/Schatten, Farben oder verschwommene Formen. Manche, die nie gesehen haben, erleben \"Schwärze\" nicht als Konzept - ähnlich wie Sie keine Schwärze hinter Ihrem Kopf \"sehen\"."
+      },
+      "technology": {
+        "question": "Wie nutzen blinde Menschen Smartphones und Computer?",
+        "answer": "Bildschirmleseprogramme (JAWS, NVDA, VoiceOver) wandeln Text in Sprache oder Blindenschrift um. Gesten und Tastaturkürzel ersetzen die Mausnutzung. Viele verwenden normale Smartphones mit integrierten Barrierefreiheitsfunktionen. Sprachassistenten wie Siri werden intensiv genutzt."
+      },
+      "independence": {
+        "question": "Können blinde Menschen selbstständig leben?",
+        "answer": "Ja. Mit entsprechender Schulung und adaptiven Techniken kochen, putzen, arbeiten blinde Menschen, gründen Familien und leben völlig unabhängig. Sie nutzen systematische Organisation, taktile Markierungen, Hilfstechnologie und Mobilitätshilfen."
+      },
+      "navigation": {
+        "question": "Wie navigieren und bewegen sich blinde Menschen?",
+        "answerIntro": "Blinde Menschen nutzen verschiedene Methoden zur Navigation und Mobilität:",
+        "answerItems": [
+          "Weiße Stöcke erkennen Hindernisse und Höhenunterschiede",
+          "Blindenhunde bieten intelligenten Ungehorsam und Navigation",
+          "GPS-Apps mit Audioanweisungen (Soundscape, BlindSquare)",
+          "Einprägte Routen und mentale Kartierung",
+          "Öffentliche Verkehrsmittel und Mitfahr-Apps"
+        ]
+      },
+      "senses": {
+        "question": "Haben blinde Menschen geschärftere andere Sinne?",
+        "answer": "Nein, ihre anderen Sinne sind nicht biologisch überlegen. Sie entwickeln durch Übung und Notwendigkeit eine bessere Aufmerksamkeit und Verarbeitung von Audio-/Tastinformationen. Es ist verbesserte Wahrnehmung, nicht verbesserte Empfindung."
+      },
+      "interaction": {
+        "question": "Wie sollte ich mit einer blinden Person interagieren?",
+        "answerIntro": "Hier sind einige wichtige Richtlinien für respektvolle Interaktion:",
+        "answerItems": [
+          "Sprechen Sie normal und direkt mit ihnen, nicht durch Begleiter",
+          "Identifizieren Sie sich beim Nähern",
+          "Fragen Sie vor dem Helfen - nicht greifen oder schieben",
+          "Geben Sie verbale Beschreibungen, wenn relevant",
+          "Verwenden Sie normale Sprache ('Auf Wiedersehen' ist in Ordnung)",
+          "Streicheln oder lenken Sie niemals Blindenhunde ab"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Was ist der Unterschied zwischen gesetzlich blind und völlig blind?",
+        "legallyBlind": "Gesetzlich blind:",
+        "legallyBlindDesc": "Sehschärfe 20/200 oder schlechter mit Korrektur, ODER Gesichtsfeld weniger als 20 Grad",
+        "totallyBlind": "Völlig blind:",
+        "totallyBlindDesc": "Keine Lichtwahrnehmung (NLP)",
+        "mostBlind": "Die meisten \"blinden\" Menschen liegen irgendwo zwischen diesen Extremen."
+      },
+      "employment": {
+        "question": "Können blinde Menschen reguläre Jobs ausüben?",
+        "answer": "Ja. Blinde Menschen arbeiten als Anwälte, Lehrer, Programmierer, Musiker, Psychologen, Unternehmer und in unzähligen anderen Berufen. Arbeitsplatzanpassungen (Bildschirmleseprogramme, Braillezeilen) ermöglichen die meisten Jobs."
+      },
+      "identification": {
+        "question": "Wie identifizieren blinde Menschen Geld, Farben oder Gegenstände?",
+        "answerIntro": "Blinde Menschen nutzen verschiedene adaptive Techniken zur Identifikation:",
+        "answerItems": [
+          "Geld: Apps wie Seeing AI, verschiedene Faltmethoden, elektronische Identifikatoren und unterschiedliche Größen für verschiedene Stückelungen in verschiedenen Ländern",
+          "Farben: Farberkennungs-Apps, andere fragen, vorab abgestimmte Kleidung kaufen",
+          "Gegenstände: Systematische Organisation, Braille-/Tastetiketten, Sprachaufzeichnungsetiketten, Gedächtnis"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Was verursacht Blindheit und kann sie geheilt werden?",
+        "leadingCauses": "Weltweit führende Ursachen:",
+        "causeItems": [
+          "Katarakte (umkehrbar)",
+          "Glaukom",
+          "Makuladegeneration",
+          "Diabetische Retinopathie",
+          "Genetische Erkrankungen"
+        ],
+        "treatmentInfo": "Die Behandlung hängt von der Ursache ab. Einige Erkrankungen sind vermeidbar/behandelbar, andere derzeit nicht. Die Forschung zu Behandlungen wie Gentherapie, Stammzellen und bionischen Augen wird fortgesetzt.",
+        "neurologicalNote": "Menschen können auch durch neurologische Erkrankungen wie Trauma oder Schlaganfall ihr Sehvermögen verlieren."
+      }
     }
   },
   "conditions": {

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
+import { useAnimationTicker } from '../../hooks';
 
 interface ComparisonViewProps {
   effects: VisualEffect[];
@@ -26,23 +27,11 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   onToggleComparison,
   simulationContainerRef
 }) => {
-  // Animation state for animated effects
-  const [now, setNow] = useState(Date.now());
-
   // Check if any enabled effect needs animation
   const needsAnimation = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
 
-  // Animation loop for animated effects
-  useEffect(() => {
-    if (!needsAnimation) return;
-
-    // Update every 100ms for smooth animation (same as EffectPreview)
-    const interval = setInterval(() => {
-      setNow(Date.now());
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [needsAnimation]);
+  // Animation ticker for animated effects
+  const now = useAnimationTicker(needsAnimation);
 
   // Get visual field overlay styles for React-based rendering
   const visualFieldOverlayStyle = useVisualFieldOverlay(effects);

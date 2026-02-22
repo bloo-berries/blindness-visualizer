@@ -32,7 +32,9 @@
     "card1Description": "创建您独特的可视化效果",
     "card1Button": "启动视觉障碍模拟器",
     "card2Title": "体验著名盲人和视障人士的视觉世界",
-    "card2Button": "探索名人"
+    "card2Button": "探索名人",
+    "libraryTitle": "盲人图书馆",
+    "libraryDescription": "世界上最大的盲文、触觉、音频和多模式无障碍系统目录"
   },
   "simulator": {
     "title": "视觉障碍模拟器",
@@ -84,22 +86,181 @@
   },
   "famousPeople": {
     "title": "著名盲人和视障人士",
-    "subtitle": "探索历史上著名人物如何经历视觉障碍",
-    "searchPlaceholder": "按姓名、障碍或职业搜索...",
+    "subtitle": "探索历史上著名盲人和视障人士的生活和视觉体验。",
+    "searchPlaceholder": "按姓名或病症搜索",
+    "categoryLabel": "类别",
+    "conditionLabel": "病症",
     "allCategories": "所有类别",
+    "allConditions": "所有病症",
     "filterByCategory": "按类别筛选",
-    "noResults": "未找到结果",
-    "noResultsDesc": "尝试调整您的搜索或筛选条件",
-    "showingResults": "显示{{total}}人中的{{count}}人",
+    "noResults": "未找到符合搜索条件的人员。",
+    "noResultsDesc": "尝试调整搜索或筛选条件",
+    "showingResults": "显示 {{count}} / {{total}} 人",
+    "hideTotalDarkness": "隐藏全黑模拟",
+    "clearAllFilters": "清除所有筛选",
     "categories": {
       "contemporaryFigures": "当代人物",
       "athletes": "运动员",
+      "scientists": "科学家和医疗专业人员",
       "musicians": "音乐家",
       "artists": "艺术家",
-      "writersActivists": "作家和活动家",
+      "writersActivists": "作家、活动家、政治家",
       "historicalFigures": "历史人物",
-      "scientists": "科学家",
       "fictionalCharacters": "虚构人物"
+    },
+    "conditionCategories": {
+      "ocularIssues": "眼部问题",
+      "neurologicIssues": "神经系统问题",
+      "accidentInjury": "意外/受伤",
+      "congenitalDefects": "先天性缺陷",
+      "degenerativeEyeDiseases": "退化性眼病",
+      "illness": "疾病",
+      "other": "其他"
+    },
+    "dialog": {
+      "visionSimulationPreview": "视觉模拟预览",
+      "experienceSimulation": "体验模拟",
+      "previous": "上一个",
+      "next": "下一个"
+    }
+  },
+  "glossaryPage": {
+    "title": "词汇表与常见问题",
+    "subtitle": "视力状况的全面定义，以及关于失明和视力障碍的常见问题解答。",
+    "tabGlossary": "词汇表",
+    "tabFaq": "常见问题",
+    "searchConditions": "搜索状况",
+    "category": "类别",
+    "allCategories": "所有类别",
+    "conditionsFound": "找到 {{count}} 个状况",
+    "clearFilters": "清除筛选",
+    "viewInSimulator": "在模拟器中查看",
+    "featuredIn": "相关人物：{{names}}",
+    "treatmentOptions": "治疗方案",
+    "noConditionsFound": "未找到符合搜索条件的状况。",
+    "clearAllFilters": "清除所有筛选",
+    "conditions": "状况",
+    "aboutGlossary": {
+      "title": "关于本词汇表",
+      "paragraph1": "本词汇表包含关于视力状况和视力障碍的全面信息。每种状况都包括症状、原因和对日常生活影响的详细描述。",
+      "paragraph2": "标有「相关人物：」的状况与我们模拟器中的名人相关联。点击任何状况旁边的眼睛图标，即可在我们的视力模拟器中体验它。",
+      "paragraph3": "这个资源旨在帮助用户了解视力可能受影响的各种方式，无论是通过遗传条件、损伤、疾病还是其他因素。"
+    },
+    "aboutFaq": {
+      "title": "关于这些常见问题",
+      "paragraph1": "这些常见问题基于关于失明和视力障碍的常见误解和真诚的好奇心。答案反映了盲人和视力障碍者的多样化经历。",
+      "paragraph2": "请记住，每个人的视力丧失经历都是独特的。对一个人有效的方法可能对另一个人无效，最好总是询问个人他们的具体需求和偏好。",
+      "paragraph3": "有关特定视力状况的更多详细信息，请访问上方的<strong>词汇表</strong>选项卡。"
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "视野丧失",
+        "description": "影响视野特定区域的状况"
+      },
+      "colorVision": {
+        "name": "色觉缺陷",
+        "description": "影响颜色感知和辨别的状况"
+      },
+      "eyeConditions": {
+        "name": "眼部状况",
+        "description": "影响眼睛结构和功能的物理状况"
+      },
+      "retinal": {
+        "name": "视网膜疾病",
+        "description": "影响视网膜及其特化细胞的状况"
+      },
+      "neurological": {
+        "name": "神经性视力状况",
+        "description": "由大脑和神经系统疾病引起的视力问题"
+      },
+      "traumaInfection": {
+        "name": "创伤和感染相关",
+        "description": "因物理损伤或传染病导致的视力丧失"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "视觉与感知",
+      "technologyAccessibility": "技术与无障碍",
+      "dailyLife": "日常生活",
+      "navigationMobility": "导航与移动",
+      "socialInteraction": "社交互动",
+      "employmentCareer": "就业与职业",
+      "medicalTreatment": "医疗与治疗"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "盲人看到的是完全的黑暗吗？",
+        "answer": "不一定。大约85%的法定盲人仍有一些残余视力。只有10-15%的人经历完全黑暗。许多人看到光/影、颜色或模糊的形状。一些从未有过视力的人不会将「黑暗」作为一个概念来体验——就像你不会「看到」你头后面的黑暗一样。"
+      },
+      "technology": {
+        "question": "盲人如何使用智能手机和电脑？",
+        "answer": "屏幕阅读器（JAWS、NVDA、VoiceOver）将文本转换为语音或盲文。手势和键盘快捷键取代了鼠标的使用。许多人使用带有内置无障碍功能的普通智能手机。Siri等语音助手被大量使用。"
+      },
+      "independence": {
+        "question": "盲人能独立生活吗？",
+        "answer": "可以。通过适当的培训和适应性技术，盲人可以烹饪、清洁、工作、养家和完全独立地生活。他们使用系统化的组织、触觉标记、辅助技术和移动工具。"
+      },
+      "navigation": {
+        "question": "盲人如何导航和出行？",
+        "answerIntro": "盲人使用各种方法进行导航和移动：",
+        "answerItems": [
+          "白色手杖检测障碍物和高度变化",
+          "导盲犬提供智能抗命和导航",
+          "带有语音导航的GPS应用（Soundscape、BlindSquare）",
+          "记忆路线和心理地图",
+          "公共交通和拼车应用"
+        ]
+      },
+      "senses": {
+        "question": "盲人的其他感官更敏锐吗？",
+        "answer": "不，他们的其他感官在生物学上并不优越。他们通过练习和需要发展了对音频/触觉信息更好的注意力和处理能力。这是增强的感知，而不是增强的感觉。"
+      },
+      "interaction": {
+        "question": "我应该如何与盲人互动？",
+        "answerIntro": "以下是一些尊重互动的重要准则：",
+        "answerItems": [
+          "正常地直接与他们交谈，而不是通过陪伴者",
+          "接近时表明自己的身份",
+          "帮助前先询问——不要抓或推",
+          "在相关时给予口头描述",
+          "使用正常语言（'再见'是可以的）",
+          "永远不要抚摸或分散导盲犬的注意力"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "法定盲和完全失明有什么区别？",
+        "legallyBlind": "法定盲：",
+        "legallyBlindDesc": "矫正后视力20/200或更差，或视野小于20度",
+        "totallyBlind": "完全失明：",
+        "totallyBlindDesc": "无光感（NLP）",
+        "mostBlind": "大多数「盲人」介于这两个极端之间。"
+      },
+      "employment": {
+        "question": "盲人能从事常规工作吗？",
+        "answer": "可以。盲人从事律师、教师、程序员、音乐家、心理学家、企业主和无数其他职业。工作场所的便利设施（屏幕阅读器、盲文显示器）使大多数工作成为可能。"
+      },
+      "identification": {
+        "question": "盲人如何识别金钱、颜色或物品？",
+        "answerIntro": "盲人使用各种适应性技术进行识别：",
+        "answerItems": [
+          "金钱：像Seeing AI这样的应用、不同的折叠方法、电子识别器，以及不同国家不同面额的不同尺寸",
+          "颜色：颜色识别应用、询问他人、购买预先搭配的衣服",
+          "物品：系统化组织、盲文/触觉标签、语音录制标签、记忆"
+        ]
+      },
+      "causesTreatment": {
+        "question": "什么导致失明？能治愈吗？",
+        "leadingCauses": "全球主要原因：",
+        "causeItems": [
+          "白内障（可逆）",
+          "青光眼",
+          "黄斑变性",
+          "糖尿病视网膜病变",
+          "遗传性疾病"
+        ],
+        "treatmentInfo": "治疗取决于原因。有些疾病是可预防/可治疗的，有些目前还不能。基因治疗、干细胞和仿生眼等治疗方法的研究仍在继续。",
+        "neurologicalNote": "人们也可能因创伤或中风等神经系统疾病而失明。"
+      }
     }
   },
   "conditions": {

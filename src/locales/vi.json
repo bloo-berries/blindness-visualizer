@@ -32,7 +32,9 @@
     "card1Description": "Tạo hình ảnh trực quan độc đáo của bạn",
     "card1Button": "Bắt đầu trình mô phỏng tình trạng thị giác",
     "card2Title": "Trải nghiệm tầm nhìn của người khiếm thị nổi tiếng",
-    "card2Button": "Khám phá người nổi tiếng"
+    "card2Button": "Khám phá người nổi tiếng",
+    "libraryTitle": "Thư viện cho Người khiếm thị",
+    "libraryDescription": "Danh mục lớn nhất thế giới về hệ thống tiếp cận chữ nổi Braille, xúc giác, âm thanh và đa phương thức"
   },
   "simulator": {
     "title": "Trình mô phỏng tình trạng thị giác",
@@ -83,23 +85,182 @@
     "doubleVision": "Nhìn đôi"
   },
   "famousPeople": {
-    "title": "Người khiếm thị nổi tiếng",
-    "subtitle": "Khám phá cách các nhân vật nổi tiếng trong lịch sử đã trải qua các tình trạng thị giác",
-    "searchPlaceholder": "Tìm theo tên, tình trạng hoặc nghề nghiệp...",
-    "allCategories": "Tất cả danh mục",
+    "title": "Người Khiếm Thị Nổi Tiếng",
+    "subtitle": "Khám phá cuộc sống và trải nghiệm thị giác của những người khiếm thị nổi tiếng trong lịch sử.",
+    "searchPlaceholder": "Tìm kiếm theo tên hoặc tình trạng",
+    "categoryLabel": "Danh mục",
+    "conditionLabel": "Tình trạng",
+    "allCategories": "Tất cả Danh mục",
+    "allConditions": "Tất cả Tình trạng",
     "filterByCategory": "Lọc theo danh mục",
-    "noResults": "Không tìm thấy kết quả",
-    "noResultsDesc": "Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc",
+    "noResults": "Không tìm thấy người phù hợp với tiêu chí tìm kiếm của bạn.",
+    "noResultsDesc": "Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc của bạn",
     "showingResults": "Hiển thị {{count}} trong số {{total}} người",
+    "hideTotalDarkness": "Ẩn mô phỏng bóng tối hoàn toàn",
+    "clearAllFilters": "Xóa Tất cả Bộ lọc",
     "categories": {
-      "contemporaryFigures": "Nhân vật đương đại",
-      "athletes": "Vận động viên",
-      "musicians": "Nhạc sĩ",
-      "artists": "Nghệ sĩ",
-      "writersActivists": "Nhà văn & Nhà hoạt động",
-      "historicalFigures": "Nhân vật lịch sử",
-      "scientists": "Nhà khoa học",
-      "fictionalCharacters": "Nhân vật hư cấu"
+      "contemporaryFigures": "Nhân Vật Đương Đại",
+      "athletes": "Vận Động Viên",
+      "scientists": "Nhà Khoa Học và Chuyên Gia Y Tế",
+      "musicians": "Nhạc Sĩ",
+      "artists": "Nghệ Sĩ",
+      "writersActivists": "Nhà Văn, Nhà Hoạt Động, Chính Trị Gia",
+      "historicalFigures": "Nhân Vật Lịch Sử",
+      "fictionalCharacters": "Nhân Vật Hư Cấu"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Vấn Đề Về Mắt",
+      "neurologicIssues": "Vấn Đề Thần Kinh",
+      "accidentInjury": "Tai Nạn/Chấn Thương",
+      "congenitalDefects": "Dị Tật Bẩm Sinh",
+      "degenerativeEyeDiseases": "Bệnh Thoái Hóa Mắt",
+      "illness": "Bệnh Tật",
+      "other": "Khác"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Xem Trước Mô Phỏng Thị Giác",
+      "experienceSimulation": "Trải Nghiệm Mô Phỏng",
+      "previous": "Trước",
+      "next": "Tiếp"
+    }
+  },
+  "glossaryPage": {
+    "title": "Từ điển & FAQ",
+    "subtitle": "Định nghĩa toàn diện về các tình trạng thị lực và FAQ về mù lòa và khiếm thị.",
+    "tabGlossary": "Từ điển",
+    "tabFaq": "FAQ",
+    "searchConditions": "Tìm kiếm tình trạng",
+    "category": "Danh mục",
+    "allCategories": "Tất cả Danh mục",
+    "conditionsFound": "Tìm thấy {{count}} tình trạng",
+    "clearFilters": "Xóa Bộ lọc",
+    "viewInSimulator": "Xem trong trình mô phỏng",
+    "featuredIn": "Xuất hiện trong: {{names}}",
+    "treatmentOptions": "Phương pháp Điều trị",
+    "noConditionsFound": "Không tìm thấy tình trạng nào phù hợp với tiêu chí tìm kiếm của bạn.",
+    "clearAllFilters": "Xóa Tất cả Bộ lọc",
+    "conditions": "tình trạng",
+    "aboutGlossary": {
+      "title": "Về Từ điển này",
+      "paragraph1": "Từ điển này chứa thông tin toàn diện về các tình trạng thị lực và khuyết tật thị giác. Mỗi tình trạng bao gồm mô tả chi tiết về triệu chứng, nguyên nhân và ảnh hưởng đến cuộc sống hàng ngày.",
+      "paragraph2": "Các tình trạng được đánh dấu \"Xuất hiện trong:\" được liên kết với những người nổi tiếng trong trình mô phỏng của chúng tôi. Nhấp vào biểu tượng mắt bên cạnh bất kỳ tình trạng nào để trải nghiệm nó trong trình mô phỏng thị lực của chúng tôi.",
+      "paragraph3": "Tài nguyên này được thiết kế để giúp người dùng hiểu các cách khác nhau mà thị lực có thể bị ảnh hưởng, dù là do điều kiện di truyền, chấn thương, bệnh tật hay các yếu tố khác."
+    },
+    "aboutFaq": {
+      "title": "Về các FAQ này",
+      "paragraph1": "Những câu hỏi thường gặp này dựa trên những hiểu lầm phổ biến và sự tò mò thực sự về mù lòa và khiếm thị. Các câu trả lời phản ánh những trải nghiệm đa dạng của người mù và người khiếm thị.",
+      "paragraph2": "Hãy nhớ rằng trải nghiệm của mỗi người về mất thị lực là duy nhất. Những gì hiệu quả với người này có thể không hiệu quả với người khác, và luôn tốt nhất là hỏi từng cá nhân về nhu cầu và sở thích cụ thể của họ.",
+      "paragraph3": "Để biết thông tin chi tiết hơn về các tình trạng thị lực cụ thể, hãy truy cập tab <strong>Từ điển</strong> ở trên."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Mất Trường Thị giác",
+        "description": "Các tình trạng ảnh hưởng đến các vùng cụ thể của trường thị giác"
+      },
+      "colorVision": {
+        "name": "Khiếm khuyết Thị giác Màu sắc",
+        "description": "Các tình trạng ảnh hưởng đến nhận thức và phân biệt màu sắc"
+      },
+      "eyeConditions": {
+        "name": "Tình trạng Mắt",
+        "description": "Các tình trạng vật lý ảnh hưởng đến cấu trúc và chức năng của mắt"
+      },
+      "retinal": {
+        "name": "Rối loạn Võng mạc",
+        "description": "Các tình trạng ảnh hưởng đến võng mạc và các tế bào chuyên biệt của nó"
+      },
+      "neurological": {
+        "name": "Tình trạng Thị giác Thần kinh",
+        "description": "Các vấn đề về thị lực do rối loạn não và hệ thần kinh gây ra"
+      },
+      "traumaInfection": {
+        "name": "Liên quan đến Chấn thương & Nhiễm trùng",
+        "description": "Mất thị lực do chấn thương thể chất hoặc bệnh truyền nhiễm"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Thị giác & Nhận thức",
+      "technologyAccessibility": "Công nghệ & Khả năng Tiếp cận",
+      "dailyLife": "Cuộc sống Hàng ngày",
+      "navigationMobility": "Điều hướng & Di chuyển",
+      "socialInteraction": "Tương tác Xã hội",
+      "employmentCareer": "Việc làm & Sự nghiệp",
+      "medicalTreatment": "Y tế & Điều trị"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Người mù có nhìn thấy bóng tối/đen hoàn toàn không?",
+        "answer": "Không nhất thiết. Khoảng 85% người mù theo pháp luật vẫn còn một số thị lực. Chỉ 10-15% trải nghiệm bóng tối hoàn toàn. Nhiều người nhìn thấy ánh sáng/bóng, màu sắc hoặc hình dạng mờ. Một số người chưa bao giờ có thị lực không trải nghiệm \"màu đen\" như một khái niệm - tương tự như cách bạn không \"nhìn thấy\" màu đen phía sau đầu."
+      },
+      "technology": {
+        "question": "Người mù sử dụng điện thoại thông minh và máy tính như thế nào?",
+        "answer": "Trình đọc màn hình (JAWS, NVDA, VoiceOver) chuyển đổi văn bản thành giọng nói hoặc chữ nổi. Cử chỉ và phím tắt thay thế việc sử dụng chuột. Nhiều người sử dụng điện thoại thông minh thông thường với các tính năng trợ năng tích hợp. Trợ lý giọng nói như Siri được sử dụng rộng rãi."
+      },
+      "independence": {
+        "question": "Người mù có thể sống độc lập không?",
+        "answer": "Có. Với đào tạo phù hợp và kỹ thuật thích ứng, người mù nấu ăn, dọn dẹp, làm việc, nuôi dạy gia đình và sống cuộc sống hoàn toàn độc lập. Họ sử dụng tổ chức có hệ thống, điểm đánh dấu xúc giác, công nghệ hỗ trợ và công cụ di động."
+      },
+      "navigation": {
+        "question": "Người mù điều hướng và di chuyển như thế nào?",
+        "answerIntro": "Người mù sử dụng nhiều phương pháp khác nhau để điều hướng và di chuyển:",
+        "answerItems": [
+          "Gậy trắng phát hiện chướng ngại vật và thay đổi độ cao",
+          "Chó dẫn đường cung cấp sự bất tuân thông minh và điều hướng",
+          "Ứng dụng GPS với hướng dẫn bằng âm thanh (Soundscape, BlindSquare)",
+          "Tuyến đường được ghi nhớ và lập bản đồ tinh thần",
+          "Phương tiện công cộng và ứng dụng đi chung xe"
+        ]
+      },
+      "senses": {
+        "question": "Người mù có các giác quan khác nhạy bén hơn không?",
+        "answer": "Không, các giác quan khác của họ không vượt trội về mặt sinh học. Họ phát triển sự chú ý và xử lý thông tin âm thanh/xúc giác tốt hơn thông qua thực hành và sự cần thiết. Đó là nhận thức được nâng cao, không phải cảm giác được nâng cao."
+      },
+      "interaction": {
+        "question": "Tôi nên tương tác với người mù như thế nào?",
+        "answerIntro": "Một số hướng dẫn quan trọng để tương tác tôn trọng:",
+        "answerItems": [
+          "Nói chuyện bình thường và trực tiếp với họ, không thông qua người đi cùng",
+          "Tự giới thiệu khi đến gần",
+          "Hỏi trước khi giúp - không nắm hoặc đẩy",
+          "Đưa ra mô tả bằng lời khi phù hợp",
+          "Sử dụng ngôn ngữ bình thường ('hẹn gặp lại' là được)",
+          "Không bao giờ vuốt ve hoặc làm phiền chó dẫn đường"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Sự khác biệt giữa mù theo pháp luật và mù hoàn toàn là gì?",
+        "legallyBlind": "Mù theo pháp luật:",
+        "legallyBlindDesc": "Thị lực 20/200 hoặc kém hơn với chỉnh sửa, HOẶC trường thị giác nhỏ hơn 20 độ",
+        "totallyBlind": "Mù hoàn toàn:",
+        "totallyBlindDesc": "Không có nhận thức ánh sáng (NLP)",
+        "mostBlind": "Hầu hết người \"mù\" nằm ở đâu đó giữa hai cực này."
+      },
+      "employment": {
+        "question": "Người mù có thể làm công việc bình thường không?",
+        "answer": "Có. Người mù làm luật sư, giáo viên, lập trình viên, nhạc sĩ, nhà tâm lý học, chủ doanh nghiệp và vô số nghề nghiệp khác. Các điều chỉnh tại nơi làm việc (trình đọc màn hình, màn hình chữ nổi) cho phép hầu hết các công việc."
+      },
+      "identification": {
+        "question": "Người mù nhận dạng tiền, màu sắc hoặc đồ vật như thế nào?",
+        "answerIntro": "Người mù sử dụng nhiều kỹ thuật thích ứng khác nhau để nhận dạng:",
+        "answerItems": [
+          "Tiền: Ứng dụng như Seeing AI, các phương pháp gấp khác nhau, thiết bị nhận dạng điện tử và kích cỡ khác nhau cho các mệnh giá khác nhau ở các quốc gia khác nhau",
+          "Màu sắc: Ứng dụng nhận dạng màu sắc, hỏi người khác, mua quần áo đã phối trước",
+          "Đồ vật: Tổ chức có hệ thống, nhãn chữ nổi/xúc giác, nhãn ghi âm giọng nói, trí nhớ"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Nguyên nhân gây mù và có thể chữa được không?",
+        "leadingCauses": "Nguyên nhân hàng đầu trên toàn cầu:",
+        "causeItems": [
+          "Đục thủy tinh thể (có thể đảo ngược)",
+          "Tăng nhãn áp",
+          "Thoái hóa điểm vàng",
+          "Bệnh võng mạc do tiểu đường",
+          "Tình trạng di truyền"
+        ],
+        "treatmentInfo": "Điều trị phụ thuộc vào nguyên nhân. Một số tình trạng có thể phòng ngừa/điều trị, một số khác hiện tại thì không. Nghiên cứu tiếp tục về các phương pháp điều trị như liệu pháp gen, tế bào gốc và mắt điện tử.",
+        "neurologicalNote": "Người ta cũng có thể mất thị lực do các tình trạng thần kinh như chấn thương hoặc đột quỵ."
+      }
     }
   },
   "conditions": {

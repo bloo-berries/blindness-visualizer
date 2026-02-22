@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Typography,
@@ -41,12 +42,23 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import ThumbnailImage from './ThumbnailImage';
 import { conditionCategories } from '../data/conditionCategories';
-import { faqItems } from '../data/faqItems';
+import {
+  Visibility as VisibilityIconFaq,
+  Smartphone as SmartphoneIcon,
+  Home as HomeIconFaq,
+  Directions as DirectionsIcon,
+  Psychology as PsychologyIcon,
+  Person as PersonIcon,
+  Work as WorkIcon,
+  ColorLens as ColorLensIcon,
+  MedicalServices as MedicalServicesIcon
+} from '@mui/icons-material';
 import '../styles/Conditions.css';
 import '../styles/FAQ.css';
 
 const ConditionsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [expandedCategory, setExpandedCategory] = useState<string | false>(false);
@@ -55,6 +67,108 @@ const ConditionsPage: React.FC = () => {
   const [expandedTreatments, setExpandedTreatments] = useState<Set<string>>(new Set());
 
   const [filteredCategories, setFilteredCategories] = useState(conditionCategories);
+
+  // Helper function to get category translation key
+  const getCategoryTranslationKey = (categoryId: string): string => {
+    const keyMap: Record<string, string> = {
+      'visual-field': 'visualField',
+      'color-vision': 'colorVision',
+      'eye-conditions': 'eyeConditions',
+      'retinal': 'retinal',
+      'neurological': 'neurological',
+      'trauma-infection': 'traumaInfection'
+    };
+    return keyMap[categoryId] || categoryId;
+  };
+
+  // FAQ items structure with icons
+  const faqItemsConfig = [
+    { id: 'darkness', icon: <VisibilityIconFaq />, categoryKey: 'visionPerception' },
+    { id: 'technology', icon: <SmartphoneIcon />, categoryKey: 'technologyAccessibility' },
+    { id: 'independence', icon: <HomeIconFaq />, categoryKey: 'dailyLife' },
+    { id: 'navigation', icon: <DirectionsIcon />, categoryKey: 'navigationMobility', hasList: true },
+    { id: 'senses', icon: <PsychologyIcon />, categoryKey: 'visionPerception' },
+    { id: 'interaction', icon: <PersonIcon />, categoryKey: 'socialInteraction', hasList: true },
+    { id: 'legalVsTotal', icon: <VisibilityIconFaq />, categoryKey: 'visionPerception', isSpecial: true },
+    { id: 'employment', icon: <WorkIcon />, categoryKey: 'employmentCareer' },
+    { id: 'identification', icon: <ColorLensIcon />, categoryKey: 'dailyLife', hasList: true },
+    { id: 'causesTreatment', icon: <MedicalServicesIcon />, categoryKey: 'medicalTreatment', isSpecial: true }
+  ];
+
+  // Helper function to render FAQ answer content
+  const renderFaqAnswer = (faqId: string, hasList?: boolean, isSpecial?: boolean) => {
+    if (hasList) {
+      const items = t(`glossaryPage.faqItems.${faqId}.answerItems`, { returnObjects: true }) as string[];
+      return (
+        <Box>
+          <Typography variant="body1" paragraph>
+            {t(`glossaryPage.faqItems.${faqId}.answerIntro`)}
+          </Typography>
+          <List dense>
+            {Array.isArray(items) && items.map((item, idx) => (
+              <ListItem key={idx}>
+                <ListItemIcon>
+                  <Box sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'primary.main' }} />
+                </ListItemIcon>
+                <ListItemText primary={item} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      );
+    }
+
+    if (isSpecial && faqId === 'legalVsTotal') {
+      return (
+        <Box>
+          <Typography variant="body1" paragraph>
+            <strong>{t('glossaryPage.faqItems.legalVsTotal.legallyBlind')}</strong> {t('glossaryPage.faqItems.legalVsTotal.legallyBlindDesc')}
+          </Typography>
+          <Typography variant="body1" paragraph>
+            <strong>{t('glossaryPage.faqItems.legalVsTotal.totallyBlind')}</strong> {t('glossaryPage.faqItems.legalVsTotal.totallyBlindDesc')}
+          </Typography>
+          <Typography variant="body1" paragraph>
+            {t('glossaryPage.faqItems.legalVsTotal.mostBlind')}
+          </Typography>
+        </Box>
+      );
+    }
+
+    if (isSpecial && faqId === 'causesTreatment') {
+      const causes = t(`glossaryPage.faqItems.causesTreatment.causeItems`, { returnObjects: true }) as string[];
+      return (
+        <Box>
+          <Typography variant="body1" paragraph>
+            <strong>{t('glossaryPage.faqItems.causesTreatment.leadingCauses')}</strong>
+          </Typography>
+          <List dense>
+            {Array.isArray(causes) && causes.map((cause, idx) => (
+              <ListItem key={idx}>
+                <ListItemIcon>
+                  <MedicalServicesIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText primary={cause} />
+              </ListItem>
+            ))}
+          </List>
+          <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+            {t('glossaryPage.faqItems.causesTreatment.treatmentInfo')}
+          </Typography>
+          <Typography variant="body1" paragraph>
+            {t('glossaryPage.faqItems.causesTreatment.neurologicalNote')}
+          </Typography>
+        </Box>
+      );
+    }
+
+    return (
+      <Box>
+        <Typography variant="body1" paragraph>
+          {t(`glossaryPage.faqItems.${faqId}.answer`)}
+        </Typography>
+      </Box>
+    );
+  };
 
   const filterCategories = useCallback(() => {
     let filtered = conditionCategories;
@@ -133,13 +247,13 @@ const ConditionsPage: React.FC = () => {
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-          Glossary & FAQ
+          {t('glossaryPage.title')}
         </Typography>
-        <Typography 
-          variant="body1" 
-          align="center" 
-          sx={{ 
-            mb: 4, 
+        <Typography
+          variant="body1"
+          align="center"
+          sx={{
+            mb: 4,
             color: 'text.primary',
             maxWidth: '800px',
             mx: 'auto',
@@ -147,7 +261,7 @@ const ConditionsPage: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Comprehensive definitions of vision conditions, and FAQ about blindness and visual impairment.
+          {t('glossaryPage.subtitle')}
         </Typography>
 
         {/* Tabs */}
@@ -165,8 +279,8 @@ const ConditionsPage: React.FC = () => {
               }
             }}
           >
-            <Tab label="Glossary" />
-            <Tab label="FAQ" />
+            <Tab label={t('glossaryPage.tabGlossary')} />
+            <Tab label={t('glossaryPage.tabFaq')} />
           </Tabs>
         </Box>
 
@@ -179,7 +293,7 @@ const ConditionsPage: React.FC = () => {
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
-                label="Search conditions"
+                label={t('glossaryPage.searchConditions')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 variant="outlined"
@@ -191,18 +305,18 @@ const ConditionsPage: React.FC = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <FormControl fullWidth className="conditions-filter-select">
-                <InputLabel>Category</InputLabel>
+                <InputLabel>{t('glossaryPage.category')}</InputLabel>
                 <Select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  label="Category"
+                  label={t('glossaryPage.category')}
                 >
-                  <MenuItem value="">All Categories</MenuItem>
+                  <MenuItem value="">{t('glossaryPage.allCategories')}</MenuItem>
                   {conditionCategories.map(category => (
                     <MenuItem key={category.id} value={category.id}>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         {category.icon}
-                        <Typography sx={{ ml: 1 }}>{category.name}</Typography>
+                        <Typography sx={{ ml: 1 }}>{t(`glossaryPage.conditionCategories.${getCategoryTranslationKey(category.id)}.name`, category.name)}</Typography>
                       </Box>
                     </MenuItem>
                   ))}
@@ -213,10 +327,10 @@ const ConditionsPage: React.FC = () => {
           
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
             <Typography variant="body2" className="conditions-stats">
-              {filteredCategories.reduce((total, category) => total + category.conditions.length, 0)} conditions found
+              {t('glossaryPage.conditionsFound', { count: filteredCategories.reduce((total, category) => total + category.conditions.length, 0) })}
             </Typography>
             <Button onClick={clearFilters} variant="outlined" size="small" startIcon={<FilterListIcon />} className="conditions-clear-button">
-              Clear Filters
+              {t('glossaryPage.clearFilters')}
             </Button>
           </Box>
         </Box>
@@ -240,10 +354,10 @@ const ConditionsPage: React.FC = () => {
               </Box>
               <Box>
                 <Typography variant="h6" component="h3" className="condition-category-title">
-                  {category.name}
+                  {t(`glossaryPage.conditionCategories.${getCategoryTranslationKey(category.id)}.name`, category.name)}
                 </Typography>
                 <Typography variant="body2" className="condition-category-subtitle">
-                  {category.description} • {category.conditions.length} conditions
+                  {t(`glossaryPage.conditionCategories.${getCategoryTranslationKey(category.id)}.description`, category.description)} • {category.conditions.length} {t('glossaryPage.conditions')}
                 </Typography>
               </Box>
             </AccordionSummary>
@@ -253,7 +367,7 @@ const ConditionsPage: React.FC = () => {
                   <React.Fragment key={condition.id}>
                     <ListItem className="condition-item" sx={{ position: 'relative' }}>
                       <ListItemIcon>
-                        <Tooltip title="View in simulator">
+                        <Tooltip title={t('glossaryPage.viewInSimulator')}>
                           <IconButton
                             size="small"
                             className="condition-simulator-button"
@@ -279,8 +393,8 @@ const ConditionsPage: React.FC = () => {
                                 {condition.name}
                               </Typography>
                               {condition.relatedPeople && condition.relatedPeople.length > 0 && (
-                                <Chip 
-                                  label={`Featured in: ${condition.relatedPeople.join(', ')}`}
+                                <Chip
+                                  label={t('glossaryPage.featuredIn', { names: condition.relatedPeople.join(', ') })}
                                   size="small"
                                   className="condition-related-chip"
                                 />
@@ -310,7 +424,7 @@ const ConditionsPage: React.FC = () => {
                             >
                               <LocalHospitalIcon sx={{ color: 'primary.main', fontSize: 20 }} />
                               <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'primary.main', flexGrow: 1 }}>
-                                Treatment Options
+                                {t('glossaryPage.treatmentOptions')}
                               </Typography>
                               <ChevronRightIcon 
                                 sx={{ 
@@ -397,10 +511,10 @@ const ConditionsPage: React.FC = () => {
         {filteredCategories.length === 0 && (
           <Box className="conditions-empty-state">
             <Typography variant="h6" color="text.secondary">
-              No conditions found matching your search criteria.
+              {t('glossaryPage.noConditionsFound')}
             </Typography>
             <Button onClick={clearFilters} variant="contained" sx={{ mt: 2 }}>
-              Clear All Filters
+              {t('glossaryPage.clearAllFilters')}
             </Button>
           </Box>
         )}
@@ -408,19 +522,16 @@ const ConditionsPage: React.FC = () => {
             {/* Additional Information */}
             <Box className="conditions-info-box">
               <Typography variant="h5" gutterBottom className="conditions-info-title">
-                About This Glossary
+                {t('glossaryPage.aboutGlossary.title')}
               </Typography>
               <Typography variant="body1" paragraph className="conditions-info-text">
-                This glossary contains comprehensive information about vision conditions and visual impairments. 
-                Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.
+                {t('glossaryPage.aboutGlossary.paragraph1')}
               </Typography>
               <Typography variant="body1" paragraph className="conditions-info-text">
-                Conditions marked with "Featured in:" are associated with famous individuals in our simulator. 
-                Click the eye icon next to any condition to experience it in our vision simulator.
+                {t('glossaryPage.aboutGlossary.paragraph2')}
               </Typography>
               <Typography variant="body1" className="conditions-info-text">
-                This resource is designed to help users understand the various ways vision can be affected, 
-                whether through genetic conditions, injury, disease, or other factors.
+                {t('glossaryPage.aboutGlossary.paragraph3')}
               </Typography>
             </Box>
           </>
@@ -431,8 +542,8 @@ const ConditionsPage: React.FC = () => {
           <>
             {/* FAQ Items */}
             <Box sx={{ mb: 4 }}>
-              {faqItems.map((faq, index) => (
-                <Accordion 
+              {faqItemsConfig.map((faq, index) => (
+                <Accordion
                   key={faq.id}
                   expanded={expandedFAQ === faq.id}
                   onChange={handleFAQChange(faq.id)}
@@ -443,10 +554,10 @@ const ConditionsPage: React.FC = () => {
                     expandIcon={<ExpandMoreIcon />}
                     className="faq-summary"
                     sx={{
-                      backgroundColor: getCategoryColor(faq.category),
+                      backgroundColor: getCategoryColor(faq.categoryKey),
                       color: 'white',
                       '&:hover': {
-                        backgroundColor: getCategoryColor(faq.category),
+                        backgroundColor: getCategoryColor(faq.categoryKey),
                         opacity: 0.9,
                       },
                       '& .MuiAccordionSummary-content': {
@@ -462,12 +573,12 @@ const ConditionsPage: React.FC = () => {
                     <Box sx={{ flexGrow: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 0 }}>
                         <Typography variant="h6" component="h3" className="faq-question">
-                          {index + 1}. {faq.question}
+                          {index + 1}. {t(`glossaryPage.faqItems.${faq.id}.question`)}
                         </Typography>
-                        <Chip 
-                          label={faq.category}
+                        <Chip
+                          label={t(`glossaryPage.faqCategories.${faq.categoryKey}`)}
                           size="small"
-                          sx={{ 
+                          sx={{
                             backgroundColor: 'rgba(255, 255, 255, 0.2)',
                             color: 'white',
                             fontSize: '0.7rem',
@@ -478,7 +589,7 @@ const ConditionsPage: React.FC = () => {
                     </Box>
                   </AccordionSummary>
                   <AccordionDetails className="faq-details">
-                    {faq.answer}
+                    {renderFaqAnswer(faq.id, faq.hasList, faq.isSpecial)}
                   </AccordionDetails>
                 </Accordion>
               ))}
@@ -489,20 +600,16 @@ const ConditionsPage: React.FC = () => {
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <HelpIcon sx={{ mr: 1, color: 'primary.main' }} />
                 <Typography variant="h5" className="faq-info-title">
-                  About These FAQs
+                  {t('glossaryPage.aboutFaq.title')}
                 </Typography>
               </Box>
               <Typography variant="body1" paragraph className="faq-info-text">
-                These frequently asked questions are based on common misconceptions and genuine curiosity about blindness and visual impairment. 
-                The answers reflect the diverse experiences of blind and visually impaired individuals.
+                {t('glossaryPage.aboutFaq.paragraph1')}
               </Typography>
               <Typography variant="body1" paragraph className="faq-info-text">
-                Remember that every person's experience with vision loss is unique. What works for one person may not work for another, 
-                and it's always best to ask individuals about their specific needs and preferences.
+                {t('glossaryPage.aboutFaq.paragraph2')}
               </Typography>
-              <Typography variant="body1" className="faq-info-text">
-                For more detailed information about specific vision conditions, visit our <strong>Glossary</strong> tab above.
-              </Typography>
+              <Typography variant="body1" className="faq-info-text" dangerouslySetInnerHTML={{ __html: t('glossaryPage.aboutFaq.paragraph3') }} />
             </Paper>
           </>
         )}

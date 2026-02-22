@@ -30,7 +30,9 @@
     "card1Title": "Create your unique visualization",
     "card1Button": "Start Vision Simulator",
     "card2Title": "Famous Blind and Visually Impaired People",
-    "card2Button": "Experience their Sight"
+    "card2Button": "Experience their Sight",
+    "libraryTitle": "Library of the Blind",
+    "libraryDescription": "The world's largest catalog of Braille, tactile, audio, and multimodal accessibility systems"
   },
   "simulator": {
     "title": "Vision Condition Simulator",
@@ -81,23 +83,182 @@
     "doubleVision": "Double Vision"
   },
   "famousPeople": {
-    "title": "Famous Blind and Visually Impaired People",
-    "subtitle": "Explore how notable figures throughout history have experienced vision conditions",
-    "searchPlaceholder": "Search by name, condition, or profession...",
+    "title": "Famous Blind & Visually Impaired People",
+    "subtitle": "Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history.",
+    "searchPlaceholder": "Search by name or condition",
+    "categoryLabel": "Category",
+    "conditionLabel": "Condition",
     "allCategories": "All Categories",
+    "allConditions": "All Conditions",
     "filterByCategory": "Filter by Category",
-    "noResults": "No results found",
+    "noResults": "No people found matching your search criteria.",
     "noResultsDesc": "Try adjusting your search or filters",
     "showingResults": "Showing {{count}} of {{total}} people",
+    "hideTotalDarkness": "Hide total darkness simulations",
+    "clearAllFilters": "Clear All Filters",
     "categories": {
       "contemporaryFigures": "Contemporary Figures",
       "athletes": "Athletes",
+      "scientists": "Scientists & Medical Professionals",
       "musicians": "Musicians",
       "artists": "Artists",
-      "writersActivists": "Writers & Activists",
+      "writersActivists": "Writers, Activists, Politicians",
       "historicalFigures": "Historical Figures",
-      "scientists": "Scientists",
       "fictionalCharacters": "Fictional Characters"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Ocular Issues",
+      "neurologicIssues": "Neurologic Issues",
+      "accidentInjury": "Accident/Injury",
+      "congenitalDefects": "Congenital Defects",
+      "degenerativeEyeDiseases": "Degenerative Eye Diseases",
+      "illness": "Illness",
+      "other": "Other"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Vision Simulation Preview",
+      "experienceSimulation": "Experience Simulation",
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossary & FAQ",
+    "subtitle": "Comprehensive definitions of vision conditions, and FAQ about blindness and visual impairment.",
+    "tabGlossary": "Glossary",
+    "tabFaq": "FAQ",
+    "searchConditions": "Search conditions",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "conditionsFound": "{{count}} conditions found",
+    "clearFilters": "Clear Filters",
+    "viewInSimulator": "View in simulator",
+    "featuredIn": "Featured in: {{names}}",
+    "treatmentOptions": "Treatment Options",
+    "noConditionsFound": "No conditions found matching your search criteria.",
+    "clearAllFilters": "Clear All Filters",
+    "conditions": "conditions",
+    "aboutGlossary": {
+      "title": "About This Glossary",
+      "paragraph1": "This glossary contains comprehensive information about vision conditions and visual impairments. Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.",
+      "paragraph2": "Conditions marked with \"Featured in:\" are associated with famous individuals in our simulator. Click the eye icon next to any condition to experience it in our vision simulator.",
+      "paragraph3": "This resource is designed to help users understand the various ways vision can be affected, whether through genetic conditions, injury, disease, or other factors."
+    },
+    "aboutFaq": {
+      "title": "About These FAQs",
+      "paragraph1": "These frequently asked questions are based on common misconceptions and genuine curiosity about blindness and visual impairment. The answers reflect the diverse experiences of blind and visually impaired individuals.",
+      "paragraph2": "Remember that every person's experience with vision loss is unique. What works for one person may not work for another, and it's always best to ask individuals about their specific needs and preferences.",
+      "paragraph3": "For more detailed information about specific vision conditions, visit our <strong>Glossary</strong> tab above."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Visual Field Loss",
+        "description": "Conditions affecting specific areas of the visual field"
+      },
+      "colorVision": {
+        "name": "Color Vision Deficiencies",
+        "description": "Conditions affecting color perception and discrimination"
+      },
+      "eyeConditions": {
+        "name": "Eye Conditions",
+        "description": "Physical conditions affecting the eye structure and function"
+      },
+      "retinal": {
+        "name": "Retinal Disorders",
+        "description": "Conditions affecting the retina and its specialized cells"
+      },
+      "neurological": {
+        "name": "Neurological Vision Conditions",
+        "description": "Vision problems caused by brain and nervous system disorders"
+      },
+      "traumaInfection": {
+        "name": "Trauma & Infection Related",
+        "description": "Vision loss resulting from physical injury or infectious diseases"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Vision & Perception",
+      "technologyAccessibility": "Technology & Accessibility",
+      "dailyLife": "Daily Life",
+      "navigationMobility": "Navigation & Mobility",
+      "socialInteraction": "Social Interaction",
+      "employmentCareer": "Employment & Career",
+      "medicalTreatment": "Medical & Treatment"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Do blind people see complete darkness/blackness?",
+        "answer": "Not necessarily. About 85% of legally blind people have some remaining vision. Only 10-15% experience total darkness. Many see light/shadow, colors, or blurry shapes. Some who've never had sight don't experience \"blackness\" as a concept - similar to how you don't \"see\" blackness behind your head."
+      },
+      "technology": {
+        "question": "How do blind people use smartphones and computers?",
+        "answer": "Screen readers (JAWS, NVDA, VoiceOver) convert text to speech or braille. Gestures and keyboard shortcuts replace mouse use. Many use normal smartphones with built-in accessibility features. Voice assistants like Siri are heavily utilized."
+      },
+      "independence": {
+        "question": "Can blind people live independently?",
+        "answer": "Yes. With proper training and adaptive techniques, blind people cook, clean, work, raise families, and live fully independent lives. They use systematic organization, tactile markers, assistive technology, and mobility tools."
+      },
+      "navigation": {
+        "question": "How do blind people navigate and get around?",
+        "answerIntro": "Blind people use various methods for navigation and mobility:",
+        "answerItems": [
+          "White canes detect obstacles and elevation changes",
+          "Guide dogs provide intelligent disobedience and navigation",
+          "GPS apps with audio directions (Soundscape, BlindSquare)",
+          "Memorized routes and mental mapping",
+          "Public transportation and rideshare apps"
+        ]
+      },
+      "senses": {
+        "question": "Do blind people have heightened other senses?",
+        "answer": "No, their other senses aren't biologically superior. They develop better attention to and processing of audio/tactile information through practice and necessity. It's enhanced perception, not enhanced sensation."
+      },
+      "interaction": {
+        "question": "How should I interact with a blind person?",
+        "answerIntro": "Here are some important guidelines for respectful interaction:",
+        "answerItems": [
+          "Speak normally and directly to them, not through companions",
+          "Identify yourself when approaching",
+          "Ask before helping - don't grab or push",
+          "Give verbal descriptions when relevant",
+          "Use normal language ('see you later' is fine)",
+          "Never pet or distract guide dogs"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "What's the difference between legally blind and totally blind?",
+        "legallyBlind": "Legally blind:",
+        "legallyBlindDesc": "Vision 20/200 or worse with correction, OR visual field less than 20 degrees",
+        "totallyBlind": "Totally blind:",
+        "totallyBlindDesc": "No light perception (NLP)",
+        "mostBlind": "Most \"blind\" people fall somewhere between these extremes."
+      },
+      "employment": {
+        "question": "Can blind people work regular jobs?",
+        "answer": "Yes. Blind people work as lawyers, teachers, programmers, musicians, psychologists, business owners, and countless other professions. Workplace accommodations (screen readers, braille displays) enable most jobs."
+      },
+      "identification": {
+        "question": "How do blind people identify money, colors, or objects?",
+        "answerIntro": "Blind people use various adaptive techniques for identification:",
+        "answerItems": [
+          "Money: Apps like Seeing AI, different folding methods, electronic identifiers, and different sizes for different denominations in various countries",
+          "Colors: Color identifier apps, asking others, buying pre-matched clothing",
+          "Objects: Systematic organization, braille/tactile labels, voice recording labels, memory"
+        ]
+      },
+      "causesTreatment": {
+        "question": "What causes blindness and can it be cured?",
+        "leadingCauses": "Leading causes globally:",
+        "causeItems": [
+          "Cataracts (reversible)",
+          "Glaucoma",
+          "Macular degeneration",
+          "Diabetic retinopathy",
+          "Genetic conditions"
+        ],
+        "treatmentInfo": "Treatment depends on cause. Some conditions are preventable/treatable, others currently aren't. Research continues on treatments like gene therapy, stem cells, and bionic eyes.",
+        "neurologicalNote": "People can also lose their vision from neurological conditions like trauma or stroke."
+      }
     }
   },
   "conditions": {

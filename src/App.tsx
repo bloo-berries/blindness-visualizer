@@ -170,19 +170,23 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 const App: React.FC = () => {
-  // Use basename so the app works at /blindness-visualizer (GitHub Pages and local dev)
+  // Use basename so the app works at /blindness-visualizer on GitHub Pages
+  // In local development (empty PUBLIC_URL), use no basename
   const getBasename = (): string => {
     const publicUrl = process.env.PUBLIC_URL || '';
+    // Local development: no basename needed
+    if (!publicUrl) {
+      return '';
+    }
     if (publicUrl.startsWith('http')) {
       try {
         const url = new URL(publicUrl);
-        const path = url.pathname.replace(/\/$/, '') || '/blindness-visualizer';
-        return path;
+        return url.pathname.replace(/\/$/, '') || '';
       } catch {
-        return '/blindness-visualizer';
+        return '';
       }
     }
-    return publicUrl.replace(/\/$/, '') || '/blindness-visualizer';
+    return publicUrl.replace(/\/$/, '');
   };
 
   return (

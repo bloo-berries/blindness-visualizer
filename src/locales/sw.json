@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "Kuhusu",
+    "simulator": "Kiigaji cha Kuona",
+    "famousPeople": "Watu Mashuhuri Vipofu",
+    "glossary": "Kamusi na FAQ",
+    "resources": "Rasilimali",
+    "navigation": "Urambazaji",
+    "viewOnGithub": "Tazama kwenye GitHub",
+    "openMenu": "fungua menyu ya urambazaji",
+    "startSimulator": "Anza Kiigaji",
+    "home": "Nenda ukurasa wa nyumbani"
+  },
+  "buttons": {
+    "back": "NYUMA",
+    "next": "Ifuatayo",
+    "viewSimulation": "Tazama Uigaji",
+    "clearFilters": "Futa Vichujio",
+    "deselectAll": "Ondoa Chaguo Zote",
+    "support": "Msaada",
+    "supportDonate": "Saidia na Changia",
+    "experienceSimulation": "Pata Uzoefu wa Uigaji",
+    "close": "Funga",
+    "submit": "Wasilisha",
+    "reset": "Weka Upya"
+  },
+  "home": {
+    "title": "Pata Uzoefu wa",
+    "titleHighlight": "Hali za Kuona",
+    "card1Title": "Unda taswira yako ya kipekee",
+    "card1Button": "Anza Kiigaji cha Kuona",
+    "card2Title": "Watu Mashuhuri Vipofu na Wenye Ulemavu wa Kuona",
+    "card2Button": "Pata Uzoefu wa Kuona Kwao",
+    "libraryTitle": "Maktaba ya Vipofu",
+    "libraryDescription": "Orodha kubwa zaidi duniani ya mifumo ya upatikanaji wa Braille, kugusa, sauti na njia nyingi"
+  },
+  "simulator": {
+    "title": "Kiigaji cha Hali ya Kuona",
+    "step1": "Chagua Chanzo cha Pembejeo",
+    "step2": "Chagua Hali za Kuona",
+    "step3": "Tazama Uigaji",
+    "selectConditions": "Chagua Hali za Kuona",
+    "visionPreview": "Muonekano wa Awali wa Kuona",
+    "combinedPreview": "Muonekano wa Awali Uliounganishwa (hali {{count}})",
+    "selectToStart": "Chagua hali ili kuendelea",
+    "viewSimulationCount": "Tazama Uigaji (hali {{count}})",
+    "viewSimulationCountPlural": "Tazama Uigaji (hali {{count}})",
+    "simulating": "Kuiga: {{name}}",
+    "condition": "Hali: {{condition}}",
+    "screenReaderStep1": "Hatua ya 1: Chagua chanzo chako - kamera ya wavuti, kupakia picha au video ya YouTube",
+    "screenReaderStep2": "Hatua ya 2: Chagua hali za kuona kuiga",
+    "screenReaderStep3": "Hatua ya 3: Tazama uigaji wako wa kuona",
+    "goBack": "Rudi nyuma kuchagua hali"
+  },
+  "inputSelector": {
+    "title": "Chagua Chanzo Chako cha Pembejeo",
+    "demoVideo": "Tumia Video ya Onyesho",
+    "demoVideoDesc": "Video iliyorekodiwa awali kuchunguza hali",
+    "uploadImage": "Pakia Picha",
+    "uploadImageDesc": "Pakia kutoka kifaa chako",
+    "webcam": "Tumia Kamera ya Wavuti",
+    "webcamDesc": "Mtiririko wa kamera wa wakati halisi",
+    "selected": "Imechaguliwa",
+    "recommended": "(Inashauriwa)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Tafuta hali...",
+    "mostCommon": "Kawaida Zaidi",
+    "redGreen": "Nyekundu-Kijani",
+    "fieldLoss": "Kupoteza Eneo la Kuona",
+    "ageRelated": "Inayohusiana na Umri",
+    "intensity": "Ukali",
+    "separation": "Utenganisho",
+    "direction": "Mwelekeo"
+  },
+  "categories": {
+    "visualFieldLoss": "Kupoteza Eneo la Kuona",
+    "colorVision": "Kuona Rangi",
+    "eyeConditions": "Hali za Macho",
+    "refractiveErrors": "Makosa ya Kurudisha Mwanga",
+    "retinalDisorders": "Matatizo ya Retina",
+    "visualDisturbances": "Usumbufu wa Kuona",
+    "doubleVision": "Kuona Mara Mbili"
+  },
+  "famousPeople": {
+    "title": "Watu Mashuhuri Vipofu na Wenye Ulemavu wa Kuona",
+    "subtitle": "Chunguza maisha na uzoefu wa kuona wa watu mashuhuri vipofu na wenye ulemavu wa kuona katika historia.",
+    "searchPlaceholder": "Tafuta kwa jina au hali",
+    "categoryLabel": "Kundi",
+    "conditionLabel": "Hali",
+    "allCategories": "Makundi Yote",
+    "allConditions": "Hali Zote",
+    "filterByCategory": "Chuja kwa Kundi",
+    "noResults": "Hakuna watu waliopatikana wanaofanana na vigezo vya utafutaji wako.",
+    "noResultsDesc": "Jaribu kurekebisha utafutaji au vichujio vyako",
+    "showingResults": "Inaonyesha {{count}} kati ya watu {{total}}",
+    "hideTotalDarkness": "Ficha uigaji wa giza kamili",
+    "clearAllFilters": "Futa Vichujio Vyote",
+    "categories": {
+      "contemporaryFigures": "Watu wa Kisasa",
+      "athletes": "Wanamichezo",
+      "scientists": "Wanasayansi na Wataalamu wa Afya",
+      "musicians": "Wanamuziki",
+      "artists": "Wasanii",
+      "writersActivists": "Waandishi, Wanaharakati, Wanasiasa",
+      "historicalFigures": "Watu wa Kihistoria",
+      "fictionalCharacters": "Wahusika wa Kubuni"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Matatizo ya Macho",
+      "neurologicIssues": "Matatizo ya Neva",
+      "accidentInjury": "Ajali/Jeraha",
+      "congenitalDefects": "Kasoro za Kuzaliwa",
+      "degenerativeEyeDiseases": "Magonjwa ya Macho Yanayoharibika",
+      "illness": "Ugonjwa",
+      "other": "Nyingine"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Muonekano wa Awali wa Uigaji wa Kuona",
+      "experienceSimulation": "Pata Uzoefu wa Uigaji",
+      "previous": "Iliyotangulia",
+      "next": "Ifuatayo"
+    }
+  },
+  "glossaryPage": {
+    "title": "Kamusi na FAQ",
+    "subtitle": "Ufafanuzi wa kina wa hali za kuona, na FAQ kuhusu upofu na ulemavu wa kuona.",
+    "tabGlossary": "Kamusi",
+    "tabFaq": "FAQ",
+    "searchConditions": "Tafuta hali",
+    "category": "Kundi",
+    "allCategories": "Makundi Yote",
+    "conditionsFound": "Hali {{count}} zimepatikana",
+    "clearFilters": "Futa Vichujio",
+    "viewInSimulator": "Tazama katika kiigaji",
+    "featuredIn": "Inaonekana katika: {{names}}",
+    "treatmentOptions": "Chaguzi za Matibabu",
+    "noConditionsFound": "Hakuna hali zilizopatikana zinazofanana na vigezo vyako vya utafutaji.",
+    "clearAllFilters": "Futa Vichujio Vyote",
+    "conditions": "hali",
+    "aboutGlossary": {
+      "title": "Kuhusu Kamusi Hii",
+      "paragraph1": "Kamusi hii ina habari za kina kuhusu hali za kuona na ulemavu wa kuona. Kila hali inajumuisha maelezo ya kina ya dalili, sababu, na athari katika maisha ya kila siku.",
+      "paragraph2": "Hali zilizo na alama \"Inaonekana katika:\" zinahusishwa na watu mashuhuri katika kiigaji chetu. Bofya ikoni ya jicho karibu na hali yoyote ili kuipitia katika kiigaji chetu cha kuona.",
+      "paragraph3": "Rasilimali hii imeundwa kusaidia watumiaji kuelewa njia mbalimbali ambazo kuona kunaweza kuathiriwa, iwe ni kwa hali za kijenetiki, jeraha, ugonjwa, au sababu nyingine."
+    },
+    "aboutFaq": {
+      "title": "Kuhusu FAQ Hizi",
+      "paragraph1": "Maswali haya yanayoulizwa mara kwa mara yanategemea makosa ya kawaida na udadisi wa kweli kuhusu upofu na ulemavu wa kuona. Majibu yanaonyesha uzoefu tofauti wa watu vipofu na wenye ulemavu wa kuona.",
+      "paragraph2": "Kumbuka kuwa uzoefu wa kila mtu na kupoteza kuona ni wa kipekee. Kinachofanya kazi kwa mtu mmoja kinaweza kisifanye kazi kwa mwingine, na ni bora kila wakati kuwauliza watu kuhusu mahitaji yao maalum na mapendeleo.",
+      "paragraph3": "Kwa habari za kina zaidi kuhusu hali maalum za kuona, tembelea kichupo chetu cha <strong>Kamusi</strong> hapo juu."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Kupoteza Eneo la Kuona", "description": "Hali zinazoathiri maeneo maalum ya uwanja wa kuona" },
+      "colorVision": { "name": "Upungufu wa Kuona Rangi", "description": "Hali zinazoathiri mtazamo wa rangi na utofautishaji" },
+      "eyeConditions": { "name": "Hali za Macho", "description": "Hali za kimwili zinazoathiri muundo na kazi ya jicho" },
+      "retinal": { "name": "Matatizo ya Retina", "description": "Hali zinazoathiri retina na seli zake maalum" },
+      "neurological": { "name": "Hali za Kuona za Kineurolojia", "description": "Matatizo ya kuona yanayosababishwa na matatizo ya ubongo na mfumo wa neva" },
+      "traumaInfection": { "name": "Zinazohusiana na Jeraha na Maambukizi", "description": "Kupoteza kuona kutokana na jeraha la kimwili au magonjwa ya kuambukiza" }
+    },
+    "faqCategories": {
+      "visionPerception": "Kuona na Mtazamo",
+      "technologyAccessibility": "Teknolojia na Ufikiaji",
+      "dailyLife": "Maisha ya Kila Siku",
+      "navigationMobility": "Urambazaji na Uhamaji",
+      "socialInteraction": "Mwingiliano wa Kijamii",
+      "employmentCareer": "Ajira na Kazi",
+      "medicalTreatment": "Matibabu na Tiba"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Je, vipofu wanaona giza/weusi kamili?",
+        "answer": "Si lazima. Takriban 85% ya vipofu kisheria wana kuona kilichobaki. Ni 10-15% tu wanaopitia giza kamili. Wengi wanaona mwanga/kivuli, rangi, au maumbo ya ukungu. Baadhi ambao hawajawahi kuona hawapati \"weusi\" kama dhana - sawa na jinsi unavyoona \"weusi\" nyuma ya kichwa chako."
+      },
+      "technology": {
+        "question": "Vipofu wanatumia vipi simu mahiri na kompyuta?",
+        "answer": "Visomaji vya skrini (JAWS, NVDA, VoiceOver) vinabadilisha maandishi kuwa sauti au braille. Ishara na njia za mkato za kibodi zinachukua nafasi ya matumizi ya kipanya. Wengi wanatumia simu mahiri za kawaida zenye vipengele vya ufikiaji vilivyojengwa ndani. Wasaidizi wa sauti kama Siri wanatumika sana."
+      },
+      "independence": {
+        "question": "Je, vipofu wanaweza kuishi kwa kujitegemea?",
+        "answer": "Ndiyo. Kwa mafunzo sahihi na mbinu za kubadilika, vipofu wanapika, wanasafisha, wanafanya kazi, wanalea familia, na wanaishi maisha ya kujitegemea kikamilifu. Wanatumia mpangilio wa kimfumo, alama za kugusa, teknolojia ya msaada, na zana za uhamaji."
+      },
+      "navigation": {
+        "question": "Vipofu wanazungukaje na kufika sehemu?",
+        "answerIntro": "Vipofu wanatumia njia mbalimbali za urambazaji na uhamaji:",
+        "answerItems": ["Fimbo nyeupe zinagundua vizuizi na mabadiliko ya kimo", "Mbwa wa kuongoza wanatoa kutotii kwa akili na urambazaji", "Programu za GPS zenye maelekezo ya sauti (Soundscape, BlindSquare)", "Njia zilizohifadhiwa akilini na ramani ya kiakili", "Usafiri wa umma na programu za kushiriki safari"]
+      },
+      "senses": {
+        "question": "Je, vipofu wana hisi nyingine zilizoimarishwa?",
+        "answer": "Hapana, hisi zao nyingine si bora kibaiolojia. Wanaendeleza umakini bora na usindikaji wa habari za sauti/kugusa kupitia mazoezi na ulazima. Ni mtazamo ulioboreshwa, si hisia iliyoimarishwa."
+      },
+      "interaction": {
+        "question": "Ninapaswa kuingiliana vipi na mtu kipofu?",
+        "answerIntro": "Hapa kuna miongozo muhimu ya mwingiliano wa heshima:",
+        "answerItems": ["Ongea kawaida na moja kwa moja nao, si kupitia wenzi", "Jitambulishe unapokaribia", "Uliza kabla ya kusaidia - usishike au kusukuma", "Toa maelezo ya maneno yanapofaa", "Tumia lugha ya kawaida ('tutaonana baadaye' ni sawa)", "Kamwe usipapase au kusumbua mbwa wa kuongoza"]
+      },
+      "legalVsTotal": {
+        "question": "Kuna tofauti gani kati ya kipofu kisheria na kipofu kabisa?",
+        "legallyBlind": "Kipofu kisheria:",
+        "legallyBlindDesc": "Kuona 20/200 au mbaya zaidi na marekebisho, AU uwanja wa kuona chini ya digrii 20",
+        "totallyBlind": "Kipofu kabisa:",
+        "totallyBlindDesc": "Hakuna mtazamo wa mwanga (NLP)",
+        "mostBlind": "\"Vipofu\" wengi wako mahali fulani kati ya hizi kali."
+      },
+      "employment": {
+        "question": "Je, vipofu wanaweza kufanya kazi za kawaida?",
+        "answer": "Ndiyo. Vipofu wanafanya kazi kama wanasheria, walimu, wataalamu wa programu, wanamuziki, wanasaikolojia, wamiliki wa biashara, na kazi nyingine nyingi. Marekebisho ya mahali pa kazi (visomaji vya skrini, skrini za braille) yanawezesha kazi nyingi."
+      },
+      "identification": {
+        "question": "Vipofu wanatamuaje pesa, rangi, au vitu?",
+        "answerIntro": "Vipofu wanatumia mbinu mbalimbali za kubadilika kwa utambuzi:",
+        "answerItems": ["Pesa: Programu kama Seeing AI, mbinu tofauti za kukunja, vitambulishi vya kielektroniki, na ukubwa tofauti kwa dhehebu tofauti katika nchi mbalimbali", "Rangi: Programu za kutambua rangi, kuuliza wengine, kununua nguo zilizooanishwa mapema", "Vitu: Mpangilio wa kimfumo, lebo za braille/kugusa, lebo za kurekodi sauti, kumbukumbu"]
+      },
+      "causesTreatment": {
+        "question": "Nini kinasababisha upofu na je, unaweza kuponywa?",
+        "leadingCauses": "Sababu kuu duniani kote:",
+        "causeItems": ["Mtoto wa jicho (inaweza kurudishwa)", "Glaukoma", "Kuzorota kwa macula", "Retinopathia ya kisukari", "Hali za kijenetiki"],
+        "treatmentInfo": "Matibabu inategemea sababu. Baadhi ya hali zinaweza kuzuiwa/kutibiwa, nyingine haziwezi kwa sasa. Utafiti unaendelea kuhusu matibabu kama tiba ya jeni, seli shina, na macho ya kibioniki.",
+        "neurologicalNote": "Watu wanaweza pia kupoteza kuona kwao kutokana na hali za kineurolojia kama jeraha au kiharusi."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Kamusi ya Hali za Kuona",
+    "subtitle": "Jifunze kuhusu aina tofauti za ulemavu wa kuona na hali za macho",
+    "searchPlaceholder": "Tafuta hali...",
+    "viewAll": "Tazama Zote",
+    "colorBlindness": "Upofu wa Rangi",
+    "fieldLoss": "Kupoteza Eneo la Kuona",
+    "ageRelated": "Inayohusiana na Umri",
+    "genetic": "Ya Kijenetiki"
+  },
+  "faq": {
+    "title": "Maswali Yanayoulizwa Mara kwa Mara",
+    "subtitle": "Maswali ya kawaida kuhusu hali za kuona na kiigaji hiki"
+  },
+  "about": {
+    "title": "Kuhusu VisionSim",
+    "subtitle": "Kuelewa dhamira na mbinu yetu",
+    "personalJourney": "Safari ya Kibinafsi",
+    "greeting": "Salamu kwa jamii ya vipofu na wenye ulemavu wa kuona — na kwa kila mtu anayetaka kujifunza zaidi!",
+    "story": "Mwaka 2020 nilipoteza uwezo wangu wa kuona ghafla kutokana na kiharusi, na nilijitahidi peke yangu wakati wa kufungwa kwa COVID, sikuweza kupata ukarabati, tiba, madarasa ya mwelekeo au chochote. Nikitafuta mtandaoni, sikupata karibu chochote kuhusu kupoteza kuona kunakohusiana na kiharusi kwa kiwango nilichokipitia. Kuelezea kwa usahihi jinsi ninavyoona ulimwengu ilikuwa ngumu sana na iliongeza tu upweke.",
+    "purpose": "Niliunda tovuti hii ili watu wawe na zana bora za kueleza na kuwakilisha upofu wao na/au hali za kuona kwa usahihi zaidi.",
+    "previewVideo": "Muonekano wa Awali wa Jinsi Ninavyoona",
+    "mission": "Dhamira Yetu",
+    "missionText": "VisionSim inasaidia watu kuelewa jinsi ilivyo kuishi na hali mbalimbali za kuona kupitia uigaji sahihi unaotegemea utafiti.",
+    "howItWorks": "Jinsi Inavyofanya Kazi",
+    "disclaimer": "Kanusho la Kimatibabu",
+    "disclaimerText": "Uigaji huu ni kwa madhumuni ya kielimu tu na huenda usiwakilishe kwa ukamilifu jinsi watu wanavyopitia hali zao."
+  },
+  "feedback": {
+    "title": "Shiriki Maoni Yako",
+    "subtitle": "Tusaidie kuboresha VisionSim",
+    "nameLabel": "Jina Lako",
+    "namePlaceholder": "Weka jina lako",
+    "emailLabel": "Anwani ya Barua Pepe",
+    "emailPlaceholder": "Weka barua pepe yako",
+    "messageLabel": "Maoni Yako",
+    "messagePlaceholder": "Tuambie unachofikiria...",
+    "submitButton": "Wasilisha Maoni",
+    "successMessage": "Asante kwa maoni yako!",
+    "errorMessage": "Kitu kimeenda vibaya. Tafadhali jaribu tena."
+  },
+  "resources": {
+    "title": "Rasilimali za Kuona",
+    "subtitle": "Viungo vya msaada na habari kuhusu hali za kuona",
+    "organizations": "Mashirika",
+    "research": "Utafiti",
+    "support": "Vikundi vya Msaada"
+  },
+  "accessibility": {
+    "menu": "Mipangilio ya Ufikiaji",
+    "highContrast": "Utofautishaji wa Juu",
+    "highContrastDesc": "Ongeza utofautishaji wa rangi kwa uonekano bora",
+    "largeText": "Maandishi Makubwa",
+    "largeTextDesc": "Ongeza ukubwa wa maandishi kwenye tovuti nzima",
+    "increasedSpacing": "Nafasi Iliyoongezeka",
+    "increasedSpacingDesc": "Ongeza nafasi zaidi kati ya vipengele",
+    "enhancedFocus": "Umakini Ulioimarishwa",
+    "enhancedFocusDesc": "Fanya viashiria vya umakini vionekane zaidi",
+    "reducedMotion": "Mwendo Uliopunguzwa",
+    "reducedMotionDesc": "Punguza uhuishaji na mabadiliko",
+    "resetAll": "Weka Upya Yote",
+    "skipToContent": "Ruka hadi maudhui kuu"
+  },
+  "language": {
+    "select": "Chagua Lugha",
+    "current": "Lugha"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Maoni",
+    "resources": "Rasilimali"
+  },
+  "visualizer": {
+    "comparison": "Ulinganisho",
+    "original": "Asili",
+    "simulated": "Iliyoigwa",
+    "toggleComparison": "Badilisha mtazamo wa ulinganisho",
+    "screenshot": "Picha ya Skrini",
+    "takeScreenshot": "Chukua picha ya skrini",
+    "fullscreen": "Skrini Kamili",
+    "exitFullscreen": "Ondoka skrini kamili"
+  },
+  "common": {
+    "loading": "Inapakia...",
+    "error": "Hitilafu imetokea",
+    "retry": "Jaribu tena",
+    "learnMore": "Jifunze zaidi",
+    "seeMore": "Tazama zaidi",
+    "seeLess": "Tazama kidogo",
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "ok": "Sawa",
+    "cancel": "Ghairi"
+  }
+}

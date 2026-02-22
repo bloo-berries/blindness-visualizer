@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "Tietoja",
+    "simulator": "Näkösimulaattori",
+    "famousPeople": "Kuuluisat Sokeat Henkilöt",
+    "glossary": "Sanasto ja UKK",
+    "resources": "Resurssit",
+    "navigation": "Navigointi",
+    "viewOnGithub": "Näytä GitHubissa",
+    "openMenu": "avaa navigointivalikko",
+    "startSimulator": "Käynnistä Simulaattori",
+    "home": "Siirry etusivulle"
+  },
+  "buttons": {
+    "back": "TAKAISIN",
+    "next": "Seuraava",
+    "viewSimulation": "Näytä Simulaatio",
+    "clearFilters": "Tyhjennä Suodattimet",
+    "deselectAll": "Poista Kaikki Valinnat",
+    "support": "Tuki",
+    "supportDonate": "Tue ja Lahjoita",
+    "experienceSimulation": "Koe Simulaatio",
+    "close": "Sulje",
+    "submit": "Lähetä",
+    "reset": "Nollaa"
+  },
+  "home": {
+    "title": "Koe",
+    "titleHighlight": "Näkötilat",
+    "card1Title": "Luo ainutlaatuinen visualisointisi",
+    "card1Button": "Käynnistä Näkösimulaattori",
+    "card2Title": "Kuuluisat Sokeat ja Näkövammaiset Henkilöt",
+    "card2Button": "Koe Heidän Näkönsä",
+    "libraryTitle": "Sokeiden Kirjasto",
+    "libraryDescription": "Maailman suurin luettelo pistekirjoitus-, kosketellava-, ääni- ja monimuotoisista esteettömyysjärjestelmistä"
+  },
+  "simulator": {
+    "title": "Näkötilan Simulaattori",
+    "step1": "Valitse Lähde",
+    "step2": "Valitse Näkötilat",
+    "step3": "Näytä Simulaatio",
+    "selectConditions": "Valitse Näkötilat",
+    "visionPreview": "Näön Esikatselu",
+    "combinedPreview": "Yhdistetty Näön Esikatselu ({{count}} tilaa)",
+    "selectToStart": "Valitse tilat jatkaaksesi",
+    "viewSimulationCount": "Näytä Simulaatio ({{count}} tila)",
+    "viewSimulationCountPlural": "Näytä Simulaatio ({{count}} tilaa)",
+    "simulating": "Simuloidaan: {{name}}",
+    "condition": "Tila: {{condition}}",
+    "screenReaderStep1": "Vaihe 1: Valitse lähde - verkkokamera, kuvan lataus tai YouTube-video",
+    "screenReaderStep2": "Vaihe 2: Valitse simuloitavat näkötilat",
+    "screenReaderStep3": "Vaihe 3: Katso näkösimulaatiosi",
+    "goBack": "Palaa valitsemaan tiloja"
+  },
+  "inputSelector": {
+    "title": "Valitse Lähteesi",
+    "demoVideo": "Käytä Demovideota",
+    "demoVideoDesc": "Valmiiksi nauhoitettu video tilojen tutkimiseen",
+    "uploadImage": "Lataa Kuva",
+    "uploadImageDesc": "Lataa laitteestasi",
+    "webcam": "Käytä Verkkokameraa",
+    "webcamDesc": "Reaaliaikainen kamerasyöte",
+    "selected": "Valittu",
+    "recommended": "(Suositeltu)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Etsi tiloja...",
+    "mostCommon": "Yleisimmät",
+    "redGreen": "Punavihreä",
+    "fieldLoss": "Näkökenttähäviö",
+    "ageRelated": "Ikään Liittyvä",
+    "intensity": "Voimakkuus",
+    "separation": "Erotus",
+    "direction": "Suunta"
+  },
+  "categories": {
+    "visualFieldLoss": "Näkökenttähäviö",
+    "colorVision": "Värinäkö",
+    "eyeConditions": "Silmäsairaudet",
+    "refractiveErrors": "Taittovirheet",
+    "retinalDisorders": "Verkkokalvosairaudet",
+    "visualDisturbances": "Näköhäiriöt",
+    "doubleVision": "Kaksoiskuvat"
+  },
+  "famousPeople": {
+    "title": "Kuuluisat Sokeat ja Näkövammaiset Henkilöt",
+    "subtitle": "Tutustu kuuluisien sokeiden ja näkövammaisten henkilöiden elämään ja visuaalisiin kokemuksiin historian aikana.",
+    "searchPlaceholder": "Etsi nimellä tai tilalla",
+    "categoryLabel": "Kategoria",
+    "conditionLabel": "Tila",
+    "allCategories": "Kaikki Kategoriat",
+    "allConditions": "Kaikki Tilat",
+    "filterByCategory": "Suodata Kategorialla",
+    "noResults": "Hakuehtojasi vastaavia henkilöitä ei löytynyt.",
+    "noResultsDesc": "Kokeile muuttaa hakua tai suodattimia",
+    "showingResults": "Näytetään {{count}} / {{total}} henkilöä",
+    "hideTotalDarkness": "Piilota täysi pimeys -simulaatiot",
+    "clearAllFilters": "Tyhjennä Kaikki Suodattimet",
+    "categories": {
+      "contemporaryFigures": "Nykyajan Henkilöt",
+      "athletes": "Urheilijat",
+      "scientists": "Tiedemiehet ja Lääketieteen Ammattilaiset",
+      "musicians": "Muusikot",
+      "artists": "Taiteilijat",
+      "writersActivists": "Kirjailijat, Aktivistit, Poliitikot",
+      "historicalFigures": "Historialliset Henkilöt",
+      "fictionalCharacters": "Fiktiiviset Hahmot"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Silmäongelmat",
+      "neurologicIssues": "Neurologiset Ongelmat",
+      "accidentInjury": "Onnettomuus/Vamma",
+      "congenitalDefects": "Synnynnäiset Viat",
+      "degenerativeEyeDiseases": "Rappeuttavat Silmäsairaudet",
+      "illness": "Sairaus",
+      "other": "Muu"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Näkösimulaation Esikatselu",
+      "experienceSimulation": "Koe Simulaatio",
+      "previous": "Edellinen",
+      "next": "Seuraava"
+    }
+  },
+  "glossaryPage": {
+    "title": "Sanasto ja UKK",
+    "subtitle": "Kattavat määritelmät näkötiloista sekä usein kysytyt kysymykset sokeudesta ja näkövammaisuudesta.",
+    "tabGlossary": "Sanasto",
+    "tabFaq": "UKK",
+    "searchConditions": "Etsi tiloja",
+    "category": "Kategoria",
+    "allCategories": "Kaikki Kategoriat",
+    "conditionsFound": "{{count}} tilaa löydetty",
+    "clearFilters": "Tyhjennä Suodattimet",
+    "viewInSimulator": "Katso simulaattorissa",
+    "featuredIn": "Esiintyy: {{names}}",
+    "treatmentOptions": "Hoitovaihtoehdot",
+    "noConditionsFound": "Hakuehtojasi vastaavia tiloja ei löytynyt.",
+    "clearAllFilters": "Tyhjennä Kaikki Suodattimet",
+    "conditions": "tilaa",
+    "aboutGlossary": {
+      "title": "Tietoa Tästä Sanastosta",
+      "paragraph1": "Tämä sanasto sisältää kattavaa tietoa näkötiloista ja näkövammoista. Jokainen tila sisältää yksityiskohtaiset kuvaukset oireista, syistä ja vaikutuksista arkielämään.",
+      "paragraph2": "Tilat, joissa on merkintä \"Esiintyy:\", liittyvät kuuluisiin henkilöihin simulaattorissamme. Napsauta silmäkuvaketta minkä tahansa tilan vieressä kokeaksesi sen näkösimulaattorissamme.",
+      "paragraph3": "Tämä resurssi on suunniteltu auttamaan käyttäjiä ymmärtämään eri tapoja, joilla näkö voi vaikuttua, olipa kyseessä geneettiset tilat, vammat, sairaudet tai muut tekijät."
+    },
+    "aboutFaq": {
+      "title": "Tietoa Näistä UKK:ista",
+      "paragraph1": "Nämä usein kysytyt kysymykset perustuvat yleisiin väärinkäsityksiin ja aitoon uteliaisuuteen sokeudesta ja näkövammaisuudesta. Vastaukset heijastavat sokeiden ja näkövammaisten henkilöiden moninaisia kokemuksia.",
+      "paragraph2": "Muista, että jokaisen henkilön kokemus näön menetyksestä on ainutlaatuinen. Mikä toimii yhdelle henkilölle, ei välttämättä toimi toiselle, ja on aina parasta kysyä yksilöiltä heidän erityistarpeistaan ja mieltymyksistään.",
+      "paragraph3": "Lisätietoja tietyistä näkötiloista saat <strong>Sanasto</strong>-välilehdeltä yllä."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Näkökenttähäviö", "description": "Tilat, jotka vaikuttavat tiettyihin näkökentän alueisiin" },
+      "colorVision": { "name": "Värinäön Puutteet", "description": "Tilat, jotka vaikuttavat värien havaitsemiseen ja erottamiseen" },
+      "eyeConditions": { "name": "Silmäsairaudet", "description": "Fyysiset tilat, jotka vaikuttavat silmän rakenteeseen ja toimintaan" },
+      "retinal": { "name": "Verkkokalvosairaudet", "description": "Tilat, jotka vaikuttavat verkkokalvoon ja sen erikoistuneisiin soluihin" },
+      "neurological": { "name": "Neurologiset Näkötilat", "description": "Näköongelmat, jotka johtuvat aivojen ja hermoston häiriöistä" },
+      "traumaInfection": { "name": "Trauma- ja Infektioihin Liittyvät", "description": "Näön menetys fyysisestä vammasta tai tartuntataudeista johtuen" }
+    },
+    "faqCategories": {
+      "visionPerception": "Näkö ja Havaitseminen",
+      "technologyAccessibility": "Teknologia ja Esteettömyys",
+      "dailyLife": "Arkielämä",
+      "navigationMobility": "Navigointi ja Liikkuvuus",
+      "socialInteraction": "Sosiaalinen Vuorovaikutus",
+      "employmentCareer": "Työllisyys ja Ura",
+      "medicalTreatment": "Lääketieteellinen Hoito"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Näkevätkö sokeat täydellistä pimeyttä/mustaa?",
+        "answer": "Ei välttämättä. Noin 85%:lla laillisesti sokeista on jonkin verran jäännösnäköä. Vain 10-15% kokee täydellisen pimeyden. Monet näkevät valoa/varjoja, värejä tai epäselviä muotoja. Jotkut, jotka eivät ole koskaan nähneet, eivät koe \"mustaa\" käsitteenä - samoin kuin et \"näe\" mustaa pääsi takana."
+      },
+      "technology": {
+        "question": "Miten sokeat käyttävät älypuhelimia ja tietokoneita?",
+        "answer": "Ruudunlukuohjelmat (JAWS, NVDA, VoiceOver) muuttavat tekstin puheeksi tai pistekirjoitukseksi. Eleet ja näppäimistön pikanäppäimet korvaavat hiiren käytön. Monet käyttävät tavallisia älypuhelimia sisäänrakennetuilla esteettömyysominaisuuksilla. Ääniavustajia kuten Siri käytetään paljon."
+      },
+      "independence": {
+        "question": "Voivatko sokeat elää itsenäisesti?",
+        "answer": "Kyllä. Oikealla koulutuksella ja sopeutumistekniikoilla sokeat laittavat ruokaa, siivoavat, työskentelevät, kasvattavat perheitä ja elävät täysin itsenäistä elämää. He käyttävät järjestelmällistä organisointia, kosketusmerkkejä, apuvälineteknologiaa ja liikkumisvälineitä."
+      },
+      "navigation": {
+        "question": "Miten sokeat navigoivat ja liikkuvat?",
+        "answerIntro": "Sokeat käyttävät erilaisia menetelmiä navigointiin ja liikkumiseen:",
+        "answerItems": ["Valkoiset kepit havaitsevat esteet ja korkeusmuutokset", "Opaskoirat tarjoavat älykästä tottelemattomuutta ja navigointia", "GPS-sovellukset ääniohjeineen (Soundscape, BlindSquare)", "Muistiin painetut reitit ja mielikuvakartat", "Julkinen liikenne ja kyydinjakosovellukset"]
+      },
+      "senses": {
+        "question": "Onko sokeilla tehokkaampia muita aisteja?",
+        "answer": "Ei, heidän muut aistinsa eivät ole biologisesti parempia. He kehittävät paremman huomion ja ääni-/kosketusinformaation käsittelyn harjoittelun ja välttämättömyyden kautta. Se on tehostunut havaintokyky, ei tehostunut aistimus."
+      },
+      "interaction": {
+        "question": "Miten minun pitäisi olla vuorovaikutuksessa sokean henkilön kanssa?",
+        "answerIntro": "Tässä tärkeitä ohjeita kunnioittavaan vuorovaikutukseen:",
+        "answerItems": ["Puhu normaalisti ja suoraan heille, älä seuralaisten kautta", "Esittele itsesi lähestyessäsi", "Kysy ennen auttamista - älä tartu tai työnnä", "Anna sanallisia kuvauksia tarvittaessa", "Käytä normaalia kieltä ('nähdään' on ok)", "Älä koskaan silittele tai häiritse opaskoiria"]
+      },
+      "legalVsTotal": {
+        "question": "Mikä on ero laillisesti sokean ja täysin sokean välillä?",
+        "legallyBlind": "Laillisesti sokea:",
+        "legallyBlindDesc": "Näöntarkkuus 20/200 tai huonompi korjauksella TAI näkökenttä alle 20 astetta",
+        "totallyBlind": "Täysin sokea:",
+        "totallyBlindDesc": "Ei valonhavaitsemista (NLP)",
+        "mostBlind": "Useimmat \"sokeat\" ovat jossain näiden ääripäiden välillä."
+      },
+      "employment": {
+        "question": "Voivatko sokeat tehdä tavallisia töitä?",
+        "answer": "Kyllä. Sokeat työskentelevät lakimiehinä, opettajina, ohjelmoijina, muusikkoina, psykologeina, yrittäjinä ja lukemattomissa muissa ammateissa. Työpaikan mukautukset (ruudunlukuohjelmat, pistekirjoitusnäytöt) mahdollistavat useimmat työt."
+      },
+      "identification": {
+        "question": "Miten sokeat tunnistavat rahaa, värejä tai esineitä?",
+        "answerIntro": "Sokeat käyttävät erilaisia sopeutumistekniikoita tunnistamiseen:",
+        "answerItems": ["Raha: Sovellukset kuten Seeing AI, erilaiset taittomenetelmät, elektroniset tunnistimet ja eri kokoiset setelit eri maissa", "Värit: Värintunnistussovellukset, muilta kysyminen, valmiiksi yhteensopivien vaatteiden ostaminen", "Esineet: Järjestelmällinen organisointi, piste/kosketusmerkit, äänitallennemerkit, muisti"]
+      },
+      "causesTreatment": {
+        "question": "Mikä aiheuttaa sokeutta ja voidaanko se parantaa?",
+        "leadingCauses": "Johtavat syyt maailmanlaajuisesti:",
+        "causeItems": ["Kaihi (palautuva)", "Glaukooma", "Silmänpohjan ikärappeuma", "Diabeettinen retinopatia", "Geneettiset tilat"],
+        "treatmentInfo": "Hoito riippuu syystä. Joitakin tiloja voidaan ehkäistä/hoitaa, toisia ei tällä hetkellä. Tutkimus jatkuu hoitojen, kuten geeniterapian, kantasolujen ja bionisten silmien parissa.",
+        "neurologicalNote": "Ihmiset voivat myös menettää näkönsä neurologisten tilojen, kuten trauman tai aivohalvauksen vuoksi."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Näkötilojen Sanasto",
+    "subtitle": "Opi erilaisista näkövammoista ja silmäsairauksista",
+    "searchPlaceholder": "Etsi tiloja...",
+    "viewAll": "Näytä Kaikki",
+    "colorBlindness": "Värisokeus",
+    "fieldLoss": "Näkökenttähäviö",
+    "ageRelated": "Ikään Liittyvä",
+    "genetic": "Geneettinen"
+  },
+  "faq": {
+    "title": "Usein Kysytyt Kysymykset",
+    "subtitle": "Yleisiä kysymyksiä näkötiloista ja tästä simulaattorista"
+  },
+  "about": {
+    "title": "Tietoja VisionSimistä",
+    "subtitle": "Ymmärrä missiomme ja lähestymistapamme",
+    "personalJourney": "Henkilökohtainen Matka",
+    "greeting": "Tervehdys sokeiden ja näkövammaisten yhteisölle — ja kaikille uteliaille, jotka haluavat oppia lisää!",
+    "story": "Vuonna 2020 menetin näköni hetkessä aivohalvauksen vuoksi, ja kamppailin yksin COVID-sulkujen aikana, en löytänyt kuntoutusta, terapiaa, suuntautumiskursseja tai mitään. Netistä en löytänyt juuri mitään aivohalvaukseen liittyvästä näönmenetyksestä siinä mittakaavassa, jonka koin. Kuvailla tarkasti miten \"näen\" maailman oli tuskallisen vaikeaa ja vain lisäsi eristäytyneisyyttä.",
+    "purpose": "Loin tämän sivuston, jotta ihmiset olisivat paremmin varusteltuja työkaluilla ilmaistakseen ja esittääkseen tarkemmin sokeutensa ja/tai näkötilansa.",
+    "previewVideo": "Esikatsele Miten Näen",
+    "mission": "Missiomme",
+    "missionText": "VisionSim auttaa ihmisiä ymmärtämään, millaista on elää erilaisten näkötilojen kanssa tarkkojen, tutkimukseen perustuvien simulaatioiden avulla.",
+    "howItWorks": "Miten Se Toimii",
+    "disclaimer": "Lääketieteellinen Vastuuvapauslauseke",
+    "disclaimerText": "Nämä simulaatiot ovat vain koulutustarkoituksiin eivätkä välttämättä täydellisesti edusta miten yksilöt kokevat tilansa."
+  },
+  "feedback": {
+    "title": "Jaa Palautteesi",
+    "subtitle": "Auta meitä parantamaan VisionSimiä",
+    "nameLabel": "Nimesi",
+    "namePlaceholder": "Syötä nimesi",
+    "emailLabel": "Sähköpostiosoite",
+    "emailPlaceholder": "Syötä sähköpostisi",
+    "messageLabel": "Palautteesi",
+    "messagePlaceholder": "Kerro mitä ajattelet...",
+    "submitButton": "Lähetä Palaute",
+    "successMessage": "Kiitos palautteestasi!",
+    "errorMessage": "Jokin meni pieleen. Yritä uudelleen."
+  },
+  "resources": {
+    "title": "Näköresurssit",
+    "subtitle": "Hyödyllisiä linkkejä ja tietoa näkötiloista",
+    "organizations": "Organisaatiot",
+    "research": "Tutkimus",
+    "support": "Tukiryhmät"
+  },
+  "accessibility": {
+    "menu": "Esteettömyysasetukset",
+    "highContrast": "Korkea Kontrasti",
+    "highContrastDesc": "Lisää värikontrastia paremman näkyvyyden saavuttamiseksi",
+    "largeText": "Suuri Teksti",
+    "largeTextDesc": "Suurenna tekstikoko koko sivustolla",
+    "increasedSpacing": "Lisätty Välistys",
+    "increasedSpacingDesc": "Lisää tilaa elementtien välille",
+    "enhancedFocus": "Parannettu Fokus",
+    "enhancedFocusDesc": "Tee fokusindikaattoreista näkyvämpiä",
+    "reducedMotion": "Vähennetty Liike",
+    "reducedMotionDesc": "Minimoi animaatiot ja siirtymät",
+    "resetAll": "Nollaa Kaikki",
+    "skipToContent": "Siirry pääsisältöön"
+  },
+  "language": {
+    "select": "Valitse Kieli",
+    "current": "Kieli"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Palaute",
+    "resources": "Resurssit"
+  },
+  "visualizer": {
+    "comparison": "Vertailu",
+    "original": "Alkuperäinen",
+    "simulated": "Simuloitu",
+    "toggleComparison": "Vaihda vertailunäkymää",
+    "screenshot": "Kuvakaappaus",
+    "takeScreenshot": "Ota kuvakaappaus",
+    "fullscreen": "Koko Näyttö",
+    "exitFullscreen": "Poistu koko näytöstä"
+  },
+  "common": {
+    "loading": "Ladataan...",
+    "error": "Virhe tapahtui",
+    "retry": "Yritä uudelleen",
+    "learnMore": "Lue lisää",
+    "seeMore": "Näytä lisää",
+    "seeLess": "Näytä vähemmän",
+    "yes": "Kyllä",
+    "no": "Ei",
+    "ok": "OK",
+    "cancel": "Peruuta"
+  }
+}

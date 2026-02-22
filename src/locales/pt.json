@@ -32,7 +32,9 @@
     "card1Description": "Crie sua visualização única",
     "card1Button": "Iniciar Simulador de Condições Visuais",
     "card2Title": "Experimente a Visão de Pessoas Cegas e Deficientes Visuais Famosas",
-    "card2Button": "Explorar Pessoas Famosas"
+    "card2Button": "Explorar Pessoas Famosas",
+    "libraryTitle": "Biblioteca dos Cegos",
+    "libraryDescription": "O maior catálogo do mundo de sistemas de acessibilidade Braille, táteis, de áudio e multimodais"
   },
   "simulator": {
     "title": "Simulador de Condições Visuais",
@@ -83,23 +85,182 @@
     "doubleVision": "Visão Dupla"
   },
   "famousPeople": {
-    "title": "Pessoas Cegas e Deficientes Visuais Famosas",
-    "subtitle": "Explore como figuras notáveis ao longo da história experimentaram condições visuais",
-    "searchPlaceholder": "Pesquisar por nome, condição ou profissão...",
+    "title": "Pessoas Famosas Cegas e com Deficiência Visual",
+    "subtitle": "Explore as vidas e experiências visuais de pessoas cegas e com deficiência visual famosas ao longo da história.",
+    "searchPlaceholder": "Pesquisar por nome ou condição",
+    "categoryLabel": "Categoria",
+    "conditionLabel": "Condição",
     "allCategories": "Todas as Categorias",
+    "allConditions": "Todas as Condições",
     "filterByCategory": "Filtrar por Categoria",
-    "noResults": "Nenhum resultado encontrado",
+    "noResults": "Nenhuma pessoa encontrada que corresponda aos seus critérios de pesquisa.",
     "noResultsDesc": "Tente ajustar sua pesquisa ou filtros",
     "showingResults": "Mostrando {{count}} de {{total}} pessoas",
+    "hideTotalDarkness": "Ocultar simulações de escuridão total",
+    "clearAllFilters": "Limpar Todos os Filtros",
     "categories": {
-      "contemporaryFigures": "Figuras Contemporâneas",
+      "contemporaryFigures": "Personalidades Contemporâneas",
       "athletes": "Atletas",
+      "scientists": "Cientistas e Profissionais Médicos",
       "musicians": "Músicos",
       "artists": "Artistas",
-      "writersActivists": "Escritores e Ativistas",
+      "writersActivists": "Escritores, Ativistas, Políticos",
       "historicalFigures": "Figuras Históricas",
-      "scientists": "Cientistas",
-      "fictionalCharacters": "Personagens Ficcionais"
+      "fictionalCharacters": "Personagens Fictícios"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Problemas Oculares",
+      "neurologicIssues": "Problemas Neurológicos",
+      "accidentInjury": "Acidente/Lesão",
+      "congenitalDefects": "Defeitos Congênitos",
+      "degenerativeEyeDiseases": "Doenças Oculares Degenerativas",
+      "illness": "Doença",
+      "other": "Outro"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Pré-visualização da Simulação de Visão",
+      "experienceSimulation": "Experimentar Simulação",
+      "previous": "Anterior",
+      "next": "Próximo"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossário e FAQ",
+    "subtitle": "Definições abrangentes de condições visuais e FAQ sobre cegueira e deficiência visual.",
+    "tabGlossary": "Glossário",
+    "tabFaq": "FAQ",
+    "searchConditions": "Pesquisar condições",
+    "category": "Categoria",
+    "allCategories": "Todas as Categorias",
+    "conditionsFound": "{{count}} condições encontradas",
+    "clearFilters": "Limpar Filtros",
+    "viewInSimulator": "Ver no simulador",
+    "featuredIn": "Destaque em: {{names}}",
+    "treatmentOptions": "Opções de Tratamento",
+    "noConditionsFound": "Nenhuma condição encontrada correspondente aos seus critérios de pesquisa.",
+    "clearAllFilters": "Limpar Todos os Filtros",
+    "conditions": "condições",
+    "aboutGlossary": {
+      "title": "Sobre Este Glossário",
+      "paragraph1": "Este glossário contém informações abrangentes sobre condições visuais e deficiências visuais. Cada condição inclui descrições detalhadas de sintomas, causas e efeitos na vida diária.",
+      "paragraph2": "Condições marcadas com \"Destaque em:\" estão associadas a pessoas famosas em nosso simulador. Clique no ícone do olho ao lado de qualquer condição para experimentá-la em nosso simulador de visão.",
+      "paragraph3": "Este recurso foi projetado para ajudar os usuários a entender as várias formas como a visão pode ser afetada, seja por condições genéticas, lesões, doenças ou outros fatores."
+    },
+    "aboutFaq": {
+      "title": "Sobre Estas FAQs",
+      "paragraph1": "Estas perguntas frequentes são baseadas em equívocos comuns e curiosidade genuína sobre cegueira e deficiência visual. As respostas refletem as diversas experiências de pessoas cegas e com deficiência visual.",
+      "paragraph2": "Lembre-se de que a experiência de cada pessoa com perda de visão é única. O que funciona para uma pessoa pode não funcionar para outra, e é sempre melhor perguntar às pessoas sobre suas necessidades e preferências específicas.",
+      "paragraph3": "Para informações mais detalhadas sobre condições visuais específicas, visite nossa aba <strong>Glossário</strong> acima."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Perda do Campo Visual",
+        "description": "Condições que afetam áreas específicas do campo visual"
+      },
+      "colorVision": {
+        "name": "Deficiências da Visão de Cores",
+        "description": "Condições que afetam a percepção e discriminação de cores"
+      },
+      "eyeConditions": {
+        "name": "Condições Oculares",
+        "description": "Condições físicas que afetam a estrutura e função do olho"
+      },
+      "retinal": {
+        "name": "Distúrbios da Retina",
+        "description": "Condições que afetam a retina e suas células especializadas"
+      },
+      "neurological": {
+        "name": "Condições Visuais Neurológicas",
+        "description": "Problemas de visão causados por distúrbios cerebrais e do sistema nervoso"
+      },
+      "traumaInfection": {
+        "name": "Relacionados a Trauma e Infecção",
+        "description": "Perda de visão resultante de lesão física ou doenças infecciosas"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Visão e Percepção",
+      "technologyAccessibility": "Tecnologia e Acessibilidade",
+      "dailyLife": "Vida Diária",
+      "navigationMobility": "Navegação e Mobilidade",
+      "socialInteraction": "Interação Social",
+      "employmentCareer": "Emprego e Carreira",
+      "medicalTreatment": "Médico e Tratamento"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Pessoas cegas veem escuridão/negro completo?",
+        "answer": "Não necessariamente. Cerca de 85% das pessoas legalmente cegas têm alguma visão residual. Apenas 10-15% experimentam escuridão total. Muitos veem luz/sombra, cores ou formas borradas. Alguns que nunca tiveram visão não experimentam \"escuridão\" como conceito - semelhante a como você não \"vê\" escuridão atrás da sua cabeça."
+      },
+      "technology": {
+        "question": "Como pessoas cegas usam smartphones e computadores?",
+        "answer": "Leitores de tela (JAWS, NVDA, VoiceOver) convertem texto em fala ou braille. Gestos e atalhos de teclado substituem o uso do mouse. Muitos usam smartphones normais com recursos de acessibilidade integrados. Assistentes de voz como Siri são muito utilizados."
+      },
+      "independence": {
+        "question": "Pessoas cegas podem viver de forma independente?",
+        "answer": "Sim. Com treinamento adequado e técnicas adaptativas, pessoas cegas cozinham, limpam, trabalham, criam famílias e vivem vidas completamente independentes. Elas usam organização sistemática, marcadores táteis, tecnologia assistiva e ferramentas de mobilidade."
+      },
+      "navigation": {
+        "question": "Como pessoas cegas navegam e se locomovem?",
+        "answerIntro": "Pessoas cegas usam vários métodos para navegação e mobilidade:",
+        "answerItems": [
+          "Bengalas brancas detectam obstáculos e mudanças de elevação",
+          "Cães-guia fornecem desobediência inteligente e navegação",
+          "Apps GPS com direções de áudio (Soundscape, BlindSquare)",
+          "Rotas memorizadas e mapeamento mental",
+          "Transporte público e apps de carona"
+        ]
+      },
+      "senses": {
+        "question": "Pessoas cegas têm outros sentidos mais aguçados?",
+        "answer": "Não, seus outros sentidos não são biologicamente superiores. Eles desenvolvem melhor atenção e processamento de informações auditivas/táteis através da prática e necessidade. É percepção aprimorada, não sensação aprimorada."
+      },
+      "interaction": {
+        "question": "Como devo interagir com uma pessoa cega?",
+        "answerIntro": "Aqui estão algumas diretrizes importantes para interação respeitosa:",
+        "answerItems": [
+          "Fale normalmente e diretamente com eles, não através de acompanhantes",
+          "Identifique-se ao se aproximar",
+          "Pergunte antes de ajudar - não agarre nem empurre",
+          "Dê descrições verbais quando relevante",
+          "Use linguagem normal ('até logo' é bom)",
+          "Nunca acaricie ou distraia cães-guia"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Qual é a diferença entre legalmente cego e totalmente cego?",
+        "legallyBlind": "Legalmente cego:",
+        "legallyBlindDesc": "Visão 20/200 ou pior com correção, OU campo visual menor que 20 graus",
+        "totallyBlind": "Totalmente cego:",
+        "totallyBlindDesc": "Sem percepção de luz (SPL)",
+        "mostBlind": "A maioria das pessoas \"cegas\" está em algum lugar entre esses extremos."
+      },
+      "employment": {
+        "question": "Pessoas cegas podem trabalhar em empregos regulares?",
+        "answer": "Sim. Pessoas cegas trabalham como advogados, professores, programadores, músicos, psicólogos, empresários e inúmeras outras profissões. Adaptações no local de trabalho (leitores de tela, displays braille) possibilitam a maioria dos empregos."
+      },
+      "identification": {
+        "question": "Como pessoas cegas identificam dinheiro, cores ou objetos?",
+        "answerIntro": "Pessoas cegas usam várias técnicas adaptativas para identificação:",
+        "answerItems": [
+          "Dinheiro: Apps como Seeing AI, diferentes métodos de dobra, identificadores eletrônicos e diferentes tamanhos para diferentes denominações em vários países",
+          "Cores: Apps identificadores de cor, perguntar a outros, comprar roupas pré-combinadas",
+          "Objetos: Organização sistemática, etiquetas braille/táteis, etiquetas de gravação de voz, memória"
+        ]
+      },
+      "causesTreatment": {
+        "question": "O que causa cegueira e pode ser curada?",
+        "leadingCauses": "Principais causas globalmente:",
+        "causeItems": [
+          "Cataratas (reversível)",
+          "Glaucoma",
+          "Degeneração macular",
+          "Retinopatia diabética",
+          "Condições genéticas"
+        ],
+        "treatmentInfo": "O tratamento depende da causa. Algumas condições são preveníveis/tratáveis, outras atualmente não são. A pesquisa continua em tratamentos como terapia genética, células-tronco e olhos biônicos.",
+        "neurologicalNote": "Pessoas também podem perder a visão por condições neurológicas como trauma ou AVC."
+      }
     }
   },
   "conditions": {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
 import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
@@ -6,6 +6,7 @@ import { getSimulationConditions } from '../../utils/famousPeopleUtils';
 import { generateCSSFilters } from '../../utils/cssFilters';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
+import { useAnimationTicker } from '../../hooks';
 
 interface EmbeddedVisualizationProps {
   personId: string;
@@ -23,9 +24,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   simulation,
   personName
 }) => {
-  // Animation state for animated effects
-  const [now, setNow] = useState(Date.now());
-
   // Create effects array with the person's conditions enabled
   const effects: VisualEffect[] = useMemo(() => {
     const conditionIds = getSimulationConditions(simulation);
@@ -43,16 +41,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     [effects]
   );
 
-  // Animation loop for animated effects
-  useEffect(() => {
-    if (!needsAnimation) return;
-
-    const interval = setInterval(() => {
-      setNow(Date.now());
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [needsAnimation]);
+  // Animation ticker for animated effects
+  const now = useAnimationTicker(needsAnimation);
 
   // Get visual field overlay styles
   const visualFieldOverlayStyle = useVisualFieldOverlay(effects);

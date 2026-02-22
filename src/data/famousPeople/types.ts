@@ -8,6 +8,7 @@ export interface PersonData {
 }
 
 export interface PersonCategory {
+  id: string;
   name: string;
   people: string[];
 }

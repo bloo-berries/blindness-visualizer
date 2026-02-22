@@ -16,7 +16,6 @@ import {
   IconButton,
   TextField,
   InputAdornment,
-  Link,
   Collapse
 } from '@mui/material';
 import { Info, ExpandMore, Search, Clear, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
@@ -24,31 +23,7 @@ import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
 import { conditionCategories } from './ControlPanelConstants';
-
-// Helper to render description text with clickable links
-const renderDescriptionWithLinks = (text: string): React.ReactNode => {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
-
-  return parts.map((part, index) => {
-    if (urlRegex.test(part)) {
-      urlRegex.lastIndex = 0;
-      return (
-        <Link
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{ color: 'primary.light', wordBreak: 'break-word' }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          Learn more
-        </Link>
-      );
-    }
-    return part;
-  });
-};
+import { renderDescriptionWithLinks } from '../../utils/textRendering';
 
 // Quick filter definitions
 const QUICK_FILTERS = [
@@ -446,7 +421,8 @@ export const EffectList: React.FC<EffectListProps> = ({
                           {renderDescriptionWithLinks(
                             isColorVisionCondition(effect.id as ConditionType)
                               ? getColorVisionDescription(effect.id as ConditionType)
-                              : effect.description
+                              : effect.description,
+                            { linkSx: { color: 'primary.light' }, onClick: (e) => e.stopPropagation() }
                           )}
                         </Box>
                       }

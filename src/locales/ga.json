@@ -32,7 +32,9 @@
     "card1Description": "Cruthaigh d'amharcléiriú uathúil féin",
     "card1Button": "Tosaigh Insamhlóir Riocht Radhairc",
     "card2Title": "Bain Taithí ar Radharc Daoine Cáiliúla Dalla agus Lagamhairc",
-    "card2Button": "Taiscéal Daoine Cáiliúla"
+    "card2Button": "Taiscéal Daoine Cáiliúla",
+    "libraryTitle": "Leabharlann na nDall",
+    "libraryDescription": "An catalóg is mó ar domhan de chórais inrochtaineachta Braille, tadhaill, fuaime agus ilmhódúla"
   },
   "simulator": {
     "title": "Insamhlóir Riocht Radhairc",
@@ -84,22 +86,140 @@
   },
   "famousPeople": {
     "title": "Daoine Cáiliúla Dalla agus Lagamhairc",
-    "subtitle": "Foghlaim conas a d'fhulaing daoine cáiliúla le riocht radhairc ar fud na staire",
-    "searchPlaceholder": "Cuardaigh de réir ainm, riocht nó gairm...",
+    "subtitle": "Déan iniúchadh ar shaol agus ar thaithí amhairc daoine cáiliúla dalla agus lagamhairc i gcaitheamh na staire.",
+    "searchPlaceholder": "Cuardaigh de réir ainm nó riocht",
+    "categoryLabel": "Catagóir",
+    "conditionLabel": "Riocht",
     "allCategories": "Gach Catagóir",
-    "filterByCategory": "Scag de réir Catagóire",
-    "noResults": "Níor aimsíodh torthaí",
-    "noResultsDesc": "Bain triail as do chuardach nó scagairí a choigeartú",
-    "showingResults": "Ag taispeáint {{count}} as {{total}} duine",
+    "allConditions": "Gach Riocht",
+    "filterByCategory": "Scagadh de réir catagóire",
+    "noResults": "Níor aimsíodh aon duine a mheaitseálann do chritéir cuardaigh.",
+    "noResultsDesc": "Bain triail as do chuardach nó do scagairí a choigeartú",
+    "showingResults": "{{count}} as {{total}} duine á thaispeáint",
+    "hideTotalDarkness": "Folaigh insamhaltaí dorchadais iomlán",
+    "clearAllFilters": "Glan Gach Scagaire",
     "categories": {
       "contemporaryFigures": "Pearsana Comhaimseartha",
       "athletes": "Lúthchleasaithe",
+      "scientists": "Eolaithe agus Gairmithe Leighis",
       "musicians": "Ceoltóirí",
       "artists": "Ealaíontóirí",
-      "writersActivists": "Scríbhneoirí & Gníomhaithe",
+      "writersActivists": "Scríbhneoirí, Gníomhaithe, Polaiteoirí",
       "historicalFigures": "Pearsana Stairiúla",
-      "scientists": "Eolaithe",
-      "fictionalCharacters": "Carachtair Fhicseanacha"
+      "fictionalCharacters": "Carachtair Fhicseanúla"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Fadhbanna Súl",
+      "neurologicIssues": "Fadhbanna Néareolaíocha",
+      "accidentInjury": "Timpiste/Gortú",
+      "congenitalDefects": "Lochtanna Ó Bhroinn",
+      "degenerativeEyeDiseases": "Galair Dhíghrádaithe Súl",
+      "illness": "Tinneas",
+      "other": "Eile"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Réamhamharc Insamhalta Radhairc",
+      "experienceSimulation": "Bain Triail as an Insamhaltú",
+      "previous": "Roimhe",
+      "next": "Ar Aghaidh"
+    }
+  },
+  "glossaryPage": {
+    "title": "Gluais & CC",
+    "subtitle": "Sainmhínithe cuimsitheacha ar riocht radhairc, agus CC faoi dhaille agus lagú radhairc.",
+    "tabGlossary": "Gluais",
+    "tabFaq": "CC",
+    "searchConditions": "Cuardaigh riocht",
+    "category": "Catagóir",
+    "allCategories": "Gach Catagóir",
+    "conditionsFound": "{{count}} riocht aimsithe",
+    "clearFilters": "Glan Scagairí",
+    "viewInSimulator": "Féach san insamhlóir",
+    "featuredIn": "Luaite le: {{names}}",
+    "treatmentOptions": "Roghanna Cóireála",
+    "noConditionsFound": "Níor aimsíodh aon riocht a mheaitseálann do chritéir cuardaigh.",
+    "clearAllFilters": "Glan Gach Scagaire",
+    "conditions": "riocht",
+    "aboutGlossary": {
+      "title": "Maidir leis an nGluais Seo",
+      "paragraph1": "Tá eolas cuimsitheach sa ghluais seo faoi riocht radhairc agus lagú radhairc. Tá cur síos mionsonraithe ar shiomptóim, chúiseanna, agus éifeachtaí ar shaol laethúil ag gach riocht.",
+      "paragraph2": "Tá riocht marcáilte le \"Luaite le:\" bainteach le daoine cáiliúla inár n-insamhlóir. Cliceáil ar an deilbhín súl in aice le haon riocht chun é a bhaint amach inár n-insamhlóir radhairc.",
+      "paragraph3": "Tá an acmhainn seo deartha chun cabhrú le húsáideoirí na bealaí éagsúla a dtuigtear ina mbíonn tionchar ar an radharc, cibé trí riocht géiniteach, gortú, galar, nó tosca eile."
+    },
+    "aboutFaq": {
+      "title": "Maidir leis na CC Seo",
+      "paragraph1": "Tá na ceisteanna coitianta seo bunaithe ar mhíthuiscintí coitianta agus fiosracht fhíor faoi dhaille agus lagú radhairc. Léiríonn na freagraí taithí éagsúla daoine dalla agus lagamhairc.",
+      "paragraph2": "Cuimhnigh go bhfuil taithí gach duine le caillteanas radhairc uathúil. B'fhéidir nach n-oibreodh a bhfuil ag obair do dhuine amháin do dhuine eile, agus is fearr i gcónaí ceist a chur ar dhaoine faoi na riachtanais agus na roghanna sonracha atá acu.",
+      "paragraph3": "Le haghaidh tuilleadh eolais mionsonraithe faoi riocht radhairc ar leith, tabhair cuairt ar ár gcluaisín <strong>Gluais</strong> thuas."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Caillteanas Réimse Radhairc", "description": "Riocht a dhéanann difear do limistéir ar leith den réimse radhairc" },
+      "colorVision": { "name": "Easnaimh Radhairc Dathanna", "description": "Riocht a dhéanann difear d'aithint agus idirdhealú dathanna" },
+      "eyeConditions": { "name": "Riocht Súl", "description": "Riocht fisiciúil a dhéanann difear do struchtúr agus feidhm na súl" },
+      "retinal": { "name": "Neamhoird Reitine", "description": "Riocht a dhéanann difear don reitine agus a cealla speisialaithe" },
+      "neurological": { "name": "Riocht Radhairc Néareolaíocha", "description": "Fadhbanna radhairc de dheasca neamhoird san inchinn agus sa chóras néarach" },
+      "traumaInfection": { "name": "Gaolmhar le Tráma & Ionfhabhtú", "description": "Caillteanas radhairc mar thoradh ar ghortú fisiciúil nó galair thógálacha" }
+    },
+    "faqCategories": {
+      "visionPerception": "Radharc & Braistint",
+      "technologyAccessibility": "Teicneolaíocht & Inrochtaineacht",
+      "dailyLife": "Saol Laethúil",
+      "navigationMobility": "Nascleanúint & Soghluaisteacht",
+      "socialInteraction": "Idirghníomhaíocht Shóisialta",
+      "employmentCareer": "Fostaíocht & Gairm",
+      "medicalTreatment": "Leigheas & Cóireáil"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "An bhfeiceann daoine dalla dorchadas/dubh iomlán?",
+        "answer": "Ní gá. Tá radharc fágtha ag thart ar 85% de dhaoine atá dall go dlíthiúil. Níl ach 10-15% a bhfuil dorchadas iomlán acu. Feiceann go leor solas/scáth, dathanna, nó cruthanna doiléire. Ní bhíonn taithí \"dubh\" mar choincheap ag roinnt daoine nach raibh radharc acu riamh - cosúil leis an gcaoi nach \"bhfeiceann\" tú dubh taobh thiar de do cheann."
+      },
+      "technology": {
+        "question": "Conas a úsáideann daoine dalla fóin chliste agus ríomhairí?",
+        "answer": "Tiontaíonn léitheoirí scáileáin (JAWS, NVDA, VoiceOver) téacs go caint nó Braille. Úsáidtear gothaí agus aicearraí méarchláir in áit úsáid an luchóige. Úsáideann go leor gnáthfhóin chliste le gnéithe inrochtaineachta ionsuite. Baintear úsáid mhór as cúntóirí gutha cosúil le Siri."
+      },
+      "independence": {
+        "question": "An féidir le daoine dalla maireachtáil go neamhspleách?",
+        "answer": "Is féidir. Le hoiliúint chuí agus teicnící oiriúnaitheacha, cócaireacht, glanadh, obair, tógáil teaghlaigh, agus saol neamhspleách iomlán ag daoine dalla. Úsáideann siad eagrúchán córasach, marcóirí tadhaill, teicneolaíocht chúnta, agus uirlisí soghluaisteachta."
+      },
+      "navigation": {
+        "question": "Conas a nascleanúnaíonn daoine dalla agus conas a bhogann siad timpeall?",
+        "answerIntro": "Úsáideann daoine dalla modhanna éagsúla le haghaidh nascleanúna agus soghluaisteachta:",
+        "answerItems": ["Braitheann bataí bána constaicí agus athruithe airde", "Soláthraíonn madraí treorach neamhghéilleadh cliste agus nascleanúint", "Aipeanna GPS le treoracha fuaime (Soundscape, BlindSquare)", "Bealaí cuimhnithe agus mapáil mheabhrach", "Iompar poiblí agus aipeanna síob-roinnte"]
+      },
+      "senses": {
+        "question": "An bhfuil céadfaí eile níos géire ag daoine dalla?",
+        "answer": "Níl, níl a gcéadfaí eile níos fearr ó thaobh na bitheolaíochta de. Forbraíonn siad aird níos fearr ar eolas fuaime/tadhaill agus próiseáil níos fearr air trí chleachtadh agus riachtanas. Is braistint fheabhsaithe í, ní céadfaíocht fheabhsaithe."
+      },
+      "interaction": {
+        "question": "Conas ba cheart dom idirghníomhú le duine dall?",
+        "answerIntro": "Seo roinnt treoirlínte tábhachtacha le haghaidh idirghníomhú urramach:",
+        "answerItems": ["Labhair go normálta agus go díreach leo, ní trí chomhpháirtithe", "Aithníonn tú féin agus tú ag teacht chucu", "Fiafraigh sula gcabhraíonn tú - ná beir greim orthu ná ná brúigh iad", "Tabhair cur síos ó bhéal nuair is ábhartha", "Úsáid gnáththeanga ('feicfidh mé thú níos déanaí' ceart go leor)", "Ná peataigh ná tarraing aird na madraí treorach"]
+      },
+      "legalVsTotal": {
+        "question": "Cad é an difríocht idir a bheith dall go dlíthiúil agus a bheith iomlán dall?",
+        "legallyBlind": "Dall go dlíthiúil:",
+        "legallyBlindDesc": "Radharc 20/200 nó níos measa le ceartúchán, NÓ réimse radhairc níos lú ná 20 céim",
+        "totallyBlind": "Iomlán dall:",
+        "totallyBlindDesc": "Gan aon bhraistint solais (NLP)",
+        "mostBlind": "Titeann an chuid is mó de dhaoine \"dalla\" áit éigin idir na heisceachtaí seo."
+      },
+      "employment": {
+        "question": "An féidir le daoine dalla gnáthphoist a dhéanamh?",
+        "answer": "Is féidir. Oibríonn daoine dalla mar dhlíodóirí, múinteoirí, ríomhchláraitheoirí, ceoltóirí, síceolaithe, úinéirí gnó, agus go leor gairmeacha eile. Cuireann socruithe ionaid oibre (léitheoirí scáileáin, taispeántais Braille) formhór na bpost ar chumas daoine dalla."
+      },
+      "identification": {
+        "question": "Conas a aithníonn daoine dalla airgead, dathanna, nó rudaí?",
+        "answerIntro": "Úsáideann daoine dalla teicnící oiriúnaitheacha éagsúla le haghaidh aitheantais:",
+        "answerItems": ["Airgead: Aipeanna ar nós Seeing AI, modhanna fillte éagsúla, aitheantóirí leictreonacha, agus méideanna éagsúla do dhínominatithe éagsúla i dtíortha éagsúla", "Dathanna: Aipeanna aitheantóra dathanna, ceist a chur ar dhaoine eile, éadaí réamh-mheaitseáilte a cheannach", "Rudaí: Eagrúchán córasach, lipéid Braille/tadhaill, lipéid taifeadta gutha, cuimhne"]
+      },
+      "causesTreatment": {
+        "question": "Cad is cúis le daille agus an féidir é a leigheas?",
+        "leadingCauses": "Príomhchúiseanna ar fud an domhain:",
+        "causeItems": ["Cataractaí (inchúlaithe)", "Glácóma", "Díghrádú maculach", "Reitinipate diaibéiteach", "Riocht géiniteacha"],
+        "treatmentInfo": "Braitheann cóireáil ar an gcúis. Tá roinnt riocht inchoisceanta/inchoirithe, níl cuid eile faoi láthair. Leanann taighde ar chóireálacha ar nós teiripe géine, cealla gais, agus súile bitheonaice.",
+        "neurologicalNote": "Is féidir le daoine a radharc a chailleadh freisin ó riocht néareolaíocha ar nós tráma nó stróc."
+      }
     }
   },
   "conditions": {

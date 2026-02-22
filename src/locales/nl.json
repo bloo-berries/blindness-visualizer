@@ -1,0 +1,317 @@
+{
+  "nav": {
+    "about": "Over",
+    "simulator": "Zichtsimulator",
+    "famousPeople": "Beroemde Blinde Mensen",
+    "glossary": "Woordenlijst en FAQ",
+    "resources": "Bronnen",
+    "navigation": "Navigatie",
+    "viewOnGithub": "Bekijk op GitHub",
+    "openMenu": "open navigatiemenu",
+    "startSimulator": "Start Simulator",
+    "home": "Ga naar startpagina"
+  },
+  "buttons": {
+    "back": "TERUG",
+    "next": "Volgende",
+    "viewSimulation": "Bekijk Simulatie",
+    "clearFilters": "Filters Wissen",
+    "deselectAll": "Alles Deselecteren",
+    "support": "Ondersteuning",
+    "supportDonate": "Steun en Doneer",
+    "experienceSimulation": "Ervaar Simulatie",
+    "close": "Sluiten",
+    "submit": "Verzenden",
+    "reset": "Resetten"
+  },
+  "home": {
+    "title": "Ervaar",
+    "titleHighlight": "Zichtaandoeningen",
+    "card1Title": "Maak je unieke visualisatie",
+    "card1Button": "Start Zichtsimulator",
+    "card2Title": "Beroemde Blinde en Slechtziende Mensen",
+    "card2Button": "Ervaar Hun Zicht",
+    "libraryTitle": "Bibliotheek voor Blinden",
+    "libraryDescription": "De grootste catalogus ter wereld van braille-, tactiele, audio- en multimodale toegankelijkheidssystemen"
+  },
+  "simulator": {
+    "title": "Zichtaandoening Simulator",
+    "step1": "Kies Invoerbron",
+    "step2": "Selecteer Zichtaandoeningen",
+    "step3": "Bekijk Simulatie",
+    "selectConditions": "Selecteer Zichtaandoeningen",
+    "visionPreview": "Zichtvoorbeeld",
+    "combinedPreview": "Gecombineerd Zichtvoorbeeld ({{count}} aandoeningen)",
+    "selectToStart": "Selecteer aandoeningen om door te gaan",
+    "viewSimulationCount": "Bekijk Simulatie ({{count}} aandoening)",
+    "viewSimulationCountPlural": "Bekijk Simulatie ({{count}} aandoeningen)",
+    "simulating": "Simuleren: {{name}}",
+    "condition": "Aandoening: {{condition}}",
+    "screenReaderStep1": "Stap 1: Kies je invoerbron - webcam, afbeelding uploaden of YouTube-video",
+    "screenReaderStep2": "Stap 2: Selecteer zichtaandoeningen om te simuleren",
+    "screenReaderStep3": "Stap 3: Bekijk je zichtsimulatie",
+    "goBack": "Ga terug om aandoeningen te selecteren"
+  },
+  "inputSelector": {
+    "title": "Kies Je Invoerbron",
+    "demoVideo": "Gebruik Demovideo",
+    "demoVideoDesc": "Vooraf opgenomen video om aandoeningen te verkennen",
+    "uploadImage": "Upload een Afbeelding",
+    "uploadImageDesc": "Upload vanaf je apparaat",
+    "webcam": "Gebruik Webcam",
+    "webcamDesc": "Realtime camerafeed",
+    "selected": "Geselecteerd",
+    "recommended": "(Aanbevolen)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Zoek aandoeningen...",
+    "mostCommon": "Meest Voorkomend",
+    "redGreen": "Rood-Groen",
+    "fieldLoss": "Gezichtsveldverlies",
+    "ageRelated": "Leeftijdsgerelateerd",
+    "intensity": "Intensiteit",
+    "separation": "Scheiding",
+    "direction": "Richting"
+  },
+  "categories": {
+    "visualFieldLoss": "Gezichtsveldverlies",
+    "colorVision": "Kleurenzien",
+    "eyeConditions": "Oogaandoeningen",
+    "refractiveErrors": "Brekingsfouten",
+    "retinalDisorders": "Netvliesaandoeningen",
+    "visualDisturbances": "Visuele Storingen",
+    "doubleVision": "Dubbelzien"
+  },
+  "famousPeople": {
+    "title": "Beroemde Blinde en Slechtziende Mensen",
+    "subtitle": "Ontdek de levens en visuele ervaringen van beroemde blinde en slechtziende personen door de geschiedenis heen.",
+    "searchPlaceholder": "Zoek op naam of aandoening",
+    "categoryLabel": "Categorie",
+    "conditionLabel": "Aandoening",
+    "allCategories": "Alle Categorieën",
+    "allConditions": "Alle Aandoeningen",
+    "filterByCategory": "Filter op Categorie",
+    "noResults": "Geen personen gevonden die overeenkomen met je zoekcriteria.",
+    "noResultsDesc": "Probeer je zoekopdracht of filters aan te passen",
+    "showingResults": "Toont {{count}} van {{total}} mensen",
+    "hideTotalDarkness": "Verberg totale duisternis simulaties",
+    "clearAllFilters": "Alle Filters Wissen",
+    "categories": {
+      "contemporaryFigures": "Hedendaagse Figuren",
+      "athletes": "Atleten",
+      "scientists": "Wetenschappers en Medische Professionals",
+      "musicians": "Muzikanten",
+      "artists": "Kunstenaars",
+      "writersActivists": "Schrijvers, Activisten, Politici",
+      "historicalFigures": "Historische Figuren",
+      "fictionalCharacters": "Fictieve Personages"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Oogproblemen",
+      "neurologicIssues": "Neurologische Problemen",
+      "accidentInjury": "Ongeval/Verwonding",
+      "congenitalDefects": "Aangeboren Afwijkingen",
+      "degenerativeEyeDiseases": "Degeneratieve Oogziekten",
+      "illness": "Ziekte",
+      "other": "Overig"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Zichtsimulatie Voorbeeld",
+      "experienceSimulation": "Ervaar Simulatie",
+      "previous": "Vorige",
+      "next": "Volgende"
+    }
+  },
+  "glossaryPage": {
+    "title": "Woordenlijst en FAQ",
+    "subtitle": "Uitgebreide definities van zichtaandoeningen en FAQ over blindheid en visuele beperking.",
+    "tabGlossary": "Woordenlijst",
+    "tabFaq": "FAQ",
+    "searchConditions": "Zoek aandoeningen",
+    "category": "Categorie",
+    "allCategories": "Alle Categorieën",
+    "conditionsFound": "{{count}} aandoeningen gevonden",
+    "clearFilters": "Filters Wissen",
+    "viewInSimulator": "Bekijk in simulator",
+    "featuredIn": "Uitgelicht in: {{names}}",
+    "treatmentOptions": "Behandelopties",
+    "noConditionsFound": "Geen aandoeningen gevonden die overeenkomen met je zoekcriteria.",
+    "clearAllFilters": "Alle Filters Wissen",
+    "conditions": "aandoeningen",
+    "aboutGlossary": {
+      "title": "Over Deze Woordenlijst",
+      "paragraph1": "Deze woordenlijst bevat uitgebreide informatie over zichtaandoeningen en visuele beperkingen. Elke aandoening bevat gedetailleerde beschrijvingen van symptomen, oorzaken en effecten op het dagelijks leven.",
+      "paragraph2": "Aandoeningen gemarkeerd met \"Uitgelicht in:\" zijn geassocieerd met beroemde personen in onze simulator. Klik op het oogpictogram naast een aandoening om het te ervaren in onze zichtsimulator.",
+      "paragraph3": "Deze bron is ontworpen om gebruikers te helpen de verschillende manieren te begrijpen waarop het zicht kan worden beïnvloed, of het nu gaat om genetische aandoeningen, letsel, ziekte of andere factoren."
+    },
+    "aboutFaq": {
+      "title": "Over Deze FAQ's",
+      "paragraph1": "Deze veelgestelde vragen zijn gebaseerd op veelvoorkomende misvattingen en oprechte nieuwsgierigheid over blindheid en visuele beperking. De antwoorden weerspiegelen de diverse ervaringen van blinde en slechtziende personen.",
+      "paragraph2": "Onthoud dat ieders ervaring met gezichtsverlies uniek is. Wat voor de ene persoon werkt, werkt misschien niet voor een ander, en het is altijd het beste om individuen te vragen naar hun specifieke behoeften en voorkeuren.",
+      "paragraph3": "Voor meer gedetailleerde informatie over specifieke zichtaandoeningen, bezoek ons <strong>Woordenlijst</strong> tabblad hierboven."
+    },
+    "conditionCategories": {
+      "visualField": { "name": "Gezichtsveldverlies", "description": "Aandoeningen die specifieke gebieden van het gezichtsveld beïnvloeden" },
+      "colorVision": { "name": "Kleurenzienafwijkingen", "description": "Aandoeningen die kleurperceptie en kleurdiscriminatie beïnvloeden" },
+      "eyeConditions": { "name": "Oogaandoeningen", "description": "Fysieke aandoeningen die de structuur en functie van het oog beïnvloeden" },
+      "retinal": { "name": "Netvliesaandoeningen", "description": "Aandoeningen die het netvlies en de gespecialiseerde cellen beïnvloeden" },
+      "neurological": { "name": "Neurologische Zichtaandoeningen", "description": "Zichtproblemen veroorzaakt door hersenen en zenuwstelselaandoeningen" },
+      "traumaInfection": { "name": "Trauma- en Infectiegerelateerd", "description": "Gezichtsverlies door fysiek letsel of infectieziekten" }
+    },
+    "faqCategories": {
+      "visionPerception": "Zicht en Waarneming",
+      "technologyAccessibility": "Technologie en Toegankelijkheid",
+      "dailyLife": "Dagelijks Leven",
+      "navigationMobility": "Navigatie en Mobiliteit",
+      "socialInteraction": "Sociale Interactie",
+      "employmentCareer": "Werk en Carrière",
+      "medicalTreatment": "Medisch en Behandeling"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Zien blinde mensen volledige duisternis/zwartheid?",
+        "answer": "Niet per se. Ongeveer 85% van de wettelijk blinden heeft nog enig restvisie. Slechts 10-15% ervaart totale duisternis. Velen zien licht/schaduw, kleuren of wazige vormen. Sommigen die nooit hebben gezien ervaren \"zwartheid\" niet als concept - vergelijkbaar met hoe je geen \"zwartheid\" ziet achter je hoofd."
+      },
+      "technology": {
+        "question": "Hoe gebruiken blinde mensen smartphones en computers?",
+        "answer": "Schermleesprogramma's (JAWS, NVDA, VoiceOver) zetten tekst om naar spraak of braille. Gebaren en sneltoetsen vervangen muisgebruik. Velen gebruiken gewone smartphones met ingebouwde toegankelijkheidsfuncties. Stemassistenten zoals Siri worden veel gebruikt."
+      },
+      "independence": {
+        "question": "Kunnen blinde mensen zelfstandig leven?",
+        "answer": "Ja. Met de juiste training en aanpassingstechnieken koken, schoonmaken, werken, stichten gezinnen en leiden blinde mensen een volledig zelfstandig leven. Ze gebruiken systematische organisatie, tactiele markeringen, hulptechnologie en mobiliteitshulpmiddelen."
+      },
+      "navigation": {
+        "question": "Hoe navigeren blinde mensen en komen ze rond?",
+        "answerIntro": "Blinde mensen gebruiken verschillende methoden voor navigatie en mobiliteit:",
+        "answerItems": ["Witte stokken detecteren obstakels en hoogteverschillen", "Geleidehonden bieden intelligente ongehoorzaamheid en navigatie", "GPS-apps met audiobeschrijvingen (Soundscape, BlindSquare)", "Gememoriseerde routes en mentale mapping", "Openbaar vervoer en ride-share apps"]
+      },
+      "senses": {
+        "question": "Hebben blinde mensen verhoogde andere zintuigen?",
+        "answer": "Nee, hun andere zintuigen zijn niet biologisch superieur. Ze ontwikkelen betere aandacht voor en verwerking van audio/tactiele informatie door oefening en noodzaak. Het is verbeterde perceptie, geen verbeterde sensatie."
+      },
+      "interaction": {
+        "question": "Hoe moet ik omgaan met een blind persoon?",
+        "answerIntro": "Hier zijn enkele belangrijke richtlijnen voor respectvolle interactie:",
+        "answerItems": ["Spreek normaal en direct tegen hen, niet via begeleiders", "Stel jezelf voor wanneer je nadert", "Vraag voordat je helpt - niet grijpen of duwen", "Geef mondelinge beschrijvingen wanneer relevant", "Gebruik normale taal ('tot ziens' is prima)", "Aai of leid geleidehonden nooit af"]
+      },
+      "legalVsTotal": {
+        "question": "Wat is het verschil tussen wettelijk blind en volledig blind?",
+        "legallyBlind": "Wettelijk blind:",
+        "legallyBlindDesc": "Visus 20/200 of slechter met correctie, OF gezichtsveld minder dan 20 graden",
+        "totallyBlind": "Volledig blind:",
+        "totallyBlindDesc": "Geen lichtperceptie (NLP)",
+        "mostBlind": "De meeste \"blinde\" mensen vallen ergens tussen deze extremen."
+      },
+      "employment": {
+        "question": "Kunnen blinde mensen reguliere banen hebben?",
+        "answer": "Ja. Blinde mensen werken als advocaten, leraren, programmeurs, muzikanten, psychologen, ondernemers en in talloze andere beroepen. Werkplekaanpassingen (schermleesprogramma's, brailleschermen) maken de meeste banen mogelijk."
+      },
+      "identification": {
+        "question": "Hoe identificeren blinde mensen geld, kleuren of objecten?",
+        "answerIntro": "Blinde mensen gebruiken verschillende aanpassingstechnieken voor identificatie:",
+        "answerItems": ["Geld: Apps zoals Seeing AI, verschillende vouwmethoden, elektronische identificatoren en verschillende formaten voor verschillende coupures in verschillende landen", "Kleuren: Kleuridentificatie-apps, anderen vragen, vooraf bijpassende kleding kopen", "Objecten: Systematische organisatie, braille/tactiele labels, spraakopnamelabels, geheugen"]
+      },
+      "causesTreatment": {
+        "question": "Wat veroorzaakt blindheid en kan het genezen worden?",
+        "leadingCauses": "Belangrijkste oorzaken wereldwijd:",
+        "causeItems": ["Staar (omkeerbaar)", "Glaucoom", "Maculadegeneratie", "Diabetische retinopathie", "Genetische aandoeningen"],
+        "treatmentInfo": "Behandeling hangt af van de oorzaak. Sommige aandoeningen zijn te voorkomen/behandelen, andere momenteel niet. Onderzoek gaat door naar behandelingen zoals gentherapie, stamcellen en bionische ogen.",
+        "neurologicalNote": "Mensen kunnen ook hun gezichtsvermogen verliezen door neurologische aandoeningen zoals trauma of beroerte."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Zichtaandoeningen Woordenlijst",
+    "subtitle": "Leer over verschillende soorten visuele beperkingen en oogaandoeningen",
+    "searchPlaceholder": "Zoek aandoeningen...",
+    "viewAll": "Bekijk Alles",
+    "colorBlindness": "Kleurenblindheid",
+    "fieldLoss": "Gezichtsveldverlies",
+    "ageRelated": "Leeftijdsgerelateerd",
+    "genetic": "Genetisch"
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Veelgestelde vragen over zichtaandoeningen en deze simulator"
+  },
+  "about": {
+    "title": "Over VisionSim",
+    "subtitle": "Begrip van onze missie en aanpak",
+    "personalJourney": "Een Persoonlijke Reis",
+    "greeting": "Hallo aan de gemeenschap van blinden en slechtzienden — en aan iedereen die nieuwsgierig is om meer te leren!",
+    "story": "In 2020 verloor ik mijn zicht in een oogwenk door een beroerte, en ik worstelde alleen tijdens de COVID-lockdown, zonder revalidatie, therapie, oriëntatiecursussen of wat dan ook te kunnen vinden. Online vond ik vrijwel niets over beroerte-gerelateerd gezichtsverlies op de schaal die ik ervoer. Nauwkeurig beschrijven hoe ik de wereld \"zie\" was pijnlijk moeilijk en verergerde alleen maar de isolatie.",
+    "purpose": "Ik heb deze site gemaakt zodat mensen beter uitgerust zijn met hulpmiddelen om hun blindheid en/of zichtaandoeningen nauwkeuriger te verwoorden en weer te geven.",
+    "previewVideo": "Voorbeeld van Hoe Ik Zie",
+    "mission": "Onze Missie",
+    "missionText": "VisionSim helpt mensen te begrijpen hoe het is om te leven met verschillende zichtaandoeningen door middel van nauwkeurige, op onderzoek gebaseerde simulaties.",
+    "howItWorks": "Hoe Het Werkt",
+    "disclaimer": "Medische Disclaimer",
+    "disclaimerText": "Deze simulaties zijn alleen voor educatieve doeleinden en representeren mogelijk niet perfect hoe individuen hun aandoeningen ervaren."
+  },
+  "feedback": {
+    "title": "Deel Je Feedback",
+    "subtitle": "Help ons VisionSim te verbeteren",
+    "nameLabel": "Je Naam",
+    "namePlaceholder": "Vul je naam in",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "Vul je e-mail in",
+    "messageLabel": "Je Feedback",
+    "messagePlaceholder": "Vertel ons wat je denkt...",
+    "submitButton": "Feedback Verzenden",
+    "successMessage": "Bedankt voor je feedback!",
+    "errorMessage": "Er ging iets mis. Probeer het opnieuw."
+  },
+  "resources": {
+    "title": "Zichtbronnen",
+    "subtitle": "Nuttige links en informatie over zichtaandoeningen",
+    "organizations": "Organisaties",
+    "research": "Onderzoek",
+    "support": "Steungroepen"
+  },
+  "accessibility": {
+    "menu": "Toegankelijkheidsinstellingen",
+    "highContrast": "Hoog Contrast",
+    "highContrastDesc": "Verhoog kleurcontrast voor betere zichtbaarheid",
+    "largeText": "Grote Tekst",
+    "largeTextDesc": "Vergroot tekstgrootte op de hele site",
+    "increasedSpacing": "Verhoogde Spatiëring",
+    "increasedSpacingDesc": "Voeg meer ruimte toe tussen elementen",
+    "enhancedFocus": "Verbeterde Focus",
+    "enhancedFocusDesc": "Maak focusindicatoren zichtbaarder",
+    "reducedMotion": "Verminderde Beweging",
+    "reducedMotionDesc": "Minimaliseer animaties en overgangen",
+    "resetAll": "Alles Resetten",
+    "skipToContent": "Ga naar hoofdinhoud"
+  },
+  "language": {
+    "select": "Selecteer Taal",
+    "current": "Taal"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Feedback",
+    "resources": "Bronnen"
+  },
+  "visualizer": {
+    "comparison": "Vergelijking",
+    "original": "Origineel",
+    "simulated": "Gesimuleerd",
+    "toggleComparison": "Wissel vergelijkingsweergave",
+    "screenshot": "Screenshot",
+    "takeScreenshot": "Neem screenshot",
+    "fullscreen": "Volledig Scherm",
+    "exitFullscreen": "Verlaat volledig scherm"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Er is een fout opgetreden",
+    "retry": "Probeer opnieuw",
+    "learnMore": "Meer leren",
+    "seeMore": "Meer zien",
+    "seeLess": "Minder zien",
+    "yes": "Ja",
+    "no": "Nee",
+    "ok": "OK",
+    "cancel": "Annuleren"
+  }
+}

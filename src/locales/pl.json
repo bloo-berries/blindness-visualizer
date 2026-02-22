@@ -1,0 +1,358 @@
+{
+  "nav": {
+    "about": "O nas",
+    "simulator": "Symulator Wzroku",
+    "famousPeople": "Znane Osoby Niewidome",
+    "glossary": "Słownik i FAQ",
+    "resources": "Zasoby",
+    "navigation": "Nawigacja",
+    "viewOnGithub": "Zobacz na GitHub",
+    "openMenu": "otwórz menu nawigacji",
+    "startSimulator": "Uruchom Symulator",
+    "home": "Przejdź do strony głównej"
+  },
+  "buttons": {
+    "back": "WSTECZ",
+    "next": "Dalej",
+    "viewSimulation": "Zobacz Symulację",
+    "clearFilters": "Wyczyść Filtry",
+    "deselectAll": "Odznacz Wszystko",
+    "support": "Wsparcie",
+    "supportDonate": "Wesprzyj i Przekaż Darowiznę",
+    "experienceSimulation": "Doświadcz Symulacji",
+    "close": "Zamknij",
+    "submit": "Wyślij",
+    "reset": "Resetuj"
+  },
+  "home": {
+    "title": "Doświadcz",
+    "titleHighlight": "Warunków Wzrokowych",
+    "card1Title": "Stwórz swoją unikalną wizualizację",
+    "card1Button": "Uruchom Symulator Wzroku",
+    "card2Title": "Znane Osoby Niewidome i Słabowidzące",
+    "card2Button": "Doświadcz ich Wzroku",
+    "libraryTitle": "Biblioteka dla Niewidomych",
+    "libraryDescription": "Największy na świecie katalog systemów dostępności Braille'a, dotykowych, dźwiękowych i multimodalnych"
+  },
+  "simulator": {
+    "title": "Symulator Warunków Wzrokowych",
+    "step1": "Wybierz Źródło",
+    "step2": "Wybierz Warunki Wzrokowe",
+    "step3": "Zobacz Symulację",
+    "selectConditions": "Wybierz Warunki Wzrokowe",
+    "visionPreview": "Podgląd Wzroku",
+    "combinedPreview": "Połączony Podgląd Wzroku ({{count}} warunków)",
+    "selectToStart": "Wybierz warunki, aby kontynuować",
+    "viewSimulationCount": "Zobacz Symulację ({{count}} warunek)",
+    "viewSimulationCountPlural": "Zobacz Symulację ({{count}} warunków)",
+    "simulating": "Symulacja: {{name}}",
+    "condition": "Warunek: {{condition}}",
+    "screenReaderStep1": "Krok 1: Wybierz źródło - kamera, przesłany obraz lub wideo YouTube",
+    "screenReaderStep2": "Krok 2: Wybierz warunki wzrokowe do symulacji",
+    "screenReaderStep3": "Krok 3: Zobacz symulację wzroku",
+    "goBack": "Wróć do wyboru warunków"
+  },
+  "inputSelector": {
+    "title": "Wybierz Źródło",
+    "demoVideo": "Użyj Demo Wideo",
+    "demoVideoDesc": "Nagrany film do eksploracji warunków",
+    "uploadImage": "Prześlij Obraz",
+    "uploadImageDesc": "Prześlij z urządzenia",
+    "webcam": "Użyj Kamery",
+    "webcamDesc": "Obraz na żywo z kamery",
+    "selected": "Wybrano",
+    "recommended": "(Zalecane)"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Szukaj warunków...",
+    "mostCommon": "Najczęstsze",
+    "redGreen": "Czerwono-Zielone",
+    "fieldLoss": "Utrata Pola Widzenia",
+    "ageRelated": "Związane z Wiekiem",
+    "intensity": "Intensywność",
+    "separation": "Separacja",
+    "direction": "Kierunek"
+  },
+  "categories": {
+    "visualFieldLoss": "Utrata Pola Widzenia",
+    "colorVision": "Widzenie Kolorów",
+    "eyeConditions": "Choroby Oczu",
+    "refractiveErrors": "Wady Refrakcji",
+    "retinalDisorders": "Zaburzenia Siatkówki",
+    "visualDisturbances": "Zaburzenia Widzenia",
+    "doubleVision": "Podwójne Widzenie"
+  },
+  "famousPeople": {
+    "title": "Słynne Osoby Niewidome i Słabowidzące",
+    "subtitle": "Poznaj życie i doświadczenia wzrokowe słynnych osób niewidomych i słabowidzących na przestrzeni historii.",
+    "searchPlaceholder": "Szukaj po nazwisku lub schorzeniu",
+    "categoryLabel": "Kategoria",
+    "conditionLabel": "Schorzenie",
+    "allCategories": "Wszystkie Kategorie",
+    "allConditions": "Wszystkie Schorzenia",
+    "filterByCategory": "Filtruj według kategorii",
+    "noResults": "Nie znaleziono osób spełniających kryteria wyszukiwania.",
+    "noResultsDesc": "Spróbuj dostosować wyszukiwanie lub filtry",
+    "showingResults": "Wyświetlanie {{count}} z {{total}} osób",
+    "hideTotalDarkness": "Ukryj symulacje całkowitej ciemności",
+    "clearAllFilters": "Wyczyść Wszystkie Filtry",
+    "categories": {
+      "contemporaryFigures": "Współczesne Postacie",
+      "athletes": "Sportowcy",
+      "scientists": "Naukowcy i Specjaliści Medyczni",
+      "musicians": "Muzycy",
+      "artists": "Artyści",
+      "writersActivists": "Pisarze, Aktywiści, Politycy",
+      "historicalFigures": "Postacie Historyczne",
+      "fictionalCharacters": "Postacie Fikcyjne"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Problemy Okulistyczne",
+      "neurologicIssues": "Problemy Neurologiczne",
+      "accidentInjury": "Wypadek/Uraz",
+      "congenitalDefects": "Wady Wrodzone",
+      "degenerativeEyeDiseases": "Zwyrodnieniowe Choroby Oczu",
+      "illness": "Choroba",
+      "other": "Inne"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Podgląd Symulacji Wzroku",
+      "experienceSimulation": "Wypróbuj Symulację",
+      "previous": "Poprzedni",
+      "next": "Następny"
+    }
+  },
+  "glossaryPage": {
+    "title": "Słownik i FAQ",
+    "subtitle": "Kompleksowe definicje schorzeń wzroku oraz FAQ dotyczące ślepoty i niedowidzenia.",
+    "tabGlossary": "Słownik",
+    "tabFaq": "FAQ",
+    "searchConditions": "Szukaj schorzeń",
+    "category": "Kategoria",
+    "allCategories": "Wszystkie Kategorie",
+    "conditionsFound": "Znaleziono {{count}} schorzeń",
+    "clearFilters": "Wyczyść Filtry",
+    "viewInSimulator": "Zobacz w symulatorze",
+    "featuredIn": "Występuje u: {{names}}",
+    "treatmentOptions": "Opcje Leczenia",
+    "noConditionsFound": "Nie znaleziono schorzeń pasujących do kryteriów wyszukiwania.",
+    "clearAllFilters": "Wyczyść Wszystkie Filtry",
+    "conditions": "schorzeń",
+    "aboutGlossary": {
+      "title": "O tym Słowniku",
+      "paragraph1": "Ten słownik zawiera kompleksowe informacje o schorzeniach wzroku i wadach wzroku. Każde schorzenie zawiera szczegółowe opisy objawów, przyczyn i wpływu na codzienne życie.",
+      "paragraph2": "Schorzenia oznaczone \"Występuje u:\" są związane ze słynnymi osobami w naszym symulatorze. Kliknij ikonę oka obok dowolnego schorzenia, aby doświadczyć go w naszym symulatorze wzroku.",
+      "paragraph3": "Ten zasób ma na celu pomóc użytkownikom zrozumieć różne sposoby, w jakie wzrok może być dotknięty, czy to przez warunki genetyczne, urazy, choroby czy inne czynniki."
+    },
+    "aboutFaq": {
+      "title": "O tych FAQ",
+      "paragraph1": "Te często zadawane pytania opierają się na powszechnych nieporozumieniach i prawdziwej ciekawości dotyczącej ślepoty i niedowidzenia. Odpowiedzi odzwierciedlają różnorodne doświadczenia osób niewidomych i słabowidzących.",
+      "paragraph2": "Pamiętaj, że doświadczenie każdej osoby z utratą wzroku jest unikalne. To, co działa dla jednej osoby, może nie działać dla innej, i zawsze najlepiej jest pytać osoby o ich konkretne potrzeby i preferencje.",
+      "paragraph3": "Aby uzyskać bardziej szczegółowe informacje o konkretnych schorzeniach wzroku, odwiedź zakładkę <strong>Słownik</strong> powyżej."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Utrata Pola Widzenia",
+        "description": "Schorzenia wpływające na określone obszary pola widzenia"
+      },
+      "colorVision": {
+        "name": "Zaburzenia Widzenia Barw",
+        "description": "Schorzenia wpływające na percepcję i rozróżnianie kolorów"
+      },
+      "eyeConditions": {
+        "name": "Schorzenia Oka",
+        "description": "Fizyczne schorzenia wpływające na strukturę i funkcję oka"
+      },
+      "retinal": {
+        "name": "Zaburzenia Siatkówki",
+        "description": "Schorzenia wpływające na siatkówkę i jej wyspecjalizowane komórki"
+      },
+      "neurological": {
+        "name": "Neurologiczne Schorzenia Wzroku",
+        "description": "Problemy ze wzrokiem spowodowane zaburzeniami mózgu i układu nerwowego"
+      },
+      "traumaInfection": {
+        "name": "Związane z Urazem i Infekcją",
+        "description": "Utrata wzroku wynikająca z urazu fizycznego lub chorób zakaźnych"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Wzrok i Percepcja",
+      "technologyAccessibility": "Technologia i Dostępność",
+      "dailyLife": "Codzienne Życie",
+      "navigationMobility": "Nawigacja i Mobilność",
+      "socialInteraction": "Interakcja Społeczna",
+      "employmentCareer": "Zatrudnienie i Kariera",
+      "medicalTreatment": "Medyczne i Leczenie"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Czy osoby niewidome widzą całkowitą ciemność/czerń?",
+        "answer": "Niekoniecznie. Około 85% osób prawnie niewidomych ma jakąś resztkę wzroku. Tylko 10-15% doświadcza całkowitej ciemności. Wielu widzi światło/cień, kolory lub rozmyte kształty. Niektórzy, którzy nigdy nie widzieli, nie doświadczają \"czerni\" jako koncepcji - podobnie jak nie \"widzisz\" czerni za swoją głową."
+      },
+      "technology": {
+        "question": "Jak osoby niewidome korzystają ze smartfonów i komputerów?",
+        "answer": "Czytniki ekranu (JAWS, NVDA, VoiceOver) konwertują tekst na mowę lub brajl. Gesty i skróty klawiaturowe zastępują używanie myszy. Wielu używa zwykłych smartfonów z wbudowanymi funkcjami dostępności. Asystenci głosowi jak Siri są intensywnie wykorzystywani."
+      },
+      "independence": {
+        "question": "Czy osoby niewidome mogą żyć samodzielnie?",
+        "answer": "Tak. Dzięki odpowiedniemu szkoleniu i technikom adaptacyjnym, osoby niewidome gotują, sprzątają, pracują, wychowują rodziny i żyją całkowicie niezależnym życiem. Używają systematycznej organizacji, znaczników dotykowych, technologii wspomagających i narzędzi do poruszania się."
+      },
+      "navigation": {
+        "question": "Jak osoby niewidome nawigują i poruszają się?",
+        "answerIntro": "Osoby niewidome używają różnych metod nawigacji i poruszania się:",
+        "answerItems": [
+          "Białe laski wykrywają przeszkody i zmiany wysokości",
+          "Psy przewodnicy zapewniają inteligentne nieposłuszeństwo i nawigację",
+          "Aplikacje GPS z instrukcjami głosowymi (Soundscape, BlindSquare)",
+          "Zapamiętane trasy i mapowanie mentalne",
+          "Transport publiczny i aplikacje do wspólnych przejazdów"
+        ]
+      },
+      "senses": {
+        "question": "Czy osoby niewidome mają wyostrzone inne zmysły?",
+        "answer": "Nie, ich inne zmysły nie są biologicznie lepsze. Rozwijają lepszą uwagę i przetwarzanie informacji słuchowych/dotykowych poprzez praktykę i konieczność. To wzmocniona percepcja, a nie wzmocnione odczucie."
+      },
+      "interaction": {
+        "question": "Jak powinienem wchodzić w interakcję z osobą niewidomą?",
+        "answerIntro": "Oto kilka ważnych wskazówek dotyczących pełnej szacunku interakcji:",
+        "answerItems": [
+          "Mów normalnie i bezpośrednio do nich, nie przez osoby towarzyszące",
+          "Przedstaw się przy podchodzeniu",
+          "Zapytaj przed pomocą - nie chwytaj ani nie pchaj",
+          "Dawaj opisy słowne, gdy jest to istotne",
+          "Używaj normalnego języka ('do zobaczenia' jest w porządku)",
+          "Nigdy nie głaskaj ani nie rozpraszaj psów przewodników"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Jaka jest różnica między prawnie niewidomym a całkowicie niewidomym?",
+        "legallyBlind": "Prawnie niewidomy:",
+        "legallyBlindDesc": "Wzrok 20/200 lub gorszy z korektą, LUB pole widzenia mniejsze niż 20 stopni",
+        "totallyBlind": "Całkowicie niewidomy:",
+        "totallyBlindDesc": "Brak percepcji światła (NLP)",
+        "mostBlind": "Większość \"niewidomych\" ludzi znajduje się gdzieś pomiędzy tymi skrajnościami."
+      },
+      "employment": {
+        "question": "Czy osoby niewidome mogą pracować w zwykłych zawodach?",
+        "answer": "Tak. Osoby niewidome pracują jako prawnicy, nauczyciele, programiści, muzycy, psychologowie, właściciele firm i w niezliczonych innych zawodach. Dostosowania w miejscu pracy (czytniki ekranu, wyświetlacze brajlowskie) umożliwiają większość prac."
+      },
+      "identification": {
+        "question": "Jak osoby niewidome rozpoznają pieniądze, kolory lub przedmioty?",
+        "answerIntro": "Osoby niewidome używają różnych technik adaptacyjnych do identyfikacji:",
+        "answerItems": [
+          "Pieniądze: Aplikacje jak Seeing AI, różne metody składania, elektroniczne identyfikatory i różne rozmiary dla różnych nominałów w różnych krajach",
+          "Kolory: Aplikacje do identyfikacji kolorów, pytanie innych, kupowanie wstępnie dopasowanych ubrań",
+          "Przedmioty: Systematyczna organizacja, etykiety brajlowskie/dotykowe, etykiety z nagraniem głosowym, pamięć"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Co powoduje ślepotę i czy można ją wyleczyć?",
+        "leadingCauses": "Główne przyczyny na świecie:",
+        "causeItems": [
+          "Zaćma (odwracalna)",
+          "Jaskra",
+          "Zwyrodnienie plamki żółtej",
+          "Retinopatia cukrzycowa",
+          "Schorzenia genetyczne"
+        ],
+        "treatmentInfo": "Leczenie zależy od przyczyny. Niektóre schorzenia są możliwe do zapobiegania/leczenia, inne obecnie nie. Badania nad metodami leczenia, takimi jak terapia genowa, komórki macierzyste i bioniczne oczy, są kontynuowane.",
+        "neurologicalNote": "Ludzie mogą również stracić wzrok z powodu schorzeń neurologicznych, takich jak uraz lub udar."
+      }
+    }
+  },
+  "conditions": {
+    "title": "Słownik Warunków Wzrokowych",
+    "subtitle": "Dowiedz się o różnych rodzajach wad wzroku i chorobach oczu",
+    "searchPlaceholder": "Szukaj warunków...",
+    "viewAll": "Zobacz Wszystko",
+    "colorBlindness": "Ślepota Barw",
+    "fieldLoss": "Utrata Pola Widzenia",
+    "ageRelated": "Związane z Wiekiem",
+    "genetic": "Genetyczne"
+  },
+  "faq": {
+    "title": "Często Zadawane Pytania",
+    "subtitle": "Częste pytania o warunki wzrokowe i ten symulator"
+  },
+  "about": {
+    "title": "O VisionSim",
+    "subtitle": "Zrozumienie naszej misji i podejścia",
+    "personalJourney": "Osobista Podróż",
+    "greeting": "Witajcie w społeczności osób niewidomych i słabowidzących — i wszyscy ciekawi, którzy chcą dowiedzieć się więcej!",
+    "story": "W 2020 roku straciłem wzrok w jednej chwili z powodu udaru i zmagałem się sam podczas lockdownu COVID, nie mogąc znaleźć rehabilitacji, terapii ani zajęć orientacyjnych. Szukając w internecie, nie znalazłem prawie nic o utracie wzroku związanej z udarem w skali, jakiej doświadczyłem. Dokładne opisanie, jak \"widzę\" świat, było boleśnie trudne i tylko pogłębiało izolację.",
+    "purpose": "Stworzyłem tę stronę, aby ludzie mieli lepsze narzędzia do dokładniejszego wyrażania i przedstawiania swojej ślepoty i/lub warunków wzrokowych.",
+    "previewVideo": "Podgląd Jak Widzę",
+    "mission": "Nasza Misja",
+    "missionText": "VisionSim pomaga ludziom zrozumieć, jak to jest żyć z różnymi warunkami wzrokowymi poprzez dokładne, oparte na badaniach symulacje.",
+    "howItWorks": "Jak To Działa",
+    "disclaimer": "Zastrzeżenie Medyczne",
+    "disclaimerText": "Te symulacje służą wyłącznie celom edukacyjnym i mogą nie odzwierciedlać idealnie sposobu, w jaki osoby doświadczają swoich schorzeń."
+  },
+  "feedback": {
+    "title": "Podziel się Opinią",
+    "subtitle": "Pomóż nam ulepszyć VisionSim",
+    "nameLabel": "Twoje Imię",
+    "namePlaceholder": "Wpisz swoje imię",
+    "emailLabel": "Adres Email",
+    "emailPlaceholder": "Wpisz swój email",
+    "messageLabel": "Twoja Opinia",
+    "messagePlaceholder": "Powiedz nam, co myślisz...",
+    "submitButton": "Wyślij Opinię",
+    "successMessage": "Dziękujemy za opinię!",
+    "errorMessage": "Coś poszło nie tak. Spróbuj ponownie."
+  },
+  "resources": {
+    "title": "Zasoby Wzrokowe",
+    "subtitle": "Pomocne linki i informacje o warunkach wzrokowych",
+    "organizations": "Organizacje",
+    "research": "Badania",
+    "support": "Grupy Wsparcia"
+  },
+  "accessibility": {
+    "menu": "Ustawienia Dostępności",
+    "highContrast": "Wysoki Kontrast",
+    "highContrastDesc": "Zwiększ kontrast kolorów dla lepszej widoczności",
+    "largeText": "Duży Tekst",
+    "largeTextDesc": "Zwiększ rozmiar tekstu na całej stronie",
+    "increasedSpacing": "Zwiększone Odstępy",
+    "increasedSpacingDesc": "Dodaj więcej przestrzeni między elementami",
+    "enhancedFocus": "Wzmocniony Fokus",
+    "enhancedFocusDesc": "Uczyń wskaźniki fokusu bardziej widocznymi",
+    "reducedMotion": "Ograniczony Ruch",
+    "reducedMotionDesc": "Zminimalizuj animacje i przejścia",
+    "resetAll": "Resetuj Wszystko",
+    "skipToContent": "Przejdź do głównej treści"
+  },
+  "language": {
+    "select": "Wybierz Język",
+    "current": "Język"
+  },
+  "footer": {
+    "copyright": "© {{year}} VisionSim",
+    "feedback": "Opinie",
+    "resources": "Zasoby"
+  },
+  "visualizer": {
+    "comparison": "Porównanie",
+    "original": "Oryginał",
+    "simulated": "Symulacja",
+    "toggleComparison": "Przełącz widok porównania",
+    "screenshot": "Zrzut ekranu",
+    "takeScreenshot": "Zrób zrzut ekranu",
+    "fullscreen": "Pełny ekran",
+    "exitFullscreen": "Wyjdź z pełnego ekranu"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "retry": "Spróbuj ponownie",
+    "learnMore": "Dowiedz się więcej",
+    "seeMore": "Zobacz więcej",
+    "seeLess": "Zobacz mniej",
+    "yes": "Tak",
+    "no": "Nie",
+    "ok": "OK",
+    "cancel": "Anuluj"
+  }
+}

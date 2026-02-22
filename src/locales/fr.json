@@ -32,7 +32,9 @@
     "card1Description": "Créez votre visualisation unique",
     "card1Button": "Démarrer le Simulateur de Conditions Visuelles",
     "card2Title": "Expérimentez la Vision de Personnes Aveugles et Malvoyantes Célèbres",
-    "card2Button": "Explorer les Personnes Célèbres"
+    "card2Button": "Explorer les Personnes Célèbres",
+    "libraryTitle": "Bibliothèque des Aveugles",
+    "libraryDescription": "Le plus grand catalogue mondial de systèmes d'accessibilité Braille, tactiles, audio et multimodaux"
   },
   "simulator": {
     "title": "Simulateur de Conditions Visuelles",
@@ -83,23 +85,182 @@
     "doubleVision": "Vision Double"
   },
   "famousPeople": {
-    "title": "Personnes Aveugles et Malvoyantes Célèbres",
-    "subtitle": "Découvrez comment des personnalités notables de l'histoire ont vécu avec des conditions visuelles",
-    "searchPlaceholder": "Rechercher par nom, condition ou profession...",
+    "title": "Personnes Célèbres Aveugles et Malvoyantes",
+    "subtitle": "Explorez les vies et expériences visuelles de personnes aveugles et malvoyantes célèbres à travers l'histoire.",
+    "searchPlaceholder": "Rechercher par nom ou condition",
+    "categoryLabel": "Catégorie",
+    "conditionLabel": "Condition",
     "allCategories": "Toutes les Catégories",
+    "allConditions": "Toutes les Conditions",
     "filterByCategory": "Filtrer par Catégorie",
-    "noResults": "Aucun résultat trouvé",
+    "noResults": "Aucune personne trouvée correspondant à vos critères de recherche.",
     "noResultsDesc": "Essayez d'ajuster votre recherche ou vos filtres",
     "showingResults": "Affichage de {{count}} sur {{total}} personnes",
+    "hideTotalDarkness": "Masquer les simulations d'obscurité totale",
+    "clearAllFilters": "Effacer Tous les Filtres",
     "categories": {
       "contemporaryFigures": "Personnalités Contemporaines",
       "athletes": "Athlètes",
+      "scientists": "Scientifiques et Professionnels Médicaux",
       "musicians": "Musiciens",
       "artists": "Artistes",
-      "writersActivists": "Écrivains et Activistes",
-      "historicalFigures": "Personnalités Historiques",
-      "scientists": "Scientifiques",
+      "writersActivists": "Écrivains, Activistes, Politiciens",
+      "historicalFigures": "Personnages Historiques",
       "fictionalCharacters": "Personnages Fictifs"
+    },
+    "conditionCategories": {
+      "ocularIssues": "Problèmes Oculaires",
+      "neurologicIssues": "Problèmes Neurologiques",
+      "accidentInjury": "Accident/Blessure",
+      "congenitalDefects": "Malformations Congénitales",
+      "degenerativeEyeDiseases": "Maladies Oculaires Dégénératives",
+      "illness": "Maladie",
+      "other": "Autre"
+    },
+    "dialog": {
+      "visionSimulationPreview": "Aperçu de la Simulation de Vision",
+      "experienceSimulation": "Expérimenter la Simulation",
+      "previous": "Précédent",
+      "next": "Suivant"
+    }
+  },
+  "glossaryPage": {
+    "title": "Glossaire et FAQ",
+    "subtitle": "Définitions complètes des conditions visuelles et FAQ sur la cécité et la déficience visuelle.",
+    "tabGlossary": "Glossaire",
+    "tabFaq": "FAQ",
+    "searchConditions": "Rechercher des conditions",
+    "category": "Catégorie",
+    "allCategories": "Toutes les Catégories",
+    "conditionsFound": "{{count}} conditions trouvées",
+    "clearFilters": "Effacer les Filtres",
+    "viewInSimulator": "Voir dans le simulateur",
+    "featuredIn": "Présenté dans : {{names}}",
+    "treatmentOptions": "Options de Traitement",
+    "noConditionsFound": "Aucune condition trouvée correspondant à vos critères de recherche.",
+    "clearAllFilters": "Effacer Tous les Filtres",
+    "conditions": "conditions",
+    "aboutGlossary": {
+      "title": "À Propos de ce Glossaire",
+      "paragraph1": "Ce glossaire contient des informations complètes sur les conditions visuelles et les déficiences visuelles. Chaque condition comprend des descriptions détaillées des symptômes, des causes et des effets sur la vie quotidienne.",
+      "paragraph2": "Les conditions marquées \"Présenté dans :\" sont associées à des personnalités célèbres dans notre simulateur. Cliquez sur l'icône œil à côté de n'importe quelle condition pour l'expérimenter dans notre simulateur de vision.",
+      "paragraph3": "Cette ressource est conçue pour aider les utilisateurs à comprendre les différentes façons dont la vision peut être affectée, que ce soit par des conditions génétiques, des blessures, des maladies ou d'autres facteurs."
+    },
+    "aboutFaq": {
+      "title": "À Propos de ces FAQ",
+      "paragraph1": "Ces questions fréquemment posées sont basées sur des idées fausses courantes et une curiosité sincère concernant la cécité et la déficience visuelle. Les réponses reflètent les expériences diverses des personnes aveugles et malvoyantes.",
+      "paragraph2": "N'oubliez pas que l'expérience de chaque personne avec la perte de vision est unique. Ce qui fonctionne pour une personne peut ne pas fonctionner pour une autre, et il est toujours préférable de demander aux individus leurs besoins et préférences spécifiques.",
+      "paragraph3": "Pour des informations plus détaillées sur des conditions visuelles spécifiques, visitez notre onglet <strong>Glossaire</strong> ci-dessus."
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "Perte du Champ Visuel",
+        "description": "Conditions affectant des zones spécifiques du champ visuel"
+      },
+      "colorVision": {
+        "name": "Déficiences de la Vision des Couleurs",
+        "description": "Conditions affectant la perception et la discrimination des couleurs"
+      },
+      "eyeConditions": {
+        "name": "Conditions Oculaires",
+        "description": "Conditions physiques affectant la structure et la fonction de l'œil"
+      },
+      "retinal": {
+        "name": "Troubles Rétiniens",
+        "description": "Conditions affectant la rétine et ses cellules spécialisées"
+      },
+      "neurological": {
+        "name": "Conditions Visuelles Neurologiques",
+        "description": "Problèmes de vision causés par des troubles du cerveau et du système nerveux"
+      },
+      "traumaInfection": {
+        "name": "Liés aux Traumatismes et Infections",
+        "description": "Perte de vision résultant de blessures physiques ou de maladies infectieuses"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "Vision et Perception",
+      "technologyAccessibility": "Technologie et Accessibilité",
+      "dailyLife": "Vie Quotidienne",
+      "navigationMobility": "Navigation et Mobilité",
+      "socialInteraction": "Interaction Sociale",
+      "employmentCareer": "Emploi et Carrière",
+      "medicalTreatment": "Médical et Traitement"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "Les personnes aveugles voient-elles une obscurité/noirceur complète ?",
+        "answer": "Pas nécessairement. Environ 85% des personnes légalement aveugles ont une vision résiduelle. Seulement 10-15% expérimentent l'obscurité totale. Beaucoup voient la lumière/l'ombre, les couleurs ou des formes floues. Certains qui n'ont jamais eu la vue n'expérimentent pas la \"noirceur\" comme concept - similaire à comment vous ne \"voyez\" pas de noirceur derrière votre tête."
+      },
+      "technology": {
+        "question": "Comment les personnes aveugles utilisent-elles les smartphones et les ordinateurs ?",
+        "answer": "Les lecteurs d'écran (JAWS, NVDA, VoiceOver) convertissent le texte en parole ou en braille. Les gestes et les raccourcis clavier remplacent l'utilisation de la souris. Beaucoup utilisent des smartphones normaux avec des fonctionnalités d'accessibilité intégrées. Les assistants vocaux comme Siri sont fortement utilisés."
+      },
+      "independence": {
+        "question": "Les personnes aveugles peuvent-elles vivre de manière indépendante ?",
+        "answer": "Oui. Avec une formation appropriée et des techniques adaptatives, les personnes aveugles cuisinent, nettoient, travaillent, élèvent des familles et vivent des vies entièrement indépendantes. Ils utilisent une organisation systématique, des marqueurs tactiles, une technologie d'assistance et des outils de mobilité."
+      },
+      "navigation": {
+        "question": "Comment les personnes aveugles naviguent-elles et se déplacent-elles ?",
+        "answerIntro": "Les personnes aveugles utilisent diverses méthodes pour la navigation et la mobilité :",
+        "answerItems": [
+          "Les cannes blanches détectent les obstacles et les changements d'élévation",
+          "Les chiens-guides fournissent une désobéissance intelligente et une navigation",
+          "Applications GPS avec directions audio (Soundscape, BlindSquare)",
+          "Itinéraires mémorisés et cartographie mentale",
+          "Transports publics et applications de covoiturage"
+        ]
+      },
+      "senses": {
+        "question": "Les personnes aveugles ont-elles des autres sens plus développés ?",
+        "answer": "Non, leurs autres sens ne sont pas biologiquement supérieurs. Ils développent une meilleure attention et un meilleur traitement des informations audio/tactiles par la pratique et la nécessité. C'est une perception améliorée, pas une sensation améliorée."
+      },
+      "interaction": {
+        "question": "Comment dois-je interagir avec une personne aveugle ?",
+        "answerIntro": "Voici quelques directives importantes pour une interaction respectueuse :",
+        "answerItems": [
+          "Parlez normalement et directement à eux, pas à travers des accompagnateurs",
+          "Identifiez-vous en vous approchant",
+          "Demandez avant d'aider - ne saisissez pas et ne poussez pas",
+          "Donnez des descriptions verbales quand c'est pertinent",
+          "Utilisez un langage normal ('à bientôt' est bien)",
+          "Ne caressez jamais ni ne distrayez les chiens-guides"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "Quelle est la différence entre légalement aveugle et totalement aveugle ?",
+        "legallyBlind": "Légalement aveugle :",
+        "legallyBlindDesc": "Vision 20/200 ou pire avec correction, OU champ visuel inférieur à 20 degrés",
+        "totallyBlind": "Totalement aveugle :",
+        "totallyBlindDesc": "Aucune perception de la lumière (NPL)",
+        "mostBlind": "La plupart des personnes \"aveugles\" se situent quelque part entre ces extrêmes."
+      },
+      "employment": {
+        "question": "Les personnes aveugles peuvent-elles occuper des emplois réguliers ?",
+        "answer": "Oui. Les personnes aveugles travaillent comme avocats, enseignants, programmeurs, musiciens, psychologues, propriétaires d'entreprise et dans d'innombrables autres professions. Les aménagements du lieu de travail (lecteurs d'écran, afficheurs braille) permettent la plupart des emplois."
+      },
+      "identification": {
+        "question": "Comment les personnes aveugles identifient-elles l'argent, les couleurs ou les objets ?",
+        "answerIntro": "Les personnes aveugles utilisent diverses techniques adaptatives pour l'identification :",
+        "answerItems": [
+          "Argent : Applications comme Seeing AI, différentes méthodes de pliage, identificateurs électroniques et différentes tailles pour différentes dénominations dans divers pays",
+          "Couleurs : Applications d'identification des couleurs, demander aux autres, acheter des vêtements pré-assortis",
+          "Objets : Organisation systématique, étiquettes braille/tactiles, étiquettes d'enregistrement vocal, mémoire"
+        ]
+      },
+      "causesTreatment": {
+        "question": "Qu'est-ce qui cause la cécité et peut-elle être guérie ?",
+        "leadingCauses": "Principales causes mondiales :",
+        "causeItems": [
+          "Cataractes (réversible)",
+          "Glaucome",
+          "Dégénérescence maculaire",
+          "Rétinopathie diabétique",
+          "Conditions génétiques"
+        ],
+        "treatmentInfo": "Le traitement dépend de la cause. Certaines conditions sont évitables/traitables, d'autres ne le sont pas actuellement. La recherche continue sur des traitements comme la thérapie génique, les cellules souches et les yeux bioniques.",
+        "neurologicalNote": "Les personnes peuvent également perdre la vue à cause de conditions neurologiques comme un traumatisme ou un AVC."
+      }
     }
   },
   "conditions": {

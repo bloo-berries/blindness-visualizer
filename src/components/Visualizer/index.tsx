@@ -12,6 +12,7 @@ import { getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../../utils/appConstants';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../../utils/performance';
 import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
+import { useAnimationTicker } from '../../hooks';
 import ComparisonView from './ComparisonView';
 import { useDiplopiaOverlay } from './DiplopiaOverlay';
 
@@ -78,22 +79,11 @@ const Visualizer: React.FC<VisualizerProps> = ({
     isLoading
   );
 
-  // Animation state for animated effects (used in full simulation view)
-  const [now, setNow] = useState(Date.now());
-
   // Check if any enabled effect needs animation
   const needsAnimatedOverlay = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
 
-  // Animation loop for animated effects
-  useEffect(() => {
-    if (!needsAnimatedOverlay || showComparison) return;
-
-    const interval = setInterval(() => {
-      setNow(Date.now());
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [needsAnimatedOverlay, showComparison]);
+  // Animation ticker for animated effects (used in full simulation view)
+  const now = useAnimationTicker(needsAnimatedOverlay && !showComparison);
 
   // Get visual field overlay styles for React-based rendering (full simulation view)
   const visualFieldOverlayStyle = useVisualFieldOverlay(effects);
@@ -253,11 +243,6 @@ const Visualizer: React.FC<VisualizerProps> = ({
       dispose();
     };
   }, [inputSource, retryCount, diplopiaDirection, diplopiaSeparation, effects, texture, showComparison]);
-
-  // Update shader uniforms when effects change
-  useEffect(() => {
-    // Shader uniforms are updated in the animation loop
-  }, [effects, diplopiaSeparation, diplopiaDirection, texture]);
 
   // Optimized effect state changes handling
   useEffect(() => {

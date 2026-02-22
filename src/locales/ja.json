@@ -32,7 +32,9 @@
     "card1Description": "独自の視覚化を作成",
     "card1Button": "視覚障害シミュレーターを開始",
     "card2Title": "有名な視覚障害者の視界を体験",
-    "card2Button": "有名人を探索"
+    "card2Button": "有名人を探索",
+    "libraryTitle": "視覚障害者図書館",
+    "libraryDescription": "点字、触覚、音声、マルチモーダルアクセシビリティシステムの世界最大のカタログ"
   },
   "simulator": {
     "title": "視覚障害シミュレーター",
@@ -84,22 +86,181 @@
   },
   "famousPeople": {
     "title": "有名な視覚障害者",
-    "subtitle": "歴史上の著名人がどのように視覚障害を経験したかを探る",
-    "searchPlaceholder": "名前、障害、職業で検索...",
-    "allCategories": "すべてのカテゴリ",
-    "filterByCategory": "カテゴリで絞り込む",
-    "noResults": "結果が見つかりません",
-    "noResultsDesc": "検索やフィルターを調整してみてください",
+    "subtitle": "歴史上の有名な視覚障害者の生活と視覚体験を探る。",
+    "searchPlaceholder": "名前または症状で検索",
+    "categoryLabel": "カテゴリー",
+    "conditionLabel": "症状",
+    "allCategories": "すべてのカテゴリー",
+    "allConditions": "すべての症状",
+    "filterByCategory": "カテゴリーで絞り込み",
+    "noResults": "検索条件に一致する人が見つかりませんでした。",
+    "noResultsDesc": "検索条件やフィルターを調整してください",
     "showingResults": "{{total}}人中{{count}}人を表示",
+    "hideTotalDarkness": "完全な暗闘シミュレーションを非表示",
+    "clearAllFilters": "すべてのフィルターをクリア",
     "categories": {
       "contemporaryFigures": "現代の人物",
       "athletes": "アスリート",
+      "scientists": "科学者・医療専門家",
       "musicians": "ミュージシャン",
       "artists": "アーティスト",
-      "writersActivists": "作家・活動家",
+      "writersActivists": "作家・活動家・政治家",
       "historicalFigures": "歴史上の人物",
-      "scientists": "科学者",
       "fictionalCharacters": "架空のキャラクター"
+    },
+    "conditionCategories": {
+      "ocularIssues": "眼の問題",
+      "neurologicIssues": "神経学的問題",
+      "accidentInjury": "事故・負傷",
+      "congenitalDefects": "先天性欠損",
+      "degenerativeEyeDiseases": "変性眼疾患",
+      "illness": "疾病",
+      "other": "その他"
+    },
+    "dialog": {
+      "visionSimulationPreview": "視覚シミュレーションプレビュー",
+      "experienceSimulation": "シミュレーションを体験",
+      "previous": "前へ",
+      "next": "次へ"
+    }
+  },
+  "glossaryPage": {
+    "title": "用語集とよくある質問",
+    "subtitle": "視覚状態の包括的な定義、および失明と視覚障害に関するよくある質問。",
+    "tabGlossary": "用語集",
+    "tabFaq": "よくある質問",
+    "searchConditions": "状態を検索",
+    "category": "カテゴリ",
+    "allCategories": "すべてのカテゴリ",
+    "conditionsFound": "{{count}}件の状態が見つかりました",
+    "clearFilters": "フィルターをクリア",
+    "viewInSimulator": "シミュレーターで表示",
+    "featuredIn": "関連人物：{{names}}",
+    "treatmentOptions": "治療オプション",
+    "noConditionsFound": "検索条件に一致する状態が見つかりませんでした。",
+    "clearAllFilters": "すべてのフィルターをクリア",
+    "conditions": "状態",
+    "aboutGlossary": {
+      "title": "この用語集について",
+      "paragraph1": "この用語集には、視覚状態と視覚障害に関する包括的な情報が含まれています。各状態には、症状、原因、日常生活への影響の詳細な説明が含まれています。",
+      "paragraph2": "「関連人物：」でマークされた状態は、シミュレーターの有名人と関連付けられています。任意の状態の横にある目のアイコンをクリックして、視覚シミュレーターで体験してください。",
+      "paragraph3": "このリソースは、遺伝的条件、怪我、病気、またはその他の要因によって視覚がどのように影響を受けるかを理解するのに役立つように設計されています。"
+    },
+    "aboutFaq": {
+      "title": "これらのよくある質問について",
+      "paragraph1": "これらのよくある質問は、失明と視覚障害に関する一般的な誤解と純粋な好奇心に基づいています。回答は、視覚障害者の多様な経験を反映しています。",
+      "paragraph2": "視力喪失の経験は人それぞれ異なることを覚えておいてください。ある人にとって効果的なことが別の人にとって効果的とは限りません。個人の具体的なニーズや好みについて尋ねることが常に最善です。",
+      "paragraph3": "特定の視覚状態の詳細については、上記の<strong>用語集</strong>タブをご覧ください。"
+    },
+    "conditionCategories": {
+      "visualField": {
+        "name": "視野喪失",
+        "description": "視野の特定領域に影響を与える状態"
+      },
+      "colorVision": {
+        "name": "色覚異常",
+        "description": "色の知覚と識別に影響を与える状態"
+      },
+      "eyeConditions": {
+        "name": "眼の状態",
+        "description": "眼の構造と機能に影響を与える身体的状態"
+      },
+      "retinal": {
+        "name": "網膜障害",
+        "description": "網膜とその特殊細胞に影響を与える状態"
+      },
+      "neurological": {
+        "name": "神経学的視覚状態",
+        "description": "脳と神経系の障害によって引き起こされる視覚問題"
+      },
+      "traumaInfection": {
+        "name": "外傷・感染関連",
+        "description": "身体的損傷または感染症による視力喪失"
+      }
+    },
+    "faqCategories": {
+      "visionPerception": "視覚と知覚",
+      "technologyAccessibility": "テクノロジーとアクセシビリティ",
+      "dailyLife": "日常生活",
+      "navigationMobility": "ナビゲーションと移動",
+      "socialInteraction": "社会的交流",
+      "employmentCareer": "雇用とキャリア",
+      "medicalTreatment": "医療と治療"
+    },
+    "faqItems": {
+      "darkness": {
+        "question": "盲目の人は完全な暗闇を見ていますか？",
+        "answer": "必ずしもそうではありません。法的に盲目の人の約85%は残存視力があります。完全な暗闇を経験するのは10-15%のみです。多くの人は光/影、色、またはぼやけた形を見ます。視力を持ったことがない人の中には、「暗闘」を概念として経験しない人もいます。頭の後ろの「暗闇」を見ないのと同様です。"
+      },
+      "technology": {
+        "question": "盲目の人はスマートフォンやコンピューターをどのように使用しますか？",
+        "answer": "スクリーンリーダー（JAWS、NVDA、VoiceOver）がテキストを音声または点字に変換します。ジェスチャーとキーボードショートカットがマウス操作に代わります。多くの人は内蔵のアクセシビリティ機能を備えた通常のスマートフォンを使用しています。Siriのような音声アシスタントが多用されています。"
+      },
+      "independence": {
+        "question": "盲目の人は自立して生活できますか？",
+        "answer": "はい。適切なトレーニングと適応技術により、盲目の人は料理、掃除、仕事、子育てをし、完全に自立した生活を送っています。体系的な整理、触覚マーカー、支援技術、移動ツールを使用しています。"
+      },
+      "navigation": {
+        "question": "盲目の人はどのようにナビゲートして移動しますか？",
+        "answerIntro": "盲目の人はナビゲーションと移動にさまざまな方法を使用しています：",
+        "answerItems": [
+          "白杖で障害物や段差を検出",
+          "盲導犬がインテリジェントな不服従とナビゲーションを提供",
+          "音声案内付きGPSアプリ（Soundscape、BlindSquare）",
+          "記憶したルートとメンタルマッピング",
+          "公共交通機関とライドシェアアプリ"
+        ]
+      },
+      "senses": {
+        "question": "盲目の人は他の感覚が研ぎ澄まされていますか？",
+        "answer": "いいえ、他の感覚が生物学的に優れているわけではありません。練習と必要性を通じて、聴覚/触覚情報への注意力と処理能力が向上します。これは強化された知覚であり、強化された感覚ではありません。"
+      },
+      "interaction": {
+        "question": "盲目の人とどのように交流すべきですか？",
+        "answerIntro": "敬意を持った交流のための重要なガイドライン：",
+        "answerItems": [
+          "同伴者を通さず、直接普通に話しかける",
+          "近づくときは自己紹介する",
+          "手助けする前に確認する - つかんだり押したりしない",
+          "関連する場合は言葉で説明する",
+          "普通の言葉を使う（「また会いましょう」は問題ない）",
+          "盲導犬を撫でたり気を散らしたりしない"
+        ]
+      },
+      "legalVsTotal": {
+        "question": "法的盲目と完全盲目の違いは何ですか？",
+        "legallyBlind": "法的盲目：",
+        "legallyBlindDesc": "矯正後の視力が20/200以下、または視野が20度未満",
+        "totallyBlind": "完全盲目：",
+        "totallyBlindDesc": "光知覚なし（NLP）",
+        "mostBlind": "ほとんどの「盲目」の人はこれらの両極端の間のどこかにいます。"
+      },
+      "employment": {
+        "question": "盲目の人は通常の仕事ができますか？",
+        "answer": "はい。盲目の人は弁護士、教師、プログラマー、ミュージシャン、心理学者、経営者、その他無数の職業で働いています。職場の配慮（スクリーンリーダー、点字ディスプレイ）がほとんどの仕事を可能にしています。"
+      },
+      "identification": {
+        "question": "盲目の人はお金、色、または物をどのように識別しますか？",
+        "answerIntro": "盲目の人は識別にさまざまな適応技術を使用しています：",
+        "answerItems": [
+          "お金：Seeing AIなどのアプリ、異なる折り方、電子識別器、各国で異なる額面ごとの異なるサイズ",
+          "色：色識別アプリ、他の人に尋ねる、あらかじめコーディネートされた服を購入",
+          "物：体系的な整理、点字/触覚ラベル、音声録音ラベル、記憶"
+        ]
+      },
+      "causesTreatment": {
+        "question": "失明の原因は何ですか？治療できますか？",
+        "leadingCauses": "世界の主な原因：",
+        "causeItems": [
+          "白内障（可逆的）",
+          "緑内障",
+          "黄斑変性症",
+          "糖尿病性網膜症",
+          "遺伝性疾患"
+        ],
+        "treatmentInfo": "治療は原因によって異なります。予防/治療可能な状態もあれば、現在はそうでないものもあります。遺伝子治療、幹細胞、人工眼などの治療法の研究が続いています。",
+        "neurologicalNote": "外傷や脳卒中などの神経学的状態から視力を失う人もいます。"
+      }
     }
   },
   "conditions": {

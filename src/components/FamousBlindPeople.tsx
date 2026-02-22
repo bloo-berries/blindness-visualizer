@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Typography,
@@ -22,8 +23,52 @@ import { PersonCard } from './FamousBlindPeople/PersonCard';
 import { PersonDialog } from './FamousBlindPeople/PersonDialog';
 import { getPersonImagePath } from '../utils/imagePaths';
 
+// Helper to convert category name to translation key
+const getCategoryKey = (category: string): string => {
+  const keyMap: Record<string, string> = {
+    'Ocular Issues': 'ocularIssues',
+    'Neurologic Issues': 'neurologicIssues',
+    'Accident/Injury': 'accidentInjury',
+    'Congenital Defects': 'congenitalDefects',
+    'Degenerative Eye Diseases': 'degenerativeEyeDiseases',
+    'Illness': 'illness',
+    'Other': 'other'
+  };
+  return keyMap[category] || 'other';
+};
+
+// Keyword-to-category lookup map for condition categorization
+const CONDITION_CATEGORY_KEYWORDS: Record<string, string[]> = {
+  'Ocular Issues': [
+    'glaucoma', 'cataract', 'retinal detachment', 'retinopathy', 'retinoschisis',
+    'macular degeneration', 'macular', 'amd', 'keratoconus', 'aniridia', 'nystagmus',
+    'retinoblastoma', 'stargardt', 'cone-rod', 'diabetic retinopathy', 'ophthalmia',
+    'iritis', 'eye infection', 'eye disease', 'sight disease', 'color blindness',
+    'color deficiency', 'achromatopsia', 'deuteranopia', 'deuteranomaly', 'nearsighted'
+  ],
+  'Neurologic Issues': [
+    'neuromyelitis', 'stroke', 'brain injury', 'traumatic brain', 'meningitis',
+    'neurologic', 'neurological'
+  ],
+  'Accident/Injury': [
+    'accident', 'injury', 'trauma', 'gunshot', 'car accident', 'chemical burn',
+    'explosion', 'shooting', 'broken glass', 'eye injury'
+  ],
+  'Congenital Defects': [
+    'congenital', 'from birth', 'born blind', 'birth defect'
+  ],
+  'Degenerative Eye Diseases': [
+    'degenerative', 'progressive', 'retinitis pigmentosa', 'dystrophy'
+  ],
+  'Illness': [
+    'illness', 'disease', 'fever', 'smallpox', 'diphtheria', 'kawasaki',
+    'epilepsy', 'terry syndrome', 'oxygen toxicity', 'scarlet fever', 'complications'
+  ]
+};
+
 const FamousBlindPeople: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [conditionFilter, setConditionFilter] = useState('');
@@ -34,106 +79,13 @@ const FamousBlindPeople: React.FC = () => {
   const conditionCategories = useMemo(() => {
     const categorizeCondition = (condition: string): string => {
       const lower = condition.toLowerCase();
-      
-      // Ocular Issues - direct eye problems
-      if (
-        lower.includes('glaucoma') ||
-        lower.includes('cataract') ||
-        lower.includes('retinal detachment') ||
-        lower.includes('retinopathy') ||
-        lower.includes('retinoschisis') ||
-        lower.includes('macular degeneration') ||
-        lower.includes('macular') ||
-        lower.includes('amd') ||
-        lower.includes('keratoconus') ||
-        lower.includes('aniridia') ||
-        lower.includes('nystagmus') ||
-        lower.includes('retinoblastoma') ||
-        lower.includes('stargardt') ||
-        lower.includes('cone-rod') ||
-        lower.includes('diabetic retinopathy') ||
-        lower.includes('ophthalmia') ||
-        lower.includes('iritis') ||
-        lower.includes('eye infection') ||
-        lower.includes('eye disease') ||
-        lower.includes('sight disease') ||
-        lower.includes('color blindness') ||
-        lower.includes('color deficiency') ||
-        lower.includes('achromatopsia') ||
-        lower.includes('deuteranopia') ||
-        lower.includes('deuteranomaly') ||
-        lower.includes('nearsighted')
-      ) {
-        return 'Ocular Issues';
+
+      for (const [category, keywords] of Object.entries(CONDITION_CATEGORY_KEYWORDS)) {
+        if (keywords.some(keyword => lower.includes(keyword))) {
+          return category;
+        }
       }
-      
-      // Neurologic Issues - brain/nervous system related
-      if (
-        lower.includes('neuromyelitis') ||
-        lower.includes('stroke') ||
-        lower.includes('brain injury') ||
-        lower.includes('traumatic brain') ||
-        lower.includes('meningitis') ||
-        lower.includes('neurologic') ||
-        lower.includes('neurological')
-      ) {
-        return 'Neurologic Issues';
-      }
-      
-      // Accident/Injury - trauma related
-      if (
-        lower.includes('accident') ||
-        lower.includes('injury') ||
-        lower.includes('trauma') ||
-        lower.includes('gunshot') ||
-        lower.includes('car accident') ||
-        lower.includes('chemical burn') ||
-        lower.includes('explosion') ||
-        lower.includes('shooting') ||
-        lower.includes('broken glass') ||
-        lower.includes('eye injury')
-      ) {
-        return 'Accident/Injury';
-      }
-      
-      // Congenital Defects - present from birth
-      if (
-        lower.includes('congenital') ||
-        lower.includes('from birth') ||
-        lower.includes('born blind') ||
-        lower.includes('birth defect')
-      ) {
-        return 'Congenital Defects';
-      }
-      
-      // Degenerative Eye Diseases - progressive conditions
-      if (
-        lower.includes('degenerative') ||
-        lower.includes('progressive') ||
-        lower.includes('retinitis pigmentosa') ||
-        lower.includes('dystrophy')
-      ) {
-        return 'Degenerative Eye Diseases';
-      }
-      
-      // Illness - disease/infection related
-      if (
-        lower.includes('illness') ||
-        lower.includes('disease') ||
-        lower.includes('fever') ||
-        lower.includes('smallpox') ||
-        lower.includes('diphtheria') ||
-        lower.includes('kawasaki') ||
-        lower.includes('epilepsy') ||
-        lower.includes('terry syndrome') ||
-        lower.includes('oxygen toxicity') ||
-        lower.includes('scarlet fever') ||
-        lower.includes('complications')
-      ) {
-        return 'Illness';
-      }
-      
-      // Default category for unmatched conditions
+
       return 'Other';
     };
 
@@ -305,13 +257,13 @@ const FamousBlindPeople: React.FC = () => {
       
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-          Famous Blind & Visually Impaired People
+          {t('famousPeople.title')}
         </Typography>
-        <Typography 
-          variant="body1" 
-          align="center" 
-          sx={{ 
-            mb: 6, 
+        <Typography
+          variant="body1"
+          align="center"
+          sx={{
+            mb: 6,
             color: 'text.primary',
             maxWidth: '800px',
             mx: 'auto',
@@ -319,7 +271,7 @@ const FamousBlindPeople: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Explore the lives and visual experiences of famous blind and visually impaired individuals throughout history.
+          {t('famousPeople.subtitle')}
         </Typography>
 
         {/* Search and Filter Section */}
@@ -328,7 +280,7 @@ const FamousBlindPeople: React.FC = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
-                label="Search by name or condition"
+                label={t('famousPeople.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 variant="outlined"
@@ -336,16 +288,16 @@ const FamousBlindPeople: React.FC = () => {
             </Grid>
             <Grid item xs={12} md={3}>
               <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
+                <InputLabel>{t('famousPeople.categoryLabel')}</InputLabel>
                 <Select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  label="Category"
+                  label={t('famousPeople.categoryLabel')}
                 >
-                  <MenuItem value="">All Categories</MenuItem>
+                  <MenuItem value="">{t('famousPeople.allCategories')}</MenuItem>
                   {categories.map(category => (
                     <MenuItem key={category.name} value={category.name}>
-                      {category.name}
+                      {t(`famousPeople.categories.${category.id}`, category.name)}
                     </MenuItem>
                   ))}
                 </Select>
@@ -353,16 +305,16 @@ const FamousBlindPeople: React.FC = () => {
             </Grid>
             <Grid item xs={12} md={3}>
               <FormControl fullWidth>
-                <InputLabel>Condition</InputLabel>
+                <InputLabel>{t('famousPeople.conditionLabel')}</InputLabel>
                 <Select
                   value={conditionFilter}
                   onChange={(e) => setConditionFilter(e.target.value)}
-                  label="Condition"
+                  label={t('famousPeople.conditionLabel')}
                 >
-                  <MenuItem value="">All Conditions</MenuItem>
+                  <MenuItem value="">{t('famousPeople.allConditions')}</MenuItem>
                   {conditionCategories.map(({ category, conditions }) => (
                     <MenuItem key={category} value={category}>
-                      {category} ({conditions.length})
+                      {t(`famousPeople.conditionCategories.${getCategoryKey(category)}`, category)} ({conditions.length})
                     </MenuItem>
                   ))}
                 </Select>
@@ -372,7 +324,7 @@ const FamousBlindPeople: React.FC = () => {
           
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
             <Typography variant="body2" color="text.secondary">
-              Showing {filteredPeople.length} of {Object.keys(personData).length} people
+              {t('famousPeople.showingResults', { count: filteredPeople.length, total: Object.keys(personData).length })}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <FormControlLabel
@@ -385,12 +337,12 @@ const FamousBlindPeople: React.FC = () => {
                 }
                 label={
                   <Typography variant="body2" color="text.secondary">
-                    Hide total darkness simulations
+                    {t('famousPeople.hideTotalDarkness')}
                   </Typography>
                 }
               />
               <Button onClick={clearFilters} variant="outlined" size="small">
-                Clear Filters
+                {t('buttons.clearFilters')}
               </Button>
             </Box>
           </Box>
@@ -430,7 +382,7 @@ const FamousBlindPeople: React.FC = () => {
             return (
               <Box key={category.name} sx={{ mb: 4 }}>
                 <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
-                  {category.name}
+                  {t(`famousPeople.categories.${category.id}`, category.name)}
                 </Typography>
                 <Grid container spacing={2}>
                   {categoryCards}
@@ -443,10 +395,10 @@ const FamousBlindPeople: React.FC = () => {
         {filteredPeople.length === 0 && (
           <Box sx={{ textAlign: 'center', py: 8 }}>
             <Typography variant="h6" color="text.secondary">
-              No people found matching your search criteria.
+              {t('famousPeople.noResults')}
             </Typography>
             <Button onClick={clearFilters} variant="contained" sx={{ mt: 2 }}>
-              Clear All Filters
+              {t('famousPeople.clearAllFilters')}
             </Button>
           </Box>
         )}

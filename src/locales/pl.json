@@ -354,5 +354,30 @@
     "no": "Nie",
     "ok": "OK",
     "cancel": "Anuluj"
+  },
+  "feedbackPage": {
+    "title": "Prześlij Opinię",
+    "subtitle": "Pomóż nam ulepszyć Symulator Widzenia, dzieląc się swoimi przemyśleniami, zgłaszając błędy lub sugerując nowe funkcje.",
+    "whatToShare": "Czym chciałbyś się podzielić?",
+    "feedbackTypes": { "general": "Ogólna Opinia", "bug": "Zgłoszenie Błędu", "feature": "Prośba o Funkcję", "improvement": "Sugestia Ulepszenia", "other": "Inne" },
+    "form": { "name": "Twoje Imię", "email": "Adres E-mail", "subject": "Temat", "subjectPlaceholder": "Krótki opis Twojej opinii", "message": "Twoja Wiadomość", "messagePlaceholders": { "bug": "Opisz napotkany błąd, w tym kroki do jego odtworzenia i wszelkie komunikaty o błędach.", "feature": "Opisz funkcję, którą chciałbyś zobaczyć i jak poprawiłaby doświadczenie.", "improvement": "Powiedz nam, jak możemy ulepszyć istniejącą funkcję lub ogólne doświadczenie.", "general": "Podziel się swoimi przemyśleniami, sugestiami lub innymi opiniami." } },
+    "favoriteFeature": { "label": "Która funkcja wydała Ci się najbardziej interesująca lub pomocna?", "options": { "demoVideo": "Wizualizator Demo Wideo", "uploadPhoto": "Wizualizator Własnego Zdjęcia", "famousPeople": "Wiedza/Wizualizacje Znanych Osób" } },
+    "userType": { "label": "Co najlepiej Cię opisuje?", "options": { "student": "Student", "educator": "Edukator", "healthcare": "Pracownik Służby Zdrowia", "researcher": "Badacz", "general": "Ogół Społeczeństwa", "other": "Inne" } },
+    "browser": { "label": "Jakiej przeglądarki używasz?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Inna" } },
+    "accessibility": { "label": "Czy używasz technologii wspomagających? (Zaznacz wszystkie odpowiednie)", "options": { "screenReader": "Czytnik Ekranu", "voiceControl": "Sterowanie Głosem", "keyboardNavigation": "Tylko Nawigacja Klawiaturą", "magnification": "Powiększenie Ekranu", "highContrast": "Tryb Wysokiego Kontrastu", "none": "Żadne" } },
+    "rating": { "label": "Jak oceniasz swoje ogólne doświadczenie?" },
+    "submit": { "button": "Prześlij Opinię", "submitting": "Przesyłanie..." },
+    "messages": { "success": "Dziękujemy za opinię! Otrzymaliśmy Twoje zgłoszenie i dokładnie je przeanalizujemy.", "error": "Wystąpił błąd podczas przesyłania opinii. Spróbuj ponownie.", "footer": "Doceniamy Twoją opinię i dokładnie przeanalizujemy wszystkie zgłoszenia. Chociaż nie możemy odpowiedzieć na każdą wiadomość indywidualnie, Twój wkład pomaga nam ulepszać Symulator Widzenia dla wszystkich." }
+  },
+  "resourcesPage": {
+    "title": "Zasoby",
+    "subtitle": "Pomocne zasoby dotyczące utraty wzroku, mobilności i dostępności",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Zasoby Braille'a", "description": "Dowiedz się o Braille'u i znajdź zasoby od Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Zasoby Edukacyjne", "description": "Bezpłatne warsztaty edukacyjne i zasoby dla osób z utratą wzroku, w tym nauka Braille'a, umiejętności życia codziennego i szkolenia technologiczne." },
+      "caneTips": { "title": "Ask a Blind Person - Porady dotyczące Laski", "description": "Praktyczne porady dla użytkowników białej laski w celu poprawy mobilności i zmniejszenia typowych problemów." },
+      "freeCane": { "title": "Program Darmowej Białej Laski NFB", "description": "Narodowa Federacja Niewidomych oferuje darmowe białe laski potrzebującym." },
+      "phoneLines": { "title": "Linie Telefoniczne Wsparcia Dostępności", "description": "Kompleksowa lista linii telefonicznych wsparcia dostępności głównych firm, w tym Apple, Microsoft, Amazon, linii lotniczych i dostawców telekomunikacyjnych dla klientów z utratą wzroku." }
+    }
   }
 }

@@ -313,5 +313,109 @@
     "no": "Nee",
     "ok": "OK",
     "cancel": "Annuleren"
+  },
+  "feedbackPage": {
+    "title": "Feedback Verzenden",
+    "subtitle": "Help ons de Zichtsimulator te verbeteren door je gedachten te delen, bugs te melden of nieuwe functies voor te stellen.",
+    "whatToShare": "Wat wil je delen?",
+    "feedbackTypes": {
+      "general": "Algemene Feedback",
+      "bug": "Bugmelding",
+      "feature": "Functie Aanvraag",
+      "improvement": "Verbeteringsvoorstel",
+      "other": "Overig"
+    },
+    "form": {
+      "name": "Je Naam",
+      "email": "E-mailadres",
+      "subject": "Onderwerp",
+      "subjectPlaceholder": "Korte beschrijving van je feedback",
+      "message": "Je Bericht",
+      "messagePlaceholders": {
+        "bug": "Beschrijf de bug...",
+        "feature": "Beschrijf de functie...",
+        "improvement": "Vertel ons hoe we kunnen verbeteren...",
+        "general": "Deel je gedachten..."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Welke functie vond je het meest interessant of nuttig?",
+      "options": {
+        "demoVideo": "Demovideo Visualizer",
+        "uploadPhoto": "Upload Je Eigen Foto Visualizer",
+        "famousPeople": "Beroemde Mensen Kennis/Visualisaties"
+      }
+    },
+    "userType": {
+      "label": "Wat beschrijft jou het beste?",
+      "options": {
+        "student": "Student",
+        "educator": "Docent",
+        "healthcare": "Zorgprofessional",
+        "researcher": "Onderzoeker",
+        "general": "Algemeen Publiek",
+        "other": "Overig"
+      }
+    },
+    "browser": {
+      "label": "Welke browser gebruik je?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Overig"
+      }
+    },
+    "accessibility": {
+      "label": "Gebruik je hulpmiddelen?",
+      "options": {
+        "screenReader": "Schermlezer",
+        "voiceControl": "Spraakbesturing",
+        "keyboardNavigation": "Alleen Toetsenbordnavigatie",
+        "magnification": "Schermvergroting",
+        "highContrast": "Hoog Contrast Modus",
+        "none": "Geen"
+      }
+    },
+    "rating": {
+      "label": "Hoe zou je je algehele ervaring beoordelen?"
+    },
+    "submit": {
+      "button": "Feedback Verzenden",
+      "submitting": "Verzenden..."
+    },
+    "messages": {
+      "success": "Bedankt voor je feedback! We waarderen het dat je de tijd hebt genomen om je gedachten met ons te delen.",
+      "error": "Er is een fout opgetreden bij het verzenden van je feedback. Probeer het opnieuw.",
+      "footer": "We waarderen je feedback en zullen deze gebruiken om de Zichtsimulator-ervaring te verbeteren."
+    }
+  },
+  "resourcesPage": {
+    "title": "Bronnen",
+    "subtitle": "Nuttige bronnen voor gezichtsverlies, mobiliteit en toegankelijkheid",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Braillebronnen",
+        "description": "Leer over braille, de geschiedenis en hoe je het kunt lezen en schrijven."
+      },
+      "hadley": {
+        "title": "Hadley - Leerbronnen",
+        "description": "Gratis educatieve workshops voor blinden, slechtzienden en hun families."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Stoktips",
+        "description": "Praktische tips over het effectief gebruiken van een witte stok."
+      },
+      "freeCane": {
+        "title": "NFB Gratis Witte Stok Programma",
+        "description": "De National Federation of the Blind biedt gratis witte stokken aan blinde personen in de Verenigde Staten."
+      },
+      "phoneLines": {
+        "title": "Toegankelijkheid Ondersteuningslijnen",
+        "description": "Een uitgebreide lijst van telefoonlijnen voor toegankelijkheidsondersteuning en hulp."
+      }
+    }
   }
 }

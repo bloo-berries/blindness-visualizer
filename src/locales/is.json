@@ -313,5 +313,109 @@
     "no": "Nei",
     "ok": "Í lagi",
     "cancel": "Hætta við"
+  },
+  "feedbackPage": {
+    "title": "Senda Viðbrögð",
+    "subtitle": "Hjálpaðu okkur að bæta Sjónherminn með því að deila hugsunum þínum, tilkynna villur eða stinga upp á nýjum eiginleikum.",
+    "whatToShare": "Hvað viltu deila?",
+    "feedbackTypes": {
+      "general": "Almenn Viðbrögð",
+      "bug": "Villutilkynning",
+      "feature": "Beiðni um Eiginleika",
+      "improvement": "Tillaga um Umbætur",
+      "other": "Annað"
+    },
+    "form": {
+      "name": "Nafnið Þitt",
+      "email": "Netfang",
+      "subject": "Efni",
+      "subjectPlaceholder": "Stutt lýsing á viðbrögðum þínum",
+      "message": "Skilaboðin Þín",
+      "messagePlaceholders": {
+        "bug": "Lýstu villunni...",
+        "feature": "Lýstu eiginleikanum...",
+        "improvement": "Segðu okkur hvernig á að bæta...",
+        "general": "Deildu hugsunum þínum..."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Hvaða eiginleiki þótti þér áhugaverðastur eða gagnlegastur?",
+      "options": {
+        "demoVideo": "Sýnimyndbandshermir",
+        "uploadPhoto": "Hlaða Upp Eigin Mynd Hermir",
+        "famousPeople": "Frægt Fólk Þekking/Hermar"
+      }
+    },
+    "userType": {
+      "label": "Hvað lýsir þér best?",
+      "options": {
+        "student": "Nemandi",
+        "educator": "Kennari",
+        "healthcare": "Heilbrigðisstarfsmaður",
+        "researcher": "Rannsakandi",
+        "general": "Almennur Notandi",
+        "other": "Annað"
+      }
+    },
+    "browser": {
+      "label": "Hvaða vafra notar þú?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Annað"
+      }
+    },
+    "accessibility": {
+      "label": "Notarðu einhverja hjálpartækni?",
+      "options": {
+        "screenReader": "Skjálesari",
+        "voiceControl": "Raddstýring",
+        "keyboardNavigation": "Aðeins Lyklaborðsleiðsögn",
+        "magnification": "Skjástækkun",
+        "highContrast": "Mikið Birtuskil",
+        "none": "Ekkert"
+      }
+    },
+    "rating": {
+      "label": "Hvernig myndir þú meta heildarupplifun þína?"
+    },
+    "submit": {
+      "button": "Senda Viðbrögð",
+      "submitting": "Sendir..."
+    },
+    "messages": {
+      "success": "Takk fyrir viðbrögðin þín! Við kunnum að meta að þú tókst þér tíma til að deila hugsunum þínum með okkur.",
+      "error": "Villa kom upp við að senda viðbrögð þín. Vinsamlegast reyndu aftur.",
+      "footer": "Við kunnum að meta viðbrögð þín og munum nota þau til að bæta upplifun Sjónhermisins."
+    }
+  },
+  "resourcesPage": {
+    "title": "Úrræði",
+    "subtitle": "Gagnleg úrræði fyrir sjóntap, hreyfanleika og aðgengi",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Blindraleturúrræði",
+        "description": "Lærðu um blindraletur, sögu þess og hvernig á að lesa og skrifa það."
+      },
+      "hadley": {
+        "title": "Hadley - Námsúrræði",
+        "description": "Ókeypis fræðslu námskeið fyrir blinda, sjónskerta og fjölskyldur þeirra."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Stafræður",
+        "description": "Praktískar ráðleggingar um hvernig á að nota hvítan staf á áhrifaríkan hátt."
+      },
+      "freeCane": {
+        "title": "NFB Ókeypis Hvítur Stafur Forrit",
+        "description": "Landssamband Blindra býður upp á ókeypis hvíta stafi til blindra einstaklinga í Bandaríkjunum."
+      },
+      "phoneLines": {
+        "title": "Aðgengis Stuðningssímalínur",
+        "description": "Ítarlegur listi yfir símalínur fyrir aðgengisstuðning og hjálp."
+      }
+    }
   }
 }

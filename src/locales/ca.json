@@ -315,5 +315,30 @@
     "no": "No",
     "ok": "D'acord",
     "cancel": "Cancel·lar"
+  },
+  "feedbackPage": {
+    "title": "Envia Feedback",
+    "subtitle": "Ajuda'ns a millorar el Simulador de Visió compartint els teus pensaments, informant d'errors o suggerint noves funcionalitats.",
+    "whatToShare": "Què t'agradaria compartir?",
+    "feedbackTypes": { "general": "Feedback General", "bug": "Informe d'Error", "feature": "Sol·licitud de Funcionalitat", "improvement": "Suggeriment de Millora", "other": "Altres" },
+    "form": { "name": "El Teu Nom", "email": "Adreça de Correu", "subject": "Assumpte", "subjectPlaceholder": "Breu descripció del teu feedback", "message": "El Teu Missatge", "messagePlaceholders": { "bug": "Descriu l'error que has trobat, incloent els passos per reproduir-lo i qualsevol missatge d'error.", "feature": "Descriu la funcionalitat que t'agradaria veure i com milloraria l'experiència.", "improvement": "Explica'ns com podem millorar una funcionalitat existent o l'experiència general.", "general": "Comparteix els teus pensaments, suggeriments o qualsevol altre feedback." } },
+    "favoriteFeature": { "label": "Quina funcionalitat t'ha semblat més interessant o útil?", "options": { "demoVideo": "Visualitzador de Vídeo de Demostració", "uploadPhoto": "Visualitzador de Foto Pujada", "famousPeople": "Informació/Visualitzacions de Persones Famoses" } },
+    "userType": { "label": "Què et descriu millor?", "options": { "student": "Estudiant", "educator": "Educador", "healthcare": "Professional Sanitari", "researcher": "Investigador", "general": "Públic General", "other": "Altres" } },
+    "browser": { "label": "Quin navegador estàs utilitzant?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Altres" } },
+    "accessibility": { "label": "Utilitzes tecnologies d'assistència? (Selecciona totes les que apliquin)", "options": { "screenReader": "Lector de Pantalla", "voiceControl": "Control de Veu", "keyboardNavigation": "Només Navegació per Teclat", "magnification": "Ampliació de Pantalla", "highContrast": "Mode d'Alt Contrast", "none": "Cap" } },
+    "rating": { "label": "Com valoraries la teva experiència general?" },
+    "submit": { "button": "Enviar Feedback", "submitting": "Enviant..." },
+    "messages": { "success": "Gràcies pel teu feedback! Hem rebut el teu enviament i el revisarem amb cura.", "error": "S'ha produït un error en enviar el teu feedback. Si us plau, torna-ho a provar.", "footer": "Valorem el teu feedback i revisem cada enviament amb cura. Tot i que no podem respondre a cada missatge individualment, les teves aportacions ens ajuden a millorar el Simulador de Visió per a tothom." }
+  },
+  "resourcesPage": {
+    "title": "Recursos",
+    "subtitle": "Recursos útils per a la pèrdua de visió, mobilitat i accessibilitat",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Recursos Braille", "description": "Aprèn sobre Braille i troba recursos de Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Recursos d'Aprenentatge", "description": "Tallers educatius gratuïts i recursos per a la pèrdua de visió, incloent aprenentatge de Braille, habilitats de vida diària i formació tecnològica." },
+      "caneTips": { "title": "Ask a Blind Person - Consells sobre Bastons", "description": "Consells pràctics per a usuaris de bastons blancs per millorar la mobilitat i reduir problemes comuns." },
+      "freeCane": { "title": "Programa de Bastons Blancs Gratuïts NFB", "description": "La Federació Nacional de Cecs proporciona bastons blancs gratuïts als qui els necessiten." },
+      "phoneLines": { "title": "Línies Telefòniques de Suport d'Accessibilitat", "description": "Llista completa de línies telefòniques de suport d'accessibilitat de grans empreses incloent Apple, Microsoft, Amazon, aerolínies i proveïdors de telecomunicacions per a clients amb pèrdua de visió." }
+    }
   }
 }

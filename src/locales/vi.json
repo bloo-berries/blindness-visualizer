@@ -356,5 +356,30 @@
     "no": "Không",
     "ok": "OK",
     "cancel": "Hủy"
+  },
+  "feedbackPage": {
+    "title": "Gửi Phản hồi",
+    "subtitle": "Giúp chúng tôi cải thiện Trình mô phỏng Thị giác bằng cách chia sẻ suy nghĩ, báo cáo lỗi hoặc đề xuất tính năng mới.",
+    "whatToShare": "Bạn muốn chia sẻ điều gì?",
+    "feedbackTypes": { "general": "Phản hồi Chung", "bug": "Báo cáo Lỗi", "feature": "Yêu cầu Tính năng", "improvement": "Đề xuất Cải tiến", "other": "Khác" },
+    "form": { "name": "Tên của bạn", "email": "Địa chỉ Email", "subject": "Chủ đề", "subjectPlaceholder": "Mô tả ngắn gọn về phản hồi của bạn", "message": "Tin nhắn của bạn", "messagePlaceholders": { "bug": "Vui lòng mô tả lỗi bạn gặp phải, bao gồm các bước tái tạo và bất kỳ thông báo lỗi nào.", "feature": "Mô tả tính năng bạn muốn thêm và nó sẽ cải thiện trải nghiệm như thế nào.", "improvement": "Cho chúng tôi biết cách chúng tôi có thể cải thiện tính năng hiện có hoặc trải nghiệm tổng thể.", "general": "Chia sẻ suy nghĩ, đề xuất hoặc bất kỳ phản hồi nào khác của bạn." } },
+    "favoriteFeature": { "label": "Tính năng nào bạn thấy thú vị hoặc hữu ích nhất?", "options": { "demoVideo": "Trình mô phỏng Video Demo", "uploadPhoto": "Trình mô phỏng Tải ảnh lên", "famousPeople": "Thông tin/Mô phỏng Người nổi tiếng" } },
+    "userType": { "label": "Điều gì mô tả bạn tốt nhất?", "options": { "student": "Sinh viên", "educator": "Nhà giáo dục", "healthcare": "Chuyên gia Y tế", "researcher": "Nhà nghiên cứu", "general": "Công chúng", "other": "Khác" } },
+    "browser": { "label": "Bạn đang sử dụng trình duyệt nào?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Khác" } },
+    "accessibility": { "label": "Bạn có sử dụng công nghệ hỗ trợ không? (Chọn tất cả phù hợp)", "options": { "screenReader": "Trình đọc màn hình", "voiceControl": "Điều khiển giọng nói", "keyboardNavigation": "Điều hướng chỉ bằng bàn phím", "magnification": "Phóng to màn hình", "highContrast": "Chế độ tương phản cao", "none": "Không có" } },
+    "rating": { "label": "Bạn đánh giá trải nghiệm tổng thể của mình như thế nào?" },
+    "submit": { "button": "Gửi Phản hồi", "submitting": "Đang gửi..." },
+    "messages": { "success": "Cảm ơn phản hồi của bạn! Chúng tôi đã nhận được bài gửi của bạn và sẽ xem xét cẩn thận.", "error": "Đã xảy ra lỗi khi gửi phản hồi của bạn. Vui lòng thử lại.", "footer": "Chúng tôi đánh giá cao phản hồi của bạn và sẽ xem xét tất cả các bài gửi một cách cẩn thận. Mặc dù chúng tôi không thể trả lời từng tin nhắn riêng lẻ, nhưng đóng góp của bạn giúp chúng tôi cải thiện Trình mô phỏng Thị giác cho tất cả mọi người." }
+  },
+  "resourcesPage": {
+    "title": "Tài nguyên",
+    "subtitle": "Tài nguyên hữu ích về mất thị lực, di chuyển và khả năng tiếp cận",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Tài nguyên Braille", "description": "Tìm hiểu về chữ nổi Braille và tìm tài nguyên từ Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Tài nguyên Giáo dục", "description": "Hội thảo và tài nguyên giáo dục miễn phí về mất thị lực, bao gồm học chữ nổi Braille, kỹ năng sống hàng ngày và đào tạo công nghệ." },
+      "caneTips": { "title": "Ask a Blind Person - Mẹo dùng Gậy", "description": "Mẹo thực tế cho người dùng gậy trắng để cải thiện khả năng di chuyển và giảm các vấn đề thường gặp." },
+      "freeCane": { "title": "Chương trình Gậy trắng Miễn phí NFB", "description": "Liên đoàn Quốc gia Người mù cung cấp gậy trắng miễn phí cho những người cần." },
+      "phoneLines": { "title": "Đường dây Hỗ trợ Tiếp cận", "description": "Danh sách đầy đủ các đường dây hỗ trợ tiếp cận từ các công ty lớn, bao gồm Apple, Microsoft, Amazon, hãng hàng không và nhà cung cấp viễn thông cho khách hàng mất thị lực." }
+    }
   }
 }

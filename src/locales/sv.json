@@ -313,5 +313,30 @@
     "no": "Nej",
     "ok": "OK",
     "cancel": "Avbryt"
+  },
+  "feedbackPage": {
+    "title": "Skicka Feedback",
+    "subtitle": "Hjälp oss förbättra Synsimulatorn genom att dela dina tankar, rapportera buggar eller föreslå nya funktioner.",
+    "whatToShare": "Vad vill du dela?",
+    "feedbackTypes": { "general": "Allmän Feedback", "bug": "Felrapport", "feature": "Funktionsförfrågan", "improvement": "Förbättringsförslag", "other": "Annat" },
+    "form": { "name": "Ditt Namn", "email": "E-postadress", "subject": "Ämne", "subjectPlaceholder": "Kort beskrivning av din feedback", "message": "Ditt Meddelande", "messagePlaceholders": { "bug": "Beskriv felet du upplevde, inklusive stegen för att återskapa det och eventuella felmeddelanden.", "feature": "Beskriv funktionen du vill se och hur den skulle förbättra upplevelsen.", "improvement": "Berätta hur vi kan förbättra en befintlig funktion eller den övergripande upplevelsen.", "general": "Dela dina tankar, förslag eller annan feedback." } },
+    "favoriteFeature": { "label": "Vilken funktion tyckte du var mest intressant eller användbar?", "options": { "demoVideo": "Demovideo Visualisering", "uploadPhoto": "Ladda Upp Egen Bild Visualisering", "famousPeople": "Kända Personer Kunskap/Visualiseringar" } },
+    "userType": { "label": "Vad beskriver dig bäst?", "options": { "student": "Student", "educator": "Utbildare", "healthcare": "Vårdpersonal", "researcher": "Forskare", "general": "Allmänheten", "other": "Annat" } },
+    "browser": { "label": "Vilken webbläsare använder du?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Annan" } },
+    "accessibility": { "label": "Använder du hjälpmedel? (Välj alla som gäller)", "options": { "screenReader": "Skärmläsare", "voiceControl": "Röststyrning", "keyboardNavigation": "Endast Tangentbordsnavigering", "magnification": "Skärmförstoring", "highContrast": "Högkontrastläge", "none": "Ingen" } },
+    "rating": { "label": "Hur skulle du betygsätta din övergripande upplevelse?" },
+    "submit": { "button": "Skicka Feedback", "submitting": "Skickar..." },
+    "messages": { "success": "Tack för din feedback! Vi har tagit emot din inlämning och kommer att granska den noggrant.", "error": "Det uppstod ett fel vid sändning av feedback. Försök igen.", "footer": "Vi uppskattar din feedback och kommer att granska alla inlämningar noggrant. Även om vi inte kan svara på varje meddelande individuellt, hjälper ditt bidrag oss att förbättra Synsimulatorn för alla." }
+  },
+  "resourcesPage": {
+    "title": "Resurser",
+    "subtitle": "Användbara resurser för synförlust, mobilitet och tillgänglighet",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Punktskriftsresurser", "description": "Lär dig om punktskrift och hitta resurser från Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Utbildningsresurser", "description": "Gratis utbildningsworkshops och resurser för synförlust, inklusive punktskriftsinlärning, vardagsfärdigheter och teknikutbildning." },
+      "caneTips": { "title": "Ask a Blind Person - Käpptips", "description": "Praktiska tips för användare av vit käpp för att förbättra mobiliteten och minska vanliga problem." },
+      "freeCane": { "title": "NFB Gratis Vit Käpp Program", "description": "Nationella Blindförbundet erbjuder gratis vita käppar till dem som behöver dem." },
+      "phoneLines": { "title": "Tillgänglighet Supportlinjer", "description": "En omfattande lista över tillgänglighet supportlinjer från stora företag inklusive Apple, Microsoft, Amazon, flygbolag och telekomleverantörer för kunder med synförlust." }
+    }
   }
 }

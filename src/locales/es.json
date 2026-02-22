@@ -356,5 +356,109 @@
     "no": "No",
     "ok": "OK",
     "cancel": "Cancelar"
+  },
+  "feedbackPage": {
+    "title": "Enviar Comentarios",
+    "subtitle": "Ayúdanos a mejorar el Simulador de Visión compartiendo tus pensamientos, reportando errores o sugiriendo nuevas funciones.",
+    "whatToShare": "¿Qué te gustaría compartir?",
+    "feedbackTypes": {
+      "general": "Comentarios Generales",
+      "bug": "Reporte de Error",
+      "feature": "Solicitud de Función",
+      "improvement": "Sugerencia de Mejora",
+      "other": "Otro"
+    },
+    "form": {
+      "name": "Tu Nombre",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "subjectPlaceholder": "Breve descripción de tu comentario",
+      "message": "Tu Mensaje",
+      "messagePlaceholders": {
+        "bug": "Por favor describe el error que encontraste, incluyendo los pasos para reproducirlo y cualquier mensaje de error que hayas visto.",
+        "feature": "Describe la función que te gustaría ver agregada y cómo mejoraría la experiencia.",
+        "improvement": "Cuéntanos cómo podemos mejorar una función existente o la experiencia general.",
+        "general": "Comparte tus pensamientos, sugerencias o cualquier otro comentario que tengas."
+      }
+    },
+    "favoriteFeature": {
+      "label": "¿Qué función encontraste más interesante o útil?",
+      "options": {
+        "demoVideo": "Visualizador de Video Demo",
+        "uploadPhoto": "Visualizador de Foto Propia",
+        "famousPeople": "Conocimiento/Visualizaciones de Personas Famosas"
+      }
+    },
+    "userType": {
+      "label": "¿Qué te describe mejor?",
+      "options": {
+        "student": "Estudiante",
+        "educator": "Educador",
+        "healthcare": "Profesional de la Salud",
+        "researcher": "Investigador",
+        "general": "Público General",
+        "other": "Otro"
+      }
+    },
+    "browser": {
+      "label": "¿Qué navegador estás usando?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Otro"
+      }
+    },
+    "accessibility": {
+      "label": "¿Usas alguna tecnología de asistencia? (Selecciona todas las que apliquen)",
+      "options": {
+        "screenReader": "Lector de Pantalla",
+        "voiceControl": "Control por Voz",
+        "keyboardNavigation": "Solo Navegación por Teclado",
+        "magnification": "Ampliación de Pantalla",
+        "highContrast": "Modo de Alto Contraste",
+        "none": "Ninguno"
+      }
+    },
+    "rating": {
+      "label": "¿Cómo calificarías tu experiencia general?"
+    },
+    "submit": {
+      "button": "Enviar Comentarios",
+      "submitting": "Enviando..."
+    },
+    "messages": {
+      "success": "¡Gracias por tus comentarios! Hemos recibido tu envío y lo revisaremos cuidadosamente.",
+      "error": "Hubo un error al enviar tus comentarios. Por favor intenta de nuevo.",
+      "footer": "Apreciamos tus comentarios y revisaremos todos los envíos cuidadosamente. Aunque no podemos responder a cada mensaje individualmente, tu aporte nos ayuda a mejorar el Simulador de Visión para todos."
+    }
+  },
+  "resourcesPage": {
+    "title": "Recursos",
+    "subtitle": "Recursos útiles para pérdida de visión, movilidad y accesibilidad",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Recursos de Braille",
+        "description": "Aprende sobre braille y encuentra recursos de braille de Two Blind Brothers."
+      },
+      "hadley": {
+        "title": "Hadley - Recursos de Aprendizaje",
+        "description": "Talleres educativos gratuitos y recursos para pérdida de visión, incluyendo aprendizaje de braille, habilidades de vida diaria y capacitación tecnológica."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Consejos sobre el Bastón",
+        "description": "Consejos prácticos para usuarios de bastón blanco para mejorar la movilidad y reducir problemas comunes."
+      },
+      "freeCane": {
+        "title": "Programa de Bastón Blanco Gratuito de NFB",
+        "description": "La Federación Nacional de Ciegos ofrece bastones blancos gratuitos a quienes los necesitan."
+      },
+      "phoneLines": {
+        "title": "Líneas Telefónicas de Soporte de Accesibilidad",
+        "description": "Una lista completa de líneas telefónicas de soporte de accesibilidad de las principales empresas incluyendo Apple, Microsoft, Amazon, aerolíneas y proveedores de telecomunicaciones para clientes con pérdida de visión."
+      }
+    }
   }
 }

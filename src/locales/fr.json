@@ -356,5 +356,30 @@
     "no": "Non",
     "ok": "OK",
     "cancel": "Annuler"
+  },
+  "feedbackPage": {
+    "title": "Soumettre un Commentaire",
+    "subtitle": "Aidez-nous à améliorer le Simulateur de Vision en partageant vos réflexions, en signalant des bugs ou en suggérant de nouvelles fonctionnalités.",
+    "whatToShare": "Que souhaitez-vous partager ?",
+    "feedbackTypes": { "general": "Commentaire Général", "bug": "Rapport de Bug", "feature": "Demande de Fonctionnalité", "improvement": "Suggestion d'Amélioration", "other": "Autre" },
+    "form": { "name": "Votre Nom", "email": "Adresse E-mail", "subject": "Sujet", "subjectPlaceholder": "Brève description de votre commentaire", "message": "Votre Message", "messagePlaceholders": { "bug": "Veuillez décrire le bug rencontré, y compris les étapes pour le reproduire et les messages d'erreur affichés.", "feature": "Décrivez la fonctionnalité que vous aimeriez voir ajoutée et comment elle améliorerait l'expérience.", "improvement": "Dites-nous comment nous pouvons améliorer une fonctionnalité existante ou l'expérience globale.", "general": "Partagez vos réflexions, suggestions ou tout autre commentaire." } },
+    "favoriteFeature": { "label": "Quelle fonctionnalité avez-vous trouvée la plus intéressante ou utile ?", "options": { "demoVideo": "Visualiseur Vidéo Démo", "uploadPhoto": "Visualiseur de Photo Personnelle", "famousPeople": "Connaissances/Visualisations de Personnes Célèbres" } },
+    "userType": { "label": "Qu'est-ce qui vous décrit le mieux ?", "options": { "student": "Étudiant", "educator": "Éducateur", "healthcare": "Professionnel de Santé", "researcher": "Chercheur", "general": "Grand Public", "other": "Autre" } },
+    "browser": { "label": "Quel navigateur utilisez-vous ?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Autre" } },
+    "accessibility": { "label": "Utilisez-vous des technologies d'assistance ? (Sélectionnez toutes celles qui s'appliquent)", "options": { "screenReader": "Lecteur d'Écran", "voiceControl": "Contrôle Vocal", "keyboardNavigation": "Navigation Clavier Uniquement", "magnification": "Agrandissement d'Écran", "highContrast": "Mode Contraste Élevé", "none": "Aucun" } },
+    "rating": { "label": "Comment évalueriez-vous votre expérience globale ?" },
+    "submit": { "button": "Soumettre le Commentaire", "submitting": "Envoi en cours..." },
+    "messages": { "success": "Merci pour votre commentaire ! Nous avons reçu votre soumission et l'examinerons attentivement.", "error": "Une erreur s'est produite lors de l'envoi de votre commentaire. Veuillez réessayer.", "footer": "Nous apprécions vos commentaires et examinerons toutes les soumissions attentivement. Bien que nous ne puissions pas répondre à chaque message individuellement, vos retours nous aident à améliorer le Simulateur de Vision pour tous." }
+  },
+  "resourcesPage": {
+    "title": "Ressources",
+    "subtitle": "Ressources utiles pour la perte de vision, la mobilité et l'accessibilité",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Ressources Braille", "description": "Apprenez le braille et trouvez des ressources braille de Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Ressources d'Apprentissage", "description": "Ateliers éducatifs gratuits et ressources pour la perte de vision, y compris l'apprentissage du braille, les compétences de vie quotidienne et la formation technologique." },
+      "caneTips": { "title": "Ask a Blind Person - Conseils pour la Canne", "description": "Conseils pratiques pour les utilisateurs de canne blanche pour améliorer la mobilité et réduire les problèmes courants." },
+      "freeCane": { "title": "Programme de Canne Blanche Gratuite NFB", "description": "La Fédération Nationale des Aveugles offre des cannes blanches gratuites à ceux qui en ont besoin." },
+      "phoneLines": { "title": "Lignes Téléphoniques de Support Accessibilité", "description": "Une liste complète des lignes téléphoniques de support accessibilité des grandes entreprises incluant Apple, Microsoft, Amazon, compagnies aériennes et fournisseurs de télécommunications pour les clients malvoyants." }
+    }
   }
 }

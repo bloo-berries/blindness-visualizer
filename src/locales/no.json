@@ -313,5 +313,30 @@
     "no": "Nei",
     "ok": "OK",
     "cancel": "Avbryt"
+  },
+  "feedbackPage": {
+    "title": "Send Tilbakemelding",
+    "subtitle": "Hjelp oss å forbedre Synssimulatoren ved å dele dine tanker, rapportere feil eller foreslå nye funksjoner.",
+    "whatToShare": "Hva vil du dele?",
+    "feedbackTypes": { "general": "Generell Tilbakemelding", "bug": "Feilrapport", "feature": "Funksjonsforespørsel", "improvement": "Forbedringsforslag", "other": "Annet" },
+    "form": { "name": "Ditt Navn", "email": "E-postadresse", "subject": "Emne", "subjectPlaceholder": "Kort beskrivelse av tilbakemeldingen", "message": "Din Melding", "messagePlaceholders": { "bug": "Beskriv feilen du opplevde, inkludert trinnene for å reprodusere den og eventuelle feilmeldinger.", "feature": "Beskriv funksjonen du vil se og hvordan den ville forbedre opplevelsen.", "improvement": "Fortell oss hvordan vi kan forbedre en eksisterende funksjon eller den generelle opplevelsen.", "general": "Del dine tanker, forslag eller annen tilbakemelding." } },
+    "favoriteFeature": { "label": "Hvilken funksjon syntes du var mest interessant eller nyttig?", "options": { "demoVideo": "Demo Video Visualisering", "uploadPhoto": "Last Opp Eget Bilde Visualisering", "famousPeople": "Berømte Personer Kunnskap/Visualiseringer" } },
+    "userType": { "label": "Hva beskriver deg best?", "options": { "student": "Student", "educator": "Pedagog", "healthcare": "Helsearbeider", "researcher": "Forsker", "general": "Allmennheten", "other": "Annet" } },
+    "browser": { "label": "Hvilken nettleser bruker du?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Annen" } },
+    "accessibility": { "label": "Bruker du hjelpeteknologi? (Velg alle som gjelder)", "options": { "screenReader": "Skjermleser", "voiceControl": "Stemmekontroll", "keyboardNavigation": "Kun Tastaturnavigasjon", "magnification": "Skjermforstørring", "highContrast": "Høykontrastmodus", "none": "Ingen" } },
+    "rating": { "label": "Hvordan vil du vurdere din generelle opplevelse?" },
+    "submit": { "button": "Send Tilbakemelding", "submitting": "Sender..." },
+    "messages": { "success": "Takk for tilbakemeldingen! Vi har mottatt innsendingen din og vil gjennomgå den nøye.", "error": "Det oppstod en feil ved sending av tilbakemeldingen. Prøv igjen.", "footer": "Vi setter pris på tilbakemeldingen din og vil gjennomgå alle innsendinger nøye. Selv om vi ikke kan svare på hver melding individuelt, hjelper ditt bidrag oss å forbedre Synssimulatoren for alle." }
+  },
+  "resourcesPage": {
+    "title": "Ressurser",
+    "subtitle": "Nyttige ressurser for synstap, mobilitet og tilgjengelighet",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Blindeskriftressurser", "description": "Lær om blindeskrift og finn ressurser fra Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Læringsressurser", "description": "Gratis utdanningsverksteder og ressurser for synstap, inkludert blindeskriftlæring, hverdagsferdigheter og teknologiopplæring." },
+      "caneTips": { "title": "Ask a Blind Person - Stokktips", "description": "Praktiske tips for brukere av hvit stokk for å forbedre mobilitet og redusere vanlige problemer." },
+      "freeCane": { "title": "NFB Gratis Hvit Stokk Program", "description": "Nasjonalt Blindeforbund tilbyr gratis hvite stokker til de som trenger dem." },
+      "phoneLines": { "title": "Tilgjengelighet Støttetelefoner", "description": "En omfattende liste over tilgjengelighet støttetelefoner fra store selskaper inkludert Apple, Microsoft, Amazon, flyselskaper og telekomleverandører for kunder med synstap." }
+    }
   }
 }

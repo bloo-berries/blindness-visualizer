@@ -356,5 +356,109 @@
     "no": "Hayır",
     "ok": "Tamam",
     "cancel": "İptal"
+  },
+  "feedbackPage": {
+    "title": "Geri Bildirim Gönder",
+    "subtitle": "Düşüncelerinizi paylaşarak, hataları bildirerek veya yeni özellikler önererek Görme Simülatörünü geliştirmemize yardımcı olun.",
+    "whatToShare": "Ne paylaşmak istersiniz?",
+    "feedbackTypes": {
+      "general": "Genel Geri Bildirim",
+      "bug": "Hata Raporu",
+      "feature": "Özellik İsteği",
+      "improvement": "İyileştirme Önerisi",
+      "other": "Diğer"
+    },
+    "form": {
+      "name": "Adınız",
+      "email": "E-posta Adresi",
+      "subject": "Konu",
+      "subjectPlaceholder": "Geri bildiriminizin kısa açıklaması",
+      "message": "Mesajınız",
+      "messagePlaceholders": {
+        "bug": "Lütfen karşılaştığınız hatayı, yeniden oluşturma adımlarını ve gördüğünüz hata mesajlarını açıklayın.",
+        "feature": "Eklenmesini istediğiniz özelliği ve deneyimi nasıl iyileştireceğini açıklayın.",
+        "improvement": "Mevcut bir özelliği veya genel deneyimi nasıl iyileştirebileceğimizi söyleyin.",
+        "general": "Düşüncelerinizi, önerilerinizi veya diğer geri bildirimlerinizi paylaşın."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Hangi özelliği en ilginç veya yararlı buldunuz?",
+      "options": {
+        "demoVideo": "Demo Video Görselleştirici",
+        "uploadPhoto": "Fotoğraf Yükleme Görselleştirici",
+        "famousPeople": "Ünlü Kişiler Bilgisi/Görselleştirmeleri"
+      }
+    },
+    "userType": {
+      "label": "Sizi en iyi ne tanımlar?",
+      "options": {
+        "student": "Öğrenci",
+        "educator": "Eğitimci",
+        "healthcare": "Sağlık Uzmanı",
+        "researcher": "Araştırmacı",
+        "general": "Genel Halk",
+        "other": "Diğer"
+      }
+    },
+    "browser": {
+      "label": "Hangi tarayıcıyı kullanıyorsunuz?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Diğer"
+      }
+    },
+    "accessibility": {
+      "label": "Yardımcı teknoloji kullanıyor musunuz? (Uygun olanları seçin)",
+      "options": {
+        "screenReader": "Ekran Okuyucu",
+        "voiceControl": "Ses Kontrolü",
+        "keyboardNavigation": "Yalnızca Klavye Gezinmesi",
+        "magnification": "Ekran Büyütme",
+        "highContrast": "Yüksek Kontrast Modu",
+        "none": "Hiçbiri"
+      }
+    },
+    "rating": {
+      "label": "Genel deneyiminizi nasıl değerlendirirsiniz?"
+    },
+    "submit": {
+      "button": "Geri Bildirim Gönder",
+      "submitting": "Gönderiliyor..."
+    },
+    "messages": {
+      "success": "Geri bildiriminiz için teşekkürler! Gönderinizi aldık ve dikkatle inceleyeceğiz.",
+      "error": "Geri bildirim gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+      "footer": "Geri bildiriminizi takdir ediyor ve tüm gönderimleri dikkatle inceliyoruz. Her mesaja bireysel olarak yanıt veremesek de, katkınız Görme Simülatörünü herkes için iyileştirmemize yardımcı oluyor."
+    }
+  },
+  "resourcesPage": {
+    "title": "Kaynaklar",
+    "subtitle": "Görme kaybı, hareketlilik ve erişilebilirlik için yararlı kaynaklar",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Braille Kaynakları",
+        "description": "Braille hakkında bilgi edinin ve Two Blind Brothers'tan braille kaynakları bulun."
+      },
+      "hadley": {
+        "title": "Hadley - Öğrenme Kaynakları",
+        "description": "Görme kaybı için ücretsiz eğitim atölyeleri ve kaynaklar. Braille öğrenme, günlük yaşam becerileri ve teknoloji eğitimi dahil."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Baston İpuçları",
+        "description": "Beyaz baston kullanıcıları için hareketliliği artırmaya ve yaygın sorunları azaltmaya yönelik pratik ipuçları."
+      },
+      "freeCane": {
+        "title": "NFB Ücretsiz Beyaz Baston Programı",
+        "description": "Ulusal Körler Federasyonu ihtiyacı olanlara ücretsiz beyaz baston sunmaktadır."
+      },
+      "phoneLines": {
+        "title": "Erişilebilirlik Destek Hatları",
+        "description": "Apple, Microsoft, Amazon, havayolları ve telekomünikasyon sağlayıcıları dahil büyük şirketlerin görme kaybı olan müşteriler için erişilebilirlik destek hatlarının kapsamlı listesi."
+      }
+    }
   }
 }

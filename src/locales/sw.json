@@ -313,5 +313,109 @@
     "no": "Hapana",
     "ok": "Sawa",
     "cancel": "Ghairi"
+  },
+  "feedbackPage": {
+    "title": "Wasilisha Maoni",
+    "subtitle": "Tusaidie kuboresha Kiigaji cha Kuona kwa kushiriki mawazo yako, kuripoti matatizo, au kupendekeza vipengele vipya.",
+    "whatToShare": "Ungependa kushiriki nini?",
+    "feedbackTypes": {
+      "general": "Maoni ya Jumla",
+      "bug": "Ripoti ya Hitilafu",
+      "feature": "Ombi la Kipengele",
+      "improvement": "Pendekezo la Uboreshaji",
+      "other": "Nyingine"
+    },
+    "form": {
+      "name": "Jina Lako",
+      "email": "Anwani ya Barua Pepe",
+      "subject": "Mada",
+      "subjectPlaceholder": "Maelezo mafupi ya maoni yako",
+      "message": "Ujumbe Wako",
+      "messagePlaceholders": {
+        "bug": "Elezea hitilafu...",
+        "feature": "Elezea kipengele...",
+        "improvement": "Tuambie jinsi ya kuboresha...",
+        "general": "Shiriki mawazo yako..."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Kipengele kipi ulichokipata cha kuvutia zaidi au cha kusaidia?",
+      "options": {
+        "demoVideo": "Kiigaji cha Video ya Onyesho",
+        "uploadPhoto": "Pakia Picha Yako Mwenyewe Kiigaji",
+        "famousPeople": "Ujuzi/Uigaji wa Watu Mashuhuri"
+      }
+    },
+    "userType": {
+      "label": "Nini kinakuelezea wewe vizuri zaidi?",
+      "options": {
+        "student": "Mwanafunzi",
+        "educator": "Mwalimu",
+        "healthcare": "Mtaalamu wa Afya",
+        "researcher": "Mtafiti",
+        "general": "Umma wa Kawaida",
+        "other": "Nyingine"
+      }
+    },
+    "browser": {
+      "label": "Unatumia kivinjari kipi?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Nyingine"
+      }
+    },
+    "accessibility": {
+      "label": "Je, unatumia teknolojia yoyote ya msaada?",
+      "options": {
+        "screenReader": "Kisomaji cha Skrini",
+        "voiceControl": "Udhibiti wa Sauti",
+        "keyboardNavigation": "Urambazaji wa Kibodi Pekee",
+        "magnification": "Ukuzaji wa Skrini",
+        "highContrast": "Hali ya Utofautishaji wa Juu",
+        "none": "Hakuna"
+      }
+    },
+    "rating": {
+      "label": "Ungekadiria vipi uzoefu wako kwa ujumla?"
+    },
+    "submit": {
+      "button": "Wasilisha Maoni",
+      "submitting": "Inawasilisha..."
+    },
+    "messages": {
+      "success": "Asante kwa maoni yako! Tunashukuru ulipochukua muda kushiriki mawazo yako nasi.",
+      "error": "Kulikuwa na hitilafu katika kuwasilisha maoni yako. Tafadhali jaribu tena.",
+      "footer": "Tunashukuru maoni yako na tutayatumia kuboresha uzoefu wa Kiigaji cha Kuona."
+    }
+  },
+  "resourcesPage": {
+    "title": "Rasilimali",
+    "subtitle": "Rasilimali za kusaidia kwa kupoteza kuona, uhamaji, na ufikiaji",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Rasilimali za Braille",
+        "description": "Jifunze kuhusu braille, historia yake na jinsi ya kusoma na kuandika."
+      },
+      "hadley": {
+        "title": "Hadley - Rasilimali za Kujifunza",
+        "description": "Warsha za elimu bila malipo kwa vipofu, wenye ulemavu wa kuona, na familia zao."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Vidokezo vya Fimbo",
+        "description": "Vidokezo vya vitendo juu ya kutumia fimbo nyeupe kwa ufanisi."
+      },
+      "freeCane": {
+        "title": "NFB Programu ya Fimbo Nyeupe Bila Malipo",
+        "description": "Shirikisho la Kitaifa la Vipofu linatoa fimbo nyeupe bila malipo kwa watu vipofu nchini Marekani."
+      },
+      "phoneLines": {
+        "title": "Simu za Msaada wa Ufikiaji",
+        "description": "Orodha kamili ya nambari za simu za msaada wa ufikiaji na usaidizi."
+      }
+    }
   }
 }

@@ -356,5 +356,30 @@
     "no": "No",
     "ok": "OK",
     "cancel": "Annulla"
+  },
+  "feedbackPage": {
+    "title": "Invia Feedback",
+    "subtitle": "Aiutaci a migliorare il Simulatore di Visione condividendo i tuoi pensieri, segnalando bug o suggerendo nuove funzionalità.",
+    "whatToShare": "Cosa vorresti condividere?",
+    "feedbackTypes": { "general": "Feedback Generale", "bug": "Segnalazione Bug", "feature": "Richiesta Funzionalità", "improvement": "Suggerimento di Miglioramento", "other": "Altro" },
+    "form": { "name": "Il Tuo Nome", "email": "Indirizzo Email", "subject": "Oggetto", "subjectPlaceholder": "Breve descrizione del tuo feedback", "message": "Il Tuo Messaggio", "messagePlaceholders": { "bug": "Per favore descrivi il bug riscontrato, inclusi i passaggi per riprodurlo e eventuali messaggi di errore visualizzati.", "feature": "Descrivi la funzionalità che vorresti vedere aggiunta e come migliorerebbe l'esperienza.", "improvement": "Dicci come possiamo migliorare una funzionalità esistente o l'esperienza complessiva.", "general": "Condividi i tuoi pensieri, suggerimenti o qualsiasi altro feedback." } },
+    "favoriteFeature": { "label": "Quale funzionalità hai trovato più interessante o utile?", "options": { "demoVideo": "Visualizzatore Video Demo", "uploadPhoto": "Visualizzatore Foto Personale", "famousPeople": "Conoscenze/Visualizzazioni Persone Famose" } },
+    "userType": { "label": "Cosa ti descrive meglio?", "options": { "student": "Studente", "educator": "Educatore", "healthcare": "Professionista Sanitario", "researcher": "Ricercatore", "general": "Pubblico Generale", "other": "Altro" } },
+    "browser": { "label": "Quale browser stai usando?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Altro" } },
+    "accessibility": { "label": "Usi tecnologie assistive? (Seleziona tutte le applicabili)", "options": { "screenReader": "Screen Reader", "voiceControl": "Controllo Vocale", "keyboardNavigation": "Solo Navigazione da Tastiera", "magnification": "Ingrandimento Schermo", "highContrast": "Modalità Alto Contrasto", "none": "Nessuno" } },
+    "rating": { "label": "Come valuteresti la tua esperienza complessiva?" },
+    "submit": { "button": "Invia Feedback", "submitting": "Invio in corso..." },
+    "messages": { "success": "Grazie per il tuo feedback! Abbiamo ricevuto la tua segnalazione e la esamineremo attentamente.", "error": "Si è verificato un errore nell'invio del feedback. Per favore riprova.", "footer": "Apprezziamo il tuo feedback e esamineremo attentamente tutte le segnalazioni. Anche se non possiamo rispondere individualmente a ogni messaggio, il tuo contributo ci aiuta a migliorare il Simulatore di Visione per tutti." }
+  },
+  "resourcesPage": {
+    "title": "Risorse",
+    "subtitle": "Risorse utili per la perdita della vista, mobilità e accessibilità",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Risorse Braille", "description": "Impara il braille e trova risorse braille da Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Risorse di Apprendimento", "description": "Workshop educativi gratuiti e risorse per la perdita della vista, incluso apprendimento del braille, abilità di vita quotidiana e formazione tecnologica." },
+      "caneTips": { "title": "Ask a Blind Person - Consigli sul Bastone", "description": "Consigli pratici per utenti di bastone bianco per migliorare la mobilità e ridurre problemi comuni." },
+      "freeCane": { "title": "Programma Bastone Bianco Gratuito NFB", "description": "La Federazione Nazionale dei Ciechi offre bastoni bianchi gratuiti a chi ne ha bisogno." },
+      "phoneLines": { "title": "Linee Telefoniche Supporto Accessibilità", "description": "Un elenco completo di linee telefoniche di supporto accessibilità dalle principali aziende tra cui Apple, Microsoft, Amazon, compagnie aeree e fornitori di telecomunicazioni per clienti con perdita della vista." }
+    }
   }
 }

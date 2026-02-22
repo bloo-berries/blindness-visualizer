@@ -356,5 +356,30 @@
     "no": "Nein",
     "ok": "OK",
     "cancel": "Abbrechen"
+  },
+  "feedbackPage": {
+    "title": "Feedback Einreichen",
+    "subtitle": "Helfen Sie uns, den Vision Simulator zu verbessern, indem Sie Ihre Gedanken teilen, Fehler melden oder neue Funktionen vorschlagen.",
+    "whatToShare": "Was möchten Sie teilen?",
+    "feedbackTypes": { "general": "Allgemeines Feedback", "bug": "Fehlerbericht", "feature": "Funktionsanfrage", "improvement": "Verbesserungsvorschlag", "other": "Sonstiges" },
+    "form": { "name": "Ihr Name", "email": "E-Mail-Adresse", "subject": "Betreff", "subjectPlaceholder": "Kurze Beschreibung Ihres Feedbacks", "message": "Ihre Nachricht", "messagePlaceholders": { "bug": "Bitte beschreiben Sie den aufgetretenen Fehler, einschließlich der Schritte zur Reproduktion und eventueller Fehlermeldungen.", "feature": "Beschreiben Sie die gewünschte Funktion und wie sie das Erlebnis verbessern würde.", "improvement": "Teilen Sie uns mit, wie wir eine bestehende Funktion oder das Gesamterlebnis verbessern können.", "general": "Teilen Sie Ihre Gedanken, Vorschläge oder anderes Feedback mit uns." } },
+    "favoriteFeature": { "label": "Welche Funktion fanden Sie am interessantesten oder hilfreichsten?", "options": { "demoVideo": "Demo-Video-Visualisierer", "uploadPhoto": "Eigenes Foto hochladen Visualisierer", "famousPeople": "Berühmte Personen Wissen/Visualisierungen" } },
+    "userType": { "label": "Was beschreibt Sie am besten?", "options": { "student": "Student", "educator": "Pädagoge", "healthcare": "Gesundheitsfachkraft", "researcher": "Forscher", "general": "Allgemeine Öffentlichkeit", "other": "Sonstiges" } },
+    "browser": { "label": "Welchen Browser verwenden Sie?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Sonstiges" } },
+    "accessibility": { "label": "Verwenden Sie unterstützende Technologien? (Alle zutreffenden auswählen)", "options": { "screenReader": "Bildschirmleser", "voiceControl": "Sprachsteuerung", "keyboardNavigation": "Nur Tastaturnavigation", "magnification": "Bildschirmvergrößerung", "highContrast": "Hoher Kontrastmodus", "none": "Keine" } },
+    "rating": { "label": "Wie würden Sie Ihre Gesamterfahrung bewerten?" },
+    "submit": { "button": "Feedback Einreichen", "submitting": "Wird gesendet..." },
+    "messages": { "success": "Vielen Dank für Ihr Feedback! Wir haben Ihre Einsendung erhalten und werden sie sorgfältig prüfen.", "error": "Beim Senden Ihres Feedbacks ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.", "footer": "Wir schätzen Ihr Feedback und werden alle Einsendungen sorgfältig prüfen. Obwohl wir nicht auf jede Nachricht einzeln antworten können, hilft uns Ihr Input, den Vision Simulator für alle zu verbessern." }
+  },
+  "resourcesPage": {
+    "title": "Ressourcen",
+    "subtitle": "Hilfreiche Ressourcen für Sehverlust, Mobilität und Barrierefreiheit",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Braille-Ressourcen", "description": "Lernen Sie Braille und finden Sie Braille-Ressourcen von Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Lernressourcen", "description": "Kostenlose Bildungsworkshops und Ressourcen für Sehverlust, einschließlich Braille-Lernen, Alltagskompetenzen und Technologieschulung." },
+      "caneTips": { "title": "Ask a Blind Person - Stocktipps", "description": "Praktische Tipps für Blindenstocknutzer zur Verbesserung der Mobilität und Reduzierung häufiger Probleme." },
+      "freeCane": { "title": "NFB Kostenloses Blindenstock-Programm", "description": "Die Nationale Blindenvereinigung bietet kostenlose Blindenstöcke für Bedürftige an." },
+      "phoneLines": { "title": "Barrierefreiheits-Support-Hotlines", "description": "Eine umfassende Liste von Barrierefreiheits-Support-Hotlines großer Unternehmen einschließlich Apple, Microsoft, Amazon, Fluggesellschaften und Telekommunikationsanbieter für Kunden mit Sehverlust." }
+    }
   }
 }

@@ -356,5 +356,30 @@
     "no": "否",
     "ok": "确定",
     "cancel": "取消"
+  },
+  "feedbackPage": {
+    "title": "提交反馈",
+    "subtitle": "通过分享您的想法、报告错误或建议新功能来帮助我们改进视觉模拟器。",
+    "whatToShare": "您想分享什么？",
+    "feedbackTypes": { "general": "一般反馈", "bug": "错误报告", "feature": "功能请求", "improvement": "改进建议", "other": "其他" },
+    "form": { "name": "您的姓名", "email": "电子邮件地址", "subject": "主题", "subjectPlaceholder": "简要描述您的反馈", "message": "您的消息", "messagePlaceholders": { "bug": "请描述您遇到的错误，包括重现步骤和您看到的任何错误消息。", "feature": "描述您希望添加的功能以及它将如何改善体验。", "improvement": "告诉我们如何改进现有功能或整体体验。", "general": "分享您的想法、建议或任何其他反馈。" } },
+    "favoriteFeature": { "label": "您觉得哪个功能最有趣或最有帮助？", "options": { "demoVideo": "演示视频可视化器", "uploadPhoto": "上传您自己的照片可视化器", "famousPeople": "名人知识/可视化" } },
+    "userType": { "label": "什么最能描述您？", "options": { "student": "学生", "educator": "教育工作者", "healthcare": "医疗保健专业人员", "researcher": "研究人员", "general": "普通公众", "other": "其他" } },
+    "browser": { "label": "您使用什么浏览器？", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "其他" } },
+    "accessibility": { "label": "您是否使用任何辅助技术？（选择所有适用的）", "options": { "screenReader": "屏幕阅读器", "voiceControl": "语音控制", "keyboardNavigation": "仅键盘导航", "magnification": "屏幕放大", "highContrast": "高对比度模式", "none": "无" } },
+    "rating": { "label": "您如何评价您的整体体验？" },
+    "submit": { "button": "提交反馈", "submitting": "提交中..." },
+    "messages": { "success": "感谢您的反馈！我们已收到您的提交，将仔细审查。", "error": "提交反馈时出错。请重试。", "footer": "我们感谢您的反馈，并将仔细审查所有提交。虽然我们无法单独回复每条消息，但您的意见有助于我们为每个人改进视觉模拟器。" }
+  },
+  "resourcesPage": {
+    "title": "资源",
+    "subtitle": "关于视力丧失、移动性和无障碍的有用资源",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - 盲文资源", "description": "了解盲文并从Two Blind Brothers找到盲文资源。" },
+      "hadley": { "title": "Hadley - 学习资源", "description": "免费的视力丧失教育研讨会和资源，包括盲文学习、日常生活技能和技术培训。" },
+      "caneTips": { "title": "Ask a Blind Person - 手杖技巧", "description": "为白手杖使用者提供实用技巧，以改善移动性并减少常见问题。" },
+      "freeCane": { "title": "NFB免费白手杖计划", "description": "美国全国盲人联合会为有需要的人提供免费白手杖。" },
+      "phoneLines": { "title": "无障碍支持电话线", "description": "主要公司的无障碍支持电话线综合列表，包括Apple、Microsoft、Amazon、航空公司和电信供应商，为视力丧失客户提供服务。" }
+    }
   }
 }

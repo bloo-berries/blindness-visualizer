@@ -356,5 +356,30 @@
     "no": "いいえ",
     "ok": "OK",
     "cancel": "キャンセル"
+  },
+  "feedbackPage": {
+    "title": "フィードバックを送信",
+    "subtitle": "ご意見の共有、バグの報告、新機能の提案を通じて、ビジョンシミュレーターの改善にご協力ください。",
+    "whatToShare": "何を共有しますか？",
+    "feedbackTypes": { "general": "一般的なフィードバック", "bug": "バグ報告", "feature": "機能リクエスト", "improvement": "改善提案", "other": "その他" },
+    "form": { "name": "お名前", "email": "メールアドレス", "subject": "件名", "subjectPlaceholder": "フィードバックの簡単な説明", "message": "メッセージ", "messagePlaceholders": { "bug": "発生したバグについて、再現手順や表示されたエラーメッセージを含めて説明してください。", "feature": "追加してほしい機能と、それがどのように体験を向上させるかを説明してください。", "improvement": "既存の機能や全体的な体験をどのように改善できるかお聞かせください。", "general": "ご意見、ご提案、その他のフィードバックをお聞かせください。" } },
+    "favoriteFeature": { "label": "最も興味深い、または役立つと感じた機能は何ですか？", "options": { "demoVideo": "デモビデオビジュアライザー", "uploadPhoto": "写真アップロードビジュアライザー", "famousPeople": "有名人の知識/ビジュアライゼーション" } },
+    "userType": { "label": "あなたを最もよく表すのは？", "options": { "student": "学生", "educator": "教育者", "healthcare": "医療専門家", "researcher": "研究者", "general": "一般", "other": "その他" } },
+    "browser": { "label": "使用しているブラウザは？", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "その他" } },
+    "accessibility": { "label": "支援技術を使用していますか？（該当するものをすべて選択）", "options": { "screenReader": "スクリーンリーダー", "voiceControl": "音声コントロール", "keyboardNavigation": "キーボードナビゲーションのみ", "magnification": "画面拡大", "highContrast": "高コントラストモード", "none": "なし" } },
+    "rating": { "label": "全体的な体験をどのように評価しますか？" },
+    "submit": { "button": "フィードバックを送信", "submitting": "送信中..." },
+    "messages": { "success": "フィードバックありがとうございます！送信を受け取り、慎重に確認します。", "error": "フィードバックの送信中にエラーが発生しました。もう一度お試しください。", "footer": "フィードバックに感謝し、すべての送信を慎重に確認します。個々のメッセージに返信することはできませんが、皆様のご意見はビジョンシミュレーターを皆様のために改善するのに役立ちます。" }
+  },
+  "resourcesPage": {
+    "title": "リソース",
+    "subtitle": "視力喪失、移動性、アクセシビリティに役立つリソース",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - 点字リソース", "description": "点字について学び、Two Blind Brothersの点字リソースを見つけてください。" },
+      "hadley": { "title": "Hadley - 学習リソース", "description": "視力喪失のための無料教育ワークショップとリソース。点字学習、日常生活スキル、技術トレーニングを含みます。" },
+      "caneTips": { "title": "Ask a Blind Person - 杖のコツ", "description": "白杖ユーザーのための実用的なヒント。移動性を向上させ、一般的な問題を減らします。" },
+      "freeCane": { "title": "NFB無料白杖プログラム", "description": "全米盲人連盟は、必要な人に無料で白杖を提供しています。" },
+      "phoneLines": { "title": "アクセシビリティサポート電話回線", "description": "Apple、Microsoft、Amazon、航空会社、通信プロバイダーを含む大手企業のアクセシビリティサポート電話回線の包括的なリスト。視力喪失のお客様向け。" }
+    }
   }
 }

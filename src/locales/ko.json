@@ -356,5 +356,30 @@
     "no": "아니오",
     "ok": "확인",
     "cancel": "취소"
+  },
+  "feedbackPage": {
+    "title": "피드백 제출",
+    "subtitle": "생각을 공유하고, 버그를 신고하거나, 새로운 기능을 제안하여 비전 시뮬레이터 개선에 도움을 주세요.",
+    "whatToShare": "무엇을 공유하시겠습니까?",
+    "feedbackTypes": { "general": "일반 피드백", "bug": "버그 신고", "feature": "기능 요청", "improvement": "개선 제안", "other": "기타" },
+    "form": { "name": "이름", "email": "이메일 주소", "subject": "제목", "subjectPlaceholder": "피드백에 대한 간단한 설명", "message": "메시지", "messagePlaceholders": { "bug": "발생한 버그에 대해 재현 단계와 표시된 오류 메시지를 포함하여 설명해 주세요.", "feature": "추가되었으면 하는 기능과 그것이 경험을 어떻게 향상시킬지 설명해 주세요.", "improvement": "기존 기능이나 전반적인 경험을 어떻게 개선할 수 있는지 알려주세요.", "general": "생각, 제안 또는 기타 피드백을 공유해 주세요." } },
+    "favoriteFeature": { "label": "가장 흥미롭거나 유용했던 기능은 무엇인가요?", "options": { "demoVideo": "데모 비디오 시각화 도구", "uploadPhoto": "사진 업로드 시각화 도구", "famousPeople": "유명인 지식/시각화" } },
+    "userType": { "label": "당신을 가장 잘 설명하는 것은?", "options": { "student": "학생", "educator": "교육자", "healthcare": "의료 전문가", "researcher": "연구원", "general": "일반인", "other": "기타" } },
+    "browser": { "label": "사용 중인 브라우저는?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "기타" } },
+    "accessibility": { "label": "보조 기술을 사용하시나요? (해당되는 모든 것 선택)", "options": { "screenReader": "스크린 리더", "voiceControl": "음성 제어", "keyboardNavigation": "키보드 탐색만", "magnification": "화면 확대", "highContrast": "고대비 모드", "none": "없음" } },
+    "rating": { "label": "전반적인 경험을 어떻게 평가하시겠습니까?" },
+    "submit": { "button": "피드백 제출", "submitting": "제출 중..." },
+    "messages": { "success": "피드백 감사합니다! 제출을 받았으며 신중하게 검토하겠습니다.", "error": "피드백 제출 중 오류가 발생했습니다. 다시 시도해 주세요.", "footer": "피드백에 감사드리며 모든 제출을 신중하게 검토합니다. 모든 메시지에 개별적으로 응답할 수는 없지만, 귀하의 의견은 모든 사람을 위해 비전 시뮬레이터를 개선하는 데 도움이 됩니다." }
+  },
+  "resourcesPage": {
+    "title": "리소스",
+    "subtitle": "시력 상실, 이동성 및 접근성에 유용한 리소스",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - 점자 리소스", "description": "점자에 대해 배우고 Two Blind Brothers의 점자 리소스를 찾아보세요." },
+      "hadley": { "title": "Hadley - 학습 리소스", "description": "시력 상실을 위한 무료 교육 워크숍 및 리소스. 점자 학습, 일상 생활 기술, 기술 교육 포함." },
+      "caneTips": { "title": "Ask a Blind Person - 지팡이 팁", "description": "흰 지팡이 사용자를 위한 실용적인 팁. 이동성을 향상하고 일반적인 문제를 줄입니다." },
+      "freeCane": { "title": "NFB 무료 흰 지팡이 프로그램", "description": "미국 시각 장애인 연맹은 필요한 사람들에게 무료 흰 지팡이를 제공합니다." },
+      "phoneLines": { "title": "접근성 지원 전화선", "description": "Apple, Microsoft, Amazon, 항공사 및 통신 제공업체를 포함한 주요 기업의 시력 상실 고객을 위한 접근성 지원 전화선 종합 목록." }
+    }
   }
 }

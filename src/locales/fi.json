@@ -313,5 +313,109 @@
     "no": "Ei",
     "ok": "OK",
     "cancel": "Peruuta"
+  },
+  "feedbackPage": {
+    "title": "Lähetä Palautetta",
+    "subtitle": "Auta meitä parantamaan Näkösimulaattoria jakamalla ajatuksiasi, ilmoittamalla virheistä tai ehdottamalla uusia ominaisuuksia.",
+    "whatToShare": "Mitä haluaisit jakaa?",
+    "feedbackTypes": {
+      "general": "Yleinen Palaute",
+      "bug": "Virheilmoitus",
+      "feature": "Ominaisuuspyyntö",
+      "improvement": "Parannusehdotus",
+      "other": "Muu"
+    },
+    "form": {
+      "name": "Nimesi",
+      "email": "Sähköpostiosoite",
+      "subject": "Aihe",
+      "subjectPlaceholder": "Lyhyt kuvaus palautteestasi",
+      "message": "Viestisi",
+      "messagePlaceholders": {
+        "bug": "Kuvaile virhe...",
+        "feature": "Kuvaile ominaisuus...",
+        "improvement": "Kerro meille miten parantaa...",
+        "general": "Jaa ajatuksesi..."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Minkä ominaisuuden koit mielenkiintoisimmaksi tai hyödyllisimmäksi?",
+      "options": {
+        "demoVideo": "Demovideon Visualisoija",
+        "uploadPhoto": "Lataa Oma Kuva Visualisoija",
+        "famousPeople": "Kuuluisat Ihmiset Tieto/Visualisoinnit"
+      }
+    },
+    "userType": {
+      "label": "Mikä kuvaa sinua parhaiten?",
+      "options": {
+        "student": "Opiskelija",
+        "educator": "Opettaja",
+        "healthcare": "Terveydenhuollon Ammattilainen",
+        "researcher": "Tutkija",
+        "general": "Suuri Yleisö",
+        "other": "Muu"
+      }
+    },
+    "browser": {
+      "label": "Mitä selainta käytät?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Muu"
+      }
+    },
+    "accessibility": {
+      "label": "Käytätkö apuvälineteknologiaa?",
+      "options": {
+        "screenReader": "Ruudunlukuohjelma",
+        "voiceControl": "Ääniohjaus",
+        "keyboardNavigation": "Vain Näppäimistönavigaatio",
+        "magnification": "Ruudun Suurennus",
+        "highContrast": "Korkean Kontrastin Tila",
+        "none": "Ei mitään"
+      }
+    },
+    "rating": {
+      "label": "Miten arvioisit kokonaiskokemuksesi?"
+    },
+    "submit": {
+      "button": "Lähetä Palaute",
+      "submitting": "Lähetetään..."
+    },
+    "messages": {
+      "success": "Kiitos palautteestasi! Arvostamme, että käytit aikaa ajatusten jakamiseen kanssamme.",
+      "error": "Palautteen lähettämisessä tapahtui virhe. Yritä uudelleen.",
+      "footer": "Arvostamme palautettasi ja käytämme sitä Näkösimulaattorin kokemuksen parantamiseen."
+    }
+  },
+  "resourcesPage": {
+    "title": "Resurssit",
+    "subtitle": "Hyödyllisiä resursseja näön menetykseen, liikkuvuuteen ja esteettömyyteen",
+    "resources": {
+      "braille": {
+        "title": "Two Blind Brothers - Pistekirjoitusresurssit",
+        "description": "Opi pistekirjoituksesta, sen historiasta ja lukemisesta ja kirjoittamisesta."
+      },
+      "hadley": {
+        "title": "Hadley - Oppimisresurssit",
+        "description": "Ilmaisia koulutustyöpajoja sokeille, näkövammaisille ja heidän perheilleen."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Keppivinkkejä",
+        "description": "Käytännön vinkkejä valkoisen kepin tehokkaaseen käyttöön."
+      },
+      "freeCane": {
+        "title": "NFB Ilmainen Valkoinen Keppi -ohjelma",
+        "description": "National Federation of the Blind tarjoaa ilmaisia valkoisia keppejä sokeille henkilöille Yhdysvalloissa."
+      },
+      "phoneLines": {
+        "title": "Esteettömyystuen Puhelinlinjat",
+        "description": "Kattava lista puhelinlinjoista esteettömyystukeen ja apuun."
+      }
+    }
   }
 }

@@ -315,5 +315,30 @@
     "no": "Níl",
     "ok": "OK",
     "cancel": "Cealaigh"
+  },
+  "feedbackPage": {
+    "title": "Seol Aiseolas",
+    "subtitle": "Cuidigh linn an tIonsamhlóir Radhairc a fheabhsú trí do smaointe a roinnt, fabhtanna a thuairisciú, nó gnéithe nua a mholadh.",
+    "whatToShare": "Cad ba mhaith leat a roinnt?",
+    "feedbackTypes": { "general": "Aiseolas Ginearálta", "bug": "Tuairisc Fabht", "feature": "Iarratas Gné", "improvement": "Moladh Feabhsúcháin", "other": "Eile" },
+    "form": { "name": "D'Ainm", "email": "Seoladh Ríomhphoist", "subject": "Ábhar", "subjectPlaceholder": "Cur síos gairid ar d'aiseolas", "message": "Do Theachtaireacht", "messagePlaceholders": { "bug": "Déan cur síos ar an bhfabht a tháinig tú air, lena n-áirítear na céimeanna chun é a atáirgeadh agus aon teachtaireachtaí earráide.", "feature": "Déan cur síos ar an ngné ba mhaith leat a fheiceáil agus conas a fheabhsódh sé an taithí.", "improvement": "Inis dúinn conas is féidir linn gné atá ann cheana nó an taithí iomlán a fheabhsú.", "general": "Roinn do smaointe, moltaí, nó aon aiseolas eile." } },
+    "favoriteFeature": { "label": "Cén gné a bhí is suimiúla nó is úsáidí agat?", "options": { "demoVideo": "Amharcóir Físeán Taispeána", "uploadPhoto": "Amharcóir Grianghraf a Uaslódáil", "famousPeople": "Eolas/Amharcanna ar Dhaoine Cáiliúla" } },
+    "userType": { "label": "Cad a dhéanann cur síos is fearr ort?", "options": { "student": "Mac Léinn", "educator": "Oideachasóir", "healthcare": "Gairmí Sláinte", "researcher": "Taighdeoir", "general": "Pobal Ginearálta", "other": "Eile" } },
+    "browser": { "label": "Cén brabhsálaí atá á úsáid agat?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Eile" } },
+    "accessibility": { "label": "An úsáideann tú teicneolaíochtaí cúnta? (Roghnaigh gach ceann a bhaineann)", "options": { "screenReader": "Léitheoir Scáileáin", "voiceControl": "Rialú Gutha", "keyboardNavigation": "Nascleanúint Méarchláir Amháin", "magnification": "Formhéadú Scáileáin", "highContrast": "Mód Ardchodarsnacht", "none": "Gan ceann" } },
+    "rating": { "label": "Conas a rátálfá do thaithí iomlán?" },
+    "submit": { "button": "Seol Aiseolas", "submitting": "Á Sheoladh..." },
+    "messages": { "success": "Go raibh maith agat as d'aiseolas! Fuaireamar do sheoladh agus scrúdóimid go cúramach é.", "error": "Tharla earráid agus d'aiseolas á sheoladh. Bain triail eile as.", "footer": "Tá meas againn ar d'aiseolas agus scrúdóimid gach seoladh go cúramach. Cé nach féidir linn freagra a thabhairt ar gach teachtaireacht ina n-aonar, cuidíonn do chuid ionchuir linn an tIonsamhlóir Radhairc a fheabhsú do chách." }
+  },
+  "resourcesPage": {
+    "title": "Acmhainní",
+    "subtitle": "Acmhainní úsáideacha do chailliúint radhairc, soghluaisteacht agus inrochtaineacht",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Acmhainní Braille", "description": "Foghlaim faoi Braille agus aimsigh acmhainní ó Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Acmhainní Foghlama", "description": "Ceardlanna oideachais saor in aisce agus acmhainní do chailliúint radhairc, lena n-áirítear foghlaim Braille, scileanna maireachtála laethúla, agus oiliúint teicneolaíochta." },
+      "caneTips": { "title": "Ask a Blind Person - Leideanna Bata", "description": "Leideanna praiticiúla d'úsáideoirí bata bán chun soghluaisteacht a fheabhsú agus fadhbanna coitianta a laghdú." },
+      "freeCane": { "title": "Clár Bata Bán Saor in Aisce NFB", "description": "Cuireann Cónaidhm Náisiúnta na nDall bataí bána saor in aisce ar fáil dóibh siúd a bhfuil gá acu leo." },
+      "phoneLines": { "title": "Línte Teileafóin Tacaíochta Inrochtaineachta", "description": "Liosta cuimsitheach de línte teileafóin tacaíochta inrochtaineachta ó mhórchuideachtaí lena n-áirítear Apple, Microsoft, Amazon, aerlínte, agus soláthraithe teileachumarsáide do chustaiméirí le cailliúint radhairc." }
+    }
   }
 }

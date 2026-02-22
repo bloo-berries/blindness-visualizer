@@ -356,5 +356,30 @@
     "no": "Não",
     "ok": "OK",
     "cancel": "Cancelar"
+  },
+  "feedbackPage": {
+    "title": "Enviar Feedback",
+    "subtitle": "Ajude-nos a melhorar o Simulador de Visão compartilhando seus pensamentos, reportando bugs ou sugerindo novos recursos.",
+    "whatToShare": "O que você gostaria de compartilhar?",
+    "feedbackTypes": { "general": "Feedback Geral", "bug": "Relatório de Bug", "feature": "Solicitação de Recurso", "improvement": "Sugestão de Melhoria", "other": "Outro" },
+    "form": { "name": "Seu Nome", "email": "Endereço de E-mail", "subject": "Assunto", "subjectPlaceholder": "Breve descrição do seu feedback", "message": "Sua Mensagem", "messagePlaceholders": { "bug": "Por favor descreva o bug que encontrou, incluindo os passos para reproduzi-lo e qualquer mensagem de erro que viu.", "feature": "Descreva o recurso que gostaria de ver adicionado e como melhoraria a experiência.", "improvement": "Conte-nos como podemos melhorar um recurso existente ou a experiência geral.", "general": "Compartilhe seus pensamentos, sugestões ou qualquer outro feedback." } },
+    "favoriteFeature": { "label": "Qual recurso você achou mais interessante ou útil?", "options": { "demoVideo": "Visualizador de Vídeo Demo", "uploadPhoto": "Visualizador de Foto Própria", "famousPeople": "Conhecimento/Visualizações de Pessoas Famosas" } },
+    "userType": { "label": "O que melhor descreve você?", "options": { "student": "Estudante", "educator": "Educador", "healthcare": "Profissional de Saúde", "researcher": "Pesquisador", "general": "Público Geral", "other": "Outro" } },
+    "browser": { "label": "Qual navegador você está usando?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Outro" } },
+    "accessibility": { "label": "Você usa alguma tecnologia assistiva? (Selecione todas que se aplicam)", "options": { "screenReader": "Leitor de Tela", "voiceControl": "Controle por Voz", "keyboardNavigation": "Apenas Navegação por Teclado", "magnification": "Ampliação de Tela", "highContrast": "Modo Alto Contraste", "none": "Nenhum" } },
+    "rating": { "label": "Como você avaliaria sua experiência geral?" },
+    "submit": { "button": "Enviar Feedback", "submitting": "Enviando..." },
+    "messages": { "success": "Obrigado pelo seu feedback! Recebemos sua submissão e a revisaremos cuidadosamente.", "error": "Houve um erro ao enviar seu feedback. Por favor tente novamente.", "footer": "Agradecemos seu feedback e revisaremos todas as submissões cuidadosamente. Embora não possamos responder a cada mensagem individualmente, sua contribuição nos ajuda a melhorar o Simulador de Visão para todos." }
+  },
+  "resourcesPage": {
+    "title": "Recursos",
+    "subtitle": "Recursos úteis para perda de visão, mobilidade e acessibilidade",
+    "resources": {
+      "braille": { "title": "Two Blind Brothers - Recursos de Braille", "description": "Aprenda sobre braille e encontre recursos de braille da Two Blind Brothers." },
+      "hadley": { "title": "Hadley - Recursos de Aprendizagem", "description": "Workshops educacionais gratuitos e recursos para perda de visão, incluindo aprendizado de braille, habilidades de vida diária e treinamento tecnológico." },
+      "caneTips": { "title": "Ask a Blind Person - Dicas de Bengala", "description": "Dicas práticas para usuários de bengala branca para melhorar a mobilidade e reduzir problemas comuns." },
+      "freeCane": { "title": "Programa de Bengala Branca Gratuita NFB", "description": "A Federação Nacional dos Cegos oferece bengalas brancas gratuitas para quem precisa." },
+      "phoneLines": { "title": "Linhas Telefônicas de Suporte de Acessibilidade", "description": "Uma lista abrangente de linhas telefônicas de suporte de acessibilidade de grandes empresas incluindo Apple, Microsoft, Amazon, companhias aéreas e provedores de telecomunicações para clientes com perda de visão." }
+    }
   }
 }

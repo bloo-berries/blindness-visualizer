@@ -1,12 +1,13 @@
 import React from 'react';
-import { 
-  Container, 
-  Typography, 
-  Box, 
+import { useTranslation } from 'react-i18next';
+import {
+  Container,
+  Typography,
+  Box,
   Paper,
   Link
 } from '@mui/material';
-import { 
+import {
   OpenInNew as OpenInNewIcon,
   MenuBook as MenuBookIcon,
   School as SchoolIcon,
@@ -18,35 +19,37 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
 const ResourcesPage: React.FC = () => {
+  const { t } = useTranslation();
+
   const resources = [
     {
-      title: 'Two Blind Brothers - Braille Resources',
+      titleKey: 'resourcesPage.resources.braille.title',
+      descriptionKey: 'resourcesPage.resources.braille.description',
       url: 'https://twoblindbrothers.com/pages/braille',
-      description: 'Learn about braille and find braille resources from Two Blind Brothers.',
       icon: <MenuBookIcon />
     },
     {
-      title: 'Hadley - Learning Resources',
+      titleKey: 'resourcesPage.resources.hadley.title',
+      descriptionKey: 'resourcesPage.resources.hadley.description',
       url: 'https://hadleyhelps.org/learn?topic_id=15',
-      description: 'Free educational workshops and resources for vision loss, including braille learning, daily living skills, and technology training.',
       icon: <SchoolIcon />
     },
     {
-      title: 'Ask a Blind Person - Cane Tips',
+      titleKey: 'resourcesPage.resources.caneTips.title',
+      descriptionKey: 'resourcesPage.resources.caneTips.description',
       url: 'https://askablindperson.wordpress.com/2024/03/31/7-cane-tips-for-getting-jabbed-in-the-stomach-less-often/',
-      description: 'Practical tips for white cane users to improve mobility and reduce common issues.',
       icon: <ArticleIcon />
     },
     {
-      title: 'NFB Free White Cane Program',
+      titleKey: 'resourcesPage.resources.freeCane.title',
+      descriptionKey: 'resourcesPage.resources.freeCane.description',
       url: 'https://nfb.org/programs-services/free-white-cane-program',
-      description: 'The National Federation of the Blind offers free white canes to those who need them.',
       icon: <SupportIcon />
     },
     {
-      title: 'Accessibility Support Phone Lines',
+      titleKey: 'resourcesPage.resources.phoneLines.title',
+      descriptionKey: 'resourcesPage.resources.phoneLines.description',
       url: 'https://oepatients.org/accessibility-support-phone-lines-you-should-know/',
-      description: 'A comprehensive list of accessibility support phone lines from major companies including Apple, Microsoft, Amazon, airlines, and telecommunications providers for customers with vision loss.',
       icon: <PhoneIcon />
     }
   ];
@@ -58,7 +61,7 @@ const ResourcesPage: React.FC = () => {
         <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>
           {/* Hero Section */}
           <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="h2" component="h1" gutterBottom sx={{ 
+            <Typography variant="h2" component="h1" gutterBottom sx={{
               fontWeight: 700,
               background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
               backgroundClip: 'text',
@@ -66,21 +69,21 @@ const ResourcesPage: React.FC = () => {
               WebkitTextFillColor: 'transparent',
               mb: 2
             }}>
-              Resources
+              {t('resourcesPage.title')}
             </Typography>
             <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto' }}>
-              Helpful resources for vision loss, mobility, and accessibility
+              {t('resourcesPage.subtitle')}
             </Typography>
           </Box>
 
           {/* Resources List */}
           <Box sx={{ mb: 4 }}>
             {resources.map((resource, index) => (
-              <Paper 
+              <Paper
                 key={index}
                 elevation={2}
-                sx={{ 
-                  p: 3, 
+                sx={{
+                  p: 3,
                   mb: 3,
                   transition: 'all 0.2s ease-in-out',
                   '&:hover': {
@@ -91,8 +94,8 @@ const ResourcesPage: React.FC = () => {
                 }}
               >
                 <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                  <Box sx={{ 
-                    mr: 2, 
+                  <Box sx={{
+                    mr: 2,
                     color: 'primary.main',
                     display: 'flex',
                     alignItems: 'center',
@@ -113,9 +116,9 @@ const ResourcesPage: React.FC = () => {
                         }
                       }}
                     >
-                      <Typography 
-                        variant="h5" 
-                        component="h3" 
+                      <Typography
+                        variant="h5"
+                        component="h3"
                         gutterBottom
                         sx={{
                           fontWeight: 600,
@@ -124,19 +127,19 @@ const ResourcesPage: React.FC = () => {
                           gap: 1
                         }}
                       >
-                        {resource.title}
+                        {t(resource.titleKey)}
                         <OpenInNewIcon sx={{ fontSize: '1rem' }} />
                       </Typography>
                     </Link>
-                    <Typography 
-                      variant="body1" 
+                    <Typography
+                      variant="body1"
                       color="text.secondary"
-                      sx={{ 
+                      sx={{
                         lineHeight: 1.6,
                         mt: 1
                       }}
                     >
-                      {resource.description}
+                      {t(resource.descriptionKey)}
                     </Typography>
                   </Box>
                 </Box>

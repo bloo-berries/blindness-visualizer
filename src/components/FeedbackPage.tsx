@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Paper,
@@ -46,6 +47,7 @@ interface FeedbackForm {
 }
 
 const FeedbackPage: React.FC = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FeedbackForm>({
     type: 'general',
     name: '',
@@ -63,44 +65,44 @@ const FeedbackPage: React.FC = () => {
   const [showError, setShowError] = useState(false);
 
   const feedbackTypes = [
-    { value: 'general', label: 'General Feedback', icon: <FeedbackIcon />, color: 'primary' },
-    { value: 'bug', label: 'Bug Report', icon: <BugReportIcon />, color: 'error' },
-    { value: 'feature', label: 'Feature Request', icon: <LightbulbIcon />, color: 'success' },
-    { value: 'improvement', label: 'Improvement Suggestion', icon: <StarIcon />, color: 'warning' },
-    { value: 'other', label: 'Other', icon: <FeedbackIcon />, color: 'default' }
+    { value: 'general', labelKey: 'feedbackPage.feedbackTypes.general', icon: <FeedbackIcon />, color: 'primary' },
+    { value: 'bug', labelKey: 'feedbackPage.feedbackTypes.bug', icon: <BugReportIcon />, color: 'error' },
+    { value: 'feature', labelKey: 'feedbackPage.feedbackTypes.feature', icon: <LightbulbIcon />, color: 'success' },
+    { value: 'improvement', labelKey: 'feedbackPage.feedbackTypes.improvement', icon: <StarIcon />, color: 'warning' },
+    { value: 'other', labelKey: 'feedbackPage.feedbackTypes.other', icon: <FeedbackIcon />, color: 'default' }
   ];
 
   const favoriteFeatures = [
-    { value: 'demo-video', label: 'Demo Video Visualizer' },
-    { value: 'upload-photo', label: 'Upload Your Own Photo Visualizer' },
-    { value: 'famous-people', label: 'Famous People Knowledge/Visualizations' }
+    { value: 'demo-video', labelKey: 'feedbackPage.favoriteFeature.options.demoVideo' },
+    { value: 'upload-photo', labelKey: 'feedbackPage.favoriteFeature.options.uploadPhoto' },
+    { value: 'famous-people', labelKey: 'feedbackPage.favoriteFeature.options.famousPeople' }
   ];
 
   const userTypes = [
-    { value: 'student', label: 'Student' },
-    { value: 'educator', label: 'Educator' },
-    { value: 'healthcare', label: 'Healthcare Professional' },
-    { value: 'researcher', label: 'Researcher' },
-    { value: 'general', label: 'General Public' },
-    { value: 'other', label: 'Other' }
+    { value: 'student', labelKey: 'feedbackPage.userType.options.student' },
+    { value: 'educator', labelKey: 'feedbackPage.userType.options.educator' },
+    { value: 'healthcare', labelKey: 'feedbackPage.userType.options.healthcare' },
+    { value: 'researcher', labelKey: 'feedbackPage.userType.options.researcher' },
+    { value: 'general', labelKey: 'feedbackPage.userType.options.general' },
+    { value: 'other', labelKey: 'feedbackPage.userType.options.other' }
   ];
 
   const browsers = [
-    { value: 'chrome', label: 'Chrome' },
-    { value: 'firefox', label: 'Firefox' },
-    { value: 'safari', label: 'Safari' },
-    { value: 'edge', label: 'Microsoft Edge' },
-    { value: 'opera', label: 'Opera' },
-    { value: 'other', label: 'Other' }
+    { value: 'chrome', labelKey: 'feedbackPage.browser.options.chrome' },
+    { value: 'firefox', labelKey: 'feedbackPage.browser.options.firefox' },
+    { value: 'safari', labelKey: 'feedbackPage.browser.options.safari' },
+    { value: 'edge', labelKey: 'feedbackPage.browser.options.edge' },
+    { value: 'opera', labelKey: 'feedbackPage.browser.options.opera' },
+    { value: 'other', labelKey: 'feedbackPage.browser.options.other' }
   ];
 
   const accessibilityOptions = [
-    { value: 'screen-reader', label: 'Screen Reader' },
-    { value: 'voice-control', label: 'Voice Control' },
-    { value: 'keyboard-navigation', label: 'Keyboard Navigation Only' },
-    { value: 'magnification', label: 'Screen Magnification' },
-    { value: 'high-contrast', label: 'High Contrast Mode' },
-    { value: 'none', label: 'None' }
+    { value: 'screen-reader', labelKey: 'feedbackPage.accessibility.options.screenReader' },
+    { value: 'voice-control', labelKey: 'feedbackPage.accessibility.options.voiceControl' },
+    { value: 'keyboard-navigation', labelKey: 'feedbackPage.accessibility.options.keyboardNavigation' },
+    { value: 'magnification', labelKey: 'feedbackPage.accessibility.options.magnification' },
+    { value: 'high-contrast', labelKey: 'feedbackPage.accessibility.options.highContrast' },
+    { value: 'none', labelKey: 'feedbackPage.accessibility.options.none' }
   ];
 
   const handleInputChange = (field: keyof FeedbackForm) => (
@@ -164,24 +166,24 @@ const FeedbackPage: React.FC = () => {
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 8 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography 
-            variant="h2" 
-            component="h1" 
+          <Typography
+            variant="h2"
+            component="h1"
             gutterBottom
-            sx={{ 
+            sx={{
               fontWeight: 700,
               color: 'text.primary',
               mb: 2
             }}
           >
-            Submit Feedback
+            {t('feedbackPage.title')}
           </Typography>
-          <Typography 
-            variant="h6" 
+          <Typography
+            variant="h6"
             color="text.secondary"
             sx={{ maxWidth: '600px', mx: 'auto', lineHeight: 1.6 }}
           >
-            Help us improve the Vision Simulator by sharing your thoughts, reporting bugs, or suggesting new features.
+            {t('feedbackPage.subtitle')}
           </Typography>
         </Box>
 
@@ -191,14 +193,14 @@ const FeedbackPage: React.FC = () => {
             <Card sx={{ height: 'fit-content', position: 'sticky', top: 100 }}>
               <CardContent>
                 <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  What would you like to share?
+                  {t('feedbackPage.whatToShare')}
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 2 }}>
                   {feedbackTypes.map((type) => (
                     <Chip
                       key={type.value}
                       icon={type.icon}
-                      label={type.label}
+                      label={t(type.labelKey)}
                       variant={formData.type === type.value ? 'filled' : 'outlined'}
                       color={formData.type === type.value ? type.color as any : 'default'}
                       onClick={() => setFormData(prev => ({ ...prev, type: type.value as any }))}
@@ -234,7 +236,7 @@ const FeedbackPage: React.FC = () => {
                   <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                     <TextField
                       fullWidth
-                      label="Your Name"
+                      label={t('feedbackPage.form.name')}
                       value={formData.name}
                       onChange={handleInputChange('name')}
                       required
@@ -243,7 +245,7 @@ const FeedbackPage: React.FC = () => {
                     />
                     <TextField
                       fullWidth
-                      label="Email Address"
+                      label={t('feedbackPage.form.email')}
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange('email')}
@@ -256,25 +258,25 @@ const FeedbackPage: React.FC = () => {
                   {/* Subject */}
                   <TextField
                     fullWidth
-                    label="Subject"
+                    label={t('feedbackPage.form.subject')}
                     value={formData.subject}
                     onChange={handleInputChange('subject')}
                     required
                     variant="outlined"
-                    placeholder="Brief description of your feedback"
+                    placeholder={t('feedbackPage.form.subjectPlaceholder')}
                   />
 
                   {/* Favorite Feature Dropdown */}
                   <FormControl fullWidth>
-                    <InputLabel>Which feature did you find most interesting or helpful?</InputLabel>
+                    <InputLabel>{t('feedbackPage.favoriteFeature.label')}</InputLabel>
                     <Select
                       value={formData.favoriteFeature}
                       onChange={handleInputChange('favoriteFeature')}
-                      label="Which feature did you find most interesting or helpful?"
+                      label={t('feedbackPage.favoriteFeature.label')}
                     >
                       {favoriteFeatures.map((feature) => (
                         <MenuItem key={feature.value} value={feature.value}>
-                          {feature.label}
+                          {t(feature.labelKey)}
                         </MenuItem>
                       ))}
                     </Select>
@@ -283,30 +285,30 @@ const FeedbackPage: React.FC = () => {
                   {/* User Type and Browser - Side by Side */}
                   <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                     <FormControl sx={{ minWidth: '200px', flex: 1 }}>
-                      <InputLabel>What best describes you?</InputLabel>
+                      <InputLabel>{t('feedbackPage.userType.label')}</InputLabel>
                       <Select
                         value={formData.userType}
                         onChange={handleInputChange('userType')}
-                        label="What best describes you?"
+                        label={t('feedbackPage.userType.label')}
                       >
                         {userTypes.map((type) => (
                           <MenuItem key={type.value} value={type.value}>
-                            {type.label}
+                            {t(type.labelKey)}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
 
                     <FormControl sx={{ minWidth: '200px', flex: 1 }}>
-                      <InputLabel>What browser are you using?</InputLabel>
+                      <InputLabel>{t('feedbackPage.browser.label')}</InputLabel>
                       <Select
                         value={formData.browser}
                         onChange={handleInputChange('browser')}
-                        label="What browser are you using?"
+                        label={t('feedbackPage.browser.label')}
                       >
                         {browsers.map((browser) => (
                           <MenuItem key={browser.value} value={browser.value}>
-                            {browser.label}
+                            {t(browser.labelKey)}
                           </MenuItem>
                         ))}
                       </Select>
@@ -316,7 +318,7 @@ const FeedbackPage: React.FC = () => {
                   {/* Accessibility Needs Checkboxes */}
                   <Box>
                     <Typography variant="body2" color="text.secondary" gutterBottom>
-                      Do you use any assistive technologies? (Select all that apply)
+                      {t('feedbackPage.accessibility.label')}
                     </Typography>
                     <FormGroup>
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
@@ -329,7 +331,7 @@ const FeedbackPage: React.FC = () => {
                                 onChange={handleAccessibilityChange(option.value)}
                               />
                             }
-                            label={option.label}
+                            label={t(option.labelKey)}
                           />
                         ))}
                       </Box>
@@ -339,7 +341,7 @@ const FeedbackPage: React.FC = () => {
                   {/* Message */}
                   <TextField
                     fullWidth
-                    label="Your Message"
+                    label={t('feedbackPage.form.message')}
                     value={formData.message}
                     onChange={handleInputChange('message')}
                     required
@@ -347,13 +349,13 @@ const FeedbackPage: React.FC = () => {
                     rows={8}
                     variant="outlined"
                     placeholder={
-                      formData.type === 'bug' 
-                        ? "Please describe the bug you encountered, including steps to reproduce it and any error messages you saw."
+                      formData.type === 'bug'
+                        ? t('feedbackPage.form.messagePlaceholders.bug')
                         : formData.type === 'feature'
-                        ? "Describe the feature you'd like to see added and how it would improve the experience."
+                        ? t('feedbackPage.form.messagePlaceholders.feature')
                         : formData.type === 'improvement'
-                        ? "Tell us how we can improve an existing feature or the overall experience."
-                        : "Share your thoughts, suggestions, or any other feedback you have."
+                        ? t('feedbackPage.form.messagePlaceholders.improvement')
+                        : t('feedbackPage.form.messagePlaceholders.general')
                     }
                     sx={{
                       '& .MuiInputBase-root': {
@@ -366,7 +368,7 @@ const FeedbackPage: React.FC = () => {
                   {formData.type === 'general' && (
                     <Box>
                       <Typography variant="body2" color="text.secondary" gutterBottom>
-                        How would you rate your overall experience?
+                        {t('feedbackPage.rating.label')}
                       </Typography>
                       <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
                         {[1, 2, 3, 4, 5].map((rating) => (
@@ -402,7 +404,7 @@ const FeedbackPage: React.FC = () => {
                         borderRadius: 2
                       }}
                     >
-                      {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
+                      {isSubmitting ? t('feedbackPage.submit.submitting') : t('feedbackPage.submit.button')}
                     </Button>
                   </Box>
                 </Box>
@@ -414,8 +416,7 @@ const FeedbackPage: React.FC = () => {
         {/* Additional Information */}
         <Box sx={{ mt: 6, textAlign: 'center' }}>
           <Typography variant="body2" color="text.secondary">
-            We appreciate your feedback and will review all submissions carefully. 
-            While we can't respond to every message individually, your input helps us make the Vision Simulator better for everyone.
+            {t('feedbackPage.messages.footer')}
           </Typography>
         </Box>
       </Container>
@@ -429,12 +430,12 @@ const FeedbackPage: React.FC = () => {
         onClose={() => setShowSuccess(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert 
-          onClose={() => setShowSuccess(false)} 
-          severity="success" 
+        <Alert
+          onClose={() => setShowSuccess(false)}
+          severity="success"
           sx={{ width: '100%' }}
         >
-          Thank you for your feedback! We've received your submission and will review it carefully.
+          {t('feedbackPage.messages.success')}
         </Alert>
       </Snackbar>
 
@@ -445,12 +446,12 @@ const FeedbackPage: React.FC = () => {
         onClose={() => setShowError(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert 
-          onClose={() => setShowError(false)} 
-          severity="error" 
+        <Alert
+          onClose={() => setShowError(false)}
+          severity="error"
           sx={{ width: '100%' }}
         >
-          There was an error submitting your feedback. Please try again.
+          {t('feedbackPage.messages.error')}
         </Alert>
       </Snackbar>
     </Box>

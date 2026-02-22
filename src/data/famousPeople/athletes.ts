@@ -15,7 +15,8 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1969",
     onset: "Age 9, progressive",
     simulation: "marla-stargardt-complete",
-    description: "Stargardt disease causes progressive macular degeneration, destroying central vision. Marla has a large central blind spot with preserved peripheral vision, making it difficult to see faces or read but allowing navigation using side vision.\n\n• First legally blind athlete to compete in the Olympics (2000 Sydney, 2004 Athens)\n\n• Five-time U.S. national champion in various track events\n\n• Holds American record in the women's 5000m (indoor)"
+    description: "Stargardt disease causes progressive macular degeneration, destroying central vision. Marla has a large central blind spot with preserved peripheral vision, making it difficult to see faces or read but allowing navigation using side vision.\n\n• First legally blind athlete to compete in the Olympics (2000 Sydney, 2004 Athens)\n\n• Five-time U.S. national champion in various track events\n\n• Holds American record in the women's 5000m (indoor)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Marla_Runyan"
   },
   anastasia: {
     name: "Anastasia Pagonis",
@@ -55,7 +56,8 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1992",
     onset: "Left eye age 3; right eye progressive loss to age 13",
     simulation: "david-brown-kawasaki",
-    description: "David Brown's vision changed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3, while his right eye experienced a dirty-glass haze with rainbow halos around every light.\n\nBy 13, glaucoma took his remaining vision. He still experiences ongoing pain from elevated eye pressure.\n\n• Paralympic gold medalist (100m, Rio 2016) - fastest totally blind man in history\n\n• Multiple Paralympic and world championship medals\n\n• Runs with guide runner Jerome Avery"
+    description: "David Brown's vision changed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3, while his right eye experienced a dirty-glass haze with rainbow halos around every light.\n\nBy 13, glaucoma took his remaining vision. He still experiences ongoing pain from elevated eye pressure.\n\n• Paralympic gold medalist (100m, Rio 2016) - fastest totally blind man in history\n\n• Multiple Paralympic and world championship medals\n\n• Runs with guide runner Jerome Avery",
+    wikiUrl: "https://en.wikipedia.org/wiki/David_Brown_(sprinter)"
   },
   anthonyClarke: {
     name: "Anthony Clarke",
@@ -72,7 +74,8 @@ export const athletes: Record<string, PersonData> = {
     years: "Professional Wrestling",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Crazzy Steve has been completely blind from birth, with no light perception or visual memory.\n\n• Professional wrestler competing in TNA/Impact Wrestling\n\n• Former Impact World Tag Team Champion\n\n• Demonstrates that blindness does not prevent success in sports entertainment"
+    description: "Crazzy Steve has been completely blind from birth, with no light perception or visual memory.\n\n• Professional wrestler competing in TNA/Impact Wrestling\n\n• Former Impact World Tag Team Champion\n\n• Demonstrates that blindness does not prevent success in sports entertainment",
+    wikiUrl: "https://en.wikipedia.org/wiki/Crazzy_Steve"
   },
   tofiri: {
     name: "Tofiri Kibuuka",
@@ -80,7 +83,8 @@ export const athletes: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Age 13",
     simulation: "tofiri-complete-blindness",
-    description: "Tofiri Kibuuka lost his sight at age 13 due to a degenerative disease that progressively destroyed his vision.\n\n• Africa's first winter Para athlete at 1976 Paralympic Winter Games (cross-country skiing for Uganda)\n\n• Five silver medals and one bronze at Paralympic Games (1984-1992)\n\n• Norway's flag bearer at 1996 Atlanta Paralympic Games - first black man to carry Norwegian flag at Paralympics\n\n• One of the first blind people to climb Mount Kilimanjaro"
+    description: "Tofiri Kibuuka lost his sight at age 13 due to a degenerative disease that progressively destroyed his vision.\n\n• Africa's first winter Para athlete at 1976 Paralympic Winter Games (cross-country skiing for Uganda)\n\n• Five silver medals and one bronze at Paralympic Games (1984-1992)\n\n• Norway's flag bearer at 1996 Atlanta Paralympic Games - first black man to carry Norwegian flag at Paralympics\n\n• One of the first blind people to climb Mount Kilimanjaro",
+    wikiUrl: "https://en.wikipedia.org/wiki/Tofiri_Kibuuka"
   },
   ross: {
     name: "Ross Minor",

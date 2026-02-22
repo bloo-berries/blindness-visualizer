@@ -7,7 +7,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1880-1968",
     onset: "19 months old",
     simulation: "complete-blindness",
-    description: "A severe fever at 19 months, likely from bacterial meningitis, left Helen both blind and deaf. She had no light perception or visual input, relying entirely on touch and learning to communicate through finger spelling with teacher Anne Sullivan.\n\n• First deafblind person to earn a bachelor's degree\n\n• Author of 12 books including 'The Story of My Life'\n\n• Lifelong advocate for people with disabilities, women's suffrage, and labor rights"
+    description: "A severe fever at 19 months, likely from bacterial meningitis, left Helen both blind and deaf. She had no light perception or visual input, relying entirely on touch and learning to communicate through finger spelling with teacher Anne Sullivan.\n\n• First deafblind person to earn a bachelor's degree\n\n• Author of 12 books including 'The Story of My Life'\n\n• Lifelong advocate for people with disabilities, women's suffrage, and labor rights",
+    wikiUrl: "https://en.wikipedia.org/wiki/Helen_Keller"
   },
   ved: {
     name: "Ved Mehta",
@@ -15,7 +16,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1934-2021",
     onset: "Age 3 years, 10 months",
     simulation: "ved-spatial-awareness",
-    description: "Meningitis at age 3 resulted in complete bilateral blindness.\n\nVed developed exceptional 'facial vision' using echolocation and air current perception for navigation.\n\n• Staff writer at The New Yorker for 33 years\n\n• Author of more than 25 books, including the autobiographical 'Continents of Exile' series\n\n• Educated at Pomona College, Oxford, and Harvard"
+    description: "Meningitis at age 3 resulted in complete bilateral blindness.\n\nVed developed exceptional 'facial vision' using echolocation and air current perception for navigation.\n\n• Staff writer at The New Yorker for 33 years\n\n• Author of more than 25 books, including the autobiographical 'Continents of Exile' series\n\n• Educated at Pomona College, Oxford, and Harvard",
+    wikiUrl: "https://en.wikipedia.org/wiki/Ved_Mehta"
   },
   tilly: {
     name: "Tilly Aston",
@@ -23,7 +25,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1873-1947",
     onset: "From birth",
     simulation: "tilly-complete-blindness",
-    description: "Tilly Aston had congenital blindness from birth. She became a pioneering Australian writer, teacher, and advocate for the blind.\n\n• First blind person in Australia to attend university\n\n• Founded the Victorian Association of Braille Writers\n\n• Helped establish services for the blind in Australia"
+    description: "Tilly Aston had congenital blindness from birth. She became a pioneering Australian writer, teacher, and advocate for the blind.\n\n• First blind person in Australia to attend university\n\n• Founded the Victorian Association of Braille Writers\n\n• Helped establish services for the blind in Australia",
+    wikiUrl: "https://en.wikipedia.org/wiki/Tilly_Aston"
   },
   sabriye: {
     name: "Sabriye Tenberken",
@@ -31,7 +34,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1970",
     onset: "Childhood, complete blindness by 12",
     simulation: "sabriye-complete-blindness",
-    description: "Sabriye Tenberken lost her sight to retinitis pigmentosa, becoming completely blind by age 12.\n\nShe dedicated her life to education and empowerment of people with disabilities worldwide.\n\n• Co-founder of Braille Without Borders\n\n• Developed Tibetan Braille script\n\n• Established schools for blind children in Tibet"
+    description: "Sabriye Tenberken lost her sight to retinitis pigmentosa, becoming completely blind by age 12.\n\nShe dedicated her life to education and empowerment of people with disabilities worldwide.\n\n• Co-founder of Braille Without Borders\n\n• Developed Tibetan Braille script\n\n• Established schools for blind children in Tibet",
+    wikiUrl: "https://en.wikipedia.org/wiki/Sabriye_Tenberken"
   },
   borges: {
     name: "Jorge Luis Borges",
@@ -39,7 +43,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1899-1986",
     onset: "Progressive, complete by age 55",
     simulation: "borges-progressive-blindness",
-    description: "Jorge Luis Borges experienced progressive blindness from an inherited condition, losing sight completely by age 55.\n\nDespite this, he continued to write through dictation.\n\n• One of the most important literary figures of the 20th century\n\n• Known for innovative short stories exploring infinity, labyrinths, and metaphysics\n\n• Director of the National Library of Argentina"
+    description: "Jorge Luis Borges experienced progressive blindness from an inherited condition, losing sight completely by age 55.\n\nDespite this, he continued to write through dictation.\n\n• One of the most important literary figures of the 20th century\n\n• Known for innovative short stories exploring infinity, labyrinths, and metaphysics\n\n• Director of the National Library of Argentina",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jorge_Luis_Borges"
   },
   thurber: {
     name: "James Thurber",
@@ -47,7 +52,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1894-1961",
     onset: "Age 7, from eye injury",
     simulation: "thurber-eye-injury",
-    description: "James Thurber lost sight in one eye from a childhood accident at age 7 when his brother shot him with an arrow during a game.\n\nHis remaining eye's vision deteriorated throughout his life.\n\n• One of the most celebrated American humorists\n\n• Staff writer and cartoonist for The New Yorker\n\n• Author of 'The Secret Life of Walter Mitty' (adapted to film starring Ben Stiller)"
+    description: "James Thurber lost sight in one eye from a childhood accident at age 7 when his brother shot him with an arrow during a game.\n\nHis remaining eye's vision deteriorated throughout his life.\n\n• One of the most celebrated American humorists\n\n• Staff writer and cartoonist for The New Yorker\n\n• Author of 'The Secret Life of Walter Mitty' (adapted to film starring Ben Stiller)",
+    wikiUrl: "https://en.wikipedia.org/wiki/James_Thurber"
   },
   levPontryagin: {
     name: "Lev Pontryagin",
@@ -55,7 +61,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1908-1988",
     onset: "Age 14, from primus stove explosion",
     simulation: "complete-blindness",
-    description: "Lev Pontryagin became completely blind at age 14 due to an unsuccessful eye surgery after a primus stove explosion.\n\nHis mother read mathematical books to him, using alternative names for math symbols.\n\n• Made major discoveries in algebraic topology, differential topology, and optimal control theory\n\n• Developed Pontryagin duality, Pontryagin classes, and Pontryagin's maximum principle\n\n• Fundamental contributions to modern optimization theory"
+    description: "Lev Pontryagin became completely blind at age 14 due to an unsuccessful eye surgery after a primus stove explosion.\n\nHis mother read mathematical books to him, using alternative names for math symbols.\n\n• Made major discoveries in algebraic topology, differential topology, and optimal control theory\n\n• Developed Pontryagin duality, Pontryagin classes, and Pontryagin's maximum principle\n\n• Fundamental contributions to modern optimization theory",
+    wikiUrl: "https://en.wikipedia.org/wiki/Lev_Pontryagin"
   },
   garyODonoghue: {
     name: "Gary O'Donoghue",
@@ -63,7 +70,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1965",
     onset: "From birth",
     simulation: "complete-blindness",
-    description: "Gary O'Donoghue has been blind from birth. He has built a distinguished career in journalism, demonstrating that visual impairment does not prevent excellence in media.\n\n• BBC journalist and broadcaster covering politics and current affairs\n\n• Washington correspondent for BBC News\n\n• Award-winning reporter with decades of experience"
+    description: "Gary O'Donoghue has been blind from birth. He has built a distinguished career in journalism, demonstrating that visual impairment does not prevent excellence in media.\n\n• BBC journalist and broadcaster covering politics and current affairs\n\n• Washington correspondent for BBC News\n\n• Award-winning reporter with decades of experience",
+    wikiUrl: "https://en.wikipedia.org/wiki/Gary_O%27Donoghue"
   },
   paterson: {
     name: "David Paterson",
@@ -71,7 +79,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1954",
     onset: "Age 3 months, progressive",
     simulation: "david-hemispheric-vision",
-    description: "An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye.\n\nGlaucoma later affected his right eye, creating a unique hemispheric vision loss.\n\n• 55th Governor of New York State\n\n• First legally blind person to serve as a state governor in the United States\n\n• Continues advocacy work at governordavidpaterson.com"
+    description: "An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye.\n\nGlaucoma later affected his right eye, creating a unique hemispheric vision loss.\n\n• 55th Governor of New York State\n\n• First legally blind person to serve as a state governor in the United States\n\n• Continues advocacy work at governordavidpaterson.com",
+    wikiUrl: "https://en.wikipedia.org/wiki/David_Paterson"
   },
   blunkett: {
     name: "David Blunkett",
@@ -79,7 +88,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1947",
     onset: "From birth",
     simulation: "blunkett-congenital-blindness",
-    description: "David Blunkett was born blind and has never had sight. He became a prominent figure in British politics and a strong advocate for disability rights.\n\n• UK Home Secretary from 2001 to 2004\n\n• First blind person to hold a major cabinet position in the British government\n\n• Famous for being accompanied by his guide dogs in Parliament"
+    description: "David Blunkett was born blind and has never had sight. He became a prominent figure in British politics and a strong advocate for disability rights.\n\n• UK Home Secretary from 2001 to 2004\n\n• First blind person to hold a major cabinet position in the British government\n\n• Famous for being accompanied by his guide dogs in Parliament",
+    wikiUrl: "https://en.wikipedia.org/wiki/David_Blunkett"
   },
   floydMorris: {
     name: "Floyd Morris",
@@ -87,7 +97,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1969",
     onset: "Age 16, from glaucoma",
     simulation: "complete-blindness",
-    description: "Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a distinguished political career in Jamaica.\n\n• First blind person to serve as President of the Senate of Jamaica\n\n• Advocate for disability rights and inclusion\n\n• Holds multiple academic degrees including a PhD"
+    description: "Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a distinguished political career in Jamaica.\n\n• First blind person to serve as President of the Senate of Jamaica\n\n• Advocate for disability rights and inclusion\n\n• Holds multiple academic degrees including a PhD",
+    wikiUrl: "https://en.wikipedia.org/wiki/Floyd_Morris"
   },
   henryFawcett: {
     name: "Henry Fawcett",
@@ -95,7 +106,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1833-1884",
     onset: "Age 25, from shooting accident",
     simulation: "complete-blindness",
-    description: "Henry Fawcett became blind at age 25 when accidentally shot by his father during a hunting trip.\n\nDespite this, he continued his career and made significant contributions to economics and politics.\n\n• Member of Parliament and Postmaster-General of the United Kingdom\n\n• Strong advocate for women's suffrage and education\n\n• Made significant contributions to economic theory"
+    description: "Henry Fawcett became blind at age 25 when accidentally shot by his father during a hunting trip.\n\nDespite this, he continued his career and made significant contributions to economics and politics.\n\n• Member of Parliament and Postmaster-General of the United Kingdom\n\n• Strong advocate for women's suffrage and education\n\n• Made significant contributions to economic theory",
+    wikiUrl: "https://en.wikipedia.org/wiki/Henry_Fawcett"
   },
   jacquesLusseyran: {
     name: "Jacques Lusseyran",
@@ -103,7 +115,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1924-1971",
     onset: "Age 8, from accident",
     simulation: "complete-blindness",
-    description: "Jacques Lusseyran became blind at age 8 when a classmate accidentally pushed him into the corner of a teacher's desk, destroying both eyes.\n\nHe developed a remarkable sense of inner vision.\n\n• Led French Resistance group against Nazi occupation during WWII\n\n• Survived imprisonment at Buchenwald concentration camp\n\n• Author of memoir 'And There Was Light'"
+    description: "Jacques Lusseyran became blind at age 8 when a classmate accidentally pushed him into the corner of a teacher's desk, destroying both eyes.\n\nHe developed a remarkable sense of inner vision.\n\n• Led French Resistance group against Nazi occupation during WWII\n\n• Survived imprisonment at Buchenwald concentration camp\n\n• Author of memoir 'And There Was Light'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jacques_Lusseyran"
   },
   tiffany: {
     name: "Tiffany Brar",
@@ -111,7 +124,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born (Contemporary)",
     onset: "Age 6 months",
     simulation: "tiffany-complete-blindness",
-    description: "Tiffany Brar became blind at six months due to oxygen toxicity (Terry Syndrome).\n\nShe is a trainer, campaigner for disability awareness, and advocate for an inclusive society.\n\n• Founder of Jyothirgamaya Foundation mobile school for the blind (2012)\n\n• Designed the Tiffy template to identify Indian currency notes\n\n• National Award from President of India for Best Role Model\n\n• First Indian recipient of the Holman Prize\n\n• Nari Shakti Puraskar recipient (highest civilian honor for women in India)"
+    description: "Tiffany Brar became blind at six months due to oxygen toxicity (Terry Syndrome).\n\nShe is a trainer, campaigner for disability awareness, and advocate for an inclusive society.\n\n• Founder of Jyothirgamaya Foundation mobile school for the blind (2012)\n\n• Designed the Tiffy template to identify Indian currency notes\n\n• National Award from President of India for Best Role Model\n\n• First Indian recipient of the Holman Prize\n\n• Nari Shakti Puraskar recipient (highest civilian honor for women in India)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Tiffany_Brar"
   },
   jamesJoyce: {
     name: "James Joyce",
@@ -119,7 +133,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1882-1941",
     onset: "Age 25, progressive deterioration",
     simulation: "joyce-progressive-eye-disease",
-    description: "James Joyce suffered from recurring iritis (uveitis) starting at age 25, which led to glaucoma and cataracts. The inflammation caused his irises to attach to the lenses, increasing eye pressure and eroding his optic nerves.\n\nHe underwent about 12 eye surgeries without general anesthetic. By age 48, his left eye functioned at 1/800th normal capacity.\n\n• Author of 'Ulysses' and 'Finnegans Wake'\n\n• Wrote using red crayon on large white sheets and dictated to typists\n\n• Named his daughter Lucia after the patron saint of the blind"
+    description: "James Joyce suffered from recurring iritis (uveitis) starting at age 25, which led to glaucoma and cataracts. The inflammation caused his irises to attach to the lenses, increasing eye pressure and eroding his optic nerves.\n\nHe underwent about 12 eye surgeries without general anesthetic. By age 48, his left eye functioned at 1/800th normal capacity.\n\n• Author of 'Ulysses' and 'Finnegans Wake'\n\n• Wrote using red crayon on large white sheets and dictated to typists\n\n• Named his daughter Lucia after the patron saint of the blind",
+    wikiUrl: "https://en.wikipedia.org/wiki/James_Joyce"
   },
   aldousHuxley: {
     name: "Aldous Huxley",
@@ -127,7 +142,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1894-1963",
     onset: "Age 16, from eye infection",
     simulation: "huxley-keratitis",
-    description: "At age 16, Aldous Huxley suffered keratitis punctata that left him nearly totally blind for 18 months. He had to learn Braille and use a guide for walking.\n\nOne eye recovered to only light perception, while the other improved enough to read with special thick glasses.\n\n• Author of 'Brave New World'\n\n• Wrote: 'I started writing when I was 17, during a period when I was almost totally blind'\n\n• Continued writing and philosophical work throughout his life"
+    description: "At age 16, Aldous Huxley suffered keratitis punctata that left him nearly totally blind for 18 months. He had to learn Braille and use a guide for walking.\n\nOne eye recovered to only light perception, while the other improved enough to read with special thick glasses.\n\n• Author of 'Brave New World'\n\n• Wrote: 'I started writing when I was 17, during a period when I was almost totally blind'\n\n• Continued writing and philosophical work throughout his life",
+    wikiUrl: "https://en.wikipedia.org/wiki/Aldous_Huxley"
   },
   jeanPaulSartre: {
     name: "Jean-Paul Sartre",
@@ -135,7 +151,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1905-1980",
     onset: "Age 3, from childhood illness",
     simulation: "sartre-monocular-vision",
-    description: "At age three, Jean-Paul Sartre contracted a severe flu that evolved into corneal leukoma, leaving him almost completely blind in his right eye.\n\nThe lack of vision caused sensory exotropia (outward drifting eye), which made him a target for bullying in school.\n\n• One of the most influential philosophers of the 20th century\n\n• Author of 'Being and Nothingness' and 'No Exit'\n\n• His eye condition exempted him from frontline combat in WWII"
+    description: "At age three, Jean-Paul Sartre contracted a severe flu that evolved into corneal leukoma, leaving him almost completely blind in his right eye.\n\nThe lack of vision caused sensory exotropia (outward drifting eye), which made him a target for bullying in school.\n\n• One of the most influential philosophers of the 20th century\n\n• Author of 'Being and Nothingness' and 'No Exit'\n\n• His eye condition exempted him from frontline combat in WWII",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jean-Paul_Sartre"
   },
   tahaHussein: {
     name: "Taha Hussein",
@@ -143,7 +160,8 @@ export const writersActivists: Record<string, PersonData> = {
     years: "1889-1973",
     onset: "Age 2-3, blind by age 5",
     simulation: "taha-complete-blindness",
-    description: "Taha Hussein contracted ophthalmia (likely trachoma) at age two in rural Egypt.\n\nFaulty treatment by an unskilled local practitioner led to complete blindness by age five.\n\n• Known as 'The Dean of Arabic Literature'\n\n• First Egyptian to hold a PhD from Cairo University; second PhD from the Sorbonne\n\n• As Egypt's Minister of Education (1950), made public education free\n\n• Nominated for the Nobel Prize in Literature 21 times"
+    description: "Taha Hussein contracted ophthalmia (likely trachoma) at age two in rural Egypt.\n\nFaulty treatment by an unskilled local practitioner led to complete blindness by age five.\n\n• Known as 'The Dean of Arabic Literature'\n\n• First Egyptian to hold a PhD from Cairo University; second PhD from the Sorbonne\n\n• As Egypt's Minister of Education (1950), made public education free\n\n• Nominated for the Nobel Prize in Literature 21 times",
+    wikiUrl: "https://en.wikipedia.org/wiki/Taha_Hussein"
   },
   chenGuangcheng: {
     name: "Chen Guangcheng",
@@ -151,6 +169,7 @@ export const writersActivists: Record<string, PersonData> = {
     years: "Born 1971",
     onset: "Blind before age 1",
     simulation: "chen-complete-blindness",
-    description: "Chen Guangcheng went blind before his first birthday.\n\nSelf-taught in law, this 'barefoot lawyer' became a prominent Chinese civil rights activist.\n\n• Organized landmark class-action lawsuit against forced sterilizations under China's one-child policy\n\n• Escaped house arrest in 2012 and fled to the U.S. Embassy in Beijing\n\n• Named Time 100 (2006) and won Ramon Magsaysay Award (2007)\n\n• Author of memoir 'The Barefoot Lawyer' (2015)"
+    description: "Chen Guangcheng went blind before his first birthday.\n\nSelf-taught in law, this 'barefoot lawyer' became a prominent Chinese civil rights activist.\n\n• Organized landmark class-action lawsuit against forced sterilizations under China's one-child policy\n\n• Escaped house arrest in 2012 and fled to the U.S. Embassy in Beijing\n\n• Named Time 100 (2006) and won Ramon Magsaysay Award (2007)\n\n• Author of memoir 'The Barefoot Lawyer' (2015)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Chen_Guangcheng"
   }
 };

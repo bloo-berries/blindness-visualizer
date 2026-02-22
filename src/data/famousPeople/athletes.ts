@@ -70,20 +70,20 @@ export const athletes: Record<string, PersonData> = {
   },
   crazzySteve: {
     name: "Crazzy Steve",
-    condition: "Congenital Blindness",
-    years: "Professional Wrestling",
-    onset: "From birth",
-    simulation: "complete-blindness",
-    description: "Crazzy Steve has been completely blind from birth, with no light perception or visual memory.\n\n• Professional wrestler competing in TNA/Impact Wrestling\n\n• Former Impact World Tag Team Champion\n\n• Demonstrates that blindness does not prevent success in sports entertainment",
+    condition: "Bilateral Aphakia + Secondary Glaucoma",
+    years: "Born 1988",
+    onset: "Congenital cataracts removed in infancy; progressive vision loss",
+    simulation: "crazzySteve-aphakia-glaucoma",
+    description: "Crazzy Steve (Steven Scott) was born premature with congenital bilateral cataracts that left him totally blind at birth. Surgery removed the cataracts in infancy, restoring partial vision, but his eyes lack natural lenses (aphakia) and he has developed secondary glaucoma that continues to worsen.\n\nHe describes his sight as 'the hazy aftermath of a dream' - relying on shapes and colors rather than clear details. He cannot see ring ropes (especially dark-colored ones) or fans in the audience. He is legally blind with vision well below 20/200.\n\n• Professional wrestler competing in TNA/Impact Wrestling\n\n• Former Impact World Tag Team Champion\n\n• Demonstrates that severe visual impairment does not prevent success in sports entertainment",
     wikiUrl: "https://en.wikipedia.org/wiki/Crazzy_Steve"
   },
   tofiri: {
     name: "Tofiri Kibuuka",
-    condition: "Degenerative Sight Disease",
-    years: "Born (Contemporary)",
-    onset: "Age 13",
-    simulation: "tofiri-complete-blindness",
-    description: "Tofiri Kibuuka lost his sight at age 13 due to a degenerative disease that progressively destroyed his vision.\n\n• Africa's first winter Para athlete at 1976 Paralympic Winter Games (cross-country skiing for Uganda)\n\n• Five silver medals and one bronze at Paralympic Games (1984-1992)\n\n• Norway's flag bearer at 1996 Atlanta Paralympic Games - first black man to carry Norwegian flag at Paralympics\n\n• One of the first blind people to climb Mount Kilimanjaro",
+    condition: "Progressive Degenerative Blindness (B1/T11)",
+    years: "Born 1947",
+    onset: "Age 13, progressive degenerative disease (circa 1960)",
+    simulation: "tofiri-b1-blindness",
+    description: "Tofiri Kibuuka lost his sight at age 13 in rural Uganda due to a progressive degenerative eye disease. He was consistently classified B1/T11 (most severe visual impairment) throughout his career - defined as no light perception or at best inability to recognize a hand shape at any distance.\n\nHe navigated Paralympic ski courses, marathon routes, and mountain ascents through sound, touch, guide communication, spatial memory, and proprioception - with effectively zero visual input.\n\n• Africa's first winter Para athlete at 1976 Paralympic Winter Games (cross-country skiing for Uganda)\n\n• Five silver medals and one bronze at Paralympic Games (1984-1992)\n\n• Norway's flag bearer at 1996 Atlanta Paralympic Games - first black man to carry Norwegian flag at Paralympics\n\n• One of the first blind people to climb Mount Kilimanjaro\n\n• Competed in T11 marathon at 2000 Sydney Paralympics",
     wikiUrl: "https://en.wikipedia.org/wiki/Tofiri_Kibuuka"
   },
   ross: {

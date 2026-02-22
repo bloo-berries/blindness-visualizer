@@ -26,6 +26,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'tiffany-complete-blindness': ['completeBlindness'],
     'ross-complete-blindness': ['completeBlindness'],
     'tofiri-complete-blindness': ['completeBlindness'],
+    'tofiri-b1-blindness': ['tofiriComplete'],
     'joshua-complete-blindness': ['completeBlindness'],
     'ved-spatial-awareness': ['completeBlindness'],
     'srikanth-complete-blindness': ['completeBlindness'],
@@ -96,6 +97,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
 
     // ===== ANIRIDIA =====
     'trischa-aniridia': ['glare', 'blurryVision', 'lossOfContrast'],
+
+    // ===== APHAKIA + GLAUCOMA =====
+    'crazzySteve-aphakia-glaucoma': ['crazzysteveComplete', 'tunnelVision'],
 
     // ===== COLOR BLINDNESS =====
     'fred-rogers-deuteranopia': ['deuteranopia'],

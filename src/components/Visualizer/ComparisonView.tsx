@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
@@ -50,6 +50,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   // Get animated overlay styles (for visual aura, etc.)
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
 
+  // Detect mobile screen for responsive layout
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Box className="comparison-container" sx={{
       position: 'relative',
@@ -98,14 +102,15 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         </Box>
       )}
 
-      {/* Left side - Simulation video */}
+      {/* Top/Left side - Simulation video */}
       <Box sx={{
         position: 'absolute',
         left: 0,
         top: 0,
-        width: '50%',
-        height: '100%',
-        borderRight: '2px solid #fff'
+        width: isMobile ? '100%' : '50%',
+        height: isMobile ? '50%' : '100%',
+        borderRight: isMobile ? 'none' : '2px solid #fff',
+        borderBottom: isMobile ? '2px solid #fff' : 'none'
       }}>
         <Box sx={{
           position: 'absolute',
@@ -206,13 +211,13 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         {getDiplopiaOverlay()}
       </Box>
 
-      {/* Right side - Original video */}
+      {/* Bottom/Right side - Original video */}
       <Box sx={{
         position: 'absolute',
         right: 0,
-        top: 0,
-        width: '50%',
-        height: '100%'
+        top: isMobile ? '50%' : 0,
+        width: isMobile ? '100%' : '50%',
+        height: isMobile ? '50%' : '100%'
       }}>
         <Box sx={{
           position: 'absolute',
@@ -296,10 +301,13 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
       }}>
         <Button
           variant="contained"
+          size={isMobile ? 'small' : 'medium'}
           onClick={onToggleComparison}
           sx={{
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             color: 'white',
+            fontSize: isMobile ? '0.75rem' : '0.875rem',
+            padding: isMobile ? '4px 10px' : '6px 16px',
             '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
           }}
         >

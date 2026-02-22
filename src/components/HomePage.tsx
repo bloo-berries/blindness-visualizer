@@ -13,7 +13,8 @@ import {
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
-  People as PeopleIcon
+  People as PeopleIcon,
+  MenuBook as MenuBookIcon
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -382,6 +383,59 @@ const HomePage: React.FC = () => {
               </Card>
             </Grid>
           </Grid>
+
+          {/* Library of the Blind Card */}
+          <Card
+            component="a"
+            href="https://bloo-berries.github.io/Library-of-the-Blind/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              p: 2,
+              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+              border: '1px solid #e2e8f0',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              '&:hover': {
+                transform: 'translateY(-2px)',
+                boxShadow: 4
+              }
+            }}
+          >
+            <MenuBookIcon sx={{
+              fontSize: 40,
+              color: preferences.highContrast ? '#000000' : 'primary.main',
+              mr: 2,
+              flexShrink: 0
+            }} />
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                  fontWeight: 600,
+                  color: preferences.highContrast ? '#000000' : 'text.primary',
+                  display: 'block'
+                }}
+              >
+                Library of the Blind
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: preferences.highContrast ? '#000000' : 'text.secondary',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                The world's largest catalog of Braille, tactile, audio, and multimodal accessibility systems
+              </Typography>
+            </Box>
+          </Card>
 
         </Container>
       </Box>

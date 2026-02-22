@@ -147,7 +147,7 @@ const ConditionsPage: React.FC = () => {
             fontWeight: 400
           }}
         >
-          Comprehensive definitions and explanations of vision conditions, visual impairments, and frequently asked questions about blindness and visual impairment.
+          Comprehensive definitions of vision conditions, and FAQ about blindness and visual impairment.
         </Typography>
 
         {/* Tabs */}

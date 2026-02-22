@@ -4,7 +4,7 @@ import {
   Typography,
   Button
 } from '@mui/material';
-import { VisualEffect } from '../../types/visualEffects';
+import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
 import { EffectList } from './EffectList';
 import { EffectPreview } from './EffectPreview';
@@ -19,6 +19,7 @@ interface ControlPanelProps {
   onDiplopiaSeparationChange?: (separation: number) => void;
   onDiplopiaDirectionChange?: (direction: number) => void;
   onViewSimulation?: () => void;
+  inputSource?: InputSource;
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -30,7 +31,8 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   diplopiaDirection = 0.0,
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange,
-  onViewSimulation
+  onViewSimulation,
+  inputSource
 }) => {
   // State for highlighted effect in the list (for UI indication)
   const [highlightedEffect, setHighlightedEffect] = useState<VisualEffect | null>(
@@ -136,6 +138,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               enabledEffects={enabledEffects}
               enabledEffectsCount={enabledEffectsCount}
               highlightedEffect={highlightedEffect}
+              inputSource={inputSource}
             />
 
             {/* View Simulation Button - Prominent CTA */}

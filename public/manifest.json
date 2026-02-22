@@ -1,6 +1,7 @@
 {
   "short_name": "VisionSim",
-  "name": "Vision Condition Visualizer",
+  "name": "VisionSim - Vision Condition Simulator",
+  "description": "Experience and understand blindness and visual impairments through real-time simulations. Simulate color blindness, macular degeneration, glaucoma, and 30+ vision conditions.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,22 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#5271ff",
-  "background_color": "#ffffff"
+  "theme_color": "#1976d2",
+  "background_color": "#ffffff",
+  "categories": ["education", "health", "accessibility"],
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "any"
 }

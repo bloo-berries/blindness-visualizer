@@ -65,20 +65,6 @@ const HomePage: React.FC = () => {
               </Box>
               {' '}{t('home.titleHighlight')}
             </Typography>
-            <Typography
-              variant="h6"
-              color="text.primary"
-              sx={{
-                maxWidth: '600px',
-                mx: 'auto',
-                fontWeight: 600,
-                lineHeight: 1.5,
-                mb: 1.5
-              }}
-            >
-              {t('home.subtitle')}
-            </Typography>
-
           </Box>
 
           {/* Main Options */}
@@ -120,18 +106,6 @@ const HomePage: React.FC = () => {
                         }}
                       >
                         {t('home.card1Title')}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color={preferences.highContrast ? undefined : "text.primary"}
-                        className="homepage-card-description homepage-card-description-left"
-                        sx={{
-                          mb: 2,
-                          lineHeight: 1.5,
-                          ...(preferences.highContrast && { color: '#000000 !important' })
-                        }}
-                      >
-                        {t('home.card1Description')}
                       </Typography>
                       <Box sx={{ mb: 2, mt: 5.5, width: '100%' }}>
                         <img 

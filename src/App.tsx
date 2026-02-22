@@ -170,26 +170,19 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 const App: React.FC = () => {
-  // Use basename for GitHub Pages deployment, empty for local development
-  // In development, always use empty basename regardless of PUBLIC_URL
-  // In production, extract path from PUBLIC_URL or use default
+  // Use basename so the app works at /blindness-visualizer (GitHub Pages and local dev)
   const getBasename = (): string => {
-    if (process.env.NODE_ENV === 'development') {
-      return '';
-    }
-    // In production, extract path from PUBLIC_URL if it's a full URL
     const publicUrl = process.env.PUBLIC_URL || '';
     if (publicUrl.startsWith('http')) {
-      // Extract path from full URL (e.g., "https://bloo-berries.github.io/blindness-visualizer" -> "/blindness-visualizer")
       try {
         const url = new URL(publicUrl);
-        return url.pathname || '/blindness-visualizer';
+        const path = url.pathname.replace(/\/$/, '') || '/blindness-visualizer';
+        return path;
       } catch {
         return '/blindness-visualizer';
       }
     }
-    // If PUBLIC_URL is already a path, use it
-    return publicUrl || '/blindness-visualizer';
+    return publicUrl.replace(/\/$/, '') || '/blindness-visualizer';
   };
 
   return (

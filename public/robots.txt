@@ -1,0 +1,11 @@
+# Robots.txt for VisionSim - Vision Condition Simulator
+# https://bloo-berries.github.io/blindness-visualizer/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://bloo-berries.github.io/blindness-visualizer/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

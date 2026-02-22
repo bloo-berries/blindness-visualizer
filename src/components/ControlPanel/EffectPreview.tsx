@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Typography, Paper, Link } from '@mui/material';
-import { VisualEffect } from '../../types/visualEffects';
+import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { isColorVisionCondition, getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { generatePreviewOverlayStyle } from './previewOverlays/generatePreviewOverlayStyle';
@@ -36,6 +36,7 @@ interface EffectPreviewProps {
   enabledEffects: VisualEffect[];
   enabledEffectsCount: number;
   highlightedEffect: VisualEffect | null;
+  inputSource?: InputSource;
 }
 
 // Effects that need animation
@@ -48,10 +49,29 @@ const ANIMATED_EFFECTS = [
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
   enabledEffects,
   enabledEffectsCount,
-  highlightedEffect
+  highlightedEffect,
+  inputSource
 }) => {
   // Animation ticker - forces re-render for animated effects
   const [, setTick] = useState(0);
+
+  // Track if uploaded image failed to load
+  const [imageLoadError, setImageLoadError] = useState(false);
+
+  // Reset error state when inputSource changes
+  useEffect(() => {
+    setImageLoadError(false);
+  }, [inputSource]);
+
+  // Determine which image to use
+  const defaultImage = `${process.env.PUBLIC_URL || ''}/images/garden.png`;
+  const isUploadedImage = inputSource?.type === 'image' && inputSource.url && !imageLoadError;
+  const previewImageSrc = isUploadedImage ? inputSource.url : defaultImage;
+
+  // Handle image load error - fallback to default
+  const handleImageError = useCallback(() => {
+    setImageLoadError(true);
+  }, []);
 
   // Check if any enabled effect needs animation
   const needsAnimation = enabledEffects.some(e => ANIMATED_EFFECTS.includes(e.id));
@@ -154,8 +174,9 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                       return (
                         <Box
                           component="img"
-                          src={`${process.env.PUBLIC_URL || ''}/images/garden.png`}
+                          src={previewImageSrc}
                           alt="Diplopia ghost image"
+                          onError={handleImageError}
                           sx={{
                             position: 'absolute',
                             top: 0,
@@ -182,8 +203,9 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                     {/* Base image with color vision filters applied directly */}
                     <Box
                       component="img"
-                      src={`${process.env.PUBLIC_URL || ''}/images/garden.png`}
-                      alt="Base reference image"
+                      src={previewImageSrc}
+                      alt={isUploadedImage ? "Your uploaded image" : "Base reference image"}
+                      onError={handleImageError}
                       sx={{ 
                         display: 'block',
                         maxWidth: '100%',
@@ -427,21 +449,19 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                   </Box>
                 </Box>
               ) : (
-                <Box 
-                  component="img" 
-                  src={`${process.env.PUBLIC_URL || ''}/images/garden.png`} 
-                  alt="Normal vision reference image"
-                  sx={{ 
-                    maxWidth: '100%', 
-                    maxHeight: '100%', 
+                <Box
+                  component="img"
+                  src={previewImageSrc}
+                  alt={isUploadedImage ? "Your uploaded image - normal vision" : "Normal vision reference image"}
+                  sx={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
                     objectFit: 'contain',
                     borderRadius: 1
                   }}
                   onLoad={() => {
                   }}
-                  onError={(e) => {
-                    e.currentTarget.src = `https://via.placeholder.com/400x300/cccccc/666666?text=Garden+Image`;
-                  }}
+                  onError={handleImageError}
                 />
               )}
             </Box>

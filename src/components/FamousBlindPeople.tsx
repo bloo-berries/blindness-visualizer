@@ -1,16 +1,18 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, 
-  Typography, 
-  Box, 
-  Grid, 
-  TextField, 
-  Select, 
-  MenuItem, 
-  FormControl, 
+import {
+  Container,
+  Typography,
+  Box,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
   InputLabel,
-  Button
+  Button,
+  FormControlLabel,
+  Switch
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -25,6 +27,7 @@ const FamousBlindPeople: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [conditionFilter, setConditionFilter] = useState('');
+  const [hideCompleteBlindness, setHideCompleteBlindness] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
   // Categorize conditions into groups
@@ -177,6 +180,14 @@ const FamousBlindPeople: React.FC = () => {
     return categorized;
   }, []);
 
+  // Helper function to check if a person has only complete blindness visualization
+  const isCompleteBlindnessOnly = (personId: string): boolean => {
+    const person = personData[personId];
+    const conditions = getSimulationConditions(person.simulation);
+    // Check if the only condition is 'completeBlindness'
+    return conditions.length === 1 && conditions[0] === 'completeBlindness';
+  };
+
   // Use useMemo to optimize filtering - only recalculate when filters change
   const filteredPeople = useMemo(() => {
     let filtered = Object.keys(personData);
@@ -211,8 +222,13 @@ const FamousBlindPeople: React.FC = () => {
       }
     }
 
+    // Filter out complete blindness if toggle is enabled
+    if (hideCompleteBlindness) {
+      filtered = filtered.filter(personId => !isCompleteBlindnessOnly(personId));
+    }
+
     return filtered;
-  }, [searchTerm, categoryFilter, conditionFilter, conditionCategories]);
+  }, [searchTerm, categoryFilter, conditionFilter, conditionCategories, hideCompleteBlindness]);
 
   // Get display order that matches how people are actually rendered on the page
   const displayOrder = useMemo(() => {
@@ -258,6 +274,7 @@ const FamousBlindPeople: React.FC = () => {
     setSearchTerm('');
     setCategoryFilter('');
     setConditionFilter('');
+    setHideCompleteBlindness(false);
   };
 
   const handleHomeClick = () => {
@@ -353,13 +370,29 @@ const FamousBlindPeople: React.FC = () => {
             </Grid>
           </Grid>
           
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
             <Typography variant="body2" color="text.secondary">
               Showing {filteredPeople.length} of {Object.keys(personData).length} people
             </Typography>
-            <Button onClick={clearFilters} variant="outlined" size="small">
-              Clear Filters
-            </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={hideCompleteBlindness}
+                    onChange={(e) => setHideCompleteBlindness(e.target.checked)}
+                    size="small"
+                  />
+                }
+                label={
+                  <Typography variant="body2" color="text.secondary">
+                    Hide total darkness simulations
+                  </Typography>
+                }
+              />
+              <Button onClick={clearFilters} variant="outlined" size="small">
+                Clear Filters
+              </Button>
+            </Box>
           </Box>
         </Box>
 

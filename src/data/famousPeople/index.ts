@@ -31,11 +31,11 @@ export const personData: Record<string, PersonData> = {
 
 export const categories: PersonCategory[] = [
   { name: "Contemporary Figures", people: ["christine", "lucy", "paul", "haben", "molly", "mila", "judi", "sharon", "chris", "marilee", "fredRogers", "srikanth"] },
-  { name: "Athletes", people: ["erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "tofiri", "ross", "trischa", "henry"] },
+  { name: "Athletes", people: ["erik", "marla", "anastasia", "sugar", "stephen", "lex", "davidBrown", "anthonyClarke", "crazzySteve", "tofiri", "ross", "trischa", "henry", "zeeshanAbbasi"] },
   { name: "Scientists & Medical Professionals", people: ["mona", "joshua", "geerat", "amyBower", "gustafDalen", "jacobBolotin", "josephPlateau", "euler", "wanda", "abraham"] },
-  { name: "Musicians", people: ["ray", "stevie", "bocelli", "casey", "bono", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "rachael", "johnKay", "jonnyGreenwood", "amadou", "nanaMouskouri", "moondog"] },
+  { name: "Musicians", people: ["ray", "stevie", "bocelli", "casey", "bono", "ella", "allan", "fetty", "slick", "jose", "art", "ronnie", "doc", "jeff", "diane", "nobuyuki", "rahsaan", "blindLemonJefferson", "charlottaSeuerling", "francescoLandini", "garretBarry", "gurrumulYunupingu", "geraldineLawhorn", "heatherHutchison", "joaquinRodrigo", "rachael", "johnKay", "jonnyGreenwood", "amadou", "nanaMouskouri", "moondog", "ravindraJain", "kimioEto", "dianaGurtskaya", "asikVeysel"] },
   { name: "Artists", people: ["monet", "georgia", "johnBramblitt", "esrefArmagan"] },
-  { name: "Writers, Activists, Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany", "jamesJoyce", "aldousHuxley", "jeanPaulSartre", "tahaHussein"] },
-  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia"] },
+  { name: "Writers, Activists, Politicians", people: ["helen", "ved", "tilly", "sabriye", "borges", "thurber", "levPontryagin", "garyODonoghue", "paterson", "blunkett", "floydMorris", "henryFawcett", "jacquesLusseyran", "tiffany", "jamesJoyce", "aldousHuxley", "jeanPaulSartre", "tahaHussein", "chenGuangcheng"] },
+  { name: "Historical Figures", people: ["milton", "braille", "galileo", "harriet", "moon", "homer", "fanny", "saunderson", "holman", "maryIngalls", "francisCampbell", "belaTheBlind", "johnOfBohemia", "surdas"] },
   { name: "Fictional Characters", people: ["odin", "daredevil", "geordi", "blindspot", "toph", "kenshi", "neo", "eli", "blinkin", "juliaCarpenter", "mrMagoo", "doctorMidNite", "wallyKarew", "mohammad", "chirrutImwe", "murphyMason", "fujitora"] }
 ];

@@ -154,7 +154,14 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   tahaHussein: 'Taha-Hussein.webp',
   nanaMouskouri: 'Nana-Mouskouri.webp',
   esrefArmagan: 'Esref-Armagan.webp',
-  moondog: 'moondog.webp'
+  moondog: 'moondog.webp',
+  zeeshanAbbasi: 'Zeeshan-Abbasi.webp',
+  chenGuangcheng: 'Chen-Guangcheng.webp',
+  surdas: 'surdas.webp',
+  ravindraJain: 'ravindra-jain.webp',
+  kimioEto: 'Kimio-Eto.webp',
+  dianaGurtskaya: 'Diana-Gurtskaya.webp',
+  asikVeysel: 'Asik-Veyel.webp'
 };
 
 /**

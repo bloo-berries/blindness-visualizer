@@ -25,14 +25,12 @@
     "reset": "Reset"
   },
   "home": {
-    "title": "Understanding",
+    "title": "Experience",
     "titleHighlight": "Vision Conditions",
-    "subtitle": "Experience visual impairments to build empathy and understanding",
-    "card1Title": "Recreate Vision Conditions in Real-time",
-    "card1Description": "Create your unique visualization",
-    "card1Button": "Start Vision Condition Simulator",
-    "card2Title": "Experience Sight of Famous Blind and Visually Impaired People",
-    "card2Button": "Explore Famous People"
+    "card1Title": "Create your unique visualization",
+    "card1Button": "Start Vision Simulator",
+    "card2Title": "Famous Blind and Visually Impaired People",
+    "card2Button": "Experience their Sight"
   },
   "simulator": {
     "title": "Vision Condition Simulator",

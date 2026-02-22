@@ -132,13 +132,22 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
           </Grid>
         </Grid>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ px: 3, pb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
           {hasPrevious && (
             <IconButton
               onClick={() => onNavigate(filteredPeople[currentIndex - 1])}
               aria-label="Previous person"
-              sx={{ mr: 'auto' }}
+              sx={{
+                mr: 'auto',
+                bgcolor: 'primary.main',
+                color: 'white',
+                width: 44,
+                height: 44,
+                '&:hover': {
+                  bgcolor: 'primary.dark',
+                },
+              }}
             >
               <ArrowBack />
             </IconButton>
@@ -147,7 +156,16 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
             <IconButton
               onClick={() => onNavigate(filteredPeople[currentIndex + 1])}
               aria-label="Next person"
-              sx={{ ml: hasPrevious ? 0 : 'auto' }}
+              sx={{
+                ml: hasPrevious ? 0 : 'auto',
+                bgcolor: 'primary.main',
+                color: 'white',
+                width: 44,
+                height: 44,
+                '&:hover': {
+                  bgcolor: 'primary.dark',
+                },
+              }}
             >
               <ArrowForward />
             </IconButton>

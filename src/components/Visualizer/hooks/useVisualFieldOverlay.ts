@@ -332,6 +332,41 @@ function generateBlindnessRightEyeOverlay(intensity: number): React.CSSPropertie
 }
 
 /**
+ * Generate Dame Judi Dench AMD Complete overlay
+ * Based on her descriptions: central vision lost, peripheral preserved
+ * "I can see your outline" but "I can't recognize anybody now...I can't see to read"
+ */
+function generateJudiAMDCompleteOverlay(intensity: number): React.CSSProperties {
+  const scotomaSize = 25 + intensity * 20; // 25-45% of view is affected
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    background: `
+      radial-gradient(ellipse ${scotomaSize}% ${scotomaSize}% at 50% 50%,
+        rgba(40,40,45,${intensity * 0.92}) 0%,
+        rgba(45,45,50,${intensity * 0.88}) 20%,
+        rgba(50,50,55,${intensity * 0.80}) 40%,
+        rgba(60,60,65,${intensity * 0.65}) 60%,
+        rgba(80,80,85,${intensity * 0.40}) 75%,
+        rgba(100,100,105,${intensity * 0.20}) 85%,
+        transparent 100%
+      )
+    `,
+    mixBlendMode: 'multiply' as const,
+    opacity: 1,
+    filter: `blur(${intensity * 2}px)`
+  };
+}
+
+/**
  * Hook that generates overlay styles for visual field effects
  * Returns null if animated effects are enabled (handled by useAnimatedOverlay)
  */
@@ -357,6 +392,12 @@ export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSPropert
     const amdEffect = effects.find(e => e.id === 'amd' && e.enabled);
     if (amdEffect) {
       return generateAmdOverlay(amdEffect.intensity);
+    }
+
+    // Check for Judi Dench AMD Complete (central scotoma with peripheral preservation)
+    const judiAMDEffect = effects.find(e => e.id === 'judiAMDComplete' && e.enabled);
+    if (judiAMDEffect) {
+      return generateJudiAMDCompleteOverlay(judiAMDEffect.intensity);
     }
 
     // Check for Diabetic Retinopathy

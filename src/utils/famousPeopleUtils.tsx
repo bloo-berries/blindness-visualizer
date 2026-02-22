@@ -14,7 +14,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'complete-blindness': ['completeBlindness'],
     'abraham-congenital-blindness': ['completeBlindness'],
     'moon-complete-blindness': ['completeBlindness'],
-    'doc-eye-infection': ['completeBlindness'],
+    'doc-light-perception': ['blurryVision', 'lossOfContrast', 'tunnelVision'],
     'nobuyuki-congenital-blindness': ['completeBlindness'],
     'rahsaan-childhood-blindness': ['completeBlindness'],
     'fanny-iatrogenic-blindness': ['completeBlindness'],
@@ -113,7 +113,30 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'taha-complete-blindness': ['completeBlindness'],
     'nana-myopia-astigmatism': ['astigmatism'],
     'esref-congenital-blindness': ['completeBlindness'],
-    'moondog-complete-blindness': ['completeBlindness']
+    'moondog-complete-blindness': ['completeBlindness'],
+    'zeeshan-b2-partial-blindness': ['blurryVision', 'lossOfContrast', 'tunnelVision'],
+    'chen-complete-blindness': ['completeBlindness'],
+    'surdas-complete-blindness': ['completeBlindness'],
+    'ravindra-complete-blindness': ['completeBlindness'],
+    'kimio-complete-blindness': ['completeBlindness'],
+    'diana-complete-blindness': ['completeBlindness'],
+    'asik-complete-blindness': ['completeBlindness'],
+
+    // ===== FICTIONAL CHARACTERS (Non-Complete Blindness) =====
+    'odin-monocular-vision': ['blindnessLeftEye'],
+    'doctor-midnite-photophobia': ['glare', 'blurryVision', 'lossOfContrast'],
+    'magoo-severe-myopia': ['blurryVision'],
+    'murphy-rp-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
+
+    // ===== CORRECTED MUSICIANS =====
+    'art-partial-blindness': ['cataracts', 'blurryVision', 'glare', 'blindnessLeftEye'],
+    'diane-complete-blindness': ['completeBlindness'],
+    'jose-complete-blindness': ['completeBlindness'],
+    'ronnie-complete-blindness': ['completeBlindness'],
+    'jeff-complete-blindness': ['completeBlindness'],
+
+    // ===== CORRECTED SCIENTISTS =====
+    'amy-amd-rp': ['amd', 'scotoma', 'retinitisPigmentosa', 'nightBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

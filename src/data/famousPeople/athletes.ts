@@ -63,7 +63,8 @@ export const athletes: Record<string, PersonData> = {
     years: "Born 1961",
     onset: "Age 17, from car accident",
     simulation: "complete-blindness",
-    description: "Anthony 'Tony' Clarke became completely blind at age 17 following a car accident that destroyed his vision instantly.\n\n• Only Australian to win Paralympic gold in judo (1996 Atlanta)\n\n• Represented Australia at five consecutive Summer Paralympic Games\n\n• Two-time IBSA World Judo Champion\n\n• Medal of the Order of Australia (OAM) recipient (1997)"
+    description: "Anthony 'Tony' Clarke became completely blind at age 17 following a car accident that destroyed his vision instantly.\n\n• Only Australian to win Paralympic gold in judo (1996 Atlanta)\n\n• Represented Australia at five consecutive Summer Paralympic Games\n\n• Two-time IBSA World Judo Champion\n\n• Medal of the Order of Australia (OAM) recipient (1997)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka)"
   },
   crazzySteve: {
     name: "Crazzy Steve",

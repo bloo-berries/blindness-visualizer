@@ -5,6 +5,7 @@ export interface PersonData {
   onset: string;
   simulation: string;
   description: string;
+  wikiUrl?: string;
 }
 
 export interface PersonCategory {

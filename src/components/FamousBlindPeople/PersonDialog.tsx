@@ -10,7 +10,7 @@ import {
   Grid,
   IconButton
 } from '@mui/material';
-import { Close as CloseIcon, ArrowBack, ArrowForward } from '@mui/icons-material';
+import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
@@ -119,6 +119,25 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
             <Typography variant="body2" color="text.secondary" gutterBottom>
               <strong>Onset:</strong> {person.onset}
             </Typography>
+            {person.wikiUrl && (
+              <Typography variant="body2" sx={{ mt: 1 }}>
+                <a
+                  href={person.wikiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#1976d2',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  Learn more on Wikipedia
+                  <OpenInNewIcon sx={{ fontSize: '0.875rem' }} />
+                </a>
+              </Typography>
+            )}
             <Typography variant="body1" sx={{ mt: 2 }}>
               {parseDescriptionWithLinks(person.description, personId)}
             </Typography>

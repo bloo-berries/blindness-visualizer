@@ -14,3 +14,6 @@ export { generateSugarRetinalDetachmentOverlay } from './sugarRetinalDetachment'
 export { generateStephenKeratoconusOverlay } from './stephenKeratoconus';
 export { generateHeatherLightPerceptionOverlay } from './heatherLightPerception';
 export { generateDaredevilRadarSenseOverlay } from './daredevilRadarSense';
+export { generateGeordiVisorSenseOverlay } from './geordiVisorSense';
+export { generateBlindspotSonarSenseOverlay } from './blindspotSonarSense';
+export { generateKenshiTelekineticSenseOverlay } from './kenshiTelekineticSense';

@@ -1536,6 +1536,136 @@ export const generateDaredevilFilters = (effects: VisualEffect[]): string => {
 };
 
 /**
+ * Generates CSS filters for Geordi La Forge's VISOR Sense
+ * Key visual characteristics:
+ * - False-color thermal/spectral palette - remap to non-natural colors
+ * - No true darkness - minimum brightness floor (0.15-0.2)
+ * - Enhanced contrast for EM edge detection
+ * - Chromatic shift away from natural greens/earth tones
+ */
+export const generateGeordiFilters = (effects: VisualEffect[]): string => {
+  const geordiEffects = effects.filter(e =>
+    e.id.startsWith('geordi') && e.enabled
+  );
+
+  if (geordiEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'geordiVisorSenseComplete' && e.enabled);
+  const thermalSpectrum = effects.find(e => e.id === 'geordiThermalSpectrum' && e.enabled);
+  const emEnhancement = effects.find(e => e.id === 'geordiEMEnhancement' && e.enabled);
+  const noTrueDarkness = effects.find(e => e.id === 'geordiNoTrueDarkness' && e.enabled);
+
+  // Complete VISOR Sense - false-color spectral vision
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Shift hue significantly - move away from natural colors
+    // Rotate toward blue/violet/magenta spectrum (thermal palette)
+    filters.push(`hue-rotate(${180 + i * 40}deg)`);
+    // Boost saturation for vibrant false-color effect
+    filters.push(`saturate(${130 + i * 40}%)`);
+    // Increased contrast for edge enhancement / EM boundaries
+    filters.push(`contrast(${115 + i * 20}%)`);
+    // Minimum brightness floor - no true darkness (violet floor)
+    filters.push(`brightness(${85 + i * 15}%)`);
+    // Slight invert-like effect via sepia + hue for thermal look
+    filters.push(`sepia(${i * 15}%)`);
+  }
+
+  // Thermal spectrum effect (standalone)
+  if (thermalSpectrum && !completeVision) {
+    const i = thermalSpectrum.intensity;
+    // Dramatic hue shift to thermal colors
+    filters.push(`hue-rotate(${200 + i * 60}deg)`);
+    filters.push(`saturate(${140 + i * 50}%)`);
+    filters.push(`sepia(${i * 20}%)`);
+  }
+
+  // EM enhancement (standalone)
+  if (emEnhancement && !completeVision) {
+    const i = emEnhancement.intensity;
+    // High contrast for edge detection appearance
+    filters.push(`contrast(${120 + i * 30}%)`);
+    filters.push(`brightness(${105 + i * 15}%)`);
+    filters.push(`saturate(${120 + i * 30}%)`);
+  }
+
+  // No true darkness (standalone)
+  if (noTrueDarkness && !completeVision) {
+    const i = noTrueDarkness.intensity;
+    // Ensure minimum brightness floor
+    filters.push(`brightness(${115 + i * 25}%)`);
+    // Lift shadows
+    filters.push(`contrast(${90 - i * 15}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Blindspot's Sonar Sense
+ * Key visual characteristics:
+ * - Monochrome blue-green palette (submarine sonar aesthetic)
+ * - No color information - only depth/distance
+ * - High contrast for edge detection (hard surfaces reflect strongly)
+ * - Slight blur representing sonar resolution limits
+ */
+export const generateBlindspotFilters = (effects: VisualEffect[]): string => {
+  const blindspotEffects = effects.filter(e =>
+    e.id.startsWith('blindspot') && e.enabled
+  );
+
+  if (blindspotEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'blindspotSonarSenseComplete' && e.enabled);
+  const depthMapping = effects.find(e => e.id === 'blindspotDepthMapping' && e.enabled);
+  const edgeDetection = effects.find(e => e.id === 'blindspotEdgeDetection' && e.enabled);
+  const sonarResolution = effects.find(e => e.id === 'blindspotSonarResolution' && e.enabled);
+
+  // Complete Sonar Sense - monochrome depth-mapped vision
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Strip color - sonar provides no wavelength information
+    filters.push(`saturate(${15 - i * 10}%)`);
+    // Shift to blue-green monochrome (submarine sonar look)
+    filters.push(`hue-rotate(${160 + i * 20}deg)`);
+    // High contrast for edge detection (hard surfaces)
+    filters.push(`contrast(${120 + i * 25}%)`);
+    // Reduced brightness - sonar world is darker
+    filters.push(`brightness(${75 - i * 15}%)`);
+    // Slight blur representing resolution limits
+    filters.push(`blur(${0.5 + i * 1}px)`);
+  }
+
+  // Depth mapping only
+  if (depthMapping && !completeVision) {
+    const i = depthMapping.intensity;
+    filters.push(`saturate(${20 - i * 15}%)`);
+    filters.push(`hue-rotate(${170 + i * 15}deg)`);
+    filters.push(`brightness(${80 - i * 20}%)`);
+  }
+
+  // Edge detection emphasis
+  if (edgeDetection && !completeVision) {
+    const i = edgeDetection.intensity;
+    filters.push(`contrast(${130 + i * 35}%)`);
+    filters.push(`brightness(${90 - i * 10}%)`);
+  }
+
+  // Sonar resolution limits
+  if (sonarResolution && !completeVision) {
+    const i = sonarResolution.intensity;
+    filters.push(`blur(${0.8 + i * 1.5}px)`);
+    filters.push(`contrast(${110 + i * 15}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
  * Generates CSS filters for custom famous people effects
  */
 export const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {

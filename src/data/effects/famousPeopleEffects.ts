@@ -1258,5 +1258,167 @@ export const famousPeopleEffects: VisualEffect[] = [
     enabled: false,
     intensity: 1.0,
     description: 'Complete simulation of Daredevil\'s radar sense - the "World on Fire" visualization from the Netflix series. Red/dark red monochrome color scheme with edge-detection style rendering. Rotating radar sweeps suggest 360° awareness. Sound-producing objects glow brighter with pulsing intensity. Only contours, silhouettes, and depth are visible - no flat surfaces, textures, or fine detail. Moving objects pulse more intensely than static geometry.'
+  },
+
+  // Geordi La Forge - VISOR Enhanced Electromagnetic Spectrum Vision
+  {
+    id: 'geordiVisorSenseComplete',
+    name: 'Complete VISOR Sense (Geordi La Forge)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Geordi La Forge\'s VISOR-enhanced vision from Star Trek: TNG. The VISOR translates the entire electromagnetic spectrum into visual information. Features: false-color thermal/spectral palette (blues for cold, oranges for warm, magentas for high-energy), EM emission halos around electronics, edge enhancement at material boundaries, scan-line artifacts from mechanical processing, no true darkness (ambient EM renders as deep violet), and occasional overload flicker in high-energy environments. The VISOR sees far more than human eyes, but processes it differently.'
+  },
+  {
+    id: 'geordiThermalSpectrum',
+    name: 'Thermal Spectrum (Geordi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'False-color thermal remapping. Cold/low-energy objects appear in deep blue/violet, moderate temperatures in cyan, warm objects in orange, and hot/high-energy sources in bright white/magenta. No natural greens or earth tones exist in this spectrum.'
+  },
+  {
+    id: 'geordiEMEnhancement',
+    name: 'EM Enhancement (Geordi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Enhanced perception of electromagnetic emissions. Electronics, power conduits, and energy sources emit visible auras or corona effects. Bright glowing outlines appear around anything electrically active. Material boundaries show spectral-shift edge detection.'
+  },
+  {
+    id: 'geordiNoTrueDarkness',
+    name: 'No True Darkness (Geordi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Minimum brightness floor from ambient EM radiation. Even "dark" areas render in deep blue/violet because the VISOR perceives electromagnetic radiation beyond visible light. True black never appears - there is always some EM activity to visualize.'
+  },
+  {
+    id: 'geordiScanLines',
+    name: 'VISOR Scan Lines (Geordi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Faint horizontal banding and scan-line artifacts suggesting mechanical processing. The VISOR translates EM data through electronic processing, creating subtle interlacing effects. A moving scan bar periodically sweeps across the visual field.'
+  },
+  {
+    id: 'geordiOverloadFlicker',
+    name: 'Sensory Overload (Geordi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'In bright or high-energy environments, occasional sharp white flash frames or bloom spikes appear. This simulates the sensory overload and discomfort Geordi experiences - the VISOR provides incredible perception but at the cost of constant low-level pain and occasional overwhelming input.'
+  },
+
+  // Blindspot (Samuel Baines) - Sonar-Based Echolocation Vision
+  {
+    id: 'blindspotSonarSenseComplete',
+    name: 'Complete Sonar Sense (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Blindspot\'s sonar-based echolocation vision. The technology emits sound waves that bounce off surfaces, returning depth and shape data. Features: monochrome blue-green palette (submarine sonar aesthetic), depth-mapped brightness (near = bright, far = dim), edge-dominant rendering (geometry only, no surface detail), radial ping sweeps like a radar display, ripple wavefronts from active pinging, and hard perceptual boundary beyond sonar range (~20-30m). Sound-shadow zones appear behind solid objects. Hard surfaces (metal, glass) are bright; soft surfaces (fabric, flesh) are dim or absent.'
+  },
+  {
+    id: 'blindspotDepthMapping',
+    name: 'Depth Mapping (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Depth-mapped brightness visualization. Near objects appear bright and sharp, while distant objects fade to dim and fuzzy. Hard falloff beyond ~15-20m range. No color information - only distance data converted to brightness.'
+  },
+  {
+    id: 'blindspotEdgeDetection',
+    name: 'Edge Detection (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Strong edge detection rendering. Only 3D contours and depth register - flat textures, text, color, and fine detail are invisible. Fill areas between edges with flat, low-detail shading. Hard surfaces (metal, walls, glass) render bright and crisp; soft materials (clothing, plants) render faint or nearly absent.'
+  },
+  {
+    id: 'blindspotPingSweep',
+    name: 'Ping Sweep (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Radial ping sweep rotating outward from center, like a radar display. Sonar isn\'t continuous - it pings and refreshes at ~2-4 Hz, creating a subtle strobe or sweep quality. Ripple wavefronts emanate from the emitter point, suggesting the wave nature of perception.'
+  },
+  {
+    id: 'blindspotSoundShadow',
+    name: 'Sound Shadow (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Sound-shadow occlusion zones. Objects behind other objects are invisible (sonar is line-of-"ping"). Soft/absorptive materials (fabric, carpet, foam) reflect poorly and appear as dark voids. The world has harsh perceptual boundaries - anything beyond sonar range is pure void.'
+  },
+  {
+    id: 'blindspotSonarResolution',
+    name: 'Sonar Resolution (Blindspot)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Resolution tied to frequency. Mid-range compromise - enough to navigate rooms and detect people, not enough to read or recognize faces. Moving objects between pings produce ghosting/trailing artifacts as position updates discretely, not continuously.'
+  },
+
+  // Kenshi Takahashi - Telekinetic Psychic Perception
+  // Blind swordsman with telekinetic powers - perceives through psychic fields
+  // Key features: soul/life-force detection, spirit realm visibility, 360° awareness
+  {
+    id: 'kenshiDarkVoid',
+    name: 'Dark Void Base (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'The world is dark by default - black/deep indigo void with no ambient light. Illumination comes only from psychic energy perception. This is the baseline "nothing" that Kenshi perceives without telekinetic sensing.'
+  },
+  {
+    id: 'kenshiSoulDetection',
+    name: 'Soul/Life-Force Detection (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Living beings radiate luminous energy in cool blue-white/spectral cyan. People and creatures register intensely with pulsing life force that follows a gentle heartbeat rhythm. Powerful fighters glow brighter than ordinary people. The intensity corresponds to soul energy/power level.'
+  },
+  {
+    id: 'kenshiInertMatter',
+    name: 'Inert Matter Outlines (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Inanimate objects register as faint contour lines in deep blue/violet - present but understated compared to living beings. Denser materials (stone, metal) appear slightly brighter than soft materials. Only mass/density information, no surface detail, texture, or color.'
+  },
+  {
+    id: 'kenshiIntentSensing',
+    name: 'Intent/Threat Sensing (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'As a psychokinetic, Kenshi senses hostility, fear, and deception. Combat intent flares bright white/amber BEFORE a physical attack lands - a predictive layer with no visual analogue. When an enemy prepares to strike, a bright flash emanates in the direction of their intended attack.'
+  },
+  {
+    id: 'kenshiSpiritRealm',
+    name: 'Spirit Realm Visibility (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Kenshi\'s blindfold retains vestigial powers allowing him to peer into the spirit realm. Ghosts, soul constructs, and spiritual entities appear as translucent, spectral wisps drifting through the scene - visible to him when invisible to sighted people. Ancestral spirits and soul echoes pass through his perception.'
+  },
+  {
+    id: 'kenshiSentoResonance',
+    name: 'Sento Sword Resonance (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'When holding the ancestral sword Sento, a warm amber/gold pulsing aura extends outward from the blade, brightening the entire perception field. The sword itself glows warmly - the one warm-toned element in an otherwise cool-spectrum perception. The blade connects him to his ancestors\' souls.'
+  },
+  {
+    id: 'kenshiRangeFalloff',
+    name: 'Psychic Range Limit (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Hard perceptual boundary at the edge of telekinetic range (~20-50m in combat). Beyond it - absolute void. Not a gradual fade like fog, but a crisp boundary where awareness simply ends. The darkness beyond is complete and impenetrable.'
+  },
+  {
+    id: 'kenshiTelekineticStreams',
+    name: 'Telekinetic Force Streams (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'When actively using telekinesis, visible force streams appear - arcs or tendrils of cyan/blue light connecting his mind to the object being manipulated. This represents him "seeing" his own power interact with the world, the psychic energy made visible.'
+  },
+  {
+    id: 'kenshiOmnidirectionalAwareness',
+    name: '360° Spatial Awareness (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'No fixed field of view. Perception radiates outward omnidirectionally like a sphere of awareness. No "looking at" something - everything within range is simultaneously felt. No center-vs-periphery distinction, no vignette, no hard FOV edges. True 360° presence-based perception.'
+  },
+  {
+    id: 'kenshiTelekineticSenseComplete',
+    name: 'Complete Telekinetic Sense (Kenshi)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Kenshi Takahashi\'s telekinetic perception from Mortal Kombat. Features: dark void base (no ambient light), soul/life-force glow on living beings (cool blue-white/cyan with heartbeat pulsing - powerful fighters brighter), faint inert matter outlines in deep blue/violet (mass/density only), intent/threat flares in hot white/amber (precognitive combat awareness), 360° omnidirectional spatial awareness (no FOV limits), spirit realm bleed-through (ghostly wisps visible), Sento sword resonance (warm amber/gold pulsing), telekinetic force streams (visible energy arcs), and hard range falloff at psychic limit. No surface detail, no texture, no color, no facial features - only mass, energy, motion, and life force. Pure energy topology.'
   }
 ];

@@ -85,6 +85,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
 
     // ===== FICTIONAL / ENHANCED PERCEPTION =====
     'daredevil-radar-sense': ['daredevilRadarSenseComplete'],
+    'geordi-visor-sense': ['geordiVisorSenseComplete'],
+    'blindspot-sonar-sense': ['blindspotSonarSenseComplete'],
+    'kenshi-telekinetic-sense': ['kenshiTelekineticSenseComplete'],
 
     // ===== RETINAL DETACHMENT =====
     'sugar-retinal-detachment': ['sugarRetinalDetachmentComplete'],

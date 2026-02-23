@@ -26,6 +26,8 @@ import {
   generateNemethFilters,
   generateHeatherFilters,
   generateDaredevilFilters,
+  generateGeordiFilters,
+  generateBlindspotFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters';
 
@@ -87,6 +89,8 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateNemethFilters(effects),
     generateHeatherFilters(effects),
     generateDaredevilFilters(effects),
+    generateGeordiFilters(effects),
+    generateBlindspotFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

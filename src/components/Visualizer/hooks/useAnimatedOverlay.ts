@@ -17,6 +17,9 @@ import {
   generateStephenKeratoconusOverlay,
   generateHeatherLightPerceptionOverlay,
   generateDaredevilRadarSenseOverlay,
+  generateGeordiVisorSenseOverlay,
+  generateBlindspotSonarSenseOverlay,
+  generateKenshiTelekineticSenseOverlay,
 } from './animatedOverlays';
 
 /**
@@ -32,7 +35,8 @@ export const ANIMATED_EFFECTS = [
   'persistentPositiveVisualPhenomenon', 'palinopsia', 'starbursting',
   // Person-specific animated effects
   'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
-  'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete'
+  'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
+  'kenshiTelekineticSenseComplete'
 ];
 
 /**
@@ -109,6 +113,24 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     const daredevilEffect = effects.find(e => e.id === 'daredevilRadarSenseComplete' && e.enabled);
     if (daredevilEffect) {
       return generateDaredevilRadarSenseOverlay(daredevilEffect.intensity, now);
+    }
+
+    // Check for Geordi La Forge's VISOR Sense (EM spectrum, thermal, scan lines)
+    const geordiEffect = effects.find(e => e.id === 'geordiVisorSenseComplete' && e.enabled);
+    if (geordiEffect) {
+      return generateGeordiVisorSenseOverlay(geordiEffect.intensity, now);
+    }
+
+    // Check for Blindspot's Sonar Sense (echolocation, ping sweeps, depth mapping)
+    const blindspotEffect = effects.find(e => e.id === 'blindspotSonarSenseComplete' && e.enabled);
+    if (blindspotEffect) {
+      return generateBlindspotSonarSenseOverlay(blindspotEffect.intensity, now);
+    }
+
+    // Check for Kenshi's Telekinetic Sense (psychic perception, soul detection, spirit realm)
+    const kenshiEffect = effects.find(e => e.id === 'kenshiTelekineticSenseComplete' && e.enabled);
+    if (kenshiEffect) {
+      return generateKenshiTelekineticSenseOverlay(kenshiEffect.intensity, now);
     }
 
     return null;

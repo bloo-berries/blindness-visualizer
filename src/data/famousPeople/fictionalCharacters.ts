@@ -21,20 +21,20 @@ export const fictionalCharacters: Record<string, PersonData> = {
   },
   geordi: {
     name: "Geordi La Forge",
-    condition: "Congenital Blindness",
+    condition: "VISOR Enhanced EM Vision",
     years: "Star Trek: The Next Generation",
-    onset: "Born blind (birth defect)",
-    simulation: "complete-blindness",
-    description: "Geordi La Forge was born blind and uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that allows him to see across the electromagnetic spectrum, far beyond normal human vision.\n\n• Chief Engineer of the USS Enterprise-D\n\n• Later receives ocular implants with similar capabilities\n\n• One of the most prominent blind characters in science fiction",
+    onset: "Born blind (birth defect), uses VISOR prosthetic",
+    simulation: "geordi-visor-sense",
+    description: "Geordi La Forge was born blind and uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that translates the entire electromagnetic spectrum into visual information.\n\nThe visualization: false-color thermal palette (blues for cold, oranges for warm, magentas for high-energy). EM emission halos around electronics and power sources. Edge enhancement at material boundaries. Scan-line artifacts from mechanical processing. No true darkness - ambient EM renders as deep violet.\n\n• Chief Engineer of the USS Enterprise-D\n\n• The VISOR causes constant low-level pain and sensory overload\n\n• Played by LeVar Burton",
     wikiUrl: "https://en.wikipedia.org/wiki/Geordi_La_Forge"
   },
   blindspot: {
     name: "Blindspot (Samuel 'Sam' Baines)",
-    condition: "Blindness",
+    condition: "Sonar-Based Echolocation",
     years: "Batman (DC Comics)",
-    onset: "Eyes burned by villain",
-    simulation: "complete-blindness",
-    description: "Blindspot, also known as Samuel 'Sam' Baines, had his eyes burned by a villain in the DC Comics Batman series.\n\nDespite being blind, he uses advanced sonar-based technology to navigate.\n\n• Uses echolocation and sound waves to 'see'\n\n• Formidable opponent in Batman's rogues gallery\n\n• Demonstrates how technology can compensate for vision loss",
+    onset: "Eyes burned by villain, uses sonar technology",
+    simulation: "blindspot-sonar-sense",
+    description: "Blindspot, also known as Samuel 'Sam' Baines, had his eyes burned by a villain in the DC Comics Batman series. He uses advanced sonar-based technology to navigate.\n\nThe visualization: monochrome blue-green palette (submarine sonar aesthetic). Depth-mapped brightness (near = bright, far = dim). Edge-dominant rendering - only 3D contours register, no textures or detail. Radial ping sweeps like a radar display. Sound-shadow zones behind solid objects. Hard surfaces bright, soft surfaces dim or absent.\n\n• Active sonar emits pulses that bounce off surfaces\n\n• Resolution limited - can navigate rooms but not read or recognize faces\n\n• Formidable opponent in Batman's rogues gallery",
     wikiUrl: "https://en.wikipedia.org/wiki/Blindspot_(character)"
   },
   toph: {
@@ -48,11 +48,11 @@ export const fictionalCharacters: Record<string, PersonData> = {
   },
   kenshi: {
     name: "Kenshi Takahashi",
-    condition: "Blindness",
+    condition: "Telekinetic Perception (Psychic Sense)",
     years: "Mortal Kombat",
-    onset: "Tricked by sorcerer",
-    simulation: "complete-blindness",
-    description: "Kenshi Takahashi was blinded when he opened a tomb containing the ancient sword Sento, which released imprisoned souls that took his sight.\n\nDespite his blindness, he possesses powerful telekinetic abilities.\n\n• Blind swordsman and Special Forces operative\n\n• Uses telekinetic powers to sense his surroundings\n\n• First appeared in Mortal Kombat: Deadly Alliance (2002)",
+    onset: "Blinded by sorcerer Shang Tsung",
+    simulation: "kenshi-telekinetic-sense",
+    description: "Kenshi Takahashi was blinded when the sorcerer Shang Tsung tricked him into opening an ancient tomb, which released the souls of his ancestors and took his sight. He now wields the ancestral sword Sento.\n\nThe visualization: Kenshi perceives through telekinetic fields, not reflected light. Living beings radiate intense blue-white soul energy with heartbeat pulsing - powerful fighters glow brighter. Inanimate objects register as faint blue/violet mass outlines. He senses intent before attacks land (precognitive amber flares). Spirit realm entities are visible as ghostly wisps. Sento glows warm amber/gold. No textures, colors, or facial features - only mass, energy, motion, and life force. 360° omnidirectional awareness with hard perceptual boundary at psychic range.\n\n• Blind swordsman and Special Forces operative\n\n• Presence-based perception - he feels the existence of things through telekinetic fields\n\n• His blindfold allows him to peer into the spirit realm\n\n• First appeared in Mortal Kombat: Deadly Alliance (2002)",
     wikiUrl: "https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat)"
   },
   neo: {

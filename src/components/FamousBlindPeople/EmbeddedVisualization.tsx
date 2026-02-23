@@ -55,8 +55,13 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     return generateCSSFilters(effects);
   }, [effects]);
 
-  // Check for complete blindness
+  // Check for complete blindness or near-total blindness conditions
   const isCompleteBlindness = effects.some(e => e.id === 'completeBlindness' && e.enabled);
+  const isNearTotalBlindness = effects.some(e =>
+    (e.id === 'heatherLightPerceptionComplete' ||
+     e.id === 'tofiriComplete' ||
+     e.id === 'nemethComplete') && e.enabled
+  );
 
   return (
     <Box sx={{ mt: 2 }}>
@@ -92,8 +97,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           Simulation
         </Box>
 
-        {/* Complete blindness notification */}
-        {isCompleteBlindness && (
+        {/* Complete blindness / near-total blindness notification */}
+        {(isCompleteBlindness || isNearTotalBlindness) && (
           <Box
             sx={{
               position: 'absolute',

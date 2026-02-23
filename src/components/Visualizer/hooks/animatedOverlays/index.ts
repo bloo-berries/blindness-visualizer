@@ -12,3 +12,5 @@ export { generateStarburstingOverlay } from './starbursting';
 export { generateChristineFluctuatingOverlay } from './christineFluctuating';
 export { generateSugarRetinalDetachmentOverlay } from './sugarRetinalDetachment';
 export { generateStephenKeratoconusOverlay } from './stephenKeratoconus';
+export { generateHeatherLightPerceptionOverlay } from './heatherLightPerception';
+export { generateDaredevilRadarSenseOverlay } from './daredevilRadarSense';

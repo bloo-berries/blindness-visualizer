@@ -21,6 +21,11 @@ import {
   generateLexFilters,
   generateCrazzysteveFilters,
   generateTofiriFilters,
+  generatePlateauFilters,
+  generateEulerFilters,
+  generateNemethFilters,
+  generateHeatherFilters,
+  generateDaredevilFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters';
 
@@ -77,6 +82,11 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateLexFilters(effects),
     generateCrazzysteveFilters(effects),
     generateTofiriFilters(effects),
+    generatePlateauFilters(effects),
+    generateEulerFilters(effects),
+    generateNemethFilters(effects),
+    generateHeatherFilters(effects),
+    generateDaredevilFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

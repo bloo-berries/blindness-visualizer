@@ -15,6 +15,8 @@ import {
   generateChristineFluctuatingOverlay,
   generateSugarRetinalDetachmentOverlay,
   generateStephenKeratoconusOverlay,
+  generateHeatherLightPerceptionOverlay,
+  generateDaredevilRadarSenseOverlay,
 } from './animatedOverlays';
 
 /**
@@ -29,7 +31,8 @@ export const ANIMATED_EFFECTS = [
   'hallucinations', 'visualFloaters', 'blueFieldPhenomena',
   'persistentPositiveVisualPhenomenon', 'palinopsia', 'starbursting',
   // Person-specific animated effects
-  'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete'
+  'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
+  'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete'
 ];
 
 /**
@@ -94,6 +97,18 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     const stephenKeratoconusEffect = effects.find(e => e.id === 'stephenKeratoconusComplete' && e.enabled);
     if (stephenKeratoconusEffect) {
       return generateStephenKeratoconusOverlay(stephenKeratoconusEffect.intensity, now);
+    }
+
+    // Check for Heather Hutchison's Light Perception (nystagmus, diffuse light blobs)
+    const heatherLPEffect = effects.find(e => e.id === 'heatherLightPerceptionComplete' && e.enabled);
+    if (heatherLPEffect) {
+      return generateHeatherLightPerceptionOverlay(heatherLPEffect.intensity, now);
+    }
+
+    // Check for Daredevil's Radar Sense (red monochrome, edge detection, pulsing)
+    const daredevilEffect = effects.find(e => e.id === 'daredevilRadarSenseComplete' && e.enabled);
+    if (daredevilEffect) {
+      return generateDaredevilRadarSenseOverlay(daredevilEffect.intensity, now);
     }
 
     return null;

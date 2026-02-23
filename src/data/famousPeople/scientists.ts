@@ -57,20 +57,20 @@ export const scientists: Record<string, PersonData> = {
   },
   josephPlateau: {
     name: "Joseph Plateau",
-    condition: "Blindness from Experimental Exposure",
+    condition: "Solar Retinopathy → Total Blindness",
     years: "1801-1883",
-    onset: "Age 42, in 1843",
-    simulation: "complete-blindness",
-    description: "Joseph Plateau became completely blind in 1843, likely from prolonged exposure to bright light during experiments, including staring directly at the sun.\n\nHis vision deteriorated gradually until total blindness.\n\n• Invented the phenakistoscope - precursor to modern cinema and animation\n\n• Made fundamental contributions to understanding visual perception\n\n• Continued scientific work after blindness with help from family and colleagues\n\n• Plateau's laws of soap films still used in mathematics",
+    onset: "Initial damage ~1829, total blindness by 1843",
+    simulation: "plateau-solar-retinopathy",
+    description: "Joseph Plateau damaged his retinas through prolonged direct solar observation around 1829, leading to progressive deterioration and total blindness by 1843.\n\nHe experienced a dark central scotoma (blind spot at fixation point), preserved peripheral vision initially, severe acuity loss, and persistent afterimages from the solar damage. Over ~14 years, his remaining vision gradually dimmed until complete blindness.\n\n• Invented the phenakistoscope - precursor to modern cinema and animation\n\n• Made fundamental contributions to understanding visual perception and persistence of vision\n\n• Continued scientific work after blindness with help from family and colleagues\n\n• Plateau's laws of soap films still used in mathematics and physics",
     wikiUrl: "https://en.wikipedia.org/wiki/Joseph_Plateau"
   },
   euler: {
     name: "Leonhard Euler",
-    condition: "Progressive Blindness",
+    condition: "Asymmetric Progressive Blindness",
     years: "1707-1783",
-    onset: "Progressive, complete blindness in later years",
-    simulation: "euler-progressive-blindness",
-    description: "Leonhard Euler experienced progressive eyesight deterioration, losing sight in his right eye at 31 from a fever, then becoming completely blind in his remaining eye at age 64.\n\nDespite total blindness, he relied on his extraordinary memory and mental calculation abilities.\n\n• One of the greatest mathematicians in history\n\n• Produced roughly half of his life's work after becoming totally blind\n\n• Made fundamental contributions to calculus, graph theory, mechanics, and optics\n\n• Dictated research to assistants, including his children",
+    onset: "Right eye lost at 31 (infection), left eye failed at 64 (cataract)",
+    simulation: "euler-asymmetric-blindness",
+    description: "Leonhard Euler lost his right eye completely around 1738 from a severe fever/infection, leaving that side in total darkness. His left eye developed a progressive cataract, creating milky fog, glare sensitivity, and washed-out colors that worsened until total blindness by 1771.\n\nFor ~33 years he worked with only his left eye, then ~12 years in complete darkness.\n\n• One of the greatest mathematicians in history\n\n• Produced roughly half of his life's work after becoming totally blind\n\n• Made fundamental contributions to calculus, graph theory, mechanics, and optics\n\n• Dictated research to assistants, including his children",
     wikiUrl: "https://en.wikipedia.org/wiki/Leonhard_Euler"
   },
   wanda: {
@@ -84,11 +84,11 @@ export const scientists: Record<string, PersonData> = {
   },
   abraham: {
     name: "Abraham Nemeth",
-    condition: "Congenital Blindness",
+    condition: "Congenital Dual-Attack Blindness",
     years: "1918-2013",
-    onset: "From birth",
-    simulation: "abraham-congenital-blindness",
-    description: "Abraham Nemeth was born completely blind, facing a world where mathematical education was nearly inaccessible to blind students.\n\nHe had to create his own solutions to study mathematics.\n\n• Developed the Nemeth Braille Code for Mathematics and Science Notation - still the standard worldwide\n\n• Professor of mathematics who made STEM accessible to blind students\n\n• His code enables transcription of complex equations, calculus, and scientific notation into braille",
+    onset: "From birth - central + peripheral vision loss",
+    simulation: "abraham-dual-attack-blindness",
+    description: "Abraham Nemeth was born with a dual-attack condition affecting both central vision (macular degeneration component) and peripheral vision (retinitis pigmentosa component), leaving only a fragile mid-peripheral ring.\n\nEducated at a school for the blind from childhood, his functional vision was minimal to none throughout life - effectively total blindness.\n\n• Developed the Nemeth Braille Code for Mathematics and Science Notation - still the standard worldwide\n\n• Professor of mathematics who made STEM accessible to blind students\n\n• His code enables transcription of complex equations, calculus, and scientific notation into braille",
     wikiUrl: "https://en.wikipedia.org/wiki/Abraham_Nemeth"
   }
 };

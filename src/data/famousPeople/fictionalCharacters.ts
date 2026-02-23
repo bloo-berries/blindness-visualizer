@@ -12,11 +12,11 @@ export const fictionalCharacters: Record<string, PersonData> = {
   },
   daredevil: {
     name: "Daredevil / Matt Murdock",
-    condition: "Chemical Accident",
+    condition: "Radar Sense (Enhanced Perception)",
     years: "Marvel Comics / Netflix Series",
-    onset: "Radioactive chemical accident",
-    simulation: "complete-blindness",
-    description: "Matt Murdock was blinded as a child by a radioactive substance that fell from a truck, but the accident also heightened his other senses to superhuman levels.\n\nHe uses enhanced hearing, smell, touch, and a 'radar sense' to navigate.\n\n• Lawyer by day, vigilante by night protecting Hell's Kitchen\n\n• First appeared in Daredevil #1 (1964)\n\n• Portrayed in Netflix/Marvel series by Charlie Cox",
+    onset: "Radioactive chemical accident heightened other senses",
+    simulation: "daredevil-radar-sense",
+    description: "Matt Murdock was blinded as a child by a radioactive substance, but the accident heightened his other senses to superhuman levels, creating a 'radar sense' that perceives the world as fire.\n\nThe visualization: red monochrome 'World on Fire' with edge-detection style rendering. Rotating radar sweeps suggest 360° awareness. Sound-producing objects glow brighter. Only contours and silhouettes - no textures or flat 2D information.\n\n• Lawyer by day, vigilante by night protecting Hell's Kitchen\n\n• First appeared in Daredevil #1 (1964)\n\n• Portrayed in Netflix/Marvel series by Charlie Cox",
     wikiUrl: "https://en.wikipedia.org/wiki/Daredevil_(Marvel_Comics_character)"
   },
   geordi: {

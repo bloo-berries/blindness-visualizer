@@ -367,6 +367,126 @@ function generateJudiAMDCompleteOverlay(intensity: number): React.CSSProperties 
 }
 
 /**
+ * Generate Joseph Plateau Solar Retinopathy overlay
+ * Central scotoma (10-20° dark ellipse) from solar damage with preserved peripheral
+ * Features dark opaque center, blur gradient, and slight afterimage artifacts
+ */
+function generatePlateauSolarRetinopathyOverlay(intensity: number): React.CSSProperties {
+  // Central scotoma size: 10-20% of visual field
+  const scotomaSize = 12 + intensity * 8; // 12-20%
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    // Dark central scotoma with softer edges transitioning to preserved peripheral
+    background: `
+      radial-gradient(ellipse ${scotomaSize}% ${scotomaSize * 0.9}% at 50% 50%,
+        rgba(5,5,5,${intensity * 0.95}) 0%,
+        rgba(10,10,10,${intensity * 0.92}) 40%,
+        rgba(20,20,20,${intensity * 0.85}) 60%,
+        rgba(40,40,40,${intensity * 0.6}) 75%,
+        rgba(60,60,60,${intensity * 0.3}) 85%,
+        transparent 100%
+      )
+    `,
+    mixBlendMode: 'multiply' as const,
+    opacity: 1,
+    // Slight blur to soften the scotoma edges
+    filter: `blur(${intensity * 1.5}px)`
+  };
+}
+
+/**
+ * Generate Leonhard Euler's Asymmetric Vision Loss overlay
+ * Right eye: Complete black (dead from infection ~1738)
+ * Left eye: Milky cataract fog (handled by CSS filters)
+ * The overlay blacks out the right half while leaving left visible for cataract effects
+ */
+function generateEulerAsymmetricOverlay(intensity: number): React.CSSProperties {
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    // Right half complete black (dead right eye), soft transition to left
+    background: `linear-gradient(to left,
+      rgba(0,0,0,${intensity}) 0%,
+      rgba(0,0,0,${intensity}) 45%,
+      rgba(0,0,0,${intensity * 0.7}) 48%,
+      rgba(0,0,0,${intensity * 0.3}) 50%,
+      rgba(0,0,0,${intensity * 0.1}) 52%,
+      rgba(0,0,0,0) 55%
+    )`,
+    mixBlendMode: 'normal' as const,
+    opacity: 1
+  };
+}
+
+/**
+ * Generate Abraham Nemeth's Dual-Attack Blindness overlay
+ * Combines central scotoma + peripheral constriction, leaving only a fragile mid-peripheral ring
+ * For his lived experience: near-total darkness (functioned as totally blind)
+ */
+function generateNemethDualAttackOverlay(intensity: number): React.CSSProperties {
+  // Central scotoma size: 10-20% of visual field (expands with intensity)
+  const centralScotomaSize = 10 + intensity * 10;
+
+  // Peripheral constriction: tunnel closes from edges
+  // At full intensity, the tunnel is very narrow, leaving almost nothing
+  const peripheralStart = 25 + intensity * 20; // Where peripheral darkness begins (25-45%)
+  const peripheralEnd = 35 + intensity * 25; // Where it becomes total (35-60%)
+
+  // The mid-ring remnant exists between centralScotomaSize and peripheralStart
+  // At high intensity, these overlap, leaving effectively nothing
+
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    // Layer 1: Central scotoma (dark elliptical void at center)
+    // Layer 2: Peripheral constriction (darkness from edges)
+    // The combination leaves only a thin donut ring (if any)
+    background: `
+      radial-gradient(ellipse ${centralScotomaSize}% ${centralScotomaSize * 0.9}% at 50% 50%,
+        rgba(0,0,0,${intensity * 0.98}) 0%,
+        rgba(0,0,0,${intensity * 0.95}) 60%,
+        rgba(0,0,0,${intensity * 0.85}) 80%,
+        rgba(5,5,5,${intensity * 0.6}) 90%,
+        transparent 100%
+      ),
+      radial-gradient(ellipse 100% 120% at 50% 50%,
+        transparent 0%,
+        transparent ${peripheralStart - 5}%,
+        rgba(5,5,5,${intensity * 0.4}) ${peripheralStart}%,
+        rgba(0,0,0,${intensity * 0.7}) ${(peripheralStart + peripheralEnd) / 2}%,
+        rgba(0,0,0,${intensity * 0.95}) ${peripheralEnd}%,
+        rgba(0,0,0,${intensity * 0.98}) 100%
+      )
+    `,
+    mixBlendMode: 'multiply' as const,
+    opacity: 1
+  };
+}
+
+/**
  * Hook that generates overlay styles for visual field effects
  * Returns null if animated effects are enabled (handled by useAnimatedOverlay)
  */
@@ -398,6 +518,35 @@ export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSPropert
     const judiAMDEffect = effects.find(e => e.id === 'judiAMDComplete' && e.enabled);
     if (judiAMDEffect) {
       return generateJudiAMDCompleteOverlay(judiAMDEffect.intensity);
+    }
+
+    // Check for Joseph Plateau Solar Retinopathy (central scotoma from solar damage)
+    const plateauEffect = effects.find(e =>
+      (e.id === 'plateauComplete' || e.id === 'plateauCentralScotoma' ||
+       e.id === 'plateauEarlyStage' || e.id === 'plateauMidStage' || e.id === 'plateauLateStage') && e.enabled
+    );
+    if (plateauEffect) {
+      return generatePlateauSolarRetinopathyOverlay(plateauEffect.intensity);
+    }
+
+    // Check for Leonhard Euler's asymmetric vision loss (right eye blind, left eye cataract)
+    const eulerEffect = effects.find(e =>
+      (e.id === 'eulerComplete' || e.id === 'eulerRightEyeBlind' ||
+       e.id === 'eulerLeftEyeCataract' || e.id === 'eulerEarlyStage' ||
+       e.id === 'eulerMidStage' || e.id === 'eulerLateStage') && e.enabled
+    );
+    if (eulerEffect) {
+      return generateEulerAsymmetricOverlay(eulerEffect.intensity);
+    }
+
+    // Check for Abraham Nemeth's dual-attack blindness (central scotoma + peripheral constriction)
+    const nemethEffect = effects.find(e =>
+      (e.id === 'nemethComplete' || e.id === 'nemethCentralScotoma' ||
+       e.id === 'nemethPeripheralConstriction' || e.id === 'nemethMidRingRemnant' ||
+       e.id === 'nemethPartialRing') && e.enabled
+    );
+    if (nemethEffect) {
+      return generateNemethDualAttackOverlay(nemethEffect.intensity);
     }
 
     // Check for Diabetic Retinopathy

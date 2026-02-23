@@ -1005,5 +1005,258 @@ export const famousPeopleEffects: VisualEffect[] = [
     enabled: false,
     intensity: 1.0,
     description: 'Complete simulation of Tofiri Kibuuka\'s vision after progressive degenerative blindness at age 13. Near-total darkness (98-100% opacity) with only the most subtle ambient luminance variation possible under bright light conditions. No spatial information, no edges, no shapes, no color - only the barest sense that light exists somewhere. He navigated Paralympic ski courses, marathon routes, and Mount Kilimanjaro through sound, touch, guide communication, spatial memory, and proprioception - with effectively zero visual input.'
+  },
+
+  // Joseph Plateau - Solar Retinopathy Progression to Total Blindness
+  // Damaged retinas via prolonged direct solar observation (~1829)
+  // Progressive deterioration over ~14 years to total blindness by ~1843
+  // Key features: central scotoma, preserved peripheral (early), afterimages/photopsia, global dimming
+  {
+    id: 'plateauCentralScotoma',
+    name: 'Central Scotoma (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'A dark elliptical blind spot in the center of the visual field (10-20°) from solar retinopathy. Not "nothingness" - an opaque dark region obscuring the fixation point. Text, faces, and fine detail become unreadable when looking directly at them.'
+  },
+  {
+    id: 'plateauPeripheralPreserved',
+    name: 'Preserved Peripheral Vision (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Early stage: peripheral vision remains functional while central vision is destroyed. Plateau could still navigate using side vision, but anything he looked directly at would disappear into the central scotoma.'
+  },
+  {
+    id: 'plateauAcuityLoss',
+    name: 'Severe Acuity Loss (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Fine detail destroyed in the center of vision. Blur increases toward the center of the visual field. Even where vision remained, text and facial features would be unreadable and unrecognizable.'
+  },
+  {
+    id: 'plateauPhotopsia',
+    name: 'Persistent Afterimages/Photopsia (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Lingering bright spots and color distortions - phantom light artifacts from retinal damage caused by staring at the sun. These afterimages persist and drift across the visual field, a permanent reminder of the solar exposure.'
+  },
+  {
+    id: 'plateauGlobalDimming',
+    name: 'Progressive Global Dimming (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Over ~14 years, remaining peripheral vision progressively darkened and blurred. Brightness and contrast gradually diminish across the entire visual field as the retinal damage spreads, eventually leading to total blindness.'
+  },
+  {
+    id: 'plateauEarlyStage',
+    name: 'Early Stage Solar Retinopathy (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Early stage (~1829-1835): Central scotoma with preserved peripheral vision. Dark elliptical blind spot in center, moderate blur increasing toward fixation point, flickering afterimages from retinal damage. Plateau could still work but had difficulty reading and seeing fine detail.'
+  },
+  {
+    id: 'plateauMidStage',
+    name: 'Mid Stage Progression (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Mid stage (~1835-1840): Central scotoma expanding, peripheral vision beginning to dim. Global brightness and contrast reducing. Persistent photopsia (bright spots and color distortions). Reading and detailed work becoming impossible.'
+  },
+  {
+    id: 'plateauLateStage',
+    name: 'Late Stage Near-Blindness (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Late stage (~1840-1843): Near-total vision loss. Large central scotoma surrounded by severely dimmed, blurry peripheral vision. Brightness reduced to shadows and vague forms. Photopsia continues in the darkness. Navigation barely possible.'
+  },
+  {
+    id: 'plateauComplete',
+    name: 'Complete Solar Retinopathy (Joseph Plateau)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Joseph Plateau\'s solar retinopathy at mid-progression. Features dark elliptical central scotoma (10-20°), blur increasing toward center, reduced global brightness and contrast, and persistent afterimage artifacts. Represents the vision that allowed him to continue scientific work with assistance, before total blindness in 1843.'
+  },
+
+  // Leonhard Euler - Asymmetric Progressive Blindness
+  // Right eye: Complete blindness from infection (~1738) - total blackout
+  // Left eye: Progressive cataract (1766-1771) - milky fog, glare, desaturation
+  // End state: Near-total blindness, milky white opacity (not sharp black like retinal damage)
+  {
+    id: 'eulerRightEyeBlind',
+    name: 'Right Eye Blindness (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete blindness in right eye from infection (~1738, likely brucellosis). Total blackout on the right side - not blur or scotoma, but complete loss. The physical eye was also visibly misaligned with drooping eyelid.'
+  },
+  {
+    id: 'eulerLeftEyeCataract',
+    name: 'Left Eye Cataract (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Progressive cataract in left eye discovered 1766. Milky/foggy blur like looking through frosted glass, with washed-out contrast, glare sensitivity, and color desaturation. Uniform diffuse fog, not scotomas or field cuts.'
+  },
+  {
+    id: 'eulerCataractGlare',
+    name: 'Cataract Glare Sensitivity (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Bright areas bleed outward with halo artifacts - classic cataract symptom. Light sources create expansive blooms that wash out surrounding detail. Glare is especially problematic in bright conditions.'
+  },
+  {
+    id: 'eulerMidProgression',
+    name: 'Mid-Progression (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Mid-stage (~1766-1770): Right eye completely blind (black), left eye experiencing moderate cataract with milky haze, reduced contrast, glare sensitivity, and color desaturation. Still able to see shapes and movement through the fog.'
+  },
+  {
+    id: 'eulerLateProgression',
+    name: 'Late Progression (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Late stage (~1771+): Right eye black, left eye nearly opaque from advanced cataract. Dense milky white fog with only bright light sources registering as diffuse glows. Dictated all work to assistants.'
+  },
+  {
+    id: 'eulerComplete',
+    name: 'Complete Asymmetric Blindness (Leonhard Euler)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Euler\'s asymmetric vision loss at mid-to-late progression. Right half of view is complete black (dead eye from 1738 infection). Left eye shows progressive cataract - milky/foggy blur like frosted glass, washed-out contrast, color desaturation, and glare halos around bright areas. The subjective experience is "trapped behind frosted glass" rather than sharp blackness.'
+  },
+
+  // Abraham Nemeth - Congenital Combined Central + Peripheral Blindness
+  // Dual-attack pattern: central scotoma (macular) + peripheral constriction (RP-like)
+  // Leaves only fragile mid-peripheral ring, functionally total blindness
+  {
+    id: 'nemethCentralScotoma',
+    name: 'Central Scotoma (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Dark elliptical void at fixation point (10-20°) from macular degeneration component. Everything looked at directly disappears into darkness. Not nothingness - an opaque dark region obscuring central vision.'
+  },
+  {
+    id: 'nemethPeripheralConstriction',
+    name: 'Peripheral Constriction (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Black vignette closing in from all edges - tunnel vision ring from retinitis pigmentosa component. The peripheral darkness advances inward, leaving only a narrow mid-peripheral ring between center and edges.'
+  },
+  {
+    id: 'nemethMidRingRemnant',
+    name: 'Mid-Ring Remnant (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Narrow donut-shaped band of low-acuity, desaturated, blurry vision between the central scotoma and peripheral darkness. Even this surviving ring has poor resolution - heavy Gaussian blur and severe contrast loss.'
+  },
+  {
+    id: 'nemethNightBlindness',
+    name: 'Severe Night Blindness (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'In low-light conditions, everything darkens dramatically - far beyond normal darkness adaptation. Rod cell death eliminates night vision, making navigation in dim light impossible.'
+  },
+  {
+    id: 'nemethAcuityLoss',
+    name: 'Severe Global Acuity Loss (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Heavy Gaussian blur across the entire visual field. Even the narrow surviving mid-ring has extremely poor resolution - no fine detail, no text reading, no face recognition possible.'
+  },
+  {
+    id: 'nemethPartialRing',
+    name: 'Partial Vision Ring (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Simulation of the fragile mid-peripheral donut of usable vision. Shows what minimal functional vision might have looked like before complete loss - a narrow blurry ring between two dead zones.'
+  },
+  {
+    id: 'nemethComplete',
+    name: 'Complete Dual-Attack Blindness (Abraham Nemeth)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Abraham Nemeth\'s congenital dual-attack blindness. Central scotoma from macular component creates void at fixation. Peripheral constriction from RP component creates tunnel closing from edges. Only a narrow mid-peripheral ring survives (if any) - heavily blurred, desaturated, no detail. Given congenital onset and education at school for blind, his functional vision was minimal to none. End state: near-total darkness with possibly faint light/motion perception at best.'
+  },
+
+  // Heather Hutchison - Congenital Light Perception Only Vision with Nystagmus
+  // Near-total blindness with only diffuse light perception, no form vision
+  // Features: milky/washed-out glow, diffuse light blobs, nystagmus jitter, no color
+  {
+    id: 'heatherNearTotalOpacity',
+    name: 'Near-Total Opacity (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Near-total visual occlusion (92-98% opacity). Not pure black - a dim, milky/washed-out glow. Represents the baseline darkness of light perception only vision where form cannot be resolved.'
+  },
+  {
+    id: 'heatherDiffuseLightBlobs',
+    name: 'Diffuse Light Blobs (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Light sources rendered as soft, unfocused, amorphous bright patches with no edges or shape. Extreme Gaussian blur (80-120px+) transforms any light into formless glows. Bright areas produce faint diffuse patches; dark areas are indistinguishable void.'
+  },
+  {
+    id: 'heatherNystagmus',
+    name: 'Nystagmus Jitter (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Subtle, continuous horizontal oscillation of the entire visual field. Small-amplitude sinusoidal shake at 2-5 Hz frequency. Creates the characteristic involuntary eye movement pattern of congenital nystagmus.'
+  },
+  {
+    id: 'heatherNoColor',
+    name: 'Color Stripped (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete or near-complete absence of color perception. Light perception vision does not resolve wavelength - only luminance variation is perceived. Everything appears in dim grayscale.'
+  },
+  {
+    id: 'heatherFluctuatingPerception',
+    name: 'Fluctuating Perception (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Subtle modulation of overall opacity and blur over time. Simulates the fluctuating nature of light perception - sometimes slightly clearer, sometimes dimmer, but never resolving to form.'
+  },
+  {
+    id: 'heatherLightPerceptionComplete',
+    name: 'Complete Light Perception Vision (Heather Hutchison)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Heather Hutchison\'s congenital light perception only vision. Near-total opacity with milky/washed-out glow (not pure black). Diffuse amorphous light blobs with extreme blur - no edges, no shapes, only formless bright patches. Continuous nystagmus jitter (2-5 Hz horizontal oscillation). No color - only dim luminance variation. Fluctuating perception over time. This is what "counting fingers at best" vision looks like - or more accurately, doesn\'t look like.'
+  },
+
+  // Daredevil / Matt Murdock - Radar Sense (Fictional)
+  // "World on Fire" - echolocation/sonar-like perception
+  // Red monochrome, edge detection, pulsing radar sweeps
+  {
+    id: 'daredevilRadarSweep',
+    name: 'Radar Sweep (Daredevil)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Rotating conic gradient that simulates the "radar sweep" of Daredevil\'s 360° awareness. The sweep rotates continuously, highlighting edges and forms as it passes over them like sonar.'
+  },
+  {
+    id: 'daredevilEdgeDetection',
+    name: 'Edge Detection (Daredevil)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'High contrast rendering that emphasizes edges and contours while eliminating flat surfaces and fine detail. Only silhouettes and depth are perceived - no textures, no 2D information like text or images.'
+  },
+  {
+    id: 'daredevilSoundReactive',
+    name: 'Sound-Reactive Glow (Daredevil)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Objects producing sound render with sharper, brighter red edges that pulse with intensity. Silent or still objects appear fainter or absent entirely. Motion creates emphasis.'
+  },
+  {
+    id: 'daredevilRedMonochrome',
+    name: 'Red Monochrome (Daredevil)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'The signature "World on Fire" red color scheme. All color is stripped and replaced with shades of red and dark red. The world appears as a dark red void with brighter red edges where forms are sensed.'
+  },
+  {
+    id: 'daredevilRadarSenseComplete',
+    name: 'Complete Radar Sense (Daredevil)',
+    enabled: false,
+    intensity: 1.0,
+    description: 'Complete simulation of Daredevil\'s radar sense - the "World on Fire" visualization from the Netflix series. Red/dark red monochrome color scheme with edge-detection style rendering. Rotating radar sweeps suggest 360° awareness. Sound-producing objects glow brighter with pulsing intensity. Only contours, silhouettes, and depth are visible - no flat surfaces, textures, or fine detail. Moving objects pulse more intensely than static geometry.'
   }
 ];

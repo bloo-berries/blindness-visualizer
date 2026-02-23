@@ -12,7 +12,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
   const simulationMap: Record<string, string[]> = {
     // ===== COMPLETE BLINDNESS / NO LIGHT PERCEPTION =====
     'complete-blindness': ['completeBlindness'],
-    'abraham-congenital-blindness': ['completeBlindness'],
+    'abraham-congenital-blindness': ['nemethComplete'],
+    'abraham-dual-attack-blindness': ['nemethComplete'],
     'moon-complete-blindness': ['completeBlindness'],
     'doc-light-perception': ['blurryVision', 'lossOfContrast', 'tunnelVision'],
     'nobuyuki-congenital-blindness': ['completeBlindness'],
@@ -52,7 +53,8 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'geerat-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
     'bono-glaucoma-sensitivity': ['glaucoma', 'halos', 'glare'],
     'borges-progressive-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
-    'euler-progressive-blindness': ['glaucoma', 'tunnelVision', 'blurryVision'],
+    'euler-progressive-blindness': ['eulerComplete'],
+    'euler-asymmetric-blindness': ['eulerComplete'],
     'fetty-glaucoma-prosthetic': ['glaucoma', 'blindnessLeftEye'],
 
     // ===== CATARACTS =====
@@ -75,8 +77,14 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'marla-stargardt-complete': ['stargardt', 'scotoma', 'lossOfContrast'],
 
     // ===== DIABETIC RETINOPATHY =====
-    'ella-diabetic-retinopathy': ['diabeticRetinopathy', 'visualFloaters'],
+    'ella-diabetic-retinopathy': ['diabeticRetinopathy'],
     'wanda-diabetic-retinopathy': ['diabeticRetinopathy', 'visualFloaters', 'blurryVision'],
+
+    // ===== LIGHT PERCEPTION ONLY =====
+    'heather-light-perception': ['heatherLightPerceptionComplete'],
+
+    // ===== FICTIONAL / ENHANCED PERCEPTION =====
+    'daredevil-radar-sense': ['daredevilRadarSenseComplete'],
 
     // ===== RETINAL DETACHMENT =====
     'sugar-retinal-detachment': ['sugarRetinalDetachmentComplete'],
@@ -100,6 +108,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
 
     // ===== APHAKIA + GLAUCOMA =====
     'crazzySteve-aphakia-glaucoma': ['crazzysteveComplete', 'tunnelVision'],
+
+    // ===== SOLAR RETINOPATHY =====
+    'plateau-solar-retinopathy': ['plateauComplete'],
 
     // ===== COLOR BLINDNESS =====
     'fred-rogers-deuteranopia': ['deuteranopia'],

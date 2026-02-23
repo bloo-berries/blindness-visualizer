@@ -1141,6 +1141,401 @@ export const generateTofiriFilters = (effects: VisualEffect[]): string => {
 };
 
 /**
+ * Generates CSS filters for Joseph Plateau's Solar Retinopathy
+ * Key visual characteristics:
+ * - Central scotoma (handled by overlay)
+ * - Blur increasing toward center (overall blur for CSS)
+ * - Reduced brightness/contrast globally (progressive dimming)
+ * - Desaturation from retinal damage
+ * Progression: Early (preserved peripheral) → Mid (dimming) → Late (near-blind) → Total
+ */
+export const generatePlateauFilters = (effects: VisualEffect[]): string => {
+  const plateauEffects = effects.filter(e =>
+    e.id.startsWith('plateau') && e.enabled
+  );
+
+  if (plateauEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'plateauComplete' && e.enabled);
+  const earlyStage = effects.find(e => e.id === 'plateauEarlyStage' && e.enabled);
+  const midStage = effects.find(e => e.id === 'plateauMidStage' && e.enabled);
+  const lateStage = effects.find(e => e.id === 'plateauLateStage' && e.enabled);
+  const centralScotoma = effects.find(e => e.id === 'plateauCentralScotoma' && e.enabled);
+  const acuityLoss = effects.find(e => e.id === 'plateauAcuityLoss' && e.enabled);
+  const photopsia = effects.find(e => e.id === 'plateauPhotopsia' && e.enabled);
+  const globalDimming = effects.find(e => e.id === 'plateauGlobalDimming' && e.enabled);
+
+  // Complete simulation (mid-stage representation for educational value)
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Moderate blur representing acuity loss
+    filters.push(`blur(${3 + i * 4}px)`);
+    // Reduced brightness (global dimming beginning)
+    filters.push(`brightness(${85 - i * 20}%)`);
+    // Reduced contrast
+    filters.push(`contrast(${80 - i * 15}%)`);
+    // Slight desaturation from retinal damage
+    filters.push(`saturate(${85 - i * 20}%)`);
+  }
+
+  // Early stage - minimal global effects, central scotoma via overlay
+  if (earlyStage && !completeVision) {
+    const i = earlyStage.intensity;
+    // Mild blur (peripheral still relatively clear)
+    filters.push(`blur(${1 + i * 2}px)`);
+    // Slight brightness reduction
+    filters.push(`brightness(${95 - i * 10}%)`);
+    // Mild contrast loss
+    filters.push(`contrast(${95 - i * 10}%)`);
+  }
+
+  // Mid stage - increasing global degradation
+  if (midStage && !completeVision) {
+    const i = midStage.intensity;
+    // Moderate blur
+    filters.push(`blur(${3 + i * 4}px)`);
+    // Notable brightness reduction
+    filters.push(`brightness(${80 - i * 20}%)`);
+    // Significant contrast loss
+    filters.push(`contrast(${75 - i * 20}%)`);
+    // Color desaturation
+    filters.push(`saturate(${80 - i * 25}%)`);
+  }
+
+  // Late stage - severe degradation, near-blindness
+  if (lateStage && !completeVision) {
+    const i = lateStage.intensity;
+    // Heavy blur
+    filters.push(`blur(${6 + i * 8}px)`);
+    // Severe brightness reduction
+    filters.push(`brightness(${50 - i * 35}%)`);
+    // Very low contrast
+    filters.push(`contrast(${50 - i * 35}%)`);
+    // Heavy desaturation
+    filters.push(`saturate(${40 - i * 30}%)`);
+  }
+
+  // Individual effect components
+  if (centralScotoma && !completeVision && !earlyStage && !midStage && !lateStage) {
+    // Central scotoma mainly handled by overlay, mild blur for surrounding
+    const i = centralScotoma.intensity;
+    filters.push(`blur(${i * 2}px)`);
+  }
+
+  if (acuityLoss && !completeVision && !earlyStage && !midStage && !lateStage) {
+    const i = acuityLoss.intensity;
+    filters.push(`blur(${2 + i * 5}px)`);
+    filters.push(`contrast(${90 - i * 20}%)`);
+  }
+
+  if (photopsia && !completeVision && !earlyStage && !midStage && !lateStage) {
+    // Photopsia creates visual artifacts - slight brightness fluctuation
+    const i = photopsia.intensity;
+    filters.push(`brightness(${100 + i * 15}%)`);
+    filters.push(`contrast(${100 - i * 10}%)`);
+  }
+
+  if (globalDimming && !completeVision && !earlyStage && !midStage && !lateStage) {
+    const i = globalDimming.intensity;
+    filters.push(`brightness(${100 - i * 60}%)`);
+    filters.push(`contrast(${100 - i * 50}%)`);
+    filters.push(`saturate(${100 - i * 40}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Leonhard Euler's Asymmetric Vision Loss
+ * Key visual characteristics:
+ * - Right eye: Complete black (dead from infection ~1738) - handled by overlay
+ * - Left eye: Progressive cataract - milky blur, reduced contrast, desaturation, glare
+ * - Uniform diffuse fog (not scotomas or field cuts)
+ * - Glare sensitivity with halo artifacts
+ * - End state: Milky white opacity (not sharp black like retinal damage)
+ */
+export const generateEulerFilters = (effects: VisualEffect[]): string => {
+  const eulerEffects = effects.filter(e =>
+    e.id.startsWith('euler') && e.enabled
+  );
+
+  if (eulerEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'eulerComplete' && e.enabled);
+  const midProgression = effects.find(e => e.id === 'eulerMidProgression' && e.enabled);
+  const lateProgression = effects.find(e => e.id === 'eulerLateProgression' && e.enabled);
+  const leftEyeCataract = effects.find(e => e.id === 'eulerLeftEyeCataract' && e.enabled);
+  const cataractGlare = effects.find(e => e.id === 'eulerCataractGlare' && e.enabled);
+
+  // Complete simulation (mid-to-late progression)
+  // CSS filters affect the entire view - cataract effects for left eye
+  // Right eye blackout handled by overlay
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Milky/foggy blur - looking through frosted glass
+    filters.push(`blur(${8 + i * 12}px)`);
+    // Washed-out contrast
+    filters.push(`contrast(${70 - i * 25}%)`);
+    // Elevated brightness from milky cataract (white fog, not darkness)
+    filters.push(`brightness(${100 + i * 20}%)`);
+    // Color desaturation
+    filters.push(`saturate(${60 - i * 25}%)`);
+    // Slight sepia for warm milky quality
+    filters.push(`sepia(${i * 15}%)`);
+  }
+
+  // Mid progression - moderate cataract
+  if (midProgression && !completeVision) {
+    const i = midProgression.intensity;
+    filters.push(`blur(${5 + i * 8}px)`);
+    filters.push(`contrast(${80 - i * 20}%)`);
+    filters.push(`brightness(${100 + i * 15}%)`);
+    filters.push(`saturate(${70 - i * 20}%)`);
+    filters.push(`sepia(${i * 10}%)`);
+  }
+
+  // Late progression - severe cataract, near-opaque
+  if (lateProgression && !completeVision) {
+    const i = lateProgression.intensity;
+    // Dense milky white fog
+    filters.push(`blur(${15 + i * 20}px)`);
+    filters.push(`contrast(${50 - i * 35}%)`);
+    // High brightness - milky white, not black
+    filters.push(`brightness(${110 + i * 40}%)`);
+    filters.push(`saturate(${40 - i * 30}%)`);
+    filters.push(`sepia(${i * 20}%)`);
+  }
+
+  // Individual left eye cataract
+  if (leftEyeCataract && !completeVision && !midProgression && !lateProgression) {
+    const i = leftEyeCataract.intensity;
+    filters.push(`blur(${6 + i * 10}px)`);
+    filters.push(`contrast(${75 - i * 25}%)`);
+    filters.push(`brightness(${105 + i * 15}%)`);
+    filters.push(`saturate(${65 - i * 25}%)`);
+  }
+
+  // Glare sensitivity
+  if (cataractGlare && !completeVision && !midProgression && !lateProgression) {
+    const i = cataractGlare.intensity;
+    // Bright areas bloom outward
+    filters.push(`brightness(${110 + i * 30}%)`);
+    filters.push(`contrast(${85 - i * 30}%)`);
+    filters.push(`blur(${i * 3}px)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Heather Hutchison's Light Perception Only Vision
+ * Key visual characteristics:
+ * - Extreme Gaussian blur (80-120px+) - nothing resolves to form
+ * - No color - saturation stripped to near-zero
+ * - Very low contrast - only brightness variation
+ * - Near-total opacity handled by animated overlay
+ */
+export const generateHeatherFilters = (effects: VisualEffect[]): string => {
+  const heatherEffects = effects.filter(e =>
+    e.id.startsWith('heather') && e.enabled
+  );
+
+  if (heatherEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'heatherLightPerceptionComplete' && e.enabled);
+  const nearTotalOpacity = effects.find(e => e.id === 'heatherNearTotalOpacity' && e.enabled);
+  const diffuseLightBlobs = effects.find(e => e.id === 'heatherDiffuseLightBlobs' && e.enabled);
+  const noColor = effects.find(e => e.id === 'heatherNoColor' && e.enabled);
+
+  // Complete Light Perception vision
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Extreme blur - nothing resolves to form (80-120px range)
+    filters.push(`blur(${80 + i * 40}px)`);
+    // Strip all color - LP vision doesn't resolve wavelength
+    filters.push('saturate(0%)');
+    // Very low contrast - only brightness variation matters
+    filters.push(`contrast(${20 - i * 15}%)`);
+    // Reduced brightness overall
+    filters.push(`brightness(${30 - i * 15}%)`);
+  }
+
+  // Near-total opacity (standalone)
+  if (nearTotalOpacity && !completeVision) {
+    const i = nearTotalOpacity.intensity;
+    filters.push(`brightness(${25 - i * 20}%)`);
+    filters.push(`contrast(${15 - i * 10}%)`);
+  }
+
+  // Diffuse light blobs (standalone)
+  if (diffuseLightBlobs && !completeVision) {
+    const i = diffuseLightBlobs.intensity;
+    filters.push(`blur(${80 + i * 40}px)`);
+    filters.push(`contrast(${25 - i * 15}%)`);
+  }
+
+  // No color (standalone)
+  if (noColor && !completeVision) {
+    filters.push('saturate(0%)');
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Abraham Nemeth's Congenital Dual-Attack Blindness
+ * Key visual characteristics:
+ * - Central scotoma (macular component) + peripheral constriction (RP component)
+ * - Only a fragile mid-peripheral ring survives (if any)
+ * - Heavy Gaussian blur globally - even surviving ring has poor resolution
+ * - Severe desaturation and contrast loss
+ * - Night blindness component
+ * - End state: near-total darkness, functionally blind from birth
+ */
+export const generateNemethFilters = (effects: VisualEffect[]): string => {
+  const nemethEffects = effects.filter(e =>
+    e.id.startsWith('nemeth') && e.enabled
+  );
+
+  if (nemethEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'nemethComplete' && e.enabled);
+  const centralScotoma = effects.find(e => e.id === 'nemethCentralScotoma' && e.enabled);
+  const peripheralConstriction = effects.find(e => e.id === 'nemethPeripheralConstriction' && e.enabled);
+  const midRingRemnant = effects.find(e => e.id === 'nemethMidRingRemnant' && e.enabled);
+  const nightBlindness = effects.find(e => e.id === 'nemethNightBlindness' && e.enabled);
+  const acuityLoss = effects.find(e => e.id === 'nemethAcuityLoss' && e.enabled);
+  const partialRing = effects.find(e => e.id === 'nemethPartialRing' && e.enabled);
+
+  // Complete dual-attack blindness - near-total darkness
+  // Nemeth functioned as totally blind throughout life
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Near-total darkness - brightness approaching 0
+    filters.push(`brightness(${8 - i * 7}%)`);
+    // Minimal contrast - no edges, no detail
+    filters.push(`contrast(${15 - i * 12}%)`);
+    // Complete desaturation
+    filters.push(`saturate(${10 - i * 10}%)`);
+    // Heavy blur eliminates any spatial information
+    filters.push(`blur(${40 + i * 30}px)`);
+  }
+
+  // Central scotoma - darkening toward center
+  if (centralScotoma && !completeVision) {
+    const i = centralScotoma.intensity;
+    // Overlay handles main scotoma, filter adds overall degradation
+    filters.push(`brightness(${85 - i * 25}%)`);
+    filters.push(`contrast(${80 - i * 30}%)`);
+    filters.push(`blur(${i * 5}px)`);
+  }
+
+  // Peripheral constriction
+  if (peripheralConstriction && !completeVision) {
+    const i = peripheralConstriction.intensity;
+    // Overlay handles tunnel effect, filter adds overall darkening
+    filters.push(`brightness(${80 - i * 30}%)`);
+    filters.push(`contrast(${75 - i * 25}%)`);
+  }
+
+  // Mid-ring remnant - the only surviving vision
+  if (midRingRemnant && !completeVision) {
+    const i = midRingRemnant.intensity;
+    // Heavy blur - even surviving ring has poor resolution
+    filters.push(`blur(${15 + i * 20}px)`);
+    // Severe desaturation
+    filters.push(`saturate(${40 - i * 30}%)`);
+    // Low contrast
+    filters.push(`contrast(${60 - i * 30}%)`);
+    // Dimmed brightness
+    filters.push(`brightness(${70 - i * 30}%)`);
+  }
+
+  // Night blindness - dramatic darkening in low light
+  if (nightBlindness && !completeVision) {
+    const i = nightBlindness.intensity;
+    // Far beyond normal darkness adaptation
+    filters.push(`brightness(${30 - i * 25}%)`);
+    filters.push(`contrast(${40 - i * 30}%)`);
+    filters.push(`saturate(${20 - i * 15}%)`);
+  }
+
+  // Severe global acuity loss
+  if (acuityLoss && !completeVision) {
+    const i = acuityLoss.intensity;
+    // Heavy Gaussian blur across entire visual field
+    filters.push(`blur(${20 + i * 25}px)`);
+    filters.push(`contrast(${70 - i * 35}%)`);
+  }
+
+  // Partial ring vision (for educational purposes - what minimal vision might look like)
+  if (partialRing && !completeVision) {
+    const i = partialRing.intensity;
+    // Moderate blur for the surviving ring
+    filters.push(`blur(${8 + i * 12}px)`);
+    // Desaturated
+    filters.push(`saturate(${50 - i * 30}%)`);
+    // Low contrast
+    filters.push(`contrast(${65 - i * 30}%)`);
+    // Dimmed
+    filters.push(`brightness(${60 - i * 25}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
+ * Generates CSS filters for Daredevil's Radar Sense
+ * Key visual characteristics:
+ * - Transparent red tint over the scene (like the comics)
+ * - Scene remains visible through the red filter
+ * - Subtle desaturation to emphasize the red overlay
+ * - Main red effect comes from the animated overlay using multiply blend
+ */
+export const generateDaredevilFilters = (effects: VisualEffect[]): string => {
+  const daredevilEffects = effects.filter(e =>
+    e.id.startsWith('daredevil') && e.enabled
+  );
+
+  if (daredevilEffects.length === 0) return '';
+
+  const filters: string[] = [];
+
+  const completeVision = effects.find(e => e.id === 'daredevilRadarSenseComplete' && e.enabled);
+  const redMonochrome = effects.find(e => e.id === 'daredevilRedMonochrome' && e.enabled);
+
+  // Complete Radar Sense - subtle filter to complement the overlay
+  if (completeVision) {
+    const i = completeVision.intensity;
+    // Slight desaturation to let the red overlay dominate
+    filters.push(`saturate(${70 - i * 20}%)`);
+    // Subtle contrast boost
+    filters.push(`contrast(${105 + i * 10}%)`);
+    // Slight brightness adjustment
+    filters.push(`brightness(${95 + i * 5}%)`);
+    // Slight blur for the "radar sense" softness
+    filters.push(`blur(${1 + i * 1.5}px)`);
+  }
+
+  // Red monochrome only (stronger effect)
+  if (redMonochrome && !completeVision) {
+    const i = redMonochrome.intensity;
+    filters.push(`saturate(${60 - i * 30}%)`);
+    filters.push(`contrast(${110 + i * 15}%)`);
+  }
+
+  return filters.join(' ');
+};
+
+/**
  * Generates CSS filters for custom famous people effects
  */
 export const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {

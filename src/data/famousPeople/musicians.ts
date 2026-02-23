@@ -210,11 +210,11 @@ export const musicians: Record<string, PersonData> = {
   },
   heatherHutchison: {
     name: "Heather Hutchison",
-    condition: "Congenital Blindness",
+    condition: "Congenital Light Perception with Nystagmus",
     years: "Born 1970s",
-    onset: "From birth",
-    simulation: "complete-blindness",
-    description: "Heather Hutchison has been completely blind from birth with no visual memory.\n\n• Award-winning Canadian singer-songwriter and author\n\n• Multiple album releases\n\n• Advocate for disability and mental health awareness\n\n• Visit heather-hutchison.com",
+    onset: "From birth - light perception only",
+    simulation: "heather-light-perception",
+    description: "Heather Hutchison has congenital blindness with only light perception - no form vision, only diffuse awareness of brightness variation. Her vision includes nystagmus (involuntary eye oscillation).\n\nThe visual experience: near-total opacity with milky/washed-out glow, diffuse amorphous light blobs with no edges or shapes, continuous jitter, and no color perception.\n\n• Award-winning Canadian singer-songwriter and author\n\n• Multiple album releases\n\n• Advocate for disability and mental health awareness\n\n• Visit heather-hutchison.com",
     wikiUrl: "https://en.wikipedia.org/wiki/Heather_Hutchison"
   },
   joaquinRodrigo: {

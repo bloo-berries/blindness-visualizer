@@ -13,7 +13,7 @@ export interface FeedbackEmailData {
 
 // Email service using Formspree (https://formspree.io/)
 // You'll need to create a Formspree account and get a form endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // Replace with your Formspree form endpoint
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqedgwly';
 
 export const sendFeedbackEmailServerless = async (data: FeedbackEmailData): Promise<void> => {
   try {

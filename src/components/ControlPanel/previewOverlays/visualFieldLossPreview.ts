@@ -124,16 +124,147 @@ export const generateVisualFieldLossPreviewStyle = (
       // Match the main visualizer's sizing formula
       const scotomaSize = Math.max(15, 10 + intensity * 20);
       const blackIntensity = intensity;
+
+      // Generate peripheral puckering/pinching distortion from outer edges moving inward
+      const puckeringWaves: string[] = [];
+      if (intensity > 0.2) {
+        // TOP EDGE - puckering waves coming down from top
+        const topWaveCount = Math.floor(7 + intensity * 5);
+        for (let i = 0; i < topWaveCount; i++) {
+          const xPos = (i / (topWaveCount - 1)) * 100;
+          const waveDepth = 8 + intensity * 10 + Math.sin(i * 0.8) * 4;
+          const isLight = i % 2 === 0;
+          const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
+          const width = 8 + (i % 3) * 2;
+
+          if (isLight) {
+            puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%,
+              rgba(152,152,158,${opacity}) 0%,
+              rgba(132,132,138,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          } else {
+            puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%,
+              rgba(42,42,52,${opacity}) 0%,
+              rgba(62,62,72,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          }
+        }
+
+        // BOTTOM EDGE - puckering waves coming up from bottom
+        const bottomWaveCount = Math.floor(7 + intensity * 5);
+        for (let i = 0; i < bottomWaveCount; i++) {
+          const xPos = (i / (bottomWaveCount - 1)) * 100;
+          const waveDepth = 8 + intensity * 10 + Math.sin(i * 0.9 + 0.5) * 4;
+          const isLight = i % 2 === 0;
+          const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
+          const width = 8 + (i % 3) * 2;
+
+          if (isLight) {
+            puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%,
+              rgba(152,152,158,${opacity}) 0%,
+              rgba(132,132,138,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          } else {
+            puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%,
+              rgba(42,42,52,${opacity}) 0%,
+              rgba(62,62,72,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          }
+        }
+
+        // LEFT EDGE - puckering waves coming from left
+        const leftWaveCount = Math.floor(5 + intensity * 4);
+        for (let i = 0; i < leftWaveCount; i++) {
+          const yPos = (i / (leftWaveCount - 1)) * 100;
+          const waveDepth = 6 + intensity * 8 + Math.sin(i * 0.7) * 3;
+          const isLight = i % 2 === 0;
+          const opacity = (0.22 + intensity * 0.16) * (isLight ? 1 : 0.8);
+          const height = 10 + (i % 3) * 3;
+
+          if (isLight) {
+            puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%,
+              rgba(148,148,154,${opacity}) 0%,
+              rgba(128,128,134,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          } else {
+            puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%,
+              rgba(44,44,54,${opacity}) 0%,
+              rgba(64,64,74,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          }
+        }
+
+        // RIGHT EDGE - puckering waves coming from right
+        const rightWaveCount = Math.floor(5 + intensity * 4);
+        for (let i = 0; i < rightWaveCount; i++) {
+          const yPos = (i / (rightWaveCount - 1)) * 100;
+          const waveDepth = 6 + intensity * 8 + Math.sin(i * 0.7 + 0.3) * 3;
+          const isLight = i % 2 === 0;
+          const opacity = (0.22 + intensity * 0.16) * (isLight ? 1 : 0.8);
+          const height = 10 + (i % 3) * 3;
+
+          if (isLight) {
+            puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%,
+              rgba(148,148,154,${opacity}) 0%,
+              rgba(128,128,134,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          } else {
+            puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%,
+              rgba(44,44,54,${opacity}) 0%,
+              rgba(64,64,74,${opacity * 0.5}) 60%,
+              transparent 100%
+            )`);
+          }
+        }
+
+        // CORNER pinching effects
+        const cornerOpacity = 0.28 + intensity * 0.22;
+        const cornerSize = 14 + intensity * 10;
+        puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 0%,
+          rgba(145,145,150,${cornerOpacity}) 0%,
+          rgba(50,50,60,${cornerOpacity * 0.6}) 40%,
+          rgba(130,130,135,${cornerOpacity * 0.4}) 70%,
+          transparent 100%
+        )`);
+        puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 0%,
+          rgba(145,145,150,${cornerOpacity}) 0%,
+          rgba(50,50,60,${cornerOpacity * 0.6}) 40%,
+          rgba(130,130,135,${cornerOpacity * 0.4}) 70%,
+          transparent 100%
+        )`);
+        puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 100%,
+          rgba(145,145,150,${cornerOpacity}) 0%,
+          rgba(50,50,60,${cornerOpacity * 0.6}) 40%,
+          rgba(130,130,135,${cornerOpacity * 0.4}) 70%,
+          transparent 100%
+        )`);
+        puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 100%,
+          rgba(145,145,150,${cornerOpacity}) 0%,
+          rgba(50,50,60,${cornerOpacity * 0.6}) 40%,
+          rgba(130,130,135,${cornerOpacity * 0.4}) 70%,
+          transparent 100%
+        )`);
+      }
+
+      const mainScotoma = `radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,${blackIntensity}) 0%,
+        rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%,
+        rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%,
+        rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%,
+        transparent ${scotomaSize + 10}%
+      )`;
+
+      const allGradients = [mainScotoma, ...puckeringWaves].join(', ');
+
       return {
-        background: `
-          radial-gradient(circle at 50% 50%,
-            rgba(0,0,0,${blackIntensity}) 0%,
-            rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%,
-            rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%,
-            rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%,
-            transparent ${scotomaSize + 10}%
-          )
-        `,
+        background: allGradients,
         mixBlendMode: 'multiply',
         opacity: Math.min(0.95, intensity)
       };

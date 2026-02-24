@@ -42,15 +42,19 @@ https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 
 ![Visualization Preview](./public/images/repo-assets/Claude-Monet-Preview.png)
 
-- **21 famous individuals** across 5 categories:
-  - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman)
-  - Musicians & Artists (Ray Charles, Stevie Wonder, Andrea Bocelli, Casey Harris, Bono, Georgia O'Keeffe, Ella Fitzgerald)
-  - Writers & Activists (Helen Keller, Ved Mehta, Tilly Aston, Sabriye Tenberken)
-  - Contemporary Figures (Christine Ha, Lucy Edwards, David Paterson, Paul Castle, Haben Girma, Molly Burke, Mila Kunis, Dame Judi Dench)
-  - Athletes & Scientists (Erik Weihenmayer, Marla Runyan, Dr. Mona Minkara, Joshua Miele, Anastasia Pagonis, Sugar Ray Leonard, Stephen Curry)
-- **Search and filter functionality** by name, condition, or category
-- **Detailed person cards** with medical information and life stories
+- **125+ famous individuals** across 8 categories:
+  - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman, Homer, Fanny Crosby, and more)
+  - Musicians (Ray Charles, Stevie Wonder, Andrea Bocelli, Blind Lemon Jefferson, Moondog, Rahsaan Roland Kirk, and more)
+  - Artists (Claude Monet, Georgia O'Keeffe, John Bramblitt, Esref Armagan, and more)
+  - Writers & Activists (Helen Keller, Jorge Luis Borges, James Joyce, Taha Hussein, Chen Guangcheng, and more)
+  - Contemporary Figures (Christine Ha, Lucy Edwards, Molly Burke, Haben Girma, Mila Kunis, Dame Judi Dench, and more)
+  - Athletes (Erik Weihenmayer, Marla Runyan, Anastasia Pagonis, Lex Gillette, and more)
+  - Scientists (Dr. Mona Minkara, Joshua Miele, Abraham Nemeth, Leonhard Euler, and more)
+  - Fictional Characters (Daredevil, Geordi La Forge, Toph Beifong, Kenshi Takahashi, and more)
+- **Search and filter functionality** by name, condition, category, or country
+- **Detailed person cards** with achievements, medical information, and life stories
 - **Direct simulation integration** - experience each person's specific vision condition
+- **Custom visualizations** for select individuals with unique visual experiences
 
 *Example of famous person profile with detailed information and simulation integration*
 
@@ -104,9 +108,9 @@ The application will open at `http://localhost:3000`
 
 ### Famous People Section
 
-1. **Browse Categories**: Explore people by category (Historical, Musicians, etc.)
-2. **Search & Filter**: Use the search bar or filters to find specific individuals
-3. **View Details**: Click on any person to see detailed information
+1. **Browse Categories**: Explore people by category (Historical, Musicians, Artists, etc.)
+2. **Search & Filter**: Use the search bar or filters to find specific individuals by name, condition category, or country
+3. **View Details**: Click on any person to see their achievements, detailed biography, and condition information
 4. **Experience Simulation**: Click "Experience Simulation" to try their specific vision condition
 
 ## Project Structure
@@ -117,11 +121,26 @@ src/
 │   ├── HomePage.tsx              # Landing page with navigation options
 │   ├── VisionSimulator.tsx       # Main simulator component
 │   ├── FamousBlindPeople.tsx     # Famous people educational section
+│   ├── FamousBlindPeople/        # Famous people sub-components
+│   │   ├── PersonCard.tsx        # Individual person card display
+│   │   └── PersonDialog.tsx      # Person detail modal
 │   ├── Visualizer.tsx            # Real-time visualization engine
 │   ├── ControlPanel.tsx          # Condition selection controls
 │   ├── InputSelector.tsx         # Input source selection
 │   ├── NavigationBar.tsx         # Site navigation
 │   └── [other components]
+├── data/
+│   ├── famousPeople/             # Famous people data by category
+│   │   ├── artists.ts
+│   │   ├── athletes.ts
+│   │   ├── contemporaryFigures.ts
+│   │   ├── fictionalCharacters.ts
+│   │   ├── historicalFigures.ts
+│   │   ├── musicians.ts
+│   │   ├── scientists.ts
+│   │   ├── writersActivists.ts
+│   │   └── types.ts              # PersonData type definition
+│   └── effects/                  # Vision condition effects
 ├── contexts/
 │   └── AccessibilityContext.tsx  # Accessibility state management
 ├── styles/
@@ -168,10 +187,10 @@ npm run eject
 
 ### Adding New Famous People
 
-1. Add person data to the `personData` object in `FamousBlindPeople.tsx`
-2. Add their image to `public/images/people/`
-3. Update the `imageMap` in the `getPersonImage` function
-4. Add them to the appropriate category in the `categories` array
+1. Add person data to the appropriate file in `src/data/famousPeople/` (e.g., `musicians.ts`, `athletes.ts`)
+2. Include required fields: name, achievement, condition, years, onset, simulation, description, wikiUrl, and nationality
+3. Add their image to `public/images/people/`
+4. Add them to the appropriate category in `src/data/famousPeople/index.ts`
 
 ## Contributing
 

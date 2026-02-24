@@ -2,11 +2,14 @@ import { VisualEffect } from '../../../types/visualEffects';
 
 /**
  * Generates CSS filters for Heather Hutchison's Light Perception Only Vision
- * Key visual characteristics:
- * - Extreme Gaussian blur (80-120px+) - nothing resolves to form
- * - No color - saturation stripped to near-zero
- * - Very low contrast - only brightness variation
- * - Near-total opacity handled by animated overlay
+ *
+ * Technical Parameters:
+ * 1. Extreme Gaussian blur (80-120px) - destroys all edge, form, detail
+ * 2. Near-total desaturation (0-5%) - functional absence of color
+ * 3. Severe contrast reduction (10-20%) - shadows/midtones collapse
+ * 4. High brightness (180%+) - "washed-out white" perception
+ *
+ * Note: The white fog overlay is handled by the animated overlay system
  */
 export const generateHeatherFilters = (effects: VisualEffect[]): string => {
   const heatherEffects = effects.filter(e =>
@@ -27,26 +30,27 @@ export const generateHeatherFilters = (effects: VisualEffect[]): string => {
     const i = completeVision.intensity;
     // Extreme blur - nothing resolves to form (80-120px range)
     filters.push(`blur(${80 + i * 40}px)`);
-    // Strip all color - LP vision doesn't resolve wavelength
-    filters.push('saturate(0%)');
-    // Very low contrast - only brightness variation matters
-    filters.push(`contrast(${20 - i * 15}%)`);
-    // Reduced brightness overall
-    filters.push(`brightness(${30 - i * 15}%)`);
+    // Strip all color - LP vision doesn't resolve wavelength (0-5% saturation)
+    filters.push(`saturate(${5 - i * 5}%)`);
+    // Severe contrast reduction (10-20% range)
+    filters.push(`contrast(${20 - i * 10}%)`);
+    // High brightness - "washed-out white" perception (180%+)
+    filters.push(`brightness(${180 + i * 40}%)`);
   }
 
   // Near-total opacity (standalone)
   if (nearTotalOpacity && !completeVision) {
     const i = nearTotalOpacity.intensity;
-    filters.push(`brightness(${25 - i * 20}%)`);
-    filters.push(`contrast(${15 - i * 10}%)`);
+    filters.push(`brightness(${180 + i * 30}%)`);
+    filters.push(`contrast(${20 - i * 10}%)`);
   }
 
   // Diffuse light blobs (standalone)
   if (diffuseLightBlobs && !completeVision) {
     const i = diffuseLightBlobs.intensity;
     filters.push(`blur(${80 + i * 40}px)`);
-    filters.push(`contrast(${25 - i * 15}%)`);
+    filters.push(`contrast(${20 - i * 10}%)`);
+    filters.push(`brightness(${160 + i * 30}%)`);
   }
 
   // No color (standalone)

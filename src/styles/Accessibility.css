@@ -175,6 +175,50 @@
   border-color: #ffffff !important;
 }
 
+/* Condition treatment options list text in high contrast mode */
+.high-contrast-mode .condition-treatment-list,
+.high-contrast-mode .condition-treatment-item,
+.high-contrast-mode .condition-treatment-text,
+.high-contrast-mode .condition-treatment-list .MuiListItemText-root,
+.high-contrast-mode .condition-treatment-list .MuiListItemText-primary,
+.high-contrast-mode .condition-treatment-list .MuiTypography-root,
+.high-contrast-mode .condition-treatment-item .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+/* Treatment bullet points */
+.high-contrast-mode .condition-treatment-bullet {
+  background-color: #ffffff !important;
+}
+
+/* Treatment options notes box - black background with white text */
+.high-contrast-mode .condition-treatment-notes {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-treatment-notes-text {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-treatment-notes .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Ensure all text inside condition accordion details is visible */
+.high-contrast-mode .condition-list .MuiListItemText-root,
+.high-contrast-mode .condition-list .MuiListItemText-primary,
+.high-contrast-mode .condition-list .MuiListItemText-secondary,
+.high-contrast-mode .condition-list .MuiTypography-root,
+.high-contrast-mode .condition-item .MuiTypography-root,
+.high-contrast-mode .condition-item .MuiListItemText-root .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiList-root .MuiListItem-root .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiListItemText-root .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-body2,
+.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-subtitle2 {
+  color: #ffffff !important;
+}
+
 /* Feedback form - increased outline visibility for textboxes in high contrast mode */
 .high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
 .high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {

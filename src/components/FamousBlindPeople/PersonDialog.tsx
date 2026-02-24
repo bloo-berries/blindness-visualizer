@@ -8,13 +8,51 @@ import {
   Box,
   Typography,
   Grid,
-  IconButton
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText
 } from '@mui/material';
-import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon } from '@mui/icons-material';
+import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
 import { EmbeddedVisualization } from './EmbeddedVisualization';
+
+/**
+ * Formats description text by separating bullet points into a list
+ * Returns { mainText: string, bulletPoints: string[] }
+ */
+const formatDescription = (description: string): { mainText: string; bulletPoints: string[] } => {
+  // Try splitting by newlines + bullet first (common format in data)
+  if (description.includes('\n\n•') || description.includes('\n•')) {
+    // Split by newline + bullet patterns
+    const parts = description.split(/\n+•\s*/);
+
+    if (parts.length > 1) {
+      const mainText = parts[0].trim();
+      const bulletPoints = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
+      return { mainText, bulletPoints };
+    }
+  }
+
+  // Fallback: split by inline bullet pattern " • "
+  const parts = description.split(' • ');
+
+  if (parts.length <= 1) {
+    // No bullet points found, return as-is
+    return { mainText: description, bulletPoints: [] };
+  }
+
+  // First part is the main text
+  const mainText = parts[0].trim();
+
+  // Rest are bullet points
+  const bulletPoints = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
+
+  return { mainText, bulletPoints };
+};
 
 interface PersonDialogProps {
   open: boolean;
@@ -150,9 +188,31 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
                 </a>
               </Typography>
             )}
-            <Typography variant="body1" sx={{ mt: 2 }}>
-              {parseDescriptionWithLinks(person.description, personId)}
-            </Typography>
+            {(() => {
+              const { mainText, bulletPoints } = formatDescription(person.description);
+              return (
+                <>
+                  <Typography variant="body1" sx={{ mt: 2 }}>
+                    {parseDescriptionWithLinks(mainText, personId)}
+                  </Typography>
+                  {bulletPoints.length > 0 && (
+                    <List dense sx={{ mt: 1, pl: 0 }}>
+                      {bulletPoints.map((point, index) => (
+                        <ListItem key={index} sx={{ py: 0.25, pl: 0, alignItems: 'flex-start' }}>
+                          <ListItemIcon sx={{ minWidth: 24, mt: 0.75 }}>
+                            <FiberManualRecord sx={{ fontSize: 8, color: 'text.secondary' }} />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={parseDescriptionWithLinks(point, personId)}
+                            primaryTypographyProps={{ variant: 'body2' }}
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  )}
+                </>
+              );
+            })()}
             
             {/* Embedded visualization preview */}
             <EmbeddedVisualization

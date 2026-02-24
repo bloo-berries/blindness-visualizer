@@ -28,6 +28,8 @@ import {
   generateDaredevilFilters,
   generateGeordiFilters,
   generateBlindspotFilters,
+  generateJoseCidFilters,
+  generateTophFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters';
 
@@ -91,6 +93,8 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateDaredevilFilters(effects),
     generateGeordiFilters(effects),
     generateBlindspotFilters(effects),
+    generateJoseCidFilters(effects),
+    generateTophFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

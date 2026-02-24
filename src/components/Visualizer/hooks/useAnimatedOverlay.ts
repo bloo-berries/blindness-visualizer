@@ -20,6 +20,7 @@ import {
   generateGeordiVisorSenseOverlay,
   generateBlindspotSonarSenseOverlay,
   generateKenshiTelekineticSenseOverlay,
+  generateTophSeismicSenseOverlay,
 } from './animatedOverlays';
 
 /**
@@ -36,7 +37,7 @@ export const ANIMATED_EFFECTS = [
   // Person-specific animated effects
   'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
   'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
-  'kenshiTelekineticSenseComplete'
+  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete'
 ];
 
 /**
@@ -131,6 +132,12 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     const kenshiEffect = effects.find(e => e.id === 'kenshiTelekineticSenseComplete' && e.enabled);
     if (kenshiEffect) {
       return generateKenshiTelekineticSenseOverlay(kenshiEffect.intensity, now);
+    }
+
+    // Check for Toph Beifong's Seismic Sense (earthbending vision, ground vibrations)
+    const tophEffect = effects.find(e => e.id === 'tophSeismicSenseComplete' && e.enabled);
+    if (tophEffect) {
+      return generateTophSeismicSenseOverlay(tophEffect.intensity, now);
     }
 
     return null;

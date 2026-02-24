@@ -30,6 +30,8 @@ import { daredevilEffects } from './daredevilEffects';
 import { geordiLaForgeEffects } from './geordiLaForgeEffects';
 import { blindspotEffects } from './blindspotEffects';
 import { kenshiEffects } from './kenshiEffects';
+import { joseCidEffects } from './joseCidEffects';
+import { tophBeifongEffects } from './tophBeifongEffects';
 
 // Re-export individual arrays for direct access
 export {
@@ -61,7 +63,9 @@ export {
   daredevilEffects,
   geordiLaForgeEffects,
   blindspotEffects,
-  kenshiEffects
+  kenshiEffects,
+  joseCidEffects,
+  tophBeifongEffects
 };
 
 /**
@@ -98,5 +102,7 @@ export const famousPeopleEffects: VisualEffect[] = [
   ...daredevilEffects,
   ...geordiLaForgeEffects,
   ...blindspotEffects,
-  ...kenshiEffects
+  ...kenshiEffects,
+  ...joseCidEffects,
+  ...tophBeifongEffects
 ];

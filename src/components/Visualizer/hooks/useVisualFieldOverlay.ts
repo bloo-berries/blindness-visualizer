@@ -603,6 +603,35 @@ function generateBlindnessRightEyeOverlay(intensity: number): React.CSSPropertie
 }
 
 /**
+ * Generate Jose Cid Monocular Vision overlay (left eye prosthetic)
+ * Complete left eye blindness - covers full left half of vision
+ * Soft gradient transition at center
+ */
+function generateJoseCidMonocularOverlay(intensity: number): React.CSSProperties {
+  return {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none' as const,
+    zIndex: 9999,
+    background: `linear-gradient(to right,
+      rgba(0,0,0,${intensity}) 0%,
+      rgba(0,0,0,${intensity}) 45%,
+      rgba(0,0,0,${intensity * 0.7}) 48%,
+      rgba(0,0,0,${intensity * 0.4}) 50%,
+      rgba(0,0,0,${intensity * 0.1}) 52%,
+      rgba(0,0,0,0) 55%
+    )`,
+    mixBlendMode: 'normal' as const,
+    opacity: 1
+  };
+}
+
+/**
  * Generate Dame Judi Dench AMD Complete overlay
  * Based on her descriptions: central vision lost, peripheral preserved
  * "I can see your outline" but "I can't recognize anybody now...I can't see to read"
@@ -943,6 +972,12 @@ export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSPropert
     const blindnessRightEyeEffect = effects.find(e => e.id === 'blindnessRightEye' && e.enabled);
     if (blindnessRightEyeEffect) {
       return generateBlindnessRightEyeOverlay(blindnessRightEyeEffect.intensity);
+    }
+
+    // Check for Jose Cid monocular vision (left eye prosthetic)
+    const joseCidMonocularEffect = effects.find(e => e.id === 'joseCidMonocularVision' && e.enabled);
+    if (joseCidMonocularEffect) {
+      return generateJoseCidMonocularOverlay(joseCidMonocularEffect.intensity);
     }
 
     return null;

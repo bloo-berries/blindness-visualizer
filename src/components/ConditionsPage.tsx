@@ -437,15 +437,15 @@ const ConditionsPage: React.FC = () => {
                             </Box>
                             <Collapse in={expandedTreatments.has(condition.id)}>
                               <Box sx={{ mt: 1.5 }}>
-                                <List dense sx={{ pl: 0, mb: 1 }}>
+                                <List dense className="condition-treatment-list" sx={{ pl: 0, mb: 1 }}>
                                   {condition.treatments.options.map((option, idx) => (
-                                    <ListItem key={idx} sx={{ py: 0.5, pl: 2 }}>
+                                    <ListItem key={idx} className="condition-treatment-item" sx={{ py: 0.5, pl: 2 }}>
                                       <ListItemIcon sx={{ minWidth: 8 }}>
-                                        <Box sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'primary.main' }} />
+                                        <Box className="condition-treatment-bullet" sx={{ width: 4, height: 4, borderRadius: '50%', bgcolor: 'primary.main' }} />
                                       </ListItemIcon>
-                                      <ListItemText 
+                                      <ListItemText
                                         primary={
-                                          <Typography variant="body2" sx={{ fontSize: '0.875rem', lineHeight: 1.6 }}>
+                                          <Typography variant="body2" className="condition-treatment-text" sx={{ fontSize: '0.875rem', lineHeight: 1.6 }}>
                                             {option}
                                           </Typography>
                                         }
@@ -454,17 +454,20 @@ const ConditionsPage: React.FC = () => {
                                   ))}
                                 </List>
                                 {condition.treatments.notes && (
-                                  <Box sx={{ 
-                                    mt: 1.5, 
-                                    p: 1.5, 
-                                    bgcolor: '#f8fafc', 
-                                    borderRadius: 1, 
-                                    borderLeft: '3px solid',
-                                    borderColor: 'primary.main'
-                                  }}>
+                                  <Box
+                                    className="condition-treatment-notes"
+                                    sx={{
+                                      mt: 1.5,
+                                      p: 1.5,
+                                      bgcolor: '#f8fafc',
+                                      borderRadius: 1,
+                                      borderLeft: '3px solid',
+                                      borderColor: 'primary.main'
+                                    }}
+                                  >
                                     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
                                       <InfoIcon sx={{ color: 'primary.main', fontSize: 18, mt: 0.25 }} />
-                                      <Typography variant="body2" sx={{ fontSize: '0.8125rem', color: 'text.secondary', fontStyle: 'italic' }}>
+                                      <Typography variant="body2" className="condition-treatment-notes-text" sx={{ fontSize: '0.8125rem', color: 'text.secondary', fontStyle: 'italic' }}>
                                         {condition.treatments.notes}
                                       </Typography>
                                     </Box>

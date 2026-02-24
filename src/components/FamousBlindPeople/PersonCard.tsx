@@ -100,7 +100,9 @@ const getObjectPosition = (personId: string): string => {
     'ravindraJain': 'center 55%',
     'kimioEto': 'center 25%',
     'dianaGurtskaya': 'center top',
-    'asikVeysel': 'center 20%'
+    'asikVeysel': 'center 20%',
+    'joseCid': 'center 20%',
+    'bluay': 'center 20%'
   };
 
   return positionMap[personId] || 'center center';
@@ -171,7 +173,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
         tabIndex={0}
         aria-label={`View details about ${person.name}, ${person.condition || 'vision condition'}`}
         sx={{
-          height: '100%',
+          flex: 1,
           cursor: 'pointer',
           transition: 'transform 0.2s, box-shadow 0.2s',
           overflow: 'hidden',

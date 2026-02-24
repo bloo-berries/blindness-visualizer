@@ -48,11 +48,11 @@ export const fictionalCharacters: Record<string, PersonData> = {
   toph: {
     name: "Toph Beifong",
     achievement: "Inventor of Metalbending",
-    condition: "Blindness from Birth",
+    condition: "Seismic Sense (Earthbending Vision)",
     years: "Avatar: The Last Airbender",
-    onset: "Born blind",
-    simulation: "complete-blindness",
-    description: "Toph Beifong is a master earthbender who was born blind.\n\nShe developed 'seismic sense,' perceiving surroundings through vibrations in the earth by grounding herself barefoot.\n\n• One of the most powerful earthbenders in the Avatar universe\n\n• Inventor of metalbending\n\n• Fan favorite character known for her fierce independence",
+    onset: "Born blind - developed seismic sense",
+    simulation: "toph-seismic-sense",
+    description: "Toph Beifong is completely blind but 'sees' through seismic sense - detecting vibrations through the earth via her feet. This unique perception renders the world as a topographic wireframe: only ground-coupled surfaces are visible, solid rock/metal appears crisp, while sand is blurry (her canonical weakness). Living beings pulse with detectable heartbeat, and motion creates ripple waves.\n\n• One of the most powerful earthbenders in the Avatar universe\n\n• Inventor of metalbending - can sense metal with higher fidelity\n\n• Her seismic sense fails on sand, ice, wood, and when airborne\n\n• Fan favorite character known for her fierce independence",
     wikiUrl: "https://en.wikipedia.org/wiki/Toph_Beifong",
     nationality: { country: "United States", flag: "🇺🇸" }
   },

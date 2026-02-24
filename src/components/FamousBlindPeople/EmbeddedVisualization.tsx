@@ -55,11 +55,11 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     return generateCSSFilters(effects);
   }, [effects]);
 
-  // Check for complete blindness or near-total blindness conditions
+  // Check for complete blindness conditions (total darkness only)
+  // Note: Heather's LP vision is NOT total darkness - it's "washed-out white"
   const isCompleteBlindness = effects.some(e => e.id === 'completeBlindness' && e.enabled);
   const isNearTotalBlindness = effects.some(e =>
-    (e.id === 'heatherLightPerceptionComplete' ||
-     e.id === 'tofiriComplete' ||
+    (e.id === 'tofiriComplete' ||
      e.id === 'nemethComplete') && e.enabled
   );
 

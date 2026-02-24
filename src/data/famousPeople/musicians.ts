@@ -385,5 +385,27 @@ export const musicians: Record<string, PersonData> = {
     description: "Âşık Veysel lost one eye to smallpox at age 7 and the other in an accident, leaving him completely blind.\n\nHis last visual memory was the color red from blood when he fell.\n\n• Turkey's most beloved folk poet and bağlama player\n\n• National treasure whose songs blend joy and melancholy\n\n• Inspired Joe Satriani's tribute songs 'Andalusia' and 'Asik Veysel'\n\n• Turkish Parliament honored him with lifetime salary",
     wikiUrl: "https://en.wikipedia.org/wiki/Âşık_Veysel_Şatıroğlu",
     nationality: { country: "Turkey", flag: "🇹🇷" }
+  },
+  joseCid: {
+    name: "José Cid",
+    achievement: "Latin Grammy Lifetime Achievement Award",
+    condition: "Monocular Blindness (Prosthetic Left Eye)",
+    years: "Born 1942",
+    onset: "From accident (left eye)",
+    simulation: "jose-cid-monocular",
+    description: "José Cid lost the sight in his left eye due to a tragic accident and now wears a prosthetic eye. His signature sunglasses, which have become part of his iconic look, are worn because of this condition.\n\nDespite this, he maintains a characteristically positive attitude, saying he never felt life had been unfair to him.\n\n• Latin Grammy Lifetime Achievement Award (2019) - second Portuguese artist to receive the honor\n\n• Founded Quarteto 1111, Portugal's first symphonic rock band\n\n• Represented Portugal at Eurovision 1980 with 'Um grande, grande amor'\n\n• Over 60 years in music with 25 Silver, 8 Gold, and 3 Platinum records in Portugal",
+    wikiUrl: "https://en.wikipedia.org/wiki/José_Cid",
+    nationality: { country: "Portugal", flag: "🇵🇹" }
+  },
+  bluay: {
+    name: "Bluay",
+    achievement: "Play Awards Best Song 2021 (feat. Piruka)",
+    condition: "Severe Vision Loss (15% Vision, Near-Blind in One Eye)",
+    years: "Born 1999",
+    onset: "Associated with idiopathic arthritis",
+    simulation: "bluay-severe-vision-loss",
+    description: "Bluay (José Carlos Tavares) has only 15% vision and is practically blind in one eye. Despite also suffering from idiopathic arthritis, he entered the music world at just 14 years old and never gave up on his dreams.\n\nHis stage name comes from his heterochromia - one blue eye and one brown eye - 'Bluay' meaning 'blue eye.'\n\n• Featured on Piruka's 'Crazy' which won Best Song at Play Awards 2021\n\n• Rising star in Portuguese hip-hop/R&B scene\n\n• Started music career at age 14\n\n• Advocate for perseverance despite physical challenges",
+    wikiUrl: "https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4",
+    nationality: { country: "Portugal", flag: "🇵🇹" }
   }
 };

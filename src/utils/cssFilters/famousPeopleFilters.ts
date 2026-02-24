@@ -26,5 +26,7 @@ export {
   generateDaredevilFilters,
   generateGeordiFilters,
   generateBlindspotFilters,
+  generateJoseCidFilters,
+  generateTophFilters,
   generateCustomFamousPeopleFilters
 } from './famousPeopleFilters/index';

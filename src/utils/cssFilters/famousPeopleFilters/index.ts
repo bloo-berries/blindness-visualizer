@@ -25,4 +25,6 @@ export { generateNemethFilters } from './nemethFilters';
 export { generateDaredevilFilters } from './daredevilFilters';
 export { generateGeordiFilters } from './geordiFilters';
 export { generateBlindspotFilters } from './blindspotFilters';
+export { generateJoseCidFilters } from './joseCidFilters';
+export { generateTophFilters } from './tophFilters';
 export { generateCustomFamousPeopleFilters } from './customFilters';

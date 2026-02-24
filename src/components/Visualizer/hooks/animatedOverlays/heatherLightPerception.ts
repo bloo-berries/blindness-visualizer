@@ -1,13 +1,17 @@
 /**
  * Heather Hutchison's Light Perception (LP) Vision overlay generator
- * Simulates near-total blindness with only diffuse light perception
- * Features:
- * - Near-total opacity (0.92-0.98) - milky/washed-out glow, not pure black
- * - Diffuse light blobs - extreme Gaussian blur, soft amorphous patches
- * - Brightness variation only - very low-contrast luminance
- * - Nystagmus jitter - horizontal oscillation 2-5 Hz sinusoidal shake
- * - Variability - modulate opacity/blur over time
- * - No color - stripped to near-zero saturation
+ *
+ * Technical Parameters for LP Vision Simulation:
+ * 1. Extreme Gaussian blur (80-120px) - handled by CSS filters
+ * 2. Near-total desaturation (0-5%) - handled by CSS filters
+ * 3. Severe contrast reduction (10-20%) - handled by CSS filters
+ * 4. High brightness ("washed-out white") - handled by CSS filters
+ * 5. White fog/opacity layer (rgba(255,255,255,0.70-0.85)) - this overlay
+ * 6. Variability - slow oscillation of blur/brightness (3-5s period, ±10%)
+ * 7. Nystagmus jitter - horizontal oscillation 2-5 Hz
+ *
+ * LP vision is often described as seeing "various shades of white"
+ * The perception skews heavily toward white/light gray
  */
 
 /**
@@ -25,82 +29,84 @@ export function generateHeatherLightPerceptionOverlay(
   const nystagmusAmplitude = 3 + intensity * 2; // 3-5 pixels
   const nystagmusOffset = Math.sin(time * nystagmusFreq * 2 * Math.PI) * nystagmusAmplitude;
 
-  // Fluctuating opacity (simulating varying light perception)
-  const opacityWave = Math.sin(time * 0.4) * 0.02 + 0.95; // 0.93-0.97
-  const opacityWave2 = Math.sin(time * 0.28 + 1.2) * 0.015 + 0.96;
+  // Fluctuating perception - slow oscillation (3-5 second period, ±10% variation)
+  // This represents the instability Heather describes in her perception
+  const fluctuationPeriod1 = 4; // ~4 second cycle
+  const fluctuationPeriod2 = 3.3; // slightly different for organic feel
+  const fluctuation1 = Math.sin(time * (2 * Math.PI / fluctuationPeriod1)) * 0.05; // ±5%
+  const fluctuation2 = Math.sin(time * (2 * Math.PI / fluctuationPeriod2) + 1.2) * 0.05; // ±5%
 
-  // Diffuse light blob positions that drift very slowly
-  // These represent the only "light" that can be perceived - vague, formless bright patches
-  const lightBlob1X = 35 + Math.sin(time * 0.08) * 15;
-  const lightBlob1Y = 30 + Math.cos(time * 0.06) * 12;
-  const lightBlob2X = 65 + Math.sin(time * 0.07 + 1.5) * 12;
-  const lightBlob2Y = 40 + Math.cos(time * 0.09 + 0.8) * 10;
-  const lightBlob3X = 50 + Math.sin(time * 0.05 + 2.5) * 10;
-  const lightBlob3Y = 60 + Math.cos(time * 0.07 + 1.8) * 8;
+  // Base fog opacity: 0.70-0.85 as specified
+  // This creates the diffuse, fog-like quality that washes out detail
+  const baseFogOpacity = 0.75 + intensity * 0.08; // 0.75-0.83
+  const fogOpacity = baseFogOpacity + fluctuation1;
 
-  // Blob intensity pulsing (very subtle - mimics ambient light variation)
-  const blobPulse1 = 0.12 + Math.sin(time * 0.25) * 0.04;
-  const blobPulse2 = 0.10 + Math.sin(time * 0.3 + 0.7) * 0.035;
-  const blobPulse3 = 0.08 + Math.sin(time * 0.22 + 1.4) * 0.03;
+  // Secondary fog layer with slight variation
+  const secondaryFogOpacity = 0.70 + intensity * 0.10 + fluctuation2; // 0.70-0.80
 
-  // Base opacity: near-total (0.92-0.98) - milky/washed-out, not pure black
-  const baseOpacity = 0.92 + intensity * 0.05; // 0.92-0.97
+  // Vague light blob positions - these drift slowly
+  // Represent the only distinguishable "light vs dark" areas
+  const lightBlob1X = 40 + Math.sin(time * 0.06) * 12;
+  const lightBlob1Y = 35 + Math.cos(time * 0.05) * 10;
+  const lightBlob2X = 60 + Math.sin(time * 0.07 + 1.8) * 10;
+  const lightBlob2Y = 55 + Math.cos(time * 0.08 + 0.9) * 8;
 
-  // Diffuse light blob 1 - large, extremely soft (represents a window or strong light source)
-  const lightBlob1 = `
-    radial-gradient(ellipse 50% 45% at ${lightBlob1X}% ${lightBlob1Y}%,
-      rgba(200,195,190,${blobPulse1 * intensity}) 0%,
-      rgba(180,175,170,${blobPulse1 * 0.6 * intensity}) 30%,
-      rgba(150,145,140,${blobPulse1 * 0.3 * intensity}) 60%,
+  // Blob brightness pulsing (subtle - mimics strongest light-vs-dark transitions)
+  const blobPulse1 = 0.92 + Math.sin(time * 0.2) * 0.04 + fluctuation1;
+  const blobPulse2 = 0.90 + Math.sin(time * 0.25 + 0.8) * 0.03 + fluctuation2;
+
+  // Primary white fog layer - creates the "washed-out white" effect
+  // This is the core of LP vision: everything skews toward white/light gray
+  const whiteFogPrimary = `
+    linear-gradient(
+      rgba(255,255,255,${fogOpacity * intensity}) 0%,
+      rgba(250,250,250,${fogOpacity * intensity}) 100%
+    )
+  `;
+
+  // Secondary fog layer for depth/variation
+  const whiteFogSecondary = `
+    radial-gradient(ellipse 140% 120% at 50% 50%,
+      rgba(255,255,255,${secondaryFogOpacity * intensity * 0.9}) 0%,
+      rgba(248,248,248,${secondaryFogOpacity * intensity * 0.85}) 40%,
+      rgba(245,245,245,${secondaryFogOpacity * intensity * 0.8}) 70%,
+      rgba(240,240,240,${secondaryFogOpacity * intensity * 0.75}) 100%
+    )
+  `;
+
+  // Vague brighter regions - these are the only "distinguishable" areas
+  // Represent strongest light sources (window, bright lamp) as slightly brighter patches
+  const lightPatch1 = `
+    radial-gradient(ellipse 45% 40% at ${lightBlob1X}% ${lightBlob1Y}%,
+      rgba(255,255,255,${blobPulse1 * intensity * 0.15}) 0%,
+      rgba(255,255,255,${blobPulse1 * intensity * 0.08}) 50%,
       transparent 100%
     )
   `;
 
-  // Diffuse light blob 2 - medium sized
-  const lightBlob2 = `
-    radial-gradient(ellipse 40% 35% at ${lightBlob2X}% ${lightBlob2Y}%,
-      rgba(190,185,180,${blobPulse2 * intensity}) 0%,
-      rgba(170,165,160,${blobPulse2 * 0.5 * intensity}) 35%,
-      rgba(140,135,130,${blobPulse2 * 0.2 * intensity}) 65%,
+  const lightPatch2 = `
+    radial-gradient(ellipse 35% 30% at ${lightBlob2X}% ${lightBlob2Y}%,
+      rgba(255,255,255,${blobPulse2 * intensity * 0.12}) 0%,
+      rgba(255,255,255,${blobPulse2 * intensity * 0.06}) 50%,
       transparent 100%
     )
   `;
 
-  // Diffuse light blob 3 - smaller ambient glow
-  const lightBlob3 = `
-    radial-gradient(ellipse 35% 30% at ${lightBlob3X}% ${lightBlob3Y}%,
-      rgba(180,175,170,${blobPulse3 * intensity}) 0%,
-      rgba(160,155,150,${blobPulse3 * 0.45 * intensity}) 40%,
+  // Subtle darker region to represent shadows (barely perceptible)
+  // Only the strongest light-vs-dark transitions register as vague gradients
+  const shadowHint = `
+    radial-gradient(ellipse 60% 50% at 20% 70%,
+      rgba(220,220,220,${0.08 * intensity}) 0%,
       transparent 100%
-    )
-  `;
-
-  // Overall milky/washed-out base layer (not pure black)
-  // This creates the "dim, milky glow" rather than total darkness
-  const milkyBase = `
-    radial-gradient(ellipse 120% 120% at 50% 50%,
-      rgba(45,42,40,${baseOpacity * opacityWave}) 0%,
-      rgba(40,38,36,${baseOpacity * opacityWave}) 30%,
-      rgba(35,33,32,${baseOpacity * opacityWave2}) 60%,
-      rgba(30,28,27,${baseOpacity * opacityWave2}) 100%
-    )
-  `;
-
-  // Secondary dim layer for depth
-  const dimLayer = `
-    radial-gradient(ellipse 150% 130% at 50% 45%,
-      rgba(50,47,45,${baseOpacity * 0.85}) 0%,
-      rgba(42,40,38,${baseOpacity * 0.9}) 50%,
-      rgba(35,33,32,${baseOpacity * 0.95}) 100%
     )
   `;
 
   const background = `
-    ${lightBlob1},
-    ${lightBlob2},
-    ${lightBlob3},
-    ${milkyBase},
-    ${dimLayer}
+    ${lightPatch1},
+    ${lightPatch2},
+    ${shadowHint},
+    ${whiteFogPrimary},
+    ${whiteFogSecondary}
   `;
 
   return {

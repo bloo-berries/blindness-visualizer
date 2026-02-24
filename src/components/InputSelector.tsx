@@ -1,17 +1,26 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Card,
   CardContent,
   Typography,
   Grid,
-  Chip
+  Chip,
+  Link,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  IconButton
 } from '@mui/material';
 import {
   Videocam,
   Image,
   YouTube,
-  Star
+  Star,
+  Close,
+  Security
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { InputSource } from '../types/visualEffects';
@@ -26,6 +35,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { preferences } = useAccessibility();
   const { t } = useTranslation();
+  const [dataPolicyOpen, setDataPolicyOpen] = useState(false);
 
   const inputOptions = [
     {
@@ -274,6 +284,68 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
           </Grid>
         </Grid>
       </Grid>
+
+      {/* Data Policy Link */}
+      <Box sx={{ textAlign: 'center', mt: 1.5 }}>
+        <Link
+          component="button"
+          variant="caption"
+          onClick={() => setDataPolicyOpen(true)}
+          sx={{
+            fontSize: '0.7rem',
+            color: 'text.secondary',
+            textDecoration: 'underline',
+            cursor: 'pointer',
+            '&:hover': {
+              color: 'primary.main'
+            }
+          }}
+        >
+          Data Policy
+        </Link>
+      </Box>
+
+      {/* Data Policy Dialog */}
+      <Dialog
+        open={dataPolicyOpen}
+        onClose={() => setDataPolicyOpen(false)}
+        maxWidth="xs"
+        fullWidth
+        aria-labelledby="data-policy-title"
+      >
+        <DialogTitle id="data-policy-title" sx={{ pb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Security fontSize="small" color="primary" />
+          <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
+            Data Policy
+          </Typography>
+          <IconButton
+            aria-label="close"
+            onClick={() => setDataPolicyOpen(false)}
+            size="small"
+          >
+            <Close fontSize="small" />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" paragraph>
+            <strong>Your privacy is protected.</strong>
+          </Typography>
+          <Typography variant="body2" paragraph>
+            When you upload a photo or use your webcam, your images and video stay entirely on your device. There is no server communication - we never upload, store, or transmit your images anywhere.
+          </Typography>
+          <Typography variant="body2" paragraph>
+            The image exists only in your browser's local memory during your session. It's automatically deleted when you navigate away or close your browser tab.
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+            This application runs entirely in your browser with no backend server for image processing.
+          </Typography>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button onClick={() => setDataPolicyOpen(false)} variant="contained" size="small">
+            Got it
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Box sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }}>
         <input

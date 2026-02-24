@@ -98,6 +98,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'david-hemispheric-vision': ['hemianopiaRight', 'blurryVision'],
     'slick-rick-blindness': ['blindnessRightEye'],
     'thurber-eye-injury': ['blindnessLeftEye', 'blurryVision'],
+    'jose-cid-monocular': ['joseCidMonocularVision'],
 
     // ===== KERATOCONUS / ASTIGMATISM =====
     'stephen-keratoconus': ['stephenKeratoconusComplete'],
@@ -145,6 +146,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'doctor-midnite-photophobia': ['glare', 'blurryVision', 'lossOfContrast'],
     'magoo-severe-myopia': ['blurryVision'],
     'murphy-rp-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
+    'toph-seismic-sense': ['tophSeismicSenseComplete'],
 
     // ===== CORRECTED MUSICIANS =====
     'art-partial-blindness': ['cataracts', 'blurryVision', 'glare', 'blindnessLeftEye'],

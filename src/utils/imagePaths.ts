@@ -161,7 +161,9 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   ravindraJain: 'ravindra-jain.webp',
   kimioEto: 'Kimio-Eto.webp',
   dianaGurtskaya: 'Diana-Gurtskaya.webp',
-  asikVeysel: 'Asik-Veyel.webp'
+  asikVeysel: 'Asik-Veyel.webp',
+  joseCid: 'jose-cid.webp',
+  bluay: 'bluay.webp'
 };
 
 /**

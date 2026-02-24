@@ -1,24 +1,35 @@
 import { VisualEffect } from '../../../types/visualEffects';
 
 /**
- * Heather Hutchison - Congenital Light Perception Only Vision with Nystagmus
- * Near-total blindness with only diffuse light perception, no form vision
- * Features: milky/washed-out glow, diffuse light blobs, nystagmus jitter, no color
+ * Heather Hutchison - Light Perception (LP) Only Vision
+ *
+ * Technical Parameters:
+ * 1. Extreme Gaussian blur (80-120px) - destroys all edge, form, and detail
+ * 2. Near-total desaturation (0-5%) - color perception functionally absent
+ * 3. Severe contrast reduction (10-20%) - shadows and midtones collapse
+ * 4. High brightness (180%+) - perception skews toward "washed-out white"
+ * 5. White fog overlay (70-85% opacity) - diffuse, fog-like quality
+ * 6. Fluctuating perception - slow oscillation (3-5s period, ±10% variation)
+ * 7. Nystagmus jitter - horizontal oscillation at 2-5 Hz
+ *
+ * LP vision is described as seeing "various shades of white" - only the
+ * broadest luminance regions remain as vague gradients. No shapes, no
+ * faces, no text - only the strongest light-vs-dark transitions register.
  */
 export const heatherHutchisonEffects: VisualEffect[] = [
   {
     id: 'heatherNearTotalOpacity',
-    name: 'Near-Total Opacity (Heather Hutchison)',
+    name: 'Washed-Out White (Heather Hutchison)',
     enabled: false,
     intensity: 1.0,
-    description: 'Near-total visual occlusion (92-98% opacity). Not pure black - a dim, milky/washed-out glow. Represents the baseline darkness of light perception only vision where form cannot be resolved.'
+    description: 'High luminance "washed-out white" perception. LP vision skews heavily toward white/light gray - not darkness, but a diffuse, fog-like brightness where everything appears as various shades of white.'
   },
   {
     id: 'heatherDiffuseLightBlobs',
     name: 'Diffuse Light Blobs (Heather Hutchison)',
     enabled: false,
     intensity: 1.0,
-    description: 'Light sources rendered as soft, unfocused, amorphous bright patches with no edges or shape. Extreme Gaussian blur (80-120px+) transforms any light into formless glows. Bright areas produce faint diffuse patches; dark areas are indistinguishable void.'
+    description: 'Light sources rendered as soft, unfocused, amorphous bright patches with no edges or shape. Extreme Gaussian blur (80-120px) transforms any light into formless glows. Only the strongest light-vs-dark transitions (e.g., a window vs. a dark wall) register as vague gradients.'
   },
   {
     id: 'heatherNystagmus',
@@ -32,20 +43,20 @@ export const heatherHutchisonEffects: VisualEffect[] = [
     name: 'Color Stripped (Heather Hutchison)',
     enabled: false,
     intensity: 1.0,
-    description: 'Complete or near-complete absence of color perception. Light perception vision does not resolve wavelength - only luminance variation is perceived. Everything appears in dim grayscale.'
+    description: 'Complete or near-complete absence of color perception (0-5% saturation). Light perception vision does not resolve wavelength - only luminance variation is perceived. Everything appears in shades of white/gray.'
   },
   {
     id: 'heatherFluctuatingPerception',
     name: 'Fluctuating Perception (Heather Hutchison)',
     enabled: false,
     intensity: 1.0,
-    description: 'Subtle modulation of overall opacity and blur over time. Simulates the fluctuating nature of light perception - sometimes slightly clearer, sometimes dimmer, but never resolving to form.'
+    description: 'Subtle modulation of brightness and blur over time (3-5 second period, ±10% variation). Simulates the fluctuating, unstable nature of light perception - sometimes slightly clearer, sometimes more washed out, but never resolving to form.'
   },
   {
     id: 'heatherLightPerceptionComplete',
     name: 'Complete Light Perception Vision (Heather Hutchison)',
     enabled: false,
     intensity: 1.0,
-    description: 'Complete simulation of Heather Hutchison\'s congenital light perception only vision. Near-total opacity with milky/washed-out glow (not pure black). Diffuse amorphous light blobs with extreme blur - no edges, no shapes, only formless bright patches. Continuous nystagmus jitter (2-5 Hz horizontal oscillation). No color - only dim luminance variation. Fluctuating perception over time. This is what "counting fingers at best" vision looks like - or more accurately, doesn\'t look like.'
+    description: 'Complete simulation of Light Perception (LP) only vision. Extreme blur (80-120px) destroys all form and detail. Near-total desaturation strips color. Severe contrast reduction collapses shadows and midtones. High brightness creates "washed-out white" perception - described as seeing "various shades of white." White fog overlay (70-85% opacity) adds diffuse quality. Nystagmus provides characteristic eye movement jitter. Perception fluctuates slowly over time. Only the broadest luminance regions remain as vague gradients.'
   }
 ];

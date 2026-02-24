@@ -31,5 +31,7 @@ export {
   daredevilEffects,
   geordiLaForgeEffects,
   blindspotEffects,
-  kenshiEffects
+  kenshiEffects,
+  joseCidEffects,
+  tophBeifongEffects
 } from './famousPeopleEffects/index';

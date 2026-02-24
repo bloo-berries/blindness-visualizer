@@ -15,6 +15,7 @@ import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFE
 import { useAnimationTicker } from '../../hooks';
 import ComparisonView from './ComparisonView';
 import { useDiplopiaOverlay } from './DiplopiaOverlay';
+import NeoMatrixCodeVision from './hooks/animatedOverlays/neoMatrixCodeVision';
 
 interface VisualizerProps {
   effects: VisualEffect[];
@@ -90,6 +91,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
 
   // Get animated overlay styles (for visual aura, PPVP, etc.) (full simulation view)
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
+
+  // Check for Neo Matrix Code Vision (requires canvas-based rendering)
+  const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
 
   // Retry camera access
   const handleRetryCamera = useCallback(() => {
@@ -532,6 +536,10 @@ const Visualizer: React.FC<VisualizerProps> = ({
               {/* Animated overlay for visual aura, PPVP, and other animated effects */}
               {animatedOverlayStyle && (
                 <div style={animatedOverlayStyle} aria-hidden="true" />
+              )}
+              {/* Neo Matrix Code Vision canvas overlay */}
+              {neoEffect && (
+                <NeoMatrixCodeVision intensity={neoEffect.intensity} />
               )}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -12,9 +12,11 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Tooltip,
+  Snackbar
 } from '@mui/material';
-import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord } from '@mui/icons-material';
+import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord, Share as ShareIcon } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
@@ -76,6 +78,52 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
   // Ref for scrolling dialog content to top
   const dialogContentRef = useRef<HTMLDivElement>(null);
 
+  // State for share notification
+  const [shareNotification, setShareNotification] = useState<string | null>(null);
+
+  // Generate shareable URL for this person
+  const getShareableUrl = (): string => {
+    const baseUrl = window.location.origin + window.location.pathname;
+    return `${baseUrl}?person=${personId}`;
+  };
+
+  // Handle share button click
+  const handleShare = async () => {
+    const shareUrl = getShareableUrl();
+
+    // Try native share API first (mobile devices)
+    if (navigator.share && person) {
+      try {
+        await navigator.share({
+          title: `${person.name} - Vision Condition`,
+          text: `Learn about ${person.name}'s vision condition: ${person.condition}`,
+          url: shareUrl
+        });
+        return;
+      } catch (err) {
+        // User cancelled or share failed, fall back to clipboard
+        if ((err as Error).name === 'AbortError') {
+          return; // User cancelled, don't fall back to clipboard
+        }
+      }
+    }
+
+    // Fall back to clipboard copy
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareNotification('Link copied to clipboard!');
+    } catch {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = shareUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setShareNotification('Link copied to clipboard!');
+    }
+  };
+
   // Get current index in filtered list
   const currentIndex = personId ? filteredPeople.indexOf(personId) : -1;
   const hasPrevious = currentIndex > 0;
@@ -131,9 +179,16 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
       <DialogTitle>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h5">{person.name}</Typography>
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
+          <Box sx={{ display: 'flex', gap: 0.5 }}>
+            <Tooltip title="Share this profile">
+              <IconButton onClick={handleShare} aria-label="Share profile">
+                <ShareIcon />
+              </IconButton>
+            </Tooltip>
+            <IconButton onClick={onClose} aria-label="Close dialog">
+              <CloseIcon />
+            </IconButton>
+          </Box>
         </Box>
       </DialogTitle>
       <DialogContent ref={dialogContentRef}>
@@ -269,6 +324,15 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
           Experience Simulation
         </Button>
       </DialogActions>
+
+      {/* Share notification */}
+      <Snackbar
+        open={!!shareNotification}
+        autoHideDuration={3000}
+        onClose={() => setShareNotification(null)}
+        message={shareNotification}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Dialog>
   );
 };

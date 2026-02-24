@@ -70,11 +70,11 @@ export const fictionalCharacters: Record<string, PersonData> = {
   neo: {
     name: "Neo (Thomas Anderson)",
     achievement: "The One, The Matrix Trilogy",
-    condition: "Blindness",
+    condition: "Matrix Code Vision (Post-Blindness)",
     years: "The Matrix trilogy",
-    onset: "Burned by Agent Smith",
-    simulation: "complete-blindness",
-    description: "Neo is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation but gains the ability to perceive the code of the Matrix itself.\n\n• 'The One' prophesied to end the war between humans and machines\n\n• His blindness represents seeing beyond physical reality\n\n• Portrayed by Keanu Reeves",
+    onset: "Burned by Agent Smith, gains code perception",
+    simulation: "neo-matrix-code-vision",
+    description: "Neo is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation with Agent Smith, but gains the ability to perceive the underlying code of the Matrix itself - seeing the world as cascading streams of green digital characters.\n\nThe visualization: falling columns of katakana, Latin, numerals, and symbols in phosphor green. Bright 'head' characters lead each stream with fading afterglow trails. Glitch effects include chromatic aberration and scan lines. The world becomes pure data - no physical forms, only the digital rain of the Matrix's source code.\n\n• 'The One' prophesied to end the war between humans and machines\n\n• His blindness represents transcendence - seeing beyond physical reality to the code beneath\n\n• Portrayed by Keanu Reeves",
     wikiUrl: "https://en.wikipedia.org/wiki/Neo_(The_Matrix)",
     nationality: { country: "United States", flag: "🇺🇸" }
   },

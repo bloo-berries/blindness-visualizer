@@ -147,6 +147,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'magoo-severe-myopia': ['blurryVision'],
     'murphy-rp-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
     'toph-seismic-sense': ['tophSeismicSenseComplete'],
+    'neo-matrix-code-vision': ['neoMatrixCodeVisionComplete'],
 
     // ===== CORRECTED MUSICIANS =====
     'art-partial-blindness': ['cataracts', 'blurryVision', 'glare', 'blindnessLeftEye'],

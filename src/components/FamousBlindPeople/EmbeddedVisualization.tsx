@@ -7,6 +7,7 @@ import { generateCSSFilters } from '../../utils/cssFilters';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
+import NeoMatrixCodeVision from '../Visualizer/hooks/animatedOverlays/neoMatrixCodeVision';
 
 interface EmbeddedVisualizationProps {
   personId: string;
@@ -62,6 +63,9 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     (e.id === 'tofiriComplete' ||
      e.id === 'nemethComplete') && e.enabled
   );
+
+  // Check for Neo Matrix Code Vision (requires canvas-based rendering)
+  const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
 
   return (
     <Box sx={{ mt: 2 }}>
@@ -153,6 +157,11 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           {/* Animated overlay */}
           {animatedOverlayStyle && (
             <div style={animatedOverlayStyle} aria-hidden="true" />
+          )}
+
+          {/* Neo Matrix Code Vision canvas overlay */}
+          {neoEffect && (
+            <NeoMatrixCodeVision intensity={neoEffect.intensity} />
           )}
         </Box>
       </Box>

@@ -4,6 +4,7 @@ import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
 import { useAnimationTicker } from '../../hooks';
+import NeoMatrixCodeVision from './hooks/animatedOverlays/neoMatrixCodeVision';
 
 interface ComparisonViewProps {
   effects: VisualEffect[];
@@ -38,6 +39,9 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
 
   // Get animated overlay styles (for visual aura, etc.)
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
+
+  // Check for Neo Matrix Code Vision (requires canvas-based rendering)
+  const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
 
   // Detect mobile screen for responsive layout
   const theme = useTheme();
@@ -156,6 +160,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
                 {animatedOverlayStyle && (
                   <div style={animatedOverlayStyle} aria-hidden="true" />
                 )}
+                {/* Neo Matrix Code Vision canvas overlay */}
+                {neoEffect && (
+                  <NeoMatrixCodeVision intensity={neoEffect.intensity} />
+                )}
               </div>
             </div>
           ) : inputSource.type === 'image' && inputSource.url ? (
@@ -181,6 +189,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
               {/* Animated overlay for visual aura effects */}
               {animatedOverlayStyle && (
                 <div style={animatedOverlayStyle} aria-hidden="true" />
+              )}
+              {/* Neo Matrix Code Vision canvas overlay */}
+              {neoEffect && (
+                <NeoMatrixCodeVision intensity={neoEffect.intensity} />
               )}
             </div>
           ) : (

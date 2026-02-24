@@ -33,5 +33,6 @@ export {
   blindspotEffects,
   kenshiEffects,
   joseCidEffects,
-  tophBeifongEffects
+  tophBeifongEffects,
+  neoEffects
 } from './famousPeopleEffects/index';

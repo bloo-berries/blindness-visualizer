@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Container,
@@ -68,6 +68,7 @@ const CONDITION_CATEGORY_KEYWORDS: Record<string, string[]> = {
 
 const FamousBlindPeople: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
@@ -75,6 +76,26 @@ const FamousBlindPeople: React.FC = () => {
   const [countryFilter, setCountryFilter] = useState('');
   const [hideCompleteBlindness, setHideCompleteBlindness] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
+
+  // Handle URL parameter for direct person linking
+  useEffect(() => {
+    const personParam = searchParams.get('person');
+    if (personParam && personData[personParam] && !selectedPerson) {
+      setSelectedPerson(personParam);
+    }
+  }, [searchParams, selectedPerson]);
+
+  // Update URL when person is selected/deselected
+  const updateSelectedPerson = useCallback((personId: string | null) => {
+    setSelectedPerson(personId);
+    if (personId) {
+      setSearchParams({ person: personId }, { replace: true });
+    } else {
+      // Remove the person parameter when closing dialog
+      searchParams.delete('person');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   // Categorize conditions into groups
   const conditionCategories = useMemo(() => {
@@ -223,11 +244,11 @@ const FamousBlindPeople: React.FC = () => {
   }, [filteredPeople]);
 
   const handlePersonClick = (personId: string) => {
-    setSelectedPerson(personId);
+    updateSelectedPerson(personId);
   };
 
   const handleCloseDialog = () => {
-    setSelectedPerson(null);
+    updateSelectedPerson(null);
   };
 
   const handleExperienceSimulation = (personId: string) => {
@@ -451,7 +472,7 @@ const FamousBlindPeople: React.FC = () => {
         person={selectedPersonData}
         filteredPeople={displayOrder}
         onClose={handleCloseDialog}
-        onNavigate={(personId) => setSelectedPerson(personId)}
+        onNavigate={(personId) => updateSelectedPerson(personId)}
         onExperienceSimulation={() => {
           if (selectedPerson) {
             handleExperienceSimulation(selectedPerson);

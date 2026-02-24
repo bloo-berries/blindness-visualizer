@@ -37,7 +37,7 @@ export const ANIMATED_EFFECTS = [
   // Person-specific animated effects
   'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
   'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
-  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete'
+  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete', 'neoMatrixCodeVisionComplete'
 ];
 
 /**

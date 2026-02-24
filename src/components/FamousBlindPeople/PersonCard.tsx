@@ -164,7 +164,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
   const placeholderSrc = `https://via.placeholder.com/300x400/cccccc/666666?text=${encodeURIComponent(person.name)}`;
 
   return (
-    <Grid item xs={4} sm={2} md={2} lg={2} xl={2}>
+    <Grid item xs={4} sm={2} md={2} lg={2} xl={2} sx={{ display: 'flex' }}>
       <Card
         ref={cardRef}
         role="button"
@@ -261,29 +261,51 @@ export const PersonCard: React.FC<PersonCardProps> = ({ personId, person, onClic
             />
           )}
         </Box>
-        <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5, minWidth: 0, flex: 1 }}>
-          <Typography 
-            variant="subtitle2" 
-            component="h4" 
-            sx={{ 
-              fontSize: '0.75rem', 
-              lineHeight: 1.1, 
-              mb: 0.25,
-              overflowWrap: 'break-word',
-              wordBreak: 'normal',
-              whiteSpace: 'normal',
-              hyphens: 'auto'
-            }}
-          >
-            {person.name}
-          </Typography>
-          <Typography 
-            variant="caption" 
-            color="text.secondary" 
-            sx={{ 
-              fontSize: '0.65rem', 
-              lineHeight: 1.1, 
+        <CardContent sx={{ p: 0.75, pt: 0.5, pb: 0.5, minWidth: 0, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Box>
+            <Typography
+              variant="subtitle2"
+              component="h4"
+              sx={{
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                lineHeight: 1.2,
+                mb: 0.25,
+                overflowWrap: 'break-word',
+                wordBreak: 'normal',
+                whiteSpace: 'normal',
+                hyphens: 'auto'
+              }}
+            >
+              {person.name}
+            </Typography>
+            {person.achievement && (
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: '0.6rem',
+                  lineHeight: 1.1,
+                  display: 'block',
+                  color: 'primary.main',
+                  fontWeight: 500,
+                  overflowWrap: 'break-word',
+                  wordBreak: 'normal',
+                  whiteSpace: 'normal',
+                  hyphens: 'auto'
+                }}
+              >
+                {person.achievement}
+              </Typography>
+            )}
+          </Box>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{
+              fontSize: '0.65rem',
+              lineHeight: 1.1,
               display: 'block',
+              pt: 1.5,
               overflowWrap: 'break-word',
               wordBreak: 'normal',
               whiteSpace: 'normal',

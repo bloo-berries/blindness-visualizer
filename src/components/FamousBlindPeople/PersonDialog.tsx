@@ -113,6 +113,18 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
             />
           </Grid>
           <Grid item xs={12} md={8}>
+            {person.achievement && (
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: 'primary.main',
+                  fontWeight: 600,
+                  mb: 1
+                }}
+              >
+                {person.achievement}
+              </Typography>
+            )}
             <Typography variant="h6" gutterBottom>
               {person.condition}
             </Typography>

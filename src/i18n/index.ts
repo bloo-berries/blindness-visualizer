@@ -96,11 +96,13 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
+    lng: 'en', // Default to English for new users
     fallbackLng: 'en',
     supportedLngs: Object.keys(supportedLanguages),
 
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      // Only check localStorage for saved user preference, don't auto-detect from browser
+      order: ['localStorage'],
       caches: ['localStorage'],
       lookupLocalStorage: 'language-preference',
     },

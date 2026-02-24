@@ -1,3 +1,2 @@
 // Re-export from the ControlPanel directory for backward compatibility
-export { default } from './ControlPanel/ControlPanel';
-
+export { default, default as ControlPanel } from './ControlPanel/ControlPanel';

@@ -72,6 +72,7 @@ const FamousBlindPeople: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [conditionFilter, setConditionFilter] = useState('');
+  const [countryFilter, setCountryFilter] = useState('');
   const [hideCompleteBlindness, setHideCompleteBlindness] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
@@ -132,6 +133,19 @@ const FamousBlindPeople: React.FC = () => {
     return categorized;
   }, []);
 
+  // Get unique countries with flags, sorted alphabetically
+  const countries = useMemo(() => {
+    const countryMap = new Map<string, string>(); // country -> flag
+    Object.values(personData).forEach(person => {
+      if (person.nationality) {
+        countryMap.set(person.nationality.country, person.nationality.flag);
+      }
+    });
+    return Array.from(countryMap.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([country, flag]) => ({ country, flag }));
+  }, []);
+
   // Helper function to check if a person has only complete blindness visualization
   const isCompleteBlindnessOnly = (personId: string): boolean => {
     const person = personData[personId];
@@ -174,13 +188,21 @@ const FamousBlindPeople: React.FC = () => {
       }
     }
 
+    // Filter by country
+    if (countryFilter) {
+      filtered = filtered.filter(personId => {
+        const person = personData[personId];
+        return person.nationality?.country === countryFilter;
+      });
+    }
+
     // Filter out complete blindness if toggle is enabled
     if (hideCompleteBlindness) {
       filtered = filtered.filter(personId => !isCompleteBlindnessOnly(personId));
     }
 
     return filtered;
-  }, [searchTerm, categoryFilter, conditionFilter, conditionCategories, hideCompleteBlindness]);
+  }, [searchTerm, categoryFilter, conditionFilter, countryFilter, conditionCategories, hideCompleteBlindness]);
 
   // Get display order that matches how people are actually rendered on the page
   const displayOrder = useMemo(() => {
@@ -226,6 +248,7 @@ const FamousBlindPeople: React.FC = () => {
     setSearchTerm('');
     setCategoryFilter('');
     setConditionFilter('');
+    setCountryFilter('');
     setHideCompleteBlindness(false);
   };
 
@@ -286,7 +309,7 @@ const FamousBlindPeople: React.FC = () => {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={2}>
               <FormControl fullWidth>
                 <InputLabel>{t('famousPeople.categoryLabel')}</InputLabel>
                 <Select
@@ -303,7 +326,7 @@ const FamousBlindPeople: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={2}>
               <FormControl fullWidth>
                 <InputLabel>{t('famousPeople.conditionLabel')}</InputLabel>
                 <Select
@@ -315,6 +338,23 @@ const FamousBlindPeople: React.FC = () => {
                   {conditionCategories.map(({ category, conditions }) => (
                     <MenuItem key={category} value={category}>
                       {t(`famousPeople.conditionCategories.${getCategoryKey(category)}`, category)} ({conditions.length})
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={2}>
+              <FormControl fullWidth>
+                <InputLabel>{t('famousPeople.countryLabel', 'Country')}</InputLabel>
+                <Select
+                  value={countryFilter}
+                  onChange={(e) => setCountryFilter(e.target.value)}
+                  label={t('famousPeople.countryLabel', 'Country')}
+                >
+                  <MenuItem value="">{t('famousPeople.allCountries', 'All Countries')}</MenuItem>
+                  {countries.map(({ country, flag }) => (
+                    <MenuItem key={country} value={country}>
+                      {flag} {country}
                     </MenuItem>
                   ))}
                 </Select>
@@ -384,7 +424,7 @@ const FamousBlindPeople: React.FC = () => {
                 <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
                   {t(`famousPeople.categories.${category.id}`, category.name)}
                 </Typography>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
                   {categoryCards}
                 </Grid>
               </Box>

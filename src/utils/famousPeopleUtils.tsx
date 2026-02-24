@@ -292,43 +292,55 @@ const getWikipediaUrl = (personId: string): string => {
 };
 
 /**
+ * Static website URLs that don't require personId
+ */
+const STATIC_WEBSITE_URLS: Record<string, string> = {
+  'paulcastlestudio.com': 'https://paulcastlestudio.com',
+  'theblindcook.com': 'https://www.theblindcook.com/',
+  'lucyedwards.com': 'https://www.lucyedwards.com/',
+  'governordavidpaterson.com': 'https://governordavidpaterson.com/',
+  'nytimes.com': 'https://www.nytimes.com/2013/03/03/nyregion/40-years-after-an-acid-attack-a-life-well-lived.html',
+  'monaminkara.com': 'https://monaminkara.com/',
+  'erikweihenmayer.com': 'https://erikweihenmayer.com/',
+  'womenshistory.org': 'https://www.womenshistory.org/education-resources/biographies/helen-keller',
+  'andreabocelli.com': 'https://www.andreabocelli.com/',
+  'steviewonder.net': 'https://www.steviewonder.net/',
+  'raycharles.com': 'https://raycharles.com/',
+  'newyorker.com': 'https://www.newyorker.com/culture/postscript/ved-mehta-1934-2021',
+  'disabilitytalent.org': 'https://www.disabilitytalent.org/single-post/2018/10/01/a-vision-for-the-future-an-interview-with-casey-harris-of-x-ambassadors',
+  'habengirma.com': 'https://habengirma.com/',
+  'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
+  'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
+  'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
+  'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
+  'rossminor.com': 'https://rossminor.com/',
+  'misterrogers.org': 'https://www.misterrogers.org/',
+  'steppenwolf.com': 'https://steppenwolf.com/pages/john-kay-biography',
+  'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
+  'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
+  'heather-hutchison.com': 'https://www.heather-hutchison.com/',
+  'bramblitt.com': 'https://bramblitt.com/',
+  'kenyanheroes.com': 'https://kenyanheroes.com/hero/henry-wanyoike/'
+};
+
+/**
+ * Builds the complete website map including person-specific URLs
+ */
+const buildWebsiteMap = (personId: string): Record<string, string> => ({
+  ...STATIC_WEBSITE_URLS,
+  'teamusa.com': getTeamUsaUrl(personId),
+  'en.wikipedia.org': getWikipediaUrl(personId),
+  'starwars.fandom.com': getWikipediaUrl(personId),
+  'imdb.com': getImdbUrl(personId),
+  'paralympic.org': getParalympicUrl(personId),
+  'ishof.org': getIshofUrl(personId)
+});
+
+/**
  * Maps website domains to full URLs for person descriptions
  */
 export const getWebsiteUrl = (domain: string, personId: string): string => {
-  const websiteMap: Record<string, string> = {
-    'paulcastlestudio.com': 'https://paulcastlestudio.com',
-    'theblindcook.com': 'https://www.theblindcook.com/',
-    'lucyedwards.com': 'https://www.lucyedwards.com/',
-    'governordavidpaterson.com': 'https://governordavidpaterson.com/',
-    'nytimes.com': 'https://www.nytimes.com/2013/03/03/nyregion/40-years-after-an-acid-attack-a-life-well-lived.html',
-    'monaminkara.com': 'https://monaminkara.com/',
-    'erikweihenmayer.com': 'https://erikweihenmayer.com/',
-    'teamusa.com': getTeamUsaUrl(personId),
-    'womenshistory.org': 'https://www.womenshistory.org/education-resources/biographies/helen-keller',
-    'andreabocelli.com': 'https://www.andreabocelli.com/',
-    'en.wikipedia.org': getWikipediaUrl(personId),
-    'steviewonder.net': 'https://www.steviewonder.net/',
-    'raycharles.com': 'https://raycharles.com/',
-    'newyorker.com': 'https://www.newyorker.com/culture/postscript/ved-mehta-1934-2021',
-    'disabilitytalent.org': 'https://www.disabilitytalent.org/single-post/2018/10/01/a-vision-for-the-future-an-interview-with-casey-harris-of-x-ambassadors',
-    'habengirma.com': 'https://habengirma.com/',
-    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
-    'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
-    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
-    'starwars.fandom.com': getWikipediaUrl(personId),
-    'imdb.com': getImdbUrl(personId),
-    'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
-    'rossminor.com': 'https://rossminor.com/',
-    'paralympic.org': getParalympicUrl(personId),
-    'ishof.org': getIshofUrl(personId),
-    'misterrogers.org': 'https://www.misterrogers.org/',
-    'steppenwolf.com': 'https://steppenwolf.com/pages/john-kay-biography',
-    'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
-    'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
-    'heather-hutchison.com': 'https://www.heather-hutchison.com/',
-    'bramblitt.com': 'https://bramblitt.com/'
-  };
-  
+  const websiteMap = buildWebsiteMap(personId);
   return websiteMap[domain] || '';
 };
 
@@ -336,40 +348,7 @@ export const getWebsiteUrl = (domain: string, personId: string): string => {
  * Parses description text and converts website domains to clickable links
  */
 export const parseDescriptionWithLinks = (description: string, personId: string): React.ReactNode[] => {
-  const websiteMap: Record<string, string> = {
-    'paulcastlestudio.com': 'https://paulcastlestudio.com',
-    'theblindcook.com': 'https://www.theblindcook.com/',
-    'lucyedwards.com': 'https://www.lucyedwards.com/',
-    'governordavidpaterson.com': 'https://governordavidpaterson.com/',
-    'nytimes.com': 'https://www.nytimes.com/2013/03/03/nyregion/40-years-after-an-acid-attack-a-life-well-lived.html',
-    'monaminkara.com': 'https://monaminkara.com/',
-    'erikweihenmayer.com': 'https://erikweihenmayer.com/',
-    'teamusa.com': getTeamUsaUrl(personId),
-    'womenshistory.org': 'https://www.womenshistory.org/education-resources/biographies/helen-keller',
-    'andreabocelli.com': 'https://www.andreabocelli.com/',
-    'en.wikipedia.org': getWikipediaUrl(personId),
-    'steviewonder.net': 'https://www.steviewonder.net/',
-    'raycharles.com': 'https://raycharles.com/',
-    'newyorker.com': 'https://www.newyorker.com/culture/postscript/ved-mehta-1934-2021',
-    'disabilitytalent.org': 'https://www.disabilitytalent.org/single-post/2018/10/01/a-vision-for-the-future-an-interview-with-casey-harris-of-x-ambassadors',
-    'habengirma.com': 'https://habengirma.com/',
-    'mollyburkeofficial.com': 'https://www.mollyburkeofficial.com/',
-    'book-of-eli.fandom.com': 'https://book-of-eli.fandom.com/wiki/The_Book_of_Eli',
-    'marvel.com': 'https://www.marvel.com/characters/arachne-julia-carpenter',
-    'starwars.fandom.com': getWikipediaUrl(personId),
-    'imdb.com': getImdbUrl(personId),
-    'rachaelleahcar.com.au': 'https://rachaelleahcar.com.au/',
-    'rossminor.com': 'https://rossminor.com/',
-    'paralympic.org': getParalympicUrl(personId),
-    'ishof.org': getIshofUrl(personId),
-    'misterrogers.org': 'https://www.misterrogers.org/',
-    'steppenwolf.com': 'https://steppenwolf.com/pages/john-kay-biography',
-    'in-the-dark-cw.fandom.com': 'https://in-the-dark-cw.fandom.com/wiki/Murphy_Mason',
-    'onepiece.fandom.com': 'https://onepiece.fandom.com/wiki/Issho',
-    'heather-hutchison.com': 'https://www.heather-hutchison.com/',
-    'bramblitt.com': 'https://bramblitt.com/',
-    'kenyanheroes.com': 'https://kenyanheroes.com/hero/henry-wanyoike/'
-  };
+  const websiteMap = buildWebsiteMap(personId);
 
   const domainPattern = Object.keys(websiteMap)
     .map(domain => domain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))

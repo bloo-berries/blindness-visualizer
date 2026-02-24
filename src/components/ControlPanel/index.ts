@@ -1,4 +1,2 @@
-// Re-export the main component
-export { default } from './ControlPanel';
+// Re-export the main component using named export pattern
 export { default as ControlPanel } from './ControlPanel';
-

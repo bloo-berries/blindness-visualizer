@@ -10,7 +10,7 @@ import {
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import VisionSimulator from './components/VisionSimulator';
-import FamousBlindPeople from './components/FamousBlindPeople';
+import FamousBlindPeople from './components/FamousBlindPeople.tsx';
 import ConditionsPage from './components/ConditionsPage';
 import FAQPage from './components/FAQPage';
 import AboutPage from './components/AboutPage';

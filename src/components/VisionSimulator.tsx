@@ -12,7 +12,7 @@ import {
   Button
 } from '@mui/material';
 import Visualizer from './Visualizer';
-import ControlPanel from './ControlPanel';
+import { ControlPanel } from './ControlPanel';
 import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';

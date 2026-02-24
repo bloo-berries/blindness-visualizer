@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Container,
@@ -20,7 +20,8 @@ import {
   MenuItem,
   FormGroup,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  SelectChangeEvent
 } from '@mui/material';
 import {
   Send as SendIcon,
@@ -33,8 +34,11 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import { sendFeedbackEmailServerless, FeedbackEmailData } from '../utils/emailService';
 
+type FeedbackType = 'general' | 'bug' | 'feature' | 'improvement' | 'other';
+type ChipColor = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default';
+
 interface FeedbackForm {
-  type: 'general' | 'bug' | 'feature' | 'improvement' | 'other';
+  type: FeedbackType;
   name: string;
   email: string;
   subject: string;
@@ -44,6 +48,13 @@ interface FeedbackForm {
   userType?: string;
   browser?: string;
   accessibilityNeeds?: string[];
+}
+
+interface FeedbackTypeOption {
+  value: FeedbackType;
+  labelKey: string;
+  icon: React.ReactElement;
+  color: ChipColor;
 }
 
 const FeedbackPage: React.FC = () => {
@@ -64,7 +75,7 @@ const FeedbackPage: React.FC = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const feedbackTypes = [
+  const feedbackTypes: FeedbackTypeOption[] = [
     { value: 'general', labelKey: 'feedbackPage.feedbackTypes.general', icon: <FeedbackIcon />, color: 'primary' },
     { value: 'bug', labelKey: 'feedbackPage.feedbackTypes.bug', icon: <BugReportIcon />, color: 'error' },
     { value: 'feature', labelKey: 'feedbackPage.feedbackTypes.feature', icon: <LightbulbIcon />, color: 'success' },
@@ -105,27 +116,27 @@ const FeedbackPage: React.FC = () => {
     { value: 'none', labelKey: 'feedbackPage.accessibility.options.none' }
   ];
 
-  const handleInputChange = (field: keyof FeedbackForm) => (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any
+  const handleInputChange = useCallback((field: keyof FeedbackForm) => (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>
   ) => {
     const value = event.target.value;
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
-  };
+  }, []);
 
-  const handleAccessibilityChange = (value: string) => (
+  const handleAccessibilityChange = useCallback((value: string) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const isChecked = event.target.checked;
     setFormData(prev => ({
       ...prev,
-      accessibilityNeeds: isChecked 
+      accessibilityNeeds: isChecked
         ? [...(prev.accessibilityNeeds || []), value]
         : (prev.accessibilityNeeds || []).filter(item => item !== value)
     }));
-  };
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -202,8 +213,8 @@ const FeedbackPage: React.FC = () => {
                       icon={type.icon}
                       label={t(type.labelKey)}
                       variant={formData.type === type.value ? 'filled' : 'outlined'}
-                      color={formData.type === type.value ? type.color as any : 'default'}
-                      onClick={() => setFormData(prev => ({ ...prev, type: type.value as any }))}
+                      color={formData.type === type.value ? type.color : 'default'}
+                      onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
                       sx={{
                         justifyContent: 'flex-start',
                         height: 'auto',

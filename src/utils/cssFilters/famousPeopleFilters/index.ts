@@ -28,3 +28,4 @@ export { generateBlindspotFilters } from './blindspotFilters';
 export { generateJoseCidFilters } from './joseCidFilters';
 export { generateTophFilters } from './tophFilters';
 export { generateCustomFamousPeopleFilters } from './customFilters';
+export { generateAnselmoFilters } from './anselmoFilters';

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -22,19 +22,34 @@ import { getSimulationConditions } from '../utils/famousPeopleUtils';
 import { PersonCard } from './FamousBlindPeople/PersonCard';
 import { PersonDialog } from './FamousBlindPeople/PersonDialog';
 import { getPersonImagePath } from '../utils/imagePaths';
+import { FlagWithName } from '../utils/flagUtils';
+
+// ============================================
+// STATIC DATA - Moved outside component
+// ============================================
+
+// Pre-computed person keys and count (never changes)
+const PERSON_IDS = Object.keys(personData);
+const PERSON_COUNT = PERSON_IDS.length;
+
+// Pre-computed category people as Sets for O(1) lookup
+const CATEGORY_PEOPLE_SETS: Map<string, Set<string>> = new Map(
+  categories.map(cat => [cat.name, new Set(cat.people)])
+);
 
 // Helper to convert category name to translation key
+const CATEGORY_KEY_MAP: Record<string, string> = {
+  'Ocular Issues': 'ocularIssues',
+  'Neurologic Issues': 'neurologicIssues',
+  'Accident/Injury': 'accidentInjury',
+  'Congenital Defects': 'congenitalDefects',
+  'Degenerative Eye Diseases': 'degenerativeEyeDiseases',
+  'Illness': 'illness',
+  'Other': 'other'
+};
+
 const getCategoryKey = (category: string): string => {
-  const keyMap: Record<string, string> = {
-    'Ocular Issues': 'ocularIssues',
-    'Neurologic Issues': 'neurologicIssues',
-    'Accident/Injury': 'accidentInjury',
-    'Congenital Defects': 'congenitalDefects',
-    'Degenerative Eye Diseases': 'degenerativeEyeDiseases',
-    'Illness': 'illness',
-    'Other': 'other'
-  };
-  return keyMap[category] || 'other';
+  return CATEGORY_KEY_MAP[category] || 'other';
 };
 
 // Keyword-to-category lookup map for condition categorization
@@ -44,7 +59,8 @@ const CONDITION_CATEGORY_KEYWORDS: Record<string, string[]> = {
     'macular degeneration', 'macular', 'amd', 'keratoconus', 'aniridia', 'nystagmus',
     'retinoblastoma', 'stargardt', 'cone-rod', 'diabetic retinopathy', 'ophthalmia',
     'iritis', 'eye infection', 'eye disease', 'sight disease', 'color blindness',
-    'color deficiency', 'achromatopsia', 'deuteranopia', 'deuteranomaly', 'nearsighted'
+    'color deficiency', 'achromatopsia', 'deuteranopia', 'deuteranomaly', 'nearsighted',
+    'myasthenia'
   ],
   'Neurologic Issues': [
     'neuromyelitis', 'stroke', 'brain injury', 'traumatic brain', 'meningitis',
@@ -66,16 +82,116 @@ const CONDITION_CATEGORY_KEYWORDS: Record<string, string[]> = {
   ]
 };
 
+// Category order for display
+const CATEGORY_ORDER = [
+  'Ocular Issues',
+  'Neurologic Issues',
+  'Accident/Injury',
+  'Congenital Defects',
+  'Degenerative Eye Diseases',
+  'Illness',
+  'Other'
+];
+
+// Pre-compute condition categories (static data, never changes)
+const PRECOMPUTED_CONDITION_CATEGORIES = (() => {
+  const categorizeCondition = (condition: string): string => {
+    const lower = condition.toLowerCase();
+    for (const [category, keywords] of Object.entries(CONDITION_CATEGORY_KEYWORDS)) {
+      if (keywords.some(keyword => lower.includes(keyword))) {
+        return category;
+      }
+    }
+    return 'Other';
+  };
+
+  const conditionsMap = new Map<string, string[]>();
+  Object.values(personData).forEach(person => {
+    const category = categorizeCondition(person.condition);
+    if (!conditionsMap.has(category)) {
+      conditionsMap.set(category, []);
+    }
+    const categoryConditions = conditionsMap.get(category)!;
+    if (!categoryConditions.includes(person.condition)) {
+      categoryConditions.push(person.condition);
+    }
+  });
+
+  conditionsMap.forEach((conditions) => {
+    conditions.sort((a, b) => a.localeCompare(b));
+  });
+
+  const categorized: Array<{ category: string; conditions: string[]; conditionSet: Set<string> }> = [];
+  CATEGORY_ORDER.forEach(category => {
+    if (conditionsMap.has(category)) {
+      const conditions = conditionsMap.get(category)!;
+      categorized.push({
+        category,
+        conditions,
+        conditionSet: new Set(conditions) // Pre-compute Set for O(1) lookup
+      });
+    }
+  });
+
+  return categorized;
+})();
+
+// Pre-compute countries (static data, never changes)
+const PRECOMPUTED_COUNTRIES = (() => {
+  const countryMap = new Map<string, string>();
+  Object.values(personData).forEach(person => {
+    if (person.nationality) {
+      countryMap.set(person.nationality.country, person.nationality.flag);
+    }
+  });
+  return Array.from(countryMap.entries())
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([country, flag]) => ({ country, flag }));
+})();
+
+// ============================================
+// CUSTOM HOOKS
+// ============================================
+
+// Debounce hook for search input
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+// ============================================
+// MAIN COMPONENT
+// ============================================
+
 const FamousBlindPeople: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+
+  // State
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [conditionFilter, setConditionFilter] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [hideCompleteBlindness, setHideCompleteBlindness] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
+
+  // Debounced search term (300ms delay)
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  // Track if initial preload has been done
+  const hasPreloaded = useRef(false);
 
   // Handle URL parameter for direct person linking
   useEffect(() => {
@@ -91,97 +207,26 @@ const FamousBlindPeople: React.FC = () => {
     if (personId) {
       setSearchParams({ person: personId }, { replace: true });
     } else {
-      // Remove the person parameter when closing dialog
-      searchParams.delete('person');
-      setSearchParams(searchParams, { replace: true });
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete('person');
+      setSearchParams(newParams, { replace: true });
     }
   }, [searchParams, setSearchParams]);
 
-  // Categorize conditions into groups
-  const conditionCategories = useMemo(() => {
-    const categorizeCondition = (condition: string): string => {
-      const lower = condition.toLowerCase();
-
-      for (const [category, keywords] of Object.entries(CONDITION_CATEGORY_KEYWORDS)) {
-        if (keywords.some(keyword => lower.includes(keyword))) {
-          return category;
-        }
-      }
-
-      return 'Other';
-    };
-
-    // Get all unique conditions and categorize them
-    const conditionsMap = new Map<string, string[]>();
-    Object.values(personData).forEach(person => {
-      const category = categorizeCondition(person.condition);
-      if (!conditionsMap.has(category)) {
-        conditionsMap.set(category, []);
-      }
-      const categoryConditions = conditionsMap.get(category)!;
-      if (!categoryConditions.includes(person.condition)) {
-        categoryConditions.push(person.condition);
-      }
-    });
-
-    // Sort conditions within each category
-    conditionsMap.forEach((conditions) => {
-      conditions.sort((a, b) => a.localeCompare(b));
-    });
-
-    // Define category order
-    const categoryOrder = [
-      'Ocular Issues',
-      'Neurologic Issues',
-      'Accident/Injury',
-      'Congenital Defects',
-      'Degenerative Eye Diseases',
-      'Illness',
-      'Other'
-    ];
-
-    // Build categorized structure
-    const categorized: Array<{ category: string; conditions: string[] }> = [];
-    categoryOrder.forEach(category => {
-      if (conditionsMap.has(category)) {
-        categorized.push({
-          category,
-          conditions: conditionsMap.get(category)!
-        });
-      }
-    });
-
-    return categorized;
-  }, []);
-
-  // Get unique countries with flags, sorted alphabetically
-  const countries = useMemo(() => {
-    const countryMap = new Map<string, string>(); // country -> flag
-    Object.values(personData).forEach(person => {
-      if (person.nationality) {
-        countryMap.set(person.nationality.country, person.nationality.flag);
-      }
-    });
-    return Array.from(countryMap.entries())
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([country, flag]) => ({ country, flag }));
-  }, []);
-
   // Helper function to check if a person has only complete blindness visualization
-  const isCompleteBlindnessOnly = (personId: string): boolean => {
+  const isCompleteBlindnessOnly = useCallback((personId: string): boolean => {
     const person = personData[personId];
     const conditions = getSimulationConditions(person.simulation);
-    // Check if the only condition is 'completeBlindness'
     return conditions.length === 1 && conditions[0] === 'completeBlindness';
-  };
+  }, []);
 
-  // Use useMemo to optimize filtering - only recalculate when filters change
+  // Optimized filtering with debounced search and Set lookups
   const filteredPeople = useMemo(() => {
-    let filtered = Object.keys(personData);
+    let filtered = PERSON_IDS;
 
-    // Filter by search term
-    if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
+    // Filter by debounced search term
+    if (debouncedSearchTerm) {
+      const searchLower = debouncedSearchTerm.toLowerCase();
       filtered = filtered.filter(personId => {
         const person = personData[personId];
         return person.name.toLowerCase().includes(searchLower) ||
@@ -189,22 +234,23 @@ const FamousBlindPeople: React.FC = () => {
       });
     }
 
-    // Filter by category
+    // Filter by category using pre-computed Set (O(1) lookup)
     if (categoryFilter) {
-      const category = categories.find(cat => cat.name === categoryFilter);
-      if (category) {
-        filtered = filtered.filter(personId => category.people.includes(personId));
+      const categorySet = CATEGORY_PEOPLE_SETS.get(categoryFilter);
+      if (categorySet) {
+        filtered = filtered.filter(personId => categorySet.has(personId));
       }
     }
 
-    // Filter by condition category
+    // Filter by condition category using pre-computed Set (O(1) lookup)
     if (conditionFilter) {
-      const selectedCategory = conditionCategories.find(cat => cat.category === conditionFilter);
+      const selectedCategory = PRECOMPUTED_CONDITION_CATEGORIES.find(
+        cat => cat.category === conditionFilter
+      );
       if (selectedCategory) {
-        const categoryConditions = new Set(selectedCategory.conditions);
         filtered = filtered.filter(personId => {
           const person = personData[personId];
-          return categoryConditions.has(person.condition);
+          return selectedCategory.conditionSet.has(person.condition);
         });
       }
     }
@@ -223,82 +269,111 @@ const FamousBlindPeople: React.FC = () => {
     }
 
     return filtered;
-  }, [searchTerm, categoryFilter, conditionFilter, countryFilter, conditionCategories, hideCompleteBlindness]);
+  }, [debouncedSearchTerm, categoryFilter, conditionFilter, countryFilter, hideCompleteBlindness, isCompleteBlindnessOnly]);
 
-  // Get display order that matches how people are actually rendered on the page
+  // Convert filtered people to Set for O(1) lookup
+  const filteredPeopleSet = useMemo(() => new Set(filteredPeople), [filteredPeople]);
+
+  // Pre-compute category cards data to avoid IIFE in render
+  const categoryCardsData = useMemo(() => {
+    let globalIndex = 0;
+
+    return categories.map(category => {
+      const categorySet = CATEGORY_PEOPLE_SETS.get(category.name);
+      if (!categorySet) return null;
+
+      // Filter people in this category that are also in filtered results
+      const categoryPeople = category.people.filter(personId =>
+        filteredPeopleSet.has(personId)
+      );
+
+      if (categoryPeople.length === 0) return null;
+
+      const startIndex = globalIndex;
+      globalIndex += categoryPeople.length;
+
+      return {
+        category,
+        categoryPeople,
+        startIndex
+      };
+    }).filter(Boolean) as Array<{
+      category: typeof categories[0];
+      categoryPeople: string[];
+      startIndex: number;
+    }>;
+  }, [filteredPeopleSet]);
+
+  // Get display order for dialog navigation
   const displayOrder = useMemo(() => {
-    const filteredSet = new Set(filteredPeople);
     const ordered: string[] = [];
-
-    // Iterate through categories in order
     categories.forEach(category => {
-      // For each category, get people that are both in the category and filtered
       category.people.forEach(personId => {
-        if (filteredSet.has(personId)) {
+        if (filteredPeopleSet.has(personId)) {
           ordered.push(personId);
         }
       });
     });
-
     return ordered;
-  }, [filteredPeople]);
+  }, [filteredPeopleSet]);
 
-  const handlePersonClick = (personId: string) => {
+  // Handlers
+  const handlePersonClick = useCallback((personId: string) => {
     updateSelectedPerson(personId);
-  };
+  }, [updateSelectedPerson]);
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = useCallback(() => {
     updateSelectedPerson(null);
-  };
+  }, [updateSelectedPerson]);
 
-  const handleExperienceSimulation = (personId: string) => {
+  const handleExperienceSimulation = useCallback((personId: string) => {
     const person = personData[personId];
     const conditions = getSimulationConditions(person.simulation);
-    
-    // Navigate to simulator with pre-configured conditions
-    navigate('/simulator', { 
-      state: { 
+
+    navigate('/simulator', {
+      state: {
         preconfiguredConditions: conditions,
         personName: person.name,
         personCondition: person.condition
       }
     });
-  };
+  }, [navigate]);
 
-  const clearFilters = () => {
+  const clearFilters = useCallback(() => {
     setSearchTerm('');
     setCategoryFilter('');
     setConditionFilter('');
     setCountryFilter('');
     setHideCompleteBlindness(false);
-  };
+  }, []);
 
-  const handleHomeClick = () => {
+  const handleHomeClick = useCallback(() => {
     navigate('/');
-  };
+  }, [navigate]);
 
   const selectedPersonData = selectedPerson ? personData[selectedPerson] : null;
 
-  // Preload first batch of images for better initial load performance
+  // Preload first batch of images only once on initial mount
   useEffect(() => {
+    if (hasPreloaded.current) return;
+    hasPreloaded.current = true;
+
     const preloadImages = () => {
-      // Preload first 12 images (first visible row + buffer)
-      const firstBatch = filteredPeople.slice(0, 12);
+      const firstBatch = PERSON_IDS.slice(0, 12);
       firstBatch.forEach((personId) => {
         const img = new Image();
         img.src = getPersonImagePath(personId);
       });
     };
 
-    // Small delay to not block initial render
     const timeoutId = setTimeout(preloadImages, 100);
     return () => clearTimeout(timeoutId);
-  }, [filteredPeople]);
+  }, []);
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
-      
+
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
           {t('famousPeople.title')}
@@ -356,7 +431,7 @@ const FamousBlindPeople: React.FC = () => {
                   label={t('famousPeople.conditionLabel')}
                 >
                   <MenuItem value="">{t('famousPeople.allConditions')}</MenuItem>
-                  {conditionCategories.map(({ category, conditions }) => (
+                  {PRECOMPUTED_CONDITION_CATEGORIES.map(({ category, conditions }) => (
                     <MenuItem key={category} value={category}>
                       {t(`famousPeople.conditionCategories.${getCategoryKey(category)}`, category)} ({conditions.length})
                     </MenuItem>
@@ -373,19 +448,19 @@ const FamousBlindPeople: React.FC = () => {
                   label={t('famousPeople.countryLabel', 'Country')}
                 >
                   <MenuItem value="">{t('famousPeople.allCountries', 'All Countries')}</MenuItem>
-                  {countries.map(({ country, flag }) => (
+                  {PRECOMPUTED_COUNTRIES.map(({ country, flag }) => (
                     <MenuItem key={country} value={country}>
-                      {flag} {country}
+                      <FlagWithName flag={flag} countryName={country} size={18} />
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             </Grid>
           </Grid>
-          
+
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
             <Typography variant="body2" color="text.secondary">
-              {t('famousPeople.showingResults', { count: filteredPeople.length, total: Object.keys(personData).length })}
+              {t('famousPeople.showingResults', { count: filteredPeople.length, total: PERSON_COUNT })}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <FormControlLabel
@@ -409,49 +484,33 @@ const FamousBlindPeople: React.FC = () => {
           </Box>
         </Box>
 
-        {/* People Cards */}
-        {(() => {
-          let globalIndex = 0;
-          return categories.map(category => {
-            const categoryPeople = filteredPeople.filter(personId => 
-              category.people.includes(personId)
-            );
-            
-            if (categoryPeople.length === 0) return null;
+        {/* People Cards - Using pre-computed data */}
+        {categoryCardsData.map(({ category, categoryPeople, startIndex }) => (
+          <Box key={category.name} sx={{ mb: 4 }}>
+            <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
+              {t(`famousPeople.categories.${category.id}`, category.name)}
+            </Typography>
+            <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
+              {categoryPeople.map((personId, categoryIndex) => {
+                const person = personData[personId];
+                const globalIndex = startIndex + categoryIndex;
+                const isPriority = globalIndex < 6;
 
-            const categoryStartIndex = globalIndex;
-            const categoryCards = categoryPeople.map((personId, categoryIndex) => {
-              const person = personData[personId];
-              const currentGlobalIndex = categoryStartIndex + categoryIndex;
-              // Mark first 6 images as priority (above the fold)
-              const isPriority = currentGlobalIndex < 6;
-              
-              return (
-                <PersonCard
-                  key={personId}
-                  personId={personId}
-                  person={person}
-                  onClick={() => handlePersonClick(personId)}
-                  priority={isPriority}
-                  index={currentGlobalIndex}
-                />
-              );
-            });
-            
-            globalIndex += categoryPeople.length;
-
-            return (
-              <Box key={category.name} sx={{ mb: 4 }}>
-                <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
-                  {t(`famousPeople.categories.${category.id}`, category.name)}
-                </Typography>
-                <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
-                  {categoryCards}
-                </Grid>
-              </Box>
-            );
-          });
-        })()}
+                return (
+                  <Grid item xs={4} sm={2} md={2} lg={2} xl={2} key={personId} sx={{ display: 'flex' }}>
+                    <PersonCard
+                      personId={personId}
+                      person={person}
+                      onClick={() => handlePersonClick(personId)}
+                      priority={isPriority}
+                      index={globalIndex}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
+        ))}
 
         {filteredPeople.length === 0 && (
           <Box sx={{ textAlign: 'center', py: 8 }}>

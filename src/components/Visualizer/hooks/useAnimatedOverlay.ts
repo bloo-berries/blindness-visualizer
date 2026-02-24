@@ -21,6 +21,7 @@ import {
   generateBlindspotSonarSenseOverlay,
   generateKenshiTelekineticSenseOverlay,
   generateTophSeismicSenseOverlay,
+  generateAnselmoOcularMyastheniaOverlay,
 } from './animatedOverlays';
 
 /**
@@ -37,7 +38,9 @@ export const ANIMATED_EFFECTS = [
   // Person-specific animated effects
   'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
   'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
-  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete', 'neoMatrixCodeVisionComplete'
+  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete', 'neoMatrixCodeVisionComplete',
+  // Anselmo Ralph - Ocular Myasthenia Gravis
+  'anselmoOcularMyastheniaComplete', 'anselmoOcularMyastheniaPtosis', 'anselmoOcularMyastheniaPhotophobia'
 ];
 
 /**
@@ -138,6 +141,16 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     const tophEffect = effects.find(e => e.id === 'tophSeismicSenseComplete' && e.enabled);
     if (tophEffect) {
       return generateTophSeismicSenseOverlay(tophEffect.intensity, now);
+    }
+
+    // Check for Anselmo Ralph's Ocular Myasthenia Gravis (ptosis, photophobia, fatigue cycle)
+    const anselmoEffect = effects.find(e =>
+      (e.id === 'anselmoOcularMyastheniaComplete' ||
+       e.id === 'anselmoOcularMyastheniaPtosis' ||
+       e.id === 'anselmoOcularMyastheniaPhotophobia') && e.enabled
+    );
+    if (anselmoEffect) {
+      return generateAnselmoOcularMyastheniaOverlay(anselmoEffect.intensity, now);
     }
 
     return null;

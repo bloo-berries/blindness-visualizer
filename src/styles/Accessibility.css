@@ -21,8 +21,8 @@
   color: var(--hc-text) !important;
 }
 
-/* Apply to text elements */
-.high-contrast-mode .MuiTypography-root {
+/* Apply to text elements (exclude library card elements which need black text) */
+.high-contrast-mode .MuiTypography-root:not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
@@ -35,16 +35,16 @@
   color: var(--hc-text) !important;
 }
 
-/* Ensure all text elements have proper contrast */
-.high-contrast-mode h1,
-.high-contrast-mode h2,
-.high-contrast-mode h3,
-.high-contrast-mode h4,
-.high-contrast-mode h5,
-.high-contrast-mode h6,
-.high-contrast-mode p,
-.high-contrast-mode span,
-.high-contrast-mode div {
+/* Ensure all text elements have proper contrast (exclude library card which needs black text) */
+.high-contrast-mode h1:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode h2:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode h3:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode h4:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode h5:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode h6:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode p:not(.library-of-blind-description),
+.high-contrast-mode span:not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode div:not(.library-of-blind-card) {
   color: var(--hc-text) !important;
 }
 
@@ -413,24 +413,24 @@
 }
 
 /* Ensure all text in cards is visible */
-.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
+.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
 /* Card content specific styling */
-.high-contrast-mode .MuiCardContent-root {
+.high-contrast-mode .MuiCardContent-root:not(.library-of-blind-card *) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description) {
+.high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
@@ -839,6 +839,47 @@
   border: 2px solid #000000 !important;
 }
 
+/* Library of the Blind card - white background with black text in high contrast mode */
+.high-contrast-mode .library-of-blind-card,
+.high-contrast-mode .library-of-blind-card.MuiCard-root,
+.high-contrast-mode .MuiCard-root.library-of-blind-card,
+.high-contrast-mode a.library-of-blind-card,
+.high-contrast-mode .MuiCard-root.library-of-blind-card[style*="linear-gradient"],
+.high-contrast-mode .library-of-blind-card[style*="linear-gradient"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .library-of-blind-card .MuiTypography-root,
+.high-contrast-mode .library-of-blind-card .MuiTypography-h6,
+.high-contrast-mode .library-of-blind-card .MuiTypography-body2,
+.high-contrast-mode .library-of-blind-card span,
+.high-contrast-mode .library-of-blind-card p {
+  color: #000000 !important;
+}
+
+/* Direct class targeting for Library of the Blind text */
+.high-contrast-mode .library-of-blind-title,
+.high-contrast-mode .library-of-blind-title.MuiTypography-root,
+.high-contrast-mode .library-of-blind-title.MuiTypography-h6,
+.high-contrast-mode span.library-of-blind-title,
+.high-contrast-mode .MuiTypography-root.library-of-blind-title {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .library-of-blind-description,
+.high-contrast-mode .library-of-blind-description.MuiTypography-root,
+.high-contrast-mode .library-of-blind-description.MuiTypography-body2,
+.high-contrast-mode p.library-of-blind-description,
+.high-contrast-mode .MuiTypography-root.library-of-blind-description {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .library-of-blind-card .MuiSvgIcon-root {
+  color: #000000 !important;
+}
+
 /* Famous People filter section - white background with black text in high contrast mode */
 .high-contrast-mode .famous-people-filter-section {
   background-color: #ffffff !important;
@@ -883,11 +924,33 @@
   border-color: #000000 !important;
 }
 
+/* FINAL OVERRIDE: Library of the Blind card - must be last for highest specificity */
+html.high-contrast-mode .library-of-blind-card,
+html.high-contrast-mode .library-of-blind-card.MuiCard-root,
+html.high-contrast-mode .MuiCard-root.library-of-blind-card,
+html.high-contrast-mode a.library-of-blind-card.MuiCard-root,
+body.high-contrast-mode .library-of-blind-card,
+.high-contrast-mode .library-of-blind-card.MuiPaper-root {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+html.high-contrast-mode .library-of-blind-title,
+html.high-contrast-mode .library-of-blind-description,
+body.high-contrast-mode .library-of-blind-title,
+body.high-contrast-mode .library-of-blind-description,
+.high-contrast-mode .library-of-blind-title,
+.high-contrast-mode .library-of-blind-description,
+.high-contrast-mode .library-of-blind-card .MuiBox-root .MuiTypography-root {
+  color: #000000 !important;
+}
+
 @media (forced-colors: active) {
   .high-contrast-mode {
     forced-color-adjust: none;
   }
-  
+
   .high-contrast-mode * {
     forced-color-adjust: none;
   }
@@ -900,7 +963,7 @@
   .MuiButton-root {
     display: none !important;
   }
-  
+
   * {
     background: white !important;
     color: black !important;

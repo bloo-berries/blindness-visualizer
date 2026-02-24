@@ -16,13 +16,15 @@ import {
   IconButton,
   TextField,
   InputAdornment,
-  Collapse
+  Collapse,
+  ToggleButton,
+  ToggleButtonGroup
 } from '@mui/material';
 import { Info, ExpandMore, Search, Clear, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
-import { conditionCategories } from './ControlPanelConstants';
+import { conditionCategories, orientationGroups, OrientationGroup } from './ControlPanelConstants';
 import { renderDescriptionWithLinks } from '../../utils/textRendering';
 
 // Quick filter definitions
@@ -68,10 +70,6 @@ const EffectListItem = memo<EffectListItemProps>(({
   const handleToggle = useCallback((e: React.SyntheticEvent) => {
     onToggleAndSelect(effect, e);
   }, [effect, onToggleAndSelect]);
-
-  const handleIntensityChange = useCallback((_: Event, value: number | number[]) => {
-    onIntensityChange(effect.id, (value as number) / 100);
-  }, [effect.id, onIntensityChange]);
 
   const handleSeparationChange = useCallback((_: Event, value: number | number[]) => {
     onDiplopiaSeparationChange?.((value as number) / 100);
@@ -126,23 +124,6 @@ const EffectListItem = memo<EffectListItemProps>(({
         primary={highlightMatch(effect.name, searchQuery)}
         secondary={
           <>
-            {effect.enabled && (
-              <Slider
-                size="small"
-                value={effect.intensity * 100}
-                onChange={handleIntensityChange}
-                onClick={stopPropagation}
-                onMouseDown={stopPropagation}
-                onTouchStart={stopPropagation}
-                onTouchEnd={stopPropagation}
-                onPointerDown={stopPropagation}
-                valueLabelDisplay="auto"
-                valueLabelFormat={value => `${value}%`}
-                aria-label={`Adjust ${effect.name} intensity`}
-                aria-valuetext={`${effect.intensity * 100}%`}
-                sx={{ mt: 1, width: '90%' }}
-              />
-            )}
             {/* Diplopia-specific controls */}
             {(effect.id === 'diplopiaMonocular' || effect.id === 'diplopiaBinocular') && effect.enabled && (
               <Box sx={{ mt: 2, pl: 1 }}>
@@ -260,6 +241,161 @@ const EffectListItem = memo<EffectListItemProps>(({
 
 EffectListItem.displayName = 'EffectListItem';
 
+// Component for rendering orientation groups (conditions with left/right options)
+interface OrientationGroupItemProps {
+  groupKey: string;
+  group: OrientationGroup;
+  leftEffect: VisualEffect | undefined;
+  rightEffect: VisualEffect | undefined;
+  isHighlighted: boolean;
+  searchQuery: string;
+  onToggleAndSelect: (effect: VisualEffect, e: React.SyntheticEvent) => void;
+  onIntensityChange: (id: string, intensity: number) => void;
+  onOrientationChange: (groupKey: string, orientation: 'left' | 'right') => void;
+  highlightMatch: (text: string, query: string) => React.ReactNode;
+}
+
+const OrientationGroupItem = memo<OrientationGroupItemProps>(({
+  groupKey,
+  group,
+  leftEffect,
+  rightEffect,
+  isHighlighted,
+  searchQuery,
+  onToggleAndSelect,
+  onIntensityChange,
+  onOrientationChange,
+  highlightMatch
+}) => {
+  // Determine current state
+  const isEnabled = leftEffect?.enabled || rightEffect?.enabled;
+  const currentOrientation: 'left' | 'right' = leftEffect?.enabled ? 'left' : 'right';
+
+  const stopPropagation = useCallback((e: React.SyntheticEvent) => {
+    e.stopPropagation();
+  }, []);
+
+  const handleToggle = useCallback((e: React.SyntheticEvent) => {
+    e.stopPropagation();
+    // When toggling on, enable the right variant by default
+    // When toggling off, disable whichever is currently enabled
+    if (isEnabled) {
+      // Disable whichever is enabled
+      if (leftEffect?.enabled) {
+        onToggleAndSelect(leftEffect, e);
+      } else if (rightEffect?.enabled) {
+        onToggleAndSelect(rightEffect, e);
+      }
+    } else {
+      // Enable right variant by default
+      if (rightEffect) {
+        onToggleAndSelect(rightEffect, e);
+      }
+    }
+  }, [isEnabled, leftEffect, rightEffect, onToggleAndSelect]);
+
+  const handleOrientationChange = useCallback((_: React.MouseEvent<HTMLElement>, newOrientation: 'left' | 'right' | null) => {
+    if (newOrientation === null) return; // Don't allow deselection
+    onOrientationChange(groupKey, newOrientation);
+  }, [groupKey, onOrientationChange]);
+
+  return (
+    <ListItem
+      sx={{
+        borderRadius: 1,
+        mb: 1,
+        bgcolor: isEnabled ? 'rgba(33, 150, 243, 0.08)' : 'transparent',
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        '&.Mui-selected': {
+          bgcolor: 'rgba(33, 150, 243, 0.15)',
+        }
+      }}
+      selected={isHighlighted}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={isEnabled}
+              onChange={handleToggle}
+              onClick={stopPropagation}
+              inputProps={{
+                'aria-label': `Toggle ${group.displayName}`,
+              }}
+            />
+          }
+          label=""
+          sx={{ mr: 0 }}
+        />
+        <ListItemText
+          primary={highlightMatch(group.displayName, searchQuery)}
+          sx={{ flex: 1 }}
+        />
+        <Tooltip
+          title={
+            <Box sx={{ maxWidth: 280 }}>
+              {renderDescriptionWithLinks(group.description, { linkSx: { color: 'primary.light' }, onClick: stopPropagation })}
+            </Box>
+          }
+          arrow
+          enterTouchDelay={0}
+          leaveTouchDelay={3000}
+          componentsProps={{
+            tooltip: {
+              sx: {
+                bgcolor: 'rgba(50, 50, 50, 0.95)',
+                '& .MuiTooltip-arrow': {
+                  color: 'rgba(50, 50, 50, 0.95)',
+                },
+                p: 1.5,
+                fontSize: '0.875rem'
+              }
+            }
+          }}
+        >
+          <IconButton
+            size="small"
+            aria-label={`Learn more about ${group.displayName}`}
+            onClick={stopPropagation}
+          >
+            <Info />
+          </IconButton>
+        </Tooltip>
+      </Box>
+
+      {/* Orientation toggle and intensity slider - only shown when enabled */}
+      {isEnabled && (
+        <Box sx={{ pl: 6, pr: 2, pb: 1, width: '100%' }}>
+          {/* Left/Right orientation toggle */}
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5, mt: 1 }}>
+            <Typography variant="caption" sx={{ mr: 2, color: 'text.secondary' }}>
+              Side:
+            </Typography>
+            <ToggleButtonGroup
+              value={currentOrientation}
+              exclusive
+              onChange={handleOrientationChange}
+              size="small"
+              aria-label="Orientation selection"
+            >
+              <ToggleButton value="left" aria-label="Left side" sx={{ px: 2, py: 0.5 }}>
+                Left
+              </ToggleButton>
+              <ToggleButton value="right" aria-label="Right side" sx={{ px: 2, py: 0.5 }}>
+                Right
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Box>
+
+        </Box>
+      )}
+    </ListItem>
+  );
+});
+
+OrientationGroupItem.displayName = 'OrientationGroupItem';
+
 interface EffectListProps {
   effects: VisualEffect[];
   highlightedEffect: VisualEffect | null;
@@ -271,6 +407,7 @@ interface EffectListProps {
   onIntensityChange: (id: string, intensity: number) => void;
   onDiplopiaSeparationChange?: (separation: number) => void;
   onDiplopiaDirectionChange?: (direction: number) => void;
+  onOrientationChange?: (groupKey: string, orientation: 'left' | 'right') => void;
 }
 
 export const EffectList: React.FC<EffectListProps> = ({
@@ -283,7 +420,8 @@ export const EffectList: React.FC<EffectListProps> = ({
   onToggleAndSelect,
   onIntensityChange,
   onDiplopiaSeparationChange,
-  onDiplopiaDirectionChange
+  onDiplopiaDirectionChange,
+  onOrientationChange
 }) => {
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -341,17 +479,71 @@ export const EffectList: React.FC<EffectListProps> = ({
     }
   };
 
-  // Group effects by category (using filtered effects when searching or filtering)
+  // Get effects map for orientation groups
+  const effectsMap = useMemo(() => {
+    const map = new Map<string, VisualEffect>();
+    effects.forEach(effect => map.set(effect.id, effect));
+    return map;
+  }, [effects]);
+
+  // Create a mapping from orientation group conditions to their group key
+  const conditionToGroupKey = useMemo(() => {
+    const map = new Map<ConditionType, string>();
+    Object.entries(orientationGroups).forEach(([key, group]) => {
+      map.set(group.leftCondition, key);
+      map.set(group.rightCondition, key);
+    });
+    return map;
+  }, []);
+
+  // Group effects by category with proper ordering
+  // Creates an ordered list of items (either effects or orientation groups) based on conditionCategories order
   const effectsByCategory = useMemo(() => {
     const isFiltering = searchQuery.trim() || activeFilter;
     const sourceEffects = isFiltering ? filteredEffects : effects;
+    const sourceEffectsMap = new Map(sourceEffects.map(e => [e.id, e]));
+
     return Object.entries(conditionCategories).map(([category, conditionTypes]) => {
-      const categoryEffects = sourceEffects.filter(effect =>
-        conditionTypes.includes(effect.id as ConditionType)
-      );
-      return { category, effects: categoryEffects };
-    }).filter(({ effects }) => effects.length > 0);
-  }, [effects, filteredEffects, searchQuery, activeFilter]);
+      // Track which orientation groups we've already added (to avoid duplicates)
+      const addedGroups = new Set<string>();
+
+      // Build ordered list of items
+      type ListItem =
+        | { type: 'effect'; effect: VisualEffect }
+        | { type: 'orientationGroup'; key: string; group: OrientationGroup };
+
+      const items: ListItem[] = [];
+
+      conditionTypes.forEach(conditionId => {
+        // Check if this condition is part of an orientation group
+        const groupKey = conditionToGroupKey.get(conditionId);
+
+        if (groupKey && !addedGroups.has(groupKey)) {
+          // This is an orientation group condition - add the group (only once)
+          const group = orientationGroups[groupKey];
+
+          // Check if group matches search filter
+          if (isFiltering) {
+            const query = searchQuery.toLowerCase().trim();
+            const matchesSearch = group.displayName.toLowerCase().includes(query) ||
+                                  group.description.toLowerCase().includes(query);
+            if (!matchesSearch) return;
+          }
+
+          items.push({ type: 'orientationGroup', key: groupKey, group });
+          addedGroups.add(groupKey);
+        } else if (!groupKey) {
+          // Regular effect - check if it exists in source effects
+          const effect = sourceEffectsMap.get(conditionId);
+          if (effect) {
+            items.push({ type: 'effect', effect });
+          }
+        }
+      });
+
+      return { category, items };
+    }).filter(({ items }) => items.length > 0);
+  }, [effects, filteredEffects, searchQuery, activeFilter, conditionToGroupKey]);
 
   // Helper to highlight matching text - memoized for EffectListItem
   const highlightMatch = useCallback((text: string, query: string): React.ReactNode => {
@@ -476,7 +668,7 @@ export const EffectList: React.FC<EffectListProps> = ({
         </Box>
       )}
       
-      {effectsByCategory.map(({ category, effects }) => (
+      {effectsByCategory.map(({ category, items }) => (
         <Accordion
           key={category}
           expanded={searchQuery.trim() ? true : expandedCategory === category}
@@ -487,8 +679,8 @@ export const EffectList: React.FC<EffectListProps> = ({
             aria-controls={`${category}-content`}
             id={`${category}-header`}
           >
-            <Typography 
-              variant="subtitle1" 
+            <Typography
+              variant="subtitle1"
               component="h3"
               sx={{ fontWeight: 'bold' }}
             >
@@ -497,22 +689,46 @@ export const EffectList: React.FC<EffectListProps> = ({
           </AccordionSummary>
           <AccordionDetails>
             <List dense>
-              {effects.map(effect => (
-                <EffectListItem
-                  key={effect.id}
-                  effect={effect}
-                  isHighlighted={highlightedEffect?.id === effect.id}
-                  searchQuery={searchQuery}
-                  diplopiaSeparation={diplopiaSeparation}
-                  diplopiaDirection={diplopiaDirection}
-                  onEffectClick={onEffectClick}
-                  onToggleAndSelect={onToggleAndSelect}
-                  onIntensityChange={onIntensityChange}
-                  onDiplopiaSeparationChange={onDiplopiaSeparationChange}
-                  onDiplopiaDirectionChange={onDiplopiaDirectionChange}
-                  highlightMatch={highlightMatch}
-                />
-              ))}
+              {/* Render items in order (effects and orientation groups interleaved) */}
+              {items.map((item) => {
+                if (item.type === 'effect') {
+                  return (
+                    <EffectListItem
+                      key={item.effect.id}
+                      effect={item.effect}
+                      isHighlighted={highlightedEffect?.id === item.effect.id}
+                      searchQuery={searchQuery}
+                      diplopiaSeparation={diplopiaSeparation}
+                      diplopiaDirection={diplopiaDirection}
+                      onEffectClick={onEffectClick}
+                      onToggleAndSelect={onToggleAndSelect}
+                      onIntensityChange={onIntensityChange}
+                      onDiplopiaSeparationChange={onDiplopiaSeparationChange}
+                      onDiplopiaDirectionChange={onDiplopiaDirectionChange}
+                      highlightMatch={highlightMatch}
+                    />
+                  );
+                } else {
+                  return (
+                    <OrientationGroupItem
+                      key={item.key}
+                      groupKey={item.key}
+                      group={item.group}
+                      leftEffect={effectsMap.get(item.group.leftCondition)}
+                      rightEffect={effectsMap.get(item.group.rightCondition)}
+                      isHighlighted={
+                        highlightedEffect?.id === item.group.leftCondition ||
+                        highlightedEffect?.id === item.group.rightCondition
+                      }
+                      searchQuery={searchQuery}
+                      onToggleAndSelect={onToggleAndSelect}
+                      onIntensityChange={onIntensityChange}
+                      onOrientationChange={onOrientationChange || (() => {})}
+                      highlightMatch={highlightMatch}
+                    />
+                  );
+                }
+              })}
             </List>
           </AccordionDetails>
         </Accordion>

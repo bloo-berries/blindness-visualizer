@@ -33,6 +33,7 @@ import { kenshiEffects } from './kenshiEffects';
 import { joseCidEffects } from './joseCidEffects';
 import { tophBeifongEffects } from './tophBeifongEffects';
 import { neoEffects } from './neoEffects';
+import { anselmoRalphEffects } from './anselmoRalphEffects';
 
 // Re-export individual arrays for direct access
 export {
@@ -67,7 +68,8 @@ export {
   kenshiEffects,
   joseCidEffects,
   tophBeifongEffects,
-  neoEffects
+  neoEffects,
+  anselmoRalphEffects
 };
 
 /**
@@ -107,5 +109,6 @@ export const famousPeopleEffects: VisualEffect[] = [
   ...kenshiEffects,
   ...joseCidEffects,
   ...tophBeifongEffects,
-  ...neoEffects
+  ...neoEffects,
+  ...anselmoRalphEffects
 ];

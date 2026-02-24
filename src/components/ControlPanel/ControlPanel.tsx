@@ -8,6 +8,7 @@ import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
 import { EffectList } from './EffectList';
 import { EffectPreview } from './EffectPreview';
+import { orientationGroups } from './ControlPanelConstants';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
@@ -54,16 +55,51 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   const handleToggleAndSelect = useCallback((effect: VisualEffect, e: React.SyntheticEvent) => {
     // Stop propagation to prevent triggering the ListItem click
     e.stopPropagation();
-    
+
     // Toggle the effect
     onToggle(effect.id);
-    
+
     // If we're enabling an effect, highlight it
     const isCurrentlyEnabled = effect.enabled;
     if (!isCurrentlyEnabled) {
       setHighlightedEffect(effect);
-    } 
+    }
   }, [onToggle]);
+
+  // Handler for orientation changes in grouped conditions
+  const handleOrientationChange = useCallback((groupKey: string, orientation: 'left' | 'right') => {
+    const group = orientationGroups[groupKey];
+    if (!group) return;
+
+    const leftEffect = effects.find(e => e.id === group.leftCondition);
+    const rightEffect = effects.find(e => e.id === group.rightCondition);
+
+    if (orientation === 'left') {
+      // Enable left, disable right
+      if (rightEffect?.enabled) {
+        onToggle(rightEffect.id);
+      }
+      if (leftEffect && !leftEffect.enabled) {
+        onToggle(leftEffect.id);
+      }
+      // Update highlighted effect to show correct preview
+      if (leftEffect) {
+        setHighlightedEffect(leftEffect);
+      }
+    } else {
+      // Enable right, disable left
+      if (leftEffect?.enabled) {
+        onToggle(leftEffect.id);
+      }
+      if (rightEffect && !rightEffect.enabled) {
+        onToggle(rightEffect.id);
+      }
+      // Update highlighted effect to show correct preview
+      if (rightEffect) {
+        setHighlightedEffect(rightEffect);
+      }
+    }
+  }, [effects, onToggle]);
 
   // Get enabled effects count for display
   const enabledEffectsCount = enabledEffects.length;
@@ -122,6 +158,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             onIntensityChange={onIntensityChange}
             onDiplopiaSeparationChange={onDiplopiaSeparationChange}
             onDiplopiaDirectionChange={onDiplopiaDirectionChange}
+            onOrientationChange={handleOrientationChange}
           />
 
           {/* Right side: Preview image - sticky container */}
@@ -139,6 +176,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               enabledEffectsCount={enabledEffectsCount}
               highlightedEffect={highlightedEffect}
               inputSource={inputSource}
+              onIntensityChange={onIntensityChange}
             />
 
             {/* View Simulation Button - Prominent CTA */}

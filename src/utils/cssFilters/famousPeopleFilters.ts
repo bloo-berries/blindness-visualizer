@@ -28,5 +28,6 @@ export {
   generateBlindspotFilters,
   generateJoseCidFilters,
   generateTophFilters,
-  generateCustomFamousPeopleFilters
+  generateCustomFamousPeopleFilters,
+  generateAnselmoFilters
 } from './famousPeopleFilters/index';

@@ -407,5 +407,16 @@ export const musicians: Record<string, PersonData> = {
     description: "Bluay (José Carlos Tavares) has only 15% vision and is practically blind in one eye. Despite also suffering from idiopathic arthritis, he entered the music world at just 14 years old and never gave up on his dreams.\n\nHis stage name comes from his heterochromia - one blue eye and one brown eye - 'Bluay' meaning 'blue eye.'\n\n• Featured on Piruka's 'Crazy' which won Best Song at Play Awards 2021\n\n• Rising star in Portuguese hip-hop/R&B scene\n\n• Started music career at age 14\n\n• Advocate for perseverance despite physical challenges",
     wikiUrl: "https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4",
     nationality: { country: "Portugal", flag: "🇵🇹" }
+  },
+  anselmoRalph: {
+    name: "Anselmo Ralph",
+    achievement: "Angola's Most Celebrated R&B Artist",
+    condition: "Ocular Myasthenia Gravis",
+    years: "Born 1983",
+    onset: "Age 5, eyelid muscles primarily affected",
+    simulation: "anselmo-ocular-myasthenia",
+    description: "Anselmo Ralph has ocular myasthenia gravis, an autoimmune neuromuscular disease that causes weakness and abnormal fatigue in voluntary muscles, particularly his eyelid muscles. Diagnosed at age 5, he lacks strength in his eyelids, with lights and camera flashes forcing his eyes to close involuntarily.\n\nHis signature dark sunglasses are a coping mechanism for severe photophobia, not a fashion statement.\n\n• Angola's most celebrated R&B and kizomba artist\n\n• Multiple platinum albums across Africa and Portugal\n\n• Known as the 'King of Kizomba'\n\n• MTV Africa Music Award winner\n\n• His condition causes ptosis (eyelid droop), diplopia (double vision), and extreme light sensitivity",
+    wikiUrl: "https://en.wikipedia.org/wiki/Anselmo_Ralph",
+    nationality: { country: "Angola", flag: "🇦🇴" }
   }
 };

@@ -84,11 +84,13 @@ export const generateVisualFieldLossPreviewStyle = (
         opacity: '1'
       };
       
-    case 'quadrantanopiaInferior': {
+    case 'quadrantanopiaInferior':
+    case 'quadrantanopiaInferiorRight': {
+      // Bottom-right quadrant (at 100% 100%)
       const inferiorIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
-          radial-gradient(ellipse 100% 100% at 100% 100%, 
+          radial-gradient(ellipse 100% 100% at 100% 100%,
             rgba(0,0,0,${inferiorIntensity}) 0%,
             rgba(0,0,0,${inferiorIntensity}) 65%,
             rgba(0,0,0,${inferiorIntensity * 0.8}) 70%,
@@ -101,17 +103,57 @@ export const generateVisualFieldLossPreviewStyle = (
         opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
       };
     }
-      
-    case 'quadrantanopiaSuperior': {
+
+    case 'quadrantanopiaInferiorLeft': {
+      // Bottom-left quadrant (at 0% 100%)
+      const inferiorLeftIntensity = intensity === 1 ? 1 : 0.95 * intensity;
+      return {
+        background: `
+          radial-gradient(ellipse 100% 100% at 0% 100%,
+            rgba(0,0,0,${inferiorLeftIntensity}) 0%,
+            rgba(0,0,0,${inferiorLeftIntensity}) 65%,
+            rgba(0,0,0,${inferiorLeftIntensity * 0.8}) 70%,
+            rgba(0,0,0,${inferiorLeftIntensity * 0.5}) 75%,
+            rgba(0,0,0,${inferiorLeftIntensity * 0.2}) 80%,
+            rgba(0,0,0,0) 85%
+          )
+        `,
+        mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
+        opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
+      };
+    }
+
+    case 'quadrantanopiaSuperior':
+    case 'quadrantanopiaSuperiorRight': {
+      // Top-right quadrant (at 100% 0%)
       const superiorIntensity = intensity === 1 ? 1 : 0.95 * intensity;
       return {
         background: `
-          radial-gradient(ellipse 100% 100% at 100% 0%, 
+          radial-gradient(ellipse 100% 100% at 100% 0%,
             rgba(0,0,0,${superiorIntensity}) 0%,
             rgba(0,0,0,${superiorIntensity}) 65%,
             rgba(0,0,0,${superiorIntensity * 0.8}) 70%,
             rgba(0,0,0,${superiorIntensity * 0.5}) 75%,
             rgba(0,0,0,${superiorIntensity * 0.2}) 80%,
+            rgba(0,0,0,0) 85%
+          )
+        `,
+        mixBlendMode: intensity === 1 ? 'normal' : 'multiply',
+        opacity: intensity === 1 ? '1' : Math.min(0.95, intensity)
+      };
+    }
+
+    case 'quadrantanopiaSuperiorLeft': {
+      // Top-left quadrant (at 0% 0%)
+      const superiorLeftIntensity = intensity === 1 ? 1 : 0.95 * intensity;
+      return {
+        background: `
+          radial-gradient(ellipse 100% 100% at 0% 0%,
+            rgba(0,0,0,${superiorLeftIntensity}) 0%,
+            rgba(0,0,0,${superiorLeftIntensity}) 65%,
+            rgba(0,0,0,${superiorLeftIntensity * 0.8}) 70%,
+            rgba(0,0,0,${superiorLeftIntensity * 0.5}) 75%,
+            rgba(0,0,0,${superiorLeftIntensity * 0.2}) 80%,
             rgba(0,0,0,0) 85%
           )
         `,

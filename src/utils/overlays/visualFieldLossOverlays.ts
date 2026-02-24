@@ -14,8 +14,10 @@ export const createVisualFieldLossOverlays = (
   const tunnelVision = getEffect('tunnelVision');
   const quadrantanopiaLeft = getEffect('quadrantanopiaLeft');
   const quadrantanopiaRight = getEffect('quadrantanopiaRight');
-  const quadrantanopiaInferior = getEffect('quadrantanopiaInferior');
-  const quadrantanopiaSuperior = getEffect('quadrantanopiaSuperior');
+  const quadrantanopiaInferiorLeft = getEffect('quadrantanopiaInferiorLeft');
+  const quadrantanopiaInferiorRight = getEffect('quadrantanopiaInferiorRight');
+  const quadrantanopiaSuperiorLeft = getEffect('quadrantanopiaSuperiorLeft');
+  const quadrantanopiaSuperiorRight = getEffect('quadrantanopiaSuperiorRight');
   const hemianopiaLeft = getEffect('hemianopiaLeft');
   const hemianopiaRight = getEffect('hemianopiaRight');
   const blindnessLeftEye = getEffect('blindnessLeftEye');
@@ -79,45 +81,87 @@ export const createVisualFieldLossOverlays = (
     );
   }
 
-  // Quadrantanopia Inferior
-  if (quadrantanopiaInferior?.enabled) {
-    const inferiorIntensity = quadrantanopiaInferior.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferior.intensity;
+  // Quadrantanopia Inferior Left (bottom-left quadrant)
+  if (quadrantanopiaInferiorLeft?.enabled) {
+    const inferiorLeftIntensity = quadrantanopiaInferiorLeft.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferiorLeft.intensity;
     createOverlay(
-      'visual-field-overlay-quadrantanopiaInferior',
-      `radial-gradient(ellipse 100% 100% at 100% 100%, 
-        rgba(0,0,0,${inferiorIntensity}) 0%,
-        rgba(0,0,0,${inferiorIntensity}) 65%,
-        rgba(0,0,0,${inferiorIntensity * 0.8}) 70%,
-        rgba(0,0,0,${inferiorIntensity * 0.5}) 75%,
-        rgba(0,0,0,${inferiorIntensity * 0.2}) 80%,
+      'visual-field-overlay-quadrantanopiaInferiorLeft',
+      `radial-gradient(ellipse 100% 100% at 0% 100%,
+        rgba(0,0,0,${inferiorLeftIntensity}) 0%,
+        rgba(0,0,0,${inferiorLeftIntensity}) 65%,
+        rgba(0,0,0,${inferiorLeftIntensity * 0.8}) 70%,
+        rgba(0,0,0,${inferiorLeftIntensity * 0.5}) 75%,
+        rgba(0,0,0,${inferiorLeftIntensity * 0.2}) 80%,
         rgba(0,0,0,0) 85%
       )`,
-      quadrantanopiaInferior.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaInferior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferior.intensity).toString(),
+      quadrantanopiaInferiorLeft.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaInferiorLeft.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferiorLeft.intensity).toString(),
       undefined,
       undefined,
-      'quadrantanopiaInferior'
+      'quadrantanopiaInferiorLeft'
     );
   }
 
-  // Quadrantanopia Superior
-  if (quadrantanopiaSuperior?.enabled) {
-    const superiorIntensity = quadrantanopiaSuperior.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperior.intensity;
+  // Quadrantanopia Inferior Right (bottom-right quadrant)
+  if (quadrantanopiaInferiorRight?.enabled) {
+    const inferiorRightIntensity = quadrantanopiaInferiorRight.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferiorRight.intensity;
     createOverlay(
-      'visual-field-overlay-quadrantanopiaSuperior',
-      `radial-gradient(ellipse 100% 100% at 100% 0%, 
-        rgba(0,0,0,${superiorIntensity}) 0%,
-        rgba(0,0,0,${superiorIntensity}) 65%,
-        rgba(0,0,0,${superiorIntensity * 0.8}) 70%,
-        rgba(0,0,0,${superiorIntensity * 0.5}) 75%,
-        rgba(0,0,0,${superiorIntensity * 0.2}) 80%,
+      'visual-field-overlay-quadrantanopiaInferiorRight',
+      `radial-gradient(ellipse 100% 100% at 100% 100%,
+        rgba(0,0,0,${inferiorRightIntensity}) 0%,
+        rgba(0,0,0,${inferiorRightIntensity}) 65%,
+        rgba(0,0,0,${inferiorRightIntensity * 0.8}) 70%,
+        rgba(0,0,0,${inferiorRightIntensity * 0.5}) 75%,
+        rgba(0,0,0,${inferiorRightIntensity * 0.2}) 80%,
         rgba(0,0,0,0) 85%
       )`,
-      quadrantanopiaSuperior.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaSuperior.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperior.intensity).toString(),
+      quadrantanopiaInferiorRight.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaInferiorRight.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferiorRight.intensity).toString(),
       undefined,
       undefined,
-      'quadrantanopiaSuperior'
+      'quadrantanopiaInferiorRight'
+    );
+  }
+
+  // Quadrantanopia Superior Left (top-left quadrant)
+  if (quadrantanopiaSuperiorLeft?.enabled) {
+    const superiorLeftIntensity = quadrantanopiaSuperiorLeft.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperiorLeft.intensity;
+    createOverlay(
+      'visual-field-overlay-quadrantanopiaSuperiorLeft',
+      `radial-gradient(ellipse 100% 100% at 0% 0%,
+        rgba(0,0,0,${superiorLeftIntensity}) 0%,
+        rgba(0,0,0,${superiorLeftIntensity}) 65%,
+        rgba(0,0,0,${superiorLeftIntensity * 0.8}) 70%,
+        rgba(0,0,0,${superiorLeftIntensity * 0.5}) 75%,
+        rgba(0,0,0,${superiorLeftIntensity * 0.2}) 80%,
+        rgba(0,0,0,0) 85%
+      )`,
+      quadrantanopiaSuperiorLeft.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaSuperiorLeft.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperiorLeft.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaSuperiorLeft'
+    );
+  }
+
+  // Quadrantanopia Superior Right (top-right quadrant)
+  if (quadrantanopiaSuperiorRight?.enabled) {
+    const superiorRightIntensity = quadrantanopiaSuperiorRight.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperiorRight.intensity;
+    createOverlay(
+      'visual-field-overlay-quadrantanopiaSuperiorRight',
+      `radial-gradient(ellipse 100% 100% at 100% 0%,
+        rgba(0,0,0,${superiorRightIntensity}) 0%,
+        rgba(0,0,0,${superiorRightIntensity}) 65%,
+        rgba(0,0,0,${superiorRightIntensity * 0.8}) 70%,
+        rgba(0,0,0,${superiorRightIntensity * 0.5}) 75%,
+        rgba(0,0,0,${superiorRightIntensity * 0.2}) 80%,
+        rgba(0,0,0,0) 85%
+      )`,
+      quadrantanopiaSuperiorRight.intensity === 1 ? 'normal' : 'multiply',
+      quadrantanopiaSuperiorRight.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperiorRight.intensity).toString(),
+      undefined,
+      undefined,
+      'quadrantanopiaSuperiorRight'
     );
   }
 

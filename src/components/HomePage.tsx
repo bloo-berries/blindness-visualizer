@@ -390,12 +390,13 @@ const HomePage: React.FC = () => {
             href="https://bloo-berries.github.io/Library-of-the-Blind/"
             target="_blank"
             rel="noopener noreferrer"
+            className="library-of-blind-card"
             sx={{
               display: 'flex',
               alignItems: 'center',
               p: 2,
-              background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-              border: '1px solid #e2e8f0',
+              background: preferences.highContrast ? '#ffffff' : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+              border: preferences.highContrast ? '2px solid #000000' : '1px solid #e2e8f0',
               transition: 'transform 0.2s, box-shadow 0.2s',
               textDecoration: 'none',
               cursor: 'pointer',
@@ -405,32 +406,36 @@ const HomePage: React.FC = () => {
               }
             }}
           >
-            <MenuBookIcon sx={{
-              fontSize: 40,
-              color: preferences.highContrast ? '#000000' : 'primary.main',
-              mr: 2,
-              flexShrink: 0
-            }} />
+            <MenuBookIcon
+              sx={{
+                fontSize: 40,
+                mr: 2,
+                flexShrink: 0
+              }}
+              style={{ color: preferences.highContrast ? '#000000' : undefined }}
+            />
             <Box sx={{ flex: 1, minWidth: 0 }}>
               <Typography
                 variant="h6"
                 component="span"
+                className="library-of-blind-title"
                 sx={{
                   fontWeight: 600,
-                  color: preferences.highContrast ? '#000000' : 'text.primary',
                   display: 'block'
                 }}
+                style={{ color: preferences.highContrast ? '#000000' : undefined }}
               >
                 {t('home.libraryTitle')}
               </Typography>
               <Typography
                 variant="body2"
+                className="library-of-blind-description"
                 sx={{
-                  color: preferences.highContrast ? '#000000' : 'text.secondary',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   whiteSpace: 'nowrap'
                 }}
+                style={{ color: preferences.highContrast ? '#000000' : undefined }}
               >
                 {t('home.libraryDescription')}
               </Typography>

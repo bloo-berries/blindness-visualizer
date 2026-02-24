@@ -73,12 +73,12 @@ const VisionSimulator: React.FC = () => {
     setEffects(prevEffects =>
       prevEffects.map(effect => {
         if (effect.id === id) {
-          // When enabling an effect, set intensity to 0.5 (50%) as default
+          // When enabling an effect, set intensity to 0.75 (75%) as default
           // When disabling, keep the current intensity for when it's re-enabled
           return {
             ...effect,
             enabled: !effect.enabled,
-            intensity: !effect.enabled ? 0.5 : effect.intensity
+            intensity: !effect.enabled ? 0.75 : effect.intensity
           };
         }
         return effect;
@@ -135,8 +135,8 @@ const VisionSimulator: React.FC = () => {
     switch (step) {
       case 0:
         return (
-          <Box sx={{ p: 2 }}>
-            <InputSelector 
+          <Box sx={{ p: 1, pb: 0 }}>
+            <InputSelector
               currentSource={inputSource}
               onSourceChange={handleSourceChange}
             />
@@ -210,7 +210,7 @@ const VisionSimulator: React.FC = () => {
   const isFamousPeopleMode = preconfiguredPerson !== null;
 
   return (
-    <Box className="app-container" sx={{ pb: 10 }}>
+    <Box className="app-container" sx={{ pb: 0, minHeight: 'auto' }}>
       <NavigationBar 
         showHomeButton={true}
         onHomeClick={handleHomeClick}
@@ -242,7 +242,7 @@ const VisionSimulator: React.FC = () => {
       </a>
       <Container
         maxWidth={false}
-        sx={{ maxWidth: '1000px', py: 2, pt: 10 }}
+        sx={{ maxWidth: '1000px', pt: 10, pb: 0 }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"
@@ -253,6 +253,7 @@ const VisionSimulator: React.FC = () => {
           sx={{
             p: 2,
             pt: 1.5,
+            pb: 1,
             borderRadius: 3,
             border: '1px solid #e2e8f0',
             backgroundColor: 'background.paper'
@@ -370,8 +371,8 @@ const VisionSimulator: React.FC = () => {
             </Box>
           )}
         </Paper>
-        <Footer />
       </Container>
+      <Footer />
     </Box>
   );
 };

@@ -18,3 +18,8 @@ export { generateGeordiVisorSenseOverlay } from './geordiVisorSense';
 export { generateBlindspotSonarSenseOverlay } from './blindspotSonarSense';
 export { generateKenshiTelekineticSenseOverlay } from './kenshiTelekineticSense';
 export { generateTophSeismicSenseOverlay } from './tophSeismicSense';
+export {
+  generateAnselmoOcularMyastheniaOverlay,
+  generateAnselmoPtosisOverlay,
+  generateAnselmoPtosisRightOverlay
+} from './anselmoOcularMyasthenia';

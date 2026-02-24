@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper, Slider } from '@mui/material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { isColorVisionCondition, getColorVisionFilter } from '../../utils/colorVisionFilters';
@@ -14,16 +14,25 @@ interface EffectPreviewProps {
   enabledEffectsCount: number;
   highlightedEffect: VisualEffect | null;
   inputSource?: InputSource;
+  onIntensityChange?: (id: string, intensity: number) => void;
 }
 
 export const EffectPreview: React.FC<EffectPreviewProps> = ({
+  effects,
   enabledEffects,
   enabledEffectsCount,
   highlightedEffect,
-  inputSource
+  inputSource,
+  onIntensityChange
 }) => {
   // Track if uploaded image failed to load
   const [imageLoadError, setImageLoadError] = useState(false);
+
+  // Get the current version of the highlighted effect from the effects array
+  // (highlightedEffect may be stale since it's stored as a separate state)
+  const currentHighlightedEffect = highlightedEffect
+    ? effects.find(e => e.id === highlightedEffect.id)
+    : null;
 
   // Reset error state when inputSource changes
   useEffect(() => {
@@ -422,6 +431,24 @@ export const EffectPreview: React.FC<EffectPreviewProps> = ({
                 />
               )}
             </Box>
+
+            {/* Severity slider - shown when there's a highlighted effect that's enabled */}
+            {currentHighlightedEffect?.enabled && onIntensityChange && (
+              <Box sx={{ mt: 2, px: 1 }}>
+                <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, color: 'text.secondary' }}>
+                  Severity: {Math.round(currentHighlightedEffect.intensity * 100)}%
+                </Typography>
+                <Slider
+                  size="small"
+                  value={currentHighlightedEffect.intensity * 100}
+                  onChange={(_, value) => onIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={value => `${value}%`}
+                  aria-label={`Adjust ${currentHighlightedEffect.name} severity`}
+                  sx={{ width: '100%' }}
+                />
+              </Box>
+            )}
           </Paper>
         </Box>
     </>

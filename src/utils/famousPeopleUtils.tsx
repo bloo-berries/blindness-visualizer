@@ -125,6 +125,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== LEGAL BLINDNESS / LOW VISION =====
     'marilee-legal-blindness': ['blurryVision', 'lossOfContrast', 'glare'],
 
+    // ===== OCULAR MYASTHENIA GRAVIS =====
+    'anselmo-ocular-myasthenia': ['anselmoOcularMyastheniaComplete'],
+
     // ===== COMPLEX MULTI-CONDITION =====
     'joyce-progressive-eye-disease': ['glaucoma', 'cataracts', 'blurryVision', 'glare', 'lossOfContrast'],
     'huxley-keratitis': ['cataracts', 'blurryVision', 'glare', 'lossOfContrast', 'blindnessLeftEye'],
@@ -289,7 +292,8 @@ const getWikipediaUrl = (personId: string): string => {
     'abraham': 'https://en.wikipedia.org/wiki/Abraham_Nemeth',
     'sharon': 'https://en.wikipedia.org/wiki/Sharon_Stone',
     'daredevil': 'https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)',
-    'amadou': 'https://en.wikipedia.org/wiki/Amadou_%26_Mariam'
+    'amadou': 'https://en.wikipedia.org/wiki/Amadou_%26_Mariam',
+    'anselmoRalph': 'https://en.wikipedia.org/wiki/Anselmo_Ralph'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };

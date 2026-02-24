@@ -34,5 +34,6 @@ export {
   kenshiEffects,
   joseCidEffects,
   tophBeifongEffects,
-  neoEffects
+  neoEffects,
+  anselmoRalphEffects
 } from './famousPeopleEffects/index';

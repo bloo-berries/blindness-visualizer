@@ -7,12 +7,16 @@ body {
   background-color: #f8fafc;
   color: #1e293b;
   overflow-x: hidden;
+  min-height: auto !important;
+  height: auto !important;
 }
 
-html {
+html, body, #root {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  height: auto;
+  min-height: auto;
 }
 
 /* Ensure AppBar has no top border or gap */
@@ -26,7 +30,6 @@ html {
 
 .app-container {
   position: relative;
-  min-height: 100vh;
   background-color: #f8fafc;
 }
 

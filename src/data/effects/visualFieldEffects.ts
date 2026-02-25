@@ -21,7 +21,7 @@ export const visualFieldEffects: VisualEffect[] = [
   },
   {
     id: 'quadrantanopiaRight',
-    name: 'Homonymous Hemianopia (Right-field) + Quadrantanopia',
+    name: 'Homonymous Hemianopia (Right-field) + Superior Quadrantanopia',
     enabled: false,
     intensity: 0.75,
     description: 'Loss of vision in one quarter (quadrant) of the visual field. Often caused by damage to specific parts of the brain that process vision. Affects spatial awareness and navigation.'

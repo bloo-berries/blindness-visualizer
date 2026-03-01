@@ -90,7 +90,7 @@ export function createVitreousHemorrhageOverlay(
     linear-gradient(to bottom, transparent 75%, rgba(150,15,15,${0.3 * intensity}) 90%, rgba(130,10,10,${0.4 * intensity}) 100%)
   `;
 
-  let vitreousBackground = `
+  const vitreousBackground = `
     ${floaterGradients},
     ${hazeGradient},
     ${bottomAccumulation},
@@ -117,7 +117,7 @@ export function createVitreousHemorrhageOverlay(
 
     overlayElement.classList.add('vitreous-hemorrhage-animated');
 
-    let targetContainer: Element | null = container || findOverlayContainer();
+    const targetContainer: Element | null = container || findOverlayContainer();
 
     if (targetContainer) {
       targetContainer.appendChild(overlayElement);
@@ -137,7 +137,7 @@ export function createVitreousHemorrhageOverlay(
     }
 
     if (!overlayElement.parentElement) {
-      let targetContainer: Element | null = container || findOverlayContainer();
+      const targetContainer: Element | null = container || findOverlayContainer();
       if (targetContainer) {
         targetContainer.appendChild(overlayElement);
       } else {

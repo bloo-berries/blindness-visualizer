@@ -62,12 +62,11 @@ const VisionSimulator: React.FC = () => {
     }
   }, [location.state]);
 
-  const FULL_INTENSITY_IDS = [
-    'protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic',
-    'hemianopiaLeft', 'hemianopiaRight', 'quadrantanopiaRight', 'quadrantanopiaInferiorLeft', 'quadrantanopiaInferiorRight', 'quadrantanopiaSuperiorLeft', 'quadrantanopiaSuperiorRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma', 'tunnelVision'
-  ];
-
   const handleToggle = useCallback((id: string) => {
+    const FULL_INTENSITY_IDS = [
+      'protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic',
+      'hemianopiaLeft', 'hemianopiaRight', 'quadrantanopiaRight', 'quadrantanopiaInferiorLeft', 'quadrantanopiaInferiorRight', 'quadrantanopiaSuperiorLeft', 'quadrantanopiaSuperiorRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma', 'tunnelVision'
+    ];
     setEffects(prevEffects =>
       prevEffects.map(effect => {
         if (effect.id === id) {

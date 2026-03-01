@@ -5,8 +5,7 @@ import {
   Container,
   Paper,
   Typography,
-  Box,
-  Button
+  Box
 } from '@mui/material';
 import Visualizer from './Visualizer';
 import { ControlPanel } from './ControlPanel';

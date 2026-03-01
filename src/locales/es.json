@@ -14,7 +14,6 @@
   "buttons": {
     "back": "ATRÁS",
     "next": "Siguiente",
-    "viewSimulation": "Ver Simulación",
     "clearFilters": "Limpiar Filtros",
     "deselectAll": "Deseleccionar Todo",
     "support": "Apoyar",
@@ -40,7 +39,6 @@
     "title": "Simulador de Condiciones Visuales",
     "step1": "Elegir Fuente de Entrada",
     "step2": "Seleccionar Condiciones Visuales",
-    "step3": "Ver Simulación",
     "selectConditions": "Seleccionar Condiciones Visuales",
     "visionPreview": "Vista Previa de Visión",
     "combinedPreview": "Vista Previa Combinada ({{count}} condiciones)",
@@ -51,7 +49,6 @@
     "condition": "Condición: {{condition}}",
     "screenReaderStep1": "Paso 1: Elige tu fuente de entrada - cámara web, imagen o video de YouTube",
     "screenReaderStep2": "Paso 2: Selecciona las condiciones visuales a simular",
-    "screenReaderStep3": "Paso 3: Ve tu simulación de visión",
     "goBack": "Volver a seleccionar condiciones"
   },
   "inputSelector": {

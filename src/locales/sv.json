@@ -14,7 +14,6 @@
   "buttons": {
     "back": "TILLBAKA",
     "next": "Nästa",
-    "viewSimulation": "Visa Simulering",
     "clearFilters": "Rensa Filter",
     "deselectAll": "Avmarkera Alla",
     "support": "Stöd",
@@ -38,7 +37,6 @@
     "title": "Synstillstånd Simulator",
     "step1": "Välj Ingångskälla",
     "step2": "Välj Synstillstånd",
-    "step3": "Visa Simulering",
     "selectConditions": "Välj Synstillstånd",
     "visionPreview": "Synförhandsvisning",
     "combinedPreview": "Kombinerad Synförhandsvisning ({{count}} tillstånd)",
@@ -49,7 +47,6 @@
     "condition": "Tillstånd: {{condition}}",
     "screenReaderStep1": "Steg 1: Välj din ingångskälla - webbkamera, bilduppladdning eller YouTube-video",
     "screenReaderStep2": "Steg 2: Välj synstillstånd att simulera",
-    "screenReaderStep3": "Steg 3: Visa din synsimulering",
     "goBack": "Gå tillbaka för att välja tillstånd"
   },
   "inputSelector": {

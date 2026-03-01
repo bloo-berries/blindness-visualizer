@@ -14,7 +14,6 @@
   "buttons": {
     "back": "戻る",
     "next": "次へ",
-    "viewSimulation": "シミュレーションを見る",
     "clearFilters": "フィルターをクリア",
     "deselectAll": "すべて選択解除",
     "support": "サポート",
@@ -40,7 +39,6 @@
     "title": "視覚障害シミュレーター",
     "step1": "入力ソースを選択",
     "step2": "視覚障害を選択",
-    "step3": "シミュレーションを見る",
     "selectConditions": "視覚障害を選択",
     "visionPreview": "視覚プレビュー",
     "combinedPreview": "複合プレビュー（{{count}}件の障害）",
@@ -51,7 +49,6 @@
     "condition": "障害：{{condition}}",
     "screenReaderStep1": "ステップ1：入力ソースを選択 - ウェブカメラ、画像、またはYouTube動画",
     "screenReaderStep2": "ステップ2：シミュレートする視覚障害を選択",
-    "screenReaderStep3": "ステップ3：視覚シミュレーションを見る",
     "goBack": "障害の選択に戻る"
   },
   "inputSelector": {

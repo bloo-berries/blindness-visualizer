@@ -14,7 +14,6 @@
   "buttons": {
     "back": "GERİ",
     "next": "İleri",
-    "viewSimulation": "Simülasyonu Görüntüle",
     "clearFilters": "Filtreleri Temizle",
     "deselectAll": "Tümünü Kaldır",
     "support": "Destek",
@@ -40,7 +39,6 @@
     "title": "Görme Durumu Simülatörü",
     "step1": "Giriş Kaynağı Seçin",
     "step2": "Görme Durumlarını Seçin",
-    "step3": "Simülasyonu Görüntüle",
     "selectConditions": "Görme Durumlarını Seçin",
     "visionPreview": "Görme Önizlemesi",
     "combinedPreview": "Birleşik Önizleme ({{count}} durum)",
@@ -51,7 +49,6 @@
     "condition": "Durum: {{condition}}",
     "screenReaderStep1": "Adım 1: Giriş kaynağınızı seçin - web kamerası, görüntü veya YouTube videosu",
     "screenReaderStep2": "Adım 2: Simüle edilecek görme durumlarını seçin",
-    "screenReaderStep3": "Adım 3: Görme simülasyonunuzu görüntüleyin",
     "goBack": "Durum seçimine geri dön"
   },
   "inputSelector": {

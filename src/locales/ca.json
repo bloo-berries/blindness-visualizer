@@ -14,7 +14,6 @@
   "buttons": {
     "back": "ENRERE",
     "next": "Següent",
-    "viewSimulation": "Veure Simulació",
     "clearFilters": "Esborrar Filtres",
     "deselectAll": "Desseleccionar Tot",
     "support": "Suport",
@@ -40,7 +39,6 @@
     "title": "Simulador de Condicions Visuals",
     "step1": "Triar Font d'Entrada",
     "step2": "Seleccionar Condicions Visuals",
-    "step3": "Veure Simulació",
     "selectConditions": "Seleccionar Condicions Visuals",
     "visionPreview": "Previsualització de Visió",
     "combinedPreview": "Previsualització Combinada ({{count}} condicions)",
@@ -51,7 +49,6 @@
     "condition": "Condició: {{condition}}",
     "screenReaderStep1": "Pas 1: Tria la teva font d'entrada - càmera web, imatge o vídeo de YouTube",
     "screenReaderStep2": "Pas 2: Selecciona les condicions visuals a simular",
-    "screenReaderStep3": "Pas 3: Veure la teva simulació de visió",
     "goBack": "Tornar a seleccionar condicions"
   },
   "inputSelector": {

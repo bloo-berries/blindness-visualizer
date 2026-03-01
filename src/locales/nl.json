@@ -14,7 +14,6 @@
   "buttons": {
     "back": "TERUG",
     "next": "Volgende",
-    "viewSimulation": "Bekijk Simulatie",
     "clearFilters": "Filters Wissen",
     "deselectAll": "Alles Deselecteren",
     "support": "Ondersteuning",
@@ -38,7 +37,6 @@
     "title": "Zichtaandoening Simulator",
     "step1": "Kies Invoerbron",
     "step2": "Selecteer Zichtaandoeningen",
-    "step3": "Bekijk Simulatie",
     "selectConditions": "Selecteer Zichtaandoeningen",
     "visionPreview": "Zichtvoorbeeld",
     "combinedPreview": "Gecombineerd Zichtvoorbeeld ({{count}} aandoeningen)",
@@ -49,7 +47,6 @@
     "condition": "Aandoening: {{condition}}",
     "screenReaderStep1": "Stap 1: Kies je invoerbron - webcam, afbeelding uploaden of YouTube-video",
     "screenReaderStep2": "Stap 2: Selecteer zichtaandoeningen om te simuleren",
-    "screenReaderStep3": "Stap 3: Bekijk je zichtsimulatie",
     "goBack": "Ga terug om aandoeningen te selecteren"
   },
   "inputSelector": {

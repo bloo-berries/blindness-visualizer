@@ -9,8 +9,7 @@ export const generateFamousPeoplePreviewStyle = (
   intensity: number,
   now: number
 ): Partial<React.CSSProperties> | null => {
-  // TODO: Move famous people cases from EffectPreview.tsx switch statement here
-  // Cases include: milton*, galileo*, ved*, christine*, lucy*, david*, erik*, marla*, minkara*, joshua*
+  // Famous people cases are handled by the main overlay system
   return null;
 };
 

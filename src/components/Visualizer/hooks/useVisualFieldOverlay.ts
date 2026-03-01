@@ -6,24 +6,154 @@ import { useMemo } from 'react';
 import { VisualEffect } from '../../../types/visualEffects';
 import { ANIMATED_EFFECTS } from './useAnimatedOverlay';
 
+/** Base styles shared by all overlay generators */
+const OVERLAY_BASE: Pick<React.CSSProperties, 'position' | 'top' | 'left' | 'right' | 'bottom' | 'width' | 'height' | 'pointerEvents' | 'zIndex'> = {
+  position: 'absolute' as const,
+  top: 0, left: 0, right: 0, bottom: 0,
+  width: '100%', height: '100%',
+  pointerEvents: 'none' as const,
+  zIndex: 9999
+};
+
+/**
+ * Parameterized puckering/metamorphopsia wave generator.
+ * Each condition variant supplies its own tuning coefficients; the loop
+ * structure and gradient pattern are identical across all callers.
+ */
+interface PuckeringParams {
+  topCount: [number, number];       // [base, intensityMult] for Math.floor(base + intensity * mult)
+  topDepth: [number, number, number]; // [base, intensityMult, sinAmplitude]
+  topOpacity: [number, number];     // [base, intensityMult]
+  topWidth: [number, number];       // [base, modMult]
+  sideCount: [number, number];
+  sideDepth: [number, number, number];
+  sideOpacity: [number, number];
+  sideHeight: [number, number];     // [base, modMult]
+  cornerOpacity: [number, number];
+  cornerSize: [number, number];
+  lightRgb: [number, number, number];   // primary light color
+  lightRgb2: [number, number, number];  // secondary light color
+  darkRgb: [number, number, number];    // primary dark color
+  darkRgb2: [number, number, number];   // secondary dark color
+  cornerLightRgb: [number, number, number];
+  cornerDarkRgb: [number, number, number];
+  cornerLight2Rgb: [number, number, number];
+}
+
+function generatePuckeringWaves(intensity: number, p: PuckeringParams): string[] {
+  const waves: string[] = [];
+  if (intensity <= 0.2) return waves;
+
+  const topWaveCount = Math.floor(p.topCount[0] + intensity * p.topCount[1]);
+  const sideWaveCount = Math.floor(p.sideCount[0] + intensity * p.sideCount[1]);
+
+  // Helper to build a single wave gradient
+  const wave = (
+    widthPct: number, depthPct: number, posAxis: string, posVal: number,
+    edgeAxis: string, edgeVal: string, opacity: number, isLight: boolean
+  ) => {
+    const [lr, lg, lb] = isLight ? p.lightRgb : p.darkRgb;
+    const [lr2, lg2, lb2] = isLight ? p.lightRgb2 : p.darkRgb2;
+    const isHorizontalEdge = edgeAxis === 'y';
+    const w = isHorizontalEdge ? `${widthPct}% ${depthPct}%` : `${depthPct}% ${widthPct}%`;
+    const pos = isHorizontalEdge ? `${posVal}% ${edgeVal}` : `${edgeVal} ${posVal}%`;
+    return `radial-gradient(ellipse ${w} at ${pos}, rgba(${lr},${lg},${lb},${opacity}) 0%, rgba(${lr2},${lg2},${lb2},${opacity * 0.5}) 60%, transparent 100%)`;
+  };
+
+  // TOP EDGE
+  for (let i = 0; i < topWaveCount; i++) {
+    const pos = (i / (topWaveCount - 1)) * 100;
+    const depth = p.topDepth[0] + intensity * p.topDepth[1] + Math.sin(i * 0.8) * p.topDepth[2];
+    const opacity = (p.topOpacity[0] + intensity * p.topOpacity[1]) * (i % 2 === 0 ? 1 : 0.8);
+    const width = p.topWidth[0] + (i % 3) * p.topWidth[1];
+    waves.push(wave(width, depth, 'x', pos, 'y', '0%', opacity, i % 2 === 0));
+  }
+
+  // BOTTOM EDGE
+  for (let i = 0; i < topWaveCount; i++) {
+    const pos = (i / (topWaveCount - 1)) * 100;
+    const depth = p.topDepth[0] + intensity * p.topDepth[1] + Math.sin(i * 0.9 + 0.5) * p.topDepth[2];
+    const opacity = (p.topOpacity[0] + intensity * p.topOpacity[1]) * (i % 2 === 0 ? 1 : 0.8);
+    const width = p.topWidth[0] + (i % 3) * p.topWidth[1];
+    waves.push(wave(width, depth, 'x', pos, 'y', '100%', opacity, i % 2 === 0));
+  }
+
+  // LEFT EDGE
+  for (let i = 0; i < sideWaveCount; i++) {
+    const pos = (i / (sideWaveCount - 1)) * 100;
+    const depth = p.sideDepth[0] + intensity * p.sideDepth[1] + Math.sin(i * 0.7) * p.sideDepth[2];
+    const opacity = (p.sideOpacity[0] + intensity * p.sideOpacity[1]) * (i % 2 === 0 ? 1 : 0.8);
+    const height = p.sideHeight[0] + (i % 3) * p.sideHeight[1];
+    waves.push(wave(height, depth, 'y', pos, 'x', '0%', opacity, i % 2 === 0));
+  }
+
+  // RIGHT EDGE
+  for (let i = 0; i < sideWaveCount; i++) {
+    const pos = (i / (sideWaveCount - 1)) * 100;
+    const depth = p.sideDepth[0] + intensity * p.sideDepth[1] + Math.sin(i * 0.7 + 0.3) * p.sideDepth[2];
+    const opacity = (p.sideOpacity[0] + intensity * p.sideOpacity[1]) * (i % 2 === 0 ? 1 : 0.8);
+    const height = p.sideHeight[0] + (i % 3) * p.sideHeight[1];
+    waves.push(wave(height, depth, 'y', pos, 'x', '100%', opacity, i % 2 === 0));
+  }
+
+  // CORNER pinching effects
+  const co = p.cornerOpacity[0] + intensity * p.cornerOpacity[1];
+  const cs = p.cornerSize[0] + intensity * p.cornerSize[1];
+  const [clr, clg, clb] = p.cornerLightRgb;
+  const [cdr, cdg, cdb] = p.cornerDarkRgb;
+  const [cl2r, cl2g, cl2b] = p.cornerLight2Rgb;
+  const cornerGrad = (x: string, y: string) =>
+    `radial-gradient(ellipse ${cs}% ${cs}% at ${x} ${y}, rgba(${clr},${clg},${clb},${co}) 0%, rgba(${cdr},${cdg},${cdb},${co * 0.6}) 40%, rgba(${cl2r},${cl2g},${cl2b},${co * 0.4}) 70%, transparent 100%)`;
+  waves.push(cornerGrad('0%', '0%'), cornerGrad('100%', '0%'), cornerGrad('0%', '100%'), cornerGrad('100%', '100%'));
+
+  return waves;
+}
+
+// Preset puckering parameters for each condition
+const STARGARDT_PUCKERING: PuckeringParams = {
+  topCount: [8, 6], topDepth: [10, 15, 6], topOpacity: [0.28, 0.22], topWidth: [9, 3],
+  sideCount: [6, 5], sideDepth: [7, 12, 5], sideOpacity: [0.25, 0.2], sideHeight: [12, 4],
+  cornerOpacity: [0.32, 0.28], cornerSize: [18, 12],
+  lightRgb: [160, 160, 165], lightRgb2: [140, 140, 145],
+  darkRgb: [38, 38, 48], darkRgb2: [58, 58, 68],
+  cornerLightRgb: [150, 150, 155], cornerDarkRgb: [48, 48, 58], cornerLight2Rgb: [135, 135, 140]
+};
+
+const AMD_PUCKERING: PuckeringParams = {
+  topCount: [8, 6], topDepth: [8, 12, 5], topOpacity: [0.25, 0.2], topWidth: [8, 3],
+  sideCount: [6, 5], sideDepth: [6, 10, 4], sideOpacity: [0.22, 0.18], sideHeight: [10, 4],
+  cornerOpacity: [0.3, 0.25], cornerSize: [15, 10],
+  lightRgb: [155, 155, 160], lightRgb2: [135, 135, 140],
+  darkRgb: [40, 40, 50], darkRgb2: [60, 60, 70],
+  cornerLightRgb: [145, 145, 150], cornerDarkRgb: [50, 50, 60], cornerLight2Rgb: [130, 130, 135]
+};
+
+const SCOTOMA_PUCKERING: PuckeringParams = {
+  topCount: [7, 5], topDepth: [8, 10, 4], topOpacity: [0.24, 0.18], topWidth: [8, 2],
+  sideCount: [5, 4], sideDepth: [6, 8, 3], sideOpacity: [0.22, 0.16], sideHeight: [10, 3],
+  cornerOpacity: [0.28, 0.22], cornerSize: [14, 10],
+  lightRgb: [152, 152, 158], lightRgb2: [132, 132, 138],
+  darkRgb: [42, 42, 52], darkRgb2: [62, 62, 72],
+  cornerLightRgb: [145, 145, 150], cornerDarkRgb: [50, 50, 60], cornerLight2Rgb: [130, 130, 135]
+};
+
+const JUDI_AMD_PUCKERING: PuckeringParams = {
+  topCount: [8, 6], topDepth: [9, 14, 5], topOpacity: [0.26, 0.2], topWidth: [8, 3],
+  sideCount: [6, 5], sideDepth: [7, 11, 4], sideOpacity: [0.24, 0.18], sideHeight: [11, 4],
+  cornerOpacity: [0.3, 0.25], cornerSize: [16, 12],
+  lightRgb: [158, 158, 163], lightRgb2: [138, 138, 143],
+  darkRgb: [38, 38, 48], darkRgb2: [58, 58, 68],
+  cornerLightRgb: [148, 148, 153], cornerDarkRgb: [48, 48, 58], cornerLight2Rgb: [133, 133, 138]
+};
+
 /**
  * Generate Retinitis Pigmentosa overlay (tunnel vision)
  */
 function generateRetinitisPigmentosaOverlay(intensity: number): React.CSSProperties {
-  // Use same formula as preview: Math.max(3, 30 - intensity * 27)
   const tunnelRadius = Math.max(3, 30 - intensity * 27);
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    // Match preview exactly: pure black, tighter gradient stops
+    ...OVERLAY_BASE,
     background: `radial-gradient(ellipse 100% 130% at 50% 50%,
       rgba(0,0,0,0) 0%,
       rgba(0,0,0,0) ${tunnelRadius - 2}%,
@@ -39,85 +169,10 @@ function generateRetinitisPigmentosaOverlay(intensity: number): React.CSSPropert
 
 /**
  * Generate Stargardt Disease overlay (central vision loss)
- * Includes peripheral puckering/metamorphopsia distortion from outer edges
  */
 function generateStargardtOverlay(intensity: number): React.CSSProperties {
-  // Central scotoma that expands with intensity
   const scotomaRadius = 17 + intensity * 53;
-
-  // Generate peripheral puckering/pinching distortion from outer edges moving inward
-  const puckeringWaves: string[] = [];
-  if (intensity > 0.2) {
-    // TOP EDGE
-    const topWaveCount = Math.floor(8 + intensity * 6);
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 10 + intensity * 15 + Math.sin(i * 0.8) * 6;
-      const isLight = i % 2 === 0;
-      const opacity = (0.28 + intensity * 0.22) * (isLight ? 1 : 0.8);
-      const width = 9 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(160,160,165,${opacity}) 0%, rgba(140,140,145,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(38,38,48,${opacity}) 0%, rgba(58,58,68,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // BOTTOM EDGE
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 10 + intensity * 15 + Math.sin(i * 0.9 + 0.5) * 6;
-      const isLight = i % 2 === 0;
-      const opacity = (0.28 + intensity * 0.22) * (isLight ? 1 : 0.8);
-      const width = 9 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(160,160,165,${opacity}) 0%, rgba(140,140,145,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(38,38,48,${opacity}) 0%, rgba(58,58,68,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // LEFT EDGE
-    const sideWaveCount = Math.floor(6 + intensity * 5);
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 7 + intensity * 12 + Math.sin(i * 0.7) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.25 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const height = 12 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(155,155,160,${opacity}) 0%, rgba(135,135,140,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(40,40,50,${opacity}) 0%, rgba(60,60,70,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // RIGHT EDGE
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 7 + intensity * 12 + Math.sin(i * 0.7 + 0.3) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.25 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const height = 12 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(155,155,160,${opacity}) 0%, rgba(135,135,140,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(40,40,50,${opacity}) 0%, rgba(60,60,70,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // CORNER pinching effects
-    const cornerOpacity = 0.32 + intensity * 0.28;
-    const cornerSize = 18 + intensity * 12;
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 0%, rgba(150,150,155,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(135,135,140,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 0%, rgba(150,150,155,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(135,135,140,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 100%, rgba(150,150,155,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(135,135,140,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 100%, rgba(150,150,155,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(135,135,140,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-  }
+  const puckeringWaves = generatePuckeringWaves(intensity, STARGARDT_PUCKERING);
 
   const mainScotoma = `radial-gradient(circle at 50% 50%,
     rgba(10,10,10,${0.99 * intensity}) 0%,
@@ -126,19 +181,9 @@ function generateStargardtOverlay(intensity: number): React.CSSProperties {
     rgba(0,0,0,0) ${scotomaRadius + 5}%
   )`;
 
-  const allGradients = [mainScotoma, ...puckeringWaves].join(', ');
-
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    background: allGradients,
+    ...OVERLAY_BASE,
+    background: [mainScotoma, ...puckeringWaves].join(', '),
     mixBlendMode: 'multiply' as const,
     opacity: Math.min(0.95, intensity),
     filter: `saturate(${1 - intensity * 0.4})`
@@ -147,117 +192,10 @@ function generateStargardtOverlay(intensity: number): React.CSSProperties {
 
 /**
  * Generate AMD (Age-Related Macular Degeneration) overlay
- * Includes peripheral puckering/metamorphopsia distortion from outer edges
  */
 function generateAmdOverlay(intensity: number): React.CSSProperties {
-  // Central scotoma with softer edges than Stargardt
   const amdRadius = Math.max(15, 52 - intensity * 37);
-
-  // Generate peripheral puckering/pinching distortion from outer edges moving inward
-  const puckeringWaves: string[] = [];
-  if (intensity > 0.2) {
-    // TOP EDGE - puckering waves coming down from top
-    const topWaveCount = Math.floor(8 + intensity * 6);
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 8 + intensity * 12 + Math.sin(i * 0.8) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.25 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%,
-          rgba(155,155,160,${opacity}) 0%,
-          rgba(135,135,140,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%,
-          rgba(40,40,50,${opacity}) 0%,
-          rgba(60,60,70,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      }
-    }
-
-    // BOTTOM EDGE - puckering waves coming up from bottom
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 8 + intensity * 12 + Math.sin(i * 0.9 + 0.5) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.25 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%,
-          rgba(155,155,160,${opacity}) 0%,
-          rgba(135,135,140,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%,
-          rgba(40,40,50,${opacity}) 0%,
-          rgba(60,60,70,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      }
-    }
-
-    // LEFT EDGE - puckering waves coming from left
-    const sideWaveCount = Math.floor(6 + intensity * 5);
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 6 + intensity * 10 + Math.sin(i * 0.7) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.22 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const height = 10 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%,
-          rgba(150,150,155,${opacity}) 0%,
-          rgba(130,130,135,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%,
-          rgba(42,42,52,${opacity}) 0%,
-          rgba(62,62,72,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      }
-    }
-
-    // RIGHT EDGE - puckering waves coming from right
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 6 + intensity * 10 + Math.sin(i * 0.7 + 0.3) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.22 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const height = 10 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%,
-          rgba(150,150,155,${opacity}) 0%,
-          rgba(130,130,135,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%,
-          rgba(42,42,52,${opacity}) 0%,
-          rgba(62,62,72,${opacity * 0.5}) 60%,
-          transparent 100%
-        )`);
-      }
-    }
-
-    // CORNER pinching effects
-    const cornerOpacity = 0.3 + intensity * 0.25;
-    const cornerSize = 15 + intensity * 10;
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 0%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 0%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 100%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 100%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-  }
+  const puckeringWaves = generatePuckeringWaves(intensity, AMD_PUCKERING);
 
   const mainScotoma = `radial-gradient(circle at 50% 50%,
     rgba(0,0,0,${0.95 * intensity}) 0%,
@@ -267,19 +205,9 @@ function generateAmdOverlay(intensity: number): React.CSSProperties {
     rgba(0,0,0,0) ${amdRadius + 10}%
   )`;
 
-  const allGradients = [mainScotoma, ...puckeringWaves].join(', ');
-
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    background: allGradients,
+    ...OVERLAY_BASE,
+    background: [mainScotoma, ...puckeringWaves].join(', '),
     mixBlendMode: 'multiply' as const,
     opacity: Math.min(0.95, intensity)
   };
@@ -315,15 +243,7 @@ function generateDiabeticRetinopathyOverlay(intensity: number): React.CSSPropert
   `;
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `${microaneurysms}, ${cottonWoolSpots}, ${redTint}`,
     mixBlendMode: 'normal' as const,
     opacity: Math.min(0.9, intensity),
@@ -342,15 +262,7 @@ function generateGlaucomaOverlay(intensity: number): React.CSSProperties {
   const grayValueEdge = 35;
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `radial-gradient(ellipse 100% 110% at 50% 50%,
       rgba(0,0,0,0) 0%,
       rgba(0,0,0,0) ${fadeStart}%,
@@ -372,15 +284,7 @@ function generateTunnelVisionOverlay(intensity: number): React.CSSProperties {
   const clearRadius = Math.max(20, 35 - intensity * 20);
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `radial-gradient(circle at 50% 50%,
       rgba(0,0,0,0) 0%,
       rgba(0,0,0,0) ${clearRadius}%,
@@ -397,15 +301,7 @@ function generateTunnelVisionOverlay(intensity: number): React.CSSProperties {
  */
 function generateHemianopiaLeftOverlay(intensity: number): React.CSSProperties {
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `linear-gradient(to right,
       rgba(0,0,0,${0.95 * intensity}) 0%,
       rgba(0,0,0,${0.95 * intensity}) 45%,
@@ -421,15 +317,7 @@ function generateHemianopiaLeftOverlay(intensity: number): React.CSSProperties {
  */
 function generateHemianopiaRightOverlay(intensity: number): React.CSSProperties {
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `linear-gradient(to left,
       rgba(0,0,0,${0.95 * intensity}) 0%,
       rgba(0,0,0,${0.95 * intensity}) 45%,
@@ -442,84 +330,10 @@ function generateHemianopiaRightOverlay(intensity: number): React.CSSProperties 
 
 /**
  * Generate Scotoma overlay
- * Includes peripheral puckering/metamorphopsia distortion from outer edges
  */
 function generateScotomaOverlay(intensity: number): React.CSSProperties {
   const scotomaEdge = Math.max(20, 35 - intensity * 15);
-
-  // Generate peripheral puckering/pinching distortion from outer edges moving inward
-  const puckeringWaves: string[] = [];
-  if (intensity > 0.2) {
-    // TOP EDGE
-    const topWaveCount = Math.floor(7 + intensity * 5);
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 8 + intensity * 10 + Math.sin(i * 0.8) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 2;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(152,152,158,${opacity}) 0%, rgba(132,132,138,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(42,42,52,${opacity}) 0%, rgba(62,62,72,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // BOTTOM EDGE
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 8 + intensity * 10 + Math.sin(i * 0.9 + 0.5) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 2;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(152,152,158,${opacity}) 0%, rgba(132,132,138,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(42,42,52,${opacity}) 0%, rgba(62,62,72,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // LEFT EDGE
-    const sideWaveCount = Math.floor(5 + intensity * 4);
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 6 + intensity * 8 + Math.sin(i * 0.7) * 3;
-      const isLight = i % 2 === 0;
-      const opacity = (0.22 + intensity * 0.16) * (isLight ? 1 : 0.8);
-      const height = 10 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(148,148,154,${opacity}) 0%, rgba(128,128,134,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(44,44,54,${opacity}) 0%, rgba(64,64,74,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // RIGHT EDGE
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 6 + intensity * 8 + Math.sin(i * 0.7 + 0.3) * 3;
-      const isLight = i % 2 === 0;
-      const opacity = (0.22 + intensity * 0.16) * (isLight ? 1 : 0.8);
-      const height = 10 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(148,148,154,${opacity}) 0%, rgba(128,128,134,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(44,44,54,${opacity}) 0%, rgba(64,64,74,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // CORNER pinching effects
-    const cornerOpacity = 0.28 + intensity * 0.22;
-    const cornerSize = 14 + intensity * 10;
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 0%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 0%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 100%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 100%, rgba(145,145,150,${cornerOpacity}) 0%, rgba(50,50,60,${cornerOpacity * 0.6}) 40%, rgba(130,130,135,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-  }
+  const puckeringWaves = generatePuckeringWaves(intensity, SCOTOMA_PUCKERING);
 
   const mainScotoma = `radial-gradient(circle at 50% 50%,
     rgba(0,0,0,${0.95 * intensity}) 0%,
@@ -528,19 +342,9 @@ function generateScotomaOverlay(intensity: number): React.CSSProperties {
     rgba(0,0,0,0) ${scotomaEdge}%
   )`;
 
-  const allGradients = [mainScotoma, ...puckeringWaves].join(', ');
-
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    background: allGradients,
+    ...OVERLAY_BASE,
+    background: [mainScotoma, ...puckeringWaves].join(', '),
     mixBlendMode: 'multiply' as const,
     opacity: Math.min(0.95, intensity)
   };
@@ -552,15 +356,7 @@ function generateScotomaOverlay(intensity: number): React.CSSProperties {
 function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSProperties {
   const eyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `linear-gradient(to right,
       rgba(0,0,0,${eyeIntensity}) 0%,
       rgba(0,0,0,${eyeIntensity}) 47.5%,
@@ -580,15 +376,7 @@ function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSProperties
 function generateBlindnessRightEyeOverlay(intensity: number): React.CSSProperties {
   const eyeIntensity = intensity === 1 ? 1 : 0.95 * intensity;
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `linear-gradient(to left,
       rgba(0,0,0,${eyeIntensity}) 0%,
       rgba(0,0,0,${eyeIntensity}) 47.5%,
@@ -609,15 +397,7 @@ function generateBlindnessRightEyeOverlay(intensity: number): React.CSSPropertie
  */
 function generateJoseCidMonocularOverlay(intensity: number): React.CSSProperties {
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     background: `linear-gradient(to right,
       rgba(0,0,0,${intensity}) 0%,
       rgba(0,0,0,${intensity}) 45%,
@@ -632,87 +412,32 @@ function generateJoseCidMonocularOverlay(intensity: number): React.CSSProperties
 }
 
 /**
+ * Generate Retinal Detachment overlay (curtain-like shadow from top)
+ */
+function generateRetinalDetachmentOverlay(intensity: number): React.CSSProperties {
+  return {
+    ...OVERLAY_BASE,
+    background: `linear-gradient(to bottom,
+      rgba(0,0,0,${0.9 * intensity}) 0%,
+      rgba(0,0,0,${0.8 * intensity}) 15%,
+      rgba(0,0,0,${0.6 * intensity}) 30%,
+      rgba(0,0,0,${0.4 * intensity}) 45%,
+      rgba(0,0,0,${0.2 * intensity}) 60%,
+      rgba(0,0,0,0) 75%
+    )`,
+    mixBlendMode: 'multiply' as const,
+    opacity: Math.min(0.8, intensity),
+    filter: `blur(${intensity * 3}px) hue-rotate(${intensity * 2}deg)`
+  };
+}
+
+/**
  * Generate Dame Judi Dench AMD Complete overlay
- * Based on her descriptions: central vision lost, peripheral preserved
- * "I can see your outline" but "I can't recognize anybody now...I can't see to read"
- * Includes peripheral puckering/metamorphopsia distortion from outer edges
+ * Central vision lost, peripheral preserved with puckering distortion
  */
 function generateJudiAMDCompleteOverlay(intensity: number): React.CSSProperties {
-  const scotomaSize = 25 + intensity * 20; // 25-45% of view is affected
-
-  // Generate peripheral puckering/pinching distortion from outer edges moving inward
-  const puckeringWaves: string[] = [];
-  if (intensity > 0.2) {
-    // TOP EDGE
-    const topWaveCount = Math.floor(8 + intensity * 6);
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 9 + intensity * 14 + Math.sin(i * 0.8) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.26 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(158,158,163,${opacity}) 0%, rgba(138,138,143,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 0%, rgba(38,38,48,${opacity}) 0%, rgba(58,58,68,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // BOTTOM EDGE
-    for (let i = 0; i < topWaveCount; i++) {
-      const xPos = (i / (topWaveCount - 1)) * 100;
-      const waveDepth = 9 + intensity * 14 + Math.sin(i * 0.9 + 0.5) * 5;
-      const isLight = i % 2 === 0;
-      const opacity = (0.26 + intensity * 0.2) * (isLight ? 1 : 0.8);
-      const width = 8 + (i % 3) * 3;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(158,158,163,${opacity}) 0%, rgba(138,138,143,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${width}% ${waveDepth}% at ${xPos}% 100%, rgba(38,38,48,${opacity}) 0%, rgba(58,58,68,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // LEFT EDGE
-    const sideWaveCount = Math.floor(6 + intensity * 5);
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 7 + intensity * 11 + Math.sin(i * 0.7) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const height = 11 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(154,154,159,${opacity}) 0%, rgba(134,134,139,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 0% ${yPos}%, rgba(40,40,50,${opacity}) 0%, rgba(60,60,70,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // RIGHT EDGE
-    for (let i = 0; i < sideWaveCount; i++) {
-      const yPos = (i / (sideWaveCount - 1)) * 100;
-      const waveDepth = 7 + intensity * 11 + Math.sin(i * 0.7 + 0.3) * 4;
-      const isLight = i % 2 === 0;
-      const opacity = (0.24 + intensity * 0.18) * (isLight ? 1 : 0.8);
-      const height = 11 + (i % 3) * 4;
-
-      if (isLight) {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(154,154,159,${opacity}) 0%, rgba(134,134,139,${opacity * 0.5}) 60%, transparent 100%)`);
-      } else {
-        puckeringWaves.push(`radial-gradient(ellipse ${waveDepth}% ${height}% at 100% ${yPos}%, rgba(40,40,50,${opacity}) 0%, rgba(60,60,70,${opacity * 0.5}) 60%, transparent 100%)`);
-      }
-    }
-
-    // CORNER pinching effects
-    const cornerOpacity = 0.3 + intensity * 0.25;
-    const cornerSize = 16 + intensity * 12;
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 0%, rgba(148,148,153,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(133,133,138,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 0%, rgba(148,148,153,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(133,133,138,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 0% 100%, rgba(148,148,153,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(133,133,138,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-    puckeringWaves.push(`radial-gradient(ellipse ${cornerSize}% ${cornerSize}% at 100% 100%, rgba(148,148,153,${cornerOpacity}) 0%, rgba(48,48,58,${cornerOpacity * 0.6}) 40%, rgba(133,133,138,${cornerOpacity * 0.4}) 70%, transparent 100%)`);
-  }
+  const scotomaSize = 25 + intensity * 20;
+  const puckeringWaves = generatePuckeringWaves(intensity, JUDI_AMD_PUCKERING);
 
   const mainScotoma = `radial-gradient(ellipse ${scotomaSize}% ${scotomaSize}% at 50% 50%,
     rgba(40,40,45,${intensity * 0.92}) 0%,
@@ -724,19 +449,9 @@ function generateJudiAMDCompleteOverlay(intensity: number): React.CSSProperties 
     transparent 100%
   )`;
 
-  const allGradients = [mainScotoma, ...puckeringWaves].join(', ');
-
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    background: allGradients,
+    ...OVERLAY_BASE,
+    background: [mainScotoma, ...puckeringWaves].join(', '),
     mixBlendMode: 'multiply' as const,
     opacity: 1,
     filter: `blur(${intensity * 2}px)`
@@ -753,15 +468,7 @@ function generatePlateauSolarRetinopathyOverlay(intensity: number): React.CSSPro
   const scotomaSize = 12 + intensity * 8; // 12-20%
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     // Dark central scotoma with softer edges transitioning to preserved peripheral
     background: `
       radial-gradient(ellipse ${scotomaSize}% ${scotomaSize * 0.9}% at 50% 50%,
@@ -788,15 +495,7 @@ function generatePlateauSolarRetinopathyOverlay(intensity: number): React.CSSPro
  */
 function generateEulerAsymmetricOverlay(intensity: number): React.CSSProperties {
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     // Right half complete black (dead right eye), soft transition to left
     background: `linear-gradient(to left,
       rgba(0,0,0,${intensity}) 0%,
@@ -829,15 +528,7 @@ function generateNemethDualAttackOverlay(intensity: number): React.CSSProperties
   // At high intensity, these overlap, leaving effectively nothing
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
+    ...OVERLAY_BASE,
     // Layer 1: Central scotoma (dark elliptical void at center)
     // Layer 2: Peripheral constriction (darkness from edges)
     // The combination leaves only a thin donut ring (if any)
@@ -978,6 +669,12 @@ export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSPropert
     const joseCidMonocularEffect = effects.find(e => e.id === 'joseCidMonocularVision' && e.enabled);
     if (joseCidMonocularEffect) {
       return generateJoseCidMonocularOverlay(joseCidMonocularEffect.intensity);
+    }
+
+    // Check for retinal detachment
+    const retinalDetachmentEffect = effects.find(e => e.id === 'retinalDetachment' && e.enabled);
+    if (retinalDetachmentEffect) {
+      return generateRetinalDetachmentOverlay(retinalDetachmentEffect.intensity);
     }
 
     return null;

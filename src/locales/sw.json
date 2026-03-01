@@ -14,7 +14,6 @@
   "buttons": {
     "back": "NYUMA",
     "next": "Ifuatayo",
-    "viewSimulation": "Tazama Uigaji",
     "clearFilters": "Futa Vichujio",
     "deselectAll": "Ondoa Chaguo Zote",
     "support": "Msaada",
@@ -38,7 +37,6 @@
     "title": "Kiigaji cha Hali ya Kuona",
     "step1": "Chagua Chanzo cha Pembejeo",
     "step2": "Chagua Hali za Kuona",
-    "step3": "Tazama Uigaji",
     "selectConditions": "Chagua Hali za Kuona",
     "visionPreview": "Muonekano wa Awali wa Kuona",
     "combinedPreview": "Muonekano wa Awali Uliounganishwa (hali {{count}})",
@@ -49,7 +47,6 @@
     "condition": "Hali: {{condition}}",
     "screenReaderStep1": "Hatua ya 1: Chagua chanzo chako - kamera ya wavuti, kupakia picha au video ya YouTube",
     "screenReaderStep2": "Hatua ya 2: Chagua hali za kuona kuiga",
-    "screenReaderStep3": "Hatua ya 3: Tazama uigaji wako wa kuona",
     "goBack": "Rudi nyuma kuchagua hali"
   },
   "inputSelector": {

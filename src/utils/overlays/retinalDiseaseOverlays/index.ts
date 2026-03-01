@@ -6,6 +6,7 @@ import { createDiabeticRetinopathyOverlay } from './diabeticRetinopathyOverlay';
 import { createStargardtOverlay } from './stargardtOverlay';
 import { createRetinitisPigmentosaOverlay } from './retinitisPigmentosaOverlay';
 import { createRetinalDetachmentOverlay } from './retinalDetachmentOverlay';
+import { createVitreousHemorrhageOverlay } from './vitreousHemorrhageOverlay';
 
 // Re-export individual modules
 export { createGlaucomaOverlay } from './glaucomaOverlay';
@@ -14,10 +15,12 @@ export { createDiabeticRetinopathyOverlay } from './diabeticRetinopathyOverlay';
 export { createStargardtOverlay } from './stargardtOverlay';
 export { createRetinitisPigmentosaOverlay } from './retinitisPigmentosaOverlay';
 export { createRetinalDetachmentOverlay } from './retinalDetachmentOverlay';
+export { createVitreousHemorrhageOverlay } from './vitreousHemorrhageOverlay';
 
 /**
  * Creates overlays for retinal disease conditions
- * Includes: glaucoma, AMD, diabetic retinopathy, stargardt, retinitis pigmentosa, retinal detachment
+ * Includes: glaucoma, AMD, diabetic retinopathy, stargardt, retinitis pigmentosa,
+ * retinal detachment, vitreous hemorrhage
  */
 export const createRetinalDiseaseOverlays = (
   effects: Map<string, VisualEffect>,
@@ -31,4 +34,5 @@ export const createRetinalDiseaseOverlays = (
   createDiabeticRetinopathyOverlay(getEffect('diabeticRetinopathy'), container);
   createRetinalDetachmentOverlay(getEffect('retinalDetachment'), container);
   createRetinitisPigmentosaOverlay(getEffect('retinitisPigmentosa'), container);
+  createVitreousHemorrhageOverlay(getEffect('vitreousHemorrhage'), container);
 };

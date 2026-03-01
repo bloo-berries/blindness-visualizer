@@ -14,7 +14,6 @@
   "buttons": {
     "back": "AR AIS",
     "next": "Ar Aghaidh",
-    "viewSimulation": "Féach ar an Insamhladh",
     "clearFilters": "Glan Scagairí",
     "deselectAll": "Díroghnaigh Uile",
     "support": "Tacaíocht",
@@ -40,7 +39,6 @@
     "title": "Insamhlóir Riocht Radhairc",
     "step1": "Roghnaigh Foinse Ionchuir",
     "step2": "Roghnaigh Riocht Radhairc",
-    "step3": "Féach ar an Insamhladh",
     "selectConditions": "Roghnaigh Riocht Radhairc",
     "visionPreview": "Réamhamharc Radhairc",
     "combinedPreview": "Réamhamharc Comhcheangailte ({{count}} riocht)",
@@ -51,7 +49,6 @@
     "condition": "Riocht: {{condition}}",
     "screenReaderStep1": "Céim 1: Roghnaigh do fhoinse ionchuir - ceamara gréasáin, íomhá nó físeán YouTube",
     "screenReaderStep2": "Céim 2: Roghnaigh riocht radhairc le hinsamhladh",
-    "screenReaderStep3": "Céim 3: Féach ar d'insamhladh radhairc",
     "goBack": "Téigh ar ais chun riocht a roghnú"
   },
   "inputSelector": {

@@ -14,7 +14,6 @@
   "buttons": {
     "back": "QUAY LẠI",
     "next": "Tiếp theo",
-    "viewSimulation": "Xem mô phỏng",
     "clearFilters": "Xóa bộ lọc",
     "deselectAll": "Bỏ chọn tất cả",
     "support": "Hỗ trợ",
@@ -40,7 +39,6 @@
     "title": "Trình mô phỏng tình trạng thị giác",
     "step1": "Chọn nguồn đầu vào",
     "step2": "Chọn tình trạng thị giác",
-    "step3": "Xem mô phỏng",
     "selectConditions": "Chọn tình trạng thị giác",
     "visionPreview": "Xem trước thị giác",
     "combinedPreview": "Xem trước kết hợp ({{count}} tình trạng)",
@@ -51,7 +49,6 @@
     "condition": "Tình trạng: {{condition}}",
     "screenReaderStep1": "Bước 1: Chọn nguồn đầu vào - webcam, hình ảnh hoặc video YouTube",
     "screenReaderStep2": "Bước 2: Chọn tình trạng thị giác để mô phỏng",
-    "screenReaderStep3": "Bước 3: Xem mô phỏng thị giác của bạn",
     "goBack": "Quay lại chọn tình trạng"
   },
   "inputSelector": {

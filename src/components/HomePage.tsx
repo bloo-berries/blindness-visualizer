@@ -71,18 +71,19 @@ const HomePage: React.FC = () => {
           {/* Main Options */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} md={6}>
-              <Card 
-                sx={{ 
+              <Card
+                sx={{
                   height: '100%',
                   p: 3,
                   background: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   display: 'flex',
                   flexDirection: 'column',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: 4
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
                   }
                 }}
               >
@@ -144,18 +145,19 @@ const HomePage: React.FC = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Card 
-                sx={{ 
+              <Card
+                sx={{
                   height: '100%',
                   p: 3,
                   background: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   display: 'flex',
                   flexDirection: 'column',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: 4
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
                   }
                 }}
               >
@@ -395,12 +397,13 @@ const HomePage: React.FC = () => {
               p: 2,
               background: preferences.highContrast ? '#ffffff' : 'var(--color-card-bg)',
               border: preferences.highContrast ? '2px solid #000000' : '1px solid var(--color-border)',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               textDecoration: 'none',
               cursor: 'pointer',
               '&:hover': {
                 transform: 'translateY(-2px)',
-                boxShadow: 4
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
               }
             }}
           >

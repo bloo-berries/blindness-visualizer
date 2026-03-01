@@ -14,7 +14,6 @@
   "buttons": {
     "back": "TILBAKE",
     "next": "Neste",
-    "viewSimulation": "Se Simulering",
     "clearFilters": "Fjern Filtre",
     "deselectAll": "Fjern Alle Valg",
     "support": "Støtte",
@@ -38,7 +37,6 @@
     "title": "Synstilstand Simulator",
     "step1": "Velg Innganskilde",
     "step2": "Velg Synstilstander",
-    "step3": "Se Simulering",
     "selectConditions": "Velg Synstilstander",
     "visionPreview": "Synsforhåndsvisning",
     "combinedPreview": "Kombinert Synsforhåndsvisning ({{count}} tilstander)",
@@ -49,7 +47,6 @@
     "condition": "Tilstand: {{condition}}",
     "screenReaderStep1": "Steg 1: Velg din innganskilde - webkamera, bildeopplasting eller YouTube-video",
     "screenReaderStep2": "Steg 2: Velg synstilstander å simulere",
-    "screenReaderStep3": "Steg 3: Se din synssimulering",
     "goBack": "Gå tilbake for å velge tilstander"
   },
   "inputSelector": {

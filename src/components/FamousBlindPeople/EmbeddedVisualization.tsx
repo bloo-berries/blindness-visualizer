@@ -51,6 +51,41 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   // Get animated overlay styles
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
 
+  // Secondary overlay for monocular blindness when combined with another visual field effect
+  // useVisualFieldOverlay returns only one overlay, so if glaucoma (or similar) is matched first,
+  // blindnessLeftEye/blindnessRightEye never renders. Handle it separately here.
+  const monocularOverlayStyle = useMemo((): React.CSSProperties | null => {
+    const hasOtherFieldEffect = effects.some(e =>
+      e.enabled && ['glaucoma', 'tunnelVision', 'retinitisPigmentosa', 'hemianopiaLeft', 'hemianopiaRight', 'scotoma'].includes(e.id)
+    );
+    if (!hasOtherFieldEffect) return null;
+
+    const leftEye = effects.find(e => e.id === 'blindnessLeftEye' && e.enabled);
+    const rightEye = effects.find(e => e.id === 'blindnessRightEye' && e.enabled);
+    const eye = leftEye || rightEye;
+    if (!eye) return null;
+
+    const intensity = eye.intensity === 1 ? 1 : 0.95 * eye.intensity;
+    const direction = leftEye ? 'to right' : 'to left';
+    return {
+      position: 'absolute' as const,
+      top: 0, left: 0, right: 0, bottom: 0,
+      width: '100%', height: '100%',
+      pointerEvents: 'none' as const,
+      zIndex: 10000,
+      background: `linear-gradient(${direction},
+        rgba(0,0,0,${intensity}) 0%,
+        rgba(0,0,0,${intensity}) 47.5%,
+        rgba(0,0,0,${intensity * 0.7}) 48.75%,
+        rgba(0,0,0,${intensity * 0.4}) 50%,
+        rgba(0,0,0,${intensity * 0.1}) 51.25%,
+        rgba(0,0,0,0) 52.5%
+      )`,
+      mixBlendMode: 'normal' as const,
+      opacity: 1
+    };
+  }, [effects]);
+
   // Generate CSS filters for the enabled effects
   const cssFilters = useMemo(() => {
     return generateCSSFilters(effects);
@@ -152,6 +187,11 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           {/* Visual field overlay */}
           {visualFieldOverlayStyle && (
             <div style={visualFieldOverlayStyle} aria-hidden="true" />
+          )}
+
+          {/* Monocular blindness overlay (when combined with another visual field effect) */}
+          {monocularOverlayStyle && (
+            <div style={monocularOverlayStyle} aria-hidden="true" />
           )}
 
           {/* Animated overlay */}

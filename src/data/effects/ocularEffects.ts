@@ -30,7 +30,7 @@ export const ocularEffects: VisualEffect[] = [
     id: 'glaucoma',
     name: 'Glaucoma',
     enabled: false,
-    intensity: 0.75,
+    intensity: 1.0,
     description: 'Damages the optic nerve, typically due to elevated intraocular pressure. The most common symptoms are needing more light, blurry vision, and reduced contrast sensitivity - patients describe vision as "like looking underwater" or "through dirty glasses." Color discrimination is reduced, especially blue-yellow. Glare sensitivity and light bloom are common. Central vision typically remains clearer until late stages.'
   },
   {
@@ -44,14 +44,14 @@ export const ocularEffects: VisualEffect[] = [
     id: 'nearSighted',
     name: 'Myopia (Near-Sightedness)',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Difficulty seeing distant objects clearly while near objects appear normal. Caused by the eye being too long or the cornea being too curved.'
   },
   {
     id: 'farSighted',
     name: 'Hyperopia (Far-Sightedness)',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Difficulty seeing near objects clearly while distant objects appear normal. Caused by the eye being too short or the cornea being too flat.'
   },
   {
@@ -79,7 +79,7 @@ export const ocularEffects: VisualEffect[] = [
     id: 'keratoconus',
     name: 'Keratoconus',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Progressive corneal thinning causing irregular cone shape that creates multiple focal points. Results in multiple ghost images (2-8+ copies), streaking and comet tails from light sources, severe blur and wavy distortion of text, halos around lights, and high contrast loss. Gets worse with bright objects on dark backgrounds.'
   },
   {

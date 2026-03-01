@@ -9,21 +9,21 @@ export const visualDisturbanceEffects: VisualEffect[] = [
     id: 'visualAura',
     name: 'Visual Aura',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Temporary visual disturbances that can precede migraines. May include flashing lights, zigzag patterns, or blind spots. Usually lasts 20-60 minutes before the headache begins.'
   },
   {
     id: 'visualAuraLeft',
     name: 'Visual Aura (Left Side)',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Visual aura affecting only the left side of the visual field. Common in migraine with aura, where visual disturbances appear on one side before spreading.'
   },
   {
     id: 'visualAuraRight',
     name: 'Visual Aura (Right Side)',
     enabled: false,
-    intensity: 0.75,
+    intensity: 0.5,
     description: 'Visual aura affecting only the right side of the visual field. Common in migraine with aura, where visual disturbances appear on one side before spreading.'
   },
   {

@@ -30,8 +30,8 @@ import {
 export const ANIMATED_EFFECTS = [
   // Visual aura effects
   'visualAura', 'visualAuraLeft', 'visualAuraRight',
-  // Visual snow variants
-  'visualSnow', 'visualSnowFlashing', 'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense',
+  // Note: Visual snow variants use CSS @keyframes animations, not JS-driven animation ticks.
+  // They are handled by DOM-based overlays in visualDisturbanceOverlays/visualSnowOverlays.ts
   // Other animated effects
   'hallucinations', 'visualFloaters', 'blueFieldPhenomena',
   'persistentPositiveVisualPhenomenon', 'palinopsia', 'starbursting',

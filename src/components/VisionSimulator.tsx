@@ -62,16 +62,20 @@ const VisionSimulator: React.FC = () => {
     }
   }, [location.state]);
 
+  const FULL_INTENSITY_IDS = [
+    'protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic',
+    'hemianopiaLeft', 'hemianopiaRight', 'quadrantanopiaRight', 'quadrantanopiaInferiorLeft', 'quadrantanopiaInferiorRight', 'quadrantanopiaSuperiorLeft', 'quadrantanopiaSuperiorRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma', 'tunnelVision'
+  ];
+
   const handleToggle = useCallback((id: string) => {
     setEffects(prevEffects =>
       prevEffects.map(effect => {
         if (effect.id === id) {
-          // When enabling an effect, set intensity to 0.75 (75%) as default
-          // When disabling, keep the current intensity for when it's re-enabled
+          const defaultIntensity = FULL_INTENSITY_IDS.includes(id) ? 1.0 : 0.75;
           return {
             ...effect,
             enabled: !effect.enabled,
-            intensity: !effect.enabled ? 0.75 : effect.intensity
+            intensity: !effect.enabled ? defaultIntensity : effect.intensity
           };
         }
         return effect;

@@ -14,7 +14,6 @@
   "buttons": {
     "back": "WSTECZ",
     "next": "Dalej",
-    "viewSimulation": "Zobacz Symulację",
     "clearFilters": "Wyczyść Filtry",
     "deselectAll": "Odznacz Wszystko",
     "support": "Wsparcie",
@@ -38,7 +37,6 @@
     "title": "Symulator Warunków Wzrokowych",
     "step1": "Wybierz Źródło",
     "step2": "Wybierz Warunki Wzrokowe",
-    "step3": "Zobacz Symulację",
     "selectConditions": "Wybierz Warunki Wzrokowe",
     "visionPreview": "Podgląd Wzroku",
     "combinedPreview": "Połączony Podgląd Wzroku ({{count}} warunków)",
@@ -49,7 +47,6 @@
     "condition": "Warunek: {{condition}}",
     "screenReaderStep1": "Krok 1: Wybierz źródło - kamera, przesłany obraz lub wideo YouTube",
     "screenReaderStep2": "Krok 2: Wybierz warunki wzrokowe do symulacji",
-    "screenReaderStep3": "Krok 3: Zobacz symulację wzroku",
     "goBack": "Wróć do wyboru warunków"
   },
   "inputSelector": {

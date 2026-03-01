@@ -1,6 +1,10 @@
 /* Accessibility Styles for WCAG 2.1 AA Compliance */
 
-/* High Contrast Mode */
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+/* CSS Variables */
 .high-contrast-mode {
   --hc-bg: #000000;
   --hc-text: #ffffff;
@@ -10,7 +14,8 @@
   --hc-focus: #00ffff;
 }
 
-/* Apply high contrast to body and main containers */
+/* --- Base Elements --- */
+
 .high-contrast-mode body {
   background-color: var(--hc-bg) !important;
   color: var(--hc-text) !important;
@@ -21,21 +26,16 @@
   color: var(--hc-text) !important;
 }
 
-/* Apply to text elements (exclude library card elements which need black text) */
+/* Text elements (exclude components that need black text on white backgrounds) */
 .high-contrast-mode .MuiTypography-root:not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-/* Override any theme color classes that might cause contrast issues */
-.high-contrast-mode .MuiTypography-root[color="text.secondary"] {
-  color: var(--hc-text) !important;
-}
-
+.high-contrast-mode .MuiTypography-root[color="text.secondary"],
 .high-contrast-mode .MuiTypography-root[color="text.primary"] {
   color: var(--hc-text) !important;
 }
 
-/* Ensure all text elements have proper contrast (exclude library card which needs black text) */
 .high-contrast-mode h1:not(.library-of-blind-title):not(.library-of-blind-description),
 .high-contrast-mode h2:not(.library-of-blind-title):not(.library-of-blind-description),
 .high-contrast-mode h3:not(.library-of-blind-title):not(.library-of-blind-description),
@@ -48,299 +48,18 @@
   color: var(--hc-text) !important;
 }
 
-/* Specific styling for video info text in high contrast mode */
-.high-contrast-mode .video-info-text {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  border: 2px solid #000000 !important;
+/* Links */
+.high-contrast-mode a {
+  color: var(--hc-primary) !important;
 }
 
-/* Specific styling for personal journey section in high contrast mode */
-.high-contrast-mode .personal-journey-section {
-  background-color: #ffffff !important;
-  border: 2px solid #000000 !important;
+.high-contrast-mode a:hover {
+  color: var(--hc-secondary) !important;
+  text-decoration: underline !important;
 }
 
-.high-contrast-mode .personal-journey-title {
-  color: #000000 !important;
-}
+/* --- Material-UI Components --- */
 
-.high-contrast-mode .personal-journey-text {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .personal-journey-highlight {
-  color: #000000 !important;
-  background-color: #ffff00 !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  border: 2px solid #000000 !important;
-}
-
-/* Preview How I See text in high contrast mode */
-.high-contrast-mode .preview-how-i-see-text {
-  color: #000000 !important;
-}
-
-/* Demo Video text in high contrast mode - Must come after general card rules and be more specific */
-.high-contrast-mode .demo-video-card .demo-video-title,
-.high-contrast-mode .demo-video-card .demo-video-description,
-.high-contrast-mode .MuiCard-root.demo-video-card .MuiCardContent-root .demo-video-title,
-.high-contrast-mode .MuiCard-root.demo-video-card .MuiCardContent-root .demo-video-description,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .demo-video-title,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .demo-video-description,
-.high-contrast-mode .MuiCardContent-root .demo-video-title,
-.high-contrast-mode .MuiCardContent-root .demo-video-description,
-.high-contrast-mode .MuiCard-root .demo-video-title,
-.high-contrast-mode .MuiCard-root .demo-video-description,
-.high-contrast-mode .demo-video-title,
-.high-contrast-mode .demo-video-description {
-  color: #000000 !important;
-}
-
-/* Specific styling for conditions stats text in high contrast mode */
-.high-contrast-mode .conditions-stats {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  border: 2px solid #000000 !important;
-}
-
-/* Specific styling for conditions glossary text elements in high contrast mode */
-/* Category header buttons should have dark background with white text for contrast */
-.high-contrast-mode .condition-category-header {
-  background: #000000 !important;
-  background-color: #000000 !important;
-}
-
-.high-contrast-mode .condition-category-header .condition-category-title,
-.high-contrast-mode .condition-category-header .condition-category-subtitle,
-.high-contrast-mode .condition-category-header .MuiTypography-root {
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .condition-category-header .condition-category-icon,
-.high-contrast-mode .condition-category-header .MuiSvgIcon-root,
-.high-contrast-mode .condition-category-header .MuiAccordionSummary-expandIconWrapper .MuiSvgIcon-root {
-  color: #ffffff !important;
-}
-
-/* Other condition text elements (not in header buttons) */
-.high-contrast-mode .condition-category-title:not(.condition-category-header .condition-category-title) {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .condition-category-subtitle:not(.condition-category-header .condition-category-subtitle) {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .condition-name {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .condition-description {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .condition-related-chip {
-  color: #000000 !important;
-  background-color: #ffff00 !important;
-  border: 2px solid #000000 !important;
-}
-
-.high-contrast-mode .conditions-info-title {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .conditions-info-text {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .conditions-empty-state {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  padding: 16px !important;
-  border-radius: 4px !important;
-  border: 2px solid #000000 !important;
-}
-
-/* Clear Filters button text should be white in high contrast mode */
-.high-contrast-mode .conditions-clear-button,
-.high-contrast-mode .conditions-clear-button .MuiButton-label,
-.high-contrast-mode .conditions-clear-button .MuiTypography-root {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
-}
-
-/* Condition treatment options list text in high contrast mode */
-.high-contrast-mode .condition-treatment-list,
-.high-contrast-mode .condition-treatment-item,
-.high-contrast-mode .condition-treatment-text,
-.high-contrast-mode .condition-treatment-list .MuiListItemText-root,
-.high-contrast-mode .condition-treatment-list .MuiListItemText-primary,
-.high-contrast-mode .condition-treatment-list .MuiTypography-root,
-.high-contrast-mode .condition-treatment-item .MuiTypography-root {
-  color: #ffffff !important;
-}
-
-/* Treatment bullet points */
-.high-contrast-mode .condition-treatment-bullet {
-  background-color: #ffffff !important;
-}
-
-/* Treatment options notes box - black background with white text */
-.high-contrast-mode .condition-treatment-notes {
-  background-color: #000000 !important;
-  border-color: #ffffff !important;
-}
-
-.high-contrast-mode .condition-treatment-notes-text {
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .condition-treatment-notes .MuiSvgIcon-root {
-  color: #ffffff !important;
-}
-
-/* Ensure all text inside condition accordion details is visible */
-.high-contrast-mode .condition-list .MuiListItemText-root,
-.high-contrast-mode .condition-list .MuiListItemText-primary,
-.high-contrast-mode .condition-list .MuiListItemText-secondary,
-.high-contrast-mode .condition-list .MuiTypography-root,
-.high-contrast-mode .condition-item .MuiTypography-root,
-.high-contrast-mode .condition-item .MuiListItemText-root .MuiTypography-root,
-.high-contrast-mode .MuiAccordionDetails-root .MuiList-root .MuiListItem-root .MuiTypography-root,
-.high-contrast-mode .MuiAccordionDetails-root .MuiListItemText-root .MuiTypography-root,
-.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-body2,
-.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-subtitle2 {
-  color: #ffffff !important;
-}
-
-/* Feedback form - increased outline visibility for textboxes in high contrast mode */
-.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 3px !important;
-}
-
-.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 3px !important;
-}
-
-.high-contrast-mode .feedback-form .MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 4px !important;
-}
-
-.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 3px !important;
-}
-
-.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 3px !important;
-}
-
-.high-contrast-mode .feedback-form .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .feedback-form-paper .MuiFormControl-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
-  border-width: 4px !important;
-}
-
-/* Specific styling for FAQ page text elements in high contrast mode */
-.high-contrast-mode .faq-info-title {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .faq-info-text {
-  color: #000000 !important;
-}
-
-/* Specific styling for famous people simulation type elements in high contrast mode */
-.high-contrast-mode .simulation-type-label {
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .simulation-type-chip {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
-.high-contrast-mode .simulation-type-chip .MuiChip-label {
-  color: #000000 !important;
-}
-
-/* Homepage text styling for high contrast mode - white text on black card backgrounds */
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
-.high-contrast-mode .MuiCard-root .homepage-card-title,
-.high-contrast-mode .MuiCardContent-root .homepage-card-title,
-.high-contrast-mode .homepage-card-title,
-.high-contrast-mode .homepage-card-title.MuiTypography-root,
-.high-contrast-mode .homepage-card-title.MuiTypography-h4,
-.high-contrast-mode .homepage-card-title.MuiTypography-h5,
-.high-contrast-mode .MuiTypography-h4.homepage-card-title,
-.high-contrast-mode .MuiTypography-h5.homepage-card-title,
-.high-contrast-mode .homepage-card-title-left,
-.high-contrast-mode .homepage-card-title-right,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
-.high-contrast-mode .MuiCard-root .homepage-card-description,
-.high-contrast-mode .MuiCardContent-root .homepage-card-description,
-.high-contrast-mode .homepage-card-description,
-.high-contrast-mode .homepage-card-description.MuiTypography-root,
-.high-contrast-mode .homepage-card-description.MuiTypography-body1,
-.high-contrast-mode .homepage-card-description.MuiTypography-body2,
-.high-contrast-mode .MuiTypography-body1.homepage-card-description,
-.high-contrast-mode .MuiTypography-body2.homepage-card-description,
-.high-contrast-mode .homepage-card-description-left,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-features-title,
-.high-contrast-mode .homepage-features-title.MuiTypography-root,
-.high-contrast-mode .homepage-features-title.MuiTypography-h6,
-.high-contrast-mode .MuiTypography-h6.homepage-features-title {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-feature-item,
-.high-contrast-mode .homepage-feature-item.MuiTypography-root,
-.high-contrast-mode .homepage-feature-item.MuiTypography-body2,
-.high-contrast-mode .MuiTypography-body2.homepage-feature-item {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-featured-title,
-.high-contrast-mode .homepage-featured-title.MuiTypography-root,
-.high-contrast-mode .homepage-featured-title.MuiTypography-h6,
-.high-contrast-mode .MuiTypography-h6.homepage-featured-title {
-  color: var(--hc-text) !important;
-}
-
-/* Even more specific selectors */
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-card-title,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-card-description,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-features-title,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-feature-item,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-featured-title {
-  color: var(--hc-text) !important;
-}
-
-/* Apply to specific Material-UI components */
 .high-contrast-mode .MuiContainer-root {
   background-color: var(--hc-bg) !important;
   color: var(--hc-text) !important;
@@ -377,94 +96,38 @@
   color: var(--hc-text) !important;
 }
 
-/* Override any gradient backgrounds in high contrast mode */
+/* Override gradient backgrounds (exclude special cards) */
 .high-contrast-mode [style*="linear-gradient"]:not(.demo-video-card) {
   background: var(--hc-bg) !important;
 }
 
-/* Specifically target common light background colors that cause contrast issues */
 .high-contrast-mode [style*="#f8fafc"]:not(.demo-video-card),
 .high-contrast-mode [style*="#e2e8f0"]:not(.demo-video-card),
-.high-contrast-mode [style*="#f1f5f9"]:not(.demo-video-card) {
-  background-color: var(--hc-bg) !important;
-}
-
-/* Force high contrast for any remaining light backgrounds */
+.high-contrast-mode [style*="#f1f5f9"]:not(.demo-video-card),
 .high-contrast-mode [style*="background-color: rgb(248, 250, 252)"]:not(.demo-video-card),
 .high-contrast-mode [style*="background-color: rgb(226, 232, 240)"]:not(.demo-video-card),
 .high-contrast-mode [style*="background-color: rgb(241, 245, 249)"]:not(.demo-video-card) {
   background-color: var(--hc-bg) !important;
 }
 
-/* Demo Video card background in high contrast mode - keep white background - Must be after all other background rules */
-.high-contrast-mode .MuiCard-root.demo-video-card,
-.high-contrast-mode .MuiCard-root.demo-video-card[style*="linear-gradient"],
-.high-contrast-mode .MuiCard-root.demo-video-card[style*="#f8fafc"],
-.high-contrast-mode .MuiCard-root.demo-video-card[style*="#e2e8f0"],
-.high-contrast-mode .demo-video-card,
-.high-contrast-mode .demo-video-card[style*="linear-gradient"],
-.high-contrast-mode .demo-video-card[style*="#f8fafc"],
-.high-contrast-mode .demo-video-card[style*="#e2e8f0"],
-.high-contrast-mode .demo-video-card[style*="background-color: rgb(248, 250, 252)"],
-.high-contrast-mode .demo-video-card[style*="background-color: rgb(226, 232, 240)"] {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
-/* Ensure all text in cards is visible */
-.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
-  color: var(--hc-text) !important;
-}
-
-/* Card content specific styling */
+/* Card content text */
 .high-contrast-mode .MuiCardContent-root:not(.library-of-blind-card *) {
   color: var(--hc-text) !important;
 }
 
+.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description),
 .high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-/* Icons in cards should also be visible */
-.high-contrast-mode .MuiCardContent-root .MuiSvgIcon-root {
-  color: var(--hc-primary) !important;
-}
-
-/* Homepage card text - white on black card backgrounds in high contrast */
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
-.high-contrast-mode .MuiCard-root .homepage-card-title,
-.high-contrast-mode .MuiCard-root .homepage-card-description,
-.high-contrast-mode .MuiCardContent-root .homepage-card-title,
-.high-contrast-mode .MuiCardContent-root .homepage-card-description {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-/* Famous People filter text and switch - black on white filter card (must beat 0-4-0 specificity of general rule) */
-.high-contrast-mode .MuiTypography-root.MuiTypography-body2.famous-people-filter-text,
-.high-contrast-mode .MuiBox-root .MuiTypography-root.famous-people-filter-text,
-.high-contrast-mode .famous-people-filter-text.famous-people-filter-text {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-switch .MuiSwitch-track {
-  background-color: #000000 !important;
-  opacity: 0.5 !important;
-}
-
-.high-contrast-mode .famous-people-filter-switch .MuiSwitch-thumb {
-  color: #000000 !important;
+/* Card icons */
+.high-contrast-mode .MuiCardContent-root .MuiSvgIcon-root {
+  color: var(--hc-primary) !important;
 }
 
 /* Navigation */
@@ -474,7 +137,7 @@
   color: var(--hc-text) !important;
 }
 
-/* Icons and Icon Buttons */
+/* Icon Buttons */
 .high-contrast-mode .MuiIconButton-root {
   color: var(--hc-text) !important;
   background-color: transparent !important;
@@ -484,11 +147,10 @@
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* VisionSim logo eye icon in high contrast mode */
+/* VisionSim logo eye icon */
 .high-contrast-mode .MuiAppBar-root .MuiBox-root[role="button"] .MuiSvgIcon-root {
   color: #000000 !important;
 }
-
 
 /* Switches */
 .high-contrast-mode .MuiSwitch-root .MuiSwitch-track {
@@ -517,13 +179,8 @@
   border: 2px solid var(--hc-primary) !important;
 }
 
-/* Menu and Dialog components */
-.high-contrast-mode .MuiMenu-paper {
-  background-color: var(--hc-bg) !important;
-  border: 2px solid var(--hc-border) !important;
-  color: var(--hc-text) !important;
-}
-
+/* Menu and Dialog */
+.high-contrast-mode .MuiMenu-paper,
 .high-contrast-mode .MuiDialog-paper {
   background-color: var(--hc-bg) !important;
   border: 2px solid var(--hc-border) !important;
@@ -558,28 +215,21 @@
   border: 1px solid var(--hc-primary) !important;
 }
 
-/* Stepper components */
+/* Stepper */
 .high-contrast-mode .MuiStepLabel-root {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiStepLabel-root.Mui-active {
-  color: var(--hc-primary) !important;
-}
-
+.high-contrast-mode .MuiStepLabel-root.Mui-active,
 .high-contrast-mode .MuiStepLabel-root.Mui-completed {
   color: var(--hc-primary) !important;
 }
 
-/* Override any stepper label color overrides */
 .high-contrast-mode .MuiStepLabel-label {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiStepLabel-label.Mui-active {
-  color: var(--hc-primary) !important;
-}
-
+.high-contrast-mode .MuiStepLabel-label.Mui-active,
 .high-contrast-mode .MuiStepLabel-label.Mui-completed {
   color: var(--hc-primary) !important;
 }
@@ -588,15 +238,12 @@
   color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.high-contrast-mode .MuiStepIcon-root.Mui-active {
-  color: var(--hc-primary) !important;
-}
-
+.high-contrast-mode .MuiStepIcon-root.Mui-active,
 .high-contrast-mode .MuiStepIcon-root.Mui-completed {
   color: var(--hc-primary) !important;
 }
 
-/* Accordion components */
+/* Accordion */
 .high-contrast-mode .MuiAccordion-root {
   background-color: var(--hc-bg) !important;
   border: 1px solid var(--hc-border) !important;
@@ -619,25 +266,19 @@
 }
 
 /* Form controls */
-.high-contrast-mode .MuiFormControlLabel-root {
-  color: var(--hc-text) !important;
-}
-
+.high-contrast-mode .MuiFormControlLabel-root,
 .high-contrast-mode .MuiFormControlLabel-label {
   color: var(--hc-text) !important;
 }
 
-/* Links */
-.high-contrast-mode a {
-  color: var(--hc-primary) !important;
+/* Images and videos */
+.high-contrast-mode img,
+.high-contrast-mode video {
+  border: 1px solid var(--hc-border) !important;
 }
 
-.high-contrast-mode a:hover {
-  color: var(--hc-secondary) !important;
-  text-decoration: underline !important;
-}
+/* --- Visualizer --- */
 
-/* Visualizer specific components */
 .high-contrast-mode .visualizer-container {
   border: 2px solid var(--hc-border) !important;
   background-color: var(--hc-bg) !important;
@@ -654,52 +295,344 @@
   background-color: rgba(0, 255, 255, 0.1) !important;
 }
 
-/* Ensure images and videos maintain visibility */
-.high-contrast-mode img,
-.high-contrast-mode video {
-  border: 1px solid var(--hc-border) !important;
+/* --- Page-Specific: Homepage --- */
+
+/* Homepage card text - white on black */
+.high-contrast-mode .homepage-card-title,
+.high-contrast-mode .MuiCard-root .homepage-card-title,
+.high-contrast-mode .MuiCardContent-root .homepage-card-title,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title,
+.high-contrast-mode .homepage-card-title-left,
+.high-contrast-mode .homepage-card-title-right {
+  color: var(--hc-text) !important;
 }
 
-/* Note: High contrast mode now uses specific component targeting instead of blanket rules */
+.high-contrast-mode .homepage-card-description,
+.high-contrast-mode .MuiCard-root .homepage-card-description,
+.high-contrast-mode .MuiCardContent-root .homepage-card-description,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
+.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description,
+.high-contrast-mode .homepage-card-description-left {
+  color: var(--hc-text) !important;
+}
 
-/* Large Text Mode - 25% increase */
+.high-contrast-mode .homepage-features-title,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-features-title {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .homepage-feature-item,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-feature-item {
+  color: var(--hc-text) !important;
+}
+
+.high-contrast-mode .homepage-featured-title,
+.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-featured-title {
+  color: var(--hc-text) !important;
+}
+
+/* Video info text */
+.high-contrast-mode .video-info-text {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Personal journey section */
+.high-contrast-mode .personal-journey-section {
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .personal-journey-title,
+.high-contrast-mode .personal-journey-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .personal-journey-highlight {
+  color: #000000 !important;
+  background-color: #ffff00 !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Preview How I See text */
+.high-contrast-mode .preview-how-i-see-text {
+  color: #000000 !important;
+}
+
+/* --- Page-Specific: Demo Video Card (white bg, black text) --- */
+
+.high-contrast-mode .demo-video-card,
+.high-contrast-mode .MuiCard-root.demo-video-card,
+.high-contrast-mode .MuiCard-root.demo-video-card.MuiCard-root,
+.high-contrast-mode .MuiCard-root.demo-video-card[style*="linear-gradient"],
+.high-contrast-mode .demo-video-card[style*="#f8fafc"],
+.high-contrast-mode .demo-video-card[style*="#e2e8f0"],
+.high-contrast-mode .demo-video-card[style*="background-color: rgb(248, 250, 252)"],
+.high-contrast-mode .demo-video-card[style*="background-color: rgb(226, 232, 240)"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .demo-video-title,
+.high-contrast-mode .demo-video-description,
+.high-contrast-mode .MuiCard-root .demo-video-title,
+.high-contrast-mode .MuiCard-root .demo-video-description,
+.high-contrast-mode .MuiCardContent-root .demo-video-title,
+.high-contrast-mode .MuiCardContent-root .demo-video-description {
+  color: #000000 !important;
+}
+
+/* --- Page-Specific: Library of the Blind Card (white bg, black text) --- */
+
+.high-contrast-mode .library-of-blind-card,
+.high-contrast-mode .library-of-blind-card.MuiCard-root,
+.high-contrast-mode .MuiCard-root.library-of-blind-card,
+.high-contrast-mode a.library-of-blind-card,
+.high-contrast-mode .library-of-blind-card.MuiPaper-root,
+.high-contrast-mode .library-of-blind-card[style*="linear-gradient"],
+html.high-contrast-mode .library-of-blind-card,
+html.high-contrast-mode .MuiCard-root.library-of-blind-card,
+html.high-contrast-mode a.library-of-blind-card.MuiCard-root {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .library-of-blind-title,
+.high-contrast-mode .library-of-blind-description,
+.high-contrast-mode .library-of-blind-card .MuiTypography-root,
+.high-contrast-mode .library-of-blind-card span,
+.high-contrast-mode .library-of-blind-card p,
+.high-contrast-mode .library-of-blind-card .MuiBox-root .MuiTypography-root,
+html.high-contrast-mode .library-of-blind-title,
+html.high-contrast-mode .library-of-blind-description {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .library-of-blind-card .MuiSvgIcon-root {
+  color: #000000 !important;
+}
+
+/* --- Page-Specific: Conditions Glossary --- */
+
+.high-contrast-mode .conditions-stats {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Category header buttons - dark bg with white text */
+.high-contrast-mode .condition-category-header {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+.high-contrast-mode .condition-category-header .condition-category-title,
+.high-contrast-mode .condition-category-header .condition-category-subtitle,
+.high-contrast-mode .condition-category-header .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-category-header .condition-category-icon,
+.high-contrast-mode .condition-category-header .MuiSvgIcon-root,
+.high-contrast-mode .condition-category-header .MuiAccordionSummary-expandIconWrapper .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Non-header condition text */
+.high-contrast-mode .condition-category-title:not(.condition-category-header .condition-category-title),
+.high-contrast-mode .condition-category-subtitle:not(.condition-category-header .condition-category-subtitle),
+.high-contrast-mode .condition-name,
+.high-contrast-mode .condition-description,
+.high-contrast-mode .conditions-info-title,
+.high-contrast-mode .conditions-info-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .condition-related-chip {
+  color: #000000 !important;
+  background-color: #ffff00 !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .conditions-empty-state {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 16px !important;
+  border-radius: 4px !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Clear Filters button */
+.high-contrast-mode .conditions-clear-button,
+.high-contrast-mode .conditions-clear-button .MuiButton-label,
+.high-contrast-mode .conditions-clear-button .MuiTypography-root {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* Treatment options */
+.high-contrast-mode .condition-treatment-list,
+.high-contrast-mode .condition-treatment-item,
+.high-contrast-mode .condition-treatment-text,
+.high-contrast-mode .condition-treatment-list .MuiListItemText-root,
+.high-contrast-mode .condition-treatment-list .MuiListItemText-primary,
+.high-contrast-mode .condition-treatment-list .MuiTypography-root,
+.high-contrast-mode .condition-treatment-item .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-treatment-bullet {
+  background-color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-treatment-notes {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+.high-contrast-mode .condition-treatment-notes-text,
+.high-contrast-mode .condition-treatment-notes .MuiSvgIcon-root {
+  color: #ffffff !important;
+}
+
+/* Accordion details text */
+.high-contrast-mode .condition-list .MuiListItemText-root,
+.high-contrast-mode .condition-list .MuiListItemText-primary,
+.high-contrast-mode .condition-list .MuiListItemText-secondary,
+.high-contrast-mode .condition-list .MuiTypography-root,
+.high-contrast-mode .condition-item .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiList-root .MuiListItem-root .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiListItemText-root .MuiTypography-root,
+.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-body2,
+.high-contrast-mode .MuiAccordionDetails-root .MuiTypography-subtitle2 {
+  color: #ffffff !important;
+}
+
+/* --- Page-Specific: Feedback Form --- */
+
+.high-contrast-mode .feedback-form .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 3px !important;
+}
+
+.high-contrast-mode .feedback-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .feedback-form-paper .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  border-width: 4px !important;
+}
+
+/* --- Page-Specific: FAQ --- */
+
+.high-contrast-mode .faq-info-title,
+.high-contrast-mode .faq-info-text {
+  color: #000000 !important;
+}
+
+/* --- Page-Specific: Famous People --- */
+
+.high-contrast-mode .simulation-type-label {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .simulation-type-chip,
+.high-contrast-mode .simulation-type-chip .MuiChip-label {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+/* Famous People filter section (white bg, black text) */
+.high-contrast-mode .famous-people-filter-section {
+  background-color: #ffffff !important;
+  padding: 16px !important;
+  border-radius: 8px !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiTextField-root,
+.high-contrast-mode .famous-people-filter-section .MuiFormControl-root {
+  background-color: #ffffff !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiInputBase-root,
+.high-contrast-mode .famous-people-filter-section .MuiInputBase-input,
+.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root,
+.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root.Mui-focused,
+.high-contrast-mode .famous-people-filter-section .MuiSelect-select,
+.high-contrast-mode .famous-people-filter-section .MuiMenuItem-root,
+.high-contrast-mode .famous-people-filter-section .MuiTypography-root,
+.high-contrast-mode .famous-people-filter-section input::placeholder,
+.high-contrast-mode .famous-people-filter-section input::-webkit-input-placeholder,
+.high-contrast-mode .famous-people-filter-section input::-moz-placeholder {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-notchedOutline {
+  border-color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+
+.high-contrast-mode .famous-people-filter-section .MuiButton-outlined {
+  color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-text.famous-people-filter-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-switch .MuiSwitch-track {
+  background-color: #000000 !important;
+  opacity: 0.5 !important;
+}
+
+.high-contrast-mode .famous-people-filter-switch .MuiSwitch-thumb {
+  color: #000000 !important;
+}
+
+/* ============================================
+   LARGE TEXT MODE - 25% increase
+   ============================================ */
+
 .large-text-mode {
   font-size: 125% !important;
 }
 
-.large-text-mode .MuiTypography-h1 {
-  font-size: 3.125rem !important;
-}
+.large-text-mode .MuiTypography-h1 { font-size: 3.125rem !important; }
+.large-text-mode .MuiTypography-h2 { font-size: 2.5rem !important; }
+.large-text-mode .MuiTypography-h3 { font-size: 1.875rem !important; }
+.large-text-mode .MuiTypography-h4 { font-size: 1.5625rem !important; }
+.large-text-mode .MuiTypography-h5 { font-size: 1.40625rem !important; }
+.large-text-mode .MuiTypography-h6 { font-size: 1.25rem !important; }
+.large-text-mode .MuiTypography-body1 { font-size: 1.25rem !important; }
+.large-text-mode .MuiTypography-body2 { font-size: 1.09375rem !important; }
 
-.large-text-mode .MuiTypography-h2 {
-  font-size: 2.5rem !important;
-}
+/* ============================================
+   INCREASED SPACING MODE
+   ============================================ */
 
-.large-text-mode .MuiTypography-h3 {
-  font-size: 1.875rem !important;
-}
-
-.large-text-mode .MuiTypography-h4 {
-  font-size: 1.5625rem !important;
-}
-
-.large-text-mode .MuiTypography-h5 {
-  font-size: 1.40625rem !important;
-}
-
-.large-text-mode .MuiTypography-h6 {
-  font-size: 1.25rem !important;
-}
-
-.large-text-mode .MuiTypography-body1 {
-  font-size: 1.25rem !important;
-}
-
-.large-text-mode .MuiTypography-body2 {
-  font-size: 1.09375rem !important;
-}
-
-/* Increased Spacing Mode */
 .increased-spacing-mode {
   line-height: 2 !important;
   letter-spacing: 0.1em !important;
@@ -725,36 +658,33 @@
   margin: 8px 0 !important;
 }
 
-/* Enhanced Focus Indicators */
+/* ============================================
+   ENHANCED FOCUS INDICATORS
+   ============================================ */
+
 .enhanced-focus-mode *:focus {
   outline: 3px solid #0066cc !important;
   outline-offset: 3px !important;
   border-radius: 4px !important;
 }
 
-.enhanced-focus-mode .MuiButton-root:focus {
-  outline: 4px solid #0066cc !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 6px #0066cc !important;
-}
-
+.enhanced-focus-mode .MuiButton-root:focus,
 .enhanced-focus-mode .MuiIconButton-root:focus {
   outline: 4px solid #0066cc !important;
   outline-offset: 2px !important;
   box-shadow: 0 0 0 2px #ffffff, 0 0 0 6px #0066cc !important;
 }
 
-.enhanced-focus-mode .MuiSwitch-root:focus-within {
-  outline: 4px solid #0066cc !important;
-  outline-offset: 2px !important;
-}
-
+.enhanced-focus-mode .MuiSwitch-root:focus-within,
 .enhanced-focus-mode .MuiSlider-root:focus-within {
   outline: 4px solid #0066cc !important;
   outline-offset: 2px !important;
 }
 
-/* Reduced Motion Mode */
+/* ============================================
+   REDUCED MOTION MODE
+   ============================================ */
+
 .reduced-motion-mode *,
 .reduced-motion-mode *::before,
 .reduced-motion-mode *::after {
@@ -764,19 +694,16 @@
   scroll-behavior: auto !important;
 }
 
-.reduced-motion-mode .MuiButton-root {
-  transition: none !important;
-}
-
-.reduced-motion-mode .MuiCard-root {
-  transition: none !important;
-}
-
+.reduced-motion-mode .MuiButton-root,
+.reduced-motion-mode .MuiCard-root,
 .reduced-motion-mode .MuiPaper-root {
   transition: none !important;
 }
 
-/* Combined modes */
+/* ============================================
+   COMBINED MODES
+   ============================================ */
+
 .high-contrast-mode.large-text-mode {
   font-size: 125% !important;
 }
@@ -790,6 +717,10 @@
   outline: 4px solid var(--hc-focus) !important;
   outline-offset: 3px !important;
 }
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
 
 /* Skip to content link */
 .skip-to-content {
@@ -847,132 +778,17 @@
   outline-offset: 3px !important;
 }
 
-/* High contrast mode for forced-colors media query */
-/* Final override for demo video card - must be last to ensure white background */
-.high-contrast-mode .MuiCard-root.demo-video-card.MuiCard-root {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
-/* Library of the Blind card - white background with black text in high contrast mode */
-.high-contrast-mode .library-of-blind-card,
-.high-contrast-mode .library-of-blind-card.MuiCard-root,
-.high-contrast-mode .MuiCard-root.library-of-blind-card,
-.high-contrast-mode a.library-of-blind-card,
-.high-contrast-mode .MuiCard-root.library-of-blind-card[style*="linear-gradient"],
-.high-contrast-mode .library-of-blind-card[style*="linear-gradient"] {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
-.high-contrast-mode .library-of-blind-card .MuiTypography-root,
-.high-contrast-mode .library-of-blind-card .MuiTypography-h6,
-.high-contrast-mode .library-of-blind-card .MuiTypography-body2,
-.high-contrast-mode .library-of-blind-card span,
-.high-contrast-mode .library-of-blind-card p {
-  color: #000000 !important;
-}
-
-/* Direct class targeting for Library of the Blind text */
-.high-contrast-mode .library-of-blind-title,
-.high-contrast-mode .library-of-blind-title.MuiTypography-root,
-.high-contrast-mode .library-of-blind-title.MuiTypography-h6,
-.high-contrast-mode span.library-of-blind-title,
-.high-contrast-mode .MuiTypography-root.library-of-blind-title {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .library-of-blind-description,
-.high-contrast-mode .library-of-blind-description.MuiTypography-root,
-.high-contrast-mode .library-of-blind-description.MuiTypography-body2,
-.high-contrast-mode p.library-of-blind-description,
-.high-contrast-mode .MuiTypography-root.library-of-blind-description {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .library-of-blind-card .MuiSvgIcon-root {
-  color: #000000 !important;
-}
-
-/* Famous People filter section - white background with black text in high contrast mode */
-.high-contrast-mode .famous-people-filter-section {
-  background-color: #ffffff !important;
-  padding: 16px !important;
-  border-radius: 8px !important;
-  border: 2px solid #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiTextField-root,
-.high-contrast-mode .famous-people-filter-section .MuiFormControl-root {
-  background-color: #ffffff !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiInputBase-root,
-.high-contrast-mode .famous-people-filter-section .MuiInputBase-input,
-.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root,
-.high-contrast-mode .famous-people-filter-section .MuiInputLabel-root.Mui-focused,
-.high-contrast-mode .famous-people-filter-section .MuiSelect-select,
-.high-contrast-mode .famous-people-filter-section .MuiMenuItem-root,
-.high-contrast-mode .famous-people-filter-section input::placeholder,
-.high-contrast-mode .famous-people-filter-section input::-webkit-input-placeholder,
-.high-contrast-mode .famous-people-filter-section input::-moz-placeholder {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-notchedOutline {
-  border-color: #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-.high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #000000 !important;
-  border-width: 2px !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiTypography-root {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-section .MuiButton-outlined {
-  color: #000000 !important;
-  border-color: #000000 !important;
-}
-
-/* FINAL OVERRIDE: Library of the Blind card - must be last for highest specificity */
-html.high-contrast-mode .library-of-blind-card,
-html.high-contrast-mode .library-of-blind-card.MuiCard-root,
-html.high-contrast-mode .MuiCard-root.library-of-blind-card,
-html.high-contrast-mode a.library-of-blind-card.MuiCard-root,
-body.high-contrast-mode .library-of-blind-card,
-.high-contrast-mode .library-of-blind-card.MuiPaper-root {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
-html.high-contrast-mode .library-of-blind-title,
-html.high-contrast-mode .library-of-blind-description,
-body.high-contrast-mode .library-of-blind-title,
-body.high-contrast-mode .library-of-blind-description,
-.high-contrast-mode .library-of-blind-title,
-.high-contrast-mode .library-of-blind-description,
-.high-contrast-mode .library-of-blind-card .MuiBox-root .MuiTypography-root {
-  color: #000000 !important;
-}
+/* ============================================
+   MEDIA QUERIES
+   ============================================ */
 
 @media (forced-colors: active) {
-  .high-contrast-mode {
-    forced-color-adjust: none;
-  }
-
+  .high-contrast-mode,
   .high-contrast-mode * {
     forced-color-adjust: none;
   }
 }
 
-/* Print styles for accessibility */
 @media print {
   .skip-to-content,
   .MuiAppBar-root,
@@ -985,4 +801,4 @@ body.high-contrast-mode .library-of-blind-description,
     color: black !important;
     box-shadow: none !important;
   }
-} 
+}

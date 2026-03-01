@@ -14,7 +14,6 @@
   "buttons": {
     "back": "TAKAISIN",
     "next": "Seuraava",
-    "viewSimulation": "Näytä Simulaatio",
     "clearFilters": "Tyhjennä Suodattimet",
     "deselectAll": "Poista Kaikki Valinnat",
     "support": "Tuki",
@@ -38,7 +37,6 @@
     "title": "Näkötilan Simulaattori",
     "step1": "Valitse Lähde",
     "step2": "Valitse Näkötilat",
-    "step3": "Näytä Simulaatio",
     "selectConditions": "Valitse Näkötilat",
     "visionPreview": "Näön Esikatselu",
     "combinedPreview": "Yhdistetty Näön Esikatselu ({{count}} tilaa)",
@@ -49,7 +47,6 @@
     "condition": "Tila: {{condition}}",
     "screenReaderStep1": "Vaihe 1: Valitse lähde - verkkokamera, kuvan lataus tai YouTube-video",
     "screenReaderStep2": "Vaihe 2: Valitse simuloitavat näkötilat",
-    "screenReaderStep3": "Vaihe 3: Katso näkösimulaatiosi",
     "goBack": "Palaa valitsemaan tiloja"
   },
   "inputSelector": {

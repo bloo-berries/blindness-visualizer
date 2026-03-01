@@ -15,6 +15,7 @@ export const createOcularOverlays = (
   const posteriorSubcapsularCataract = getEffect('posteriorSubcapsularCataract');
   const corticalCataract = getEffect('corticalCataract');
   const nuclearCataract = getEffect('cataracts');
+  const keratoconus = getEffect('keratoconus');
 
   // Nuclear Sclerotic Cataract - Yellowing haze overlay (supplements CSS filter)
   if (nuclearCataract?.enabled) {
@@ -259,5 +260,58 @@ export const createOcularOverlays = (
     });
 
     overlayElement.style.opacity = Math.min(0.95, 0.5 + intensity * 0.45).toString();
+  }
+
+  // Keratoconus - Progressive corneal thinning with irregular cone shape
+  // Creates multiple focal points causing ghost images, streaking, and halos
+  if (keratoconus?.enabled) {
+    const intensity = keratoconus.intensity;
+
+    const ghostCount = Math.max(3, Math.floor(3 + intensity * 5));
+    const streakOpacity = 0.15 + intensity * 0.25;
+    const haloOpacity = 0.2 + intensity * 0.3;
+
+    // Ghost image effect using multiple offset radial gradients
+    const ghostLayers: string[] = [];
+    for (let i = 0; i < ghostCount; i++) {
+      const angle = (i / ghostCount) * Math.PI * 2;
+      const distance = 3 + intensity * 8;
+      const offsetX = 50 + Math.cos(angle) * distance;
+      const offsetY = 50 + Math.sin(angle) * distance;
+      const ghostOpacity = (0.08 + intensity * 0.12) * (1 - i * 0.1);
+
+      ghostLayers.push(
+        `radial-gradient(ellipse 80% 80% at ${offsetX}% ${offsetY}%, rgba(255,255,255,${ghostOpacity}) 0%, rgba(255,255,255,${ghostOpacity * 0.5}) 30%, transparent 70%)`
+      );
+    }
+
+    // Streaking effect - elongated gradients simulating comet tails
+    const streaks = [
+      `linear-gradient(180deg, transparent 0%, rgba(255,255,255,${streakOpacity}) 20%, rgba(255,255,255,${streakOpacity * 0.6}) 50%, transparent 100%)`,
+      `linear-gradient(160deg, transparent 0%, rgba(255,255,255,${streakOpacity * 0.7}) 30%, transparent 70%)`,
+      `linear-gradient(200deg, transparent 0%, rgba(255,255,255,${streakOpacity * 0.7}) 30%, transparent 70%)`,
+      `linear-gradient(135deg, transparent 20%, rgba(255,255,255,${streakOpacity * 0.5}) 40%, rgba(255,255,255,${streakOpacity * 0.3}) 60%, transparent 80%)`,
+      `linear-gradient(225deg, transparent 20%, rgba(255,255,255,${streakOpacity * 0.4}) 40%, transparent 70%)`
+    ];
+
+    // Halos around simulated light sources
+    const halos = [
+      `radial-gradient(ellipse 60% 70% at 50% 45%, rgba(255,255,255,${haloOpacity}) 0%, rgba(255,255,255,${haloOpacity * 0.5}) 40%, transparent 70%)`,
+      `radial-gradient(circle at 30% 25%, rgba(255,255,255,${haloOpacity * 0.6}) 0%, transparent 20%)`,
+      `radial-gradient(circle at 70% 35%, rgba(255,255,255,${haloOpacity * 0.5}) 0%, transparent 18%)`,
+      `radial-gradient(circle at 50% 75%, rgba(255,255,255,${haloOpacity * 0.4}) 0%, transparent 15%)`
+    ];
+
+    const background = [...ghostLayers, ...streaks, ...halos].join(', ');
+
+    createOverlay(
+      'visual-field-overlay-keratoconus',
+      background,
+      'screen',
+      Math.min(1, 0.5 + intensity * 0.5).toString(),
+      `blur(${intensity * 2}px)`,
+      undefined,
+      'keratoconus'
+    );
   }
 };

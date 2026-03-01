@@ -447,15 +447,20 @@ const Visualizer: React.FC<VisualizerProps> = ({
           )}
 
           {!showComparison && (
-            <Box sx={{ position: 'absolute', top: '20px', right: '20px', zIndex: 10000 }}>
+            <Box sx={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10000 }}>
               <Button
                 variant="contained"
                 color="primary"
+                size="small"
                 onClick={handleToggleComparison}
                 disabled={isLoading}
                 sx={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
                   color: 'white',
+                  fontSize: '0.7rem',
+                  px: 1.5,
+                  py: 0.5,
+                  minWidth: 'auto',
                   '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
                 }}
               >

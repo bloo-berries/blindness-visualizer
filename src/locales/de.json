@@ -14,7 +14,6 @@
   "buttons": {
     "back": "ZURÜCK",
     "next": "Weiter",
-    "viewSimulation": "Simulation ansehen",
     "clearFilters": "Filter löschen",
     "deselectAll": "Alle abwählen",
     "support": "Unterstützen",
@@ -40,7 +39,6 @@
     "title": "Sehbeeinträchtigung-Simulator",
     "step1": "Eingabequelle wählen",
     "step2": "Sehbeeinträchtigungen auswählen",
-    "step3": "Simulation ansehen",
     "selectConditions": "Sehbeeinträchtigungen auswählen",
     "visionPreview": "Sicht-Vorschau",
     "combinedPreview": "Kombinierte Vorschau ({{count}} Beeinträchtigungen)",
@@ -51,7 +49,6 @@
     "condition": "Beeinträchtigung: {{condition}}",
     "screenReaderStep1": "Schritt 1: Wählen Sie Ihre Eingabequelle - Webcam, Bild oder YouTube-Video",
     "screenReaderStep2": "Schritt 2: Wählen Sie die zu simulierenden Sehbeeinträchtigungen",
-    "screenReaderStep3": "Schritt 3: Sehen Sie Ihre Sicht-Simulation",
     "goBack": "Zurück zur Beeinträchtigungs-Auswahl"
   },
   "inputSelector": {

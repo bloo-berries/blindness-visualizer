@@ -23,14 +23,14 @@ export const retinalEffects: VisualEffect[] = [
     id: 'amd',
     name: 'Age-Related Macular Degeneration (AMD)',
     enabled: false,
-    intensity: 0.75,
+    intensity: 1.0,
     description: 'Deterioration of the macula, the central part of the retina. Causes loss of central vision while peripheral vision remains. Leading cause of vision loss in older adults.'
   },
   {
     id: 'diabeticRetinopathy',
     name: 'Diabetic Retinopathy',
     enabled: false,
-    intensity: 0.75,
+    intensity: 1.0,
     description: 'Damage to the blood vessels in the retina caused by diabetes. Can cause blurry vision, dark spots, and eventually blindness if untreated.'
   },
   {

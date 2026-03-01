@@ -14,7 +14,6 @@
   "buttons": {
     "back": "TILBAKA",
     "next": "Næsta",
-    "viewSimulation": "Skoða Hermun",
     "clearFilters": "Hreinsa Síur",
     "deselectAll": "Afvelja Allt",
     "support": "Styðja",
@@ -38,7 +37,6 @@
     "title": "Sjónástands Hermir",
     "step1": "Veldu Inntaksheimild",
     "step2": "Veldu Sjónástand",
-    "step3": "Skoða Hermun",
     "selectConditions": "Veldu Sjónástand",
     "visionPreview": "Sjónforskoðun",
     "combinedPreview": "Sameinuð Sjónforskoðun ({{count}} ástand)",
@@ -49,7 +47,6 @@
     "condition": "Ástand: {{condition}}",
     "screenReaderStep1": "Skref 1: Veldu inntaksheimild - vefmyndavél, myndaupphleðsla eða YouTube myndband",
     "screenReaderStep2": "Skref 2: Veldu sjónástand til að herma",
-    "screenReaderStep3": "Skref 3: Skoðaðu sjónhermun þína",
     "goBack": "Fara til baka til að velja ástand"
   },
   "inputSelector": {

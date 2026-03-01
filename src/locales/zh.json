@@ -14,7 +14,6 @@
   "buttons": {
     "back": "返回",
     "next": "下一步",
-    "viewSimulation": "查看模拟",
     "clearFilters": "清除筛选",
     "deselectAll": "取消全选",
     "support": "支持",
@@ -40,7 +39,6 @@
     "title": "视觉障碍模拟器",
     "step1": "选择输入源",
     "step2": "选择视觉障碍",
-    "step3": "查看模拟",
     "selectConditions": "选择视觉障碍",
     "visionPreview": "视觉预览",
     "combinedPreview": "组合预览（{{count}}种障碍）",
@@ -51,7 +49,6 @@
     "condition": "障碍：{{condition}}",
     "screenReaderStep1": "第1步：选择输入源 - 网络摄像头、图片或YouTube视频",
     "screenReaderStep2": "第2步：选择要模拟的视觉障碍",
-    "screenReaderStep3": "第3步：查看您的视觉模拟",
     "goBack": "返回选择障碍"
   },
   "inputSelector": {

@@ -139,8 +139,7 @@ export const generateSymptomPreviewStyle = (
       };
     }
     
-    // CSS filter-based conditions are now handled directly in EffectPreview.tsx
-    // These conditions don't need overlay elements, just CSS filters on the base image
+    // CSS filter-based conditions don't need overlay elements, just CSS filters on the base image
     case 'dryEye':
     case 'posteriorSubcapsularCataract':
     case 'presbyopia':
@@ -153,7 +152,7 @@ export const generateSymptomPreviewStyle = (
     case 'persistentPositiveVisualPhenomenon':
     case 'palinopsia':
     case 'trails':
-      return null; // Handled by CSS filters in EffectPreview.tsx
+      return null; // Handled by CSS filters
     // Note: blueFieldPhenomena is now handled by visualDisturbancePreview.ts
     
     default:

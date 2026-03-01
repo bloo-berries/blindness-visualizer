@@ -16,7 +16,6 @@
   "buttons": {
     "back": "BACK",
     "next": "Next",
-    "viewSimulation": "View Simulation",
     "clearFilters": "Clear Filters",
     "deselectAll": "Deselect All",
     "support": "Support",
@@ -40,7 +39,6 @@
     "title": "Vision Condition Simulator",
     "step1": "Choose Input Source",
     "step2": "Select Vision Conditions",
-    "step3": "View Simulation",
     "selectConditions": "Select Vision Conditions",
     "visionPreview": "Vision Preview",
     "combinedPreview": "Combined Vision Preview ({{count}} conditions)",
@@ -51,7 +49,6 @@
     "condition": "Condition: {{condition}}",
     "screenReaderStep1": "Step 1: Choose your input source - webcam, image upload, or YouTube video",
     "screenReaderStep2": "Step 2: Select vision conditions to simulate",
-    "screenReaderStep3": "Step 3: View your vision simulation",
     "goBack": "Go back to select conditions"
   },
   "inputSelector": {

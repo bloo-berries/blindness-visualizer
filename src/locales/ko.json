@@ -14,7 +14,6 @@
   "buttons": {
     "back": "뒤로",
     "next": "다음",
-    "viewSimulation": "시뮬레이션 보기",
     "clearFilters": "필터 지우기",
     "deselectAll": "모두 선택 해제",
     "support": "후원",
@@ -40,7 +39,6 @@
     "title": "시각 장애 시뮬레이터",
     "step1": "입력 소스 선택",
     "step2": "시각 장애 선택",
-    "step3": "시뮬레이션 보기",
     "selectConditions": "시각 장애 선택",
     "visionPreview": "시각 미리보기",
     "combinedPreview": "복합 미리보기 ({{count}}개 장애)",
@@ -51,7 +49,6 @@
     "condition": "장애: {{condition}}",
     "screenReaderStep1": "1단계: 입력 소스 선택 - 웹캠, 이미지 또는 YouTube 동영상",
     "screenReaderStep2": "2단계: 시뮬레이션할 시각 장애 선택",
-    "screenReaderStep3": "3단계: 시각 시뮬레이션 보기",
     "goBack": "장애 선택으로 돌아가기"
   },
   "inputSelector": {

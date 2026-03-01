@@ -91,19 +91,18 @@ const HomePage: React.FC = () => {
                     <Box sx={{ mb: 2 }}>
                       <VisibilityIcon sx={{
                         fontSize: 50,
-                        color: preferences.highContrast ? '#000000' : 'var(--color-primary-accent)',
+                        color: 'var(--color-primary-accent)',
                         mb: 1.5
                       }} />
-                      <Typography 
-                        variant="h5" 
-                        component="h2" 
+                      <Typography
+                        variant="h5"
+                        component="h2"
                         gutterBottom
                         className="homepage-card-title homepage-card-title-left"
-                        sx={{ 
+                        sx={{
                           fontWeight: 600,
-                          color: preferences.highContrast ? '#000000' : 'text.primary',
-                          mb: 1.5,
-                          ...(preferences.highContrast && { color: '#000000 !important' })
+                          color: preferences.highContrast ? '#ffffff' : 'text.primary',
+                          mb: 1.5
                         }}
                       >
                         {t('home.card1Title')}
@@ -165,19 +164,18 @@ const HomePage: React.FC = () => {
                     <Box sx={{ mb: 2 }}>
                       <PeopleIcon sx={{
                         fontSize: 50,
-                        color: preferences.highContrast ? '#000000' : 'var(--color-primary-accent)',
+                        color: 'var(--color-primary-accent)',
                         mb: 1.5
                       }} />
-                      <Typography 
-                        variant="h5" 
-                        component="h2" 
+                      <Typography
+                        variant="h5"
+                        component="h2"
                         gutterBottom
                         className="homepage-card-title homepage-card-title-right"
-                        sx={{ 
+                        sx={{
                           fontWeight: 600,
-                          color: preferences.highContrast ? '#000000' : 'text.primary',
-                          mb: 1.5,
-                          ...(preferences.highContrast && { color: '#000000 !important' })
+                          color: preferences.highContrast ? '#ffffff' : 'text.primary',
+                          mb: 1.5
                         }}
                       >
                         {t('home.card2Title')}

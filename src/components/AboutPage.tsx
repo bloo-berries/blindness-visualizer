@@ -63,7 +63,8 @@ const AboutPage: React.FC = () => {
             <Typography variant="body1" className="personal-journey-text" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
-              mb: 3
+              mb: 3,
+              color: '#A0AEB8'
             }}>
               {t('about.greeting')}
             </Typography>
@@ -71,7 +72,8 @@ const AboutPage: React.FC = () => {
             <Typography variant="body1" className="personal-journey-text" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
-              mb: 3
+              mb: 3,
+              color: '#A0AEB8'
             }}>
               {t('about.story')}
             </Typography>

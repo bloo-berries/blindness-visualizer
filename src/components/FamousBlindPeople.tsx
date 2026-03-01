@@ -23,6 +23,7 @@ import { PersonCard } from './FamousBlindPeople/PersonCard';
 import { PersonDialog } from './FamousBlindPeople/PersonDialog';
 import { getPersonImagePath } from '../utils/imagePaths';
 import { FlagWithName } from '../utils/flagUtils';
+import { useAccessibility } from '../contexts/AccessibilityContext';
 
 // ============================================
 // STATIC DATA - Moved outside component
@@ -178,6 +179,7 @@ const FamousBlindPeople: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const { preferences } = useAccessibility();
 
   // State
   const [searchTerm, setSearchTerm] = useState('');
@@ -459,7 +461,7 @@ const FamousBlindPeople: React.FC = () => {
           </Grid>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" className="famous-people-filter-text" sx={{ color: preferences.highContrast ? '#000000' : 'var(--color-text-primary)' }}>
               {t('famousPeople.showingResults', { count: filteredPeople.length, total: PERSON_COUNT })}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -469,10 +471,14 @@ const FamousBlindPeople: React.FC = () => {
                     checked={hideCompleteBlindness}
                     onChange={(e) => setHideCompleteBlindness(e.target.checked)}
                     size="small"
+                    sx={preferences.highContrast ? {
+                      '& .MuiSwitch-thumb': { backgroundColor: '#000000' },
+                      '& .MuiSwitch-track': { backgroundColor: '#000000 !important', opacity: '0.5 !important' }
+                    } : {}}
                   />
                 }
                 label={
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" className="famous-people-filter-text" sx={{ color: preferences.highContrast ? '#000000' : 'var(--color-text-primary)' }}>
                     {t('famousPeople.hideTotalDarkness')}
                   </Typography>
                 }

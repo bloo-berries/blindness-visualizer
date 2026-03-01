@@ -459,7 +459,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
                 }}
               >
-                Back to Comparison
+                Compare to Normal Vision
               </Button>
             </Box>
           )}

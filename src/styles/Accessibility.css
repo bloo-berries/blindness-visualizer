@@ -280,7 +280,7 @@
   color: #000000 !important;
 }
 
-/* Homepage text styling with maximum specificity for high contrast mode - Must come after general card rules */
+/* Homepage text styling for high contrast mode - white text on black card backgrounds */
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
 .high-contrast-mode .MuiCard-root .homepage-card-title,
 .high-contrast-mode .MuiCardContent-root .homepage-card-title,
@@ -293,7 +293,7 @@
 .high-contrast-mode .homepage-card-title-left,
 .high-contrast-mode .homepage-card-title-right,
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
@@ -307,28 +307,28 @@
 .high-contrast-mode .MuiTypography-body2.homepage-card-description,
 .high-contrast-mode .homepage-card-description-left,
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .homepage-features-title,
 .high-contrast-mode .homepage-features-title.MuiTypography-root,
 .high-contrast-mode .homepage-features-title.MuiTypography-h6,
 .high-contrast-mode .MuiTypography-h6.homepage-features-title {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .homepage-feature-item,
 .high-contrast-mode .homepage-feature-item.MuiTypography-root,
 .high-contrast-mode .homepage-feature-item.MuiTypography-body2,
 .high-contrast-mode .MuiTypography-body2.homepage-feature-item {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .homepage-featured-title,
 .high-contrast-mode .homepage-featured-title.MuiTypography-root,
 .high-contrast-mode .homepage-featured-title.MuiTypography-h6,
 .high-contrast-mode .MuiTypography-h6.homepage-featured-title {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 /* Even more specific selectors */
@@ -337,7 +337,7 @@
 .high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-features-title,
 .high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-feature-item,
 .high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-featured-title {
-  color: #000000 !important;
+  color: var(--hc-text) !important;
 }
 
 /* Apply to specific Material-UI components */
@@ -436,10 +436,10 @@
 
 /* Icons in cards should also be visible */
 .high-contrast-mode .MuiCardContent-root .MuiSvgIcon-root {
-  color: #000000 !important;
+  color: var(--hc-primary) !important;
 }
 
-/* Homepage card text - Must come after general card rules with higher specificity */
+/* Homepage card text - white on black card backgrounds in high contrast */
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-title,
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description,
 .high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-title,
@@ -448,6 +448,22 @@
 .high-contrast-mode .MuiCard-root .homepage-card-description,
 .high-contrast-mode .MuiCardContent-root .homepage-card-title,
 .high-contrast-mode .MuiCardContent-root .homepage-card-description {
+  color: var(--hc-text) !important;
+}
+
+/* Famous People filter text and switch - black on white filter card (must beat 0-4-0 specificity of general rule) */
+.high-contrast-mode .MuiTypography-root.MuiTypography-body2.famous-people-filter-text,
+.high-contrast-mode .MuiBox-root .MuiTypography-root.famous-people-filter-text,
+.high-contrast-mode .famous-people-filter-text.famous-people-filter-text {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .famous-people-filter-switch .MuiSwitch-track {
+  background-color: #000000 !important;
+  opacity: 0.5 !important;
+}
+
+.high-contrast-mode .famous-people-filter-switch .MuiSwitch-thumb {
   color: #000000 !important;
 }
 

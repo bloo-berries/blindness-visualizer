@@ -330,6 +330,9 @@ export class OverlayManager {
   clearOverlays(): void {
     this.overlayCache.forEach(overlay => overlay.remove());
     this.overlayCache.clear();
+    // Also remove DOM overlays created by createVisualFieldOverlays
+    document.querySelectorAll('[id^="visual-field-overlay-"]').forEach(overlay => overlay.remove());
+    this.lastOverlayState = '';
   }
 
   /**

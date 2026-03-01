@@ -54,7 +54,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
     },
     {
       type: 'youtube',
-      icon: <YouTube sx={{ fontSize: 36 }} aria-hidden="true" />,
+      icon: <YouTube sx={{ fontSize: 36, color: '#1e3a8a' }} aria-hidden="true" />,
       title: t('inputSelector.demoVideo'),
       description: t('inputSelector.demoVideoDesc'),
       isPremium: false

@@ -23,6 +23,9 @@ import { useTranslation } from 'react-i18next';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import AccessibilityMenu from './AccessibilityMenu';
 import LanguageSelector from './LanguageSelector';
 import { useAccessibility } from '../contexts/AccessibilityContext';
@@ -41,7 +44,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { preferences } = useAccessibility();
+  const { preferences, cycleThemeMode } = useAccessibility();
   const { t } = useTranslation();
 
   const handleHomeClick = () => {
@@ -109,10 +112,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         top: 0,
         left: 0,
         right: 0,
-        backgroundColor: '#1e293b',
+        backgroundColor: 'var(--color-navbar-bg)',
         backdropFilter: 'blur(10px)',
         borderTop: 'none !important',
-        borderBottom: '1px solid #334155',
+        borderBottom: '1px solid var(--color-navbar-border)',
         boxShadow: 'none',
         margin: 0,
         padding: 0,
@@ -191,18 +194,23 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
           {/* Desktop Navigation */}
           {!isMobile && (
-            <Box sx={{ 
-              display: 'flex', 
-              gap: 1,
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)'
-            }}>
+            <Box
+              component="nav"
+              aria-label={t('nav.mainNavigation')}
+              sx={{
+                display: 'flex',
+                gap: 1,
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)'
+              }}
+            >
               {navItems.map((item) => (
                 <Button
                   key={item.label}
                   color="inherit"
                   onClick={() => navigate(item.path)}
+                  aria-current={location.pathname === item.path ? 'page' : undefined}
                   sx={{
                     color: 'white',
                     fontWeight: 600,
@@ -251,8 +259,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             </IconButton>
           )}
 
-          {/* Start Simulator Button */}
-          {showHomeButton && (
+          {/* Start Simulator Button - hidden on mobile to save space */}
+          {showHomeButton && !isMobile && (
             <Tooltip title={t('nav.startSimulator')}>
               <IconButton
                 onClick={handleStartSimulator}
@@ -278,6 +286,33 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
           {/* Language Selector */}
           <LanguageSelector />
 
+          {/* Theme Toggle */}
+          <Tooltip title={t(`theme.${preferences.themeMode}`)}>
+            <IconButton
+              onClick={cycleThemeMode}
+              aria-label={t('theme.toggle')}
+              size="large"
+              sx={{
+                color: 'white',
+                width: '40px',
+                height: '40px',
+                '&:hover': {
+                  color: '#60a5fa',
+                  backgroundColor: 'rgba(96, 165, 250, 0.15)',
+                },
+                '&.Mui-focusVisible': {
+                  outline: '3px solid #60a5fa',
+                  outlineOffset: '2px'
+                },
+                transition: 'all 0.2s ease-in-out'
+              }}
+            >
+              {preferences.themeMode === 'light' && <LightModeIcon fontSize="medium" />}
+              {preferences.themeMode === 'dim' && <Brightness4Icon fontSize="medium" />}
+              {preferences.themeMode === 'dark' && <DarkModeIcon fontSize="medium" />}
+            </IconButton>
+          </Tooltip>
+
           {/* Accessibility Menu */}
           <AccessibilityMenu />
         </Toolbar>
@@ -289,6 +324,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
       anchor="right"
       open={mobileMenuOpen}
       onClose={handleMobileMenuToggle}
+      aria-label={t('nav.mobileNavigation')}
       ModalProps={{
         keepMounted: true, // Better mobile performance
       }}
@@ -297,7 +333,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: 280,
-          backgroundColor: '#1e293b',
+          backgroundColor: 'var(--color-drawer-bg)',
           color: 'white',
         },
       }}

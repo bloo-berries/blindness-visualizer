@@ -24,7 +24,8 @@ import {
   TextFields as TextFieldsIcon,
   FormatLineSpacing as SpacingIcon,
   Visibility as FocusIcon,
-  Speed as MotionIcon
+  Speed as MotionIcon,
+  Close as CloseIcon
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../contexts/AccessibilityContext';
@@ -37,8 +38,10 @@ const AccessibilityMenu: React.FC = () => {
   const { preferences, toggleHighContrast, toggleLargeText, toggleIncreasedSpacing, toggleEnhancedFocus, toggleReducedMotion } = useAccessibility();
   const { t } = useTranslation();
 
-  // Count active accessibility features
-  const activeFeaturesCount = Object.values(preferences).filter(Boolean).length;
+  // Count active accessibility features (exclude themeMode which is not a boolean toggle)
+  const activeFeaturesCount = Object.entries(preferences)
+    .filter(([key]) => key !== 'themeMode')
+    .filter(([, value]) => value === true).length;
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (isMobile) {
@@ -334,15 +337,31 @@ const AccessibilityMenu: React.FC = () => {
                 mb: 2,
               }}
             />
-            
-            {/* Header */}
-            <Box sx={{ px: 3, pb: 2 }}>
-              <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
-                {t('accessibility.menu')}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                WCAG 2.1 AA
-              </Typography>
+
+            {/* Header with Close Button */}
+            <Box sx={{ px: 3, pb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <Box>
+                <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
+                  {t('accessibility.menu')}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  WCAG 2.1 AA
+                </Typography>
+              </Box>
+              <IconButton
+                onClick={handleClose}
+                aria-label="Close accessibility menu"
+                size="small"
+                sx={{
+                  mt: -0.5,
+                  color: 'text.secondary',
+                  '&:hover': {
+                    backgroundColor: 'action.hover',
+                  }
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
             </Box>
             
             <Divider />

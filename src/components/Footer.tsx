@@ -13,13 +13,13 @@ const Footer: React.FC = () => {
       component="footer"
       sx={{
         py: { xs: 0.75, sm: 1 },
-        bgcolor: 'grey.50',
+        bgcolor: 'var(--color-footer-bg)',
         position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
         zIndex: 10001,
-        borderTop: '1px solid #e2e8f0'
+        borderTop: '1px solid var(--color-border)'
       }}
     >
       <Container maxWidth={false} sx={{ maxWidth: '1000px', px: { xs: 1.5, sm: 2 } }}>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
               }}
               aria-label={t('nav.resources')}
               sx={{
-                color: '#374151',
+                color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
                 fontSize: { xs: '0.65rem', sm: '0.875rem' },
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
               }}
               aria-label={t('footer.feedback')}
               sx={{
-                color: '#374151',
+                color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
                 fontSize: { xs: '0.65rem', sm: '0.875rem' },
@@ -175,13 +175,17 @@ const Footer: React.FC = () => {
           </Button>
 
           {/* Right section - Other links */}
-          <Box sx={{
-            display: 'flex',
-            gap: 3,
-            alignItems: 'center',
-            position: 'absolute',
-            right: 0
-          }}>
+          <Box
+            component="nav"
+            aria-label="Footer navigation"
+            sx={{
+              display: 'flex',
+              gap: 3,
+              alignItems: 'center',
+              position: 'absolute',
+              right: 0
+            }}
+          >
             <Link
               href="#"
               onClick={(e) => {
@@ -190,7 +194,7 @@ const Footer: React.FC = () => {
               }}
               aria-label={t('nav.resources')}
               sx={{
-                color: '#374151',
+                color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
                 '&:hover': {
@@ -214,7 +218,7 @@ const Footer: React.FC = () => {
               }}
               aria-label={t('footer.feedback')}
               sx={{
-                color: '#374151',
+                color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
                 '&:hover': {
@@ -239,7 +243,7 @@ const Footer: React.FC = () => {
                 aria-label={t('nav.viewOnGithub')}
                 size="small"
                 sx={{
-                  color: '#374151',
+                  color: 'var(--color-footer-text)',
                   '&:hover': {
                     color: 'primary.main',
                     backgroundColor: 'transparent'

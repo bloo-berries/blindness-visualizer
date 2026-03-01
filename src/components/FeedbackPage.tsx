@@ -18,9 +18,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
+  OutlinedInput,
   SelectChangeEvent
 } from '@mui/material';
 import {
@@ -126,15 +124,11 @@ const FeedbackPage: React.FC = () => {
     }));
   }, []);
 
-  const handleAccessibilityChange = useCallback((value: string) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const isChecked = event.target.checked;
+  const handleAccessibilityChange = useCallback((event: SelectChangeEvent<string[]>) => {
+    const value = event.target.value;
     setFormData(prev => ({
       ...prev,
-      accessibilityNeeds: isChecked
-        ? [...(prev.accessibilityNeeds || []), value]
-        : (prev.accessibilityNeeds || []).filter(item => item !== value)
+      accessibilityNeeds: typeof value === 'string' ? value.split(',') : value
     }));
   }, []);
 
@@ -174,7 +168,7 @@ const FeedbackPage: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <NavigationBar />
       
-      <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 8 }}>
+      <Container component="main" id="main-content" maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 8 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography
@@ -203,10 +197,14 @@ const FeedbackPage: React.FC = () => {
           <Grid item xs={12} md={4}>
             <Card sx={{ height: 'fit-content', position: 'sticky', top: 100 }}>
               <CardContent>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }} id="feedback-type-label">
                   {t('feedbackPage.whatToShare')}
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 2 }}>
+                <Box
+                  sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 2 }}
+                  role="radiogroup"
+                  aria-labelledby="feedback-type-label"
+                >
                   {feedbackTypes.map((type) => (
                     <Chip
                       key={type.value}
@@ -215,6 +213,9 @@ const FeedbackPage: React.FC = () => {
                       variant={formData.type === type.value ? 'filled' : 'outlined'}
                       color={formData.type === type.value ? type.color : 'default'}
                       onClick={() => setFormData(prev => ({ ...prev, type: type.value }))}
+                      role="radio"
+                      aria-checked={formData.type === type.value}
+                      tabIndex={0}
                       sx={{
                         justifyContent: 'flex-start',
                         height: 'auto',
@@ -241,7 +242,7 @@ const FeedbackPage: React.FC = () => {
                 backgroundColor: 'background.paper'
               }}
             >
-              <form onSubmit={handleSubmit} className="feedback-form">
+              <form onSubmit={handleSubmit} className="feedback-form" aria-label={t('feedbackPage.title')}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {/* Name and Email */}
                   <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
@@ -326,28 +327,36 @@ const FeedbackPage: React.FC = () => {
                     </FormControl>
                   </Box>
 
-                  {/* Accessibility Needs Checkboxes */}
-                  <Box>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>
-                      {t('feedbackPage.accessibility.label')}
-                    </Typography>
-                    <FormGroup>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {accessibilityOptions.map((option) => (
-                          <FormControlLabel
-                            key={option.value}
-                            control={
-                              <Checkbox
-                                checked={(formData.accessibilityNeeds || []).includes(option.value)}
-                                onChange={handleAccessibilityChange(option.value)}
+                  {/* Accessibility Needs Dropdown */}
+                  <FormControl fullWidth>
+                    <InputLabel>{t('feedbackPage.accessibility.label')}</InputLabel>
+                    <Select
+                      multiple
+                      value={formData.accessibilityNeeds || []}
+                      onChange={handleAccessibilityChange}
+                      input={<OutlinedInput label={t('feedbackPage.accessibility.label')} />}
+                      renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                          {selected.map((value) => {
+                            const option = accessibilityOptions.find(o => o.value === value);
+                            return (
+                              <Chip
+                                key={value}
+                                label={option ? t(option.labelKey) : value}
+                                size="small"
                               />
-                            }
-                            label={t(option.labelKey)}
-                          />
-                        ))}
-                      </Box>
-                    </FormGroup>
-                  </Box>
+                            );
+                          })}
+                        </Box>
+                      )}
+                    >
+                      {accessibilityOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {t(option.labelKey)}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
 
                   {/* Message */}
                   <TextField
@@ -378,10 +387,10 @@ const FeedbackPage: React.FC = () => {
                   {/* Rating (for general feedback) */}
                   {formData.type === 'general' && (
                     <Box>
-                      <Typography variant="body2" color="text.secondary" gutterBottom>
+                      <Typography variant="body2" color="text.secondary" gutterBottom id="rating-label">
                         {t('feedbackPage.rating.label')}
                       </Typography>
-                      <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
+                      <Box sx={{ display: 'flex', gap: 1, mt: 1 }} role="group" aria-labelledby="rating-label">
                         {[1, 2, 3, 4, 5].map((rating) => (
                           <Button
                             key={rating}
@@ -389,6 +398,8 @@ const FeedbackPage: React.FC = () => {
                             size="small"
                             onClick={() => setFormData(prev => ({ ...prev, rating }))}
                             sx={{ minWidth: '40px' }}
+                            aria-label={`${t('feedbackPage.rating.label')} ${rating} out of 5`}
+                            aria-pressed={formData.rating === rating}
                           >
                             {rating}
                           </Button>
@@ -424,12 +435,6 @@ const FeedbackPage: React.FC = () => {
           </Grid>
         </Grid>
 
-        {/* Additional Information */}
-        <Box sx={{ mt: 6, textAlign: 'center' }}>
-          <Typography variant="body2" color="text.secondary">
-            {t('feedbackPage.messages.footer')}
-          </Typography>
-        </Box>
       </Container>
 
       <Footer />
@@ -437,14 +442,17 @@ const FeedbackPage: React.FC = () => {
       {/* Success Snackbar */}
       <Snackbar
         open={showSuccess}
-        autoHideDuration={6000}
+        autoHideDuration={10000}
         onClose={() => setShowSuccess(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ bottom: { xs: 90, sm: 90 }, zIndex: 9999, maxWidth: '600px' }}
       >
         <Alert
           onClose={() => setShowSuccess(false)}
           severity="success"
           sx={{ width: '100%' }}
+          role="alert"
+          aria-live="polite"
         >
           {t('feedbackPage.messages.success')}
         </Alert>
@@ -456,11 +464,14 @@ const FeedbackPage: React.FC = () => {
         autoHideDuration={6000}
         onClose={() => setShowError(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ bottom: { xs: 90, sm: 90 }, zIndex: 9999 }}
       >
         <Alert
           onClose={() => setShowError(false)}
           severity="error"
           sx={{ width: '100%' }}
+          role="alert"
+          aria-live="assertive"
         >
           {t('feedbackPage.messages.error')}
         </Alert>

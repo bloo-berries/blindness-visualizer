@@ -9,7 +9,9 @@
     "viewOnGithub": "View on GitHub",
     "openMenu": "open navigation menu",
     "startSimulator": "Start Simulator",
-    "home": "Navigate to home page"
+    "home": "Navigate to home page",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation menu"
   },
   "buttons": {
     "back": "BACK",
@@ -324,12 +326,18 @@
     "resetAll": "Reset All",
     "skipToContent": "Skip to main content"
   },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light mode",
+    "dim": "Dim mode",
+    "dark": "Dark mode"
+  },
   "language": {
     "select": "Select Language",
     "current": "Language"
   },
   "footer": {
-    "copyright": "© {{year}} VisionSim",
+    "copyright": "© {{year}} Bloomed Health",
     "feedback": "Feedback",
     "resources": "Resources"
   },
@@ -357,7 +365,7 @@
   },
   "feedbackPage": {
     "title": "Submit Feedback",
-    "subtitle": "Help us improve the Vision Simulator by sharing your thoughts, reporting bugs, or suggesting new features.",
+    "subtitle": "Help us improve! Share thoughts, report bugs, or suggest new features.",
     "whatToShare": "What would you like to share?",
     "feedbackTypes": {
       "general": "General Feedback",
@@ -428,7 +436,7 @@
       "submitting": "Submitting..."
     },
     "messages": {
-      "success": "Thank you for your feedback! We've received your submission and will review it carefully.",
+      "success": "Thank you for your feedback! We appreciate your feedback and will review all submissions carefully. While we can't respond to every message individually, your input helps us make the Vision Simulator better for everyone.",
       "error": "There was an error submitting your feedback. Please try again.",
       "footer": "We appreciate your feedback and will review all submissions carefully. While we can't respond to every message individually, your input helps us make the Vision Simulator better for everyone."
     }

@@ -238,7 +238,7 @@ const ConditionsPage: React.FC = () => {
   };
 
   const getCategoryColor = (_category: string) => {
-    return '#1e3a8a';
+    return 'var(--color-primary)';
   };
 
   return (

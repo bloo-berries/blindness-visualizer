@@ -793,7 +793,7 @@
   width: auto;
   height: auto;
   padding: 15px 20px;
-  background: #1e3a8a;
+  background: var(--color-primary);
   color: white;
   font-weight: 600;
   text-decoration: none;
@@ -822,7 +822,7 @@
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
-  outline: 3px solid #1e3a8a;
+  outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
 

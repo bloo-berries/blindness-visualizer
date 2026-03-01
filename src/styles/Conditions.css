@@ -1,12 +1,12 @@
 /* Conditions Page Styles */
 
 .conditions-glossary {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--color-card-bg);
   min-height: 100vh;
 }
 
 .conditions-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  background: linear-gradient(135deg, var(--color-primary-gradient-start) 0%, var(--color-primary-gradient-end) 100%);
   color: white;
   padding: 4rem 0 2rem;
   margin-bottom: 2rem;
@@ -14,12 +14,12 @@
 }
 
 .conditions-search-section {
-  background: white;
+  background: var(--color-search-bg);
   border-radius: 12px;
   padding: 0.75rem;
   margin-bottom: 2rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .condition-category-accordion {
@@ -27,18 +27,18 @@
   border-radius: 12px !important;
   overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .condition-category-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  background: linear-gradient(135deg, var(--color-primary-gradient-start) 0%, var(--color-primary-gradient-end) 100%) !important;
   color: white !important;
   min-height: 56px !important;
   padding: 0 16px !important;
 }
 
 .condition-category-header:hover {
-  background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+  background: linear-gradient(135deg, var(--color-primary-gradient-end) 0%, var(--color-primary-gradient-end) 100%) !important;
 }
 
 .condition-category-icon {
@@ -59,20 +59,20 @@
 }
 
 .condition-list {
-  background: white;
+  background: var(--color-bg-paper);
   padding: 0;
 }
 
 .condition-item {
   padding: 24px !important;
   padding-right: 160px !important; /* Extra space for thumbnail on desktop */
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border-light);
   transition: background-color 0.2s ease;
   position: relative;
 }
 
 .condition-item:hover {
-  background-color: #f8fafc;
+  background-color: var(--color-hover-bg);
 }
 
 .condition-item:last-child {
@@ -83,12 +83,12 @@
   font-weight: 600 !important;
   font-size: 1.125rem !important;
   margin-bottom: 8px !important;
-  color: #1e293b !important;
+  color: var(--color-condition-name) !important;
 }
 
 .condition-description {
   line-height: 1.6 !important;
-  color: #64748b !important;
+  color: var(--color-condition-desc) !important;
   font-size: 0.875rem !important;
 }
 
@@ -99,7 +99,7 @@
 
 .condition-simulator-button {
   margin-right: 16px !important;
-  color: #1e3a8a !important;
+  color: var(--color-primary) !important;
   transition: all 0.2s ease;
 }
 
@@ -110,8 +110,8 @@
 }
 
 .conditions-info-box {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border: 1px solid #cbd5e1;
+  background: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
   border-radius: 12px;
   padding: 2rem;
   margin-top: 3rem;
@@ -119,19 +119,19 @@
 }
 
 .conditions-info-title {
-  color: #1e293b !important;
+  color: var(--color-condition-name) !important;
   font-weight: 600 !important;
   margin-bottom: 16px !important;
 }
 
 .conditions-info-text {
-  color: #475569 !important;
+  color: var(--color-info-text) !important;
   line-height: 1.6 !important;
   margin-bottom: 16px !important;
 }
 
 .conditions-search-input {
-  background: white;
+  background: var(--color-search-bg);
 }
 
 .conditions-search-input .MuiOutlinedInput-root {
@@ -139,7 +139,7 @@
 }
 
 .conditions-filter-select {
-  background: white;
+  background: var(--color-search-bg);
 }
 
 .conditions-filter-select .MuiOutlinedInput-root {
@@ -160,7 +160,7 @@
 }
 
 .conditions-stats {
-  color: #64748b !important;
+  color: var(--color-text-secondary) !important;
   font-size: 0.875rem !important;
 }
 
@@ -212,7 +212,7 @@
 
 /* Enhanced focus states for accessibility */
 .condition-simulator-button:focus {
-  outline: 3px solid #1e3a8a;
+  outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -230,12 +230,12 @@
 .conditions-empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 .conditions-empty-state h6 {
   margin-bottom: 16px;
-  color: #475569;
+  color: var(--color-info-text);
 }
 
 /* Enhanced chip styling for related people */
@@ -258,7 +258,7 @@
 .condition-treatment-section {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--color-border);
 }
 
 .condition-treatment-header {
@@ -270,7 +270,7 @@
 
 .condition-treatment-title {
   font-weight: 600;
-  color: #1e3a8a;
+  color: var(--color-primary);
   font-size: 0.875rem;
 }
 
@@ -287,21 +287,21 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #1e3a8a;
+  background-color: var(--color-primary);
   margin-right: 8px;
 }
 
 .condition-treatment-notes {
   margin-top: 12px;
   padding: 12px;
-  background-color: #f8fafc;
+  background-color: var(--color-treatment-notes-bg);
   border-radius: 4px;
-  border-left: 3px solid #1e3a8a;
+  border-left: 3px solid var(--color-primary);
 }
 
 .condition-treatment-notes-text {
   font-size: 0.8125rem;
-  color: #64748b;
+  color: var(--color-condition-desc);
   font-style: italic;
   line-height: 1.5;
 }

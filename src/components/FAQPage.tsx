@@ -320,7 +320,7 @@ const FAQPage: React.FC = () => {
 
   const getCategoryColor = (category: string) => {
     // Use the same blue color for all categories
-    return '#1e3a8a';
+    return 'var(--color-primary)';
   };
 
   return (

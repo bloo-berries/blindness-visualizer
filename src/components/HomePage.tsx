@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
                 mb: 1.5
               }}
             >
-              <Box component="span" sx={{ color: 'primary.main' }}>
+              <Box component="span" sx={{ color: 'var(--color-primary-accent)' }}>
                 {t('home.title')}
               </Box>
               {' '}{t('home.titleHighlight')}
@@ -75,8 +75,8 @@ const HomePage: React.FC = () => {
                 sx={{ 
                   height: '100%',
                   p: 3,
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-                  border: '1px solid #e2e8f0',
+                  background: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border)',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   display: 'flex',
                   flexDirection: 'column',
@@ -89,10 +89,10 @@ const HomePage: React.FC = () => {
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
                     <Box sx={{ mb: 2 }}>
-                      <VisibilityIcon sx={{ 
-                        fontSize: 50, 
-                        color: preferences.highContrast ? '#000000' : 'primary.main', 
-                        mb: 1.5 
+                      <VisibilityIcon sx={{
+                        fontSize: 50,
+                        color: preferences.highContrast ? '#000000' : 'var(--color-primary-accent)',
+                        mb: 1.5
                       }} />
                       <Typography 
                         variant="h5" 
@@ -149,8 +149,8 @@ const HomePage: React.FC = () => {
                 sx={{ 
                   height: '100%',
                   p: 3,
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-                  border: '1px solid #e2e8f0',
+                  background: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border)',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   display: 'flex',
                   flexDirection: 'column',
@@ -163,10 +163,10 @@ const HomePage: React.FC = () => {
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
                     <Box sx={{ mb: 2 }}>
-                      <PeopleIcon sx={{ 
-                        fontSize: 50, 
-                        color: preferences.highContrast ? '#000000' : 'primary.main', 
-                        mb: 1.5 
+                      <PeopleIcon sx={{
+                        fontSize: 50,
+                        color: preferences.highContrast ? '#000000' : 'var(--color-primary-accent)',
+                        mb: 1.5
                       }} />
                       <Typography 
                         variant="h5" 
@@ -198,7 +198,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('galileo')} 
@@ -219,7 +219,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('stevie')} 
@@ -240,7 +240,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('helen')} 
@@ -261,7 +261,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('ray')} 
@@ -282,7 +282,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('sharon')} 
@@ -303,7 +303,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('bono')} 
@@ -324,7 +324,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('georgia')} 
@@ -345,7 +345,7 @@ const HomePage: React.FC = () => {
                         height: '70px', 
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        border: '2px solid #e2e8f0'
+                        border: '2px solid var(--color-border)'
                       }}>
                         <img 
                           src={getPersonImagePath('harriet')} 
@@ -395,8 +395,8 @@ const HomePage: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               p: 2,
-              background: preferences.highContrast ? '#ffffff' : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-              border: preferences.highContrast ? '2px solid #000000' : '1px solid #e2e8f0',
+              background: preferences.highContrast ? '#ffffff' : 'var(--color-card-bg)',
+              border: preferences.highContrast ? '2px solid #000000' : '1px solid var(--color-border)',
               transition: 'transform 0.2s, box-shadow 0.2s',
               textDecoration: 'none',
               cursor: 'pointer',

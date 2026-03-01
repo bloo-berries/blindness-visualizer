@@ -16,43 +16,41 @@ export interface FeedbackEmailData {
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqedgwly';
 
 export const sendFeedbackEmailServerless = async (data: FeedbackEmailData): Promise<void> => {
-  try {
-    // Format the email content for Formspree
-    const formData = new FormData();
-    formData.append('_subject', `VisionSim Feedback: ${data.subject}`);
-    formData.append('_replyto', data.email);
-    formData.append('_cc', 'bloomedhealth@proton.me');
-    
-    // Add all the feedback data
-    formData.append('Feedback Type', data.type);
-    formData.append('Name', data.name);
-    formData.append('Email', data.email);
-    formData.append('Subject', data.subject);
-    formData.append('User Type', data.userType || 'Not specified');
-    formData.append('Browser', data.browser || 'Not specified');
-    formData.append('Favorite Feature', data.favoriteFeature || 'Not specified');
-    formData.append('Rating', data.rating?.toString() || 'Not specified');
-    formData.append('Accessibility Needs', data.accessibilityNeeds?.join(', ') || 'None');
-    formData.append('Message', data.message);
+  const payload = {
+    _subject: `VisionSim Feedback: ${data.subject}`,
+    _replyto: data.email,
+    name: data.name,
+    email: data.email,
+    subject: data.subject,
+    message: data.message,
+    feedbackType: data.type,
+    userType: data.userType || 'Not specified',
+    browser: data.browser || 'Not specified',
+    favoriteFeature: data.favoriteFeature || 'Not specified',
+    rating: data.rating?.toString() || 'Not specified',
+    accessibilityNeeds: data.accessibilityNeeds?.join(', ') || 'None'
+  };
 
-    const response = await fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to send feedback');
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }
+  });
 
-    const result = await response.json();
-    if (result.errors && result.errors.length > 0) {
-      throw new Error(result.errors[0].message);
-    }
-    
-  } catch (error) {
-    throw new Error('Failed to send feedback email');
+  const result = await response.json();
+
+  if (!response.ok) {
+    // eslint-disable-next-line no-console
+    console.error('Formspree error:', response.status, result);
+    throw new Error(result.error || 'Failed to send feedback');
+  }
+
+  if (result.errors) {
+    // eslint-disable-next-line no-console
+    console.error('Formspree validation errors:', result.errors);
+    throw new Error(result.errors[0]?.message || 'Validation error');
   }
 };

@@ -133,31 +133,26 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   <Box sx={{ fontSize: '48px', mb: 2 }}>
                     {option.icon}
                   </Box>
-                  <Typography 
-                    variant="h5" 
-                    component="div" 
+                  <Typography
+                    variant="h5"
+                    component="div"
                     className="demo-video-title"
-                    sx={{ 
-                      mt: 1, 
+                    sx={{
+                      mt: 1,
                       fontWeight: 700,
-                      ...(preferences.highContrast && option.type === 'youtube' && { 
-                        color: '#000000 !important' 
-                      })
+                      color: '#1e293b',
                     }}
                   >
                     {option.title}
                   </Typography>
-                  <Typography 
-                    variant="body1" 
-                    color={preferences.highContrast && option.type === 'youtube' ? undefined : "text.secondary"}
+                  <Typography
+                    variant="body1"
                     id={`${option.type}-description`}
                     className="demo-video-description"
-                    sx={{ 
-                      mt: 1, 
+                    sx={{
+                      mt: 1,
                       fontSize: '1rem',
-                      ...(preferences.highContrast && option.type === 'youtube' && { 
-                        color: '#000000 !important' 
-                      })
+                      color: '#475569',
                     }}
                   >
                     {option.description}
@@ -165,14 +160,15 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   {option.isPremium && (
                     <Box sx={{ mt: 2 }}>
                       <Chip
-                        icon={<Star />}
+                        icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
                         label="Coming Soon: Premium Feature"
-                        color="primary"
                         variant="outlined"
                         sx={{
                           fontWeight: 'bold',
                           fontSize: '0.8rem',
                           height: '24px',
+                          color: 'var(--color-primary-accent)',
+                          borderColor: 'var(--color-primary-accent)',
                           '& .MuiChip-icon': {
                             fontSize: '16px'
                           }
@@ -262,14 +258,15 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                       {option.isPremium && (
                         <Box sx={{ mt: 0.5 }}>
                           <Chip
-                            icon={<Star />}
+                            icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
                             label="Coming Soon: Premium Feature"
-                            color="primary"
                             variant="outlined"
                             sx={{
                               fontWeight: 'bold',
                               fontSize: '0.65rem',
                               height: '18px',
+                              color: 'var(--color-primary-accent)',
+                              borderColor: 'var(--color-primary-accent)',
                               '& .MuiChip-icon': {
                                 fontSize: '12px'
                               }

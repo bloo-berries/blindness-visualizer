@@ -1,11 +1,99 @@
 @import './Accessibility.css';
 
+/* ===== THEME CSS VARIABLES ===== */
+:root {
+  --color-bg-default: #f8fafc;
+  --color-bg-paper: #ffffff;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+  --color-navbar-bg: #1e293b;
+  --color-navbar-border: #334155;
+  --color-footer-bg: #f8fafc;
+  --color-footer-text: #374151;
+  --color-card-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --color-info-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --color-info-border: #cbd5e1;
+  --color-info-text: #475569;
+  --color-hover-bg: #f8fafc;
+  --color-drawer-bg: #1e293b;
+  --color-condition-name: #1e293b;
+  --color-condition-desc: #64748b;
+  --color-faq-details-bg: #ffffff;
+  --color-faq-details-text: #374151;
+  --color-treatment-notes-bg: #f8fafc;
+  --color-search-bg: #ffffff;
+  --color-primary-accent: #1e3a8a;
+  --color-primary: #1e3a8a;
+  --color-primary-gradient-start: #1e3a8a;
+  --color-primary-gradient-end: #1e40af;
+}
+
+.dim-mode {
+  --color-bg-default: #15202b;
+  --color-bg-paper: #1c2b3a;
+  --color-text-primary: #e7e9ea;
+  --color-text-secondary: #8b98a5;
+  --color-border: #38444d;
+  --color-border-light: #2c3a47;
+  --color-navbar-bg: #1c2b3a;
+  --color-navbar-border: #38444d;
+  --color-footer-bg: #1c2b3a;
+  --color-footer-text: #8b98a5;
+  --color-card-bg: #1c2b3a;
+  --color-info-bg: #1c2b3a;
+  --color-info-border: #38444d;
+  --color-info-text: #8b98a5;
+  --color-hover-bg: #253341;
+  --color-drawer-bg: #1c2b3a;
+  --color-condition-name: #e7e9ea;
+  --color-condition-desc: #8b98a5;
+  --color-faq-details-bg: #1c2b3a;
+  --color-faq-details-text: #d9dbde;
+  --color-treatment-notes-bg: #253341;
+  --color-search-bg: #253341;
+  --color-primary-accent: #60a5fa;
+  --color-primary: #60a5fa;
+  --color-primary-gradient-start: #3b82f6;
+  --color-primary-gradient-end: #60a5fa;
+}
+
+.dark-mode {
+  --color-bg-default: #000000;
+  --color-bg-paper: #16181c;
+  --color-text-primary: #e7e9ea;
+  --color-text-secondary: #71767b;
+  --color-border: #2f3336;
+  --color-border-light: #1e2023;
+  --color-navbar-bg: #000000;
+  --color-navbar-border: #2f3336;
+  --color-footer-bg: #16181c;
+  --color-footer-text: #71767b;
+  --color-card-bg: #16181c;
+  --color-info-bg: #16181c;
+  --color-info-border: #2f3336;
+  --color-info-text: #71767b;
+  --color-hover-bg: #1e2023;
+  --color-drawer-bg: #16181c;
+  --color-condition-name: #e7e9ea;
+  --color-condition-desc: #71767b;
+  --color-faq-details-bg: #16181c;
+  --color-faq-details-text: #d9dbde;
+  --color-treatment-notes-bg: #1e2023;
+  --color-search-bg: #1e2023;
+  --color-primary-accent: #60a5fa;
+  --color-primary: #60a5fa;
+  --color-primary-gradient-start: #3b82f6;
+  --color-primary-gradient-end: #60a5fa;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f8fafc;
-  color: #1e293b;
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
   overflow-x: hidden;
   min-height: auto !important;
   height: auto !important;
@@ -30,7 +118,7 @@ html, body, #root {
 
 .app-container {
   position: relative;
-  background-color: #f8fafc;
+  background-color: var(--color-bg-default);
 }
 
 .landing-page {
@@ -44,19 +132,19 @@ html, body, #root {
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .effect-card {
   transition: all 0.3s ease;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .effect-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #1e3a8a;
+  border-color: var(--color-primary);
 }
 
 /* Add helpful tooltips */
@@ -122,7 +210,7 @@ html, body, #root {
   width: auto;
   height: auto;
   padding: 15px 20px;
-  background: #1e3a8a;
+  background: var(--color-primary);
   color: white;
   font-weight: 600;
   text-decoration: none;
@@ -132,7 +220,7 @@ html, body, #root {
 
 /* Make sure focus states are visible */
 :focus {
-  outline: 3px solid #1e3a8a;
+  outline: 3px solid var(--color-primary);
   outline-offset: 2px;
 }
 

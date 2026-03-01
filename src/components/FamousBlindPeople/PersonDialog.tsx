@@ -19,41 +19,42 @@ import {
 import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord, Share as ShareIcon } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
 import { getPersonImagePath } from '../../utils/imagePaths';
-import { parseDescriptionWithLinks } from '../../utils/famousPeopleUtils';
+import { parseDescriptionWithLinks, getWebsiteUrl } from '../../utils/famousPeopleUtils';
 import { EmbeddedVisualization } from './EmbeddedVisualization';
 
 /**
  * Formats description text by separating bullet points into a list
  * Returns { mainText: string, bulletPoints: string[] }
  */
-const formatDescription = (description: string): { mainText: string; bulletPoints: string[] } => {
+const formatDescription = (description: string): { mainText: string; bulletPoints: string[]; linkBullets: string[] } => {
+  let mainText = '';
+  let allBullets: string[] = [];
+
   // Try splitting by newlines + bullet first (common format in data)
   if (description.includes('\n\n•') || description.includes('\n•')) {
-    // Split by newline + bullet patterns
     const parts = description.split(/\n+•\s*/);
-
     if (parts.length > 1) {
-      const mainText = parts[0].trim();
-      const bulletPoints = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
-      return { mainText, bulletPoints };
+      mainText = parts[0].trim();
+      allBullets = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
     }
   }
 
-  // Fallback: split by inline bullet pattern " • "
-  const parts = description.split(' • ');
-
-  if (parts.length <= 1) {
-    // No bullet points found, return as-is
-    return { mainText: description, bulletPoints: [] };
+  if (!mainText) {
+    // Fallback: split by inline bullet pattern " • "
+    const parts = description.split(' • ');
+    if (parts.length <= 1) {
+      return { mainText: description, bulletPoints: [], linkBullets: [] };
+    }
+    mainText = parts[0].trim();
+    allBullets = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
   }
 
-  // First part is the main text
-  const mainText = parts[0].trim();
+  // Separate bullet points that contain links (domains) from plain ones
+  const domainPattern = /\b\w+\.(com|org|net|co\.uk|io)\b/i;
+  const linkBullets = allBullets.filter(bp => domainPattern.test(bp));
+  const bulletPoints = allBullets.filter(bp => !domainPattern.test(bp));
 
-  // Rest are bullet points
-  const bulletPoints = parts.slice(1).map(point => point.trim()).filter(point => point.length > 0);
-
-  return { mainText, bulletPoints };
+  return { mainText, bulletPoints, linkBullets };
 };
 
 interface PersonDialogProps {
@@ -218,35 +219,70 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
                 {person.achievement}
               </Typography>
             )}
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" component="div" gutterBottom>
               {person.condition}
+              {person.onset && (
+                <Typography variant="body2" color="text.secondary" component="span" sx={{ ml: 1 }}>
+                  <strong>Onset:</strong> {person.onset}
+                </Typography>
+              )}
             </Typography>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
-              <strong>Onset:</strong> {person.onset}
-            </Typography>
-            {person.wikiUrl && (
-              <Typography variant="body2" sx={{ mt: 1 }}>
-                <a
-                  href={person.wikiUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: '#1976d2',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                >
-                  Learn more on Wikipedia
-                  <OpenInNewIcon sx={{ fontSize: '0.875rem' }} />
-                </a>
-              </Typography>
-            )}
             {(() => {
-              const { mainText, bulletPoints } = formatDescription(person.description);
+              const { mainText, bulletPoints, linkBullets } = formatDescription(person.description);
+              // Extract domains from link bullets
+              const domainPattern = /\b(\w[\w-]*\.(?:com|org|net|co\.uk|io))\b/gi;
+              const extractedDomains = linkBullets.flatMap(bp => {
+                const matches = bp.match(domainPattern);
+                return matches || [];
+              });
+
               return (
                 <>
+                  {/* Inline links row: Wikipedia + extracted domains */}
+                  {(person.wikiUrl || extractedDomains.length > 0) && (
+                    <Box sx={{ mt: 0.5, display: 'flex', flexWrap: 'wrap', gap: 1.5, alignItems: 'center' }}>
+                      {person.wikiUrl && (
+                        <a
+                          href={person.wikiUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: '#60A5FA',
+                            textDecoration: 'none',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontSize: '0.875rem'
+                          }}
+                        >
+                          Wikipedia
+                          <OpenInNewIcon sx={{ fontSize: '0.875rem' }} />
+                        </a>
+                      )}
+                      {extractedDomains.map((domain, index) => {
+                        const url = getWebsiteUrl(domain, personId);
+                        return url ? (
+                          <a
+                            key={index}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#60A5FA',
+                              textDecoration: 'none',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              fontSize: '0.875rem'
+                            }}
+                          >
+                            {domain}
+                            <OpenInNewIcon sx={{ fontSize: '0.875rem' }} />
+                          </a>
+                        ) : null;
+                      })}
+                    </Box>
+                  )}
                   <Typography variant="body1" sx={{ mt: 2 }}>
                     {parseDescriptionWithLinks(mainText, personId)}
                   </Typography>

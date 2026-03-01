@@ -16,11 +16,10 @@ import {
   IconButton,
   TextField,
   InputAdornment,
-  Collapse,
   ToggleButton,
   ToggleButtonGroup
 } from '@mui/material';
-import { Info, ExpandMore, Search, Clear, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { Info, ExpandMore, Search, Clear } from '@mui/icons-material';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
@@ -429,17 +428,8 @@ export const EffectList: React.FC<EffectListProps> = ({
   // Track which accordion is expanded (null means none, or category name)
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  // Track if selected conditions summary is expanded
-  const [showSelectedConditions, setShowSelectedConditions] = useState(false);
-
   // Active quick filter
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
-
-  // Get enabled effects for display
-  const enabledEffectsList = useMemo(() =>
-    effects.filter(effect => effect.enabled),
-    [effects]
-  );
 
   // Handle accordion expand/collapse - only one open at a time
   const handleAccordionChange = (category: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -625,48 +615,6 @@ export const EffectList: React.FC<EffectListProps> = ({
         </Typography>
       )}
 
-      {/* Selected Conditions Summary - Expandable */}
-      {enabledEffectsCount > 0 && (
-        <Box sx={{ mb: 2 }}>
-          <Chip
-            label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
-            color="primary"
-            onClick={() => setShowSelectedConditions(!showSelectedConditions)}
-            onDelete={() => setShowSelectedConditions(!showSelectedConditions)}
-            deleteIcon={showSelectedConditions ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-            sx={{ cursor: 'pointer' }}
-          />
-          <Collapse in={showSelectedConditions}>
-            <Box sx={{
-              mt: 1,
-              p: 1.5,
-              backgroundColor: 'rgba(33, 150, 243, 0.08)',
-              borderRadius: 1,
-              maxHeight: '120px',
-              overflowY: 'auto'
-            }}>
-              {enabledEffectsList.map((effect, index) => (
-                <Typography
-                  key={effect.id}
-                  variant="body2"
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    py: 0.25,
-                    borderBottom: index < enabledEffectsList.length - 1 ? '1px solid rgba(0,0,0,0.08)' : 'none'
-                  }}
-                >
-                  <span>{effect.name}</span>
-                  <Typography variant="caption" color="text.secondary">
-                    {Math.round(effect.intensity * 100)}%
-                  </Typography>
-                </Typography>
-              ))}
-            </Box>
-          </Collapse>
-        </Box>
-      )}
       
       {effectsByCategory.map(({ category, items }) => (
         <Accordion

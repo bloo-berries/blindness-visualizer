@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
+export type ThemeMode = 'light' | 'dim' | 'dark';
+
 export interface AccessibilityPreferences {
   highContrast: boolean;
   largeText: boolean;
   increasedSpacing: boolean;
   enhancedFocus: boolean;
   reducedMotion: boolean;
+  themeMode: ThemeMode;
 }
 
 interface AccessibilityContextType {
@@ -16,6 +19,8 @@ interface AccessibilityContextType {
   toggleIncreasedSpacing: () => void;
   toggleEnhancedFocus: () => void;
   toggleReducedMotion: () => void;
+  setThemeMode: (mode: ThemeMode) => void;
+  cycleThemeMode: () => void;
 }
 
 const defaultPreferences: AccessibilityPreferences = {
@@ -24,6 +29,7 @@ const defaultPreferences: AccessibilityPreferences = {
   increasedSpacing: false,
   enhancedFocus: false,
   reducedMotion: false,
+  themeMode: 'dim',
 };
 
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
@@ -57,7 +63,7 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
   // Save preferences to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('accessibility-preferences', JSON.stringify(preferences));
-    
+
     // Apply preferences to document
     applyPreferencesToDocument(preferences);
   }, [preferences]);
@@ -80,40 +86,48 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
 
   const applyPreferencesToDocument = (prefs: AccessibilityPreferences) => {
     const root = document.documentElement;
-    
+
     // High contrast mode
     if (prefs.highContrast) {
       root.classList.add('high-contrast-mode');
     } else {
       root.classList.remove('high-contrast-mode');
     }
-    
+
     // Large text mode
     if (prefs.largeText) {
       root.classList.add('large-text-mode');
     } else {
       root.classList.remove('large-text-mode');
     }
-    
+
     // Increased spacing mode
     if (prefs.increasedSpacing) {
       root.classList.add('increased-spacing-mode');
     } else {
       root.classList.remove('increased-spacing-mode');
     }
-    
+
     // Enhanced focus indicators
     if (prefs.enhancedFocus) {
       root.classList.add('enhanced-focus-mode');
     } else {
       root.classList.remove('enhanced-focus-mode');
     }
-    
+
     // Reduced motion
     if (prefs.reducedMotion) {
       root.classList.add('reduced-motion-mode');
     } else {
       root.classList.remove('reduced-motion-mode');
+    }
+
+    // Theme mode
+    root.classList.remove('dim-mode', 'dark-mode');
+    if (prefs.themeMode === 'dim') {
+      root.classList.add('dim-mode');
+    } else if (prefs.themeMode === 'dark') {
+      root.classList.add('dark-mode');
     }
   };
 
@@ -141,6 +155,19 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
     setPreferences(prev => ({ ...prev, reducedMotion: !prev.reducedMotion }));
   };
 
+  const setThemeMode = (mode: ThemeMode) => {
+    setPreferences(prev => ({ ...prev, themeMode: mode }));
+  };
+
+  const cycleThemeMode = () => {
+    setPreferences(prev => {
+      const order: ThemeMode[] = ['light', 'dim', 'dark'];
+      const currentIndex = order.indexOf(prev.themeMode);
+      const nextIndex = (currentIndex + 1) % order.length;
+      return { ...prev, themeMode: order[nextIndex] };
+    });
+  };
+
   const value: AccessibilityContextType = {
     preferences,
     updatePreferences,
@@ -149,6 +176,8 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
     toggleIncreasedSpacing,
     toggleEnhancedFocus,
     toggleReducedMotion,
+    setThemeMode,
+    cycleThemeMode,
   };
 
   return (
@@ -156,4 +185,4 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
       {children}
     </AccessibilityContext.Provider>
   );
-}; 
+};

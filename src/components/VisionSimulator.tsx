@@ -6,9 +6,6 @@ import {
   Paper,
   Typography,
   Box,
-  Stepper,
-  Step,
-  StepLabel,
   Button
 } from '@mui/material';
 import Visualizer from './Visualizer';
@@ -42,7 +39,7 @@ const VisionSimulator: React.FC = () => {
   useEffect(() => {
     if (location.state?.preconfiguredConditions) {
       const { preconfiguredConditions, personName, personCondition } = location.state;
-      
+
       setPreconfiguredPerson({
         name: personName,
         condition: personCondition,
@@ -61,11 +58,8 @@ const VisionSimulator: React.FC = () => {
         })
       );
 
-      // Enable comparison mode immediately for famous people
-      setShowComparison(true);
-
-      // Skip to the simulation step
-      setActiveStep(2);
+      // Skip to the conditions step (now the final step)
+      setActiveStep(1);
     }
   }, [location.state]);
 
@@ -103,10 +97,7 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleBack = () => {
-    // If user came from famous people page and is on step 2 (View Simulation), go back to famous people page
-    // If user came from famous people page and is on step 1 (Select Vision Conditions), go back to famous people page
-    // Otherwise, go to previous step in the simulation flow
-    if (preconfiguredPerson && (activeStep === 2 || activeStep === 1)) {
+    if (preconfiguredPerson && activeStep === 1) {
       navigate('/famous-people');
     } else {
       setActiveStep((prevStep) => prevStep - 1);
@@ -144,7 +135,7 @@ const VisionSimulator: React.FC = () => {
         );
       case 1:
         return (
-          <Box sx={{ p: 1.5 }}>
+          <Box sx={{ p: 1.5, flex: 1, display: 'flex', flexDirection: 'column' }}>
             <ControlPanel
               effects={effects}
               onToggle={handleToggle}
@@ -154,25 +145,26 @@ const VisionSimulator: React.FC = () => {
               diplopiaDirection={diplopiaDirection}
               onDiplopiaSeparationChange={setDiplopiaSeparation}
               onDiplopiaDirectionChange={setDiplopiaDirection}
-              onViewSimulation={handleNext}
               inputSource={inputSource}
-            />
-          </Box>
-        );
-      case 2:
-        
-        return (
-          <Box sx={{ p: 2 }}>
-            <Visualizer 
-              effects={effects} 
-              inputSource={inputSource}
-              diplopiaSeparation={diplopiaSeparation}
-              diplopiaDirection={diplopiaDirection}
-              personName={isFamousPeopleMode ? preconfiguredPerson?.name : undefined}
-              personCondition={isFamousPeopleMode ? preconfiguredPerson?.condition : undefined}
-              showComparison={showComparison}
-              onToggleComparison={() => setShowComparison(!showComparison)}
-              isFamousPeopleMode={isFamousPeopleMode}
+              visualizerSlot={
+                <Box sx={{
+                  '& .visualizer-container': { height: 'unset', aspectRatio: '16 / 9' },
+                  '& .comparison-container': { minHeight: '300px' },
+                  '& .visualizer-description': { display: 'none' }
+                }}>
+                  <Visualizer
+                    effects={effects}
+                    inputSource={inputSource}
+                    diplopiaSeparation={diplopiaSeparation}
+                    diplopiaDirection={diplopiaDirection}
+                    personName={isFamousPeopleMode ? preconfiguredPerson?.name : undefined}
+                    personCondition={isFamousPeopleMode ? preconfiguredPerson?.condition : undefined}
+                    showComparison={showComparison}
+                    onToggleComparison={() => setShowComparison(!showComparison)}
+                    isFamousPeopleMode={isFamousPeopleMode}
+                  />
+                </Box>
+              }
             />
           </Box>
         );
@@ -182,14 +174,14 @@ const VisionSimulator: React.FC = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'ArrowRight' && activeStep < 2) {
+    if (event.key === 'ArrowRight' && activeStep < 1) {
       handleNext();
     } else if (event.key === 'ArrowLeft' && activeStep > 0) {
       handleBack();
     } else if (event.key === 'Home') {
       setActiveStep(0);
     } else if (event.key === 'End') {
-      setActiveStep(2);
+      setActiveStep(1);
     }
   };
 
@@ -198,13 +190,6 @@ const VisionSimulator: React.FC = () => {
   };
 
   // Navigation is always visible, no need for scroll handler
-
-  // Auto-enable comparison mode when reaching the final step
-  useEffect(() => {
-    if (activeStep === 2) {
-      setShowComparison(true);
-    }
-  }, [activeStep]);
 
   // Determine if we're in "Famous People" mode or "Regular Simulator" mode
   const isFamousPeopleMode = preconfiguredPerson !== null;
@@ -231,7 +216,6 @@ const VisionSimulator: React.FC = () => {
       >
         {activeStep === 0 && t('simulator.screenReaderStep1')}
         {activeStep === 1 && t('simulator.screenReaderStep2')}
-        {activeStep === 2 && t('simulator.screenReaderStep3')}
       </Box>
       <a 
         href="#main-content" 
@@ -242,7 +226,15 @@ const VisionSimulator: React.FC = () => {
       </a>
       <Container
         maxWidth={false}
-        sx={{ maxWidth: '1000px', pt: 10, pb: 0 }}
+        sx={{
+          maxWidth: activeStep === 1 ? '1400px' : '1000px',
+          pt: 10,
+          pb: 2,
+          transition: 'max-width 0.3s ease',
+          minHeight: 'calc(100vh - 64px)',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
         component="main"
         role="main"
         aria-labelledby="simulator-heading"
@@ -256,7 +248,10 @@ const VisionSimulator: React.FC = () => {
             pb: 1,
             borderRadius: 3,
             border: '1px solid #e2e8f0',
-            backgroundColor: 'background.paper'
+            backgroundColor: 'background.paper',
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
           }}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -301,75 +296,8 @@ const VisionSimulator: React.FC = () => {
           )}
 
 
-          <Stepper
-            activeStep={activeStep}
-            sx={{
-              my: 1,
-              '& .MuiStepLabel-root .Mui-completed': {
-                color: 'primary.main',
-              },
-              '& .MuiStepLabel-root .Mui-active': {
-                color: 'primary.main',
-              },
-              '& .MuiStepLabel-label': {
-                fontWeight: 500,
-                color: 'text.secondary',
-              },
-              '& .MuiStepLabel-label.Mui-active': {
-                color: 'text.primary',
-                fontWeight: 600,
-              },
-              '& .MuiStepLabel-label.Mui-completed': {
-                color: 'text.primary',
-                fontWeight: 600,
-              }
-            }}
-            aria-label={`Step ${activeStep + 1} of 3`}
-          >
-            <Step aria-current={activeStep === 0 ? "step" : undefined}>
-              <StepLabel>{t('simulator.step1')}</StepLabel>
-            </Step>
-            <Step aria-current={activeStep === 1 ? "step" : undefined}>
-              <StepLabel>{t('simulator.step2')}</StepLabel>
-            </Step>
-            <Step aria-current={activeStep === 2 ? "step" : undefined}>
-              <StepLabel>{t('simulator.step3')}</StepLabel>
-            </Step>
-          </Stepper>
-
           {getStepContent(activeStep)}
 
-          {/* Navigation buttons - only show on final step (View Simulation) */}
-          {activeStep === 2 && (
-            <Box
-              sx={{
-                mt: 2,
-                p: 1.5,
-                backgroundColor: 'background.paper',
-                borderTop: '1px solid #e2e8f0',
-                borderRadius: '0 0 12px 12px'
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  maxWidth: '100%'
-                }}
-                role="navigation"
-                aria-label="Wizard navigation"
-              >
-                <Button
-                  onClick={handleBack}
-                  aria-label={t('simulator.goBack')}
-                  variant="outlined"
-                  size="large"
-                >
-                  {t('buttons.back')}
-                </Button>
-              </Box>
-            </Box>
-          )}
         </Paper>
       </Container>
       <Footer />

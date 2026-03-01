@@ -1,13 +1,16 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import {
   Box,
+  Button,
   Typography,
-  Button
+  Slider,
+  Chip,
+  Collapse
 } from '@mui/material';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
 import { EffectList } from './EffectList';
-import { EffectPreview } from './EffectPreview';
 import { orientationGroups } from './ControlPanelConstants';
 
 interface ControlPanelProps {
@@ -19,7 +22,7 @@ interface ControlPanelProps {
   diplopiaDirection?: number;
   onDiplopiaSeparationChange?: (separation: number) => void;
   onDiplopiaDirectionChange?: (direction: number) => void;
-  onViewSimulation?: () => void;
+  visualizerSlot?: React.ReactNode;
   inputSource?: InputSource;
 }
 
@@ -32,13 +35,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   diplopiaDirection = 0.0,
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange,
-  onViewSimulation,
+  visualizerSlot,
   inputSource
 }) => {
   // State for highlighted effect in the list (for UI indication)
   const [highlightedEffect, setHighlightedEffect] = useState<VisualEffect | null>(
     effects.find(effect => effect.enabled) || null
   );
+
+  // Track if selected conditions summary is expanded
+  const [showSelectedConditions, setShowSelectedConditions] = useState(false);
 
   // Get all enabled effects for the combined preview (memoized)
   const enabledEffects = useMemo(() => 
@@ -104,12 +110,18 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   // Get enabled effects count for display
   const enabledEffectsCount = enabledEffects.length;
 
+  // Get the current version of the highlighted effect from the effects array
+  const currentHighlightedEffect = highlightedEffect
+    ? effects.find(e => e.id === highlightedEffect.id)
+    : null;
+
   return (
     <>
       <ControlPanelStyles />
-      <Box 
-        role="region" 
+      <Box
+        role="region"
         aria-label="Vision condition controls"
+        sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}
       >
         {/* Screen Reader Announcements for Condition Changes */}
         <Box
@@ -124,28 +136,12 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             overflow: 'hidden'
           }}
         >
-          {effects.filter(e => e.enabled).length > 0 && 
+          {effects.filter(e => e.enabled).length > 0 &&
             `Vision conditions enabled: ${effects.filter(e => e.enabled).map(e => e.name).join(', ')}`
           }
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            id="vision-controls-heading"
-          >
-            Select Vision Conditions
-          </Typography>
-          <Button
-            variant="outlined"
-            onClick={onDeselectAll}
-            aria-label="Deselect all vision conditions"
-          >
-            Deselect All
-          </Button>
-        </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'flex-start' }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'flex-start', flex: 1 }}>
           {/* Left side: List of vision conditions */}
           <EffectList
             effects={effects}
@@ -161,50 +157,89 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             onOrientationChange={handleOrientationChange}
           />
 
-          {/* Right side: Preview image - sticky container */}
+          {/* Right side: Live visualizer + controls */}
           <Box sx={{
-            flex: '1',
+            flex: '1.5',
             position: 'sticky',
             top: 16,
             alignSelf: 'flex-start',
-            minWidth: { md: '350px' },
-            maxWidth: { md: '450px' }
+            minWidth: { md: '500px' },
           }}>
-            <EffectPreview
-              effects={effects}
-              enabledEffects={enabledEffects}
-              enabledEffectsCount={enabledEffectsCount}
-              highlightedEffect={highlightedEffect}
-              inputSource={inputSource}
-              onIntensityChange={onIntensityChange}
-            />
+            {visualizerSlot}
 
-            {/* View Simulation Button - Prominent CTA */}
-            {onViewSimulation && (
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-                onClick={onViewSimulation}
-                disabled={enabledEffectsCount === 0}
-                sx={{
-                  mt: 2,
-                  py: 1.5,
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  boxShadow: enabledEffectsCount > 0 ? '0 4px 14px rgba(33, 150, 243, 0.4)' : 'none',
-                  '&:hover': {
-                    boxShadow: enabledEffectsCount > 0 ? '0 6px 20px rgba(33, 150, 243, 0.5)' : 'none'
-                  }
-                }}
-              >
-                {enabledEffectsCount > 0
-                  ? `View Simulation (${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''})`
-                  : 'Select conditions to continue'
-                }
-              </Button>
+            {/* Severity slider - shown when there's a highlighted effect that's enabled */}
+            {currentHighlightedEffect?.enabled && (
+              <Box sx={{ mt: 2, px: 1 }}>
+                <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, color: 'text.secondary' }}>
+                  {currentHighlightedEffect.name} Severity: {Math.round(currentHighlightedEffect.intensity * 100)}%
+                </Typography>
+                <Slider
+                  size="small"
+                  value={currentHighlightedEffect.intensity * 100}
+                  onChange={(_, value) => onIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={value => `${value}%`}
+                  aria-label={`Adjust ${currentHighlightedEffect.name} severity`}
+                  sx={{ width: '100%' }}
+                />
+              </Box>
             )}
+
+            {/* Conditions count + Deselect All */}
+            <Box sx={{ mt: 2 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                {enabledEffectsCount > 0 ? (
+                  <Chip
+                    label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
+                    color="primary"
+                    onClick={() => setShowSelectedConditions(!showSelectedConditions)}
+                    onDelete={() => setShowSelectedConditions(!showSelectedConditions)}
+                    deleteIcon={showSelectedConditions ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+                    sx={{ cursor: 'pointer' }}
+                  />
+                ) : (
+                  <Box />
+                )}
+                <Button
+                  variant="outlined"
+                  onClick={onDeselectAll}
+                  disabled={enabledEffectsCount === 0}
+                  aria-label="Deselect all vision conditions"
+                  size="small"
+                >
+                  Deselect All
+                </Button>
+              </Box>
+              <Collapse in={showSelectedConditions}>
+                <Box sx={{
+                  mt: 1,
+                  p: 1.5,
+                  backgroundColor: 'rgba(33, 150, 243, 0.08)',
+                  borderRadius: 1,
+                  maxHeight: '120px',
+                  overflowY: 'auto'
+                }}>
+                  {enabledEffects.map((effect, index) => (
+                    <Typography
+                      key={effect.id}
+                      variant="body2"
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        py: 0.25,
+                        borderBottom: index < enabledEffects.length - 1 ? '1px solid rgba(0,0,0,0.08)' : 'none'
+                      }}
+                    >
+                      <span>{effect.name}</span>
+                      <Typography variant="caption" color="text.secondary">
+                        {Math.round(effect.intensity * 100)}%
+                      </Typography>
+                    </Typography>
+                  ))}
+                </Box>
+              </Collapse>
+            </Box>
           </Box>
         </Box>
       </Box>

@@ -52,7 +52,17 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
     const saved = localStorage.getItem('accessibility-preferences');
     if (saved) {
       try {
-        return { ...defaultPreferences, ...JSON.parse(saved) };
+        const parsed = { ...defaultPreferences, ...JSON.parse(saved) };
+        // One-time migration: switch users from light to dim default
+        const migrated = localStorage.getItem('theme-migrated-v1');
+        if (!migrated && parsed.themeMode === 'light') {
+          parsed.themeMode = 'dim';
+          localStorage.setItem('theme-migrated-v1', '1');
+          localStorage.setItem('accessibility-preferences', JSON.stringify(parsed));
+        } else if (!migrated) {
+          localStorage.setItem('theme-migrated-v1', '1');
+        }
+        return parsed;
       } catch {
         return defaultPreferences;
       }

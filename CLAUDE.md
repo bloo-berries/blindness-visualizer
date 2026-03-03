@@ -13,7 +13,7 @@ npm test -- --watchAll=false   # Run tests once
 npm run clean      # Remove build/ and node_modules/.cache/
 ```
 
-**CI note**: GitHub Pages CI sets `process.env.CI = true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`.
+**CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests` since no test files exist yet).
 
 ## Architecture Overview
 
@@ -111,7 +111,7 @@ Routes are defined in `App.tsx`:
 
 ### Deployment
 
-Deployed to GitHub Pages at `https://bloo-berries.github.io/blindness-visualizer`. The `basename` for React Router is automatically configured via `getBasename()` in `App.tsx`, which reads `process.env.PUBLIC_URL`.
+Deployed to Cloudflare Pages at `https://simulated.vision`. The GitHub repo is connected to Cloudflare Pages for automatic deployments on push to `main`. SPA routing is handled by `public/_redirects`. The `basename` for React Router is automatically configured via `getBasename()` in `App.tsx`, which reads `process.env.PUBLIC_URL`.
 
 ## Theme System
 
@@ -181,6 +181,26 @@ The `AccessibilityContext` persists user preferences to localStorage and applies
 Styles for these classes are defined in `styles/Accessibility.css`.
 
 The `NavigationBar` includes a theme toggle (cycles light → dim → dark), language selector, and accessibility menu. On mobile, navigation collapses into a right-side drawer (280px wide) and the start-simulator shortcut icon is hidden.
+
+## Internationalization (i18n)
+
+Uses `i18next` + `react-i18next` with 26 languages. Configuration is in `src/i18n/index.ts`, translation files in `src/locales/{lang}.json`.
+
+- Language preference persists to `localStorage` key `language-preference`
+- Browser auto-detection is disabled; defaults to English
+- Arabic (`ar`) has RTL support — `document.documentElement.dir` updates on language change
+- All user-facing strings should use the `useTranslation()` hook: `const { t } = useTranslation();`
+
+To add a new language: add the JSON file in `src/locales/`, import it in `src/i18n/index.ts`, and add to both `supportedLanguages` and `resources`.
+
+## Content Security Policy
+
+CSP is set via `<meta>` tag in `public/index.html`. Allowed external domains:
+- **Wistia** (`fast.wistia.com`, `*.wistia.com`) — embedded video player
+- **YouTube** (`youtube.com`, `www.youtube.com`, `i.ytimg.com`, `s.ytimg.com`) — video source
+- **Formspree** (`formspree.io`) — feedback form submissions
+
+When adding new external resources, update the CSP meta tag or requests will be blocked.
 
 ## Bundle Analysis
 

@@ -220,12 +220,6 @@
   transition: all 0.3s ease;
 }
 
-/* Loading state for dynamic content */
-.faq-loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
 /* Print styles */
 @media print {
   .faq-accordion {

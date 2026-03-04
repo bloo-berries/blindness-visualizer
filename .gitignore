@@ -12,7 +12,6 @@
 
 # deployment
 deploy.sh
-wrangler.toml
 _redirects
 !public/_redirects
 

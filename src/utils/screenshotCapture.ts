@@ -205,7 +205,7 @@ export const saveVisionSimulation = async (
       inputSource,
       diplopiaSeparation,
       diplopiaDirection,
-      description: generateEffectsDescription(effects)
+      description: formatEffectsForScreenshot(effects)
     };
 
     // Capture screenshot
@@ -224,11 +224,11 @@ export const saveVisionSimulation = async (
 };
 
 /**
- * Helper function to generate effects description
+ * Helper function to format effects for screenshot metadata
  * @param effects - Array of visual effects
  * @returns Description string
  */
-const generateEffectsDescription = (effects: VisualEffect[]): string => {
+const formatEffectsForScreenshot = (effects: VisualEffect[]): string => {
   const enabledEffects = effects.filter(e => e.enabled);
   if (enabledEffects.length === 0) {
     return 'Normal vision (no effects applied)';

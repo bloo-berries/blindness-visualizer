@@ -8,15 +8,6 @@ import { createRetinitisPigmentosaOverlay } from './retinitisPigmentosaOverlay';
 import { createRetinalDetachmentOverlay } from './retinalDetachmentOverlay';
 import { createVitreousHemorrhageOverlay } from './vitreousHemorrhageOverlay';
 
-// Re-export individual modules
-export { createGlaucomaOverlay } from './glaucomaOverlay';
-export { createAmdOverlay } from './amdOverlay';
-export { createDiabeticRetinopathyOverlay } from './diabeticRetinopathyOverlay';
-export { createStargardtOverlay } from './stargardtOverlay';
-export { createRetinitisPigmentosaOverlay } from './retinitisPigmentosaOverlay';
-export { createRetinalDetachmentOverlay } from './retinalDetachmentOverlay';
-export { createVitreousHemorrhageOverlay } from './vitreousHemorrhageOverlay';
-
 /**
  * Creates overlays for retinal disease conditions
  * Includes: glaucoma, AMD, diabetic retinopathy, stargardt, retinitis pigmentosa,

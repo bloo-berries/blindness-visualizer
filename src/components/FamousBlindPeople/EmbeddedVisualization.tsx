@@ -174,13 +174,15 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             src={YOUTUBE_EMBED_URL}
             title={`Vision simulation for ${personName}`}
             aria-label={`YouTube video with ${personName}'s vision condition simulation applied`}
+            tabIndex={-1}
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
-              border: 'none'
+              border: 'none',
+              pointerEvents: 'none'
             }}
           />
 

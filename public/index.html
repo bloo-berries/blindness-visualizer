@@ -8,29 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1976d2" />
 
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="VisionSim - Vision Condition Simulator | Understand Blindness & Visual Impairments" />
-    <meta name="description" content="Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and 30+ vision conditions. Free educational tool for building empathy and awareness." />
     <meta name="keywords" content="vision simulator, blindness simulator, visual impairment, color blindness test, macular degeneration, glaucoma simulation, cataracts, retinitis pigmentosa, low vision, vision loss, accessibility, empathy tool, visual disability, eye conditions, vision conditions glossary, famous blind people" />
     <meta name="author" content="VisionSim" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://simulated.vision/" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://simulated.vision/" />
-    <meta property="og:title" content="VisionSim - Experience Vision Conditions Through Simulation" />
-    <meta property="og:description" content="Understand what it's like to live with visual impairments. Simulate 30+ vision conditions including color blindness, macular degeneration, glaucoma, and more. Free educational tool." />
-    <meta property="og:image" content="https://simulated.vision/og-image.png" />
-    <meta property="og:site_name" content="VisionSim" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://simulated.vision/" />
-    <meta property="twitter:title" content="VisionSim - Vision Condition Simulator" />
-    <meta property="twitter:description" content="Experience blindness and visual impairments through real-time simulations. Understand color blindness, macular degeneration, glaucoma, and 30+ conditions." />
-    <meta property="twitter:image" content="https://simulated.vision/og-image.png" />
 
     <!-- Additional SEO Meta Tags -->
     <meta name="application-name" content="VisionSim" />
@@ -62,7 +42,7 @@
     <link rel="dns-prefetch" href="https://static.doubleclick.net" />
     <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
 
-    <title>VisionSim - Vision Condition Simulator | Blindness & Visual Impairment Simulations</title>
+    <title>VisionSim</title>
 
     <!-- Prevent flash of light theme (FOUC) -->
     <script>
@@ -82,10 +62,17 @@
       "@type": "WebApplication",
       "name": "VisionSim",
       "alternateName": "Vision Condition Simulator",
-      "description": "A free educational tool that simulates various vision conditions including blindness, color blindness, macular degeneration, glaucoma, and other visual impairments to build empathy and understanding.",
+      "description": "A free educational tool that simulates 42+ vision conditions including blindness, color blindness, macular degeneration, glaucoma, and other visual impairments in real-time to build empathy and understanding. Profiles 128+ famous people with vision conditions.",
       "url": "https://simulated.vision/",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web Browser",
+      "isAccessibleForFree": true,
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "Medical students, educators, designers, accessibility advocates, general public"
+      },
+      "inLanguage": ["en", "es", "fr", "de", "it", "pt", "nl", "ru", "zh", "ja", "ko", "ar", "hi", "bn", "ur", "tr", "vi", "th", "id", "ms", "pl", "uk", "ro", "sv", "da", "fi"],
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -93,15 +80,42 @@
       },
       "featureList": [
         "Real-time vision condition simulation",
-        "Color blindness simulation (Protanopia, Deuteranopia, Tritanopia)",
-        "Macular degeneration simulation",
+        "Homonymous Hemianopia simulation",
+        "Quadrantanopia simulation",
+        "Bitemporal Hemianopia simulation",
+        "Central Scotoma simulation",
+        "Tunnel Vision simulation",
+        "Protanopia (Red-Blind) simulation",
+        "Deuteranopia (Green-Blind) simulation",
+        "Tritanopia (Blue-Blind) simulation",
+        "Protanomaly (Red-Weak) simulation",
+        "Deuteranomaly (Green-Weak) simulation",
+        "Tritanomaly (Blue-Weak) simulation",
+        "Monochromacy (Complete Color Blindness) simulation",
         "Glaucoma simulation",
-        "Cataracts simulation",
+        "Nuclear Sclerotic Cataract simulation",
+        "Posterior Subcapsular Cataract simulation",
+        "Age-Related Macular Degeneration (AMD) simulation",
+        "Diabetic Retinopathy simulation",
+        "Astigmatism simulation",
+        "Myopia simulation",
+        "Hyperopia simulation",
         "Retinitis Pigmentosa simulation",
-        "Famous blind people profiles",
-        "Vision conditions glossary",
-        "Accessibility features",
-        "Multi-language support"
+        "Stargardt Disease simulation",
+        "Retinal Detachment simulation",
+        "Visual Aura simulation",
+        "Visual Snow simulation",
+        "Visual Floaters simulation",
+        "Visual Hallucinations simulation",
+        "Diplopia (Double Vision) simulation",
+        "Glare Sensitivity simulation",
+        "Night Blindness (Nyctalopia) simulation",
+        "Starbursting simulation",
+        "Keratoconus simulation",
+        "128+ famous people with vision conditions",
+        "Detailed condition glossary with treatments",
+        "Multi-language support (26 languages)",
+        "Accessibility features (WCAG-compliant)"
       ],
       "screenshot": "https://simulated.vision/og-image.png",
       "softwareHelp": {
@@ -120,7 +134,7 @@
           "name": "What is a vision condition simulator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A vision condition simulator is an educational tool that recreates how people with various visual impairments see the world. VisionSim allows you to experience conditions like color blindness, macular degeneration, glaucoma, cataracts, and more through real-time video or image processing."
+            "text": "A vision condition simulator is an educational tool that recreates how people with various visual impairments see the world. VisionSim allows you to experience conditions like color blindness, macular degeneration, glaucoma, cataracts, and more through real-time video or image processing using WebGL shaders."
           }
         },
         {
@@ -128,15 +142,87 @@
           "name": "How can I understand what blind people see?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "VisionSim helps you understand blindness and visual impairments by simulating over 30 different vision conditions. You can use your webcam, upload images, or watch demo videos with various visual effects applied to experience how people with these conditions perceive the world."
+            "text": "VisionSim helps you understand blindness and visual impairments by simulating over 42 different vision conditions in real-time. You can upload images or watch YouTube videos with various visual effects applied to experience how people with these conditions perceive the world. It also profiles 128+ famous people with vision conditions."
           }
         },
         {
           "@type": "Question",
-          "name": "What vision conditions can be simulated?",
+          "name": "What does glaucoma look like?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "VisionSim can simulate color blindness (protanopia, deuteranopia, tritanopia), macular degeneration (AMD), glaucoma, cataracts, retinitis pigmentosa, diabetic retinopathy, visual snow, tunnel vision, hemianopia, and many more conditions."
+            "text": "Glaucoma causes progressive peripheral vision loss while central vision remains sharp until late stages. Early stages show small paracentral scotomas (blind spots), progressing to arc-shaped defects, then tunnel vision, and finally severe constriction. VisionSim simulates all stages of glaucoma so you can see exactly what it looks like."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does macular degeneration look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Age-Related Macular Degeneration (AMD) causes deterioration of the macula, the central part of the retina. It causes loss of central vision — a dark or blurry spot in the center of your visual field — while peripheral vision remains intact. People with AMD may have difficulty reading, recognizing faces, and seeing fine detail. VisionSim simulates this condition in real-time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is color blindness and how common is it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Color blindness (color vision deficiency) affects how a person perceives colors. The most common types are protanopia/protanomaly (red-blind/weak, ~2% of males) and deuteranopia/deuteranomaly (green-blind/weak, ~6% of males). Tritanopia (blue-blind) is very rare. About 8% of males and 0.5% of females have some form. VisionSim can simulate all types including monochromacy (total color blindness)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can cataracts be cured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, cataracts can be treated with surgery. Cataract surgery involves removing the clouded lens and replacing it with an artificial intraocular lens (IOL). Phacoemulsification, the most common technique, uses ultrasound to break up the cataract. It is one of the most common and successful surgeries worldwide. VisionSim simulates both nuclear sclerotic and posterior subcapsular cataracts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can glaucoma be cured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Glaucoma cannot be cured, but it can be managed. Treatments include prescription eye drops to lower intraocular pressure, laser trabeculoplasty, minimally invasive glaucoma surgery (MIGS), and traditional surgery for advanced cases. Early detection and treatment can prevent or slow vision loss, but vision already lost cannot be restored. Regular eye exams are crucial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What famous people are or were blind?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many famous people have lived with vision conditions, including Helen Keller (deaf-blind activist), Ray Charles and Stevie Wonder (blind musicians), Erik Weihenmayer (first blind person to summit Everest), Claude Monet (cataracts), Andrea Bocelli (blind tenor), Louis Braille (inventor of braille), Galileo (blindness in later life), and many more. VisionSim profiles 128+ famous people and lets you simulate their specific vision conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between legally blind and totally blind?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Legal blindness means visual acuity of 20/200 or worse in the better eye with best correction, or a visual field of 20 degrees or less (tunnel vision). Legally blind people often have some usable vision. Total blindness (NLP — no light perception) means complete absence of vision. Most people classified as blind have some remaining vision. VisionSim simulates various degrees of vision loss to help understand this spectrum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is visual snow syndrome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Visual snow syndrome is a neurological condition where people see persistent tiny flickering dots across their entire visual field, similar to TV static. It can also include afterimages (palinopsia), light sensitivity, floaters, and other visual disturbances. There is currently no cure, though some medications may help reduce symptoms. VisionSim can simulate visual snow in real-time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is retinitis pigmentosa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Retinitis pigmentosa (RP) is a group of inherited retinal diseases that cause progressive degeneration of photoreceptors. It typically begins with night blindness and gradually narrows the visual field (tunnel vision), potentially leading to legal or complete blindness. There is currently no cure, though gene therapy (Luxturna) has been approved for certain genetic forms. VisionSim simulates the progressive tunnel vision caused by RP."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What causes tunnel vision?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tunnel vision (peripheral vision loss) can be caused by several conditions: glaucoma (most common), retinitis pigmentosa, stroke affecting the visual cortex, optic nerve damage, or advanced diabetic retinopathy. The visual field narrows progressively, leaving only a small central area of sight. VisionSim simulates tunnel vision from multiple causes so you can understand what it looks like."
           }
         }
       ]
@@ -151,6 +237,47 @@
       "url": "https://simulated.vision/",
       "sameAs": [
         "https://github.com/bloo-berries/blindness-visualizer"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simulated.vision/" },
+        { "@type": "ListItem", "position": 2, "name": "Vision Simulator", "item": "https://simulated.vision/simulator" },
+        { "@type": "ListItem", "position": 3, "name": "Famous People", "item": "https://simulated.vision/famous-people" },
+        { "@type": "ListItem", "position": 4, "name": "Conditions Glossary", "item": "https://simulated.vision/conditions" },
+        { "@type": "ListItem", "position": 5, "name": "FAQ", "item": "https://simulated.vision/faq" },
+        { "@type": "ListItem", "position": 6, "name": "About", "item": "https://simulated.vision/about" },
+        { "@type": "ListItem", "position": 7, "name": "Resources", "item": "https://simulated.vision/resources" },
+        { "@type": "ListItem", "position": 8, "name": "Feedback", "item": "https://simulated.vision/feedback" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "VisionSim Vision Conditions and Famous People Database",
+      "description": "Comprehensive educational dataset of 42+ vision conditions with descriptions, treatments, and simulations, plus 128+ famous people profiles with biographical information about their vision conditions.",
+      "url": "https://simulated.vision/",
+      "license": "https://opensource.org/licenses/MIT",
+      "creator": {
+        "@type": "Organization",
+        "name": "VisionSim"
+      },
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "text/plain",
+        "contentUrl": "https://simulated.vision/llms-full.txt"
+      },
+      "variableMeasured": [
+        "Vision condition descriptions",
+        "Treatment information",
+        "Famous people biographical data",
+        "Vision condition simulations"
       ]
     }
     </script>

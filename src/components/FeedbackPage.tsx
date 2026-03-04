@@ -30,6 +30,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import { sendFeedbackEmailServerless, FeedbackEmailData } from '../utils/emailService';
 
 type FeedbackType = 'general' | 'bug' | 'feature' | 'improvement' | 'other';
@@ -166,6 +167,11 @@ const FeedbackPage: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
+      <PageMeta
+        title="Send Feedback"
+        description="Share your feedback, report bugs, or suggest features for VisionSim. Help us improve the vision condition simulator."
+        path="/feedback"
+      />
       <NavigationBar />
       
       <Container component="main" id="main-content" maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 8 }}>

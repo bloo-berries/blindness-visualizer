@@ -17,23 +17,6 @@ import {
 import { createHallucinationsOverlay } from './hallucinationOverlays';
 import { createBlueFieldOverlay } from './blueFieldOverlays';
 
-// Re-export individual modules for direct imports if needed
-export { createFloaterOverlay } from './floaterOverlays';
-export {
-  createVisualSnowOverlay,
-  createVisualSnowFlashingOverlay,
-  createVisualSnowColoredOverlay,
-  createVisualSnowTransparentOverlay,
-  createVisualSnowDenseOverlay
-} from './visualSnowOverlays';
-export {
-  createVisualAuraOverlay,
-  createVisualAuraLeftOverlay,
-  createVisualAuraRightOverlay
-} from './auraOverlays';
-export { createHallucinationsOverlay } from './hallucinationOverlays';
-export { createBlueFieldOverlay } from './blueFieldOverlays';
-
 /**
  * Creates overlays for visual disturbance conditions
  * Includes: floaters, aura, visual snow, hallucinations

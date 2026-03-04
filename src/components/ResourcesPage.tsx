@@ -17,6 +17,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 
 const ResourcesPage: React.FC = () => {
   const { t } = useTranslation();
@@ -56,6 +57,11 @@ const ResourcesPage: React.FC = () => {
 
   return (
     <>
+      <PageMeta
+        title="Vision & Accessibility Resources"
+        description="Explore curated resources about vision conditions, accessibility, assistive technology, and organizations supporting people with visual impairments."
+        path="/resources"
+      />
       <NavigationBar />
       <Box sx={{ pt: '80px', pb: 10 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>

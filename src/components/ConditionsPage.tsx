@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -40,6 +40,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import ThumbnailImage from './ThumbnailImage';
 import { conditionCategories } from '../data/conditionCategories';
 import {
@@ -241,8 +242,39 @@ const ConditionsPage: React.FC = () => {
     return 'var(--color-primary)';
   };
 
+  const conditionsJsonLd = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Vision Conditions Glossary',
+    description: 'Comprehensive glossary of 42+ vision conditions with descriptions and treatment information.',
+    numberOfItems: conditionCategories.reduce((n, cat) => n + cat.conditions.length, 0),
+    itemListElement: conditionCategories.flatMap((cat, catIdx) =>
+      cat.conditions.map((condition, condIdx) => ({
+        '@type': 'ListItem',
+        position: catIdx * 100 + condIdx + 1,
+        item: {
+          '@type': 'MedicalCondition',
+          name: condition.name,
+          description: condition.description,
+          ...(condition.treatments ? {
+            possibleTreatment: condition.treatments.options.map(opt => ({
+              '@type': 'MedicalTherapy',
+              name: opt,
+            })),
+          } : {}),
+        },
+      }))
+    ),
+  }), []);
+
   return (
     <Box className="conditions-glossary" sx={{ pb: 10 }}>
+      <PageMeta
+        title="Vision Conditions Glossary"
+        description="Browse a comprehensive glossary of 42+ vision conditions including color blindness, macular degeneration, glaucoma, cataracts, and retinitis pigmentosa."
+        path="/conditions"
+        jsonLd={conditionsJsonLd}
+      />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>

@@ -8,19 +8,21 @@ import {
   Box
 } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import VisionSimulator from './components/VisionSimulator';
-import FamousBlindPeople from './components/FamousBlindPeople.tsx';
-import ConditionsPage from './components/ConditionsPage';
-import FAQPage from './components/FAQPage';
-import AboutPage from './components/AboutPage';
-import FeedbackPage from './components/FeedbackPage';
-import ResourcesPage from './components/ResourcesPage';
+import { HelmetProvider } from 'react-helmet-async';
 import { AccessibilityProvider, useAccessibility } from './contexts/AccessibilityContext';
 import type { ThemeMode } from './contexts/AccessibilityContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import './i18n'; // Initialize i18n
 import './styles/App.css';
+
+const HomePage = React.lazy(() => import('./components/HomePage'));
+const VisionSimulator = React.lazy(() => import('./components/VisionSimulator'));
+const FamousBlindPeople = React.lazy(() => import('./components/FamousBlindPeople'));
+const ConditionsPage = React.lazy(() => import('./components/ConditionsPage'));
+const FAQPage = React.lazy(() => import('./components/FAQPage'));
+const AboutPage = React.lazy(() => import('./components/AboutPage'));
+const FeedbackPage = React.lazy(() => import('./components/FeedbackPage'));
+const ResourcesPage = React.lazy(() => import('./components/ResourcesPage'));
 
 const getBasename = (): string => {
   const publicUrl = process.env.PUBLIC_URL || '';
@@ -247,9 +249,11 @@ const ThemedApp: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <AccessibilityProvider>
-        <ThemedApp />
-      </AccessibilityProvider>
+      <HelmetProvider>
+        <AccessibilityProvider>
+          <ThemedApp />
+        </AccessibilityProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 };

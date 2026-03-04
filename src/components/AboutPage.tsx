@@ -8,6 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
 const AboutPage: React.FC = () => {
@@ -28,6 +29,11 @@ const AboutPage: React.FC = () => {
 
   return (
     <>
+      <PageMeta
+        title="About VisionSim"
+        description="Learn about VisionSim, an educational tool that simulates vision conditions to build empathy and understanding of visual impairments."
+        path="/about"
+      />
       <NavigationBar />
       <Box sx={{ pt: '80px', pb: 10 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>

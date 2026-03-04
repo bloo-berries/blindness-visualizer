@@ -29,6 +29,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import '../styles/FAQ.css';
 
 interface FAQItem {
@@ -325,6 +326,11 @@ const FAQPage: React.FC = () => {
 
   return (
     <Box className="faq-page" sx={{ pb: 10 }}>
+      <PageMeta
+        title="Frequently Asked Questions"
+        description="Find answers to common questions about VisionSim, vision condition simulations, accessibility features, and how to use the simulator."
+        path="/faq"
+      />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       
       <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>

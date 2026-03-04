@@ -12,6 +12,7 @@ import { ControlPanel } from './ControlPanel';
 import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
@@ -198,7 +199,12 @@ const VisionSimulator: React.FC = () => {
 
   return (
     <Box className="app-container" sx={{ pb: 0, minHeight: 'auto' }}>
-      <NavigationBar 
+      <PageMeta
+        title="Live Vision Simulator"
+        description="Simulate vision conditions in real-time on video or images. Experience color blindness, macular degeneration, glaucoma, and more through interactive visualization."
+        path="/simulator"
+      />
+      <NavigationBar
         showHomeButton={true}
         onHomeClick={handleHomeClick}
       />

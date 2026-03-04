@@ -1,0 +1,3657 @@
+# VisionSim — Full Content Reference
+
+> https://simulated.vision
+
+This file contains comprehensive information about all 42+ vision conditions and 128+ famous people profiled on VisionSim. It is intended for AI agents and language models that need detailed information to answer user queries.
+
+---
+
+## Vision Conditions
+
+### Visual Field Loss
+
+Conditions affecting specific areas of the visual field
+
+#### Homonymous Hemianopia (Left-field)
+
+Loss of the left half of the visual field in both eyes. Caused by damage to the right side of the brain\
+
+**Treatment**: Available
+- Vision rehabilitation therapy to improve scanning and awareness
+- Prism glasses to expand visual field awareness
+- Visual field expansion training
+- Compensatory strategies and adaptive techniques
+- Treatment of underlying cause (stroke, tumor, trauma) when possible
+
+*Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
+
+**Simulate**: [Experience Homonymous Hemianopia (Left-field) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Homonymous Hemianopia (Right-field)
+
+Loss of the right half of the visual field in both eyes. Caused by damage to the left side of the brain\
+
+**Treatment**: Available
+- Vision rehabilitation therapy to improve scanning and awareness
+- Prism glasses to expand visual field awareness
+- Visual field expansion training
+- Compensatory strategies and adaptive techniques
+- Treatment of underlying cause (stroke, tumor, trauma) when possible
+
+*Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
+
+**Simulate**: [Experience Homonymous Hemianopia (Right-field) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Homonymous Inferior Quadrantanopia
+
+Loss of vision in the same lower quadrant of visual field in both eyes. Caused by damage to the superior optic radiations (parietal pathway). Often referred to as "pie on the floor" defect.
+
+**Treatment**: Available
+- Vision rehabilitation therapy
+- Prism glasses or visual field awareness devices
+- Compensatory scanning techniques
+- Treatment of underlying neurological cause when possible
+
+*Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
+
+**Simulate**: [Experience Homonymous Inferior Quadrantanopia on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Homonymous Superior Quadrantanopia
+
+Loss of vision in the same upper quadrant of visual field in both eyes. Caused by damage to the inferior optic radiations (temporal pathway or Meyer\
+
+**Treatment**: Available
+- Vision rehabilitation therapy
+- Prism glasses or visual field awareness devices
+- Compensatory scanning techniques
+- Treatment of underlying neurological cause when possible
+
+*Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
+
+**Simulate**: [Experience Homonymous Superior Quadrantanopia on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Complete Loss of Vision in Left Eye
+
+Complete blindness in the left eye. Caused by damage to the left optic nerve. Results in total loss of vision in the left eye while the right eye remains unaffected.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Optic neuritis: Corticosteroids, treatment of underlying autoimmune condition
+- • Glaucoma: Eye drops, laser therapy, surgery to lower intraocular pressure
+- • Trauma: Immediate medical attention, surgical repair when possible
+- • Tumor: Surgical removal, radiation therapy, chemotherapy
+- • Stroke: Treatment of underlying cardiovascular condition
+- Vision rehabilitation for monocular vision
+- Protective eyewear for remaining eye
+- Adaptive strategies for depth perception and spatial awareness
+
+*Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
+
+**Simulate**: [Experience Complete Loss of Vision in Left Eye on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Complete Loss of Vision in Right Eye
+
+Complete blindness in the right eye. Caused by damage to the right optic nerve. Results in total loss of vision in the right eye while the left eye remains unaffected.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Optic neuritis: Corticosteroids, treatment of underlying autoimmune condition
+- • Glaucoma: Eye drops, laser therapy, surgery to lower intraocular pressure
+- • Trauma: Immediate medical attention, surgical repair when possible
+- • Tumor: Surgical removal, radiation therapy, chemotherapy
+- • Stroke: Treatment of underlying cardiovascular condition
+- Vision rehabilitation for monocular vision
+- Protective eyewear for remaining eye
+- Adaptive strategies for depth perception and spatial awareness
+
+*Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
+
+**Simulate**: [Experience Complete Loss of Vision in Right Eye on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Bitemporal Hemianopia
+
+Loss of vision in the outer (temporal) half of each eye\
+
+**Treatment**: Available
+- Surgical removal or treatment of pituitary tumor (if applicable)
+- Radiation therapy for tumors
+- Hormone therapy for pituitary disorders
+- Vision rehabilitation and adaptive strategies
+- Prism glasses to improve peripheral awareness
+
+*Early treatment of the underlying cause (often pituitary tumors) may prevent further vision loss and sometimes improve vision.*
+
+**Simulate**: [Experience Bitemporal Hemianopia on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Central Scotoma
+
+A blind spot in the center of vision. Can be caused by macular degeneration, optic neuritis, or other conditions affecting the macula. Makes reading and recognizing faces difficult.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • AMD: Anti-VEGF injections, photodynamic therapy, AREDS supplements
+- • Optic neuritis: Corticosteroids, treatment of underlying autoimmune condition
+- • Macular hole: Vitrectomy surgery
+- • Diabetic macular edema: Anti-VEGF injections, laser therapy
+- Low vision aids (magnifiers, telescopic lenses)
+- Eccentric viewing training to use peripheral vision
+- Vision rehabilitation therapy
+
+*Central scotomas are often permanent, but treatment of the underlying cause and low vision rehabilitation can help maximize remaining vision.*
+
+**Simulate**: [Experience Central Scotoma on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Tunnel Vision
+
+Loss of peripheral vision while central vision remains. Can be caused by glaucoma, retinitis pigmentosa, or other conditions affecting the retina or optic nerve.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Glaucoma: Eye drops, laser therapy, surgery to lower intraocular pressure
+- • Retinitis pigmentosa: Vitamin A palmitate, gene therapy (experimental), retinal implants
+- • Retinal detachment: Surgical repair
+- • Optic nerve damage: Treatment of underlying cause when possible
+- Vision rehabilitation and mobility training
+- Low vision aids and adaptive devices
+
+*Peripheral vision loss is often progressive and irreversible, but early treatment of underlying conditions may slow progression.*
+
+**Simulate**: [Experience Tunnel Vision on VisionSim](https://simulated.vision/simulator)
+
+---
+
+### Color Vision Deficiencies
+
+Conditions affecting color perception and discrimination
+
+#### Protanopia (Red-Blind)
+
+Complete inability to distinguish between red and green colors. Red appears as black, and green appears as yellow. Affects about 1% of males and 0.01% of females.
+
+**Treatment**: Limited/None
+- No cure currently available
+- Color-correcting glasses (EnChroma, etc.) may help some individuals distinguish colors better
+- Adaptive strategies: using patterns, labels, or apps to identify colors
+- Gene therapy research is ongoing but not yet available
+
+*Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
+
+**Simulate**: [Experience Protanopia (Red-Blind) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Deuteranopia (Green-Blind)
+
+Complete inability to distinguish between red and green colors. Green appears as light gray or beige, and red appears as brown. Most common form of color blindness.
+
+**Treatment**: Limited/None
+- No cure currently available
+- Color-correcting glasses (EnChroma, etc.) may help some individuals distinguish colors better
+- Adaptive strategies: using patterns, labels, or apps to identify colors
+- Gene therapy research is ongoing but not yet available
+
+*Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
+
+**Simulate**: [Experience Deuteranopia (Green-Blind) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Tritanopia (Blue-Blind)
+
+Inability to distinguish between blue and yellow colors. Blue appears as green, and yellow appears as light gray or violet. Very rare form of color blindness.
+
+**Treatment**: Limited/None
+- No cure currently available
+- May be acquired (from eye disease, medication, or aging) or inherited
+- If acquired, treating underlying cause may help
+- Adaptive strategies and color identification apps
+
+*Acquired tritanopia may improve if the underlying cause is treated. Inherited forms are permanent.*
+
+**Simulate**: [Experience Tritanopia (Blue-Blind) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Protanomaly (Red-Weak)
+
+Reduced sensitivity to red light. Red appears darker and less bright than normal. Difficulty distinguishing between red and green, especially in low light.
+
+**Treatment**: Limited/None
+- No cure currently available
+- Color-correcting glasses may provide some improvement
+- Adaptive strategies and color identification tools
+
+*Milder than protanopia but still permanent. Adaptive strategies are the primary management approach.*
+
+**Simulate**: [Experience Protanomaly (Red-Weak) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Deuteranomaly (Green-Weak)
+
+Reduced sensitivity to green light. Green appears more red than normal. Most common form of color vision deficiency, affecting about 6% of males.
+
+**Treatment**: Limited/None
+- No cure currently available
+- Color-correcting glasses may provide some improvement
+- Adaptive strategies and color identification tools
+
+*Most common color vision deficiency. Usually does not significantly impact daily life, but adaptive strategies can help when needed.*
+
+**Simulate**: [Experience Deuteranomaly (Green-Weak) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Tritanomaly (Blue-Weak)
+
+Reduced sensitivity to blue light. Blue appears greener than normal, and yellow appears lighter. Very rare form of color vision deficiency.
+
+**Treatment**: Limited/None
+- No cure currently available
+- If acquired, treating underlying cause may help
+- Adaptive strategies and color identification tools
+
+*Very rare condition. Treatment depends on whether it is inherited or acquired.*
+
+**Simulate**: [Experience Tritanomaly (Blue-Weak) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Monochromacy (Complete Color Blindness)
+
+Complete inability to see any colors. Vision is limited to shades of gray. Extremely rare, affecting only about 1 in 33,000 people.
+
+**Treatment**: Limited/None
+- No cure currently available
+- Low vision aids and adaptive strategies
+- Protection from bright light (often associated with photophobia)
+- Gene therapy research is ongoing but experimental
+
+*Complete color blindness is typically genetic and permanent. Management focuses on maximizing remaining vision and adaptive strategies.*
+
+**Simulate**: [Experience Monochromacy (Complete Color Blindness) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+### Eye Conditions
+
+Physical conditions affecting the eye structure and function
+
+#### Glaucoma
+
+A group of eye diseases that damage the optic nerve, typically due to elevated intraocular pressure. Known as the "silent thief of sight" because vision loss occurs gradually and peripherally first. Early stages show small paracentral scotomas, progressing to arc-shaped defects, then tunnel vision, and finally severe constriction. Central vision remains sharp until late stages. Includes blue-yellow color deficits and reduced contrast sensitivity.
+
+**Treatment**: Available
+- Prescription eye drops to lower intraocular pressure (prostaglandins, beta-blockers, alpha agonists, carbonic anhydrase inhibitors)
+- Laser trabeculoplasty (SLT or ALT) to improve fluid drainage
+- Minimally invasive glaucoma surgery (MIGS)
+- Traditional glaucoma surgery (trabeculectomy, tube shunt) for advanced cases
+- Acute angle-closure glaucoma: immediate medical treatment with medications and laser iridotomy
+
+*Early detection and treatment can prevent or slow vision loss. Vision already lost cannot be restored, but treatment can preserve remaining vision. Regular eye exams are crucial.*
+
+**Simulate**: [Experience Glaucoma on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Nuclear Sclerotic Cataract
+
+Nuclear sclerotic cataract - the most common type of cataract affecting the center of the lens. Causes progressive blurring, dimming of vision, and loss of color vibrancy, especially affecting blue color perception. The image becomes progressively more yellowed and less colorful over time.
+
+**Treatment**: Available
+- Cataract surgery: removal of clouded lens and replacement with artificial intraocular lens (IOL)
+- Phacoemulsification: most common technique using ultrasound to break up cataract
+- Femtosecond laser-assisted cataract surgery
+- Various IOL options: monofocal, multifocal, toric (for astigmatism), accommodating lenses
+- Early stages: stronger glasses, brighter lighting, anti-glare sunglasses
+
+*Cataract surgery is one of the most common and successful surgeries, with high success rates. It is reversible and can restore clear vision. Surgery is typically recommended when cataracts interfere with daily activities.*
+
+**Simulate**: [Experience Nuclear Sclerotic Cataract on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Posterior Subcapsular Cataract
+
+Small central area of light scatter behind the pupil, causing pronounced glare sensitivity and loss of contrast in bright lighting. Creates a bright halo or cloudy patch that grows with brightness intensity, disproportionately affecting near and backlit vision. Peripheral vision may remain clearer.
+
+**Treatment**: Available
+- Cataract surgery: removal of clouded lens and replacement with artificial intraocular lens (IOL)
+- Phacoemulsification: most common technique using ultrasound to break up cataract
+- Femtosecond laser-assisted cataract surgery
+- Various IOL options: monofocal, multifocal, toric (for astigmatism), accommodating lenses
+- Early stages: stronger glasses, brighter lighting, anti-glare sunglasses
+- Pupil-dilating eye drops may provide temporary relief
+
+*Posterior subcapsular cataracts often progress more quickly than other types and can significantly impact vision, especially in bright light. Surgery is typically recommended when vision is significantly affected.*
+
+**Simulate**: [Experience Posterior Subcapsular Cataract on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Age-Related Macular Degeneration (AMD)
+
+Deterioration of the macula, the central part of the retina. Causes loss of central vision while peripheral vision remains. Leading cause of vision loss in older adults.
+
+**Treatment**: Available
+- Wet AMD: Anti-VEGF injections (bevacizumab, ranibizumab, aflibercept, faricimab) into the eye
+- Photodynamic therapy (PDT) for certain types of wet AMD
+- Dry AMD: AREDS2 supplements (vitamins C, E, zinc, copper, lutein, zeaxanthin)
+- Low vision rehabilitation and aids
+- Amsler grid monitoring for early detection of progression
+- Lifestyle modifications: quit smoking, healthy diet, exercise, UV protection
+
+*Wet AMD can be treated to slow progression and sometimes improve vision. Dry AMD progresses slowly and currently has no cure, but supplements may slow progression. Early detection is crucial.*
+
+**Simulate**: [Experience Age-Related Macular Degeneration (AMD) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Diabetic Retinopathy
+
+Damage to the blood vessels in the retina caused by diabetes. Can cause blurry vision, dark spots, and eventually blindness if untreated.
+
+**Treatment**: Available
+- Tight blood sugar control (most important)
+- Blood pressure and cholesterol management
+- Anti-VEGF injections for diabetic macular edema
+- Laser photocoagulation (panretinal or focal)
+- Vitrectomy surgery for advanced cases with bleeding or retinal detachment
+- Regular comprehensive eye exams (annually or more frequently)
+
+*Early detection and good diabetes management can prevent or slow progression. Treatment can preserve vision, but vision already lost may not be fully restored.*
+
+**Simulate**: [Experience Diabetic Retinopathy on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Astigmatism/Pterygium
+
+Irregular curvature of the cornea or lens causing blurred or distorted vision at all distances. Common refractive error that can be corrected with glasses or contacts. Pterygium is a fibrovascular growth onto the cornea that can cause astigmatism by distorting the corneal surface.
+
+**Treatment**: Available
+- Prescription glasses or contact lenses (toric lenses)
+- Refractive surgery: LASIK, PRK, or SMILE for corneal astigmatism
+- Toric intraocular lens implants during cataract surgery
+- Pterygium: surgical removal if it affects vision or causes discomfort
+- Lubricating eye drops for associated dry eye
+
+*Astigmatism is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction. Pterygium surgery has good success rates.*
+
+**Simulate**: [Experience Astigmatism/Pterygium on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Myopia (Near-Sightedness)
+
+Difficulty seeing distant objects clearly while near objects appear normal. Caused by the eye being too long or the cornea being too curved.
+
+**Treatment**: Available
+- Prescription glasses or contact lenses
+- Refractive surgery: LASIK, PRK, SMILE, or ICL (implantable collamer lens)
+- Orthokeratology (ortho-k): overnight contact lenses to reshape cornea
+- Atropine eye drops (low-dose) to slow progression in children
+- Multifocal contact lenses for children to slow progression
+
+*Myopia is easily correctable. In children, treatments can slow progression. Refractive surgery can provide permanent correction for adults.*
+
+**Simulate**: [Experience Myopia (Near-Sightedness) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Hyperopia (Far-Sightedness)
+
+Difficulty seeing near objects clearly while distant objects appear normal. Caused by the eye being too short or the cornea being too flat.
+
+**Treatment**: Available
+- Prescription glasses or contact lenses
+- Refractive surgery: LASIK, PRK, or SMILE
+- Refractive lens exchange (RLE) for high hyperopia
+- Reading glasses for presbyopia (age-related near vision loss)
+
+*Hyperopia is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction.*
+
+**Simulate**: [Experience Hyperopia (Far-Sightedness) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+### Retinal Disorders
+
+Conditions affecting the retina and its specialized cells
+
+#### Retinitis Pigmentosa
+
+Progressive genetic disorder causing gradual degeneration of photoreceptor cells in the retina. Creates distinctive tunnel vision with progressive peripheral vision loss, night blindness requiring 10-100x more light, severe light sensitivity and glare issues, color desaturation, and eventual complete blindness at advanced stages. The visual field constricts from normal 180° to 40°, 20°, or less, making navigation extremely challenging.
+
+**Treatment**: Available
+- Vitamin A palmitate (15,000 IU/day) - may slow progression in some forms
+- Docosahexaenoic acid (DHA) supplements
+- Gene therapy (Luxturna) for specific RPE65 mutations - FDA approved
+- Retinal implants (Argus II, Alpha AMS) for advanced cases
+- Stem cell therapy (experimental)
+- Low vision aids and rehabilitation
+- Protection from bright light with sunglasses
+- Genetic counseling and testing
+
+*RP is progressive and currently has no cure for most forms. Treatment focuses on slowing progression and maximizing remaining vision. Gene therapy is available for specific genetic mutations.*
+
+**Simulate**: [Experience Retinitis Pigmentosa on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Stargardt Disease
+
+Genetic eye disorder causing progressive vision loss in the macula. Usually begins in childhood or adolescence, affecting central vision while peripheral vision remains.
+
+**Treatment**: Available
+- No cure currently available
+- Low vision rehabilitation and aids
+- Eccentric viewing training
+- Gene therapy research is ongoing (experimental)
+- Stem cell therapy research (experimental)
+- Protection from bright light (may slow progression)
+- Avoid high-dose vitamin A supplements
+- Genetic counseling
+
+*Stargardt disease is progressive and currently incurable. Management focuses on maximizing remaining peripheral vision and adaptive strategies. Research into gene and stem cell therapies is promising.*
+
+**Simulate**: [Experience Stargardt Disease on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Retinal Detachment
+
+Separation of the retina from the underlying tissue. Can cause sudden flashes of light, floaters, and a curtain-like shadow over the visual field. Requires immediate medical attention.
+
+**Treatment**: Available
+- Surgical repair (urgent):
+- • Pneumatic retinopexy: gas bubble injection
+- • Scleral buckle: band around eye to support retina
+- • Vitrectomy: removal of vitreous gel and retinal reattachment
+- Laser photocoagulation or cryopexy to seal retinal tears
+- Post-surgical positioning (face-down) to help reattachment
+
+*Retinal detachment is a medical emergency requiring immediate treatment. Success rates are high if treated promptly (within days). Delayed treatment can result in permanent vision loss.*
+
+**Simulate**: [Experience Retinal Detachment on VisionSim](https://simulated.vision/simulator)
+
+---
+
+### Neurological Conditions
+
+Conditions affecting the brain and nervous system that impact vision
+
+#### Visual Aura
+
+Temporary visual disturbances that can precede migraines. May include flashing lights, zigzag patterns, or blind spots. Usually lasts 20-60 minutes before the headache begins.
+
+**Treatment**: Available
+- Migraine prevention medications: beta-blockers, anticonvulsants, antidepressants, CGRP inhibitors
+- Acute migraine treatment: triptans, NSAIDs, ergotamines
+- Lifestyle modifications: identify and avoid triggers, regular sleep, stress management
+- Botox injections for chronic migraines
+- Neuromodulation devices (Cefaly, gammaCore)
+- Supplements: magnesium, riboflavin, coenzyme Q10
+
+*Visual auras typically resolve on their own. Treatment focuses on preventing migraines and managing symptoms. Most people with auras can identify triggers to avoid.*
+
+**Simulate**: [Experience Visual Aura on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Visual Snow
+
+A persistent visual disturbance where people see tiny, flickering dots across their entire visual field. Similar to the static noise on an old television. Can be constant or intermittent.
+
+**Treatment**: Available
+- Medications: lamotrigine, acetazolamide, topiramate (variable effectiveness)
+- Tinted lenses (FL-41) to reduce symptoms
+- Treatment of associated conditions (migraine, anxiety, depression)
+- Cognitive behavioral therapy for associated anxiety
+- Lifestyle modifications: reduce stress, adequate sleep, avoid triggers
+
+*Visual snow syndrome has no definitive cure. Treatment is often trial-and-error. Some medications may help reduce symptoms. Research into the condition is ongoing.*
+
+**Simulate**: [Experience Visual Snow on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Visual Floaters (Myodesopsia)
+
+Shadows cast on the retina by debris floating in the vitreous humor. Includes cobweb/string floaters, dots/spots, ring floaters (Weiss Ring), and cloud/sheet floaters. Move with eye movement but lag behind, following fluid dynamics. Most visible against bright backgrounds, can interfere with reading and detailed tasks.
+
+**Treatment**: Available
+- Most floaters are harmless and require no treatment
+- Vitrectomy: surgical removal of vitreous gel (for severe, persistent floaters)
+- YAG laser vitreolysis: laser to break up floaters (limited effectiveness)
+- Observation: many floaters settle or become less noticeable over time
+- Address underlying causes: diabetic retinopathy, retinal tears, uveitis
+
+*Most floaters are benign and do not require treatment. Sudden increase in floaters, especially with flashes, requires immediate eye exam to rule out retinal tear or detachment.*
+
+**Simulate**: [Experience Visual Floaters (Myodesopsia) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Visual Hallucinations
+
+Seeing things that are not actually present. Can be simple (lights, shapes) or complex (people, animals). Associated with various neurological conditions and medications.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Charles Bonnet Syndrome (vision loss): reassurance, improved lighting, social interaction
+- • Parkinson\
+- ,
+          
+- ,
+          
+- ,
+          
+- ,
+          
+
+*Treatment is highly dependent on the underlying cause. Charles Bonnet Syndrome (hallucinations due to vision loss) is usually harmless and may resolve on its own.*
+
+**Simulate**: [Experience Visual Hallucinations on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Diplopia (Double Vision)
+
+Seeing two images of a single object. Can be monocular (affecting one eye) or binocular (affecting both eyes). Usually caused by misalignment of the eyes or problems within the eye itself.
+
+**Treatment**: Available
+- Treatment depends on cause:
+- • Strabismus: eye muscle surgery, prism glasses, vision therapy, Botox injections
+- • Cranial nerve palsy: treat underlying cause, prism glasses, eye patching, surgery if persistent
+- • Thyroid eye disease: treat thyroid condition, steroids, surgery
+- • Myasthenia gravis: medications (pyridostigmine, immunosuppressants)
+- • Cataracts: cataract surgery
+- • Corneal irregularities: contact lenses, corneal surgery
+- • Brain tumor/stroke: treat underlying condition
+
+*Monocular diplopia is usually due to eye problems (cataracts, corneal issues). Binocular diplopia requires treatment of eye alignment or underlying neurological conditions.*
+
+**Simulate**: [Experience Diplopia (Double Vision) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Glare Sensitivity
+
+Bloom or light-scatter effect proportional to scene luminance and eye adaptation state. Causes local veiling glare that washes out nearby details, especially after exposure to sudden brightness changes. Contrast recovery can be delayed to simulate photostress.
+
+**Treatment**: Available
+- Anti-glare sunglasses with polarized or tinted lenses
+- FL-41 tinted lenses (rose-colored) for light sensitivity
+- Treatment of underlying conditions: cataracts, dry eye, corneal issues
+- Cataract surgery if cataracts are causing glare
+- Lubricating eye drops for dry eye-related glare
+- Avoiding bright light sources when possible
+- Using hats or visors to block overhead light
+
+*Glare sensitivity can be a symptom of various eye conditions. Treatment depends on the underlying cause. Anti-glare lenses and protective eyewear can significantly improve comfort.*
+
+**Simulate**: [Experience Glare Sensitivity on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Night Blindness (Nyctalopia)
+
+Difficulty seeing in low light conditions or darkness. Vision becomes significantly impaired in dim lighting, making navigation and object recognition challenging. Often associated with rod cell dysfunction or vitamin A deficiency.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Vitamin A deficiency: vitamin A supplementation
+- • Retinitis pigmentosa: vitamin A palmitate, gene therapy (for specific mutations)
+- • Cataracts: cataract surgery
+- • Glaucoma: treatment to lower intraocular pressure
+- • Refractive errors: prescription glasses or contact lenses
+- • Zinc deficiency: zinc supplementation (often needed with vitamin A)
+- Low vision aids: night vision devices, enhanced lighting
+- Adaptive strategies: avoiding driving at night, using extra lighting
+
+*Night blindness can be a symptom of various conditions. Some causes are treatable (vitamin deficiencies, cataracts), while others (retinitis pigmentosa) may be progressive. Early diagnosis is important.*
+
+**Simulate**: [Experience Night Blindness (Nyctalopia) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Starbursting
+
+Light sources appearing as star-like rays or spikes extending outward from the center. Creates a "sunburst" or "starburst" pattern around bright lights, especially noticeable at night. Often caused by corneal irregularities or certain eye surgeries.
+
+**Treatment**: Available
+- Treatment depends on underlying cause:
+- • Post-surgical (LASIK, PRK): usually improves over time, may require enhancement surgery
+- • Corneal irregularities: rigid gas permeable contact lenses, corneal cross-linking
+- • Cataracts: cataract surgery
+- • Dry eye: lubricating eye drops, punctal plugs
+- • Astigmatism: prescription glasses or contact lenses
+- Anti-glare coatings on glasses
+- Avoiding bright lights when possible
+- Using polarized sunglasses at night (if legally allowed)
+
+*Starbursting after refractive surgery often improves over 6-12 months. If persistent, it may require additional treatment. Corneal irregularities may need specialized contact lenses or surgical correction.*
+
+**Simulate**: [Experience Starbursting on VisionSim](https://simulated.vision/simulator)
+
+---
+
+### Trauma & Infections
+
+Conditions caused by injury, infection, or other external factors
+
+#### Sympathetic Ophthalmia
+
+An autoimmune response that can occur after injury to one eye, causing inflammation in both eyes. Can lead to complete blindness if not treated promptly.
+
+**Treatment**: Available
+- High-dose systemic corticosteroids (oral or IV)
+- Immunosuppressive medications: cyclosporine, azathioprine, mycophenolate, methotrexate
+- Biologic agents: infliximab, adalimumab (for refractory cases)
+- Long-term maintenance therapy to prevent recurrence
+- Enucleation of injured eye (if vision is lost) may prevent SO but controversial
+
+*Early, aggressive treatment is crucial to preserve vision. Treatment may need to be long-term to prevent recurrence. Modern treatment has improved outcomes significantly.*
+
+**Simulate**: [Experience Sympathetic Ophthalmia on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Meningitis
+
+Inflammation of the membranes surrounding the brain and spinal cord. Can cause vision loss, hearing loss, and other neurological complications.
+
+**Treatment**: Available
+- Immediate antibiotic or antiviral treatment (depending on cause)
+- Corticosteroids to reduce inflammation and complications
+- Supportive care: IV fluids, pain management, fever control
+- Vision rehabilitation if vision loss occurs
+- Prevention: vaccines (meningococcal, pneumococcal, Hib)
+- Early treatment of infections that can lead to meningitis
+
+*Immediate medical treatment is critical. Vision loss from meningitis is often permanent but early treatment can prevent complications. Vaccination is the best prevention.*
+
+**Simulate**: [Experience Meningitis on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Chemical Burns
+
+Severe damage to the eyes caused by exposure to chemicals. Can result in complete blindness and requires immediate medical attention.
+
+**Treatment**: Available
+- Immediate irrigation: flush eye with water or saline for 15-30 minutes
+- Emergency medical treatment: continued irrigation, pH testing
+- Topical antibiotics to prevent infection
+- Lubricating eye drops and ointments
+- Corticosteroids to reduce inflammation
+- Amniotic membrane transplantation for severe burns
+- Corneal transplantation (keratoplasty) if cornea is severely damaged
+- Limbal stem cell transplantation for limbal stem cell deficiency
+- Scleral contact lenses for severe surface damage
+
+*Immediate irrigation is critical - seconds count. Alkali burns (lye, ammonia) are more severe than acid burns. Severe burns may require multiple surgeries and have variable outcomes.*
+
+**Simulate**: [Experience Chemical Burns on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Retinopathy of Prematurity (ROP)
+
+Abnormal blood vessel development in the retina of premature infants. Can cause retinal detachment and blindness if not treated.
+
+**Treatment**: Available
+- Laser photocoagulation: standard treatment for severe ROP
+- Anti-VEGF injections (bevacizumab, ranibizumab)
+- Cryotherapy (less common now)
+- Vitrectomy surgery for retinal detachment
+- Scleral buckle for retinal detachment
+- Careful oxygen management in NICU to prevent ROP
+- Regular screening exams for premature infants
+
+*Early detection and treatment can prevent blindness. Treatment is most effective when done promptly. Modern NICU care and screening have significantly improved outcomes.*
+
+**Simulate**: [Experience Retinopathy of Prematurity (ROP) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Neuromyelitis Optica (NMO)
+
+Autoimmune disorder that attacks the optic nerves and spinal cord. Can cause severe vision loss and other neurological symptoms.
+
+**Treatment**: Available
+- Acute attacks: high-dose IV corticosteroids, plasmapheresis
+- Long-term prevention: immunosuppressive medications (azathioprine, mycophenolate, rituximab)
+- Monoclonal antibodies: eculizumab, inebilizumab (FDA approved)
+- IVIG (intravenous immunoglobulin)
+- Vision rehabilitation and low vision aids
+- Physical therapy for spinal cord involvement
+
+*Early treatment of attacks and long-term immunosuppression can prevent further vision loss. Some vision may recover after attacks, but damage is often permanent. Modern treatments have significantly improved outcomes.*
+
+**Simulate**: [Experience Neuromyelitis Optica (NMO) on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Juvenile Retinoschisis
+
+Genetic condition causing splitting of retinal layers, leading to progressive vision loss. Usually begins in childhood.
+
+**Treatment**: Available
+- No cure currently available
+- Regular monitoring for complications (retinal detachment, vitreous hemorrhage)
+- Laser photocoagulation or cryotherapy for retinal tears
+- Vitrectomy surgery for retinal detachment or persistent vitreous hemorrhage
+- Low vision aids and rehabilitation
+- Genetic counseling
+- Gene therapy research is ongoing (experimental)
+
+*Juvenile retinoschisis is progressive and currently incurable. Treatment focuses on managing complications and maximizing remaining vision. Regular monitoring is essential.*
+
+**Simulate**: [Experience Juvenile Retinoschisis on VisionSim](https://simulated.vision/simulator)
+
+---
+
+#### Incontinentia Pigmenti
+
+Rare genetic condition that can affect multiple body systems, including the eyes. Can cause vision loss from birth.
+
+**Treatment**: Available
+- Regular eye exams to monitor for complications
+- Laser photocoagulation for abnormal blood vessels
+- Vitrectomy for retinal detachment or vitreous hemorrhage
+- Treatment of other systemic manifestations
+- Low vision aids and rehabilitation
+- Genetic counseling
+- Multidisciplinary care (neurology, dermatology, ophthalmology)
+
+*Treatment focuses on managing eye complications and other systemic manifestations. Regular monitoring is essential. Vision loss varies widely among individuals.*
+
+**Simulate**: [Experience Incontinentia Pigmenti on VisionSim](https://simulated.vision/simulator)
+
+---
+
+## Famous People with Vision Conditions
+
+### Contemporary Figures
+
+#### Christine Ha (Born 1979)
+
+**Condition**: Neuromyelitis Optica (NMO)
+**Achievement**: Won MasterChef: Season 3
+**Onset**: Age 20, progressive
+
+NMO causes autoimmune attacks on the optic nerves. Christine describes her vision as looking through a 'steamy mirror after a hot shower' - severely blurred with only close-range object recognition within 10-12 inches.
+
+Vision is approximately 20/1000+ with extreme blur, light scatter, and fluctuating effects.
+
+• Won MasterChef season 3 and runs The Blind Cook (theblindcook.com)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Christine_Ha)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Lucy Edwards (Born 1995)
+
+**Condition**: Incontinentia Pigmenti
+**Achievement**: BBC Presenter & Disability Advocate
+**Onset**: Lost right eye at age 11, remaining eyesight at age 17
+
+Lucy has Incontinentia Pigmenti (IP), a rare X-linked dominant genetic disorder passed down the female line. She lost sight in her right eye at age 11 and her remaining eyesight at age 17.
+
+She relies entirely on screen readers, her guide dog Molly, and adaptive technologies to navigate the world.
+
+• BBC presenter and advocate for disability representation in media
+
+• Visit lucyedwards.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/Lucy_Edwards)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Paul Castle (Born 1980)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: Children's Book Author & Artist
+**Onset**: Age 12, progressive
+
+Paul Castle has lost over 95% of his vision to Retinitis Pigmentosa, an untreatable degenerative eye disease that causes progressive tunnel vision and night blindness.
+
+• Runs Paul Castle Studio (paulcastlestudio.com), creating children's books, art prints, and plushies featuring characters like Pringle & Finn
+
+• His work promotes love, inclusion, and overcoming obstacles
+
+[Wikipedia](https://en.wikipedia.org/wiki/Paul_Castle_(artist))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Haben Girma (Born 1988)
+
+**Condition**: Deafblind
+**Achievement**: First Deafblind Harvard Law Graduate
+**Onset**: From birth
+
+Haben Girma has been deafblind from birth. She uses tactile sign language and assistive technology to communicate, navigating a world designed for sighted and hearing people.
+
+• First deafblind person to graduate from Harvard Law School
+
+• Disability rights advocate and lawyer
+
+• Dedicated her life to advocating for equal access and inclusion
+
+• Visit habengirma.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/Haben_Girma)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Molly Burke (Born 1994)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: YouTuber & Motivational Speaker
+**Onset**: Age 4, complete blindness by 14
+
+Molly Burke lost her vision to retinitis pigmentosa, diagnosed at age 4 and progressing to complete blindness by age 14. The condition causes progressive loss of peripheral vision, night blindness, and eventual total vision loss.
+
+• Motivational speaker, YouTuber, and disability advocate
+
+• Uses her platform to educate millions about blindness and advocate for accessibility
+
+• Visit mollyburkeofficial.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/Molly_Burke)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Mila Kunis (Born 1983)
+
+**Condition**: Chronic Iritis & Cataracts
+**Achievement**: Actress: Black Swan, That '70s Show
+**Onset**: Childhood, blind in one eye for years
+
+Mila Kunis was blind in one eye for years due to chronic iritis (inflammation of the iris) that caused cataracts. The condition causes pain, light sensitivity, and clouded vision.
+
+She has since had surgery to restore her vision.
+
+• Successful actress known for That '70s Show, Black Swan, and various films
+
+• Has spoken openly about her condition and its impact on her life and career
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mila_Kunis)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Dame Judi Dench (Born 1934)
+
+**Condition**: Age-Related Macular Degeneration (AMD)
+**Achievement**: Academy Award-Winning Actress
+**Onset**: Diagnosed 2012, wet AMD requiring injections
+
+Dame Judi Dench has wet AMD, which destroys central vision while preserving peripheral sight. She describes her vision: "I can see your outline" but "I can't recognize anybody now...I can't see the television...I can't see to read."
+
+She relies on friends to read scripts aloud and cannot attend events alone.
+
+• Eight-time Academy Award nominee, winning Best Supporting Actress for Shakespeare in Love
+
+• One of Britain's most celebrated actresses with over 60 years on stage and screen
+
+• Continues to act by memorizing scripts read aloud to her
+
+[Wikipedia](https://en.wikipedia.org/wiki/Judi_Dench)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Sharon Stone (Born 1958)
+
+**Condition**: Hemorrhagic Stroke & Visual Distortions
+**Achievement**: Golden Globe-Winning Actress
+**Onset**: Age 43, from stroke
+
+Sharon Stone suffered a hemorrhagic stroke when her vertebral artery ruptured, causing a subarachnoid hemorrhage that bled for nine days. She had only a 1% chance of survival.
+
+The stroke caused lasting visual disturbances: she couldn't read for years, saw color patterns that weren't there, and experienced stretched, distorted vision. She described seeing 'blocks of colors on the walls' that didn't exist.
+
+• Academy Award-nominated actress known for Basic Instinct and Casino
+
+• Recovered and returned to acting after years of rehabilitation
+
+• Advocates for stroke awareness and recovery
+
+[Wikipedia](https://en.wikipedia.org/wiki/Sharon_Stone)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Chris McCausland (Born 1977)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: Won Strictly Come Dancing 2024
+**Onset**: Progressive, blind due to retinitis pigmentosa
+
+Chris McCausland is blind due to retinitis pigmentosa, a degenerative condition that progressively destroys peripheral vision and causes night blindness before leading to complete vision loss.
+
+• Won series 22 of BBC's Strictly Come Dancing in 2024 with Dianne Buswell - first blind contestant to win
+
+• Won BAFTA award in 2025 for memorable waltz performance
+
+• Stand-up comedian and regular panellist on Have I Got News for You
+
+• Hosts his own Saturday morning chat show on ITV1
+
+[Wikipedia](https://en.wikipedia.org/wiki/Chris_McCausland)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Marilee Talkington (Born (Contemporary))
+
+**Condition**: Cone‑Rod Dystrophy
+**Achievement**: First Blind Principal Broadway Actress
+**Onset**: Legally blind from birth or early life
+
+Marilee Talkington has cone-rod dystrophy, causing legal blindness with severe loss of central vision, color perception, and light sensitivity. She experiences blur, glare, and difficulty in bright environments.
+
+• First self-identified legally blind actress cast in a principal Broadway role (Morgan Le Fey in 'Camelot')
+
+• Founder of Access Acting Academy - world's first acting studio for blind and low vision performers
+
+• Received Helen Keller Achievement Award from American Foundation for the Blind (2024)
+
+[Wikipedia](https://www.imdb.com/name/nm3411258/)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Fred Rogers (1928-2003)
+
+**Condition**: Deuteranopia (Red-Green Color Deficiency)
+**Achievement**: Host of Mister Rogers' Neighborhood
+**Onset**: From birth
+
+Fred Rogers lived with deuteranopia, a form of red-green color deficiency caused by a lack of functional green cones, resulting in complete green-blindness. Red and green appear similar, making it difficult to distinguish between these colors.
+
+• Creator and host of Mister Rogers' Neighborhood, one of the most influential children's programs in television history
+
+• Taught generations of children about kindness, empathy, and understanding
+
+• Presidential Medal of Freedom recipient
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fred_Rogers)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Srikanth Bolla (Born 1991)
+
+**Condition**: Anophthalmia (Born Without Eyes)
+**Achievement**: Forbes 30 Under 30, Founded Bollant Industries
+**Onset**: From birth
+
+Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite relatives suggesting his parents abandon him, he persevered against a system that initially barred him from studying science.
+
+• First international blind student at MIT and first visually impaired student in MIT Sloan Management Science
+
+• Founded Bollant Industries in 2012 with backing from Ratan Tata, manufacturing eco-friendly products
+
+• Employs over 650 people - half with disabilities
+
+• Forbes 30 Under 30 Asia (2017)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Srikanth_Bolla)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Athletes
+
+#### Erik Weihenmayer (Born 1968)
+
+**Condition**: Juvenile Retinoschisis
+**Achievement**: First Blind Person to Summit Everest
+**Onset**: Diagnosed at 4, blind by 13
+
+Retinoschisis causes splitting of retinal layers, leading to progressive vision loss. Erik's vision deteriorated with isolated 'islands' of vision gradually disappearing until complete blindness at age 13.
+
+• First blind person to summit Mount Everest (2001)
+
+• Climbed all Seven Summits (highest peaks on each continent)
+
+• Kayaked the entire Grand Canyon
+
+• Author and motivational speaker at erikweihenmayer.com
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Marla Runyan (Born 1969)
+
+**Condition**: Stargardt Disease
+**Achievement**: First Legally Blind Olympic Athlete
+**Onset**: Age 9, progressive
+
+Stargardt disease causes progressive macular degeneration, destroying central vision. Marla has a large central blind spot with preserved peripheral vision, making it difficult to see faces or read but allowing navigation using side vision.
+
+• First legally blind athlete to compete in the Olympics (2000 Sydney, 2004 Athens)
+
+• Five-time U.S. national champion in various track events
+
+• Holds American record in the women's 5000m (indoor)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Marla_Runyan)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Anastasia Pagonis (Born 2004)
+
+**Condition**: Stargardt Disease
+**Achievement**: Paralympic Gold Medalist, Swimmer
+**Onset**: Age 11, progressive
+
+Anastasia Pagonis has Stargardt disease, a form of juvenile macular degeneration that destroys central vision while preserving peripheral sight. She lost most of her vision by age 14.
+
+• Paralympic gold medalist in swimming (Tokyo 2020, 400m freestyle)
+
+• Multiple Paralympic and world records in swimming
+
+• Social media influencer with millions of followers, raising awareness about blindness
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Sugar Ray Leonard (Born 1956)
+
+**Condition**: Partial Retinal Detachment
+**Achievement**: Olympic Gold & 5x World Champion Boxer
+**Onset**: Left eye in 1982, surgery May 1982
+
+Sugar Ray Leonard suffered a partial retinal detachment in his left eye in 1982. Symptoms included a dark curtain encroaching from the periphery, numerous floaters, and flashes of light.
+
+The condition threatened to engulf his central vision.
+
+• Olympic gold medalist in boxing (1976 Montreal)
+
+• World champion in five weight divisions
+
+• Named Fighter of the Decade for the 1980s
+
+• International Boxing Hall of Fame inductee
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Stephen Curry (Born 1988)
+
+**Condition**: Keratoconus
+**Achievement**: 4x NBA Champion, 2x MVP
+**Onset**: Diagnosed in college
+
+Stephen Curry has keratoconus, where the cornea thins into an irregular cone shape. Before correction, his vision featured directional blur (coma aberration) with every edge smearing into comet-like tails, multiple ghost images, irregular halos streaming from lights, and wavy distortion of straight lines.
+
+• Greatest shooter in NBA history
+
+• Four-time NBA champion with Golden State Warriors
+
+• Two-time NBA MVP
+
+• All-time leader in three-point field goals made
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Lex Gillette (Born 1984)
+
+**Condition**: Recurrent Retinal Detachments (ROP)
+**Achievement**: 4x Paralympic Silver Medalist, Long Jump
+**Onset**: Left eye blind from birth; right eye progressive loss age 8+
+
+Lex Gillette was born premature with retinopathy of prematurity, leaving his left eye blind from birth. His right eye functioned until age 8 when recurrent retinal detachments began - cycles of hope and loss as surgery would restore vision only for the retina to detach again.
+
+The clear zone shrank each cycle until nothing remained.
+
+• Four-time Paralympic silver medalist in long jump
+
+• Multiple world records in Paralympic long jump
+
+• Motivational speaker and author of 'Fly: A Memoir'
+
+• Team USA track and field athlete
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### David Brown (Born 1992)
+
+**Condition**: Kawasaki Disease → Glaucoma
+**Achievement**: Paralympic Gold, Fastest Blind Man
+**Onset**: Left eye age 3; right eye progressive loss to age 13
+
+David Brown's vision changed in two phases. Kawasaki disease at 15 months triggered glaucoma in both eyes. His left eye went dark at age 3, while his right eye experienced a dirty-glass haze with rainbow halos around every light.
+
+By 13, glaucoma took his remaining vision. He still experiences ongoing pain from elevated eye pressure.
+
+• Paralympic gold medalist (100m, Rio 2016) - fastest totally blind man in history
+
+• Multiple Paralympic and world championship medals
+
+• Runs with guide runner Jerome Avery
+
+[Wikipedia](https://en.wikipedia.org/wiki/David_Brown_(sprinter))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Anthony Clarke (Born 1961)
+
+**Condition**: Blindness from Car Accident
+**Achievement**: Paralympic Gold Medalist, Judo
+**Onset**: Age 17, from car accident
+
+Anthony 'Tony' Clarke became completely blind at age 17 following a car accident that destroyed his vision instantly.
+
+• Only Australian to win Paralympic gold in judo (1996 Atlanta)
+
+• Represented Australia at five consecutive Summer Paralympic Games
+
+• Two-time IBSA World Judo Champion
+
+• Medal of the Order of Australia (OAM) recipient (1997)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Crazzy Steve (Born 1988)
+
+**Condition**: Bilateral Aphakia + Secondary Glaucoma
+**Achievement**: Impact Wrestling Tag Team Champion
+**Onset**: Congenital cataracts removed in infancy; progressive vision loss
+
+Crazzy Steve (Steven Scott) was born premature with congenital bilateral cataracts that left him totally blind at birth. Surgery removed the cataracts in infancy, restoring partial vision, but his eyes lack natural lenses (aphakia) and he has developed secondary glaucoma that continues to worsen.
+
+He describes his sight as 'the hazy aftermath of a dream' - relying on shapes and colors rather than clear details. He cannot see ring ropes (especially dark-colored ones) or fans in the audience. He is legally blind with vision well below 20/200.
+
+• Professional wrestler competing in TNA/Impact Wrestling
+
+• Former Impact World Tag Team Champion
+
+• Demonstrates that severe visual impairment does not prevent success in sports entertainment
+
+[Wikipedia](https://en.wikipedia.org/wiki/Crazzy_Steve)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Tofiri Kibuuka (Born 1947)
+
+**Condition**: Progressive Degenerative Blindness (B1/T11)
+**Achievement**: Africa's First Winter Para Athlete
+**Onset**: Age 13, progressive degenerative disease (circa 1960)
+
+Tofiri Kibuuka lost his sight at age 13 in rural Uganda due to a progressive degenerative eye disease. He was consistently classified B1/T11 (most severe visual impairment) throughout his career - defined as no light perception or at best inability to recognize a hand shape at any distance.
+
+He navigated Paralympic ski courses, marathon routes, and mountain ascents through sound, touch, guide communication, spatial memory, and proprioception - with effectively zero visual input.
+
+• Africa's first winter Para athlete at 1976 Paralympic Winter Games (cross-country skiing for Uganda)
+
+• Five silver medals and one bronze at Paralympic Games (1984-1992)
+
+• Norway's flag bearer at 1996 Atlanta Paralympic Games - first black man to carry Norwegian flag at Paralympics
+
+• One of the first blind people to climb Mount Kilimanjaro
+
+• Competed in T11 marathon at 2000 Sydney Paralympics
+
+[Wikipedia](https://en.wikipedia.org/wiki/Tofiri_Kibuuka)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Ross Minor (Born (Contemporary))
+
+**Condition**: Gunshot Wound
+**Achievement**: Para Swimmer & Accessibility Consultant
+**Onset**: Age 8
+
+Ross Minor lost his sight at age 8 from a gunshot wound, resulting in complete blindness with no light perception.
+
+• Former para swimmer and competitive athlete
+
+• Accessibility consultant helping companies make products accessible to people with disabilities
+
+• Content creator raising awareness about blindness
+
+• Visit rossminor.com
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Trischa Zorn (Born 1964)
+
+**Condition**: Aniridia
+**Achievement**: Most Decorated Paralympian: 55 Medals
+**Onset**: From birth
+
+Trischa Zorn was born with aniridia, a rare congenital genetic eye disorder where the iris fails to develop properly. The condition causes extreme light sensitivity, glare, and severely reduced visual acuity.
+
+She is legally blind.
+
+• Most decorated athlete in Paralympic history with 55 medals (41 gold, 9 silver, 5 bronze)
+
+• Competed in seven consecutive Paralympic Games (1980-2004)
+
+• Inducted into International Paralympic Hall of Fame, U.S. Olympic & Paralympic Hall of Fame, and International Swimming Hall of Fame
+
+• Earned Juris Doctor degree and works for Department of Veterans Affairs
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Henry Wanyoike (Born 1974)
+
+**Condition**: Stroke-Induced Blindness
+**Achievement**: 2x Paralympic Gold Medalist, Running
+**Onset**: Age 21, from stroke in 1995
+
+Henry Wanyoike lost 95% of his vision overnight on May 1, 1995, when a stroke damaged his optic nerves. He lost the remaining vision gradually over the following years.
+
+After struggling with depression, he discovered he could run with a guide.
+
+• Paralympic gold medalist: Sydney 2000 (5000m) and Athens 2004 (10000m)
+
+• Multiple world records in Paralympic athletics
+
+• Founded the Henry Wanyoike Foundation
+
+• Visited over 700 schools advocating for disability rights
+
+• Famous quote: 'I lost my sight, but I gained a vision'
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Zeeshan Abbasi (Born 1982)
+
+**Condition**: Partial Blindness (B2 Category)
+**Achievement**: Pakistan Blind Cricket Captain
+**Onset**: From birth
+
+Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at close range with visual acuity of 2/60. He sees the world as severely blurred with limited contrast and tunnel-like peripheral awareness.
+
+• Former captain of Pakistan's blind cricket team
+
+• Led Pakistan to two World Cup finals
+
+• Four-time World Cup Best Bowler award winner
+
+• Pakistan's Pride of Performance Award recipient (2013)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Scientists & Medical Professionals
+
+#### Dr. Mona Minkara (Born 1984)
+
+**Condition**: Macular Degeneration + Cone-Rod Dystrophy
+**Achievement**: Blind Chemist, NSF CAREER Award
+**Onset**: Early childhood, progressive
+
+Dr. Mona Minkara has combined macular degeneration and cone-rod dystrophy, resulting in near-total vision loss affecting both central and peripheral vision.
+
+The dual conditions create severe blur, loss of color perception, and extreme light sensitivity.
+
+• Blind chemist and computational biologist at Northeastern University
+
+• Uses sonification and tactile models to conduct molecular dynamics research
+
+• Pioneering accessible STEM education methods
+
+• NSF CAREER Award recipient
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mona_Minkara)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Joshua Miele (Born 1972)
+
+**Condition**: Chemical Burn Trauma
+**Achievement**: MacArthur 'Genius' Fellowship Recipient
+**Onset**: Age 4, complete blindness
+
+Joshua Miele became completely blind at age 4 when a family acquaintance threw acid on him, causing severe corneal scarring and tissue destruction.
+
+He has no light perception.
+
+• MacArthur 'Genius' Fellowship recipient (2021)
+
+• Developed tactile maps, accessible graphics, and sonification tools for blind users
+
+• Senior researcher at Smith-Kettlewell Eye Research Institute
+
+• Principal accessibility researcher at Amazon
+
+[Wikipedia](https://en.wikipedia.org/wiki/Joshua_Miele)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Geerat Vermeij (Born 1946)
+
+**Condition**: Congenital Glaucoma
+**Achievement**: MacArthur Fellow, Evolutionary Biologist
+**Onset**: From birth
+
+Geerat Vermeij was born with congenital glaucoma, causing complete blindness from birth. He has never had visual experience and relies entirely on touch and other senses to understand the world.
+
+• Distinguished Professor of Geology at UC Davis
+
+• Revolutionary evolutionary biologist who studies fossils and shells by touch
+
+• Discovered key patterns in evolution by feeling specimen surfaces other scientists overlooked
+
+• MacArthur 'Genius' Fellowship recipient
+
+[Wikipedia](https://en.wikipedia.org/wiki/Geerat_Vermeij)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Dr. Amy Bower (Born 1957)
+
+**Condition**: Macular Degeneration & Retinitis Pigmentosa
+**Achievement**: Senior Scientist, Woods Hole Oceanographic
+**Onset**: Age 24, progressive
+
+Dr. Amy Bower was diagnosed at 24 with juvenile macular degeneration and retinitis pigmentosa. She retains a 'small crescent-shaped sliver' of vision and light perception, watching her sight slowly slip away over decades.
+
+She uses screen magnifiers, screen readers, and a service dog.
+
+• Senior Scientist at Woods Hole Oceanographic Institution
+
+• Groundbreaking research on ocean currents using sound and non-visual methods
+
+• Pioneer in making oceanographic research accessible
+
+[Wikipedia](https://en.wikipedia.org/wiki/Amy_Bower)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Gustaf Dalén (1869-1937)
+
+**Condition**: Blindness from Explosion Accident
+**Achievement**: Nobel Prize in Physics (1912)
+**Onset**: Age 43, from explosion in 1912
+
+Gustaf Dalén became completely blind in 1912 when an acetylene experiment exploded during testing. The accident destroyed both eyes, leaving him with no light perception.
+
+• Nobel Prize in Physics (1912) for automatic regulators for lighthouse illumination - awarded while recovering from the accident
+
+• Continued as managing director of AGA despite blindness
+
+• Invented the AGA cooker (still sold today as Aga range cookers)
+
+• Held over 100 patents
+
+[Wikipedia](https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jacob Bolotin (1888-1924)
+
+**Condition**: Congenital Blindness
+**Achievement**: World's First Blind Licensed Physician
+**Onset**: From birth
+
+Jacob Bolotin was born completely blind, with no light perception from birth. He overcame immense barriers in medical education at a time when blind people were expected to live in institutions.
+
+• World's first totally blind licensed physician
+
+• Specialized in diseases of the heart and lungs
+
+• Strong advocate for employment and integration of blind individuals
+
+• Proved that blindness need not be a barrier to professional achievement
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jacob_Bolotin)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Joseph Plateau (1801-1883)
+
+**Condition**: Solar Retinopathy → Total Blindness
+**Achievement**: Invented the Phenakistoscope (Proto-Cinema)
+**Onset**: Initial damage ~1829, total blindness by 1843
+
+Joseph Plateau damaged his retinas through prolonged direct solar observation around 1829, leading to progressive deterioration and total blindness by 1843.
+
+He experienced a dark central scotoma (blind spot at fixation point), preserved peripheral vision initially, severe acuity loss, and persistent afterimages from the solar damage. Over ~14 years, his remaining vision gradually dimmed until complete blindness.
+
+• Invented the phenakistoscope - precursor to modern cinema and animation
+
+• Made fundamental contributions to understanding visual perception and persistence of vision
+
+• Continued scientific work after blindness with help from family and colleagues
+
+• Plateau's laws of soap films still used in mathematics and physics
+
+[Wikipedia](https://en.wikipedia.org/wiki/Joseph_Plateau)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Leonhard Euler (1707-1783)
+
+**Condition**: Asymmetric Progressive Blindness
+**Achievement**: Greatest Mathematician in History
+**Onset**: Right eye lost at 31 (infection), left eye failed at 64 (cataract)
+
+Leonhard Euler lost his right eye completely around 1738 from a severe fever/infection, leaving that side in total darkness. His left eye developed a progressive cataract, creating milky fog, glare sensitivity, and washed-out colors that worsened until total blindness by 1771.
+
+For ~33 years he worked with only his left eye, then ~12 years in complete darkness.
+
+• One of the greatest mathematicians in history
+
+• Produced roughly half of his life's work after becoming totally blind
+
+• Made fundamental contributions to calculus, graph theory, mechanics, and optics
+
+• Dictated research to assistants, including his children
+
+[Wikipedia](https://en.wikipedia.org/wiki/Leonhard_Euler)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Wanda Díaz-Merced (Born (Contemporary))
+
+**Condition**: Degenerative Diabetic Retinopathy
+**Achievement**: Director of Arecibo Observatory
+**Onset**: Early twenties
+
+Wanda Díaz-Merced lost her sight in her early twenties due to complications from degenerative diabetic retinopathy.
+
+Rather than abandon her career, she pioneered new methods to study astronomical data.
+
+• Director of the Arecibo Observatory
+
+• Pioneered sonification to turn astronomical data into audible sound
+
+• Discovered patterns in stellar radio data through audio that were obscured visually
+
+• Named one of BBC's 7 most trailblazing women in science
+
+[Wikipedia](https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Abraham Nemeth (1918-2013)
+
+**Condition**: Congenital Dual-Attack Blindness
+**Achievement**: Invented Nemeth Braille Code for Math
+**Onset**: From birth - central + peripheral vision loss
+
+Abraham Nemeth was born with a dual-attack condition affecting both central vision (macular degeneration component) and peripheral vision (retinitis pigmentosa component), leaving only a fragile mid-peripheral ring.
+
+Educated at a school for the blind from childhood, his functional vision was minimal to none throughout life - effectively total blindness.
+
+• Developed the Nemeth Braille Code for Mathematics and Science Notation - still the standard worldwide
+
+• Professor of mathematics who made STEM accessible to blind students
+
+• His code enables transcription of complex equations, calculus, and scientific notation into braille
+
+[Wikipedia](https://en.wikipedia.org/wiki/Abraham_Nemeth)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Musicians
+
+#### Ray Charles (1930-2004)
+
+**Condition**: Childhood Glaucoma
+**Achievement**: Father of Soul, 17 Grammy Awards
+**Onset**: Ages 4-5, blind by 7
+
+Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7.
+
+His right eye was later removed due to pain. He had no light perception.
+
+• 'Father of Soul' - pioneered soul music by combining gospel, R&B, and blues
+
+• 17 Grammy Awards including Lifetime Achievement Award
+
+• Rock and Roll Hall of Fame inductee
+
+• His song 'Georgia on My Mind' became Georgia's state song
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ray_Charles)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Stevie Wonder (Born 1950)
+
+**Condition**: Retinopathy of Prematurity (ROP)
+**Achievement**: 25 Grammy Awards, Rock Hall of Fame
+**Onset**: From birth (6 weeks premature)
+
+Born six weeks premature, Stevie received excess oxygen in his incubator which caused abnormal blood vessel growth in his retinas.
+
+This led to retinal detachment and complete blindness from infancy.
+
+• 25 Grammy Awards - most awarded male solo artist
+
+• Signed to Motown at age 11
+
+• Rock and Roll Hall of Fame inductee
+
+• Pioneered synthesizers in popular music
+
+• Hits include 'Superstition,' 'Isn't She Lovely,' and 'I Just Called to Say I Love You'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Stevie_Wonder)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Andrea Bocelli (Born 1958)
+
+**Condition**: Congenital Glaucoma + Trauma
+**Achievement**: Best-Selling Classical Artist Ever
+**Onset**: Congenital, complete at 12
+
+Born with congenital glaucoma, Andrea Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception.
+
+• Best-selling classical artist in history with over 90 million records sold
+
+• Performed at major world events including the Olympics and World Cup
+
+• Golden Globe and Grammy nominated
+
+• Famous duets include 'Time to Say Goodbye' with Sarah Brightman
+
+[Wikipedia](https://en.wikipedia.org/wiki/Andrea_Bocelli)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Casey Harris (Born 1989)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: X Ambassadors Keyboardist
+**Onset**: Age 5, progressive
+
+Casey Harris has lived with retinitis pigmentosa since age 5, experiencing progressive tunnel vision, night blindness, and gradual visual field loss.
+
+• Keyboardist for Grammy-nominated band X Ambassadors
+
+• Helped write hits including 'Renegades' and 'Unsteady'
+
+• Advocate for disability representation in music industry
+
+[Wikipedia](https://en.wikipedia.org/wiki/Casey_Harris)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Bono (Born 1960)
+
+**Condition**: Glaucoma
+**Achievement**: U2 Lead Singer, 22 Grammy Awards
+**Onset**: Adult onset
+
+Bono, lead singer of U2, has glaucoma which causes extreme light sensitivity. He has worn his trademark sunglasses for over two decades due to the condition, not as a fashion statement.
+
+• Lead singer of U2 - one of the best-selling bands in history
+
+• 22 Grammy Awards with U2
+
+• Rock and Roll Hall of Fame inductee
+
+• Humanitarian work with ONE Campaign and (RED) fighting AIDS and poverty
+
+[Wikipedia](https://en.wikipedia.org/wiki/Bono)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Ella Fitzgerald (1917-1996)
+
+**Condition**: Diabetic Retinopathy
+**Achievement**: Queen of Jazz, 13 Grammy Awards
+**Onset**: Progressive, eventually went blind
+
+Ella Fitzgerald developed diabetic retinopathy as a complication of diabetes, causing progressive vision loss that eventually led to blindness.
+
+The condition damages blood vessels in the retina, creating floaters, blurred vision, and dark areas.
+
+• 'First Lady of Song' and 'Queen of Jazz'
+
+• 13 Grammy Awards including Lifetime Achievement
+
+• Sold over 40 million albums
+
+• Pioneered scat singing
+
+• Performed at Carnegie Hall, Royal Albert Hall, and with every major jazz artist
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ella_Fitzgerald)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Allan Pineda Lindo (Apl.de.ap) (Born 1974)
+
+**Condition**: Nystagmus
+**Achievement**: Black Eyed Peas Founding Member
+**Onset**: From birth
+
+Apl.de.ap was born with nystagmus, a condition causing involuntary rapid eye movements and severely reduced vision.
+
+The constant movement makes focusing difficult and causes visual instability.
+
+• Founding member of Black Eyed Peas - one of the best-selling groups of all time
+
+• Multiple Grammy Awards
+
+• Philanthropist supporting education in the Philippines through Apl.de.ap Foundation
+
+[Wikipedia](https://en.wikipedia.org/wiki/Apl.de.ap)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Fetty Wap (Born 1991)
+
+**Condition**: Glaucoma & Prosthetic Eye
+**Achievement**: 'Trap Queen' Hit #2 on Billboard
+**Onset**: Childhood glaucoma, lost eye
+
+Fetty Wap lost his left eye to childhood glaucoma and now wears a prosthetic eye. The glaucoma caused irreversible damage to his optic nerve, and the eye was eventually removed.
+
+• Breakthrough hit 'Trap Queen' reached #2 on Billboard Hot 100
+
+• Debut album reached #1 on Billboard 200
+
+• Known for not hiding his condition and normalizing visible differences
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fetty_Wap)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Slick Rick (Born 1965)
+
+**Condition**: Blind in Right Eye
+**Achievement**: Hip-Hop Pioneer & Master Storyteller
+**Onset**: Infancy, from broken glass
+
+Slick Rick was blinded in his right eye as an infant when broken glass from a bottle hit his eye. He incorporated his eye patch into his distinctive visual persona.
+
+• Hip-hop pioneer and master storyteller
+
+• 'Children's Story' considered one of the greatest hip-hop songs ever
+
+• Influenced generations of rappers including Snoop Dogg and Nas
+
+• Rock and Roll Hall of Fame nominee
+
+[Wikipedia](https://en.wikipedia.org/wiki/Slick_Rick)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### José Feliciano (Born 1945)
+
+**Condition**: Congenital Glaucoma (Complete Blindness)
+**Achievement**: 'Feliz Navidad' - Global Christmas Classic
+**Onset**: Blind from birth
+
+José Feliciano was born in Lares, Puerto Rico, permanently blind from birth due to congenital glaucoma.
+
+He navigates with a guide dog, which became his trademark onstage.
+
+• Virtuoso guitarist who pioneered Latin crossover music
+
+• Multiple Grammy Awards including Latin Grammy Lifetime Achievement
+
+• His 'Feliz Navidad' is one of the most-played Christmas songs worldwide
+
+• First Latin artist to cross over into English-language pop charts
+
+[Wikipedia](https://en.wikipedia.org/wiki/José_Feliciano)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Art Tatum (1909-1956)
+
+**Condition**: Cataracts & Monocular Vision
+**Achievement**: Greatest Jazz Pianist of All Time
+**Onset**: From birth, worsened after assault at 20
+
+Art Tatum was born with congenital cataracts. After surgeries at age 11, he could see close objects and distinguish colors.
+
+An assault at age 20 left him completely blind in his left eye with very limited vision in his right. Despite being legally blind, he could still play cards and pool.
+
+• Considered the greatest jazz pianist of all time by many critics
+
+• Technical abilities remain unmatched - could play at superhuman speed
+
+• Grammy Lifetime Achievement Award
+
+• Jazz at Lincoln Center Hall of Fame
+
+[Wikipedia](https://en.wikipedia.org/wiki/Art_Tatum)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Ronnie Milsap (Born 1943)
+
+**Condition**: Congenital Glaucoma (Complete Blindness)
+**Achievement**: 40 #1 Country Hits, 6 Grammys
+**Onset**: Light perception only at birth, complete by 14
+
+Ronnie Milsap was born with congenital glaucoma and cataracts. He had only light perception in his left eye (right eye blind), which was destroyed by trauma at age 14.
+
+Both eyes were eventually surgically removed.
+
+• 40 number-one country hits
+
+• 6 Grammy Awards
+
+• Country Music Hall of Fame inductee
+
+• Pioneered country-pop crossover sound
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ronnie_Milsap)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Doc Watson (1923-2012)
+
+**Condition**: Light Perception Only
+**Achievement**: 8 Grammys, National Medal of Arts
+**Onset**: Infancy, from eye infection
+
+Doc Watson lost most of his sight to an eye infection before age one. He stated: 'I have a little bit of light perception left. I am conscious of bright lights.'
+
+He could not see shapes or details.
+
+• One of the most influential flatpicking guitarists in American music history
+
+• 8 Grammy Awards including Lifetime Achievement
+
+• National Medal of Arts recipient
+
+• Preserved and popularized Appalachian folk music
+
+[Wikipedia](https://en.wikipedia.org/wiki/Doc_Watson)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jeff Healey (1966-2008)
+
+**Condition**: Retinoblastoma (Eyes Removed)
+**Achievement**: Blues Rock Guitarist, Road House Star
+**Onset**: Eyes removed at 8 and 11 months old
+
+Jeff Healey was diagnosed with retinoblastoma, a rare eye cancer, in infancy. His right eye was removed at 8 months and left eye at 11 months to prevent the cancer spreading.
+
+He had prosthetic eyes and no memory of sight.
+
+• Developed unique technique playing guitar flat on his lap
+
+• Featured in movie 'Road House' starring Patrick Swayze
+
+• 'Angel Eyes' reached #5 on Billboard Hot 100
+
+• Juno Award winner
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jeff_Healey)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Diane Schuur (Born 1953)
+
+**Condition**: Retinopathy of Prematurity (ROP)
+**Achievement**: 2x Grammy Winner, Jazz Vocalist
+**Onset**: From birth (premature, oxygen treatment)
+
+Diane Schuur was born two months premature weighing less than three pounds. Oxygen treatment in her incubator caused retinopathy of prematurity (ROP), leaving her completely blind.
+
+• Two-time Grammy Award winner for Best Jazz Vocal Album
+
+• Helen Keller Achievement Award recipient (2000)
+
+• Performed with Count Basie Orchestra, Quincy Jones, and Ray Charles
+
+• Known as 'Deedles' - one of the premier jazz vocalists of her generation
+
+[Wikipedia](https://en.wikipedia.org/wiki/Diane_Schuur)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Nobuyuki Tsujii (Born 1988)
+
+**Condition**: Congenital Blindness
+**Achievement**: Van Cliburn Piano Competition Winner
+**Onset**: From birth
+
+Nobuyuki Tsujii was born with microphthalmia, a developmental disorder leaving him completely blind from birth with no visual memory.
+
+• Won Van Cliburn International Piano Competition (2009) - first blind winner
+
+• Learns entire orchestral scores by ear
+
+• Internationally touring classical pianist
+
+• Multiple platinum-selling albums in Japan
+
+[Wikipedia](https://en.wikipedia.org/wiki/Nobuyuki_Tsujii)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Rahsaan Roland Kirk (1935-1977)
+
+**Condition**: Childhood Blindness
+**Achievement**: Played 3 Saxophones Simultaneously
+**Onset**: Childhood
+
+Rahsaan Roland Kirk became blind at age 2 due to improper medical treatment. He was left with no light perception.
+
+• Revolutionary jazz multi-instrumentalist
+
+• Famous for playing three saxophones simultaneously
+
+• Invented several instruments including the 'stritch' and 'manzello'
+
+• Grammy Lifetime Achievement Award
+
+[Wikipedia](https://en.wikipedia.org/wiki/Rahsaan_Roland_Kirk)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Blind Lemon Jefferson (c. 1893-1929)
+
+**Condition**: Congenital Blindness
+**Achievement**: Father of Texas Blues
+**Onset**: From birth or early childhood
+
+Blind Lemon Jefferson was blind from birth or early childhood, the exact cause unknown. He had no visual experience and learned to navigate the world entirely by sound and touch.
+
+• 'Father of Texas Blues'
+
+• First commercially successful blues artist - recorded over 100 songs
+
+• Influenced nearly every major blues musician who followed
+
+• Rock and Roll Hall of Fame inductee
+
+[Wikipedia](https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Charlotta Seuerling (1782/84-1828)
+
+**Condition**: Blindness from Smallpox Vaccination
+**Achievement**: The Blind Song-Maiden of Sweden
+**Onset**: Age 4, from smallpox vaccination
+
+Charlotta Seuerling became blind at age 4 due to complications from smallpox vaccination. Known as 'The Blind Song-Maiden,' she lost all vision permanently.
+
+• Concert singer, harpsichordist, composer, and poet
+
+• Performed throughout Sweden, Finland, and Russia
+
+• Authored the popular song 'Sång i en melankolisk stund'
+
+• Helped develop Valentin Haüy's Institute for the Blind in Saint Petersburg
+
+[Wikipedia](https://en.wikipedia.org/wiki/Charlotta_Seuerling)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Francesco Landini (c. 1325-1397)
+
+**Condition**: Blindness from Childhood
+**Achievement**: Greatest 14th Century Italian Composer
+**Onset**: Blind from childhood (smallpox)
+
+Francesco Landini was blind from childhood, likely due to smallpox which destroyed his vision completely.
+
+• Most famous composer of the 14th-century Italian Trecento
+
+• Virtuoso organist who won competitions against sighted musicians
+
+• Composed over 150 works including madrigals and ballate
+
+• Also known as an instrument maker and poet
+
+[Wikipedia](https://en.wikipedia.org/wiki/Francesco_Landini)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Garret Barry (c. 1780-1860)
+
+**Condition**: Childhood Blindness (from illness)
+**Achievement**: Master of Irish Uilleann Pipes
+**Onset**: Blind from birth or early childhood
+
+Garret Barry became blind during childhood due to an illness, leaving him with complete vision loss.
+
+• One of the most celebrated traditional Irish uilleann pipers
+
+• Master of the uilleann pipes - influenced generations of Irish musicians
+
+• Remembered as one of the great figures in Irish traditional music
+
+[Wikipedia](https://en.wikipedia.org/wiki/Garret_Barry_(uilleann_piper))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Geoffrey Gurrumul Yunupingu (1971-2017)
+
+**Condition**: Congenital Blindness
+**Achievement**: Australia's Most Celebrated Indigenous Artist
+**Onset**: From birth
+
+Geoffrey Gurrumul Yunupingu was born blind in Arnhem Land, Australia. He had no visual experience but developed extraordinary musical abilities.
+
+• One of Australia's most celebrated musicians
+
+• Multi-instrumentalist: guitar, keyboards, drums, didgeridoo
+
+• Sang in his native Yolngu language, bringing Indigenous culture to global audiences
+
+• Multiple ARIA Award winner
+
+• Subject of documentary 'Gurrumul'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Gurrumul_Yunupingu)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Geraldine Lawhorn (1916-2016)
+
+**Condition**: Deaf-Blindness
+**Achievement**: First Deafblind African American College Grad
+**Onset**: From birth
+
+Geraldine 'Jerrie' Lawhorn was both deaf and blind from birth, living in complete silence and darkness.
+
+• First deaf-blind African American to earn a college degree in the United States
+
+• Concert pianist and actress who performed one-woman shows
+
+• Educator at Hadley Institute for the Blind
+
+• Trailblazer for people with multiple disabilities
+
+[Wikipedia](https://en.wikipedia.org/wiki/Geraldine_Lawhorn)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Heather Hutchison (Born 1970s)
+
+**Condition**: Congenital Light Perception with Nystagmus
+**Achievement**: Award-Winning Singer-Songwriter
+**Onset**: From birth - light perception only
+
+Heather Hutchison has congenital blindness with only light perception - no form vision, only diffuse awareness of brightness variation. Her vision includes nystagmus (involuntary eye oscillation).
+
+The visual experience: near-total opacity with milky/washed-out glow, diffuse amorphous light blobs with no edges or shapes, continuous jitter, and no color perception.
+
+• Award-winning Canadian singer-songwriter and author
+
+• Multiple album releases
+
+• Advocate for disability and mental health awareness
+
+• Visit heather-hutchison.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/Heather_Hutchison)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Joaquín Rodrigo (1901-1999)
+
+**Condition**: Blindness from Diphtheria
+**Achievement**: Concierto de Aranjuez Composer
+**Onset**: Age 3, from diphtheria
+
+Joaquín Rodrigo became completely blind at age 3 due to complications from diphtheria. He retained no visual memory.
+
+• Composed 'Concierto de Aranjuez' - cornerstone of classical guitar repertoire
+
+• Most important Spanish composer of the 20th century
+
+• Marquess of the Gardens of Aranjuez (nobility title)
+
+• Prince of Asturias Award for the Arts
+
+[Wikipedia](https://en.wikipedia.org/wiki/Joaquín_Rodrigo)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Rachael Leahcar (Born 1994)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: The Voice Australia Finalist
+**Onset**: From birth or early life
+
+Rachael Leahcar is legally blind due to retinitis pigmentosa, retaining only 10% of her vision. She experiences tunnel vision, night blindness, and progressive visual field loss.
+
+• Finished third on The Voice Australia Season 1 (2012)
+
+• Debut album reached #5 on ARIA Albums Chart
+
+• Performs in multiple languages: English, French, Italian, Spanish
+
+• Ambassador for the Royal Society for the Blind
+
+[Wikipedia](https://en.wikipedia.org/wiki/Rachael_Leahcar)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### John Kay (Born 1944)
+
+**Condition**: Congenital Achromatopsia (Total Color Blindness)
+**Achievement**: Steppenwolf Lead Singer, 'Born to Be Wild'
+**Onset**: From birth
+
+John Kay was born with congenital achromatopsia, a rare condition eliminating functional cone cells. He sees essentially in black-and-white with extreme light sensitivity.
+
+• Lead singer and founding member of Steppenwolf
+
+• 'Born to Be Wild' coined the phrase 'heavy metal' in music
+
+• Rock and Roll Hall of Fame nominee
+
+• Environmentalist and animal rights activist
+
+[Wikipedia](https://en.wikipedia.org/wiki/John_Kay_(musician))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jonny Greenwood (Born 1971)
+
+**Condition**: Red-Green Color Blindness
+**Achievement**: Radiohead Guitarist, Oscar-Nom. Composer
+**Onset**: From birth
+
+Jonny Greenwood has red-green color blindness, affecting his ability to distinguish between red and green colors.
+
+This is one of the most common forms of color vision deficiency.
+
+• Lead guitarist and multi-instrumentalist for Radiohead
+
+• Acclaimed film composer: 'There Will Be Blood,' 'Phantom Thread,' 'The Power of the Dog'
+
+• Academy Award nominee
+
+• BBC Composer in Association
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jonny_Greenwood)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Amadou Bagayoko (Born 1954)
+
+**Condition**: Congenital Cataracts to Total Blindness
+**Achievement**: Amadou & Mariam Duo, Grammy-Nominated
+**Onset**: Congenital, blind by age 16
+
+Amadou Bagayoko was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened until total blindness at age 16.
+
+• One half of legendary Malian duo Amadou & Mariam
+
+• Created joyful, vibrant music for over five decades
+
+• Grammy-nominated
+
+• Quote: 'Beyond our vision, we can imagine'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Amadou_%26_Mariam)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Nana Mouskouri (Born 1934)
+
+**Condition**: Myopia & Astigmatism
+**Achievement**: 300 Million Records Sold Worldwide
+**Onset**: From childhood
+
+Nana Mouskouri has severe myopia (nearsightedness) and astigmatism, requiring her signature black-rimmed glasses.
+
+When Harry Belafonte asked her to remove them on tour, she nearly quit rather than perform without them.
+
+• Over 300 million records sold worldwide
+
+• UNICEF Goodwill Ambassador
+
+• Member of European Parliament (1994-1999)
+
+• 'All my life I wanted to be on stage as I am in life'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Nana_Mouskouri)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Moondog (1916-1999)
+
+**Condition**: Complete Blindness
+**Achievement**: Viking of 6th Avenue, 80+ Symphonies
+**Onset**: Age 16, dynamite cap explosion
+
+Moondog lost his sight at 16 when a dynamite cap exploded, leaving him completely blind with no light perception.
+
+• Legendary NYC street performer known as 'The Viking of 6th Avenue'
+
+• Wrote over 80 symphonies while completely blind
+
+• Built custom instruments
+
+• Collaborated with Philip Glass and influenced minimalist composers
+
+[Wikipedia](https://en.wikipedia.org/wiki/Moondog)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Ravindra Jain (1944-2015)
+
+**Condition**: Congenital Blindness
+**Achievement**: Composed 200+ Bollywood Film Scores
+**Onset**: From birth
+
+Ravindra Jain was born completely blind in Aligarh, India. He had no visual experience but developed extraordinary musical abilities.
+
+• Composed music for over 200 Bollywood films
+
+• Created iconic music for TV Ramayana series
+
+• Three Filmfare Awards
+
+• Introduced K.J. Yesudas to Hindi cinema
+
+• Padma Shri award recipient (2015)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ravindra_Jain)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Kimio Eto (1924-2012)
+
+**Condition**: Childhood Blindness
+**Achievement**: Virtuoso Koto Master
+**Onset**: Age 5
+
+Kimio Eto became completely blind at age 5. He retained no visual memory and learned music entirely by ear.
+
+• Virtuoso koto player who introduced Japanese music to Western audiences
+
+• Won three consecutive national prizes by age 16
+
+• Performed with Philadelphia Orchestra under Leopold Stokowski (1964)
+
+• Collaborated with Gene Krupa and Harry Belafonte
+
+[Wikipedia](https://en.wikipedia.org/wiki/Kimio_Eto)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Diana Gurtskaya (Born 1978)
+
+**Condition**: Congenital Blindness
+**Achievement**: First Blind Eurovision Performer (E. Europe)
+**Onset**: From birth
+
+Diana Gurtskaya was completely blind from birth with no visual experience.
+
+• First blind singer from Eastern Europe to compete at Eurovision (2008, Georgia)
+
+• Performed duets with Ray Charles, Toto Cutugno, Demis Roussos
+
+• 'Honored Artist of Russia' (2006)
+
+• Founded Diana Gurtskaya Foundation for visually impaired children
+
+• Sochi 2014 Paralympic Ambassador
+
+[Wikipedia](https://en.wikipedia.org/wiki/Diana_Gurtskaya)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Âşık Veysel (1894-1973)
+
+**Condition**: Smallpox & Accident Blindness
+**Achievement**: Turkey's Most Beloved Folk Poet
+**Onset**: Age 7 (one eye), later complete
+
+Âşık Veysel lost one eye to smallpox at age 7 and the other in an accident, leaving him completely blind.
+
+His last visual memory was the color red from blood when he fell.
+
+• Turkey's most beloved folk poet and bağlama player
+
+• National treasure whose songs blend joy and melancholy
+
+• Inspired Joe Satriani's tribute songs 'Andalusia' and 'Asik Veysel'
+
+• Turkish Parliament honored him with lifetime salary
+
+[Wikipedia](https://en.wikipedia.org/wiki/Âşık_Veysel_Şatıroğlu)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### José Cid (Born 1942)
+
+**Condition**: Monocular Blindness (Prosthetic Left Eye)
+**Achievement**: Latin Grammy Lifetime Achievement Award
+**Onset**: From accident (left eye)
+
+José Cid lost the sight in his left eye due to a tragic accident and now wears a prosthetic eye. His signature sunglasses, which have become part of his iconic look, are worn because of this condition.
+
+Despite this, he maintains a characteristically positive attitude, saying he never felt life had been unfair to him.
+
+• Latin Grammy Lifetime Achievement Award (2019) - second Portuguese artist to receive the honor
+
+• Founded Quarteto 1111, Portugal's first symphonic rock band
+
+• Represented Portugal at Eurovision 1980 with 'Um grande, grande amor'
+
+• Over 60 years in music with 25 Silver, 8 Gold, and 3 Platinum records in Portugal
+
+[Wikipedia](https://en.wikipedia.org/wiki/José_Cid)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Bluay (Born 1999)
+
+**Condition**: Severe Vision Loss (15% Vision, Near-Blind in One Eye)
+**Achievement**: Play Awards Best Song 2021 (feat. Piruka)
+**Onset**: Associated with idiopathic arthritis
+
+Bluay (José Carlos Tavares) has only 15% vision and is practically blind in one eye. Despite also suffering from idiopathic arthritis, he entered the music world at just 14 years old and never gave up on his dreams.
+
+His stage name comes from his heterochromia - one blue eye and one brown eye - 'Bluay' meaning 'blue eye.'
+
+• Featured on Piruka's 'Crazy' which won Best Song at Play Awards 2021
+
+• Rising star in Portuguese hip-hop/R&B scene
+
+• Started music career at age 14
+
+• Advocate for perseverance despite physical challenges
+
+[Wikipedia](https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Anselmo Ralph (Born 1983)
+
+**Condition**: Ocular Myasthenia Gravis
+**Achievement**: Angola's Most Celebrated R&B Artist
+**Onset**: Age 5, eyelid muscles primarily affected
+
+Anselmo Ralph has ocular myasthenia gravis, an autoimmune neuromuscular disease that causes weakness and abnormal fatigue in voluntary muscles, particularly his eyelid muscles. Diagnosed at age 5, he lacks strength in his eyelids, with lights and camera flashes forcing his eyes to close involuntarily.
+
+His signature dark sunglasses are a coping mechanism for severe photophobia, not a fashion statement.
+
+• Angola's most celebrated R&B and kizomba artist
+
+• Multiple platinum albums across Africa and Portugal
+
+• Known as the 'King of Kizomba'
+
+• MTV Africa Music Award winner
+
+• His condition causes ptosis (eyelid droop), diplopia (double vision), and extreme light sensitivity
+
+[Wikipedia](https://en.wikipedia.org/wiki/Anselmo_Ralph)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Artists
+
+#### Claude Monet (1840-1926)
+
+**Condition**: Cataracts
+**Achievement**: Founder of French Impressionism
+**Onset**: Age 60s, legally blind by 82
+
+Monet developed cataracts in his 60s, diagnosed in 1912. The cataracts clouded his vision and dramatically altered his color perception, making cool colors like blue and purple difficult to distinguish while accentuating warm tones.
+
+He described seeing 'through a fog' and by 1922 was legally blind in his right eye with only 10% vision in his left.
+
+• Founder of French Impressionism and one of the most influential painters in art history
+
+• Created the iconic Water Lilies series despite declining vision
+
+• Resisted surgery until 1923, fearing it would change his artistic perception
+
+[Wikipedia](https://en.wikipedia.org/wiki/Claude_Monet)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Georgia O'Keeffe (1887-1986)
+
+**Condition**: Age-Related Macular Degeneration (AMD)
+**Achievement**: Mother of American Modernism
+**Onset**: Lost central vision in 1972
+
+Georgia O'Keeffe lost her central vision to age-related macular degeneration in 1972.
+
+Despite this significant visual impairment, she adapted her techniques to work with her remaining peripheral vision, and her later works reflect her changed visual perspective.
+
+• Known as the 'Mother of American Modernism'
+
+• Famous for large-scale flower paintings and New Mexico landscapes
+
+• Continued creating art into her 90s with assistance from Juan Hamilton
+
+[Wikipedia](https://en.wikipedia.org/wiki/Georgia_O%27Keeffe)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### John Bramblitt (Born 1971)
+
+**Condition**: Blindness from Epilepsy Complications
+**Achievement**: Blind Painter, Works in 120+ Countries
+**Onset**: Age 30, from epilepsy complications in 2001
+
+John Bramblitt became blind in 2001 due to complications from epilepsy.
+
+He developed a unique method of painting by feeling the textures of the paint, creating tactile lines and shapes through touch.
+
+• Works sold in over 120 countries
+
+• Multiple Presidential Service awards for art workshops
+
+• Inspiration for artists with disabilities worldwide
+
+• Visit bramblitt.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/John_Bramblitt)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Eşref Armağan (Born 1953)
+
+**Condition**: Congenital Blindness
+**Achievement**: Blind Painter Who Never Saw Light
+**Onset**: From birth
+
+Eşref Armağan is a Turkish painter born completely blind—one eye never developed and the other was stunted and scarred.
+
+Self-taught from age 6, he creates vivid paintings using touch to understand form and perspective.
+
+• Harvard researchers found his visual cortex activates when drawing, despite never having seen
+
+• Exhibited in Turkey, Italy, China, and the Netherlands
+
+• Creates accurate perspective and shadow in his paintings without ever seeing light
+
+[Wikipedia](https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Writers, Activists, Politicians
+
+#### Helen Keller (1880-1968)
+
+**Condition**: Bacterial Meningitis Complications
+**Achievement**: First Deafblind Bachelor's Degree Graduate
+**Onset**: 19 months old
+
+A severe fever at 19 months, likely from bacterial meningitis, left Helen both blind and deaf. She had no light perception or visual input, relying entirely on touch and learning to communicate through finger spelling with teacher Anne Sullivan.
+
+• First deafblind person to earn a bachelor's degree
+
+• Author of 12 books including 'The Story of My Life'
+
+• Lifelong advocate for people with disabilities, women's suffrage, and labor rights
+
+[Wikipedia](https://en.wikipedia.org/wiki/Helen_Keller)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Ved Mehta (1934-2021)
+
+**Condition**: Cerebrospinal Meningitis
+**Achievement**: New Yorker Staff Writer, 33 Years
+**Onset**: Age 3 years, 10 months
+
+Meningitis at age 3 resulted in complete bilateral blindness.
+
+Ved developed exceptional 'facial vision' using echolocation and air current perception for navigation.
+
+• Staff writer at The New Yorker for 33 years
+
+• Author of more than 25 books, including the autobiographical 'Continents of Exile' series
+
+• Educated at Pomona College, Oxford, and Harvard
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ved_Mehta)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Tilly Aston (1873-1947)
+
+**Condition**: Congenital Blindness
+**Achievement**: First Blind Australian University Student
+**Onset**: From birth
+
+Tilly Aston had congenital blindness from birth. She became a pioneering Australian writer, teacher, and advocate for the blind.
+
+• First blind person in Australia to attend university
+
+• Founded the Victorian Association of Braille Writers
+
+• Helped establish services for the blind in Australia
+
+[Wikipedia](https://en.wikipedia.org/wiki/Tilly_Aston)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Sabriye Tenberken (Born 1970)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: Developed Tibetan Braille, Founded Schools
+**Onset**: Childhood, complete blindness by 12
+
+Sabriye Tenberken lost her sight to retinitis pigmentosa, becoming completely blind by age 12.
+
+She dedicated her life to education and empowerment of people with disabilities worldwide.
+
+• Co-founder of Braille Without Borders
+
+• Developed Tibetan Braille script
+
+• Established schools for blind children in Tibet
+
+[Wikipedia](https://en.wikipedia.org/wiki/Sabriye_Tenberken)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jorge Luis Borges (1899-1986)
+
+**Condition**: Progressive Blindness from Inherited Condition
+**Achievement**: Literary Giant of the 20th Century
+**Onset**: Progressive, complete by age 55
+
+Jorge Luis Borges experienced progressive blindness from an inherited condition, losing sight completely by age 55.
+
+Despite this, he continued to write through dictation.
+
+• One of the most important literary figures of the 20th century
+
+• Known for innovative short stories exploring infinity, labyrinths, and metaphysics
+
+• Director of the National Library of Argentina
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jorge_Luis_Borges)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### James Thurber (1894-1961)
+
+**Condition**: Childhood Eye Injury
+**Achievement**: The New Yorker Writer & Cartoonist
+**Onset**: Age 7, from eye injury
+
+James Thurber lost sight in one eye from a childhood accident at age 7 when his brother shot him with an arrow during a game.
+
+His remaining eye's vision deteriorated throughout his life.
+
+• One of the most celebrated American humorists
+
+• Staff writer and cartoonist for The New Yorker
+
+• Author of 'The Secret Life of Walter Mitty' (adapted to film starring Ben Stiller)
+
+[Wikipedia](https://en.wikipedia.org/wiki/James_Thurber)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Lev Pontryagin (1908-1988)
+
+**Condition**: Blindness from Accident
+**Achievement**: Pioneer of Optimal Control Theory
+**Onset**: Age 14, from primus stove explosion
+
+Lev Pontryagin became completely blind at age 14 due to an unsuccessful eye surgery after a primus stove explosion.
+
+His mother read mathematical books to him, using alternative names for math symbols.
+
+• Made major discoveries in algebraic topology, differential topology, and optimal control theory
+
+• Developed Pontryagin duality, Pontryagin classes, and Pontryagin's maximum principle
+
+• Fundamental contributions to modern optimization theory
+
+[Wikipedia](https://en.wikipedia.org/wiki/Lev_Pontryagin)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Gary O'Donoghue (Born 1965)
+
+**Condition**: Congenital Blindness
+**Achievement**: BBC Washington Correspondent
+**Onset**: From birth
+
+Gary O'Donoghue has been blind from birth. He has built a distinguished career in journalism, demonstrating that visual impairment does not prevent excellence in media.
+
+• BBC journalist and broadcaster covering politics and current affairs
+
+• Washington correspondent for BBC News
+
+• Award-winning reporter with decades of experience
+
+[Wikipedia](https://en.wikipedia.org/wiki/Gary_O%27Donoghue)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### David Paterson (Born 1954)
+
+**Condition**: Optic Nerve Damage & Glaucoma
+**Achievement**: First Legally Blind US State Governor
+**Onset**: Age 3 months, progressive
+
+An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye.
+
+Glaucoma later affected his right eye, creating a unique hemispheric vision loss.
+
+• 55th Governor of New York State
+
+• First legally blind person to serve as a state governor in the United States
+
+• Continues advocacy work at governordavidpaterson.com
+
+[Wikipedia](https://en.wikipedia.org/wiki/David_Paterson)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### David Blunkett (Born 1947)
+
+**Condition**: Congenital Blindness
+**Achievement**: First Blind UK Cabinet Minister
+**Onset**: From birth
+
+David Blunkett was born blind and has never had sight. He became a prominent figure in British politics and a strong advocate for disability rights.
+
+• UK Home Secretary from 2001 to 2004
+
+• First blind person to hold a major cabinet position in the British government
+
+• Famous for being accompanied by his guide dogs in Parliament
+
+[Wikipedia](https://en.wikipedia.org/wiki/David_Blunkett)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Floyd Morris (Born 1969)
+
+**Condition**: Glaucoma
+**Achievement**: First Blind Jamaican Senate President
+**Onset**: Age 16, from glaucoma
+
+Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a distinguished political career in Jamaica.
+
+• First blind person to serve as President of the Senate of Jamaica
+
+• Advocate for disability rights and inclusion
+
+• Holds multiple academic degrees including a PhD
+
+[Wikipedia](https://en.wikipedia.org/wiki/Floyd_Morris)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Henry Fawcett (1833-1884)
+
+**Condition**: Blindness from Shooting Accident
+**Achievement**: UK Postmaster-General & Economist
+**Onset**: Age 25, from shooting accident
+
+Henry Fawcett became blind at age 25 when accidentally shot by his father during a hunting trip.
+
+Despite this, he continued his career and made significant contributions to economics and politics.
+
+• Member of Parliament and Postmaster-General of the United Kingdom
+
+• Strong advocate for women's suffrage and education
+
+• Made significant contributions to economic theory
+
+[Wikipedia](https://en.wikipedia.org/wiki/Henry_Fawcett)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jacques Lusseyran (1924-1971)
+
+**Condition**: Blindness from Accident
+**Achievement**: French Resistance Leader, WWII
+**Onset**: Age 8, from accident
+
+Jacques Lusseyran became blind at age 8 when a classmate accidentally pushed him into the corner of a teacher's desk, destroying both eyes.
+
+He developed a remarkable sense of inner vision.
+
+• Led French Resistance group against Nazi occupation during WWII
+
+• Survived imprisonment at Buchenwald concentration camp
+
+• Author of memoir 'And There Was Light'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jacques_Lusseyran)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Tiffany Brar (Born (Contemporary))
+
+**Condition**: Terry Syndrome (Oxygen Toxicity)
+**Achievement**: Holman Prize Winner, Disability Advocate
+**Onset**: Age 6 months
+
+Tiffany Brar became blind at six months due to oxygen toxicity (Terry Syndrome).
+
+She is a trainer, campaigner for disability awareness, and advocate for an inclusive society.
+
+• Founder of Jyothirgamaya Foundation mobile school for the blind (2012)
+
+• Designed the Tiffy template to identify Indian currency notes
+
+• National Award from President of India for Best Role Model
+
+• First Indian recipient of the Holman Prize
+
+• Nari Shakti Puraskar recipient (highest civilian honor for women in India)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Tiffany_Brar)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### James Joyce (1882-1941)
+
+**Condition**: Iritis, Glaucoma & Cataracts
+**Achievement**: Author of Ulysses & Finnegans Wake
+**Onset**: Age 25, progressive deterioration
+
+James Joyce suffered from recurring iritis (uveitis) starting at age 25, which led to glaucoma and cataracts. The inflammation caused his irises to attach to the lenses, increasing eye pressure and eroding his optic nerves.
+
+He underwent about 12 eye surgeries without general anesthetic. By age 48, his left eye functioned at 1/800th normal capacity.
+
+• Author of 'Ulysses' and 'Finnegans Wake'
+
+• Wrote using red crayon on large white sheets and dictated to typists
+
+• Named his daughter Lucia after the patron saint of the blind
+
+[Wikipedia](https://en.wikipedia.org/wiki/James_Joyce)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Aldous Huxley (1894-1963)
+
+**Condition**: Keratitis Punctata
+**Achievement**: Author of Brave New World
+**Onset**: Age 16, from eye infection
+
+At age 16, Aldous Huxley suffered keratitis punctata that left him nearly totally blind for 18 months. He had to learn Braille and use a guide for walking.
+
+One eye recovered to only light perception, while the other improved enough to read with special thick glasses.
+
+• Author of 'Brave New World'
+
+• Wrote: 'I started writing when I was 17, during a period when I was almost totally blind'
+
+• Continued writing and philosophical work throughout his life
+
+[Wikipedia](https://en.wikipedia.org/wiki/Aldous_Huxley)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Jean-Paul Sartre (1905-1980)
+
+**Condition**: Corneal Leukoma & Exotropia
+**Achievement**: Nobel Prize in Literature (Declined)
+**Onset**: Age 3, from childhood illness
+
+At age three, Jean-Paul Sartre contracted a severe flu that evolved into corneal leukoma, leaving him almost completely blind in his right eye.
+
+The lack of vision caused sensory exotropia (outward drifting eye), which made him a target for bullying in school.
+
+• One of the most influential philosophers of the 20th century
+
+• Author of 'Being and Nothingness' and 'No Exit'
+
+• His eye condition exempted him from frontline combat in WWII
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jean-Paul_Sartre)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Taha Hussein (1889-1973)
+
+**Condition**: Ophthalmia (Trachoma)
+**Achievement**: Dean of Arabic Literature
+**Onset**: Age 2-3, blind by age 5
+
+Taha Hussein contracted ophthalmia (likely trachoma) at age two in rural Egypt.
+
+Faulty treatment by an unskilled local practitioner led to complete blindness by age five.
+
+• Known as 'The Dean of Arabic Literature'
+
+• First Egyptian to hold a PhD from Cairo University; second PhD from the Sorbonne
+
+• As Egypt's Minister of Education (1950), made public education free
+
+• Nominated for the Nobel Prize in Literature 21 times
+
+[Wikipedia](https://en.wikipedia.org/wiki/Taha_Hussein)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Chen Guangcheng (Born 1971)
+
+**Condition**: Congenital Blindness
+**Achievement**: Barefoot Lawyer, Time 100 Honoree
+**Onset**: Blind before age 1
+
+Chen Guangcheng went blind before his first birthday.
+
+Self-taught in law, this 'barefoot lawyer' became a prominent Chinese civil rights activist.
+
+• Organized landmark class-action lawsuit against forced sterilizations under China's one-child policy
+
+• Escaped house arrest in 2012 and fled to the U.S. Embassy in Beijing
+
+• Named Time 100 (2006) and won Ramon Magsaysay Award (2007)
+
+• Author of memoir 'The Barefoot Lawyer' (2015)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Chen_Guangcheng)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Historical Figures
+
+#### John Milton (1608-1674)
+
+**Condition**: Bilateral Retinal Detachment & Secondary Glaucoma
+**Achievement**: Author of Paradise Lost
+**Onset**: Age 36, complete blindness by 43
+
+Milton experienced progressive vision loss with temporal field defects, photophobia, and 'rainbow halos' around lights - classic symptoms of glaucoma with corneal edema.
+
+His condition progressed from partial to complete blindness over 7 years.
+
+• Author of 'Paradise Lost,' composed entirely after going blind
+
+• Dictated his epic poems to his daughters and assistants
+
+• Served as Secretary for Foreign Tongues under Oliver Cromwell
+
+[Wikipedia](https://en.wikipedia.org/wiki/John_Milton)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Louis Braille (1809-1852)
+
+**Condition**: Sympathetic Ophthalmia
+**Achievement**: Invented the Braille System
+**Onset**: Injury at age 3, blind by 5
+
+After injuring his right eye with an awl in his father's workshop, young Louis developed sympathetic ophthalmia - an autoimmune response that attacked both eyes, leading to complete bilateral blindness with no light perception.
+
+• Invented the Braille system at age 15, revolutionizing literacy for blind people worldwide
+
+• Became a teacher at the Royal Institute for Blind Youth in Paris
+
+• His system remains the primary tactile reading method used globally today
+
+[Wikipedia](https://en.wikipedia.org/wiki/Louis_Braille)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Galileo Galilei (1564-1642)
+
+**Condition**: Acute Angle-Closure Glaucoma
+**Achievement**: Father of Modern Science
+**Onset**: Age 68, complete blindness by 72
+
+Galileo suffered from acute angle-closure glaucoma attacks with sudden onset symptoms including intense rainbow halos, severe blurring, red eye effects, and extreme photophobia.
+
+Each attack caused cumulative damage leading to sectoral defects, arcuate scotomas, and eventual complete blindness.
+
+• 'Father of Modern Science' and 'Father of Modern Physics'
+
+• Discovered Jupiter's moons, Saturn's rings, and sunspots through his telescope
+
+• Continued scientific work after blindness, including mechanics and pendulum theory
+
+[Wikipedia](https://en.wikipedia.org/wiki/Galileo_Galilei)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Harriet Tubman (1822-1913)
+
+**Condition**: Traumatic Brain Injury
+**Achievement**: Underground Railroad Conductor
+**Onset**: Age 12, from head trauma
+
+Harriet Tubman suffered a severe head injury at age 12 when an overseer threw a heavy metal weight at another slave, hitting her instead.
+
+This caused a traumatic brain injury resulting in narcolepsy, visions, and vision problems including tunnel vision.
+
+• Legendary conductor of the Underground Railroad
+
+• Led approximately 70 enslaved people to freedom in about 13 missions
+
+• Served as scout, spy, and nurse for the Union Army during the Civil War
+
+[Wikipedia](https://en.wikipedia.org/wiki/Harriet_Tubman)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### William Moon (1818-1894)
+
+**Condition**: Scarlet Fever Complications
+**Achievement**: Invented Moon Type Reading System
+**Onset**: Lost one eye as child, completely blind by 21
+
+William Moon lost sight in one eye from scarlet fever as a small child, and by age 21 had become totally blind.
+
+He realized existing embossed reading codes were difficult to learn and set out to create a simpler system.
+
+• Invented Moon type (1845), a simplified tactile reading alphabet still used today
+
+• Designed his system to be easier to learn than Braille for those who lose sight later in life
+
+• Fellow of the Royal Geographical Society and Royal Society of Arts
+
+• Received honorary LLD degree from the University of Philadelphia
+
+[Wikipedia](https://en.wikipedia.org/wiki/Moon_type)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Homer (Exact dates unknown (8th century BCE))
+
+**Condition**: Traditionally Believed Blind
+**Achievement**: Author of the Iliad & Odyssey
+**Onset**: Unknown
+
+Homer is the legendary ancient Greek epic poet traditionally credited with composing the Iliad and the Odyssey.
+
+While historical details are uncertain, tradition holds that he was blind.
+
+• Credited with composing the foundational works of Western literature
+
+• The Iliad and Odyssey shaped Greek culture and education for millennia
+
+• His epic poems continue to be studied and admired worldwide
+
+[Wikipedia](https://en.wikipedia.org/wiki/Homer)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Fanny Crosby (1820-1915)
+
+**Condition**: Iatrogenic Blindness in Infancy
+**Achievement**: Wrote Over 8,000 Hymns
+**Onset**: 6 weeks old
+
+Fanny Crosby became blind at 6 weeks old due to improper medical treatment by a man posing as a doctor who applied hot poultices to her inflamed eyes, scarring her corneas permanently.
+
+• Wrote over 8,000 hymns, making her one of the most prolific hymn writers in history
+
+• Famous hymns include 'Blessed Assurance' and 'To God Be the Glory'
+
+• One of the most influential hymn writers in American history
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fanny_Crosby)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Nicholas Saunderson (1682-1739)
+
+**Condition**: Blindness from Smallpox
+**Achievement**: Lucasian Professor of Mathematics
+**Onset**: Age 1
+
+Nicholas Saunderson became blind from smallpox at age 1, losing both his eyes to the disease.
+
+Despite never having visual memory, he developed exceptional mathematical abilities.
+
+• Lucasian Professor of Mathematics at Cambridge University (a position held by Newton and later Hawking)
+
+• Developed innovative teaching methods for mathematics
+
+• Invented a calculating board that allowed him to perform complex arithmetic by touch
+
+[Wikipedia](https://en.wikipedia.org/wiki/Nicholas_Saunderson)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### James Holman (1786-1857)
+
+**Condition**: Illness-Related Blindness
+**Achievement**: First Blind Person to Circumnavigate Globe
+**Onset**: Age 25, from illness while serving in Royal Navy
+
+James Holman, known as the 'Blind Traveller,' became completely blind at age 25 due to an illness while serving in the Royal Navy.
+
+He pioneered the use of human echolocation for navigation.
+
+• First blind person to circumnavigate the globe (1832)
+
+• Traveled extensively through Europe, Asia, Africa, and the Americas
+
+• Elected Fellow of the Royal Society
+
+[Wikipedia](https://en.wikipedia.org/wiki/James_Holman)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Mary Ingalls (1865-1928)
+
+**Condition**: Viral Meningoencephalitis
+**Achievement**: Immortalized in Little House Books
+**Onset**: Age 14, from brain fever
+
+Mary Ingalls, older sister of author Laura Ingalls Wilder, went blind at age 14. A 2013 University of Michigan study found she likely had viral meningoencephalitis ('brain fever'), not scarlet fever as written in the books.
+
+Contemporary newspapers reported 'hemorrhage of the brain' with partial facial paralysis.
+
+• Attended the Iowa College for the Blind
+
+• Consistently rated 'very smart' by her teachers
+
+• Her story was immortalized in her sister's 'Little House' books
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mary_Ingalls)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Sir Francis Joseph Campbell (1832-1914)
+
+**Condition**: Blindness from Accident
+**Achievement**: First Blind Person to Climb Mont Blanc
+**Onset**: Age 5, from accident
+
+Sir Francis Joseph Campbell lost his sight at age 5 following an accident.
+
+A talented musician, he dedicated his life to education for the blind.
+
+• Co-founder and first principal of the Royal National College for the Blind
+
+• Anti-slavery campaigner
+
+• First blind person to climb Mont Blanc
+
+• Knighted by King Edward VII in 1909
+
+[Wikipedia](https://en.wikipedia.org/wiki/Francis_Campbell_(educator))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Béla II of Hungary (Béla the Blind) (c. 1109-1141)
+
+**Condition**: Blindness from Childhood Trauma
+**Achievement**: King of Hungary & Croatia (1131-1141)
+**Onset**: From birth or early childhood
+
+Béla II was blinded as a child along with his father Álmos by his uncle, King Coloman of Hungary, in an attempt to prevent them from claiming the throne.
+
+• King of Hungary and Croatia from 1131 to 1141
+
+• Successfully ruled Hungary for a decade despite his blindness
+
+• Governed with assistance from his wife Helena and son Géza II
+
+[Wikipedia](https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### John of Bohemia (1296-1346)
+
+**Condition**: Blindness from Eye Disease
+**Achievement**: Warrior King, Died Heroically at Crécy
+**Onset**: Age 40, around 1336
+
+John of Bohemia, also known as John the Blind, became blind around 1336 from an eye disease, possibly from an infection contracted during a crusade.
+
+• King of Bohemia and Count of Luxembourg from 1310 until his death
+
+• Continued to participate in military campaigns after losing his sight
+
+• Died heroically at the Battle of Crécy (1346), with his knights tying their horses to his so they could fight together
+
+[Wikipedia](https://en.wikipedia.org/wiki/John_of_Bohemia)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Surdas (c. 1478-1583)
+
+**Condition**: Congenital Blindness
+**Achievement**: Legendary Hindu Devotional Poet
+**Onset**: Traditionally from birth
+
+Surdas was a 16th-century blind Hindu devotional poet and singer, traditionally believed to have been blind from birth.
+
+His vivid descriptions of Lord Krishna transcend his physical blindness.
+
+• Author of 'Sur Sagar' (Sur's Ocean), containing vivid descriptions of Krishna's childhood
+
+• Elevated Braj Bhasha from a common dialect to a literary language
+
+• Key figure of the Bhakti devotional movement
+
+• To this day, blind singers in North India refer to themselves as 'Surdas' in his honor
+
+[Wikipedia](https://en.wikipedia.org/wiki/Surdas)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+### Fictional Characters
+
+#### Odin (Norse Mythology)
+
+**Condition**: Monocular Vision (One Eye)
+**Achievement**: All-Father of Norse Gods
+**Onset**: Sacrificed eye for wisdom
+
+Odin is the chief god in Norse mythology who sacrificed one of his eyes at Mímir's well in exchange for wisdom and knowledge.
+
+His partial blindness is symbolic, representing the price of knowledge and the ability to see beyond the physical world.
+
+• All-Father of the Norse gods
+
+• Often depicted with an eye patch or missing eye
+
+• His sacrifice represents gaining inner sight through physical loss
+
+[Wikipedia](https://en.wikipedia.org/wiki/Odin)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Daredevil / Matt Murdock (Marvel Comics / Netflix Series)
+
+**Condition**: Radar Sense (Enhanced Perception)
+**Achievement**: Marvel's Man Without Fear
+**Onset**: Radioactive chemical accident heightened other senses
+
+Matt Murdock was blinded as a child by a radioactive substance, but the accident heightened his other senses to superhuman levels, creating a 'radar sense' that perceives the world as fire.
+
+The visualization: red monochrome 'World on Fire' with edge-detection style rendering. Rotating radar sweeps suggest 360° awareness. Sound-producing objects glow brighter. Only contours and silhouettes - no textures or flat 2D information.
+
+• Lawyer by day, vigilante by night protecting Hell's Kitchen
+
+• First appeared in Daredevil #1 (1964)
+
+• Portrayed in Netflix/Marvel series by Charlie Cox
+
+[Wikipedia](https://en.wikipedia.org/wiki/Daredevil_(Marvel_Comics_character))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Geordi La Forge (Star Trek: The Next Generation)
+
+**Condition**: VISOR Enhanced EM Vision
+**Achievement**: Chief Engineer, USS Enterprise-D
+**Onset**: Born blind (birth defect), uses VISOR prosthetic
+
+Geordi La Forge was born blind and uses a VISOR (Visual Instrument and Sensory Organ Replacement) device that translates the entire electromagnetic spectrum into visual information.
+
+The visualization: false-color thermal palette (blues for cold, oranges for warm, magentas for high-energy). EM emission halos around electronics and power sources. Edge enhancement at material boundaries. Scan-line artifacts from mechanical processing. No true darkness - ambient EM renders as deep violet.
+
+• Chief Engineer of the USS Enterprise-D
+
+• The VISOR causes constant low-level pain and sensory overload
+
+• Played by LeVar Burton
+
+[Wikipedia](https://en.wikipedia.org/wiki/Geordi_La_Forge)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Blindspot (Samuel 'Sam' Baines) (Batman (DC Comics))
+
+**Condition**: Sonar-Based Echolocation
+**Achievement**: DC Comics Batman Character
+**Onset**: Eyes burned by villain, uses sonar technology
+
+Blindspot, also known as Samuel 'Sam' Baines, had his eyes burned by a villain in the DC Comics Batman series. He uses advanced sonar-based technology to navigate.
+
+The visualization: monochrome blue-green palette (submarine sonar aesthetic). Depth-mapped brightness (near = bright, far = dim). Edge-dominant rendering - only 3D contours register, no textures or detail. Radial ping sweeps like a radar display. Sound-shadow zones behind solid objects. Hard surfaces bright, soft surfaces dim or absent.
+
+• Active sonar emits pulses that bounce off surfaces
+
+• Resolution limited - can navigate rooms but not read or recognize faces
+
+• Formidable opponent in Batman's rogues gallery
+
+[Wikipedia](https://en.wikipedia.org/wiki/Blindspot_(character))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Toph Beifong (Avatar: The Last Airbender)
+
+**Condition**: Seismic Sense (Earthbending Vision)
+**Achievement**: Inventor of Metalbending
+**Onset**: Born blind - developed seismic sense
+
+Toph Beifong is completely blind but 'sees' through seismic sense - detecting vibrations through the earth via her feet. This unique perception renders the world as a topographic wireframe: only ground-coupled surfaces are visible, solid rock/metal appears crisp, while sand is blurry (her canonical weakness). Living beings pulse with detectable heartbeat, and motion creates ripple waves.
+
+• One of the most powerful earthbenders in the Avatar universe
+
+• Inventor of metalbending - can sense metal with higher fidelity
+
+• Her seismic sense fails on sand, ice, wood, and when airborne
+
+• Fan favorite character known for her fierce independence
+
+[Wikipedia](https://en.wikipedia.org/wiki/Toph_Beifong)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Kenshi Takahashi (Mortal Kombat)
+
+**Condition**: Telekinetic Perception (Psychic Sense)
+**Achievement**: Mortal Kombat Blind Swordsman
+**Onset**: Blinded by sorcerer Shang Tsung
+
+Kenshi Takahashi was blinded when the sorcerer Shang Tsung tricked him into opening an ancient tomb, which released the souls of his ancestors and took his sight. He now wields the ancestral sword Sento.
+
+The visualization: Kenshi perceives through telekinetic fields, not reflected light. Living beings radiate intense blue-white soul energy with heartbeat pulsing - powerful fighters glow brighter. Inanimate objects register as faint blue/violet mass outlines. He senses intent before attacks land (precognitive amber flares). Spirit realm entities are visible as ghostly wisps. Sento glows warm amber/gold. No textures, colors, or facial features - only mass, energy, motion, and life force. 360° omnidirectional awareness with hard perceptual boundary at psychic range.
+
+• Blind swordsman and Special Forces operative
+
+• Presence-based perception - he feels the existence of things through telekinetic fields
+
+• His blindfold allows him to peer into the spirit realm
+
+• First appeared in Mortal Kombat: Deadly Alliance (2002)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Neo (Thomas Anderson) (The Matrix trilogy)
+
+**Condition**: Matrix Code Vision (Post-Blindness)
+**Achievement**: The One, The Matrix Trilogy
+**Onset**: Burned by Agent Smith, gains code perception
+
+Neo is the protagonist of The Matrix trilogy. In The Matrix Revolutions, Neo is blinded during his final confrontation with Agent Smith, but gains the ability to perceive the underlying code of the Matrix itself - seeing the world as cascading streams of green digital characters.
+
+The visualization: falling columns of katakana, Latin, numerals, and symbols in phosphor green. Bright 'head' characters lead each stream with fading afterglow trails. Glitch effects include chromatic aberration and scan lines. The world becomes pure data - no physical forms, only the digital rain of the Matrix's source code.
+
+• 'The One' prophesied to end the war between humans and machines
+
+• His blindness represents transcendence - seeing beyond physical reality to the code beneath
+
+• Portrayed by Keanu Reeves
+
+[Wikipedia](https://en.wikipedia.org/wiki/Neo_(The_Matrix))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Eli (The Book of Eli)
+
+**Condition**: Blindness
+**Achievement**: Protagonist of The Book of Eli
+**Onset**: Unknown/ambiguous
+
+Eli is the protagonist of The Book of Eli, a post-apocalyptic film.
+
+Despite being blind (revealed at the end), he travels across the wasteland protecting a valuable book, using heightened senses and combat skills.
+
+• His blindness is a twist revelation
+
+• Demonstrates remarkable survival abilities without sight
+
+• Portrayed by Denzel Washington
+
+[Wikipedia](https://en.wikipedia.org/wiki/The_Book_of_Eli)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Blinkin (Robin Hood: Men in Tights)
+
+**Condition**: Blindness
+**Achievement**: Robin Hood: Men in Tights Character
+**Onset**: Unspecified (parody character)
+
+Blinkin is a comedic character from the Mel Brooks parody film Robin Hood: Men in Tights. He serves as Robin Hood's blind servant, providing comic relief.
+
+• Parody of the character Azeem from Robin Hood: Prince of Thieves
+
+• Played by Mark Blankfield
+
+• Famous quote: 'I heard that coming a mile away'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Julia Carpenter (Arachne) (Marvel Comics)
+
+**Condition**: Blindness
+**Achievement**: Marvel's Current Madame Web
+**Onset**: Inherited Madame Web powers
+
+Julia Carpenter, also known as Arachne, is a Marvel Comics character who became blind when she inherited Madame Web's psychic powers.
+
+She has demonstrated remarkable adaptability.
+
+• Former Spider-Woman and current Madame Web
+
+• Possesses precognitive and telepathic abilities
+
+• Her blindness came with enhanced psychic vision
+
+[Wikipedia](https://en.wikipedia.org/wiki/Julia_Carpenter)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Mr. Magoo (Animated series and films)
+
+**Condition**: Severe Nearsightedness
+**Achievement**: Academy Award-Winning Cartoon
+**Onset**: Extreme nearsightedness
+
+Mr. Magoo is a cartoon character known for his extreme nearsightedness.
+
+Despite his poor vision, he manages to navigate through various adventures, often mistaking objects and situations.
+
+• Created by United Productions of America (UPA) in 1949
+
+• Academy Award-winning animated shorts
+
+• Voiced by Jim Backus for decades
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mr._Magoo)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Doctor Mid-Nite (DC Comics)
+
+**Condition**: Light-Induced Blindness
+**Achievement**: First Blind Superhero in Comics (1941)
+**Onset**: Grenade explosion
+
+Doctor Mid-Nite is a DC Comics superhero who was blinded by a grenade explosion but discovered he could see perfectly in total darkness.
+
+His condition is the inverse of night blindness - blind in light, seeing in dark.
+
+• First blind superhero in comics (1941)
+
+• Developed infrared goggles and 'blackout bombs'
+
+• Member of the Justice Society of America
+
+[Wikipedia](https://en.wikipedia.org/wiki/Doctor_Mid-Nite)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Wally Karew (See No Evil, Hear No Evil)
+
+**Condition**: Blindness
+**Achievement**: See No Evil, Hear No Evil (1989)
+**Onset**: Unspecified backstory
+
+Wally Karew is a blind character from the comedy film See No Evil, Hear No Evil.
+
+He teams up with a deaf character to solve a crime, using his heightened senses.
+
+• Played by Richard Pryor
+
+• Partners with Gene Wilder's deaf character Dave
+
+• 1989 comedy exploring how disability doesn't prevent heroism
+
+[Wikipedia](https://en.wikipedia.org/wiki/See_No_Evil,_Hear_No_Evil)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Mohammad (The Color of Paradise)
+
+**Condition**: Blindness
+**Achievement**: The Color of Paradise Protagonist
+**Onset**: Born blind
+
+Mohammad is the protagonist of the Iranian film The Color of Paradise (1999). He is a blind boy who attends a school for the blind in Tehran and has a deep connection with nature.
+
+• Uses touch and hearing to experience the world beautifully
+
+• Directed by Majid Majidi
+
+• Critically acclaimed portrayal of blindness in cinema
+
+[Wikipedia](https://en.wikipedia.org/wiki/The_Color_of_Paradise)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Chirrut Îmwe (Star Wars: Rogue One)
+
+**Condition**: Blindness
+**Achievement**: Guardian of the Whills, Rogue One
+**Onset**: Born blind
+
+Chirrut Îmwe was a Guardian of the Whills from Jedha in the Star Wars universe.
+
+Despite being blind, he was a skilled warrior who used the Force to guide him.
+
+• Famous quote: 'I am one with the Force. The Force is with me.'
+
+• Fought alongside the Rebel Alliance to steal Death Star plans
+
+• Portrayed by Donnie Yen
+
+[Wikipedia](https://en.wikipedia.org/wiki/Chirrut_%C3%8Emwe)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Murphy Mason (In the Dark (TV Series))
+
+**Condition**: Retinitis Pigmentosa (Complete)
+**Achievement**: CW's In the Dark Protagonist
+**Onset**: Age 14, now fully blind
+
+Murphy Mason lost her sight completely at age 14 due to retinitis pigmentosa, a degenerative condition that first causes night blindness and tunnel vision before progressing to total blindness.
+
+• Main character of CW series 'In the Dark'
+
+• Investigates her best friend's murder
+
+• Notable for portraying a flawed, complex blind protagonist
+
+[Wikipedia](https://en.wikipedia.org/wiki/In_the_Dark_(American_TV_series))
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+#### Fujitora (Issho) (One Piece)
+
+**Condition**: Self-Inflicted Blindness
+**Achievement**: One Piece Marine Admiral
+**Onset**: Blinded himself
+
+Fujitora, also known as Issho, is a Marine Admiral who blinded himself because he did not want to see the world's wickedness.
+
+He uses Observation Haki to sense his surroundings.
+
+• One of the most powerful fighters in the One Piece series
+
+• Can manipulate gravity through his Devil Fruit powers
+
+• Represents moral blindness to injustice vs. physical blindness
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fujitora)
+
+**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+
+---
+
+## About VisionSim
+
+VisionSim (https://simulated.vision) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
+
+### Key Features
+- Real-time vision simulation with adjustable intensity
+- 42+ medically-researched vision conditions
+- 128+ famous people profiles with personalized simulations
+- Detailed condition descriptions with treatment information
+- Available in 26 languages
+- Fully accessible (WCAG-compliant)
+- Free, no account required
+
+### Use Cases
+- Medical education and ophthalmology training
+- Accessibility awareness workshops
+- Empathy building for UX/UI designers
+- School and university coursework
+- Personal understanding of a loved one's condition

@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import { personData, categories } from '../data/famousPeople';
 import { getSimulationConditions } from '../utils/famousPeopleUtils';
 import { PersonCard } from './FamousBlindPeople/PersonCard';
@@ -195,13 +196,16 @@ const FamousBlindPeople: React.FC = () => {
   // Track if initial preload has been done
   const hasPreloaded = useRef(false);
 
-  // Handle URL parameter for direct person linking
+  // Handle URL parameter for direct person linking (initial load only)
+  const hasInitializedFromUrl = useRef(false);
   useEffect(() => {
+    if (hasInitializedFromUrl.current) return;
     const personParam = searchParams.get('person');
-    if (personParam && personData[personParam] && !selectedPerson) {
+    if (personParam && personData[personParam]) {
       setSelectedPerson(personParam);
+      hasInitializedFromUrl.current = true;
     }
-  }, [searchParams, selectedPerson]);
+  }, [searchParams]);
 
   // Update URL when person is selected/deselected
   const updateSelectedPerson = useCallback((personId: string | null) => {
@@ -372,8 +376,42 @@ const FamousBlindPeople: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  const famousPeopleJsonLd = useMemo(() => {
+    let position = 0;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Famous People with Vision Conditions',
+      description: `Profiles of ${PERSON_COUNT}+ historical and contemporary figures who lived with vision conditions.`,
+      numberOfItems: PERSON_COUNT,
+      itemListElement: categories.flatMap(cat =>
+        cat.people.map(key => {
+          const p = personData[key];
+          if (!p) return null;
+          position++;
+          return {
+            '@type': 'ListItem',
+            position,
+            item: {
+              '@type': 'Person',
+              name: p.name,
+              description: `${p.condition}${p.achievement ? `. ${p.achievement}` : ''}`,
+              ...(p.wikiUrl ? { sameAs: p.wikiUrl } : {}),
+            },
+          };
+        }).filter(Boolean)
+      ),
+    };
+  }, []);
+
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
+      <PageMeta
+        title="Famous People with Vision Conditions"
+        description="Explore famous historical and contemporary figures who lived with vision conditions. Experience their visual impairments through interactive simulations."
+        path="/famous-people"
+        jsonLd={famousPeopleJsonLd}
+      />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
 
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>

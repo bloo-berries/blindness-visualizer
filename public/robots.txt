@@ -1,11 +1,47 @@
 # Robots.txt for VisionSim - Vision Condition Simulator
 # https://simulated.vision/
 
+# Default: allow all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap location
+# AI crawlers - explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Sitemap
 Sitemap: https://simulated.vision/sitemap.xml
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+# AI-readable content
+# llms.txt (concise): https://simulated.vision/llms.txt
+# llms-full.txt (comprehensive): https://simulated.vision/llms-full.txt

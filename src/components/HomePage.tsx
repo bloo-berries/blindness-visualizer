@@ -18,6 +18,7 @@ import {
 } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
+import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 import { getPersonImagePath } from '../utils/imagePaths';
 
@@ -36,6 +37,11 @@ const HomePage: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
+      <PageMeta
+        title="Vision Condition Simulator"
+        description="Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and 30+ vision conditions."
+        path="/"
+      />
       <NavigationBar showHomeButton={false} onHomeClick={() => {}} />
       
       {/* Hero Section */}

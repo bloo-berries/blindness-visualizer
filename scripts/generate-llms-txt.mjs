@@ -12,9 +12,10 @@
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
-import { join, resolve } from 'path';
+import { join, resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const ROOT = resolve(import.meta.dirname, '..');
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
 const CONDITIONS_DIR = join(ROOT, 'src/data/conditionCategories');
 const PEOPLE_DIR = join(ROOT, 'src/data/famousPeople');

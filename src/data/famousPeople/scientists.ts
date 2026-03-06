@@ -100,6 +100,17 @@ export const scientists: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced",
     nationality: { country: "Puerto Rico", flag: "🇵🇷" }
   },
+  olgaHahnNeurath: {
+    name: "Olga Hahn-Neurath",
+    achievement: "Founding Member of the Vienna Circle",
+    condition: "Total Blindness from Optic Neuritis",
+    years: "1882-1937",
+    onset: "Age 22, from optic neuritis",
+    simulation: "olga-optic-neuritis-blindness",
+    description: "Olga Hahn-Neurath became totally blind at age 22 due to optic neuritis, an inflammation of the optic nerve that destroyed her vision just two years after enrolling at the University of Vienna.\n\nDespite complete vision loss, she continued her academic pursuits and earned her doctorate seven years later.\n\n• Third woman ever to earn a doctorate in philosophy at the University of Vienna (1911)\n\n• Founding member of the Vienna Circle, one of the most influential philosophical movements of the 20th century\n\n• Specialized in Boolean algebra and algebraic logic\n\n• Sister of mathematician Hans Hahn and wife of philosopher Otto Neurath",
+    wikiUrl: "https://en.wikipedia.org/wiki/Olga_Hahn-Neurath",
+    nationality: { country: "Austria", flag: "🇦🇹" }
+  },
   abraham: {
     name: "Abraham Nemeth",
     achievement: "Invented Nemeth Braille Code for Math",

@@ -17,7 +17,7 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqedgwly';
 
 export const sendFeedbackEmailServerless = async (data: FeedbackEmailData): Promise<void> => {
   const payload = {
-    _subject: `VisionSim Feedback: ${data.subject}`,
+    _subject: `Simulated Vision Feedback: ${data.subject}`,
     _replyto: data.email,
     name: data.name,
     email: data.email,

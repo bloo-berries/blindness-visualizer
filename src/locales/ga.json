@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Ag Tuiscint",
-    "titleHighlight": "Riocht Radhairc",
+    "titleHighlight": "Gach Peirspictíocht",
     "subtitle": "Bain taithí ar lagú radhairc chun comhbhá agus tuiscint a fhorbairt",
     "card1Title": "Athchruthaigh Riocht Radhairc i bhFíor-Am",
     "card1Description": "Cruthaigh d'amharcléiriú uathúil féin",
@@ -150,12 +150,30 @@
       "paragraph3": "Le haghaidh tuilleadh eolais mionsonraithe faoi riocht radhairc ar leith, tabhair cuairt ar ár gcluaisín <strong>Gluais</strong> thuas."
     },
     "conditionCategories": {
-      "visualField": { "name": "Caillteanas Réimse Radhairc", "description": "Riocht a dhéanann difear do limistéir ar leith den réimse radhairc" },
-      "colorVision": { "name": "Easnaimh Radhairc Dathanna", "description": "Riocht a dhéanann difear d'aithint agus idirdhealú dathanna" },
-      "eyeConditions": { "name": "Riocht Súl", "description": "Riocht fisiciúil a dhéanann difear do struchtúr agus feidhm na súl" },
-      "retinal": { "name": "Neamhoird Reitine", "description": "Riocht a dhéanann difear don reitine agus a cealla speisialaithe" },
-      "neurological": { "name": "Riocht Radhairc Néareolaíocha", "description": "Fadhbanna radhairc de dheasca neamhoird san inchinn agus sa chóras néarach" },
-      "traumaInfection": { "name": "Gaolmhar le Tráma & Ionfhabhtú", "description": "Caillteanas radhairc mar thoradh ar ghortú fisiciúil nó galair thógálacha" }
+      "visualField": {
+        "name": "Caillteanas Réimse Radhairc",
+        "description": "Riocht a dhéanann difear do limistéir ar leith den réimse radhairc"
+      },
+      "colorVision": {
+        "name": "Easnaimh Radhairc Dathanna",
+        "description": "Riocht a dhéanann difear d'aithint agus idirdhealú dathanna"
+      },
+      "eyeConditions": {
+        "name": "Riocht Súl",
+        "description": "Riocht fisiciúil a dhéanann difear do struchtúr agus feidhm na súl"
+      },
+      "retinal": {
+        "name": "Neamhoird Reitine",
+        "description": "Riocht a dhéanann difear don reitine agus a cealla speisialaithe"
+      },
+      "neurological": {
+        "name": "Riocht Radhairc Néareolaíocha",
+        "description": "Fadhbanna radhairc de dheasca neamhoird san inchinn agus sa chóras néarach"
+      },
+      "traumaInfection": {
+        "name": "Gaolmhar le Tráma & Ionfhabhtú",
+        "description": "Caillteanas radhairc mar thoradh ar ghortú fisiciúil nó galair thógálacha"
+      }
     },
     "faqCategories": {
       "visionPerception": "Radharc & Braistint",
@@ -182,7 +200,13 @@
       "navigation": {
         "question": "Conas a nascleanúnaíonn daoine dalla agus conas a bhogann siad timpeall?",
         "answerIntro": "Úsáideann daoine dalla modhanna éagsúla le haghaidh nascleanúna agus soghluaisteachta:",
-        "answerItems": ["Braitheann bataí bána constaicí agus athruithe airde", "Soláthraíonn madraí treorach neamhghéilleadh cliste agus nascleanúint", "Aipeanna GPS le treoracha fuaime (Soundscape, BlindSquare)", "Bealaí cuimhnithe agus mapáil mheabhrach", "Iompar poiblí agus aipeanna síob-roinnte"]
+        "answerItems": [
+          "Braitheann bataí bána constaicí agus athruithe airde",
+          "Soláthraíonn madraí treorach neamhghéilleadh cliste agus nascleanúint",
+          "Aipeanna GPS le treoracha fuaime (Soundscape, BlindSquare)",
+          "Bealaí cuimhnithe agus mapáil mheabhrach",
+          "Iompar poiblí agus aipeanna síob-roinnte"
+        ]
       },
       "senses": {
         "question": "An bhfuil céadfaí eile níos géire ag daoine dalla?",
@@ -191,7 +215,14 @@
       "interaction": {
         "question": "Conas ba cheart dom idirghníomhú le duine dall?",
         "answerIntro": "Seo roinnt treoirlínte tábhachtacha le haghaidh idirghníomhú urramach:",
-        "answerItems": ["Labhair go normálta agus go díreach leo, ní trí chomhpháirtithe", "Aithníonn tú féin agus tú ag teacht chucu", "Fiafraigh sula gcabhraíonn tú - ná beir greim orthu ná ná brúigh iad", "Tabhair cur síos ó bhéal nuair is ábhartha", "Úsáid gnáththeanga ('feicfidh mé thú níos déanaí' ceart go leor)", "Ná peataigh ná tarraing aird na madraí treorach"]
+        "answerItems": [
+          "Labhair go normálta agus go díreach leo, ní trí chomhpháirtithe",
+          "Aithníonn tú féin agus tú ag teacht chucu",
+          "Fiafraigh sula gcabhraíonn tú - ná beir greim orthu ná ná brúigh iad",
+          "Tabhair cur síos ó bhéal nuair is ábhartha",
+          "Úsáid gnáththeanga ('feicfidh mé thú níos déanaí' ceart go leor)",
+          "Ná peataigh ná tarraing aird na madraí treorach"
+        ]
       },
       "legalVsTotal": {
         "question": "Cad é an difríocht idir a bheith dall go dlíthiúil agus a bheith iomlán dall?",
@@ -208,12 +239,22 @@
       "identification": {
         "question": "Conas a aithníonn daoine dalla airgead, dathanna, nó rudaí?",
         "answerIntro": "Úsáideann daoine dalla teicnící oiriúnaitheacha éagsúla le haghaidh aitheantais:",
-        "answerItems": ["Airgead: Aipeanna ar nós Seeing AI, modhanna fillte éagsúla, aitheantóirí leictreonacha, agus méideanna éagsúla do dhínominatithe éagsúla i dtíortha éagsúla", "Dathanna: Aipeanna aitheantóra dathanna, ceist a chur ar dhaoine eile, éadaí réamh-mheaitseáilte a cheannach", "Rudaí: Eagrúchán córasach, lipéid Braille/tadhaill, lipéid taifeadta gutha, cuimhne"]
+        "answerItems": [
+          "Airgead: Aipeanna ar nós Seeing AI, modhanna fillte éagsúla, aitheantóirí leictreonacha, agus méideanna éagsúla do dhínominatithe éagsúla i dtíortha éagsúla",
+          "Dathanna: Aipeanna aitheantóra dathanna, ceist a chur ar dhaoine eile, éadaí réamh-mheaitseáilte a cheannach",
+          "Rudaí: Eagrúchán córasach, lipéid Braille/tadhaill, lipéid taifeadta gutha, cuimhne"
+        ]
       },
       "causesTreatment": {
         "question": "Cad is cúis le daille agus an féidir é a leigheas?",
         "leadingCauses": "Príomhchúiseanna ar fud an domhain:",
-        "causeItems": ["Cataractaí (inchúlaithe)", "Glácóma", "Díghrádú maculach", "Reitinipate diaibéiteach", "Riocht géiniteacha"],
+        "causeItems": [
+          "Cataractaí (inchúlaithe)",
+          "Glácóma",
+          "Díghrádú maculach",
+          "Reitinipate diaibéiteach",
+          "Riocht géiniteacha"
+        ],
         "treatmentInfo": "Braitheann cóireáil ar an gcúis. Tá roinnt riocht inchoisceanta/inchoirithe, níl cuid eile faoi láthair. Leanann taighde ar chóireálacha ar nós teiripe géine, cealla gais, agus súile bitheonaice.",
         "neurologicalNote": "Is féidir le daoine a radharc a chailleadh freisin ó riocht néareolaíocha ar nós tráma nó stróc."
       }
@@ -234,7 +275,7 @@
     "subtitle": "Ceisteanna coitianta faoi riocht radhairc agus an t-insamhlóir seo"
   },
   "about": {
-    "title": "Maidir le VisionSim",
+    "title": "Maidir le Simulated Vision",
     "subtitle": "Ár misean agus cur chuige a thuiscint",
     "personalJourney": "Turas Pearsanta",
     "greeting": "Dia daoibh go léir sa phobal dall agus lagamhairc — agus do gach duine ar mhaith leo tuilleadh a fhoghlaim!",
@@ -242,14 +283,14 @@
     "purpose": "Chruthaigh mé an suíomh seo ionas go mbeadh uirlisí níos fearr ag daoine chun a gcuid daille agus/nó riocht radhairc a chur in iúl agus a léiriú níos cruinne.",
     "previewVideo": "Réamhamharc ar Conas a Fheicim",
     "mission": "Ár Misean",
-    "missionText": "Cabhraíonn VisionSim le daoine a thuiscint conas atá sé maireachtáil le riocht radhairc éagsúla trí insamhladh cruinn bunaithe ar thaighde.",
+    "missionText": "Cabhraíonn Simulated Vision le daoine a thuiscint conas atá sé maireachtáil le riocht radhairc éagsúla trí insamhladh cruinn bunaithe ar thaighde.",
     "howItWorks": "Conas a Oibríonn Sé",
     "disclaimer": "Séanadh Leighis",
     "disclaimerText": "Tá na hinsamhladh seo chun críocha oideachasúla amháin agus b'fhéidir nach léiríonn siad go foirfe conas a bhíonn taithí ag daoine ar a gcuid riocht."
   },
   "feedback": {
     "title": "Roinn d'Aiseolas",
-    "subtitle": "Cabhraigh linn VisionSim a fheabhsú",
+    "subtitle": "Cabhraigh linn Simulated Vision a fheabhsú",
     "nameLabel": "D'Ainm",
     "namePlaceholder": "Cuir d'ainm isteach",
     "emailLabel": "Seoladh Ríomhphoist",
@@ -317,25 +358,104 @@
     "title": "Seol Aiseolas",
     "subtitle": "Cuidigh linn an tIonsamhlóir Radhairc a fheabhsú trí do smaointe a roinnt, fabhtanna a thuairisciú, nó gnéithe nua a mholadh.",
     "whatToShare": "Cad ba mhaith leat a roinnt?",
-    "feedbackTypes": { "general": "Aiseolas Ginearálta", "bug": "Tuairisc Fabht", "feature": "Iarratas Gné", "improvement": "Moladh Feabhsúcháin", "other": "Eile" },
-    "form": { "name": "D'Ainm", "email": "Seoladh Ríomhphoist", "subject": "Ábhar", "subjectPlaceholder": "Cur síos gairid ar d'aiseolas", "message": "Do Theachtaireacht", "messagePlaceholders": { "bug": "Déan cur síos ar an bhfabht a tháinig tú air, lena n-áirítear na céimeanna chun é a atáirgeadh agus aon teachtaireachtaí earráide.", "feature": "Déan cur síos ar an ngné ba mhaith leat a fheiceáil agus conas a fheabhsódh sé an taithí.", "improvement": "Inis dúinn conas is féidir linn gné atá ann cheana nó an taithí iomlán a fheabhsú.", "general": "Roinn do smaointe, moltaí, nó aon aiseolas eile." } },
-    "favoriteFeature": { "label": "Cén gné a bhí is suimiúla nó is úsáidí agat?", "options": { "demoVideo": "Amharcóir Físeán Taispeána", "uploadPhoto": "Amharcóir Grianghraf a Uaslódáil", "famousPeople": "Eolas/Amharcanna ar Dhaoine Cáiliúla" } },
-    "userType": { "label": "Cad a dhéanann cur síos is fearr ort?", "options": { "student": "Mac Léinn", "educator": "Oideachasóir", "healthcare": "Gairmí Sláinte", "researcher": "Taighdeoir", "general": "Pobal Ginearálta", "other": "Eile" } },
-    "browser": { "label": "Cén brabhsálaí atá á úsáid agat?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Eile" } },
-    "accessibility": { "label": "An úsáideann tú teicneolaíochtaí cúnta? (Roghnaigh gach ceann a bhaineann)", "options": { "screenReader": "Léitheoir Scáileáin", "voiceControl": "Rialú Gutha", "keyboardNavigation": "Nascleanúint Méarchláir Amháin", "magnification": "Formhéadú Scáileáin", "highContrast": "Mód Ardchodarsnacht", "none": "Gan ceann" } },
-    "rating": { "label": "Conas a rátálfá do thaithí iomlán?" },
-    "submit": { "button": "Seol Aiseolas", "submitting": "Á Sheoladh..." },
-    "messages": { "success": "Go raibh maith agat as d'aiseolas! Fuaireamar do sheoladh agus scrúdóimid go cúramach é.", "error": "Tharla earráid agus d'aiseolas á sheoladh. Bain triail eile as.", "footer": "Tá meas againn ar d'aiseolas agus scrúdóimid gach seoladh go cúramach. Cé nach féidir linn freagra a thabhairt ar gach teachtaireacht ina n-aonar, cuidíonn do chuid ionchuir linn an tIonsamhlóir Radhairc a fheabhsú do chách." }
+    "feedbackTypes": {
+      "general": "Aiseolas Ginearálta",
+      "bug": "Tuairisc Fabht",
+      "feature": "Iarratas Gné",
+      "improvement": "Moladh Feabhsúcháin",
+      "other": "Eile"
+    },
+    "form": {
+      "name": "D'Ainm",
+      "email": "Seoladh Ríomhphoist",
+      "subject": "Ábhar",
+      "subjectPlaceholder": "Cur síos gairid ar d'aiseolas",
+      "message": "Do Theachtaireacht",
+      "messagePlaceholders": {
+        "bug": "Déan cur síos ar an bhfabht a tháinig tú air, lena n-áirítear na céimeanna chun é a atáirgeadh agus aon teachtaireachtaí earráide.",
+        "feature": "Déan cur síos ar an ngné ba mhaith leat a fheiceáil agus conas a fheabhsódh sé an taithí.",
+        "improvement": "Inis dúinn conas is féidir linn gné atá ann cheana nó an taithí iomlán a fheabhsú.",
+        "general": "Roinn do smaointe, moltaí, nó aon aiseolas eile."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Cén gné a bhí is suimiúla nó is úsáidí agat?",
+      "options": {
+        "demoVideo": "Amharcóir Físeán Taispeána",
+        "uploadPhoto": "Amharcóir Grianghraf a Uaslódáil",
+        "famousPeople": "Eolas/Amharcanna ar Dhaoine Cáiliúla"
+      }
+    },
+    "userType": {
+      "label": "Cad a dhéanann cur síos is fearr ort?",
+      "options": {
+        "student": "Mac Léinn",
+        "educator": "Oideachasóir",
+        "healthcare": "Gairmí Sláinte",
+        "researcher": "Taighdeoir",
+        "general": "Pobal Ginearálta",
+        "other": "Eile"
+      }
+    },
+    "browser": {
+      "label": "Cén brabhsálaí atá á úsáid agat?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Eile"
+      }
+    },
+    "accessibility": {
+      "label": "An úsáideann tú teicneolaíochtaí cúnta? (Roghnaigh gach ceann a bhaineann)",
+      "options": {
+        "screenReader": "Léitheoir Scáileáin",
+        "voiceControl": "Rialú Gutha",
+        "keyboardNavigation": "Nascleanúint Méarchláir Amháin",
+        "magnification": "Formhéadú Scáileáin",
+        "highContrast": "Mód Ardchodarsnacht",
+        "none": "Gan ceann"
+      }
+    },
+    "rating": {
+      "label": "Conas a rátálfá do thaithí iomlán?"
+    },
+    "submit": {
+      "button": "Seol Aiseolas",
+      "submitting": "Á Sheoladh..."
+    },
+    "messages": {
+      "success": "Go raibh maith agat as d'aiseolas! Fuaireamar do sheoladh agus scrúdóimid go cúramach é.",
+      "error": "Tharla earráid agus d'aiseolas á sheoladh. Bain triail eile as.",
+      "footer": "Tá meas againn ar d'aiseolas agus scrúdóimid gach seoladh go cúramach. Cé nach féidir linn freagra a thabhairt ar gach teachtaireacht ina n-aonar, cuidíonn do chuid ionchuir linn an tIonsamhlóir Radhairc a fheabhsú do chách."
+    }
   },
   "resourcesPage": {
     "title": "Acmhainní",
     "subtitle": "Acmhainní úsáideacha do chailliúint radhairc, soghluaisteacht agus inrochtaineacht",
     "resources": {
-      "braille": { "title": "Two Blind Brothers - Acmhainní Braille", "description": "Foghlaim faoi Braille agus aimsigh acmhainní ó Two Blind Brothers." },
-      "hadley": { "title": "Hadley - Acmhainní Foghlama", "description": "Ceardlanna oideachais saor in aisce agus acmhainní do chailliúint radhairc, lena n-áirítear foghlaim Braille, scileanna maireachtála laethúla, agus oiliúint teicneolaíochta." },
-      "caneTips": { "title": "Ask a Blind Person - Leideanna Bata", "description": "Leideanna praiticiúla d'úsáideoirí bata bán chun soghluaisteacht a fheabhsú agus fadhbanna coitianta a laghdú." },
-      "freeCane": { "title": "Clár Bata Bán Saor in Aisce NFB", "description": "Cuireann Cónaidhm Náisiúnta na nDall bataí bána saor in aisce ar fáil dóibh siúd a bhfuil gá acu leo." },
-      "phoneLines": { "title": "Línte Teileafóin Tacaíochta Inrochtaineachta", "description": "Liosta cuimsitheach de línte teileafóin tacaíochta inrochtaineachta ó mhórchuideachtaí lena n-áirítear Apple, Microsoft, Amazon, aerlínte, agus soláthraithe teileachumarsáide do chustaiméirí le cailliúint radhairc." }
+      "braille": {
+        "title": "Two Blind Brothers - Acmhainní Braille",
+        "description": "Foghlaim faoi Braille agus aimsigh acmhainní ó Two Blind Brothers."
+      },
+      "hadley": {
+        "title": "Hadley - Acmhainní Foghlama",
+        "description": "Ceardlanna oideachais saor in aisce agus acmhainní do chailliúint radhairc, lena n-áirítear foghlaim Braille, scileanna maireachtála laethúla, agus oiliúint teicneolaíochta."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Leideanna Bata",
+        "description": "Leideanna praiticiúla d'úsáideoirí bata bán chun soghluaisteacht a fheabhsú agus fadhbanna coitianta a laghdú."
+      },
+      "freeCane": {
+        "title": "Clár Bata Bán Saor in Aisce NFB",
+        "description": "Cuireann Cónaidhm Náisiúnta na nDall bataí bána saor in aisce ar fáil dóibh siúd a bhfuil gá acu leo."
+      },
+      "phoneLines": {
+        "title": "Línte Teileafóin Tacaíochta Inrochtaineachta",
+        "description": "Liosta cuimsitheach de línte teileafóin tacaíochta inrochtaineachta ó mhórchuideachtaí lena n-áirítear Apple, Microsoft, Amazon, aerlínte, agus soláthraithe teileachumarsáide do chustaiméirí le cailliúint radhairc."
+      }
     }
   }
 }

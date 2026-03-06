@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Entenent les",
-    "titleHighlight": "Condicions Visuals",
+    "titleHighlight": "Cada Perspectiva",
     "subtitle": "Experimenta discapacitats visuals per construir empatia i comprensió",
     "card1Title": "Recrea Condicions Visuals en Temps Real",
     "card1Description": "Crea la teva visualització única",
@@ -150,12 +150,30 @@
       "paragraph3": "Per a informació més detallada sobre condicions visuals específiques, visita la nostra pestanya <strong>Glossari</strong> a dalt."
     },
     "conditionCategories": {
-      "visualField": { "name": "Pèrdua de Camp Visual", "description": "Condicions que afecten àrees específiques del camp visual" },
-      "colorVision": { "name": "Deficiències de Visió del Color", "description": "Condicions que afecten la percepció i discriminació del color" },
-      "eyeConditions": { "name": "Condicions Oculars", "description": "Condicions físiques que afecten l'estructura i funció de l'ull" },
-      "retinal": { "name": "Trastorns de Retina", "description": "Condicions que afecten la retina i les seves cèl·lules especialitzades" },
-      "neurological": { "name": "Condicions Visuals Neurològiques", "description": "Problemes de visió causats per trastorns del cervell i el sistema nerviós" },
-      "traumaInfection": { "name": "Relacionats amb Trauma i Infecció", "description": "Pèrdua de visió resultant de lesions físiques o malalties infeccioses" }
+      "visualField": {
+        "name": "Pèrdua de Camp Visual",
+        "description": "Condicions que afecten àrees específiques del camp visual"
+      },
+      "colorVision": {
+        "name": "Deficiències de Visió del Color",
+        "description": "Condicions que afecten la percepció i discriminació del color"
+      },
+      "eyeConditions": {
+        "name": "Condicions Oculars",
+        "description": "Condicions físiques que afecten l'estructura i funció de l'ull"
+      },
+      "retinal": {
+        "name": "Trastorns de Retina",
+        "description": "Condicions que afecten la retina i les seves cèl·lules especialitzades"
+      },
+      "neurological": {
+        "name": "Condicions Visuals Neurològiques",
+        "description": "Problemes de visió causats per trastorns del cervell i el sistema nerviós"
+      },
+      "traumaInfection": {
+        "name": "Relacionats amb Trauma i Infecció",
+        "description": "Pèrdua de visió resultant de lesions físiques o malalties infeccioses"
+      }
     },
     "faqCategories": {
       "visionPerception": "Visió i Percepció",
@@ -182,7 +200,13 @@
       "navigation": {
         "question": "Com naveguen i es desplacen les persones cegues?",
         "answerIntro": "Les persones cegues utilitzen diversos mètodes per a la navegació i mobilitat:",
-        "answerItems": ["Els bastons blancs detecten obstacles i canvis d'elevació", "Els gossos guia proporcionen desobediència intel·ligent i navegació", "Aplicacions GPS amb indicacions d'àudio (Soundscape, BlindSquare)", "Rutes memoritzades i mapeig mental", "Transport públic i aplicacions de viatges compartits"]
+        "answerItems": [
+          "Els bastons blancs detecten obstacles i canvis d'elevació",
+          "Els gossos guia proporcionen desobediència intel·ligent i navegació",
+          "Aplicacions GPS amb indicacions d'àudio (Soundscape, BlindSquare)",
+          "Rutes memoritzades i mapeig mental",
+          "Transport públic i aplicacions de viatges compartits"
+        ]
       },
       "senses": {
         "question": "Les persones cegues tenen altres sentits més aguts?",
@@ -191,7 +215,14 @@
       "interaction": {
         "question": "Com hauria d'interactuar amb una persona cega?",
         "answerIntro": "Aquí hi ha algunes directrius importants per a una interacció respectuosa:",
-        "answerItems": ["Parla normalment i directament amb ells, no a través d'acompanyants", "Identifica't quan t'apropes", "Pregunta abans d'ajudar - no agafis ni empenyis", "Dona descripcions verbals quan sigui rellevant", "Utilitza llenguatge normal ('ens veiem després' està bé)", "Mai acariciïs ni distreguis els gossos guia"]
+        "answerItems": [
+          "Parla normalment i directament amb ells, no a través d'acompanyants",
+          "Identifica't quan t'apropes",
+          "Pregunta abans d'ajudar - no agafis ni empenyis",
+          "Dona descripcions verbals quan sigui rellevant",
+          "Utilitza llenguatge normal ('ens veiem després' està bé)",
+          "Mai acariciïs ni distreguis els gossos guia"
+        ]
       },
       "legalVsTotal": {
         "question": "Quina és la diferència entre legalment cec i totalment cec?",
@@ -208,12 +239,22 @@
       "identification": {
         "question": "Com identifiquen les persones cegues diners, colors o objectes?",
         "answerIntro": "Les persones cegues utilitzen diverses tècniques adaptatives per a la identificació:",
-        "answerItems": ["Diners: Aplicacions com Seeing AI, diferents mètodes de doblegar, identificadors electrònics i diferents mides per a diferents denominacions en diversos països", "Colors: Aplicacions d'identificació de colors, preguntar a altres, comprar roba precoordinada", "Objectes: Organització sistemàtica, etiquetes braille/tàctils, etiquetes de gravació de veu, memòria"]
+        "answerItems": [
+          "Diners: Aplicacions com Seeing AI, diferents mètodes de doblegar, identificadors electrònics i diferents mides per a diferents denominacions en diversos països",
+          "Colors: Aplicacions d'identificació de colors, preguntar a altres, comprar roba precoordinada",
+          "Objectes: Organització sistemàtica, etiquetes braille/tàctils, etiquetes de gravació de veu, memòria"
+        ]
       },
       "causesTreatment": {
         "question": "Què causa la ceguesa i es pot curar?",
         "leadingCauses": "Causes principals a nivell mundial:",
-        "causeItems": ["Cataractes (reversibles)", "Glaucoma", "Degeneració macular", "Retinopatia diabètica", "Condicions genètiques"],
+        "causeItems": [
+          "Cataractes (reversibles)",
+          "Glaucoma",
+          "Degeneració macular",
+          "Retinopatia diabètica",
+          "Condicions genètiques"
+        ],
         "treatmentInfo": "El tractament depèn de la causa. Algunes condicions són prevenibles/tractables, altres actualment no ho són. La investigació continua en tractaments com la teràpia gènica, cèl·lules mare i ulls biònics.",
         "neurologicalNote": "Les persones també poden perdre la visió per condicions neurològiques com trauma o ictus."
       }
@@ -234,7 +275,7 @@
     "subtitle": "Preguntes comunes sobre condicions visuals i aquest simulador"
   },
   "about": {
-    "title": "Sobre VisionSim",
+    "title": "Sobre Simulated Vision",
     "subtitle": "Entenent la nostra missió i enfocament",
     "personalJourney": "Un Viatge Personal",
     "greeting": "Hola a la comunitat de persones cegues i amb discapacitat visual — i a tots els que tenen curiositat per saber-ne més!",
@@ -242,14 +283,14 @@
     "purpose": "Vaig crear aquest lloc perquè les persones estiguin millor equipades amb eines per articular i representar més acuradament la seva ceguesa i/o condicions visuals.",
     "previewVideo": "Previsualització de Com Veig",
     "mission": "La Nostra Missió",
-    "missionText": "VisionSim ajuda les persones a entendre com és viure amb diverses condicions visuals a través de simulacions precises basades en investigació.",
+    "missionText": "Simulated Vision ajuda les persones a entendre com és viure amb diverses condicions visuals a través de simulacions precises basades en investigació.",
     "howItWorks": "Com Funciona",
     "disclaimer": "Avís Mèdic",
     "disclaimerText": "Aquestes simulacions són només per a propòsits educatius i poden no representar perfectament com els individus experimenten les seves condicions."
   },
   "feedback": {
     "title": "Comparteix el Teu Feedback",
-    "subtitle": "Ajuda'ns a millorar VisionSim",
+    "subtitle": "Ajuda'ns a millorar Simulated Vision",
     "nameLabel": "El Teu Nom",
     "namePlaceholder": "Introdueix el teu nom",
     "emailLabel": "Adreça de Correu",
@@ -317,25 +358,104 @@
     "title": "Envia Feedback",
     "subtitle": "Ajuda'ns a millorar el Simulador de Visió compartint els teus pensaments, informant d'errors o suggerint noves funcionalitats.",
     "whatToShare": "Què t'agradaria compartir?",
-    "feedbackTypes": { "general": "Feedback General", "bug": "Informe d'Error", "feature": "Sol·licitud de Funcionalitat", "improvement": "Suggeriment de Millora", "other": "Altres" },
-    "form": { "name": "El Teu Nom", "email": "Adreça de Correu", "subject": "Assumpte", "subjectPlaceholder": "Breu descripció del teu feedback", "message": "El Teu Missatge", "messagePlaceholders": { "bug": "Descriu l'error que has trobat, incloent els passos per reproduir-lo i qualsevol missatge d'error.", "feature": "Descriu la funcionalitat que t'agradaria veure i com milloraria l'experiència.", "improvement": "Explica'ns com podem millorar una funcionalitat existent o l'experiència general.", "general": "Comparteix els teus pensaments, suggeriments o qualsevol altre feedback." } },
-    "favoriteFeature": { "label": "Quina funcionalitat t'ha semblat més interessant o útil?", "options": { "demoVideo": "Visualitzador de Vídeo de Demostració", "uploadPhoto": "Visualitzador de Foto Pujada", "famousPeople": "Informació/Visualitzacions de Persones Famoses" } },
-    "userType": { "label": "Què et descriu millor?", "options": { "student": "Estudiant", "educator": "Educador", "healthcare": "Professional Sanitari", "researcher": "Investigador", "general": "Públic General", "other": "Altres" } },
-    "browser": { "label": "Quin navegador estàs utilitzant?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Altres" } },
-    "accessibility": { "label": "Utilitzes tecnologies d'assistència? (Selecciona totes les que apliquin)", "options": { "screenReader": "Lector de Pantalla", "voiceControl": "Control de Veu", "keyboardNavigation": "Només Navegació per Teclat", "magnification": "Ampliació de Pantalla", "highContrast": "Mode d'Alt Contrast", "none": "Cap" } },
-    "rating": { "label": "Com valoraries la teva experiència general?" },
-    "submit": { "button": "Enviar Feedback", "submitting": "Enviant..." },
-    "messages": { "success": "Gràcies pel teu feedback! Hem rebut el teu enviament i el revisarem amb cura.", "error": "S'ha produït un error en enviar el teu feedback. Si us plau, torna-ho a provar.", "footer": "Valorem el teu feedback i revisem cada enviament amb cura. Tot i que no podem respondre a cada missatge individualment, les teves aportacions ens ajuden a millorar el Simulador de Visió per a tothom." }
+    "feedbackTypes": {
+      "general": "Feedback General",
+      "bug": "Informe d'Error",
+      "feature": "Sol·licitud de Funcionalitat",
+      "improvement": "Suggeriment de Millora",
+      "other": "Altres"
+    },
+    "form": {
+      "name": "El Teu Nom",
+      "email": "Adreça de Correu",
+      "subject": "Assumpte",
+      "subjectPlaceholder": "Breu descripció del teu feedback",
+      "message": "El Teu Missatge",
+      "messagePlaceholders": {
+        "bug": "Descriu l'error que has trobat, incloent els passos per reproduir-lo i qualsevol missatge d'error.",
+        "feature": "Descriu la funcionalitat que t'agradaria veure i com milloraria l'experiència.",
+        "improvement": "Explica'ns com podem millorar una funcionalitat existent o l'experiència general.",
+        "general": "Comparteix els teus pensaments, suggeriments o qualsevol altre feedback."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Quina funcionalitat t'ha semblat més interessant o útil?",
+      "options": {
+        "demoVideo": "Visualitzador de Vídeo de Demostració",
+        "uploadPhoto": "Visualitzador de Foto Pujada",
+        "famousPeople": "Informació/Visualitzacions de Persones Famoses"
+      }
+    },
+    "userType": {
+      "label": "Què et descriu millor?",
+      "options": {
+        "student": "Estudiant",
+        "educator": "Educador",
+        "healthcare": "Professional Sanitari",
+        "researcher": "Investigador",
+        "general": "Públic General",
+        "other": "Altres"
+      }
+    },
+    "browser": {
+      "label": "Quin navegador estàs utilitzant?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Altres"
+      }
+    },
+    "accessibility": {
+      "label": "Utilitzes tecnologies d'assistència? (Selecciona totes les que apliquin)",
+      "options": {
+        "screenReader": "Lector de Pantalla",
+        "voiceControl": "Control de Veu",
+        "keyboardNavigation": "Només Navegació per Teclat",
+        "magnification": "Ampliació de Pantalla",
+        "highContrast": "Mode d'Alt Contrast",
+        "none": "Cap"
+      }
+    },
+    "rating": {
+      "label": "Com valoraries la teva experiència general?"
+    },
+    "submit": {
+      "button": "Enviar Feedback",
+      "submitting": "Enviant..."
+    },
+    "messages": {
+      "success": "Gràcies pel teu feedback! Hem rebut el teu enviament i el revisarem amb cura.",
+      "error": "S'ha produït un error en enviar el teu feedback. Si us plau, torna-ho a provar.",
+      "footer": "Valorem el teu feedback i revisem cada enviament amb cura. Tot i que no podem respondre a cada missatge individualment, les teves aportacions ens ajuden a millorar el Simulador de Visió per a tothom."
+    }
   },
   "resourcesPage": {
     "title": "Recursos",
     "subtitle": "Recursos útils per a la pèrdua de visió, mobilitat i accessibilitat",
     "resources": {
-      "braille": { "title": "Two Blind Brothers - Recursos Braille", "description": "Aprèn sobre Braille i troba recursos de Two Blind Brothers." },
-      "hadley": { "title": "Hadley - Recursos d'Aprenentatge", "description": "Tallers educatius gratuïts i recursos per a la pèrdua de visió, incloent aprenentatge de Braille, habilitats de vida diària i formació tecnològica." },
-      "caneTips": { "title": "Ask a Blind Person - Consells sobre Bastons", "description": "Consells pràctics per a usuaris de bastons blancs per millorar la mobilitat i reduir problemes comuns." },
-      "freeCane": { "title": "Programa de Bastons Blancs Gratuïts NFB", "description": "La Federació Nacional de Cecs proporciona bastons blancs gratuïts als qui els necessiten." },
-      "phoneLines": { "title": "Línies Telefòniques de Suport d'Accessibilitat", "description": "Llista completa de línies telefòniques de suport d'accessibilitat de grans empreses incloent Apple, Microsoft, Amazon, aerolínies i proveïdors de telecomunicacions per a clients amb pèrdua de visió." }
+      "braille": {
+        "title": "Two Blind Brothers - Recursos Braille",
+        "description": "Aprèn sobre Braille i troba recursos de Two Blind Brothers."
+      },
+      "hadley": {
+        "title": "Hadley - Recursos d'Aprenentatge",
+        "description": "Tallers educatius gratuïts i recursos per a la pèrdua de visió, incloent aprenentatge de Braille, habilitats de vida diària i formació tecnològica."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Consells sobre Bastons",
+        "description": "Consells pràctics per a usuaris de bastons blancs per millorar la mobilitat i reduir problemes comuns."
+      },
+      "freeCane": {
+        "title": "Programa de Bastons Blancs Gratuïts NFB",
+        "description": "La Federació Nacional de Cecs proporciona bastons blancs gratuïts als qui els necessiten."
+      },
+      "phoneLines": {
+        "title": "Línies Telefòniques de Suport d'Accessibilitat",
+        "description": "Llista completa de línies telefòniques de suport d'accessibilitat de grans empreses incloent Apple, Microsoft, Amazon, aerolínies i proveïdors de telecomunicacions per a clients amb pèrdua de visió."
+      }
     }
   }
 }

@@ -408,6 +408,17 @@ export const musicians: Record<string, PersonData> = {
     wikiUrl: "https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4",
     nationality: { country: "Portugal", flag: "🇵🇹" }
   },
+  mariaAnnaMozart: {
+    name: "Maria Anna Mozart",
+    achievement: "Musical Prodigy, Sister of Wolfgang Amadeus Mozart",
+    condition: "Age-Related Blindness (likely Cataracts)",
+    years: "1751-1829",
+    onset: "Age 74, blind for final 4 years",
+    simulation: "maria-anna-cataracts-blindness",
+    description: "Maria Anna 'Nannerl' Mozart was a keyboard prodigy who toured Europe performing alongside her younger brother Wolfgang Amadeus Mozart. She received top billing during their early concert tours and was considered equally talented.\n\nShe became blind at age 74, ending her ability to give piano instruction and leaving her in poverty during her final years. A visitor described her as 'blind, languid, exhausted, feeble and nearly speechless.'\n\n• Child prodigy who performed the most difficult sonatas and concertos by age 11\n\n• Toured Europe with her brother Wolfgang under their father Leopold Mozart\n\n• Supported herself as a piano teacher in Salzburg after her husband's death\n\n• The exact cause of her blindness is unrecorded, but age-related cataracts were the most common cause in that era",
+    wikiUrl: "https://en.wikipedia.org/wiki/Maria_Anna_Mozart",
+    nationality: { country: "Austria", flag: "🇦🇹" }
+  },
   anselmoRalph: {
     name: "Anselmo Ralph",
     achievement: "Angola's Most Celebrated R&B Artist",

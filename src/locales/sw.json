@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Pata Uzoefu wa",
-    "titleHighlight": "Hali za Kuona",
+    "titleHighlight": "Kila Mtazamo",
     "card1Title": "Unda taswira yako ya kipekee",
     "card1Button": "Anza Kiigaji cha Kuona",
     "card2Title": "Watu Mashuhuri Vipofu na Wenye Ulemavu wa Kuona",
@@ -148,12 +148,30 @@
       "paragraph3": "Kwa habari za kina zaidi kuhusu hali maalum za kuona, tembelea kichupo chetu cha <strong>Kamusi</strong> hapo juu."
     },
     "conditionCategories": {
-      "visualField": { "name": "Kupoteza Eneo la Kuona", "description": "Hali zinazoathiri maeneo maalum ya uwanja wa kuona" },
-      "colorVision": { "name": "Upungufu wa Kuona Rangi", "description": "Hali zinazoathiri mtazamo wa rangi na utofautishaji" },
-      "eyeConditions": { "name": "Hali za Macho", "description": "Hali za kimwili zinazoathiri muundo na kazi ya jicho" },
-      "retinal": { "name": "Matatizo ya Retina", "description": "Hali zinazoathiri retina na seli zake maalum" },
-      "neurological": { "name": "Hali za Kuona za Kineurolojia", "description": "Matatizo ya kuona yanayosababishwa na matatizo ya ubongo na mfumo wa neva" },
-      "traumaInfection": { "name": "Zinazohusiana na Jeraha na Maambukizi", "description": "Kupoteza kuona kutokana na jeraha la kimwili au magonjwa ya kuambukiza" }
+      "visualField": {
+        "name": "Kupoteza Eneo la Kuona",
+        "description": "Hali zinazoathiri maeneo maalum ya uwanja wa kuona"
+      },
+      "colorVision": {
+        "name": "Upungufu wa Kuona Rangi",
+        "description": "Hali zinazoathiri mtazamo wa rangi na utofautishaji"
+      },
+      "eyeConditions": {
+        "name": "Hali za Macho",
+        "description": "Hali za kimwili zinazoathiri muundo na kazi ya jicho"
+      },
+      "retinal": {
+        "name": "Matatizo ya Retina",
+        "description": "Hali zinazoathiri retina na seli zake maalum"
+      },
+      "neurological": {
+        "name": "Hali za Kuona za Kineurolojia",
+        "description": "Matatizo ya kuona yanayosababishwa na matatizo ya ubongo na mfumo wa neva"
+      },
+      "traumaInfection": {
+        "name": "Zinazohusiana na Jeraha na Maambukizi",
+        "description": "Kupoteza kuona kutokana na jeraha la kimwili au magonjwa ya kuambukiza"
+      }
     },
     "faqCategories": {
       "visionPerception": "Kuona na Mtazamo",
@@ -180,7 +198,13 @@
       "navigation": {
         "question": "Vipofu wanazungukaje na kufika sehemu?",
         "answerIntro": "Vipofu wanatumia njia mbalimbali za urambazaji na uhamaji:",
-        "answerItems": ["Fimbo nyeupe zinagundua vizuizi na mabadiliko ya kimo", "Mbwa wa kuongoza wanatoa kutotii kwa akili na urambazaji", "Programu za GPS zenye maelekezo ya sauti (Soundscape, BlindSquare)", "Njia zilizohifadhiwa akilini na ramani ya kiakili", "Usafiri wa umma na programu za kushiriki safari"]
+        "answerItems": [
+          "Fimbo nyeupe zinagundua vizuizi na mabadiliko ya kimo",
+          "Mbwa wa kuongoza wanatoa kutotii kwa akili na urambazaji",
+          "Programu za GPS zenye maelekezo ya sauti (Soundscape, BlindSquare)",
+          "Njia zilizohifadhiwa akilini na ramani ya kiakili",
+          "Usafiri wa umma na programu za kushiriki safari"
+        ]
       },
       "senses": {
         "question": "Je, vipofu wana hisi nyingine zilizoimarishwa?",
@@ -189,7 +213,14 @@
       "interaction": {
         "question": "Ninapaswa kuingiliana vipi na mtu kipofu?",
         "answerIntro": "Hapa kuna miongozo muhimu ya mwingiliano wa heshima:",
-        "answerItems": ["Ongea kawaida na moja kwa moja nao, si kupitia wenzi", "Jitambulishe unapokaribia", "Uliza kabla ya kusaidia - usishike au kusukuma", "Toa maelezo ya maneno yanapofaa", "Tumia lugha ya kawaida ('tutaonana baadaye' ni sawa)", "Kamwe usipapase au kusumbua mbwa wa kuongoza"]
+        "answerItems": [
+          "Ongea kawaida na moja kwa moja nao, si kupitia wenzi",
+          "Jitambulishe unapokaribia",
+          "Uliza kabla ya kusaidia - usishike au kusukuma",
+          "Toa maelezo ya maneno yanapofaa",
+          "Tumia lugha ya kawaida ('tutaonana baadaye' ni sawa)",
+          "Kamwe usipapase au kusumbua mbwa wa kuongoza"
+        ]
       },
       "legalVsTotal": {
         "question": "Kuna tofauti gani kati ya kipofu kisheria na kipofu kabisa?",
@@ -206,12 +237,22 @@
       "identification": {
         "question": "Vipofu wanatamuaje pesa, rangi, au vitu?",
         "answerIntro": "Vipofu wanatumia mbinu mbalimbali za kubadilika kwa utambuzi:",
-        "answerItems": ["Pesa: Programu kama Seeing AI, mbinu tofauti za kukunja, vitambulishi vya kielektroniki, na ukubwa tofauti kwa dhehebu tofauti katika nchi mbalimbali", "Rangi: Programu za kutambua rangi, kuuliza wengine, kununua nguo zilizooanishwa mapema", "Vitu: Mpangilio wa kimfumo, lebo za braille/kugusa, lebo za kurekodi sauti, kumbukumbu"]
+        "answerItems": [
+          "Pesa: Programu kama Seeing AI, mbinu tofauti za kukunja, vitambulishi vya kielektroniki, na ukubwa tofauti kwa dhehebu tofauti katika nchi mbalimbali",
+          "Rangi: Programu za kutambua rangi, kuuliza wengine, kununua nguo zilizooanishwa mapema",
+          "Vitu: Mpangilio wa kimfumo, lebo za braille/kugusa, lebo za kurekodi sauti, kumbukumbu"
+        ]
       },
       "causesTreatment": {
         "question": "Nini kinasababisha upofu na je, unaweza kuponywa?",
         "leadingCauses": "Sababu kuu duniani kote:",
-        "causeItems": ["Mtoto wa jicho (inaweza kurudishwa)", "Glaukoma", "Kuzorota kwa macula", "Retinopathia ya kisukari", "Hali za kijenetiki"],
+        "causeItems": [
+          "Mtoto wa jicho (inaweza kurudishwa)",
+          "Glaukoma",
+          "Kuzorota kwa macula",
+          "Retinopathia ya kisukari",
+          "Hali za kijenetiki"
+        ],
         "treatmentInfo": "Matibabu inategemea sababu. Baadhi ya hali zinaweza kuzuiwa/kutibiwa, nyingine haziwezi kwa sasa. Utafiti unaendelea kuhusu matibabu kama tiba ya jeni, seli shina, na macho ya kibioniki.",
         "neurologicalNote": "Watu wanaweza pia kupoteza kuona kwao kutokana na hali za kineurolojia kama jeraha au kiharusi."
       }
@@ -232,7 +273,7 @@
     "subtitle": "Maswali ya kawaida kuhusu hali za kuona na kiigaji hiki"
   },
   "about": {
-    "title": "Kuhusu VisionSim",
+    "title": "Kuhusu Simulated Vision",
     "subtitle": "Kuelewa dhamira na mbinu yetu",
     "personalJourney": "Safari ya Kibinafsi",
     "greeting": "Salamu kwa jamii ya vipofu na wenye ulemavu wa kuona — na kwa kila mtu anayetaka kujifunza zaidi!",
@@ -240,14 +281,14 @@
     "purpose": "Niliunda tovuti hii ili watu wawe na zana bora za kueleza na kuwakilisha upofu wao na/au hali za kuona kwa usahihi zaidi.",
     "previewVideo": "Muonekano wa Awali wa Jinsi Ninavyoona",
     "mission": "Dhamira Yetu",
-    "missionText": "VisionSim inasaidia watu kuelewa jinsi ilivyo kuishi na hali mbalimbali za kuona kupitia uigaji sahihi unaotegemea utafiti.",
+    "missionText": "Simulated Vision inasaidia watu kuelewa jinsi ilivyo kuishi na hali mbalimbali za kuona kupitia uigaji sahihi unaotegemea utafiti.",
     "howItWorks": "Jinsi Inavyofanya Kazi",
     "disclaimer": "Kanusho la Kimatibabu",
     "disclaimerText": "Uigaji huu ni kwa madhumuni ya kielimu tu na huenda usiwakilishe kwa ukamilifu jinsi watu wanavyopitia hali zao."
   },
   "feedback": {
     "title": "Shiriki Maoni Yako",
-    "subtitle": "Tusaidie kuboresha VisionSim",
+    "subtitle": "Tusaidie kuboresha Simulated Vision",
     "nameLabel": "Jina Lako",
     "namePlaceholder": "Weka jina lako",
     "emailLabel": "Anwani ya Barua Pepe",

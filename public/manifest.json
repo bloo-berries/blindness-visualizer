@@ -1,6 +1,6 @@
 {
-  "short_name": "VisionSim",
-  "name": "VisionSim - Vision Condition Simulator",
+  "short_name": "Simulated Vision",
+  "name": "Simulated Vision - Vision Condition Simulator",
   "description": "Experience and understand blindness and visual impairments through real-time simulations. Simulate color blindness, macular degeneration, glaucoma, and 30+ vision conditions.",
   "icons": [
     {

@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Koe",
-    "titleHighlight": "Näkötilat",
+    "titleHighlight": "Jokainen Näkökulma",
     "card1Title": "Luo ainutlaatuinen visualisointisi",
     "card1Button": "Käynnistä Näkösimulaattori",
     "card2Title": "Kuuluisat Sokeat ja Näkövammaiset Henkilöt",
@@ -148,12 +148,30 @@
       "paragraph3": "Lisätietoja tietyistä näkötiloista saat <strong>Sanasto</strong>-välilehdeltä yllä."
     },
     "conditionCategories": {
-      "visualField": { "name": "Näkökenttähäviö", "description": "Tilat, jotka vaikuttavat tiettyihin näkökentän alueisiin" },
-      "colorVision": { "name": "Värinäön Puutteet", "description": "Tilat, jotka vaikuttavat värien havaitsemiseen ja erottamiseen" },
-      "eyeConditions": { "name": "Silmäsairaudet", "description": "Fyysiset tilat, jotka vaikuttavat silmän rakenteeseen ja toimintaan" },
-      "retinal": { "name": "Verkkokalvosairaudet", "description": "Tilat, jotka vaikuttavat verkkokalvoon ja sen erikoistuneisiin soluihin" },
-      "neurological": { "name": "Neurologiset Näkötilat", "description": "Näköongelmat, jotka johtuvat aivojen ja hermoston häiriöistä" },
-      "traumaInfection": { "name": "Trauma- ja Infektioihin Liittyvät", "description": "Näön menetys fyysisestä vammasta tai tartuntataudeista johtuen" }
+      "visualField": {
+        "name": "Näkökenttähäviö",
+        "description": "Tilat, jotka vaikuttavat tiettyihin näkökentän alueisiin"
+      },
+      "colorVision": {
+        "name": "Värinäön Puutteet",
+        "description": "Tilat, jotka vaikuttavat värien havaitsemiseen ja erottamiseen"
+      },
+      "eyeConditions": {
+        "name": "Silmäsairaudet",
+        "description": "Fyysiset tilat, jotka vaikuttavat silmän rakenteeseen ja toimintaan"
+      },
+      "retinal": {
+        "name": "Verkkokalvosairaudet",
+        "description": "Tilat, jotka vaikuttavat verkkokalvoon ja sen erikoistuneisiin soluihin"
+      },
+      "neurological": {
+        "name": "Neurologiset Näkötilat",
+        "description": "Näköongelmat, jotka johtuvat aivojen ja hermoston häiriöistä"
+      },
+      "traumaInfection": {
+        "name": "Trauma- ja Infektioihin Liittyvät",
+        "description": "Näön menetys fyysisestä vammasta tai tartuntataudeista johtuen"
+      }
     },
     "faqCategories": {
       "visionPerception": "Näkö ja Havaitseminen",
@@ -180,7 +198,13 @@
       "navigation": {
         "question": "Miten sokeat navigoivat ja liikkuvat?",
         "answerIntro": "Sokeat käyttävät erilaisia menetelmiä navigointiin ja liikkumiseen:",
-        "answerItems": ["Valkoiset kepit havaitsevat esteet ja korkeusmuutokset", "Opaskoirat tarjoavat älykästä tottelemattomuutta ja navigointia", "GPS-sovellukset ääniohjeineen (Soundscape, BlindSquare)", "Muistiin painetut reitit ja mielikuvakartat", "Julkinen liikenne ja kyydinjakosovellukset"]
+        "answerItems": [
+          "Valkoiset kepit havaitsevat esteet ja korkeusmuutokset",
+          "Opaskoirat tarjoavat älykästä tottelemattomuutta ja navigointia",
+          "GPS-sovellukset ääniohjeineen (Soundscape, BlindSquare)",
+          "Muistiin painetut reitit ja mielikuvakartat",
+          "Julkinen liikenne ja kyydinjakosovellukset"
+        ]
       },
       "senses": {
         "question": "Onko sokeilla tehokkaampia muita aisteja?",
@@ -189,7 +213,14 @@
       "interaction": {
         "question": "Miten minun pitäisi olla vuorovaikutuksessa sokean henkilön kanssa?",
         "answerIntro": "Tässä tärkeitä ohjeita kunnioittavaan vuorovaikutukseen:",
-        "answerItems": ["Puhu normaalisti ja suoraan heille, älä seuralaisten kautta", "Esittele itsesi lähestyessäsi", "Kysy ennen auttamista - älä tartu tai työnnä", "Anna sanallisia kuvauksia tarvittaessa", "Käytä normaalia kieltä ('nähdään' on ok)", "Älä koskaan silittele tai häiritse opaskoiria"]
+        "answerItems": [
+          "Puhu normaalisti ja suoraan heille, älä seuralaisten kautta",
+          "Esittele itsesi lähestyessäsi",
+          "Kysy ennen auttamista - älä tartu tai työnnä",
+          "Anna sanallisia kuvauksia tarvittaessa",
+          "Käytä normaalia kieltä ('nähdään' on ok)",
+          "Älä koskaan silittele tai häiritse opaskoiria"
+        ]
       },
       "legalVsTotal": {
         "question": "Mikä on ero laillisesti sokean ja täysin sokean välillä?",
@@ -206,12 +237,22 @@
       "identification": {
         "question": "Miten sokeat tunnistavat rahaa, värejä tai esineitä?",
         "answerIntro": "Sokeat käyttävät erilaisia sopeutumistekniikoita tunnistamiseen:",
-        "answerItems": ["Raha: Sovellukset kuten Seeing AI, erilaiset taittomenetelmät, elektroniset tunnistimet ja eri kokoiset setelit eri maissa", "Värit: Värintunnistussovellukset, muilta kysyminen, valmiiksi yhteensopivien vaatteiden ostaminen", "Esineet: Järjestelmällinen organisointi, piste/kosketusmerkit, äänitallennemerkit, muisti"]
+        "answerItems": [
+          "Raha: Sovellukset kuten Seeing AI, erilaiset taittomenetelmät, elektroniset tunnistimet ja eri kokoiset setelit eri maissa",
+          "Värit: Värintunnistussovellukset, muilta kysyminen, valmiiksi yhteensopivien vaatteiden ostaminen",
+          "Esineet: Järjestelmällinen organisointi, piste/kosketusmerkit, äänitallennemerkit, muisti"
+        ]
       },
       "causesTreatment": {
         "question": "Mikä aiheuttaa sokeutta ja voidaanko se parantaa?",
         "leadingCauses": "Johtavat syyt maailmanlaajuisesti:",
-        "causeItems": ["Kaihi (palautuva)", "Glaukooma", "Silmänpohjan ikärappeuma", "Diabeettinen retinopatia", "Geneettiset tilat"],
+        "causeItems": [
+          "Kaihi (palautuva)",
+          "Glaukooma",
+          "Silmänpohjan ikärappeuma",
+          "Diabeettinen retinopatia",
+          "Geneettiset tilat"
+        ],
         "treatmentInfo": "Hoito riippuu syystä. Joitakin tiloja voidaan ehkäistä/hoitaa, toisia ei tällä hetkellä. Tutkimus jatkuu hoitojen, kuten geeniterapian, kantasolujen ja bionisten silmien parissa.",
         "neurologicalNote": "Ihmiset voivat myös menettää näkönsä neurologisten tilojen, kuten trauman tai aivohalvauksen vuoksi."
       }
@@ -232,7 +273,7 @@
     "subtitle": "Yleisiä kysymyksiä näkötiloista ja tästä simulaattorista"
   },
   "about": {
-    "title": "Tietoja VisionSimistä",
+    "title": "Tietoja Simulated Visionistä",
     "subtitle": "Ymmärrä missiomme ja lähestymistapamme",
     "personalJourney": "Henkilökohtainen Matka",
     "greeting": "Tervehdys sokeiden ja näkövammaisten yhteisölle — ja kaikille uteliaille, jotka haluavat oppia lisää!",
@@ -240,14 +281,14 @@
     "purpose": "Loin tämän sivuston, jotta ihmiset olisivat paremmin varusteltuja työkaluilla ilmaistakseen ja esittääkseen tarkemmin sokeutensa ja/tai näkötilansa.",
     "previewVideo": "Esikatsele Miten Näen",
     "mission": "Missiomme",
-    "missionText": "VisionSim auttaa ihmisiä ymmärtämään, millaista on elää erilaisten näkötilojen kanssa tarkkojen, tutkimukseen perustuvien simulaatioiden avulla.",
+    "missionText": "Simulated Vision auttaa ihmisiä ymmärtämään, millaista on elää erilaisten näkötilojen kanssa tarkkojen, tutkimukseen perustuvien simulaatioiden avulla.",
     "howItWorks": "Miten Se Toimii",
     "disclaimer": "Lääketieteellinen Vastuuvapauslauseke",
     "disclaimerText": "Nämä simulaatiot ovat vain koulutustarkoituksiin eivätkä välttämättä täydellisesti edusta miten yksilöt kokevat tilansa."
   },
   "feedback": {
     "title": "Jaa Palautteesi",
-    "subtitle": "Auta meitä parantamaan VisionSimiä",
+    "subtitle": "Auta meitä parantamaan Simulated Visioniä",
     "nameLabel": "Nimesi",
     "namePlaceholder": "Syötä nimesi",
     "emailLabel": "Sähköpostiosoite",

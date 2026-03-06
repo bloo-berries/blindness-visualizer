@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Upplev",
-    "titleHighlight": "Synstillstånd",
+    "titleHighlight": "Varje Perspektiv",
     "card1Title": "Skapa din unika visualisering",
     "card1Button": "Starta Synsimulator",
     "card2Title": "Kända Blinda och Synskadade Personer",
@@ -148,12 +148,30 @@
       "paragraph3": "För mer detaljerad information om specifika synstillstånd, besök vår <strong>Ordlista</strong>-flik ovan."
     },
     "conditionCategories": {
-      "visualField": { "name": "Synfältsbortfall", "description": "Tillstånd som påverkar specifika områden av synfältet" },
-      "colorVision": { "name": "Färgseendebrister", "description": "Tillstånd som påverkar färguppfattning och färgdiskriminering" },
-      "eyeConditions": { "name": "Ögontillstånd", "description": "Fysiska tillstånd som påverkar ögats struktur och funktion" },
-      "retinal": { "name": "Näthinnesjukdomar", "description": "Tillstånd som påverkar näthinnan och dess specialiserade celler" },
-      "neurological": { "name": "Neurologiska Synstillstånd", "description": "Synproblem orsakade av störningar i hjärnan och nervsystemet" },
-      "traumaInfection": { "name": "Trauma- och Infektionsrelaterade", "description": "Synförlust till följd av fysisk skada eller infektionssjukdomar" }
+      "visualField": {
+        "name": "Synfältsbortfall",
+        "description": "Tillstånd som påverkar specifika områden av synfältet"
+      },
+      "colorVision": {
+        "name": "Färgseendebrister",
+        "description": "Tillstånd som påverkar färguppfattning och färgdiskriminering"
+      },
+      "eyeConditions": {
+        "name": "Ögontillstånd",
+        "description": "Fysiska tillstånd som påverkar ögats struktur och funktion"
+      },
+      "retinal": {
+        "name": "Näthinnesjukdomar",
+        "description": "Tillstånd som påverkar näthinnan och dess specialiserade celler"
+      },
+      "neurological": {
+        "name": "Neurologiska Synstillstånd",
+        "description": "Synproblem orsakade av störningar i hjärnan och nervsystemet"
+      },
+      "traumaInfection": {
+        "name": "Trauma- och Infektionsrelaterade",
+        "description": "Synförlust till följd av fysisk skada eller infektionssjukdomar"
+      }
     },
     "faqCategories": {
       "visionPerception": "Syn och Perception",
@@ -180,7 +198,13 @@
       "navigation": {
         "question": "Hur navigerar och tar sig blinda människor runt?",
         "answerIntro": "Blinda människor använder olika metoder för navigation och mobilitet:",
-        "answerItems": ["Vita käppar upptäcker hinder och höjdförändringar", "Ledarhundar ger intelligent olydnad och navigation", "GPS-appar med ljudvägledning (Soundscape, BlindSquare)", "Memorerade rutter och mental kartläggning", "Kollektivtrafik och samåkningsappar"]
+        "answerItems": [
+          "Vita käppar upptäcker hinder och höjdförändringar",
+          "Ledarhundar ger intelligent olydnad och navigation",
+          "GPS-appar med ljudvägledning (Soundscape, BlindSquare)",
+          "Memorerade rutter och mental kartläggning",
+          "Kollektivtrafik och samåkningsappar"
+        ]
       },
       "senses": {
         "question": "Har blinda människor skärpta andra sinnen?",
@@ -189,7 +213,14 @@
       "interaction": {
         "question": "Hur ska jag interagera med en blind person?",
         "answerIntro": "Här är några viktiga riktlinjer för respektfull interaktion:",
-        "answerItems": ["Tala normalt och direkt till dem, inte genom medföljare", "Identifiera dig själv när du närmar dig", "Fråga innan du hjälper - grip inte tag i eller knuffa", "Ge verbala beskrivningar när det är relevant", "Använd normalt språk ('vi ses senare' är okej)", "Klappa aldrig på eller distrahera ledarhundar"]
+        "answerItems": [
+          "Tala normalt och direkt till dem, inte genom medföljare",
+          "Identifiera dig själv när du närmar dig",
+          "Fråga innan du hjälper - grip inte tag i eller knuffa",
+          "Ge verbala beskrivningar när det är relevant",
+          "Använd normalt språk ('vi ses senare' är okej)",
+          "Klappa aldrig på eller distrahera ledarhundar"
+        ]
       },
       "legalVsTotal": {
         "question": "Vad är skillnaden mellan juridiskt blind och totalt blind?",
@@ -206,12 +237,22 @@
       "identification": {
         "question": "Hur identifierar blinda människor pengar, färger eller föremål?",
         "answerIntro": "Blinda människor använder olika adaptiva tekniker för identifiering:",
-        "answerItems": ["Pengar: Appar som Seeing AI, olika vikningsmetoder, elektroniska identifierare och olika storlekar för olika valörer i olika länder", "Färger: Färgidentifieringsappar, fråga andra, köpa förmatchade kläder", "Föremål: Systematisk organisation, punktskrift-/taktila etiketter, röstinspelningsetiketter, minne"]
+        "answerItems": [
+          "Pengar: Appar som Seeing AI, olika vikningsmetoder, elektroniska identifierare och olika storlekar för olika valörer i olika länder",
+          "Färger: Färgidentifieringsappar, fråga andra, köpa förmatchade kläder",
+          "Föremål: Systematisk organisation, punktskrift-/taktila etiketter, röstinspelningsetiketter, minne"
+        ]
       },
       "causesTreatment": {
         "question": "Vad orsakar blindhet och kan det botas?",
         "leadingCauses": "Ledande orsaker globalt:",
-        "causeItems": ["Grå starr (reversibel)", "Grön starr", "Makuladegeneration", "Diabetisk retinopati", "Genetiska tillstånd"],
+        "causeItems": [
+          "Grå starr (reversibel)",
+          "Grön starr",
+          "Makuladegeneration",
+          "Diabetisk retinopati",
+          "Genetiska tillstånd"
+        ],
         "treatmentInfo": "Behandling beror på orsaken. Vissa tillstånd kan förebyggas/behandlas, andra kan det för närvarande inte. Forskning fortsätter om behandlingar som genterapi, stamceller och bioniska ögon.",
         "neurologicalNote": "Människor kan också förlora synen från neurologiska tillstånd som trauma eller stroke."
       }
@@ -232,7 +273,7 @@
     "subtitle": "Vanliga frågor om synstillstånd och denna simulator"
   },
   "about": {
-    "title": "Om VisionSim",
+    "title": "Om Simulated Vision",
     "subtitle": "Förstå vårt uppdrag och tillvägagångssätt",
     "personalJourney": "En Personlig Resa",
     "greeting": "Hej till gemenskapen av blinda och synskadade — och till alla nyfikna som vill lära sig mer!",
@@ -240,14 +281,14 @@
     "purpose": "Jag skapade denna webbplats så att människor skulle vara bättre utrustade med verktyg för att mer exakt formulera och representera sin blindhet och/eller synstillstånd.",
     "previewVideo": "Förhandsvisning av Hur Jag Ser",
     "mission": "Vårt Uppdrag",
-    "missionText": "VisionSim hjälper människor att förstå hur det är att leva med olika synstillstånd genom noggranna, forskningsbaserade simuleringar.",
+    "missionText": "Simulated Vision hjälper människor att förstå hur det är att leva med olika synstillstånd genom noggranna, forskningsbaserade simuleringar.",
     "howItWorks": "Hur Det Fungerar",
     "disclaimer": "Medicinsk Ansvarsfriskrivning",
     "disclaimerText": "Dessa simuleringar är endast för utbildningsändamål och kanske inte perfekt representerar hur individer upplever sina tillstånd."
   },
   "feedback": {
     "title": "Dela Din Feedback",
-    "subtitle": "Hjälp oss förbättra VisionSim",
+    "subtitle": "Hjälp oss förbättra Simulated Vision",
     "nameLabel": "Ditt Namn",
     "namePlaceholder": "Ange ditt namn",
     "emailLabel": "E-postadress",
@@ -315,25 +356,104 @@
     "title": "Skicka Feedback",
     "subtitle": "Hjälp oss förbättra Synsimulatorn genom att dela dina tankar, rapportera buggar eller föreslå nya funktioner.",
     "whatToShare": "Vad vill du dela?",
-    "feedbackTypes": { "general": "Allmän Feedback", "bug": "Felrapport", "feature": "Funktionsförfrågan", "improvement": "Förbättringsförslag", "other": "Annat" },
-    "form": { "name": "Ditt Namn", "email": "E-postadress", "subject": "Ämne", "subjectPlaceholder": "Kort beskrivning av din feedback", "message": "Ditt Meddelande", "messagePlaceholders": { "bug": "Beskriv felet du upplevde, inklusive stegen för att återskapa det och eventuella felmeddelanden.", "feature": "Beskriv funktionen du vill se och hur den skulle förbättra upplevelsen.", "improvement": "Berätta hur vi kan förbättra en befintlig funktion eller den övergripande upplevelsen.", "general": "Dela dina tankar, förslag eller annan feedback." } },
-    "favoriteFeature": { "label": "Vilken funktion tyckte du var mest intressant eller användbar?", "options": { "demoVideo": "Demovideo Visualisering", "uploadPhoto": "Ladda Upp Egen Bild Visualisering", "famousPeople": "Kända Personer Kunskap/Visualiseringar" } },
-    "userType": { "label": "Vad beskriver dig bäst?", "options": { "student": "Student", "educator": "Utbildare", "healthcare": "Vårdpersonal", "researcher": "Forskare", "general": "Allmänheten", "other": "Annat" } },
-    "browser": { "label": "Vilken webbläsare använder du?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Annan" } },
-    "accessibility": { "label": "Använder du hjälpmedel? (Välj alla som gäller)", "options": { "screenReader": "Skärmläsare", "voiceControl": "Röststyrning", "keyboardNavigation": "Endast Tangentbordsnavigering", "magnification": "Skärmförstoring", "highContrast": "Högkontrastläge", "none": "Ingen" } },
-    "rating": { "label": "Hur skulle du betygsätta din övergripande upplevelse?" },
-    "submit": { "button": "Skicka Feedback", "submitting": "Skickar..." },
-    "messages": { "success": "Tack för din feedback! Vi har tagit emot din inlämning och kommer att granska den noggrant.", "error": "Det uppstod ett fel vid sändning av feedback. Försök igen.", "footer": "Vi uppskattar din feedback och kommer att granska alla inlämningar noggrant. Även om vi inte kan svara på varje meddelande individuellt, hjälper ditt bidrag oss att förbättra Synsimulatorn för alla." }
+    "feedbackTypes": {
+      "general": "Allmän Feedback",
+      "bug": "Felrapport",
+      "feature": "Funktionsförfrågan",
+      "improvement": "Förbättringsförslag",
+      "other": "Annat"
+    },
+    "form": {
+      "name": "Ditt Namn",
+      "email": "E-postadress",
+      "subject": "Ämne",
+      "subjectPlaceholder": "Kort beskrivning av din feedback",
+      "message": "Ditt Meddelande",
+      "messagePlaceholders": {
+        "bug": "Beskriv felet du upplevde, inklusive stegen för att återskapa det och eventuella felmeddelanden.",
+        "feature": "Beskriv funktionen du vill se och hur den skulle förbättra upplevelsen.",
+        "improvement": "Berätta hur vi kan förbättra en befintlig funktion eller den övergripande upplevelsen.",
+        "general": "Dela dina tankar, förslag eller annan feedback."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Vilken funktion tyckte du var mest intressant eller användbar?",
+      "options": {
+        "demoVideo": "Demovideo Visualisering",
+        "uploadPhoto": "Ladda Upp Egen Bild Visualisering",
+        "famousPeople": "Kända Personer Kunskap/Visualiseringar"
+      }
+    },
+    "userType": {
+      "label": "Vad beskriver dig bäst?",
+      "options": {
+        "student": "Student",
+        "educator": "Utbildare",
+        "healthcare": "Vårdpersonal",
+        "researcher": "Forskare",
+        "general": "Allmänheten",
+        "other": "Annat"
+      }
+    },
+    "browser": {
+      "label": "Vilken webbläsare använder du?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Annan"
+      }
+    },
+    "accessibility": {
+      "label": "Använder du hjälpmedel? (Välj alla som gäller)",
+      "options": {
+        "screenReader": "Skärmläsare",
+        "voiceControl": "Röststyrning",
+        "keyboardNavigation": "Endast Tangentbordsnavigering",
+        "magnification": "Skärmförstoring",
+        "highContrast": "Högkontrastläge",
+        "none": "Ingen"
+      }
+    },
+    "rating": {
+      "label": "Hur skulle du betygsätta din övergripande upplevelse?"
+    },
+    "submit": {
+      "button": "Skicka Feedback",
+      "submitting": "Skickar..."
+    },
+    "messages": {
+      "success": "Tack för din feedback! Vi har tagit emot din inlämning och kommer att granska den noggrant.",
+      "error": "Det uppstod ett fel vid sändning av feedback. Försök igen.",
+      "footer": "Vi uppskattar din feedback och kommer att granska alla inlämningar noggrant. Även om vi inte kan svara på varje meddelande individuellt, hjälper ditt bidrag oss att förbättra Synsimulatorn för alla."
+    }
   },
   "resourcesPage": {
     "title": "Resurser",
     "subtitle": "Användbara resurser för synförlust, mobilitet och tillgänglighet",
     "resources": {
-      "braille": { "title": "Two Blind Brothers - Punktskriftsresurser", "description": "Lär dig om punktskrift och hitta resurser från Two Blind Brothers." },
-      "hadley": { "title": "Hadley - Utbildningsresurser", "description": "Gratis utbildningsworkshops och resurser för synförlust, inklusive punktskriftsinlärning, vardagsfärdigheter och teknikutbildning." },
-      "caneTips": { "title": "Ask a Blind Person - Käpptips", "description": "Praktiska tips för användare av vit käpp för att förbättra mobiliteten och minska vanliga problem." },
-      "freeCane": { "title": "NFB Gratis Vit Käpp Program", "description": "Nationella Blindförbundet erbjuder gratis vita käppar till dem som behöver dem." },
-      "phoneLines": { "title": "Tillgänglighet Supportlinjer", "description": "En omfattande lista över tillgänglighet supportlinjer från stora företag inklusive Apple, Microsoft, Amazon, flygbolag och telekomleverantörer för kunder med synförlust." }
+      "braille": {
+        "title": "Two Blind Brothers - Punktskriftsresurser",
+        "description": "Lär dig om punktskrift och hitta resurser från Two Blind Brothers."
+      },
+      "hadley": {
+        "title": "Hadley - Utbildningsresurser",
+        "description": "Gratis utbildningsworkshops och resurser för synförlust, inklusive punktskriftsinlärning, vardagsfärdigheter och teknikutbildning."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Käpptips",
+        "description": "Praktiska tips för användare av vit käpp för att förbättra mobiliteten och minska vanliga problem."
+      },
+      "freeCane": {
+        "title": "NFB Gratis Vit Käpp Program",
+        "description": "Nationella Blindförbundet erbjuder gratis vita käppar till dem som behöver dem."
+      },
+      "phoneLines": {
+        "title": "Tillgänglighet Supportlinjer",
+        "description": "En omfattande lista över tillgänglighet supportlinjer från stora företag inklusive Apple, Microsoft, Amazon, flygbolag och telekomleverantörer för kunder med synförlust."
+      }
     }
   }
 }

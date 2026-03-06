@@ -163,6 +163,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             position: 'sticky',
             top: 16,
             alignSelf: 'flex-start',
+            width: { xs: '100%', md: 'auto' },
             minWidth: { md: '500px' },
           }}>
             {visualizerSlot}

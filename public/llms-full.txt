@@ -1,8 +1,8 @@
-# VisionSim — Full Content Reference
+# Simulated Vision — Full Content Reference
 
 > https://simulated.vision
 
-This file contains comprehensive information about all 42+ vision conditions and 128+ famous people profiled on VisionSim. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 42+ vision conditions and 128+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -25,7 +25,7 @@ Loss of the left half of the visual field in both eyes. Caused by damage to the 
 
 *Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
 
-**Simulate**: [Experience Homonymous Hemianopia (Left-field) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Hemianopia (Left-field) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -42,7 +42,7 @@ Loss of the right half of the visual field in both eyes. Caused by damage to the
 
 *Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
 
-**Simulate**: [Experience Homonymous Hemianopia (Right-field) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Hemianopia (Right-field) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -58,7 +58,7 @@ Loss of vision in the same lower quadrant of visual field in both eyes. Caused b
 
 *Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
 
-**Simulate**: [Experience Homonymous Inferior Quadrantanopia on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Inferior Quadrantanopia on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -74,7 +74,7 @@ Loss of vision in the same upper quadrant of visual field in both eyes. Caused b
 
 *Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
 
-**Simulate**: [Experience Homonymous Superior Quadrantanopia on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Superior Quadrantanopia on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -95,7 +95,7 @@ Complete blindness in the left eye. Caused by damage to the left optic nerve. Re
 
 *Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
 
-**Simulate**: [Experience Complete Loss of Vision in Left Eye on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Complete Loss of Vision in Left Eye on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -116,7 +116,7 @@ Complete blindness in the right eye. Caused by damage to the right optic nerve. 
 
 *Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
 
-**Simulate**: [Experience Complete Loss of Vision in Right Eye on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Complete Loss of Vision in Right Eye on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -133,7 +133,7 @@ Loss of vision in the outer (temporal) half of each eye\
 
 *Early treatment of the underlying cause (often pituitary tumors) may prevent further vision loss and sometimes improve vision.*
 
-**Simulate**: [Experience Bitemporal Hemianopia on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Bitemporal Hemianopia on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -153,7 +153,7 @@ A blind spot in the center of vision. Can be caused by macular degeneration, opt
 
 *Central scotomas are often permanent, but treatment of the underlying cause and low vision rehabilitation can help maximize remaining vision.*
 
-**Simulate**: [Experience Central Scotoma on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Central Scotoma on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -172,7 +172,7 @@ Loss of peripheral vision while central vision remains. Can be caused by glaucom
 
 *Peripheral vision loss is often progressive and irreversible, but early treatment of underlying conditions may slow progression.*
 
-**Simulate**: [Experience Tunnel Vision on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Tunnel Vision on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -192,7 +192,7 @@ Complete inability to distinguish between red and green colors. Red appears as b
 
 *Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
 
-**Simulate**: [Experience Protanopia (Red-Blind) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Protanopia (Red-Blind) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -208,7 +208,7 @@ Complete inability to distinguish between red and green colors. Green appears as
 
 *Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
 
-**Simulate**: [Experience Deuteranopia (Green-Blind) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Deuteranopia (Green-Blind) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -224,7 +224,7 @@ Inability to distinguish between blue and yellow colors. Blue appears as green, 
 
 *Acquired tritanopia may improve if the underlying cause is treated. Inherited forms are permanent.*
 
-**Simulate**: [Experience Tritanopia (Blue-Blind) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Tritanopia (Blue-Blind) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -239,7 +239,7 @@ Reduced sensitivity to red light. Red appears darker and less bright than normal
 
 *Milder than protanopia but still permanent. Adaptive strategies are the primary management approach.*
 
-**Simulate**: [Experience Protanomaly (Red-Weak) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Protanomaly (Red-Weak) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -254,7 +254,7 @@ Reduced sensitivity to green light. Green appears more red than normal. Most com
 
 *Most common color vision deficiency. Usually does not significantly impact daily life, but adaptive strategies can help when needed.*
 
-**Simulate**: [Experience Deuteranomaly (Green-Weak) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Deuteranomaly (Green-Weak) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -269,7 +269,7 @@ Reduced sensitivity to blue light. Blue appears greener than normal, and yellow 
 
 *Very rare condition. Treatment depends on whether it is inherited or acquired.*
 
-**Simulate**: [Experience Tritanomaly (Blue-Weak) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Tritanomaly (Blue-Weak) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -285,7 +285,7 @@ Complete inability to see any colors. Vision is limited to shades of gray. Extre
 
 *Complete color blindness is typically genetic and permanent. Management focuses on maximizing remaining vision and adaptive strategies.*
 
-**Simulate**: [Experience Monochromacy (Complete Color Blindness) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Monochromacy (Complete Color Blindness) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -306,7 +306,7 @@ A group of eye diseases that damage the optic nerve, typically due to elevated i
 
 *Early detection and treatment can prevent or slow vision loss. Vision already lost cannot be restored, but treatment can preserve remaining vision. Regular eye exams are crucial.*
 
-**Simulate**: [Experience Glaucoma on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Glaucoma on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -323,7 +323,7 @@ Nuclear sclerotic cataract - the most common type of cataract affecting the cent
 
 *Cataract surgery is one of the most common and successful surgeries, with high success rates. It is reversible and can restore clear vision. Surgery is typically recommended when cataracts interfere with daily activities.*
 
-**Simulate**: [Experience Nuclear Sclerotic Cataract on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Nuclear Sclerotic Cataract on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -341,7 +341,7 @@ Small central area of light scatter behind the pupil, causing pronounced glare s
 
 *Posterior subcapsular cataracts often progress more quickly than other types and can significantly impact vision, especially in bright light. Surgery is typically recommended when vision is significantly affected.*
 
-**Simulate**: [Experience Posterior Subcapsular Cataract on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Posterior Subcapsular Cataract on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -359,7 +359,7 @@ Deterioration of the macula, the central part of the retina. Causes loss of cent
 
 *Wet AMD can be treated to slow progression and sometimes improve vision. Dry AMD progresses slowly and currently has no cure, but supplements may slow progression. Early detection is crucial.*
 
-**Simulate**: [Experience Age-Related Macular Degeneration (AMD) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Age-Related Macular Degeneration (AMD) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -377,7 +377,7 @@ Damage to the blood vessels in the retina caused by diabetes. Can cause blurry v
 
 *Early detection and good diabetes management can prevent or slow progression. Treatment can preserve vision, but vision already lost may not be fully restored.*
 
-**Simulate**: [Experience Diabetic Retinopathy on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Diabetic Retinopathy on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -394,7 +394,7 @@ Irregular curvature of the cornea or lens causing blurred or distorted vision at
 
 *Astigmatism is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction. Pterygium surgery has good success rates.*
 
-**Simulate**: [Experience Astigmatism/Pterygium on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Astigmatism/Pterygium on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -411,7 +411,7 @@ Difficulty seeing distant objects clearly while near objects appear normal. Caus
 
 *Myopia is easily correctable. In children, treatments can slow progression. Refractive surgery can provide permanent correction for adults.*
 
-**Simulate**: [Experience Myopia (Near-Sightedness) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Myopia (Near-Sightedness) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -427,7 +427,7 @@ Difficulty seeing near objects clearly while distant objects appear normal. Caus
 
 *Hyperopia is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction.*
 
-**Simulate**: [Experience Hyperopia (Far-Sightedness) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Hyperopia (Far-Sightedness) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -451,7 +451,7 @@ Progressive genetic disorder causing gradual degeneration of photoreceptor cells
 
 *RP is progressive and currently has no cure for most forms. Treatment focuses on slowing progression and maximizing remaining vision. Gene therapy is available for specific genetic mutations.*
 
-**Simulate**: [Experience Retinitis Pigmentosa on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinitis Pigmentosa on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -471,7 +471,7 @@ Genetic eye disorder causing progressive vision loss in the macula. Usually begi
 
 *Stargardt disease is progressive and currently incurable. Management focuses on maximizing remaining peripheral vision and adaptive strategies. Research into gene and stem cell therapies is promising.*
 
-**Simulate**: [Experience Stargardt Disease on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Stargardt Disease on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -489,7 +489,7 @@ Separation of the retina from the underlying tissue. Can cause sudden flashes of
 
 *Retinal detachment is a medical emergency requiring immediate treatment. Success rates are high if treated promptly (within days). Delayed treatment can result in permanent vision loss.*
 
-**Simulate**: [Experience Retinal Detachment on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinal Detachment on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -511,7 +511,7 @@ Temporary visual disturbances that can precede migraines. May include flashing l
 
 *Visual auras typically resolve on their own. Treatment focuses on preventing migraines and managing symptoms. Most people with auras can identify triggers to avoid.*
 
-**Simulate**: [Experience Visual Aura on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Aura on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -528,7 +528,7 @@ A persistent visual disturbance where people see tiny, flickering dots across th
 
 *Visual snow syndrome has no definitive cure. Treatment is often trial-and-error. Some medications may help reduce symptoms. Research into the condition is ongoing.*
 
-**Simulate**: [Experience Visual Snow on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Snow on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -545,7 +545,7 @@ Shadows cast on the retina by debris floating in the vitreous humor. Includes co
 
 *Most floaters are benign and do not require treatment. Sudden increase in floaters, especially with flashes, requires immediate eye exam to rule out retinal tear or detachment.*
 
-**Simulate**: [Experience Visual Floaters (Myodesopsia) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Floaters (Myodesopsia) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -568,7 +568,7 @@ Seeing things that are not actually present. Can be simple (lights, shapes) or c
 
 *Treatment is highly dependent on the underlying cause. Charles Bonnet Syndrome (hallucinations due to vision loss) is usually harmless and may resolve on its own.*
 
-**Simulate**: [Experience Visual Hallucinations on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Hallucinations on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -588,7 +588,7 @@ Seeing two images of a single object. Can be monocular (affecting one eye) or bi
 
 *Monocular diplopia is usually due to eye problems (cataracts, corneal issues). Binocular diplopia requires treatment of eye alignment or underlying neurological conditions.*
 
-**Simulate**: [Experience Diplopia (Double Vision) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Diplopia (Double Vision) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -607,7 +607,7 @@ Bloom or light-scatter effect proportional to scene luminance and eye adaptation
 
 *Glare sensitivity can be a symptom of various eye conditions. Treatment depends on the underlying cause. Anti-glare lenses and protective eyewear can significantly improve comfort.*
 
-**Simulate**: [Experience Glare Sensitivity on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Glare Sensitivity on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -628,7 +628,7 @@ Difficulty seeing in low light conditions or darkness. Vision becomes significan
 
 *Night blindness can be a symptom of various conditions. Some causes are treatable (vitamin deficiencies, cataracts), while others (retinitis pigmentosa) may be progressive. Early diagnosis is important.*
 
-**Simulate**: [Experience Night Blindness (Nyctalopia) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Night Blindness (Nyctalopia) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -649,7 +649,7 @@ Light sources appearing as star-like rays or spikes extending outward from the c
 
 *Starbursting after refractive surgery often improves over 6-12 months. If persistent, it may require additional treatment. Corneal irregularities may need specialized contact lenses or surgical correction.*
 
-**Simulate**: [Experience Starbursting on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Starbursting on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -670,7 +670,7 @@ An autoimmune response that can occur after injury to one eye, causing inflammat
 
 *Early, aggressive treatment is crucial to preserve vision. Treatment may need to be long-term to prevent recurrence. Modern treatment has improved outcomes significantly.*
 
-**Simulate**: [Experience Sympathetic Ophthalmia on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Sympathetic Ophthalmia on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -688,7 +688,7 @@ Inflammation of the membranes surrounding the brain and spinal cord. Can cause v
 
 *Immediate medical treatment is critical. Vision loss from meningitis is often permanent but early treatment can prevent complications. Vaccination is the best prevention.*
 
-**Simulate**: [Experience Meningitis on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Meningitis on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -709,7 +709,7 @@ Severe damage to the eyes caused by exposure to chemicals. Can result in complet
 
 *Immediate irrigation is critical - seconds count. Alkali burns (lye, ammonia) are more severe than acid burns. Severe burns may require multiple surgeries and have variable outcomes.*
 
-**Simulate**: [Experience Chemical Burns on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Chemical Burns on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -728,7 +728,7 @@ Abnormal blood vessel development in the retina of premature infants. Can cause 
 
 *Early detection and treatment can prevent blindness. Treatment is most effective when done promptly. Modern NICU care and screening have significantly improved outcomes.*
 
-**Simulate**: [Experience Retinopathy of Prematurity (ROP) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinopathy of Prematurity (ROP) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -746,7 +746,7 @@ Autoimmune disorder that attacks the optic nerves and spinal cord. Can cause sev
 
 *Early treatment of attacks and long-term immunosuppression can prevent further vision loss. Some vision may recover after attacks, but damage is often permanent. Modern treatments have significantly improved outcomes.*
 
-**Simulate**: [Experience Neuromyelitis Optica (NMO) on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Neuromyelitis Optica (NMO) on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -765,7 +765,7 @@ Genetic condition causing splitting of retinal layers, leading to progressive vi
 
 *Juvenile retinoschisis is progressive and currently incurable. Treatment focuses on managing complications and maximizing remaining vision. Regular monitoring is essential.*
 
-**Simulate**: [Experience Juvenile Retinoschisis on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Juvenile Retinoschisis on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -784,7 +784,7 @@ Rare genetic condition that can affect multiple body systems, including the eyes
 
 *Treatment focuses on managing eye complications and other systemic manifestations. Regular monitoring is essential. Vision loss varies widely among individuals.*
 
-**Simulate**: [Experience Incontinentia Pigmenti on VisionSim](https://simulated.vision/simulator)
+**Simulate**: [Experience Incontinentia Pigmenti on Simulated Vision](https://simulated.vision/simulator)
 
 ---
 
@@ -806,7 +806,7 @@ Vision is approximately 20/1000+ with extreme blur, light scatter, and fluctuati
 
 [Wikipedia](https://en.wikipedia.org/wiki/Christine_Ha)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -826,7 +826,7 @@ She relies entirely on screen readers, her guide dog Molly, and adaptive technol
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lucy_Edwards)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -844,7 +844,7 @@ Paul Castle has lost over 95% of his vision to Retinitis Pigmentosa, an untreata
 
 [Wikipedia](https://en.wikipedia.org/wiki/Paul_Castle_(artist))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -866,7 +866,7 @@ Haben Girma has been deafblind from birth. She uses tactile sign language and as
 
 [Wikipedia](https://en.wikipedia.org/wiki/Haben_Girma)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -886,7 +886,7 @@ Molly Burke lost her vision to retinitis pigmentosa, diagnosed at age 4 and prog
 
 [Wikipedia](https://en.wikipedia.org/wiki/Molly_Burke)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -906,7 +906,7 @@ She has since had surgery to restore her vision.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mila_Kunis)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -928,7 +928,7 @@ She relies on friends to read scripts aloud and cannot attend events alone.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Judi_Dench)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -950,7 +950,7 @@ The stroke caused lasting visual disturbances: she couldn't read for years, saw 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sharon_Stone)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -972,7 +972,7 @@ Chris McCausland is blind due to retinitis pigmentosa, a degenerative condition 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chris_McCausland)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -992,7 +992,7 @@ Marilee Talkington has cone-rod dystrophy, causing legal blindness with severe l
 
 [Wikipedia](https://www.imdb.com/name/nm3411258/)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1012,7 +1012,7 @@ Fred Rogers lived with deuteranopia, a form of red-green color deficiency caused
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fred_Rogers)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1034,7 +1034,7 @@ Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite rela
 
 [Wikipedia](https://en.wikipedia.org/wiki/Srikanth_Bolla)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1056,7 +1056,7 @@ Retinoschisis causes splitting of retinal layers, leading to progressive vision 
 
 • Author and motivational speaker at erikweihenmayer.com
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1076,7 +1076,7 @@ Stargardt disease causes progressive macular degeneration, destroying central vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Marla_Runyan)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1094,7 +1094,7 @@ Anastasia Pagonis has Stargardt disease, a form of juvenile macular degeneration
 
 • Social media influencer with millions of followers, raising awareness about blindness
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1116,7 +1116,7 @@ The condition threatened to engulf his central vision.
 
 • International Boxing Hall of Fame inductee
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1136,7 +1136,7 @@ Stephen Curry has keratoconus, where the cornea thins into an irregular cone sha
 
 • All-time leader in three-point field goals made
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1158,7 +1158,7 @@ The clear zone shrank each cycle until nothing remained.
 
 • Team USA track and field athlete
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1180,7 +1180,7 @@ By 13, glaucoma took his remaining vision. He still experiences ongoing pain fro
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Brown_(sprinter))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1202,7 +1202,7 @@ Anthony 'Tony' Clarke became completely blind at age 17 following a car accident
 
 [Wikipedia](https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1224,7 +1224,7 @@ He describes his sight as 'the hazy aftermath of a dream' - relying on shapes an
 
 [Wikipedia](https://en.wikipedia.org/wiki/Crazzy_Steve)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1250,7 +1250,7 @@ He navigated Paralympic ski courses, marathon routes, and mountain ascents throu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tofiri_Kibuuka)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1270,7 +1270,7 @@ Ross Minor lost his sight at age 8 from a gunshot wound, resulting in complete b
 
 • Visit rossminor.com
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1292,7 +1292,7 @@ She is legally blind.
 
 • Earned Juris Doctor degree and works for Department of Veterans Affairs
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1316,7 +1316,7 @@ After struggling with depression, he discovered he could run with a guide.
 
 • Famous quote: 'I lost my sight, but I gained a vision'
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1336,7 +1336,7 @@ Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at cl
 
 • Pakistan's Pride of Performance Award recipient (2013)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1362,7 +1362,7 @@ The dual conditions create severe blur, loss of color perception, and extreme li
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mona_Minkara)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1386,7 +1386,7 @@ He has no light perception.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joshua_Miele)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1408,7 +1408,7 @@ Geerat Vermeij was born with congenital glaucoma, causing complete blindness fro
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geerat_Vermeij)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1430,7 +1430,7 @@ She uses screen magnifiers, screen readers, and a service dog.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Amy_Bower)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1452,7 +1452,7 @@ Gustaf Dalén became completely blind in 1912 when an acetylene experiment explo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1474,7 +1474,7 @@ Jacob Bolotin was born completely blind, with no light perception from birth. He
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jacob_Bolotin)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1498,7 +1498,7 @@ He experienced a dark central scotoma (blind spot at fixation point), preserved 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joseph_Plateau)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1522,7 +1522,7 @@ For ~33 years he worked with only his left eye, then ~12 years in complete darkn
 
 [Wikipedia](https://en.wikipedia.org/wiki/Leonhard_Euler)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1546,7 +1546,7 @@ Rather than abandon her career, she pioneered new methods to study astronomical 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1568,7 +1568,7 @@ Educated at a school for the blind from childhood, his functional vision was min
 
 [Wikipedia](https://en.wikipedia.org/wiki/Abraham_Nemeth)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1594,7 +1594,7 @@ His right eye was later removed due to pain. He had no light perception.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ray_Charles)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1620,7 +1620,7 @@ This led to retinal detachment and complete blindness from infancy.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Stevie_Wonder)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1642,7 +1642,7 @@ Born with congenital glaucoma, Andrea Bocelli retained about 10% vision until a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Andrea_Bocelli)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1662,7 +1662,7 @@ Casey Harris has lived with retinitis pigmentosa since age 5, experiencing progr
 
 [Wikipedia](https://en.wikipedia.org/wiki/Casey_Harris)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1684,7 +1684,7 @@ Bono, lead singer of U2, has glaucoma which causes extreme light sensitivity. He
 
 [Wikipedia](https://en.wikipedia.org/wiki/Bono)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1710,7 +1710,7 @@ The condition damages blood vessels in the retina, creating floaters, blurred vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ella_Fitzgerald)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1732,7 +1732,7 @@ The constant movement makes focusing difficult and causes visual instability.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Apl.de.ap)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1752,7 +1752,7 @@ Fetty Wap lost his left eye to childhood glaucoma and now wears a prosthetic eye
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fetty_Wap)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1774,7 +1774,7 @@ Slick Rick was blinded in his right eye as an infant when broken glass from a bo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Slick_Rick)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1798,7 +1798,7 @@ He navigates with a guide dog, which became his trademark onstage.
 
 [Wikipedia](https://en.wikipedia.org/wiki/José_Feliciano)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1822,7 +1822,7 @@ An assault at age 20 left him completely blind in his left eye with very limited
 
 [Wikipedia](https://en.wikipedia.org/wiki/Art_Tatum)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1846,7 +1846,7 @@ Both eyes were eventually surgically removed.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ronnie_Milsap)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1870,7 +1870,7 @@ He could not see shapes or details.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Doc_Watson)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1894,7 +1894,7 @@ He had prosthetic eyes and no memory of sight.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jeff_Healey)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1916,7 +1916,7 @@ Diane Schuur was born two months premature weighing less than three pounds. Oxyg
 
 [Wikipedia](https://en.wikipedia.org/wiki/Diane_Schuur)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1938,7 +1938,7 @@ Nobuyuki Tsujii was born with microphthalmia, a developmental disorder leaving h
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nobuyuki_Tsujii)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1960,7 +1960,7 @@ Rahsaan Roland Kirk became blind at age 2 due to improper medical treatment. He 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Rahsaan_Roland_Kirk)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -1982,7 +1982,7 @@ Blind Lemon Jefferson was blind from birth or early childhood, the exact cause u
 
 [Wikipedia](https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2004,7 +2004,7 @@ Charlotta Seuerling became blind at age 4 due to complications from smallpox vac
 
 [Wikipedia](https://en.wikipedia.org/wiki/Charlotta_Seuerling)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2026,7 +2026,7 @@ Francesco Landini was blind from childhood, likely due to smallpox which destroy
 
 [Wikipedia](https://en.wikipedia.org/wiki/Francesco_Landini)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2046,7 +2046,7 @@ Garret Barry became blind during childhood due to an illness, leaving him with c
 
 [Wikipedia](https://en.wikipedia.org/wiki/Garret_Barry_(uilleann_piper))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2070,7 +2070,7 @@ Geoffrey Gurrumul Yunupingu was born blind in Arnhem Land, Australia. He had no 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gurrumul_Yunupingu)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2092,7 +2092,7 @@ Geraldine 'Jerrie' Lawhorn was both deaf and blind from birth, living in complet
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geraldine_Lawhorn)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2116,7 +2116,7 @@ The visual experience: near-total opacity with milky/washed-out glow, diffuse am
 
 [Wikipedia](https://en.wikipedia.org/wiki/Heather_Hutchison)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2138,7 +2138,7 @@ Joaquín Rodrigo became completely blind at age 3 due to complications from diph
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joaquín_Rodrigo)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2160,7 +2160,7 @@ Rachael Leahcar is legally blind due to retinitis pigmentosa, retaining only 10%
 
 [Wikipedia](https://en.wikipedia.org/wiki/Rachael_Leahcar)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2182,7 +2182,7 @@ John Kay was born with congenital achromatopsia, a rare condition eliminating fu
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Kay_(musician))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2206,7 +2206,7 @@ This is one of the most common forms of color vision deficiency.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jonny_Greenwood)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2228,7 +2228,7 @@ Amadou Bagayoko was born with congenital cataracts in Bamako, Mali. His world wa
 
 [Wikipedia](https://en.wikipedia.org/wiki/Amadou_%26_Mariam)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2252,7 +2252,7 @@ When Harry Belafonte asked her to remove them on tour, she nearly quit rather th
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nana_Mouskouri)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2274,7 +2274,7 @@ Moondog lost his sight at 16 when a dynamite cap exploded, leaving him completel
 
 [Wikipedia](https://en.wikipedia.org/wiki/Moondog)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2298,7 +2298,7 @@ Ravindra Jain was born completely blind in Aligarh, India. He had no visual expe
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ravindra_Jain)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2320,7 +2320,7 @@ Kimio Eto became completely blind at age 5. He retained no visual memory and lea
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kimio_Eto)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2344,7 +2344,7 @@ Diana Gurtskaya was completely blind from birth with no visual experience.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Diana_Gurtskaya)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2368,7 +2368,7 @@ His last visual memory was the color red from blood when he fell.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Âşık_Veysel_Şatıroğlu)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2392,7 +2392,7 @@ Despite this, he maintains a characteristically positive attitude, saying he nev
 
 [Wikipedia](https://en.wikipedia.org/wiki/José_Cid)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2416,7 +2416,7 @@ His stage name comes from his heterochromia - one blue eye and one brown eye - '
 
 [Wikipedia](https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2442,7 +2442,7 @@ His signature dark sunglasses are a coping mechanism for severe photophobia, not
 
 [Wikipedia](https://en.wikipedia.org/wiki/Anselmo_Ralph)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2466,7 +2466,7 @@ He described seeing 'through a fog' and by 1922 was legally blind in his right e
 
 [Wikipedia](https://en.wikipedia.org/wiki/Claude_Monet)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2488,7 +2488,7 @@ Despite this significant visual impairment, she adapted her techniques to work w
 
 [Wikipedia](https://en.wikipedia.org/wiki/Georgia_O%27Keeffe)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2512,7 +2512,7 @@ He developed a unique method of painting by feeling the textures of the paint, c
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Bramblitt)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2534,7 +2534,7 @@ Self-taught from age 6, he creates vivid paintings using touch to understand for
 
 [Wikipedia](https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2556,7 +2556,7 @@ A severe fever at 19 months, likely from bacterial meningitis, left Helen both b
 
 [Wikipedia](https://en.wikipedia.org/wiki/Helen_Keller)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2578,7 +2578,7 @@ Ved developed exceptional 'facial vision' using echolocation and air current per
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ved_Mehta)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2598,7 +2598,7 @@ Tilly Aston had congenital blindness from birth. She became a pioneering Austral
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tilly_Aston)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2620,7 +2620,7 @@ She dedicated her life to education and empowerment of people with disabilities 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sabriye_Tenberken)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2642,7 +2642,7 @@ Despite this, he continued to write through dictation.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jorge_Luis_Borges)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2664,7 +2664,7 @@ His remaining eye's vision deteriorated throughout his life.
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Thurber)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2686,7 +2686,7 @@ His mother read mathematical books to him, using alternative names for math symb
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lev_Pontryagin)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2706,7 +2706,7 @@ Gary O'Donoghue has been blind from birth. He has built a distinguished career i
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gary_O%27Donoghue)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2728,7 +2728,7 @@ Glaucoma later affected his right eye, creating a unique hemispheric vision loss
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Paterson)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2748,7 +2748,7 @@ David Blunkett was born blind and has never had sight. He became a prominent fig
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Blunkett)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2768,7 +2768,7 @@ Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a dist
 
 [Wikipedia](https://en.wikipedia.org/wiki/Floyd_Morris)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2790,7 +2790,7 @@ Despite this, he continued his career and made significant contributions to econ
 
 [Wikipedia](https://en.wikipedia.org/wiki/Henry_Fawcett)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2812,7 +2812,7 @@ He developed a remarkable sense of inner vision.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jacques_Lusseyran)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2838,7 +2838,7 @@ She is a trainer, campaigner for disability awareness, and advocate for an inclu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tiffany_Brar)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2860,7 +2860,7 @@ He underwent about 12 eye surgeries without general anesthetic. By age 48, his l
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Joyce)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2882,7 +2882,7 @@ One eye recovered to only light perception, while the other improved enough to r
 
 [Wikipedia](https://en.wikipedia.org/wiki/Aldous_Huxley)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2904,7 +2904,7 @@ The lack of vision caused sensory exotropia (outward drifting eye), which made h
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jean-Paul_Sartre)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2928,7 +2928,7 @@ Faulty treatment by an unskilled local practitioner led to complete blindness by
 
 [Wikipedia](https://en.wikipedia.org/wiki/Taha_Hussein)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2952,7 +2952,7 @@ Self-taught in law, this 'barefoot lawyer' became a prominent Chinese civil righ
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chen_Guangcheng)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2976,7 +2976,7 @@ His condition progressed from partial to complete blindness over 7 years.
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Milton)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -2996,7 +2996,7 @@ After injuring his right eye with an awl in his father's workshop, young Louis d
 
 [Wikipedia](https://en.wikipedia.org/wiki/Louis_Braille)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3018,7 +3018,7 @@ Each attack caused cumulative damage leading to sectoral defects, arcuate scotom
 
 [Wikipedia](https://en.wikipedia.org/wiki/Galileo_Galilei)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3040,7 +3040,7 @@ This caused a traumatic brain injury resulting in narcolepsy, visions, and visio
 
 [Wikipedia](https://en.wikipedia.org/wiki/Harriet_Tubman)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3064,7 +3064,7 @@ He realized existing embossed reading codes were difficult to learn and set out 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Moon_type)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3086,7 +3086,7 @@ While historical details are uncertain, tradition holds that he was blind.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Homer)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3106,7 +3106,7 @@ Fanny Crosby became blind at 6 weeks old due to improper medical treatment by a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fanny_Crosby)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3128,7 +3128,7 @@ Despite never having visual memory, he developed exceptional mathematical abilit
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nicholas_Saunderson)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3150,7 +3150,7 @@ He pioneered the use of human echolocation for navigation.
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Holman)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3172,7 +3172,7 @@ Contemporary newspapers reported 'hemorrhage of the brain' with partial facial p
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mary_Ingalls)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3196,7 +3196,7 @@ A talented musician, he dedicated his life to education for the blind.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Francis_Campbell_(educator))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3216,7 +3216,7 @@ Béla II was blinded as a child along with his father Álmos by his uncle, King 
 
 [Wikipedia](https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3236,7 +3236,7 @@ John of Bohemia, also known as John the Blind, became blind around 1336 from an 
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_of_Bohemia)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3260,7 +3260,7 @@ His vivid descriptions of Lord Krishna transcend his physical blindness.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Surdas)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3284,7 +3284,7 @@ His partial blindness is symbolic, representing the price of knowledge and the a
 
 [Wikipedia](https://en.wikipedia.org/wiki/Odin)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3306,7 +3306,7 @@ The visualization: red monochrome 'World on Fire' with edge-detection style rend
 
 [Wikipedia](https://en.wikipedia.org/wiki/Daredevil_(Marvel_Comics_character))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3328,7 +3328,7 @@ The visualization: false-color thermal palette (blues for cold, oranges for warm
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geordi_La_Forge)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3350,7 +3350,7 @@ The visualization: monochrome blue-green palette (submarine sonar aesthetic). De
 
 [Wikipedia](https://en.wikipedia.org/wiki/Blindspot_(character))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3372,7 +3372,7 @@ Toph Beifong is completely blind but 'sees' through seismic sense - detecting vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Toph_Beifong)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3396,7 +3396,7 @@ The visualization: Kenshi perceives through telekinetic fields, not reflected li
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3418,7 +3418,7 @@ The visualization: falling columns of katakana, Latin, numerals, and symbols in 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Neo_(The_Matrix))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3440,7 +3440,7 @@ Despite being blind (revealed at the end), he travels across the wasteland prote
 
 [Wikipedia](https://en.wikipedia.org/wiki/The_Book_of_Eli)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3460,7 +3460,7 @@ Blinkin is a comedic character from the Mel Brooks parody film Robin Hood: Men i
 
 [Wikipedia](https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3482,7 +3482,7 @@ She has demonstrated remarkable adaptability.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Julia_Carpenter)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3504,7 +3504,7 @@ Despite his poor vision, he manages to navigate through various adventures, ofte
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mr._Magoo)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3526,7 +3526,7 @@ His condition is the inverse of night blindness - blind in light, seeing in dark
 
 [Wikipedia](https://en.wikipedia.org/wiki/Doctor_Mid-Nite)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3548,7 +3548,7 @@ He teams up with a deaf character to solve a crime, using his heightened senses.
 
 [Wikipedia](https://en.wikipedia.org/wiki/See_No_Evil,_Hear_No_Evil)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3568,7 +3568,7 @@ Mohammad is the protagonist of the Iranian film The Color of Paradise (1999). He
 
 [Wikipedia](https://en.wikipedia.org/wiki/The_Color_of_Paradise)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3590,7 +3590,7 @@ Despite being blind, he was a skilled warrior who used the Force to guide him.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chirrut_%C3%8Emwe)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3610,7 +3610,7 @@ Murphy Mason lost her sight completely at age 14 due to retinitis pigmentosa, a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/In_the_Dark_(American_TV_series))
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
@@ -3632,13 +3632,13 @@ He uses Observation Haki to sense his surroundings.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fujitora)
 
-**Simulate their vision**: [Experience on VisionSim](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
 ---
 
-## About VisionSim
+## About Simulated Vision
 
-VisionSim (https://simulated.vision) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
+Simulated Vision (https://simulated.vision) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
 
 ### Key Features
 - Real-time vision simulation with adjustable intensity

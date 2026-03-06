@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Ervaar",
-    "titleHighlight": "Zichtaandoeningen",
+    "titleHighlight": "Elk Perspectief",
     "card1Title": "Maak je unieke visualisatie",
     "card1Button": "Start Zichtsimulator",
     "card2Title": "Beroemde Blinde en Slechtziende Mensen",
@@ -148,12 +148,30 @@
       "paragraph3": "Voor meer gedetailleerde informatie over specifieke zichtaandoeningen, bezoek ons <strong>Woordenlijst</strong> tabblad hierboven."
     },
     "conditionCategories": {
-      "visualField": { "name": "Gezichtsveldverlies", "description": "Aandoeningen die specifieke gebieden van het gezichtsveld beïnvloeden" },
-      "colorVision": { "name": "Kleurenzienafwijkingen", "description": "Aandoeningen die kleurperceptie en kleurdiscriminatie beïnvloeden" },
-      "eyeConditions": { "name": "Oogaandoeningen", "description": "Fysieke aandoeningen die de structuur en functie van het oog beïnvloeden" },
-      "retinal": { "name": "Netvliesaandoeningen", "description": "Aandoeningen die het netvlies en de gespecialiseerde cellen beïnvloeden" },
-      "neurological": { "name": "Neurologische Zichtaandoeningen", "description": "Zichtproblemen veroorzaakt door hersenen en zenuwstelselaandoeningen" },
-      "traumaInfection": { "name": "Trauma- en Infectiegerelateerd", "description": "Gezichtsverlies door fysiek letsel of infectieziekten" }
+      "visualField": {
+        "name": "Gezichtsveldverlies",
+        "description": "Aandoeningen die specifieke gebieden van het gezichtsveld beïnvloeden"
+      },
+      "colorVision": {
+        "name": "Kleurenzienafwijkingen",
+        "description": "Aandoeningen die kleurperceptie en kleurdiscriminatie beïnvloeden"
+      },
+      "eyeConditions": {
+        "name": "Oogaandoeningen",
+        "description": "Fysieke aandoeningen die de structuur en functie van het oog beïnvloeden"
+      },
+      "retinal": {
+        "name": "Netvliesaandoeningen",
+        "description": "Aandoeningen die het netvlies en de gespecialiseerde cellen beïnvloeden"
+      },
+      "neurological": {
+        "name": "Neurologische Zichtaandoeningen",
+        "description": "Zichtproblemen veroorzaakt door hersenen en zenuwstelselaandoeningen"
+      },
+      "traumaInfection": {
+        "name": "Trauma- en Infectiegerelateerd",
+        "description": "Gezichtsverlies door fysiek letsel of infectieziekten"
+      }
     },
     "faqCategories": {
       "visionPerception": "Zicht en Waarneming",
@@ -180,7 +198,13 @@
       "navigation": {
         "question": "Hoe navigeren blinde mensen en komen ze rond?",
         "answerIntro": "Blinde mensen gebruiken verschillende methoden voor navigatie en mobiliteit:",
-        "answerItems": ["Witte stokken detecteren obstakels en hoogteverschillen", "Geleidehonden bieden intelligente ongehoorzaamheid en navigatie", "GPS-apps met audiobeschrijvingen (Soundscape, BlindSquare)", "Gememoriseerde routes en mentale mapping", "Openbaar vervoer en ride-share apps"]
+        "answerItems": [
+          "Witte stokken detecteren obstakels en hoogteverschillen",
+          "Geleidehonden bieden intelligente ongehoorzaamheid en navigatie",
+          "GPS-apps met audiobeschrijvingen (Soundscape, BlindSquare)",
+          "Gememoriseerde routes en mentale mapping",
+          "Openbaar vervoer en ride-share apps"
+        ]
       },
       "senses": {
         "question": "Hebben blinde mensen verhoogde andere zintuigen?",
@@ -189,7 +213,14 @@
       "interaction": {
         "question": "Hoe moet ik omgaan met een blind persoon?",
         "answerIntro": "Hier zijn enkele belangrijke richtlijnen voor respectvolle interactie:",
-        "answerItems": ["Spreek normaal en direct tegen hen, niet via begeleiders", "Stel jezelf voor wanneer je nadert", "Vraag voordat je helpt - niet grijpen of duwen", "Geef mondelinge beschrijvingen wanneer relevant", "Gebruik normale taal ('tot ziens' is prima)", "Aai of leid geleidehonden nooit af"]
+        "answerItems": [
+          "Spreek normaal en direct tegen hen, niet via begeleiders",
+          "Stel jezelf voor wanneer je nadert",
+          "Vraag voordat je helpt - niet grijpen of duwen",
+          "Geef mondelinge beschrijvingen wanneer relevant",
+          "Gebruik normale taal ('tot ziens' is prima)",
+          "Aai of leid geleidehonden nooit af"
+        ]
       },
       "legalVsTotal": {
         "question": "Wat is het verschil tussen wettelijk blind en volledig blind?",
@@ -206,12 +237,22 @@
       "identification": {
         "question": "Hoe identificeren blinde mensen geld, kleuren of objecten?",
         "answerIntro": "Blinde mensen gebruiken verschillende aanpassingstechnieken voor identificatie:",
-        "answerItems": ["Geld: Apps zoals Seeing AI, verschillende vouwmethoden, elektronische identificatoren en verschillende formaten voor verschillende coupures in verschillende landen", "Kleuren: Kleuridentificatie-apps, anderen vragen, vooraf bijpassende kleding kopen", "Objecten: Systematische organisatie, braille/tactiele labels, spraakopnamelabels, geheugen"]
+        "answerItems": [
+          "Geld: Apps zoals Seeing AI, verschillende vouwmethoden, elektronische identificatoren en verschillende formaten voor verschillende coupures in verschillende landen",
+          "Kleuren: Kleuridentificatie-apps, anderen vragen, vooraf bijpassende kleding kopen",
+          "Objecten: Systematische organisatie, braille/tactiele labels, spraakopnamelabels, geheugen"
+        ]
       },
       "causesTreatment": {
         "question": "Wat veroorzaakt blindheid en kan het genezen worden?",
         "leadingCauses": "Belangrijkste oorzaken wereldwijd:",
-        "causeItems": ["Staar (omkeerbaar)", "Glaucoom", "Maculadegeneratie", "Diabetische retinopathie", "Genetische aandoeningen"],
+        "causeItems": [
+          "Staar (omkeerbaar)",
+          "Glaucoom",
+          "Maculadegeneratie",
+          "Diabetische retinopathie",
+          "Genetische aandoeningen"
+        ],
         "treatmentInfo": "Behandeling hangt af van de oorzaak. Sommige aandoeningen zijn te voorkomen/behandelen, andere momenteel niet. Onderzoek gaat door naar behandelingen zoals gentherapie, stamcellen en bionische ogen.",
         "neurologicalNote": "Mensen kunnen ook hun gezichtsvermogen verliezen door neurologische aandoeningen zoals trauma of beroerte."
       }
@@ -232,7 +273,7 @@
     "subtitle": "Veelgestelde vragen over zichtaandoeningen en deze simulator"
   },
   "about": {
-    "title": "Over VisionSim",
+    "title": "Over Simulated Vision",
     "subtitle": "Begrip van onze missie en aanpak",
     "personalJourney": "Een Persoonlijke Reis",
     "greeting": "Hallo aan de gemeenschap van blinden en slechtzienden — en aan iedereen die nieuwsgierig is om meer te leren!",
@@ -240,14 +281,14 @@
     "purpose": "Ik heb deze site gemaakt zodat mensen beter uitgerust zijn met hulpmiddelen om hun blindheid en/of zichtaandoeningen nauwkeuriger te verwoorden en weer te geven.",
     "previewVideo": "Voorbeeld van Hoe Ik Zie",
     "mission": "Onze Missie",
-    "missionText": "VisionSim helpt mensen te begrijpen hoe het is om te leven met verschillende zichtaandoeningen door middel van nauwkeurige, op onderzoek gebaseerde simulaties.",
+    "missionText": "Simulated Vision helpt mensen te begrijpen hoe het is om te leven met verschillende zichtaandoeningen door middel van nauwkeurige, op onderzoek gebaseerde simulaties.",
     "howItWorks": "Hoe Het Werkt",
     "disclaimer": "Medische Disclaimer",
     "disclaimerText": "Deze simulaties zijn alleen voor educatieve doeleinden en representeren mogelijk niet perfect hoe individuen hun aandoeningen ervaren."
   },
   "feedback": {
     "title": "Deel Je Feedback",
-    "subtitle": "Help ons VisionSim te verbeteren",
+    "subtitle": "Help ons Simulated Vision te verbeteren",
     "nameLabel": "Je Naam",
     "namePlaceholder": "Vul je naam in",
     "emailLabel": "E-mailadres",

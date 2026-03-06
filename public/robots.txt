@@ -1,4 +1,4 @@
-# Robots.txt for VisionSim - Vision Condition Simulator
+# Robots.txt for Simulated Vision - Vision Condition Simulator
 # https://simulated.vision/
 
 # Default: allow all crawlers

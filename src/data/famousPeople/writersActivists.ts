@@ -199,6 +199,39 @@ export const writersActivists: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Taha_Hussein",
     nationality: { country: "Egypt", flag: "🇪🇬" }
   },
+  kerryannIfill: {
+    name: "Kerryann Ifill",
+    achievement: "First Blind President of the Senate of Barbados",
+    condition: "Juvenile Cataracts (Total Blindness)",
+    years: "Born 1973",
+    onset: "Age 4-5, from juvenile cataracts",
+    simulation: "complete-blindness",
+    description: "Kerryann Ifill was diagnosed with juvenile cataracts as a young child and gradually lost her sight completely by age five. After initially leaving school, she attended a school for the blind from age six and went on to achieve historic firsts.\n\n• First woman, first person with a disability, and youngest person (age 38) to serve as President of the Senate of Barbados (2012-2018)\n\n• First totally blind student to graduate from the University of the West Indies (BSc in Sociology and Psychology, 1999)\n\n• President of the Caribbean Council for the Blind\n\n• Awarded the Order of Freedom of Barbados (2023)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Kerryann_Ifill",
+    nationality: { country: "Barbados", flag: "🇧🇧" }
+  },
+  rhinaAguirre: {
+    name: "Rhina Aguirre",
+    achievement: "First Blind Senator in Bolivian History",
+    condition: "Ocular Toxoplasmosis (Total Blindness)",
+    years: "1939-2021",
+    onset: "1983, from ocular toxoplasmosis",
+    simulation: "complete-blindness",
+    description: "Rhina Aguirre lost her sight entirely in 1983 due to ocular toxoplasmosis, a parasitic infection that attacked her retinas. She stated: 'I am a blind person and this is not pejorative; it simply means accepting reality.'\n\n• First blind person to hold a parliamentary seat in Bolivia's history, serving as Senator for Tarija (2010-2015)\n\n• Founding member of Bolivia's Permanent Assembly of Human Rights (1970)\n\n• Championed Bolivia's landmark 2012 General Law on Persons with Disabilities\n\n• Worked with indigenous and campesino organizations across Bolivia, Ecuador, and Peru",
+    wikiUrl: "https://en.wikipedia.org/wiki/Rhina_Aguirre",
+    nationality: { country: "Bolivia", flag: "🇧🇴" }
+  },
+  mariaJosefaMujia: {
+    name: "María Josefa Mujía",
+    achievement: "Bolivia's First Woman Writer After Independence",
+    condition: "Total Blindness (Unknown Cause)",
+    years: "1812-1888",
+    onset: "Age 14",
+    simulation: "complete-blindness",
+    description: "María Josefa Mujía became completely blind at the age of 14, following the death of her father. The specific cause was never documented, and eye surgery later in life was unsuccessful.\n\nKnown as 'la Alondra del dolor' (the Lark of Pain), her deeply personal poetry drew on her experience of blindness.\n\n• Bolivia's first woman writer following the country's independence\n\n• Authored over 320 poems and a novel\n\n• Her celebrated poem 'La ciega' ('Blind Woman') became an icon of Bolivian literary romanticism\n\n• Translated works by Lamartine and Victor Hugo from Italian and French",
+    wikiUrl: "https://en.wikipedia.org/wiki/Mar%C3%ADa_Josefa_Muj%C3%ADa",
+    nationality: { country: "Bolivia", flag: "🇧🇴" }
+  },
   chenGuangcheng: {
     name: "Chen Guangcheng",
     achievement: "Barefoot Lawyer, Time 100 Honoree",

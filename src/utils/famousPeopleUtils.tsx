@@ -159,6 +159,12 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'ronnie-complete-blindness': ['completeBlindness'],
     'jeff-complete-blindness': ['completeBlindness'],
 
+    // ===== OPTIC NEURITIS =====
+    'olga-optic-neuritis-blindness': ['completeBlindness'],
+
+    // ===== AGE-RELATED BLINDNESS =====
+    'maria-anna-cataracts-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
+
     // ===== CORRECTED SCIENTISTS =====
     'amy-amd-rp': ['amd', 'scotoma', 'retinitisPigmentosa', 'nightBlindness']
   };

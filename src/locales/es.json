@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Comprendiendo las",
-    "titleHighlight": "Condiciones Visuales",
+    "titleHighlight": "Cada Perspectiva",
     "subtitle": "Experimenta las deficiencias visuales para construir empatía y comprensión",
     "card1Title": "Recrea Condiciones Visuales en Tiempo Real",
     "card1Description": "Crea tu visualización única",
@@ -275,7 +275,7 @@
     "subtitle": "Preguntas comunes sobre condiciones visuales y este simulador"
   },
   "about": {
-    "title": "Acerca de VisionSim",
+    "title": "Acerca de Simulated Vision",
     "subtitle": "Comprendiendo nuestra misión y enfoque",
     "personalJourney": "Un Viaje Personal",
     "greeting": "¡Hola a la comunidad de personas ciegas y con discapacidad visual, y a todos los curiosos por aprender más!",
@@ -283,14 +283,14 @@
     "purpose": "Creé este sitio para que las personas estén mejor equipadas con herramientas para articular y representar con mayor precisión su ceguera y/o condiciones visuales.",
     "previewVideo": "Vista Previa de Cómo Veo",
     "mission": "Nuestra Misión",
-    "missionText": "VisionSim ayuda a las personas a entender cómo es vivir con diversas condiciones visuales a través de simulaciones precisas basadas en investigación.",
+    "missionText": "Simulated Vision ayuda a las personas a entender cómo es vivir con diversas condiciones visuales a través de simulaciones precisas basadas en investigación.",
     "howItWorks": "Cómo Funciona",
     "disclaimer": "Aviso Médico",
     "disclaimerText": "Estas simulaciones son solo con fines educativos y pueden no representar perfectamente cómo los individuos experimentan sus condiciones."
   },
   "feedback": {
     "title": "Comparte Tu Opinión",
-    "subtitle": "Ayúdanos a mejorar VisionSim",
+    "subtitle": "Ayúdanos a mejorar Simulated Vision",
     "nameLabel": "Tu Nombre",
     "namePlaceholder": "Ingresa tu nombre",
     "emailLabel": "Correo Electrónico",

@@ -373,7 +373,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
     <Box className="visualizer-container" sx={{
       position: 'relative',
       width: '100%',
-      height: '600px',
+      height: { xs: 'auto', md: '600px' },
       '@keyframes visualSnowAnimation': {
         '0%': { backgroundPosition: '0% 0%', opacity: 1 },
         '25%': { backgroundPosition: '100% 0%', opacity: 1.05 },

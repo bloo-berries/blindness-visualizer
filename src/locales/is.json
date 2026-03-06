@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Upplifðu",
-    "titleHighlight": "Sjónástand",
+    "titleHighlight": "Hvert Sjónarhorn",
     "card1Title": "Búðu til þína einstöku sjónmynd",
     "card1Button": "Ræsa Sjónhermi",
     "card2Title": "Frægt Blindt og Sjónskert Fólk",
@@ -148,12 +148,30 @@
       "paragraph3": "Fyrir ítarlegri upplýsingar um tiltekin sjónástand, heimsæktu <strong>Orðalista</strong> flipann hér að ofan."
     },
     "conditionCategories": {
-      "visualField": { "name": "Sjónsvæðistap", "description": "Ástand sem hefur áhrif á ákveðin svæði sjónsviðsins" },
-      "colorVision": { "name": "Litaskynsgallar", "description": "Ástand sem hefur áhrif á litskynjun og litaaðgreiningu" },
-      "eyeConditions": { "name": "Augnástand", "description": "Líffræðileg ástand sem hefur áhrif á byggingu og virkni augans" },
-      "retinal": { "name": "Sjónhimnusjúkdómar", "description": "Ástand sem hefur áhrif á sjónhimnu og sérhæfðar frumur hennar" },
-      "neurological": { "name": "Taugafræðileg Sjónástand", "description": "Sjónvandamál af völdum truflana í heila og taugakerfi" },
-      "traumaInfection": { "name": "Áverka- og Sýkingatengd", "description": "Sjóntap vegna líkamlegra áverka eða smitsjúkdóma" }
+      "visualField": {
+        "name": "Sjónsvæðistap",
+        "description": "Ástand sem hefur áhrif á ákveðin svæði sjónsviðsins"
+      },
+      "colorVision": {
+        "name": "Litaskynsgallar",
+        "description": "Ástand sem hefur áhrif á litskynjun og litaaðgreiningu"
+      },
+      "eyeConditions": {
+        "name": "Augnástand",
+        "description": "Líffræðileg ástand sem hefur áhrif á byggingu og virkni augans"
+      },
+      "retinal": {
+        "name": "Sjónhimnusjúkdómar",
+        "description": "Ástand sem hefur áhrif á sjónhimnu og sérhæfðar frumur hennar"
+      },
+      "neurological": {
+        "name": "Taugafræðileg Sjónástand",
+        "description": "Sjónvandamál af völdum truflana í heila og taugakerfi"
+      },
+      "traumaInfection": {
+        "name": "Áverka- og Sýkingatengd",
+        "description": "Sjóntap vegna líkamlegra áverka eða smitsjúkdóma"
+      }
     },
     "faqCategories": {
       "visionPerception": "Sjón og Skynjun",
@@ -180,7 +198,13 @@
       "navigation": {
         "question": "Hvernig rata blindir og komast um?",
         "answerIntro": "Blindir nota ýmsar aðferðir til leiðsagnar og hreyfanleika:",
-        "answerItems": ["Hvítir stafir greina hindranir og hæðarbreytingar", "Leiðsöguhundar veita greindarleiðsögn og óhlýðni", "GPS forrit með hljóðleiðbeiningum (Soundscape, BlindSquare)", "Minndar leiðir og andlegt kort", "Almenningssamgöngur og akstursdeilingarforrit"]
+        "answerItems": [
+          "Hvítir stafir greina hindranir og hæðarbreytingar",
+          "Leiðsöguhundar veita greindarleiðsögn og óhlýðni",
+          "GPS forrit með hljóðleiðbeiningum (Soundscape, BlindSquare)",
+          "Minndar leiðir og andlegt kort",
+          "Almenningssamgöngur og akstursdeilingarforrit"
+        ]
       },
       "senses": {
         "question": "Hafa blindir efldar aðrar skynjanir?",
@@ -189,7 +213,14 @@
       "interaction": {
         "question": "Hvernig ætti ég að eiga samskipti við blindan einstakling?",
         "answerIntro": "Hér eru nokkrar mikilvægar leiðbeiningar um virðingafull samskipti:",
-        "answerItems": ["Talaðu eðlilega og beint við þá, ekki í gegnum fylgdarmenn", "Kynntu þig þegar þú nálgast", "Spurðu áður en þú hjálpar - ekki grípa eða ýta", "Gefðu munnlegar lýsingar þegar við á", "Notaðu venjulegt tungumál ('sjáumst' er í lagi)", "Aldrei klappaðu eða truflaðu leiðsöguhunda"]
+        "answerItems": [
+          "Talaðu eðlilega og beint við þá, ekki í gegnum fylgdarmenn",
+          "Kynntu þig þegar þú nálgast",
+          "Spurðu áður en þú hjálpar - ekki grípa eða ýta",
+          "Gefðu munnlegar lýsingar þegar við á",
+          "Notaðu venjulegt tungumál ('sjáumst' er í lagi)",
+          "Aldrei klappaðu eða truflaðu leiðsöguhunda"
+        ]
       },
       "legalVsTotal": {
         "question": "Hver er munurinn á lagalegri blindu og algerri blindu?",
@@ -206,12 +237,22 @@
       "identification": {
         "question": "Hvernig bera blindir kennsl á peninga, liti eða hluti?",
         "answerIntro": "Blindir nota ýmsar aðlögunaraðferðir til auðkenningar:",
-        "answerItems": ["Peningar: Forrit eins og Seeing AI, mismunandi brotaaðferðir, rafræn auðkenni og mismunandi stærðir fyrir mismunandi gengi í ýmsum löndum", "Litir: Litaauðkennisforrit, spyrja aðra, kaupa forsamsettan fatnað", "Hlutir: Kerfisbundin skipulagning, blindraletur/snertimerkingar, raddupptökumerkingar, minni"]
+        "answerItems": [
+          "Peningar: Forrit eins og Seeing AI, mismunandi brotaaðferðir, rafræn auðkenni og mismunandi stærðir fyrir mismunandi gengi í ýmsum löndum",
+          "Litir: Litaauðkennisforrit, spyrja aðra, kaupa forsamsettan fatnað",
+          "Hlutir: Kerfisbundin skipulagning, blindraletur/snertimerkingar, raddupptökumerkingar, minni"
+        ]
       },
       "causesTreatment": {
         "question": "Hvað veldur blindu og er hægt að lækna hana?",
         "leadingCauses": "Helstu orsakir á heimsvísu:",
-        "causeItems": ["Drer (afturkræft)", "Gláka", "Gulblettahrörnun", "Sykursýkis sjónhimnukvilli", "Erfðasjúkdómar"],
+        "causeItems": [
+          "Drer (afturkræft)",
+          "Gláka",
+          "Gulblettahrörnun",
+          "Sykursýkis sjónhimnukvilli",
+          "Erfðasjúkdómar"
+        ],
         "treatmentInfo": "Meðferð fer eftir orsökum. Sum ástand er hægt að koma í veg fyrir/meðhöndla, önnur ekki núna. Rannsóknir halda áfram á meðferðum eins og genameðferð, stofnfrumum og lífvélaaugum.",
         "neurologicalNote": "Fólk getur líka misst sjón af taugafræðilegum orsökum eins og áverka eða heilablóðfalli."
       }
@@ -232,7 +273,7 @@
     "subtitle": "Algengar spurningar um sjónástand og þennan hermi"
   },
   "about": {
-    "title": "Um VisionSim",
+    "title": "Um Simulated Vision",
     "subtitle": "Skilningur á verkefni okkar og nálgun",
     "personalJourney": "Persónuleg Ferð",
     "greeting": "Halló til samfélagsins blindra og sjónskertra — og til allra forvitinna sem vilja læra meira!",
@@ -240,14 +281,14 @@
     "purpose": "Ég bjó til þessa síðu svo fólk væri betur búið verkfærum til að orða og tákna blindu sína og/eða sjónástand nákvæmari.",
     "previewVideo": "Forskoða Hvernig Ég Sé",
     "mission": "Verkefni Okkar",
-    "missionText": "VisionSim hjálpar fólki að skilja hvernig það er að lifa með mismunandi sjónástand í gegnum nákvæmar, rannsóknarstuddar hermur.",
+    "missionText": "Simulated Vision hjálpar fólki að skilja hvernig það er að lifa með mismunandi sjónástand í gegnum nákvæmar, rannsóknarstuddar hermur.",
     "howItWorks": "Hvernig Þetta Virkar",
     "disclaimer": "Læknisfræðileg Fyrirvari",
     "disclaimerText": "Þessar hermur eru aðeins í fræðsluskyni og endurspegla kannski ekki fullkomlega hvernig einstaklingar upplifa ástand sitt."
   },
   "feedback": {
     "title": "Deildu Viðbrögðum Þínum",
-    "subtitle": "Hjálpaðu okkur að bæta VisionSim",
+    "subtitle": "Hjálpaðu okkur að bæta Simulated Vision",
     "nameLabel": "Nafn Þitt",
     "namePlaceholder": "Sláðu inn nafn þitt",
     "emailLabel": "Netfang",

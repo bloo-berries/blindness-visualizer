@@ -25,7 +25,7 @@
   },
   "home": {
     "title": "Comprendre les",
-    "titleHighlight": "Conditions Visuelles",
+    "titleHighlight": "Chaque Perspective",
     "subtitle": "Expérimentez les déficiences visuelles pour développer l'empathie et la compréhension",
     "card1Title": "Recréez des Conditions Visuelles en Temps Réel",
     "card1Description": "Créez votre visualisation unique",
@@ -275,7 +275,7 @@
     "subtitle": "Questions courantes sur les conditions visuelles et ce simulateur"
   },
   "about": {
-    "title": "À propos de VisionSim",
+    "title": "À propos de Simulated Vision",
     "subtitle": "Comprendre notre mission et notre approche",
     "personalJourney": "Un Parcours Personnel",
     "greeting": "Bonjour à la communauté des personnes aveugles et malvoyantes — et à tous ceux qui sont curieux d'en apprendre davantage !",
@@ -283,14 +283,14 @@
     "purpose": "J'ai créé ce site pour que les gens soient mieux équipés d'outils pour articuler et représenter plus précisément leur cécité et/ou leurs conditions visuelles.",
     "previewVideo": "Aperçu de Comment Je Vois",
     "mission": "Notre Mission",
-    "missionText": "VisionSim aide les gens à comprendre ce que c'est que de vivre avec différentes conditions visuelles grâce à des simulations précises basées sur la recherche.",
+    "missionText": "Simulated Vision aide les gens à comprendre ce que c'est que de vivre avec différentes conditions visuelles grâce à des simulations précises basées sur la recherche.",
     "howItWorks": "Comment Ça Marche",
     "disclaimer": "Avertissement Médical",
     "disclaimerText": "Ces simulations sont à des fins éducatives uniquement et peuvent ne pas représenter parfaitement la façon dont les individus vivent leurs conditions."
   },
   "feedback": {
     "title": "Partagez Vos Commentaires",
-    "subtitle": "Aidez-nous à améliorer VisionSim",
+    "subtitle": "Aidez-nous à améliorer Simulated Vision",
     "nameLabel": "Votre Nom",
     "namePlaceholder": "Entrez votre nom",
     "emailLabel": "Adresse Email",
@@ -358,25 +358,104 @@
     "title": "Soumettre un Commentaire",
     "subtitle": "Aidez-nous à améliorer le Simulateur de Vision en partageant vos réflexions, en signalant des bugs ou en suggérant de nouvelles fonctionnalités.",
     "whatToShare": "Que souhaitez-vous partager ?",
-    "feedbackTypes": { "general": "Commentaire Général", "bug": "Rapport de Bug", "feature": "Demande de Fonctionnalité", "improvement": "Suggestion d'Amélioration", "other": "Autre" },
-    "form": { "name": "Votre Nom", "email": "Adresse E-mail", "subject": "Sujet", "subjectPlaceholder": "Brève description de votre commentaire", "message": "Votre Message", "messagePlaceholders": { "bug": "Veuillez décrire le bug rencontré, y compris les étapes pour le reproduire et les messages d'erreur affichés.", "feature": "Décrivez la fonctionnalité que vous aimeriez voir ajoutée et comment elle améliorerait l'expérience.", "improvement": "Dites-nous comment nous pouvons améliorer une fonctionnalité existante ou l'expérience globale.", "general": "Partagez vos réflexions, suggestions ou tout autre commentaire." } },
-    "favoriteFeature": { "label": "Quelle fonctionnalité avez-vous trouvée la plus intéressante ou utile ?", "options": { "demoVideo": "Visualiseur Vidéo Démo", "uploadPhoto": "Visualiseur de Photo Personnelle", "famousPeople": "Connaissances/Visualisations de Personnes Célèbres" } },
-    "userType": { "label": "Qu'est-ce qui vous décrit le mieux ?", "options": { "student": "Étudiant", "educator": "Éducateur", "healthcare": "Professionnel de Santé", "researcher": "Chercheur", "general": "Grand Public", "other": "Autre" } },
-    "browser": { "label": "Quel navigateur utilisez-vous ?", "options": { "chrome": "Chrome", "firefox": "Firefox", "safari": "Safari", "edge": "Microsoft Edge", "opera": "Opera", "other": "Autre" } },
-    "accessibility": { "label": "Utilisez-vous des technologies d'assistance ? (Sélectionnez toutes celles qui s'appliquent)", "options": { "screenReader": "Lecteur d'Écran", "voiceControl": "Contrôle Vocal", "keyboardNavigation": "Navigation Clavier Uniquement", "magnification": "Agrandissement d'Écran", "highContrast": "Mode Contraste Élevé", "none": "Aucun" } },
-    "rating": { "label": "Comment évalueriez-vous votre expérience globale ?" },
-    "submit": { "button": "Soumettre le Commentaire", "submitting": "Envoi en cours..." },
-    "messages": { "success": "Merci pour votre commentaire ! Nous avons reçu votre soumission et l'examinerons attentivement.", "error": "Une erreur s'est produite lors de l'envoi de votre commentaire. Veuillez réessayer.", "footer": "Nous apprécions vos commentaires et examinerons toutes les soumissions attentivement. Bien que nous ne puissions pas répondre à chaque message individuellement, vos retours nous aident à améliorer le Simulateur de Vision pour tous." }
+    "feedbackTypes": {
+      "general": "Commentaire Général",
+      "bug": "Rapport de Bug",
+      "feature": "Demande de Fonctionnalité",
+      "improvement": "Suggestion d'Amélioration",
+      "other": "Autre"
+    },
+    "form": {
+      "name": "Votre Nom",
+      "email": "Adresse E-mail",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Brève description de votre commentaire",
+      "message": "Votre Message",
+      "messagePlaceholders": {
+        "bug": "Veuillez décrire le bug rencontré, y compris les étapes pour le reproduire et les messages d'erreur affichés.",
+        "feature": "Décrivez la fonctionnalité que vous aimeriez voir ajoutée et comment elle améliorerait l'expérience.",
+        "improvement": "Dites-nous comment nous pouvons améliorer une fonctionnalité existante ou l'expérience globale.",
+        "general": "Partagez vos réflexions, suggestions ou tout autre commentaire."
+      }
+    },
+    "favoriteFeature": {
+      "label": "Quelle fonctionnalité avez-vous trouvée la plus intéressante ou utile ?",
+      "options": {
+        "demoVideo": "Visualiseur Vidéo Démo",
+        "uploadPhoto": "Visualiseur de Photo Personnelle",
+        "famousPeople": "Connaissances/Visualisations de Personnes Célèbres"
+      }
+    },
+    "userType": {
+      "label": "Qu'est-ce qui vous décrit le mieux ?",
+      "options": {
+        "student": "Étudiant",
+        "educator": "Éducateur",
+        "healthcare": "Professionnel de Santé",
+        "researcher": "Chercheur",
+        "general": "Grand Public",
+        "other": "Autre"
+      }
+    },
+    "browser": {
+      "label": "Quel navigateur utilisez-vous ?",
+      "options": {
+        "chrome": "Chrome",
+        "firefox": "Firefox",
+        "safari": "Safari",
+        "edge": "Microsoft Edge",
+        "opera": "Opera",
+        "other": "Autre"
+      }
+    },
+    "accessibility": {
+      "label": "Utilisez-vous des technologies d'assistance ? (Sélectionnez toutes celles qui s'appliquent)",
+      "options": {
+        "screenReader": "Lecteur d'Écran",
+        "voiceControl": "Contrôle Vocal",
+        "keyboardNavigation": "Navigation Clavier Uniquement",
+        "magnification": "Agrandissement d'Écran",
+        "highContrast": "Mode Contraste Élevé",
+        "none": "Aucun"
+      }
+    },
+    "rating": {
+      "label": "Comment évalueriez-vous votre expérience globale ?"
+    },
+    "submit": {
+      "button": "Soumettre le Commentaire",
+      "submitting": "Envoi en cours..."
+    },
+    "messages": {
+      "success": "Merci pour votre commentaire ! Nous avons reçu votre soumission et l'examinerons attentivement.",
+      "error": "Une erreur s'est produite lors de l'envoi de votre commentaire. Veuillez réessayer.",
+      "footer": "Nous apprécions vos commentaires et examinerons toutes les soumissions attentivement. Bien que nous ne puissions pas répondre à chaque message individuellement, vos retours nous aident à améliorer le Simulateur de Vision pour tous."
+    }
   },
   "resourcesPage": {
     "title": "Ressources",
     "subtitle": "Ressources utiles pour la perte de vision, la mobilité et l'accessibilité",
     "resources": {
-      "braille": { "title": "Two Blind Brothers - Ressources Braille", "description": "Apprenez le braille et trouvez des ressources braille de Two Blind Brothers." },
-      "hadley": { "title": "Hadley - Ressources d'Apprentissage", "description": "Ateliers éducatifs gratuits et ressources pour la perte de vision, y compris l'apprentissage du braille, les compétences de vie quotidienne et la formation technologique." },
-      "caneTips": { "title": "Ask a Blind Person - Conseils pour la Canne", "description": "Conseils pratiques pour les utilisateurs de canne blanche pour améliorer la mobilité et réduire les problèmes courants." },
-      "freeCane": { "title": "Programme de Canne Blanche Gratuite NFB", "description": "La Fédération Nationale des Aveugles offre des cannes blanches gratuites à ceux qui en ont besoin." },
-      "phoneLines": { "title": "Lignes Téléphoniques de Support Accessibilité", "description": "Une liste complète des lignes téléphoniques de support accessibilité des grandes entreprises incluant Apple, Microsoft, Amazon, compagnies aériennes et fournisseurs de télécommunications pour les clients malvoyants." }
+      "braille": {
+        "title": "Two Blind Brothers - Ressources Braille",
+        "description": "Apprenez le braille et trouvez des ressources braille de Two Blind Brothers."
+      },
+      "hadley": {
+        "title": "Hadley - Ressources d'Apprentissage",
+        "description": "Ateliers éducatifs gratuits et ressources pour la perte de vision, y compris l'apprentissage du braille, les compétences de vie quotidienne et la formation technologique."
+      },
+      "caneTips": {
+        "title": "Ask a Blind Person - Conseils pour la Canne",
+        "description": "Conseils pratiques pour les utilisateurs de canne blanche pour améliorer la mobilité et réduire les problèmes courants."
+      },
+      "freeCane": {
+        "title": "Programme de Canne Blanche Gratuite NFB",
+        "description": "La Fédération Nationale des Aveugles offre des cannes blanches gratuites à ceux qui en ont besoin."
+      },
+      "phoneLines": {
+        "title": "Lignes Téléphoniques de Support Accessibilité",
+        "description": "Une liste complète des lignes téléphoniques de support accessibilité des grandes entreprises incluant Apple, Microsoft, Amazon, compagnies aériennes et fournisseurs de télécommunications pour les clients malvoyants."
+      }
     }
   }
 }

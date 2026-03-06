@@ -173,7 +173,23 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   terezinhaGuilhermina: 'Terezinha-Guilhermina.webp',
   glaucoMattoso: 'Glauco-Mattoso.webp',
   silvaniaCosta: 'Silvânia-Costa-de-Oliveira.webp',
-  luciaTeixeira: 'lucia-teixeira.webp'
+  luciaTeixeira: 'lucia-teixeira.webp',
+  peyoYavorov: 'Peyo-Yavorov.webp',
+  petkoStaynov: 'Petko-Staynov.webp',
+  fabiolaCampillai: 'Fabiola-Campillai.webp',
+  mariaSoledadCisternas: 'María-Soledad-Cisternas.webp',
+  leandroDiaz: 'Leandro-Díaz.webp',
+  joaquinMosquera: 'Joaquín-Mosquera.webp',
+  juanCarlosGonzalez: 'Juan-Carlos-González-Leiva.webp',
+  arsenioRodriguez: 'Arsenio-Rodríguez.webp',
+  oskarBaum: 'Oskar-Baum.webp',
+  jaroslavJezek: 'Jaroslav-Ježek.webp',
+  akselAgerby: 'Aksel-Agerby.webp',
+  princessChristina: 'Princess-Christina-of-the-Netherlands.webp',
+  georgeRumphius: 'Georg-Eberhard-Rumphius.webp',
+  gerritVanDerMey: 'Gerrit-van-der-Mey.webp',
+  ahmedHarara: 'Ahmed-Hararah.webp',
+  michaelBarredo: 'Michael-Barredo.webp'
 };
 
 /**

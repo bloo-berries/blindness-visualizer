@@ -243,6 +243,28 @@ export const writersActivists: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Glauco_Mattoso",
     nationality: { country: "Brazil", flag: "🇧🇷" }
   },
+  peyoYavorov: {
+    name: "Peyo Yavorov",
+    achievement: "Founder of Bulgarian Symbolist Poetry",
+    condition: "Traumatic Blindness (Gunshot Wound)",
+    years: "1878-1914",
+    onset: "Age 35, from self-inflicted gunshot wound (1913)",
+    simulation: "complete-blindness",
+    description: "Peyo Yavorov, one of Bulgaria's greatest poets, became permanently blind in November 1913 when a self-inflicted gunshot wound to the temple damaged his optic nerves. The tragedy followed the suicide of his wife Lora Karavelova.\n\nHe lived his final year in total darkness, grieving and falsely accused of his wife's murder, before his death in 1914 at age 36.\n\n• Considered one of the finest poetic talents in fin-de-siècle Bulgaria\n\n• Founded the Symbolist movement in Bulgarian poetry\n\n• Wrote approximately 160 poems, two plays, and a biography of revolutionary leader Gotse Delchev\n\n• Worked as dramaturg at Bulgaria's National Theatre",
+    wikiUrl: "https://en.wikipedia.org/wiki/Peyo_Yavorov",
+    nationality: { country: "Bulgaria", flag: "🇧🇬" }
+  },
+  fabiolaCampillai: {
+    name: "Fabiola Campillai",
+    achievement: "Chile's First Blind Senator",
+    condition: "Total Blindness (Tear Gas Canister Impact)",
+    years: "Born 1983",
+    onset: "Age 36, from police tear gas canister (2019)",
+    simulation: "complete-blindness",
+    description: "Fabiola Campillai lost her sight, smell, and taste on November 26, 2019, when a tear gas canister fired by police struck her face while she was walking to her factory night shift during Chile's social protests. The impact ruptured both eyeballs and fractured her skull.\n\nShe was not a protester — she was simply on her way to work.\n\n• Elected as Chile's first blind senator in 2021, winning more votes than any other candidate in her district\n\n• Became a powerful symbol of police brutality victims during Chile's 2019 social uprising\n\n• The officer responsible was convicted and sentenced to over 12 years in prison",
+    wikiUrl: "https://en.wikipedia.org/wiki/Fabiola_Campillai",
+    nationality: { country: "Chile", flag: "🇨🇱" }
+  },
   chenGuangcheng: {
     name: "Chen Guangcheng",
     achievement: "Barefoot Lawyer, Time 100 Honoree",
@@ -253,5 +275,71 @@ export const writersActivists: Record<string, PersonData> = {
     description: "Chen Guangcheng went blind before his first birthday.\n\nSelf-taught in law, this 'barefoot lawyer' became a prominent Chinese civil rights activist.\n\n• Organized landmark class-action lawsuit against forced sterilizations under China's one-child policy\n\n• Escaped house arrest in 2012 and fled to the U.S. Embassy in Beijing\n\n• Named Time 100 (2006) and won Ramon Magsaysay Award (2007)\n\n• Author of memoir 'The Barefoot Lawyer' (2015)",
     wikiUrl: "https://en.wikipedia.org/wiki/Chen_Guangcheng",
     nationality: { country: "China", flag: "🇨🇳" }
+  },
+  mariaSoledadCisternas: {
+    name: "María Soledad Cisternas Reyes",
+    achievement: "UN Special Envoy on Disability and Accessibility",
+    condition: "Retinitis Pigmentosa",
+    years: "Born 1959",
+    onset: "Diagnosed at age 14, progressive to total blindness",
+    simulation: "cisternas-retinitis-pigmentosa",
+    description: "María Soledad Cisternas Reyes was diagnosed with retinitis pigmentosa at age 14. Her vision progressively deteriorated throughout her teenage years and she became fully blind while attending university, hiding her worsening condition from teachers and classmates.\n\n• Chilean lawyer appointed UN Secretary-General's Special Envoy on Disability and Accessibility (2017)\n\n• Helped draft the UN Convention on the Rights of Persons with Disabilities\n\n• Chairperson of the UN Committee on the Rights of Persons with Disabilities\n\n• Awarded Chile's National Prize of Human Rights (2014)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Mar%C3%ADa_Soledad_Cisternas",
+    nationality: { country: "Chile", flag: "🇨🇱" }
+  },
+  joaquinMosquera: {
+    name: "Joaquín Mosquera",
+    achievement: "Twice President of Gran Colombia",
+    condition: "Age-Related Blindness (likely Cataracts)",
+    years: "1787-1878",
+    onset: "Age 71, lost sight in 1858",
+    simulation: "mosquera-age-blindness",
+    description: "Joaquín Mosquera lost his sight in 1858 at approximately age 71. The specific medical cause was never documented, though age-related cataracts were the most common cause of blindness in that era. He lived with total blindness for the remaining 20 years of his life.\n\nAfter losing his sight, he dedicated himself to education as rector and professor at the University of Cauca.\n\n• Twice President of Gran Colombia (1830, 1831)\n\n• Vice President of the Republic of New Granada (1833-1835)\n\n• Founding Father of Colombia who shaped independence through diplomacy rather than military force\n\n• Author of Memorias sobre la revolución de Colombia",
+    wikiUrl: "https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Mosquera",
+    nationality: { country: "Colombia", flag: "🇨🇴" }
+  },
+  juanCarlosGonzalez: {
+    name: "Juan Carlos González Leiva",
+    achievement: "Founder, Cuban Foundation of Human Rights",
+    condition: "Birth Trauma Blindness",
+    years: "Born 1965",
+    onset: "Near-blind from birth, completely blind at 21",
+    simulation: "complete-blindness",
+    description: "Juan Carlos González Leiva was born nearly blind due to complications during delivery. At age 21, hard physical labor on a sugar cane plantation caused him to lose his remaining sight completely.\n\nDespite his blindness, he graduated from law school and became one of Cuba's most prominent dissidents.\n\n• Founded the Brotherhood of the Independent Blind of Cuba (1998)\n\n• Founded the Cuban Foundation of Human Rights (1998)\n\n• Supporter of the Varela Project and the Ladies in White movement\n\n• Imprisoned for two years and endured torture for his human rights advocacy",
+    wikiUrl: "https://en.wikipedia.org/wiki/Juan_Carlos_Gonz%C3%A1lez_Leiva",
+    nationality: { country: "Cuba", flag: "🇨🇺" }
+  },
+  princessChristina: {
+    name: "Princess Christina of the Netherlands",
+    achievement: "Music Educator & Visual Impairment Advocate",
+    condition: "Congenital Rubella Syndrome (Near-Total Blindness)",
+    years: "1947-2019",
+    onset: "From birth, congenital rubella caused right eye blindness and left eye cataracts",
+    simulation: "christina-rubella-blindness",
+    description: "Princess Christina was born nearly blind due to congenital rubella syndrome — her mother, Crown Princess Juliana, contracted German measles during pregnancy. Her right eye was completely blind and her left eye had dense cataracts, leaving only minimal light perception.\n\nAt age one, surgery in the United States partially restored vision in her left eye, allowing her to attend school with thick-lensed glasses, though she remained legally blind throughout life.\n\n• Classical vocalist and music educator based in New York City\n\n• The annual Prinses Christina Concours music competition was named in her honor\n\n• Worked with Koninklijke Visio foundation conducting workshops for visually impaired individuals\n\n• Youngest daughter of Queen Juliana and Prince Bernhard",
+    wikiUrl: "https://en.wikipedia.org/wiki/Princess_Christina_of_the_Netherlands",
+    nationality: { country: "Netherlands", flag: "🇳🇱" }
+  },
+  georgeRumphius: {
+    name: "Georg Eberhard Rumphius",
+    achievement: "'Pliny of the Indies', Blind Naturalist",
+    condition: "Glaucoma (Total Blindness)",
+    years: "c.1627-1702",
+    onset: "Age 42, rapid progression over 3 months in 1670",
+    simulation: "rumphius-glaucoma-blindness",
+    description: "Georg Eberhard Rumphius went blind at age 42 from what is now believed to be glaucoma simplex. His vision deteriorated rapidly over approximately three months in 1670, progressing to near-total blindness. He described it as a 'terrible misfortune that suddenly took away from me the entire world.'\n\nHe spent the remaining 32 years of his life continuing his monumental botanical work, identifying plants by touch, smell, and taste.\n\n• Known as 'Plinius Indicus' — the most important natural historian of the 17th-century Indonesian archipelago\n\n• His Herbarium Amboinense described ~1,200 plant species with 800+ illustrations, completed blind\n\n• Overcame his wife's death in a tsunami (1674) and a fire destroying his manuscripts (1687)\n\n• His nomenclature contributed to Linnaeus's later binomial classification system",
+    wikiUrl: "https://en.wikipedia.org/wiki/Georg_Eberhard_Rumphius",
+    nationality: { country: "Netherlands", flag: "🇳🇱" }
+  },
+  ahmedHarara: {
+    name: "Ahmed Harara",
+    achievement: "'Blind Hero of Egypt's Revolution'",
+    condition: "Bilateral Traumatic Blindness (Shotgun Injuries)",
+    years: "Born 1980",
+    onset: "Right eye lost Jan 28, 2011; left eye lost Nov 19, 2011",
+    simulation: "harara-traumatic-blindness",
+    description: "Ahmed Harara, an Egyptian dentist, lost both eyes during the 2011 Egyptian Revolution. On January 28, a shotgun blast on Qasr El Nile Bridge destroyed his right eye's retina. Ten months later on November 19, a shotgun pellet struck his left eye on Mohamed Mahmoud Street, leaving him completely blind.\n\nHe became known as the 'Blind Hero of Egypt's Revolution' and was named spokesperson of the revolution by Tahrir Square activists.\n\n• Named TIME Magazine Person of the Year 2011 (as part of 'The Protester')\n\n• Co-founded the Dostor political party with Dr. Mohamed ElBaradei\n\n• Instrumental in constitutional amendments guaranteeing rights of disabled people in Egypt\n\n• Master's degree from the London School of Economics",
+    wikiUrl: "https://en.wikipedia.org/wiki/Ahmed_Harara",
+    nationality: { country: "Egypt", flag: "🇪🇬" }
   }
 };

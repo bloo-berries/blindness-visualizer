@@ -121,5 +121,16 @@ export const scientists: Record<string, PersonData> = {
     description: "Abraham Nemeth was born with a dual-attack condition affecting both central vision (macular degeneration component) and peripheral vision (retinitis pigmentosa component), leaving only a fragile mid-peripheral ring.\n\nEducated at a school for the blind from childhood, his functional vision was minimal to none throughout life - effectively total blindness.\n\n• Developed the Nemeth Braille Code for Mathematics and Science Notation - still the standard worldwide\n\n• Professor of mathematics who made STEM accessible to blind students\n\n• His code enables transcription of complex equations, calculus, and scientific notation into braille",
     wikiUrl: "https://en.wikipedia.org/wiki/Abraham_Nemeth",
     nationality: { country: "United States", flag: "🇺🇸" }
+  },
+  gerritVanDerMey: {
+    name: "Gerrit van der Mey",
+    achievement: "Deafblind Computer Programming Pioneer",
+    condition: "Meningitis-Induced Bilateral Blindness + Deafness",
+    years: "1914-2002",
+    onset: "Blind at age 4 (meningitis); deaf at age 31 (second meningitis, 1945)",
+    simulation: "complete-blindness",
+    description: "Gerrit van der Mey lost his sight at age 4 when meningitis destroyed his optic nerves. In 1945, a second bout of meningitis left him completely deaf, making him deafblind for the remaining 57 years of his life.\n\nDespite being deafblind, he earned a PhD in mathematics from Leiden University and became a pioneering computer programmer.\n\n• Wrote operating systems and code for PTERA and ZEBRA, among the first Dutch electronic computers\n\n• Created compilers for ALGOL, LISP, IPL V, SNOBOL3, and ALGOL 68\n\n• Communicated via a specially constructed braille reading-box connected to a keyboard\n\n• Knight of the Order of Orange-Nassau (1982)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Gerrit_van_der_Mey",
+    nationality: { country: "Netherlands", flag: "🇳🇱" }
   }
 };

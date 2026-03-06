@@ -173,8 +173,27 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== BRAZILIAN WRITERS =====
     'glauco-glaucoma-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
 
+    // ===== BULGARIAN =====
+    'petko-sympathetic-ophthalmia': ['completeBlindness'],
+
+    // ===== CHILEAN =====
+    'cisternas-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
+
+    // ===== CZECH =====
+    'jezek-severe-cataracts': ['cataracts', 'blurryVision', 'lossOfContrast', 'glare'],
+
+    // ===== COLOMBIAN =====
+    'mosquera-age-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
+
     // ===== CORRECTED SCIENTISTS =====
-    'amy-amd-rp': ['amd', 'scotoma', 'retinitisPigmentosa', 'nightBlindness']
+    'amy-amd-rp': ['amd', 'scotoma', 'retinitisPigmentosa', 'nightBlindness'],
+
+    // ===== DUTCH =====
+    'christina-rubella-blindness': ['cataracts', 'blurryVision', 'lossOfContrast', 'glare', 'blindnessRightEye'],
+    'rumphius-glaucoma-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
+
+    // ===== EGYPTIAN =====
+    'harara-traumatic-blindness': ['completeBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

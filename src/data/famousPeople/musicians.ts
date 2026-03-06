@@ -429,5 +429,71 @@ export const musicians: Record<string, PersonData> = {
     description: "Anselmo Ralph has ocular myasthenia gravis, an autoimmune neuromuscular disease that causes weakness and abnormal fatigue in voluntary muscles, particularly his eyelid muscles. Diagnosed at age 5, he lacks strength in his eyelids, with lights and camera flashes forcing his eyes to close involuntarily.\n\nHis signature dark sunglasses are a coping mechanism for severe photophobia, not a fashion statement.\n\n• Angola's most celebrated R&B and kizomba artist\n\n• Multiple platinum albums across Africa and Portugal\n\n• Known as the 'King of Kizomba'\n\n• MTV Africa Music Award winner\n\n• His condition causes ptosis (eyelid droop), diplopia (double vision), and extreme light sensitivity",
     wikiUrl: "https://en.wikipedia.org/wiki/Anselmo_Ralph",
     nationality: { country: "Angola", flag: "🇦🇴" }
+  },
+  petkoStaynov: {
+    name: "Petko Staynov",
+    achievement: "Bulgarian Academician, Director of National Opera",
+    condition: "Sympathetic Ophthalmia (Total Blindness)",
+    years: "1896-1977",
+    onset: "Eye injury at age 6, completely blind by age 11",
+    simulation: "petko-sympathetic-ophthalmia",
+    description: "Petko Staynov injured one eye at age 6, and the infection spread to the other eye through sympathetic ophthalmia — the same condition that blinded Louis Braille. By age 11, he had lost his sight completely and lived in total blindness for the remaining 66 years of his life.\n\nHe mastered Braille in both Bulgarian and German.\n\n• One of Bulgaria's most prominent classical composers\n\n• Composed the celebrated symphonic suite 'Thracian Dances,' a cornerstone of Bulgarian classical music\n\n• Director of the Bulgarian National Opera (1941-1944)\n\n• Founded the Institute of Music at the Bulgarian Academy of Sciences, where over 100,000 folk songs were recorded under his guidance",
+    wikiUrl: "https://en.wikipedia.org/wiki/Petko_Staynov",
+    nationality: { country: "Bulgaria", flag: "🇧🇬" }
+  },
+  leandroDiaz: {
+    name: "Leandro Díaz",
+    achievement: "King for Life of the Vallenato Legend Festival",
+    condition: "Congenital Blindness",
+    years: "1928-2013",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Leandro Díaz was born blind in Hatonuevo, La Guajira, Colombia. Despite never having seen the world, he became one of Colombia's most celebrated songwriters, renowned for his remarkably vivid and descriptive lyrics.\n\nHe composed his first song at age 17.\n\n• Proclaimed 'King for Life' of the Vallenato Legend Festival\n\n• His song 'Diosa Coronada' inspired Nobel laureate Gabriel García Márquez, appearing at the beginning of Love in the Time of Cholera\n\n• His works have been performed by Colombia's greatest musicians including Carlos Vives and Diomedes Díaz\n\n• A biographical film about his life was released in 2023",
+    wikiUrl: "https://en.wikipedia.org/wiki/Leandro_D%C3%ADaz_(composer)",
+    nationality: { country: "Colombia", flag: "🇨🇴" }
+  },
+  arsenioRodriguez: {
+    name: "Arsenio Rodríguez",
+    achievement: "Godfather of Salsa, 'El Ciego Maravilloso'",
+    condition: "Traumatic Optic Nerve Destruction",
+    years: "1911-1970",
+    onset: "Age 7, from horse kick to head",
+    simulation: "complete-blindness",
+    description: "Arsenio Rodríguez was blinded at age 7 when a horse kicked him in the head, completely destroying both optic nerves. In 1947, renowned ophthalmologist Dr. Ramón Castroviejo confirmed the damage was irreversible, inspiring the bolero 'La vida es un sueño' (Life is a Dream).\n\nNicknamed 'El Ciego Maravilloso' (The Marvellous Blind Man).\n\n• Often called the 'Godfather of Salsa' — pioneered the conjunto format and developed son montuno\n\n• Virtuoso tres player and composer of nearly 200 songs\n\n• His international hit 'Bruca manigua' remains an Afro-Cuban classic\n\n• One of the most influential figures in Latin music history",
+    wikiUrl: "https://en.wikipedia.org/wiki/Arsenio_Rodr%C3%ADguez",
+    nationality: { country: "Cuba", flag: "🇨🇺" }
+  },
+  oskarBaum: {
+    name: "Oskar Baum",
+    achievement: "Prague Circle Member with Kafka & Brod",
+    condition: "Traumatic Blindness",
+    years: "1883-1941",
+    onset: "Vision problems from birth, completely blind at 11",
+    simulation: "complete-blindness",
+    description: "Oskar Baum had vision problems from birth, lost sight in one eye at age 8, and became completely blind at age 11 after a violent altercation between Czech and German students in Plzeň.\n\nDespite his blindness, he became a celebrated author and trained musician.\n\n• Core member of the Prague Circle alongside Franz Kafka, Max Brod, and Felix Weltsch\n\n• Author of the memoir 'Das Leben im Dunkeln' (Life in the Dark, 1909)\n\n• Trained as organist and pianist at the Israelite Institute for the Blind in Vienna\n\n• His literary works explored blindness as a source of heightened perception",
+    wikiUrl: "https://en.wikipedia.org/wiki/Oskar_Baum",
+    nationality: { country: "Czechia", flag: "🇨🇿" }
+  },
+  jaroslavJezek: {
+    name: "Jaroslav Ježek",
+    achievement: "Czech Jazz Pioneer, Composer of 'Bugatti Step'",
+    condition: "Congenital Cataracts (Near-Total Blindness)",
+    years: "1906-1942",
+    onset: "From birth, near-total blindness",
+    simulation: "jezek-severe-cataracts",
+    description: "Jaroslav Ježek was born with severe cataracts that left him nearly blind, able to perceive only shapes and shadows. Multiple surgeries failed to restore his vision. He spent seven years at the Institute for Blind and Weak-eyed Children.\n\nRemarkably, he could see best under blue light — his famous Blue Room, now a museum in Prague, had blue walls, ceiling, and light bulbs to accommodate his remaining vision.\n\n• Leading composer of interwar Czechoslovak theater and jazz\n\n• Created hundreds of songs for Prague's celebrated Liberated Theatre with Voskovec and Werich\n\n• His piano piece 'Bugatti Step' (1930) remains beloved in Czechia\n\n• Fled Nazi-occupied Czechoslovakia in 1939; died in New York exile at age 35",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jaroslav_Je%C5%BEek_(composer)",
+    nationality: { country: "Czechia", flag: "🇨🇿" }
+  },
+  akselAgerby: {
+    name: "Aksel Agerby",
+    achievement: "Composer of Beloved Danish Folk Melody 'Jeg er havren'",
+    condition: "Congenital Blindness (Cause Unknown)",
+    years: "1889-1942",
+    onset: "From birth or early childhood",
+    simulation: "complete-blindness",
+    description: "Aksel Agerby was blind from an early age and was educated at the Royal Institute for the Blind in Copenhagen. The specific medical cause of his blindness was never documented.\n\nHe debuted as a concert pianist in 1911 at age 22.\n\n• Composed the melody to 'Jeg er havren,' one of Denmark's most beloved folk songs\n\n• Organist at Brønshøj Church (1930-1942)\n\n• Chairman of the Young Musicians' Society (DUT), championing contemporary music throughout the 1930s\n\n• Ran his own music publishing company",
+    wikiUrl: "https://en.wikipedia.org/wiki/Aksel_Agerby",
+    nationality: { country: "Denmark", flag: "🇩🇰" }
   }
 };

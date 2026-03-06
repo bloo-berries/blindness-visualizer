@@ -178,5 +178,16 @@ export const athletes: Record<string, PersonData> = {
     simulation: "zeeshan-b2-partial-blindness",
     description: "Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at close range with visual acuity of 2/60. He sees the world as severely blurred with limited contrast and tunnel-like peripheral awareness.\n\n• Former captain of Pakistan's blind cricket team\n\n• Led Pakistan to two World Cup finals\n\n• Four-time World Cup Best Bowler award winner\n\n• Pakistan's Pride of Performance Award recipient (2013)",
     nationality: { country: "Pakistan", flag: "🇵🇰" }
+  },
+  michaelBarredo: {
+    name: "Michael Barredo",
+    achievement: "Founding President, Paralympic Committee of Philippines",
+    condition: "Bilateral Traumatic Blindness (Car Accident)",
+    years: "Born 1955",
+    onset: "Age 24, car accident in 1979",
+    simulation: "complete-blindness",
+    description: "Michael Barredo became completely blind at age 24 when a car accident in 1979 sent his head through a windshield, destroying his right eye immediately. Despite 10 surgeries including 3 in the United States, doctors could not save his left eye.\n\nBefore the accident, he was a multi-sport varsity athlete at De La Salle University.\n\n• Founding President of the Paralympic Committee of the Philippines (1997)\n\n• 5th President of the International Blind Sports Federation (IBSA, 2005-2013)\n\n• First person with a disability to serve on the Philippine Sports Commission\n\n• Paralympic Order recipient (2013) — highest honor in the Paralympic Movement, first Filipino to receive it\n\n• Co-authored the White Cane Act of 1989",
+    wikiUrl: "https://en.wikipedia.org/wiki/Michael_Barredo",
+    nationality: { country: "Philippines", flag: "🇵🇭" }
   }
 };

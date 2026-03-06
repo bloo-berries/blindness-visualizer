@@ -165,6 +165,14 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== AGE-RELATED BLINDNESS =====
     'maria-anna-cataracts-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
 
+    // ===== BRAZILIAN ATHLETES =====
+    'terezinha-rp-blindness': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
+    'silvania-stargardt': ['stargardt', 'scotoma', 'lossOfContrast'],
+    'lucia-toxoplasmosis': ['amd', 'scotoma', 'blurryVision'],
+
+    // ===== BRAZILIAN WRITERS =====
+    'glauco-glaucoma-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
+
     // ===== CORRECTED SCIENTISTS =====
     'amy-amd-rp': ['amd', 'scotoma', 'retinitisPigmentosa', 'nightBlindness']
   };

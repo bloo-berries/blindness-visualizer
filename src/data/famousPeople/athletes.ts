@@ -136,6 +136,39 @@ export const athletes: Record<string, PersonData> = {
     description: "Henry Wanyoike lost 95% of his vision overnight on May 1, 1995, when a stroke damaged his optic nerves. He lost the remaining vision gradually over the following years.\n\nAfter struggling with depression, he discovered he could run with a guide.\n\n• Paralympic gold medalist: Sydney 2000 (5000m) and Athens 2004 (10000m)\n\n• Multiple world records in Paralympic athletics\n\n• Founded the Henry Wanyoike Foundation\n\n• Visited over 700 schools advocating for disability rights\n\n• Famous quote: 'I lost my sight, but I gained a vision'",
     nationality: { country: "Kenya", flag: "🇰🇪" }
   },
+  terezinhaGuilhermina: {
+    name: "Terezinha Guilhermina",
+    achievement: "World's Fastest Blind Woman, 6 Paralympic Medals",
+    condition: "Congenital Retinitis Pigmentosa",
+    years: "Born 1978",
+    onset: "From birth, completely blind by age 26",
+    simulation: "terezinha-rp-blindness",
+    description: "Terezinha Guilhermina was born with congenital retinitis pigmentosa, a hereditary condition shared by five of her twelve siblings. Born with approximately 95% vision loss, her sight progressively deteriorated until she became completely blind around age 26.\n\nShe entered sports at age 22 through a government program for people with impairments.\n\n• Known as 'the world's fastest blind woman'\n\n• Six Paralympic medals including three golds (Beijing 2008, London 2012)\n\n• Multiple world records in 100m and 400m T11\n\n• Also holds a bachelor's degree in psychology",
+    wikiUrl: "https://en.wikipedia.org/wiki/Terezinha_Guilhermina",
+    nationality: { country: "Brazil", flag: "🇧🇷" }
+  },
+  silvaniaCosta: {
+    name: "Silvânia Costa de Oliveira",
+    achievement: "Back-to-Back Paralympic Long Jump Gold",
+    condition: "Stargardt Disease",
+    years: "Born 1987",
+    onset: "Age 10, progressive hereditary",
+    simulation: "silvania-stargardt",
+    description: "Silvânia Costa de Oliveira was diagnosed with Stargardt disease at age 10, a hereditary retinal condition that progressively destroyed her central vision. The condition runs deeply in her family — her brother Ricardo, two sisters, and two cousins are all blind from the same disease.\n\nShe competes in the T11 category (near-total/total blindness) wearing blacked-out glasses.\n\n• Gold medals in women's long jump T11 at both 2016 Rio and 2020 Tokyo Paralympics\n\n• World champion and world record holder in long jump T11\n\n• Her brother Ricardo also won long jump gold at Rio 2016, making them a remarkable sibling pair of Paralympic champions",
+    wikiUrl: "https://en.wikipedia.org/wiki/Silv%C3%A2nia_Costa_de_Oliveira",
+    nationality: { country: "Brazil", flag: "🇧🇷" }
+  },
+  luciaTeixeira: {
+    name: "Lúcia Teixeira",
+    achievement: "3x Paralympic Judo Medalist",
+    condition: "Congenital Toxoplasmosis (Low Vision)",
+    years: "Born 1981",
+    onset: "From birth, parasitic infection in utero",
+    simulation: "lucia-toxoplasmosis",
+    description: "Lúcia Teixeira was born with congenital toxoplasmosis — a parasitic infection transmitted from her mother during pregnancy that severely damaged her retinas. She is classified as B2, meaning severely impaired vision but not totally blind.\n\nShe began judo at age 15 through her brothers but only discovered Paralympic judo at age 25.\n\n• Silver medals at 2012 London and 2016 Rio Paralympics in judo -57 kg\n\n• Bronze medal at 2020 Tokyo Paralympics\n\n• Multiple Parapan American gold medals\n\n• Elected president of the Brazilian Paralympic Committee's Athletes' Commission (2025)",
+    wikiUrl: "https://en.wikipedia.org/wiki/L%C3%BAcia_Teixeira",
+    nationality: { country: "Brazil", flag: "🇧🇷" }
+  },
   zeeshanAbbasi: {
     name: "Zeeshan Abbasi",
     achievement: "Pakistan Blind Cricket Captain",

@@ -169,7 +169,11 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   mariaAnnaMozart: 'maria-anna-mozart.webp',
   kerryannIfill: 'Kerryann-Ifill.webp',
   rhinaAguirre: 'Rhina-Aguirre.webp',
-  mariaJosefaMujia: 'maria-josefa-mujia.webp'
+  mariaJosefaMujia: 'maria-josefa-mujia.webp',
+  terezinhaGuilhermina: 'Terezinha-Guilhermina.webp',
+  glaucoMattoso: 'Glauco-Mattoso.webp',
+  silvaniaCosta: 'Silvânia-Costa-de-Oliveira.webp',
+  luciaTeixeira: 'lucia-teixeira.webp'
 };
 
 /**

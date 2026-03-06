@@ -232,6 +232,17 @@ export const writersActivists: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Mar%C3%ADa_Josefa_Muj%C3%ADa",
     nationality: { country: "Bolivia", flag: "🇧🇴" }
   },
+  glaucoMattoso: {
+    name: "Glauco Mattoso",
+    achievement: "Leading Voice of Brazil's Marginal Poetry Movement",
+    condition: "Childhood Glaucoma (Total Blindness)",
+    years: "Born 1951",
+    onset: "Childhood onset, completely blind by 1995",
+    simulation: "glauco-glaucoma-blindness",
+    description: "Glauco Mattoso (pen name of Pedro José Ferreira da Silva) adopted his pseudonym as a direct reference to the childhood glaucoma that progressively robbed him of his sight. The condition worsened over decades until he became completely blind in 1995.\n\nAfter losing his vision, he abandoned the visual/graphic elements of his earlier poetry and became one of Brazil's most prolific sonnet writers.\n\n• Leading voice in Brazil's Marginal Poetry movement during the 1970s military dictatorship\n\n• Created Jornal Dobrabil, an influential artisanal poetry fanzine (1977-1981)\n\n• Published over fifty books of sonnets after becoming blind\n\n• Translator and essayist combining classical forms with radical experimentation",
+    wikiUrl: "https://en.wikipedia.org/wiki/Glauco_Mattoso",
+    nationality: { country: "Brazil", flag: "🇧🇷" }
+  },
   chenGuangcheng: {
     name: "Chen Guangcheng",
     achievement: "Barefoot Lawyer, Time 100 Honoree",

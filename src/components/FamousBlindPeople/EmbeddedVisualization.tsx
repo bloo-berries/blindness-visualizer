@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { VisualEffect } from '../../types/visualEffects';
+import { VisualEffect, ConditionType } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
 import { getSimulationConditions } from '../../utils/famousPeopleUtils';
 import { generateCSSFilters } from '../../utils/cssFilters';
+import { isColorVisionCondition, getColorVisionMatrix } from '../../utils/colorVisionFilters';
 import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
@@ -86,10 +87,40 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     };
   }, [effects]);
 
-  // Generate CSS filters for the enabled effects
-  const cssFilters = useMemo(() => {
-    return generateCSSFilters(effects);
+  // Generate inline SVG feColorMatrix values for color vision effects
+  // Used with backdrop-filter for mobile Safari compatibility (CSS filter on
+  // a parent of a cross-origin iframe doesn't work on mobile Safari)
+  const colorVisionMatrix = useMemo((): string | null => {
+    const colorEffect = effects.find(e => isColorVisionCondition(e.id) && e.enabled);
+    if (!colorEffect || colorEffect.intensity === 0) return null;
+
+    // For monochromacy, use saturate/contrast CSS filter instead of SVG matrix
+    if (colorEffect.id === 'monochromatic' || colorEffect.id === 'monochromacy') return null;
+
+    const fullMatrix = getColorVisionMatrix(colorEffect.id as ConditionType, 1.0);
+    const identity = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    const blended = fullMatrix.map((val, i) =>
+      val * colorEffect.intensity + identity[i] * (1 - colorEffect.intensity)
+    );
+
+    return [
+      blended[0], blended[1], blended[2], 0, 0,
+      blended[3], blended[4], blended[5], 0, 0,
+      blended[6], blended[7], blended[8], 0, 0,
+      0, 0, 0, 1, 0
+    ].join(' ');
   }, [effects]);
+
+  // Generate CSS filters excluding color vision SVG references (those are
+  // handled separately via backdrop-filter for mobile compatibility)
+  const nonColorCSSFilters = useMemo(() => {
+    if (colorVisionMatrix) {
+      // Strip url(#...) SVG filter references, keep other CSS filters (blur, brightness, etc.)
+      const fullFilters = generateCSSFilters(effects);
+      return fullFilters.replace(/url\(#[^)]+\)/g, '').trim();
+    }
+    return generateCSSFilters(effects);
+  }, [effects, colorVisionMatrix]);
 
   // Check for complete blindness conditions (total darkness only)
   // Note: Heather's LP vision is NOT total darkness - it's "washed-out white"
@@ -101,6 +132,9 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
 
   // Check for Neo Matrix Code Vision (requires canvas-based rendering)
   const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
+
+  const colorFilterId = 'embedded-cvd-filter';
+  const backdropFilterValue = colorVisionMatrix ? `url(#${colorFilterId})` : undefined;
 
   return (
     <Box sx={{ mt: 2 }}>
@@ -119,6 +153,17 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           overflow: 'hidden'
         }}
       >
+        {/* Inline SVG filter for color vision - rendered locally for mobile Safari compatibility */}
+        {colorVisionMatrix && (
+          <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
+            <defs>
+              <filter id={colorFilterId} colorInterpolationFilters="linearRGB">
+                <feColorMatrix type="matrix" values={colorVisionMatrix} />
+              </filter>
+            </defs>
+          </svg>
+        )}
+
         {/* Simulation label */}
         <Box
           sx={{
@@ -158,7 +203,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           </Box>
         )}
 
-        {/* Video container with effects */}
+        {/* Video container with non-color CSS filters (blur, brightness, etc.) */}
         <Box
           sx={{
             position: 'absolute',
@@ -166,7 +211,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             left: 0,
             width: '100%',
             height: '100%',
-            filter: cssFilters || 'none'
+            filter: nonColorCSSFilters || 'none'
           }}
         >
           <iframe
@@ -206,6 +251,25 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             <NeoMatrixCodeVision intensity={neoEffect.intensity} />
           )}
         </Box>
+
+        {/* Color vision filter overlay - uses backdrop-filter for mobile Safari
+            compatibility with cross-origin iframes */}
+        {backdropFilterValue && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backdropFilter: backdropFilterValue,
+              WebkitBackdropFilter: backdropFilterValue,
+              zIndex: 1000,
+              pointerEvents: 'none'
+            }}
+            aria-hidden="true"
+          />
+        )}
       </Box>
 
       <Typography

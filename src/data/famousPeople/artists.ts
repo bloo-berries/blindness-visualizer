@@ -44,5 +44,16 @@ export const artists: Record<string, PersonData> = {
     description: "Eşref Armağan is a Turkish painter born completely blind—one eye never developed and the other was stunted and scarred.\n\nSelf-taught from age 6, he creates vivid paintings using touch to understand form and perspective.\n\n• Harvard researchers found his visual cortex activates when drawing, despite never having seen\n\n• Exhibited in Turkey, Italy, China, and the Netherlands\n\n• Creates accurate perspective and shadow in his paintings without ever seeing light",
     wikiUrl: "https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan",
     nationality: { country: "Turkey", flag: "🇹🇷" }
+  },
+  borisDyozhkin: {
+    name: "Boris Dyozhkin",
+    achievement: "Soviet Animation Pioneer at Soyuzmultfilm",
+    condition: "Lost Left Eye (Bomb Fragment) + Prior Vision Loss",
+    years: "1914-1992",
+    onset: "Prior vision loss; left eye lost in 1941 bombing",
+    simulation: "dyozhkin-monocular-vision",
+    description: "Boris Dyozhkin already had impaired vision when, during the heavy bombing of Moscow in summer 1941, he shielded his wife Faina Yepifanova (also an animator) with his body. A shell fragment struck him, destroying his left eye. He wore an eyepatch for the rest of his life.\n\nDespite this, he worked at Soyuzmultfilm for 40 more years, often serving simultaneously as director, art director, and animator.\n\n• Created the beloved Soviet animated sports comedy series featuring rival teams competing in football, hockey, skiing, and boxing\n\n• Worked at Soyuzmultfilm for over four decades combining multiple creative roles\n\n• Also known as a caricaturist, book illustrator, and animation educator\n\n• His wife Faina, whom he saved during the bombing, was also an animator at the studio",
+    wikiUrl: "https://en.wikipedia.org/wiki/Boris_Dyozhkin",
+    nationality: { country: "Russia", flag: "🇷🇺" }
   }
 };

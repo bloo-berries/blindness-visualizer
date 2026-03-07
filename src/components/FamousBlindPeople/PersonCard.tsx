@@ -56,7 +56,10 @@ const CUSTOM_POSITIONS: Record<string, string> = {
   'srikanth': 'center top',
   'silvaniaCosta': 'center 15%',
   'josephPlateau': 'center 35%',
-  'jose': 'center 35%'
+  'jose': 'center 35%',
+  'ahmedHarara': 'center 40%',
+  'juanCarlosGonzalez': 'center 40%',
+  'petkoStaynov': 'center top'
 };
 
 // Default position for most images

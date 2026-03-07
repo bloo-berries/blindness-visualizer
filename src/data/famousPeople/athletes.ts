@@ -179,6 +179,72 @@ export const athletes: Record<string, PersonData> = {
     description: "Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at close range with visual acuity of 2/60. He sees the world as severely blurred with limited contrast and tunnel-like peripheral awareness.\n\n• Former captain of Pakistan's blind cricket team\n\n• Led Pakistan to two World Cup finals\n\n• Four-time World Cup Best Bowler award winner\n\n• Pakistan's Pride of Performance Award recipient (2013)",
     nationality: { country: "Pakistan", flag: "🇵🇰" }
   },
+  lahjaIshitile: {
+    name: "Lahja Ishitile",
+    achievement: "Paralympic Gold Medalist, 'Ferrari' of Namibia",
+    condition: "Progressive Blindness (T11 Classification)",
+    years: "Born (Contemporary)",
+    onset: "Age 7, completely blind by 11",
+    simulation: "complete-blindness",
+    description: "Lahja Ishitile began losing her eyesight at age 7 due to a medical condition and was completely blind by age 11. She began running at Eluwa Special School in Ongwediva, Namibia, and rose to become one of Africa's fastest blind sprinters.\n\nNicknamed 'Ferrari' for her blistering speed, she competes in the T11 category (total blindness) with guide runner Sem Shimanda.\n\n• Paralympic gold medalist in women's T11 400m at 2024 Paris Paralympics (Paralympic record: 56.20 seconds)\n\n• Bronze medal in women's T11 200m at 2024 Paris Paralympics\n\n• Silver medal at 2023 World Para Athletics Championships\n\n• Flag bearer for Namibia at the 2024 Paris Paralympics Opening Ceremony\n\n• Currently pursuing a Bachelor of Library and Information Science at the University of Namibia",
+    wikiUrl: "https://en.wikipedia.org/wiki/Lahja_Ishitile",
+    nationality: { country: "Namibia", flag: "🇳🇦" }
+  },
+  roniOhayon: {
+    name: "Roni Ohayon",
+    achievement: "Paralympic Silver Medalist, Goalball",
+    condition: "Congenital Visual Impairment (Left Eye Blind)",
+    years: "Born 1999",
+    onset: "From birth",
+    simulation: "roni-congenital-blindness",
+    description: "Roni Ohayon was born in Beersheba, Israel, with multiple visual impairments including complete blindness in her left eye and severe difficulty seeing in her right eye. She is legally blind and uses a guide dog.\n\nShe started playing goalball in the 4th grade at a center for the blind, joined the reserve team at age 13, and later moved to the senior national team.\n\n• Paralympic silver medalist with Israel in women's goalball at the 2024 Paris Paralympics\n\n• Advocate for disability rights — won a landmark court case against Israel Railways after being refused her paid disabled seat\n\n• Plays centre position for the Israeli national goalball team",
+    wikiUrl: "https://en.wikipedia.org/wiki/Roni_Ohayon",
+    nationality: { country: "Israel", flag: "🇮🇱" }
+  },
+  taonereBanda: {
+    name: "Taonere Banda",
+    achievement: "First Paralympian from Malawi",
+    condition: "Untreated Cataracts (Near-Total Blindness)",
+    years: "Born 1996",
+    onset: "Infancy, from untreated cataracts",
+    simulation: "taonere-cataract-blindness",
+    description: "Taonere Banda was born in Malawi with cataracts that went untreated in infancy, leaving her almost totally blind. Despite growing up in a country with virtually no Paralympic infrastructure, she became Malawi's pioneering para-athlete.\n\n• First athlete to represent Malawi at a Paralympic Games (2016 Rio de Janeiro)\n\n• Competed at the 2020 Tokyo Paralympics as a middle-distance runner\n\n• Sightsavers Equal World campaign ambassador, fighting for inclusive education\n\n• Advocates for children with disabilities to have the right to attend school and fully participate in society",
+    wikiUrl: "https://en.wikipedia.org/wiki/Taonere_Banda",
+    nationality: { country: "Malawi", flag: "🇲🇼" }
+  },
+  nojimMaiyegun: {
+    name: "Nojim Maiyegun",
+    achievement: "Nigeria's First Olympic Medalist",
+    condition: "Progressive Blindness from Boxing Trauma",
+    years: "1941-2024",
+    onset: "Gradual from ~1973, fully blind by 2012",
+    simulation: "complete-blindness",
+    description: "Nojim Maiyegun won the bronze medal in light middleweight boxing at the 1964 Tokyo Olympics, becoming Nigeria's first-ever Olympic medalist. Around 1973, he gradually lost his vision — doctors attributed it to repeated head trauma from boxing.\n\nDespite his deteriorating sight, he fought a World Championship bout against Domenico Tiberia in December 1973, losing only on points — making him the first blind boxer to fight for a title. He became fully blind by 2012.\n\n• Nigeria's first Olympic medalist (bronze, 1964 Tokyo)\n\n• First blind boxer to fight for a world title\n\n• After going completely blind, climbed a 1,700-metre mountain and parachuted down\n\n• Lived his later years in Austria, largely uncelebrated by Nigeria despite his historic achievement",
+    wikiUrl: "https://en.wikipedia.org/wiki/Nojim_Maiyegun",
+    nationality: { country: "Nigeria", flag: "🇳🇬" }
+  },
+  mikhalinaLysova: {
+    name: "Mikhalina Lysova",
+    achievement: "5x Paralympic Gold, Biathlon & Cross-Country",
+    condition: "Congenital Visual Impairment",
+    years: "Born 1992",
+    onset: "From birth",
+    simulation: "lysova-low-vision",
+    description: "Mikhalina Lysova has had weak vision since birth. She began her sporting career in 2002 in Nizhny Tagil, Russia, and became one of the most decorated Paralympic winter athletes in history.\n\nShe competes in visually impaired categories in both biathlon and cross-country skiing.\n\n• 5 Paralympic gold medals across three Winter Paralympics (2010, 2014, 2018)\n\n• Won 5 medals on debut at the 2010 Vancouver Paralympics including gold in cross-country skiing\n\n• 6 medals at the 2014 Sochi Paralympics including 3 golds; Russia's flag bearer at closing ceremony\n\n• Won gold in biathlon at the 2018 PyeongChang Paralympics competing as a Neutral Paralympic Athlete",
+    wikiUrl: "https://en.wikipedia.org/wiki/Mikhalina_Lysova",
+    nationality: { country: "Russia", flag: "🇷🇺" }
+  },
+  andrewJeptha: {
+    name: "Andrew Jeptha",
+    achievement: "First Black British Boxing Champion",
+    condition: "Progressive Boxing-Related Blindness",
+    years: "1879-1931",
+    onset: "Progressive eye damage, nearly blind by 1910",
+    simulation: "complete-blindness",
+    description: "Andrew Daries Jeptha was born in Cape Town and came to England in 1902. He had been experiencing eye damage before his historic title fight, and in October 1909 a bout against Jim Doran permanently destroyed the sight in his right eye. By 1910, nearly blind, he retired from boxing.\n\nAfter returning to South Africa, he could be seen selling a self-authored booklet on the sidewalks of Adderley Street, Cape Town.\n\n• First Black boxer to win a British boxing title — welterweight champion (25 March 1907)\n\n• Knocked out Curly Watson in the fourth round at Wonderland, Whitechapel Road, London\n\n• Author of 'A South African Boxer in Britain — Experiences of Andrew Jephta'\n\n• Won his passage to England by winning a competition organized by visiting world champion Kid McCoy",
+    wikiUrl: "https://en.wikipedia.org/wiki/Andrew_Jeptha",
+    nationality: { country: "South Africa", flag: "🇿🇦" }
+  },
   michaelBarredo: {
     name: "Michael Barredo",
     achievement: "Founding President, Paralympic Committee of Philippines",

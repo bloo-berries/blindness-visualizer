@@ -341,5 +341,159 @@ export const writersActivists: Record<string, PersonData> = {
     description: "Ahmed Harara, an Egyptian dentist, lost both eyes during the 2011 Egyptian Revolution. On January 28, a shotgun blast on Qasr El Nile Bridge destroyed his right eye's retina. Ten months later on November 19, a shotgun pellet struck his left eye on Mohamed Mahmoud Street, leaving him completely blind.\n\nHe became known as the 'Blind Hero of Egypt's Revolution' and was named spokesperson of the revolution by Tahrir Square activists.\n\n• Named TIME Magazine Person of the Year 2011 (as part of 'The Protester')\n\n• Co-founded the Dostor political party with Dr. Mohamed ElBaradei\n\n• Instrumental in constitutional amendments guaranteeing rights of disabled people in Egypt\n\n• Master's degree from the London School of Economics",
     wikiUrl: "https://en.wikipedia.org/wiki/Ahmed_Harara",
     nationality: { country: "Egypt", flag: "🇪🇬" }
+  },
+  aarneArvonen: {
+    name: "Aarne Arvonen",
+    achievement: "Finland's Oldest Man, Founding Ursa Member",
+    condition: "Monocular Blindness + Age-Related Vision Loss",
+    years: "1897-2009",
+    onset: "One eye lost in childhood gun accident; remaining sight lost by age 111",
+    simulation: "arvonen-progressive-blindness",
+    description: "Aarne Arvonen lost one eye in a childhood accident while playing with a gun. His remaining vision progressively deteriorated in his centenarian years, becoming almost blind by age 110 and fully losing his sight by 2008.\n\nHe was Finland's oldest man ever, living to 111 years and 150 days, and the last surviving veteran of the Finnish Civil War of 1918.\n\n• Founding member of Ursa, Finland's amateur astronomy association (1921) — a membership he maintained for nearly 87 years\n\n• Survived the Spanish flu at the Tammisaari prison camp after the Civil War\n\n• Built his own house in Järvenpää where he lived independently until age 108\n\n• Last known living Finnish person born in the 1800s",
+    wikiUrl: "https://en.wikipedia.org/wiki/Aarne_Arvonen",
+    nationality: { country: "Finland", flag: "🇫🇮" }
+  },
+  jussiKekkonen: {
+    name: "Jussi Kekkonen",
+    achievement: "War Hero, Brother of President Kekkonen",
+    condition: "Bilateral Traumatic Blindness (Combat Injury)",
+    years: "1910-1962",
+    onset: "Age 31, bullet ricochet destroyed both eyes in 1941",
+    simulation: "complete-blindness",
+    description: "Jussi Kekkonen lost both eyes during the Continuation War in 1941 when a rifle bullet struck his submachine gun magazine, ricocheted upward, and tore both eyes open. He lay bleeding in heavy rain for 24 hours before rescue. Multiple surgeries could not restore his vision.\n\nHe was the younger brother of Urho Kekkonen, Finland's 8th President.\n\n• Led 'Battle Detachment Kekkonen,' a 270-person guerrilla unit in the Winter War\n\n• Promoted to Major despite his blindness\n\n• Became CEO of Ragnar Nordström's shipping company in Loviisa\n\n• Buried with military honors in Kajaani's heroes' cemetery",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jussi_Kekkonen",
+    nationality: { country: "Finland", flag: "🇫🇮" }
+  },
+  frankLaRue: {
+    name: "Frank La Rue",
+    achievement: "UN Special Rapporteur, Human Rights Pioneer",
+    condition: "Congenital Legal Blindness",
+    years: "Born 1952",
+    onset: "From birth",
+    simulation: "larue-legal-blindness",
+    description: "Frank La Rue was born legally blind, yet graduated with a law degree from Universidad de San Carlos de Guatemala and built an extraordinary career in human rights law.\n\nHe fled Guatemala in 1981 after being marked for death during the Civil War, and went on to become a leading international voice for human rights and freedom of expression.\n\n• UN Special Rapporteur on Freedom of Opinion and Expression (2008-2014)\n\n• Declared internet access a fundamental human right (2011)\n\n• Co-founded the Center for Legal Action for Human Rights (CALDH)\n\n• Nominated for the 2004 Nobel Peace Prize\n\n• EFF Pioneer Award recipient (2014)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Frank_William_La_Rue",
+    nationality: { country: "Guatemala", flag: "🇬🇹" }
+  },
+  beloCipriani: {
+    name: "Belo Cipriani",
+    achievement: "Author, Disability & LGBT Advocate",
+    condition: "Traumatic Retinal Damage (Total Blindness)",
+    years: "Born 1980",
+    onset: "Age 26, violent assault in 2007",
+    simulation: "complete-blindness",
+    description: "Belo Cipriani became completely blind at age 26 after being brutally assaulted and robbed by former friends in San Francisco's Castro District on April 13, 2007. Repeated kicks to his face caused irreparable retinal nerve damage. Multiple surgeries failed to restore any vision.\n\nA therapist suggested writing to manage depression, leading to a new career as an author and advocate.\n\n• Author of 'Blind: A Memoir' — his first book, chronicling the two years after the attack\n\n• First blind writer to attend the Bread Loaf Writers' Conference\n\n• Founded Oleb Media (digital accessibility) and Oleb Books (publishing for writers with disabilities)\n\n• Community Grand Marshal, 45th San Francisco LGBT Pride Parade (2015) — first blind person in that role",
+    wikiUrl: "https://en.wikipedia.org/wiki/Belo_Cipriani",
+    nationality: { country: "Guatemala", flag: "🇬🇹" }
+  },
+  amenehBahrami: {
+    name: "Ameneh Bahrami",
+    achievement: "Acid Attack Survivor, Symbol of Mercy",
+    condition: "Total Blindness (Acid Attack)",
+    years: "Born 1978",
+    onset: "Age 26, from acid attack in 2004",
+    simulation: "complete-blindness",
+    description: "Ameneh Bahrami was blinded in 2004 when Majid Movahedi threw acid in her face after she rejected his marriage proposal. She lost one eye immediately and suffered horrific burns to her face, scalp, and body. Despite 17 surgeries including reconstruction attempts in Spain, an infection in 2007 destroyed the remaining 40% vision in her other eye, leaving her completely blind.\n\nIn a case that gained worldwide attention, a Tehran court sentenced her attacker to be blinded by acid under qisas (retributive justice). In 2011, moments before the sentence was to be carried out, Ameneh pardoned him, stating: 'God recommends pardon since pardon is greater than qesas.'\n\n• International symbol of both acid attack survivors and the power of forgiveness\n\n• Her decision to pardon her attacker was praised globally\n\n• Advocate for acid attack victims' rights",
+    wikiUrl: "https://en.wikipedia.org/wiki/Ameneh_Bahrami",
+    nationality: { country: "Iran", flag: "🇮🇷" }
+  },
+  johnAsfour: {
+    name: "John Asfour",
+    achievement: "Landmark Arabic Poetry Anthologist",
+    condition: "Traumatic Blindness (Grenade Explosion)",
+    years: "1945-2014",
+    onset: "Age 13, grenade explosion during Lebanese crisis of 1958",
+    simulation: "complete-blindness",
+    description: "John Asfour was blinded at age 13 when a grenade exploded in his face during the 1958 Lebanese crisis. After multiple unsuccessful attempts to restore his sight, he emigrated to Canada in 1968 and built a distinguished literary career.\n\n• Author of 5 volumes of poetry in English and 2 in Arabic\n\n• Edited and translated 'When the Words Burn: An Anthology of Modern Arabic Poetry' — a landmark work bringing Arabic poetry to English-speaking audiences\n\n• President of the Canadian Arab Federation (1996-2002)\n\n• Taught literature at universities in Montreal",
+    wikiUrl: "https://en.wikipedia.org/wiki/John_Asfour",
+    nationality: { country: "Lebanon", flag: "🇱🇧" }
+  },
+  jockOrr: {
+    name: "Jock Orr",
+    achievement: "'The Birdman' of Cathedral Square",
+    condition: "Partial Blindness (Occupational)",
+    years: "1908-1988",
+    onset: "Progressive, from sun glare while window cleaning",
+    simulation: "jock-partial-blindness",
+    description: "John Hastings 'Jock' Orr was partially sighted, which he attributed to glare from the sun while employed as a window cleaner. From 1972, he lived at the Fernwood Hostel for the Blind in Christchurch.\n\nHe became one of Christchurch's most beloved eccentrics, spending his days feeding red-billed gulls in Cathedral Square. The birds would flock around him and perch on his head, making him a tourist attraction.\n\n• Known as 'The Birdman' — an iconic figure of Cathedral Square throughout the 1970s and 1980s\n\n• Memorial bronze plaque installed on the Chief Post Office building in Cathedral Square after his death\n\n• The Animal Defenders' League originally proposed a memorial birdbath in his honor",
+    wikiUrl: "https://en.wikipedia.org/wiki/Jock_Orr",
+    nationality: { country: "New Zealand", flag: "🇳🇿" }
+  },
+  oscarPlatou: {
+    name: "Oscar Ludvig Stoud Platou",
+    achievement: "Maritime Law Pioneer, University Professor",
+    condition: "Progressive Eye Disease (Total Blindness)",
+    years: "1845-1929",
+    onset: "Eye disease from 1910, blind by 1915",
+    simulation: "complete-blindness",
+    description: "Oscar Ludvig Stoud Platou was a Norwegian jurist who developed an eye disease in 1910 and became completely blind by 1915. Despite his blindness, he continued as a professor at the Royal Frederick University for five more years until 1920.\n\nHe had served as an assessor in Oslo City Court for fourteen years (1876-1890) before becoming a professor in 1890.\n\n• Co-founded the Comité Maritime International (1897), a leading international maritime law body\n\n• Vice president of the International Law Association from 1907\n\n• Professor at the Royal Frederick University for 30 years (1890-1920), continuing to teach for 5 years after going blind\n\n• Major contributor to Norwegian and international maritime law",
+    wikiUrl: "https://en.wikipedia.org/wiki/Oscar_Ludvig_Stoud_Platou",
+    nationality: { country: "Norway", flag: "🇳🇴" }
+  },
+  syedPirzada: {
+    name: "Syed Sardar Ahmed Pirzada",
+    achievement: "First Blind Journalist of Pakistan",
+    condition: "Progressive Glaucoma",
+    years: "Born 1961",
+    onset: "Partially sighted from birth, progressive",
+    simulation: "pirzada-glaucoma",
+    description: "Syed Sardar Ahmed Pirzada was partially sighted at birth but progressively lost his vision due to glaucoma. He earned his master's degree in journalism from the University of the Punjab in 1985 and became Pakistan's first blind journalist, adopting the title to turn what others saw as weakness into strength.\n\nDespite facing discrimination in mainstream media due to his visual impairment, he built a distinguished career across multiple national publications.\n\n• First Blind Journalist of Pakistan — worked for Daily Jang, Daily Jasarat, and other major publications\n\n• Editor-in-Chief of Monthly Akhbar-e-Urdu\n\n• Won the All Pakistan Newspaper Society Best Urdu Column Award (2012)\n\n• Advocate for representation of persons with disabilities in Pakistan's Parliament",
+    wikiUrl: "https://en.wikipedia.org/wiki/Syed_Sardar_Ahmed_Pirzada",
+    nationality: { country: "Pakistan", flag: "🇵🇰" }
+  },
+  costacheAristia: {
+    name: "Costache Aristia",
+    achievement: "Pioneer of Romanian Theater & Literature",
+    condition: "Total Blindness",
+    years: "1800-1880",
+    onset: "Completely blind from 1872",
+    simulation: "complete-blindness",
+    description: "Costache Aristia was a Wallachian-born poet, actor, translator, soldier, and philanthropist who became completely blind in 1872. Despite his blindness, he continued to compose poetry by dictation, including his final poem written in memory of philanthropist Ana Davila in 1874.\n\nA member of the Greek colony in Bucharest, he trained in France and became known for his powerful stage performances.\n\n• His translation of Alfieri's 'Saul' became a Romanian nationalist manifesto\n\n• Acclaimed for his landmark Romanian rendition of Homer's Iliad\n\n• Key figure in the early modernization of Romanian literature\n\n• Modeled his acting style on the legendary French tragedian François-Joseph Talma",
+    wikiUrl: "https://en.wikipedia.org/wiki/Costache_Aristia",
+    nationality: { country: "Romania", flag: "🇷🇴" }
+  },
+  vasilyEroshenko: {
+    name: "Vasily Eroshenko",
+    achievement: "Blind Multilingual Esperantist & Fairy Tale Writer",
+    condition: "Blindness from Measles",
+    years: "1890-1952",
+    onset: "Age 4, from measles",
+    simulation: "complete-blindness",
+    description: "Vasily Eroshenko became blind at age 4 after contracting measles. Despite this, he became one of the most remarkable transnational literary figures of the early 20th century — a blind multilingual writer who lived and worked across Russia, Japan, and China.\n\nHe learned Esperanto, English, and Japanese, and worked as a violinist in the Moscow orchestra for the blind (1907-1914). His political fairy tales in Japanese brought him fame in the Japanese literary community.\n\n• Befriended the great Chinese modernist writer Lu Xun, who translated his works into Chinese\n\n• Wrote political fairy tales compared to Hans Christian Andersen and Oscar Wilde\n\n• Deported from Japan in 1921 for participating in socialist protests\n\n• Taught Esperanto in Beijing and traveled extensively across Asia despite being completely blind",
+    wikiUrl: "https://en.wikipedia.org/wiki/Vasili_Eroshenko",
+    nationality: { country: "Russia", flag: "🇷🇺" }
+  },
+  violaHashe: {
+    name: "Viola Hashe",
+    achievement: "First Woman Leader of an All-Male Union in SA",
+    condition: "Blindness",
+    years: "1926-1977",
+    onset: "Details unrecorded",
+    simulation: "complete-blindness",
+    description: "Viola Hashe was a blind teacher, anti-apartheid activist, and trade unionist who became a prominent figure in South Africa's labor and liberation movements despite her visual impairment.\n\nBorn in the Orange Free State, she joined the African National Congress (ANC) in the 1950s and began working with the South African Clothing Workers Union (SACWU) from 1956.\n\n• First woman to lead an all-male trade union in South Africa, elected Secretary General of SACWU in March 1956\n\n• Vice-President of the South African Congress of Trade Unions (SACTU) from 1960\n\n• Member of SACTU's Management Committee from 1956\n\n• Defied both racial and gender barriers while navigating apartheid-era South Africa as a blind Black woman",
+    wikiUrl: "https://en.wikipedia.org/wiki/Viola_Hashe",
+    nationality: { country: "South Africa", flag: "🇿🇦" }
+  },
+  theresaChan: {
+    name: "Theresa Poh Lin Chan",
+    achievement: "'Helen Keller of Southeast Asia'",
+    condition: "Deaf-Blindness",
+    years: "1943-2016",
+    onset: "Deaf at 12, blind at 14",
+    simulation: "complete-blindness",
+    description: "Theresa Poh Lin Chan became deaf at age 12 and lost her sight at age 14, yet went on to become one of Southeast Asia's most inspiring figures for people with disabilities. Known in her youth as 'the Helen Keller of Southeast Asia,' she fulfilled her dream of meeting Helen Keller herself in Connecticut in 1961.\n\nOn the recommendation of John Wilson of the Royal Commonwealth Society for the Blind, she attended the Perkins School for the Blind in Massachusetts, where she topped the school in mathematics and became president of the sports club.\n\n• Teacher at the Singapore School for the Blind after returning from 13 years in the United States\n\n• Posthumously inducted into the Singapore Women's Hall of Fame (2017)\n\n• Learned to dance, ice skate, knit, and horseback ride despite being deafblind\n\n• Her message: 'Whatever their disabilities, they should have hope and not be unhappy and discouraged'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Theresa_Poh_Lin_Chan",
+    nationality: { country: "Singapore", flag: "🇸🇬" }
+  },
+  ingaSaeland: {
+    name: "Inga Sæland",
+    achievement: "Icelandic Minister of Social Affairs",
+    condition: "Cortical Visual Impairment (10% Residual Vision)",
+    years: "Born 1959",
+    onset: "Age 5 months, meningitis and chickenpox caused brain stem damage",
+    simulation: "saeland-cortical-impairment",
+    description: "Inga Sæland became blind at five months old when meningitis and chickenpox, compounded by incorrect medication, caused brain stem damage. She was completely blind for her first two years before recovering approximately 10% of her vision — making her legally blind throughout life.\n\nShe founded the People's Party at her kitchen table in 2016 and was elected to parliament in 2017.\n\n• Appointed Minister of Social Affairs and Housing in 2024\n\n• Founded the People's Party (Flokkur fólksins), which became Iceland's largest party in the south constituency (2024)\n\n• Earned a Bachelor of Laws from the University of Iceland at age 57\n\n• Vocal disability rights advocate: 'Proud. Disabled. And endlessly grateful. Nothing About Us Without Us.'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Inga_S%C3%A6land",
+    nationality: { country: "Iceland", flag: "🇮🇸" }
   }
 };

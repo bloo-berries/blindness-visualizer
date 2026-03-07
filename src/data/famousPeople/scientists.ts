@@ -132,5 +132,27 @@ export const scientists: Record<string, PersonData> = {
     description: "Gerrit van der Mey lost his sight at age 4 when meningitis destroyed his optic nerves. In 1945, a second bout of meningitis left him completely deaf, making him deafblind for the remaining 57 years of his life.\n\nDespite being deafblind, he earned a PhD in mathematics from Leiden University and became a pioneering computer programmer.\n\n• Wrote operating systems and code for PTERA and ZEBRA, among the first Dutch electronic computers\n\n• Created compilers for ALGOL, LISP, IPL V, SNOBOL3, and ALGOL 68\n\n• Communicated via a specially constructed braille reading-box connected to a keyboard\n\n• Knight of the Order of Orange-Nassau (1982)",
     wikiUrl: "https://en.wikipedia.org/wiki/Gerrit_van_der_Mey",
     nationality: { country: "Netherlands", flag: "🇳🇱" }
+  },
+  mariaReiche: {
+    name: "Maria Reiche",
+    achievement: "Guardian of the Nazca Lines",
+    condition: "Progressive Vision Loss + Parkinson's Disease",
+    years: "1903-1998",
+    onset: "Late in life, progressive",
+    simulation: "reiche-progressive-blindness",
+    description: "Maria Reiche was a German-born Peruvian mathematician and archaeologist who dedicated over 50 years to studying and preserving the Nazca Lines. In her later years, she lost her sight and also suffered from Parkinson's disease, yet continued her research — publishing 'Contributions to Geometry and Astronomy in Ancient Peru' at age 90.\n\nShe first saw the Nazca Lines in 1941 with historian Paul Kosok and spent the rest of her life mapping them, identifying 18 different animal and bird figures.\n\n• Her work led to the Nazca Lines being designated a UNESCO World Heritage Site in 1994\n\n• Used her mathematics background to analyze how the Nazca created such precisely scaled figures\n\n• Spent her own money to hire guards and protect the lines from damage\n\n• Buried near Nazca with official honors; a museum bears her name",
+    wikiUrl: "https://en.wikipedia.org/wiki/Maria_Reiche",
+    nationality: { country: "Peru", flag: "🇵🇪" }
+  },
+  melanieLipinska: {
+    name: "Mélanie Lipinska",
+    achievement: "Pioneer Historian of Women in Medicine",
+    condition: "Blindness (Cause Unrecorded)",
+    years: "1865-1933",
+    onset: "Blind by 1922",
+    simulation: "complete-blindness",
+    description: "Mélanie Lipinska was a Polish-French physician and historian who became blind by 1922. Despite losing her sight, she continued her research and later traveled to California to study resources for the blind with the American Society of the Blind.\n\nBorn in Ostrołęka in Russian-controlled Poland, she studied medicine at the University of Paris.\n\n• Author of 'Histoire des femmes médecins' — the landmark history of women in medicine, submitted to the Académie de médecine de Paris in 1900\n\n• Won the Victor Hugo Award (1902) for her doctoral thesis\n\n• Worked closely with pioneering physiologist Joséphine Joteyko\n\n• Her commentary on the medical writings of Hildegard of Bingen remains an important scholarly contribution",
+    wikiUrl: "https://en.wikipedia.org/wiki/M%C3%A9lanie_Lipinska",
+    nationality: { country: "Poland", flag: "🇵🇱" }
   }
 };

@@ -193,7 +193,39 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'rumphius-glaucoma-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
 
     // ===== EGYPTIAN =====
-    'harara-traumatic-blindness': ['completeBlindness']
+    'harara-traumatic-blindness': ['completeBlindness'],
+
+    // ===== FINNISH =====
+    'arvonen-progressive-blindness': ['cataracts', 'amd', 'blurryVision', 'blindnessRightEye'],
+
+    // ===== GUATEMALAN =====
+    'larue-legal-blindness': ['blurryVision', 'lossOfContrast'],
+
+    // ===== ICELANDIC =====
+    'saeland-cortical-impairment': ['blurryVision', 'lossOfContrast', 'tunnelVision', 'glare'],
+
+    // ===== IRANIAN =====
+    'ameneh-acid-blindness': ['completeBlindness'],
+
+    // ===== ISRAELI =====
+    'roni-congenital-blindness': ['blindnessLeftEye', 'blurryVision'],
+
+    // ===== MALAWIAN =====
+    'taonere-cataract-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
+
+    // ===== NEW ZEALAND =====
+    'jock-partial-blindness': ['blurryVision', 'glare', 'lossOfContrast'],
+    'eddie-congenital-blindness': ['cataracts', 'blurryVision', 'blindnessRightEye'],
+
+    // ===== PAKISTANI =====
+    'pirzada-glaucoma': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
+
+    // ===== PERUVIAN =====
+    'reiche-progressive-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
+
+    // ===== RUSSIAN =====
+    'dyozhkin-monocular-vision': ['blindnessLeftEye'],
+    'lysova-low-vision': ['blurryVision', 'lossOfContrast']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

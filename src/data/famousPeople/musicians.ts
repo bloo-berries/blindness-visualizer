@@ -310,13 +310,13 @@ export const musicians: Record<string, PersonData> = {
     nationality: { country: "United Kingdom", flag: "🇬🇧" }
   },
   amadou: {
-    name: "Amadou Bagayoko",
-    achievement: "Amadou & Mariam Duo, Grammy-Nominated",
-    condition: "Congenital Cataracts to Total Blindness",
-    years: "Born 1954",
-    onset: "Congenital, blind by age 16",
+    name: "Amadou & Mariam",
+    achievement: "Mali's Legendary Blind Musical Duo",
+    condition: "Congenital Cataracts (Amadou) & Measles Blindness (Mariam)",
+    years: "Born 1954 & 1958",
+    onset: "Amadou blind by 16; Mariam blind at 5",
     simulation: "amadou-cataract-progression",
-    description: "Amadou Bagayoko was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened until total blindness at age 16.\n\n• One half of legendary Malian duo Amadou & Mariam\n\n• Created joyful, vibrant music for over five decades\n\n• Grammy-nominated\n\n• Quote: 'Beyond our vision, we can imagine'",
+    description: "Amadou Bagayoko (born 1954) lost his sight at age 16 from congenital cataracts. Mariam Doumbia (born 1958) went blind at age 5 after contracting measles and receiving inadequate medical care. They met in 1975 at Mali's Bamako Institute for the Young Blind and formed a lifelong romantic and musical partnership.\n\nTheir 'Afro-funk' style blends traditional Malian sound with rock guitars, Cuban trumpets, and global influences.\n\n• Grammy-nominated duo with international acclaim spanning five decades\n\n• Breakthrough album 'Dimanche à Bamako' (2005) produced by Manu Chao\n\n• Collaborated with Stevie Wonder, K'Naan, and TV on the Radio\n\n• Albums include 'Sou ni tilé,' 'Welcome to Mali,' and 'Folila'",
     wikiUrl: "https://en.wikipedia.org/wiki/Amadou_%26_Mariam",
     nationality: { country: "Mali", flag: "🇲🇱" }
   },
@@ -484,6 +484,72 @@ export const musicians: Record<string, PersonData> = {
     description: "Jaroslav Ježek was born with severe cataracts that left him nearly blind, able to perceive only shapes and shadows. Multiple surgeries failed to restore his vision. He spent seven years at the Institute for Blind and Weak-eyed Children.\n\nRemarkably, he could see best under blue light — his famous Blue Room, now a museum in Prague, had blue walls, ceiling, and light bulbs to accommodate his remaining vision.\n\n• Leading composer of interwar Czechoslovak theater and jazz\n\n• Created hundreds of songs for Prague's celebrated Liberated Theatre with Voskovec and Werich\n\n• His piano piece 'Bugatti Step' (1930) remains beloved in Czechia\n\n• Fled Nazi-occupied Czechoslovakia in 1939; died in New York exile at age 35",
     wikiUrl: "https://en.wikipedia.org/wiki/Jaroslav_Je%C5%BEek_(composer)",
     nationality: { country: "Czechia", flag: "🇨🇿" }
+  },
+  wessehFreeman: {
+    name: "Wesseh Freeman",
+    achievement: "Liberia's Viral Oil Can Guitar Virtuoso",
+    condition: "Childhood Blindness",
+    years: "1976-2018",
+    onset: "Childhood",
+    simulation: "complete-blindness",
+    description: "Wesseh Freeman (also known as Weesay) became blind as a child and turned to music to support himself and his family in Monrovia, Liberia. He built his own guitars from oil cans, shaped necks with a machete, and used bicycle cables for strings.\n\nA video of him performing on the streets of Monrovia went viral in 2016, with his Facebook page attracting over 7 million visitors and bringing international attention that helped fund a home for him.\n\n• Self-taught musician who built all his own instruments from scrap materials\n\n• Music addressed war, Liberian history, and his own life experiences\n\n• International viral sensation after 2016 street performance video\n\n• Died in a road accident in Monrovia on February 27, 2018",
+    wikiUrl: "https://en.wikipedia.org/wiki/Wesseh_Freeman",
+    nationality: { country: "Liberia", flag: "🇱🇷" }
+  },
+  alanNamoko: {
+    name: "Alan Namoko",
+    achievement: "Malawi's Legendary Blind Blues Musician",
+    condition: "Blindness",
+    years: "1956-1995",
+    onset: "From birth or early childhood",
+    simulation: "complete-blindness",
+    description: "Alan Nomoko Namoko was a blind blues and jazz musician from Malawi who became one of the country's most influential musical figures in the 1970s and 1980s.\n\nHe played banjo and sang in Lomwe, Chewa, and Nyanja languages, performing with his band Chimvu Jazz.\n\n• One of Malawi's most celebrated musicians\n\n• Toured internationally and was featured on the BBC's John Peel show\n\n• Performed with his band Chimvu Jazz throughout Malawi and abroad\n\n• Influential figure in Malawian popular music until his death in 1995",
+    wikiUrl: "https://en.wikipedia.org/wiki/Alan_Namoko",
+    nationality: { country: "Malawi", flag: "🇲🇼" }
+  },
+  eddieLow: {
+    name: "Eddie Low",
+    achievement: "NZ Country Legend, 60+ Year Career",
+    condition: "Congenital Blindness (Rubella)",
+    years: "1943-2024",
+    onset: "Blind from birth; partial sight in left eye restored at 12",
+    simulation: "eddie-congenital-blindness",
+    description: "Eddie Low was born blind in Rotorua, New Zealand, after his Māori mother contracted German measles during pregnancy. His twin brother did not survive, and his mother died weeks after his birth. At age 12, a series of operations restored partial sight in his left eye.\n\nDespite a school report saying he had 'no musical ability,' he became an accomplished multi-instrumentalist and developed a rich baritone voice. At 13, he formed The Three Blind Mice, an instrumental trio.\n\n• New Zealand Entertainer and Songwriter of the Year (1980)\n\n• Member of the New Zealand Order of Merit (MNZM) for services to music\n\n• Wrote the iconic 'Songs of Home,' celebrating Aotearoa through Māori place names\n\n• Career spanning over 60 years including The Quin Tikis and the NZ Highwaymen\n\n• Inducted into the Country Hands of Fame in both Tamworth, Australia and Gore, New Zealand",
+    wikiUrl: "https://en.wikipedia.org/wiki/Eddie_Low",
+    nationality: { country: "New Zealand", flag: "🇳🇿" }
+  },
+  anaLucreciaTaglioretti: {
+    name: "Ana Lucrecia Taglioretti",
+    achievement: "Paraguayan Violin Prodigy",
+    condition: "Congenital Blindness",
+    years: "1995-2020",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Ana Lucrecia Taglioretti was born blind in Paraguay and abandoned twice — first at birth, then again after her blindness was discovered. Adopted by a music teacher, she began studying music at age five, starting with piano before specializing in violin.\n\nAt six she joined the Luque International Sanatorium Choir, and in 2003 joined the youth orchestra project Sonidos de la Tierra (Sounds of the Earth).\n\n• Member of the National Symphonic Orchestra of Paraguay from 2014\n\n• Performed with artists including Carlos Vives, Rolando Chaparro, and Lizza Bogado\n\n• Regular performer at Teletón Paraguay and United Nations Paraguay events\n\n• Died in January 2020 at age 24",
+    wikiUrl: "https://en.wikipedia.org/wiki/Ana_Lucrecia_Taglioretti",
+    nationality: { country: "Paraguay", flag: "🇵🇾" }
+  },
+  filipVisnjic: {
+    name: "Filip Višnjić",
+    achievement: "The Serbian Homer, Greatest Gusle Poet",
+    condition: "Blindness from Smallpox",
+    years: "1767-1834",
+    onset: "Age 8-9, from smallpox",
+    simulation: "complete-blindness",
+    description: "Filip Višnjić went blind at age 8 or 9 after contracting smallpox. Despite this, he became the greatest epic poet of the Serbian oral tradition, performing on the gusle (a single-stringed bowed instrument).\n\nNotable Serbian scholar Miloš N. Đurić dubbed him 'the Serbian Homer.' His works were preserved when linguist Vuk Karadžić recorded his performances in 1815.\n\n• Composed 13 original epic poems chronicling the First Serbian Uprising against the Ottoman Empire\n\n• His work described as 'the swansong of the epic tradition' by scholar Svetozar Koljević\n\n• One of the few epic poets of his era whose works were attributed by name rather than anonymous\n\n• His epic poetry remains a cornerstone of Serbian literary heritage",
+    wikiUrl: "https://en.wikipedia.org/wiki/Filip_Vi%C5%A1nji%C4%87",
+    nationality: { country: "Serbia", flag: "🇷🇸" }
+  },
+  kelvinTan: {
+    name: "Kelvin Tan",
+    achievement: "Project SuperStar Winner, Platinum Artist",
+    condition: "Leber's Congenital Amaurosis",
+    years: "Born 1981",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Kelvin Tan Wei Lian was born with Leber's congenital amaurosis, a genetic disorder causing severe vision loss from birth. Before his music breakthrough, he earned a living as a street busker across Singapore.\n\nHe won the first edition of Project SuperStar in 2005, launching a successful Mandopop career.\n\n• Debut album 'All I Want Is...' certified platinum in Singapore within five days of release\n\n• Won Best TV Drama Theme Song at the 2019 Star Awards for 'You Can Be An Angel 3'\n\n• Guide at Singapore's Dialogue in the Dark exhibition\n\n• Ambassador for disability awareness campaigns in Singapore",
+    wikiUrl: "https://en.wikipedia.org/wiki/Kelvin_Tan",
+    nationality: { country: "Singapore", flag: "🇸🇬" }
   },
   akselAgerby: {
     name: "Aksel Agerby",

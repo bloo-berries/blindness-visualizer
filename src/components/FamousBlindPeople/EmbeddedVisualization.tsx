@@ -174,7 +174,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           <img
             src={THUMBNAIL_URL}
             alt={`Vision simulation preview for ${personName}`}
-            crossOrigin="anonymous"
             style={{
               position: 'absolute',
               top: 0,

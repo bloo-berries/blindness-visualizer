@@ -4,7 +4,7 @@ import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
 import { getSimulationConditions } from '../../utils/famousPeopleUtils';
 import { generateCSSFilters } from '../../utils/cssFilters';
-import { DEMO_VIDEO_ID } from '../../utils/appConstants';
+import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from '../Visualizer/hooks/animatedOverlays/neoMatrixCodeVision';
@@ -15,15 +15,10 @@ interface EmbeddedVisualizationProps {
   personName: string;
 }
 
-// YouTube thumbnail URL for the demo video
-const THUMBNAIL_URL = `https://img.youtube.com/vi/${DEMO_VIDEO_ID}/hqdefault.jpg`;
-
 /**
- * Embedded visualization component that shows a YouTube thumbnail
+ * Embedded visualization component that shows a YouTube video
  * with the person's vision condition effects applied.
- * Uses a static image instead of an iframe so that CSS SVG filters
- * work on all browsers including mobile Safari (which can't apply
- * CSS filters to cross-origin iframe content).
+ * Used in PersonDialog to preview the simulation without navigation.
  */
 export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   personId,
@@ -57,6 +52,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
 
   // Secondary overlay for monocular blindness when combined with another visual field effect
+  // useVisualFieldOverlay returns only one overlay, so if glaucoma (or similar) is matched first,
+  // blindnessLeftEye/blindnessRightEye never renders. Handle it separately here.
   const monocularOverlayStyle = useMemo((): React.CSSProperties | null => {
     const hasOtherFieldEffect = effects.some(e =>
       e.enabled && ['glaucoma', 'tunnelVision', 'retinitisPigmentosa', 'hemianopiaLeft', 'hemianopiaRight', 'scotoma'].includes(e.id)
@@ -95,6 +92,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   }, [effects]);
 
   // Check for complete blindness conditions (total darkness only)
+  // Note: Heather's LP vision is NOT total darkness - it's "washed-out white"
   const isCompleteBlindness = effects.some(e => e.id === 'completeBlindness' && e.enabled);
   const isNearTotalBlindness = effects.some(e =>
     (e.id === 'tofiriComplete' ||
@@ -160,7 +158,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           </Box>
         )}
 
-        {/* Image container with effects applied via CSS filters */}
+        {/* Video container with effects */}
         <Box
           sx={{
             position: 'absolute',
@@ -171,17 +169,20 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             filter: cssFilters || 'none'
           }}
         >
-          <img
-            src={THUMBNAIL_URL}
-            alt={`Vision simulation preview for ${personName}`}
+          <iframe
+            {...YOUTUBE_IFRAME_PROPS}
+            src={YOUTUBE_EMBED_URL}
+            title={`Vision simulation for ${personName}`}
+            aria-label={`YouTube video with ${personName}'s vision condition simulation applied`}
+            tabIndex={-1}
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
-              objectFit: 'cover',
-              border: 'none'
+              border: 'none',
+              pointerEvents: 'none'
             }}
           />
 
@@ -204,26 +205,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           {neoEffect && (
             <NeoMatrixCodeVision intensity={neoEffect.intensity} />
           )}
-        </Box>
-
-        {/* "A Quick Preview" label */}
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '4px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 1001,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            color: 'white',
-            padding: '1px 8px',
-            borderRadius: '3px',
-            fontSize: '9px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px'
-          }}
-        >
-          A Quick Preview
         </Box>
       </Box>
 

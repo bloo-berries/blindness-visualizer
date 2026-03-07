@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
-import { VisualEffect, ConditionType } from '../../types/visualEffects';
+import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
 import { getSimulationConditions } from '../../utils/famousPeopleUtils';
 import { generateCSSFilters } from '../../utils/cssFilters';
-import { isColorVisionCondition, getColorVisionMatrix } from '../../utils/colorVisionFilters';
-import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
+import { DEMO_VIDEO_ID } from '../../utils/appConstants';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from '../Visualizer/hooks/animatedOverlays/neoMatrixCodeVision';
@@ -16,10 +15,15 @@ interface EmbeddedVisualizationProps {
   personName: string;
 }
 
+// YouTube thumbnail URL for the demo video
+const THUMBNAIL_URL = `https://img.youtube.com/vi/${DEMO_VIDEO_ID}/hqdefault.jpg`;
+
 /**
- * Embedded visualization component that shows a YouTube video
+ * Embedded visualization component that shows a YouTube thumbnail
  * with the person's vision condition effects applied.
- * Used in PersonDialog to preview the simulation without navigation.
+ * Uses a static image instead of an iframe so that CSS SVG filters
+ * work on all browsers including mobile Safari (which can't apply
+ * CSS filters to cross-origin iframe content).
  */
 export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   personId,
@@ -53,8 +57,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
 
   // Secondary overlay for monocular blindness when combined with another visual field effect
-  // useVisualFieldOverlay returns only one overlay, so if glaucoma (or similar) is matched first,
-  // blindnessLeftEye/blindnessRightEye never renders. Handle it separately here.
   const monocularOverlayStyle = useMemo((): React.CSSProperties | null => {
     const hasOtherFieldEffect = effects.some(e =>
       e.enabled && ['glaucoma', 'tunnelVision', 'retinitisPigmentosa', 'hemianopiaLeft', 'hemianopiaRight', 'scotoma'].includes(e.id)
@@ -87,43 +89,12 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     };
   }, [effects]);
 
-  // Generate inline SVG feColorMatrix values for color vision effects
-  // Used with backdrop-filter for mobile Safari compatibility (CSS filter on
-  // a parent of a cross-origin iframe doesn't work on mobile Safari)
-  const colorVisionMatrix = useMemo((): string | null => {
-    const colorEffect = effects.find(e => isColorVisionCondition(e.id) && e.enabled);
-    if (!colorEffect || colorEffect.intensity === 0) return null;
-
-    // For monochromacy, use saturate/contrast CSS filter instead of SVG matrix
-    if (colorEffect.id === 'monochromatic' || colorEffect.id === 'monochromacy') return null;
-
-    const fullMatrix = getColorVisionMatrix(colorEffect.id as ConditionType, 1.0);
-    const identity = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    const blended = fullMatrix.map((val, i) =>
-      val * colorEffect.intensity + identity[i] * (1 - colorEffect.intensity)
-    );
-
-    return [
-      blended[0], blended[1], blended[2], 0, 0,
-      blended[3], blended[4], blended[5], 0, 0,
-      blended[6], blended[7], blended[8], 0, 0,
-      0, 0, 0, 1, 0
-    ].join(' ');
+  // Generate CSS filters for the enabled effects
+  const cssFilters = useMemo(() => {
+    return generateCSSFilters(effects);
   }, [effects]);
 
-  // Generate CSS filters excluding color vision SVG references (those are
-  // handled separately via backdrop-filter for mobile compatibility)
-  const nonColorCSSFilters = useMemo(() => {
-    if (colorVisionMatrix) {
-      // Strip url(#...) SVG filter references, keep other CSS filters (blur, brightness, etc.)
-      const fullFilters = generateCSSFilters(effects);
-      return fullFilters.replace(/url\(#[^)]+\)/g, '').trim();
-    }
-    return generateCSSFilters(effects);
-  }, [effects, colorVisionMatrix]);
-
   // Check for complete blindness conditions (total darkness only)
-  // Note: Heather's LP vision is NOT total darkness - it's "washed-out white"
   const isCompleteBlindness = effects.some(e => e.id === 'completeBlindness' && e.enabled);
   const isNearTotalBlindness = effects.some(e =>
     (e.id === 'tofiriComplete' ||
@@ -132,9 +103,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
 
   // Check for Neo Matrix Code Vision (requires canvas-based rendering)
   const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
-
-  const colorFilterId = 'embedded-cvd-filter';
-  const backdropFilterValue = colorVisionMatrix ? `url(#${colorFilterId})` : undefined;
 
   return (
     <Box sx={{ mt: 2 }}>
@@ -153,17 +121,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           overflow: 'hidden'
         }}
       >
-        {/* Inline SVG filter for color vision - rendered locally for mobile Safari compatibility */}
-        {colorVisionMatrix && (
-          <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
-            <defs>
-              <filter id={colorFilterId} colorInterpolationFilters="linearRGB">
-                <feColorMatrix type="matrix" values={colorVisionMatrix} />
-              </filter>
-            </defs>
-          </svg>
-        )}
-
         {/* Simulation label */}
         <Box
           sx={{
@@ -203,7 +160,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           </Box>
         )}
 
-        {/* Video container with non-color CSS filters (blur, brightness, etc.) */}
+        {/* Image container with effects applied via CSS filters */}
         <Box
           sx={{
             position: 'absolute',
@@ -211,23 +168,21 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             left: 0,
             width: '100%',
             height: '100%',
-            filter: nonColorCSSFilters || 'none'
+            filter: cssFilters || 'none'
           }}
         >
-          <iframe
-            {...YOUTUBE_IFRAME_PROPS}
-            src={YOUTUBE_EMBED_URL}
-            title={`Vision simulation for ${personName}`}
-            aria-label={`YouTube video with ${personName}'s vision condition simulation applied`}
-            tabIndex={-1}
+          <img
+            src={THUMBNAIL_URL}
+            alt={`Vision simulation preview for ${personName}`}
+            crossOrigin="anonymous"
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
-              border: 'none',
-              pointerEvents: 'none'
+              objectFit: 'cover',
+              border: 'none'
             }}
           />
 
@@ -252,24 +207,25 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           )}
         </Box>
 
-        {/* Color vision filter overlay - uses backdrop-filter for mobile Safari
-            compatibility with cross-origin iframes */}
-        {backdropFilterValue && (
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backdropFilter: backdropFilterValue,
-              WebkitBackdropFilter: backdropFilterValue,
-              zIndex: 1000,
-              pointerEvents: 'none'
-            }}
-            aria-hidden="true"
-          />
-        )}
+        {/* "A Quick Preview" label */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '4px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1001,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            color: 'white',
+            padding: '1px 8px',
+            borderRadius: '3px',
+            fontSize: '9px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
+          }}
+        >
+          A Quick Preview
+        </Box>
       </Box>
 
       <Typography

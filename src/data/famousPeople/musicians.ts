@@ -561,5 +561,27 @@ export const musicians: Record<string, PersonData> = {
     description: "Aksel Agerby was blind from an early age and was educated at the Royal Institute for the Blind in Copenhagen. The specific medical cause of his blindness was never documented.\n\nHe debuted as a concert pianist in 1911 at age 22.\n\n• Composed the melody to 'Jeg er havren,' one of Denmark's most beloved folk songs\n\n• Organist at Brønshøj Church (1930-1942)\n\n• Chairman of the Young Musicians' Society (DUT), championing contemporary music throughout the 1930s\n\n• Ran his own music publishing company",
     wikiUrl: "https://en.wikipedia.org/wiki/Aksel_Agerby",
     nationality: { country: "Denmark", flag: "🇩🇰" }
+  },
+  gordonKoang: {
+    name: "Gordon Koang",
+    achievement: "South Sudan's 'King of Music', thom virtuoso",
+    condition: "Congenital Blindness",
+    years: "Born 1980",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Gordon Koang is a South Sudanese musician known as the 'King of Music' in his homeland. Born blind in Nasir, Upper Nile, he was introduced to the thom — a traditional East African harp — at age eight by his cousin. He began composing original songs in 1996, singing in Nuer, English, and Arabic, blending traditional rhythms with original compositions.\n\nWhen civil war erupted in South Sudan in 2013 while he was touring Canada, he returned to find his home destroyed. As a Nuer, he faced danger from militias and fled to Uganda before seeking asylum in Australia.\n\n• Released eleven albums including 'Unity,' earning him the nickname 'Michael Jackson of South Sudan'\n\n• Won the prestigious Levi's Music Prize at Australia's BIGSOUND festival\n\n• Featured in NME and Pitchfork after resettling in Melbourne\n\n• Advocates for peace, refugees, and family reunification through his music",
+    wikiUrl: "https://en.wikipedia.org/wiki/Gordon_Koang",
+    nationality: { country: "South Sudan", flag: "🇸🇸" }
+  },
+  berthaTammelin: {
+    name: "Bertha Tammelin",
+    achievement: "Acclaimed Swedish opera singer and actress",
+    condition: "Progressive Visual Impairment",
+    years: "1836-1915",
+    onset: "Weak eyesight from birth, progressively worsened, forced retirement in 1884",
+    simulation: "tammelin-progressive-blindness",
+    description: "Bertha Tammelin had weak eyesight her entire life, which progressively worsened throughout her career. She made her final stage appearance on March 7, 1884, when her vision had deteriorated to the point she could no longer perform.\n\nBorn Bertha Carolina Mathilda Bock, she was a premier actress at the Royal Swedish Opera and Royal Dramatic Theatre from 1856.\n\n• Operatic mezzo-soprano, pianist, and composer who gave piano concerts at age 14\n\n• Studied with Italian conductor and composer Jacopo Foroni\n\n• Taught music at the Royal Swedish Academy of Music (from 1879) and drama at the Royal Dramatic Training Academy (from 1889)\n\n• Received the Litteris et Artibus award in 1885 for her contributions to Swedish arts",
+    wikiUrl: "https://en.wikipedia.org/wiki/Bertha_Tammelin",
+    nationality: { country: "Sweden", flag: "🇸🇪" }
   }
 };

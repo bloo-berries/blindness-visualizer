@@ -132,5 +132,16 @@ export const contemporaryFigures: Record<string, PersonData> = {
     description: "Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite relatives suggesting his parents abandon him, he persevered against a system that initially barred him from studying science.\n\n• First international blind student at MIT and first visually impaired student in MIT Sloan Management Science\n\n• Founded Bollant Industries in 2012 with backing from Ratan Tata, manufacturing eco-friendly products\n\n• Employs over 650 people - half with disabilities\n\n• Forbes 30 Under 30 Asia (2017)",
     wikiUrl: "https://en.wikipedia.org/wiki/Srikanth_Bolla",
     nationality: { country: "India", flag: "🇮🇳" }
+  },
+  ashcharyaPeiris: {
+    name: "Ashcharya Peiris",
+    achievement: "Sri Lanka's first blind fashion designer",
+    condition: "Optic Nerve Damage (Bomb Blast Trauma)",
+    years: "Born 1980",
+    onset: "Age 20, LTTE suicide bomb blast in March 2000",
+    simulation: "peiris-traumatic-blindness",
+    description: "Ashcharya Peiris lost her sight at age 20 when a suicide bomb blast struck near her car in Rajagiriya, Sri Lanka, in March 2000. She was driving home from her banking job at HSBC when the explosion occurred. She spent days in the ICU, and it was months before she accepted that damage to her optic nerve had left her permanently blind.\n\nDespite her blindness, she reinvented herself as a fashion designer, founding the Christina Glory brand in 2016.\n\n• Sri Lanka's first visually impaired fashion designer\n\n• Named to BBC's 100 Women list of inspiring and influential women (2019) — the only Sri Lankan woman on the list\n\n• Listed in Top 10 Most Remarkable Women of Sri Lanka by Independent Television Network (2017)\n\n• Motivational speaker and volunteer assisting the Sri Lanka Army through the Arya Foundation",
+    wikiUrl: "https://en.wikipedia.org/wiki/Ashcharya_Peiris",
+    nationality: { country: "Sri Lanka", flag: "🇱🇰" }
   }
 };

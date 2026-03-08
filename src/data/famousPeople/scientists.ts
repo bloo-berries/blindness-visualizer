@@ -154,5 +154,16 @@ export const scientists: Record<string, PersonData> = {
     description: "Mélanie Lipinska was a Polish-French physician and historian who became blind by 1922. Despite losing her sight, she continued her research and later traveled to California to study resources for the blind with the American Society of the Blind.\n\nBorn in Ostrołęka in Russian-controlled Poland, she studied medicine at the University of Paris.\n\n• Author of 'Histoire des femmes médecins' — the landmark history of women in medicine, submitted to the Académie de médecine de Paris in 1900\n\n• Won the Victor Hugo Award (1902) for her doctoral thesis\n\n• Worked closely with pioneering physiologist Joséphine Joteyko\n\n• Her commentary on the medical writings of Hildegard of Bingen remains an important scholarly contribution",
     wikiUrl: "https://en.wikipedia.org/wiki/M%C3%A9lanie_Lipinska",
     nationality: { country: "Poland", flag: "🇵🇱" }
+  },
+  francoisHuber: {
+    name: "François Huber",
+    achievement: "Blind naturalist, pioneer of bee science",
+    condition: "Amaurosis (Progressive Vision Loss to Total Blindness)",
+    years: "1750-1831",
+    onset: "Age 15, progressive deterioration to total blindness",
+    simulation: "huber-progressive-blindness",
+    description: "François Huber's eyesight began deteriorating at age 15 from amaurosis, a condition causing progressive vision loss. He was sent to a village near Paris to recover, but his sight continued to worsen until he could only perceive light, eventually resulting in complete blindness.\n\nDespite total blindness, he conducted groundbreaking research on honeybees through his wife Marie-Aimée and his servant François Burnens, who served as his eyes.\n\n• Author of 'Nouvelles Observations sur les Abeilles' (1792), an 800-page landmark of entomological science\n\n• Invented the 'leaf hive' (Huber hive) allowing hive inspection without destroying the comb\n\n• Discovered that queen bees mate in flight, not in the hive, and made key discoveries about swarming and wax secretion\n\n• His work influenced Charles Darwin, who referenced it in 'On the Origin of Species'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Huber",
+    nationality: { country: "Switzerland", flag: "🇨🇭" }
   }
 };

@@ -154,5 +154,16 @@ export const historicalFigures: Record<string, PersonData> = {
     description: "Surdas was a 16th-century blind Hindu devotional poet and singer, traditionally believed to have been blind from birth.\n\nHis vivid descriptions of Lord Krishna transcend his physical blindness.\n\n• Author of 'Sur Sagar' (Sur's Ocean), containing vivid descriptions of Krishna's childhood\n\n• Elevated Braj Bhasha from a common dialect to a literary language\n\n• Key figure of the Bhakti devotional movement\n\n• To this day, blind singers in North India refer to themselves as 'Surdas' in his honor",
     wikiUrl: "https://en.wikipedia.org/wiki/Surdas",
     nationality: { country: "India", flag: "🇮🇳" }
+  },
+  infantaMargarita: {
+    name: "Infanta Margarita, Duchess of Soria",
+    achievement: "Blind Spanish Princess, ONCE Foundation President",
+    condition: "Congenital Blindness (Light Perception Only)",
+    years: "Born 1939",
+    onset: "From birth, can perceive only light and shadows",
+    simulation: "margarita-congenital-blindness",
+    description: "Infanta Margarita was born in Rome in 1939, the third child of Infante Juan, Count of Barcelona, and Princess María Mercedes of Bourbon-Two Sicilies. She is the younger sister of King Juan Carlos I and aunt of King Felipe VI. Born blind, her condition was identified within months of birth. After four years of medical interventions, a leading eye specialist determined she could see only 'light and shadows and rarely something more.'\n\nShe married physician Carlos Zurita y Delgado in 1972 and renounced her right of succession to the throne. She holds the titles Duchess of Soria and 2nd Duchess of Hernani.\n\n• Honorary President of the ONCE Foundation (Spain's National Organization of the Blind)\n\n• Co-founded the Duke and Duchess of Soria Cultural Foundation (1989) for promotion of Spanish culture and heritage\n\n• Honorary President of Madrid's UNICEF delegation, Spanish Heart Foundation, and Spanish Federation of Hemophilia\n\n• Multilingual musician who has never let her blindness limit her public and cultural life",
+    wikiUrl: "https://en.wikipedia.org/wiki/Infanta_Margarita,_Duchess_of_Soria",
+    nationality: { country: "Spain", flag: "🇪🇸" }
   }
 };

@@ -225,7 +225,27 @@ export const getSimulationConditions = (simulation: string): string[] => {
 
     // ===== RUSSIAN =====
     'dyozhkin-monocular-vision': ['blindnessLeftEye'],
-    'lysova-low-vision': ['blurryVision', 'lossOfContrast']
+    'lysova-low-vision': ['blurryVision', 'lossOfContrast'],
+
+    // ===== SOUTH KOREAN =====
+    'kwak-monocular-blindness': ['blindnessLeftEye'],
+
+    // ===== SPANISH =====
+    'arce-albinism-vision': ['blurryVision', 'lossOfContrast', 'glare'],
+    'casinos-diabetic-retinopathy': ['diabeticRetinopathy', 'completeBlindness'],
+    'congost-optic-atrophy': ['blurryVision', 'lossOfContrast', 'scotoma'],
+    'espina-progressive-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
+    'margarita-congenital-blindness': ['completeBlindness'],
+
+    // ===== SRI LANKAN =====
+    'peiris-traumatic-blindness': ['completeBlindness'],
+
+    // ===== SWEDISH =====
+    'reichard-retinitis-pigmentosa': ['retinitisPigmentosa', 'tunnelVision', 'lossOfContrast'],
+    'tammelin-progressive-blindness': ['blurryVision', 'lossOfContrast', 'cataracts'],
+
+    // ===== SWISS =====
+    'huber-progressive-blindness': ['blurryVision', 'lossOfContrast', 'cataracts']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

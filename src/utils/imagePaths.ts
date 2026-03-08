@@ -218,7 +218,18 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   theresaChan: 'Theresa-Poh-Lin-Chan.webp',
   filipVisnjic: 'Filip-Višnjić.webp',
   violaHashe: 'Viola-Hashe.webp',
-  andrewJeptha: 'Andrew-Jeptha.webp'
+  andrewJeptha: 'Andrew-Jeptha.webp',
+  gordonKoang: 'Gordon-Koang.webp',
+  kwakTaehwi: 'Kwak-Tae-hwi.webp',
+  martaArce: 'Marta-Arce.webp',
+  davidCasinos: 'David-Casinos.webp',
+  elenaCongost: 'Elena-Congost.webp',
+  conchaEspina: 'Concha-Espina.webp',
+  infantaMargarita: 'Infanta-Margarita.webp',
+  ashcharyaPeiris: 'Ashcharya-Peiris.webp',
+  majaReichard: 'Maja-Reichard.webp',
+  berthaTammelin: 'Bertha-Tammelin.webp',
+  francoisHuber: 'François-Huber.webp'
 };
 
 /**

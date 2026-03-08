@@ -255,5 +255,60 @@ export const athletes: Record<string, PersonData> = {
     description: "Michael Barredo became completely blind at age 24 when a car accident in 1979 sent his head through a windshield, destroying his right eye immediately. Despite 10 surgeries including 3 in the United States, doctors could not save his left eye.\n\nBefore the accident, he was a multi-sport varsity athlete at De La Salle University.\n\n• Founding President of the Paralympic Committee of the Philippines (1997)\n\n• 5th President of the International Blind Sports Federation (IBSA, 2005-2013)\n\n• First person with a disability to serve on the Philippine Sports Commission\n\n• Paralympic Order recipient (2013) — highest honor in the Paralympic Movement, first Filipino to receive it\n\n• Co-authored the White Cane Act of 1989",
     wikiUrl: "https://en.wikipedia.org/wiki/Michael_Barredo",
     nationality: { country: "Philippines", flag: "🇵🇭" }
+  },
+  kwakTaehwi: {
+    name: "Kwak Tae-hwi",
+    achievement: "South Korean international footballer blind in one eye",
+    condition: "Monocular Blindness (Left Eye)",
+    years: "Born 1981",
+    onset: "From youth, blind in left eye",
+    simulation: "kwak-monocular-blindness",
+    description: "Kwak Tae-hwi is a retired South Korean professional footballer who competed at the highest levels despite being completely blind in his left eye since youth. Playing as a centre-back — a position demanding exceptional spatial awareness and depth perception — he earned 59 international caps for South Korea and represented his country at the 2014 FIFA World Cup and AFC Asian Cups in 2011 and 2015.\n\nBorn in Chilgok County, he developed through Daegu Technical High School and Chung-Ang University before debuting professionally with FC Seoul in 2005.\n\n• Captained Ulsan Hyundai FC to the AFC Champions League title in 2012\n\n• Won the K League 1 title with FC Seoul in 2016\n\n• Played internationally in Japan (Kyoto Sanga) and Saudi Arabia (Al Shabab, Al Hilal), winning the King Cup and Saudi Crown Prince Cup\n\n• Demonstrated that monocular vision need not be a barrier to elite athletic performance across a nearly two-decade career",
+    wikiUrl: "https://en.wikipedia.org/wiki/Kwak_Tae-hwi",
+    nationality: { country: "South Korea", flag: "🇰🇷" }
+  },
+  martaArce: {
+    name: "Marta Arce",
+    achievement: "Paralympic Judo medalist across 4 Games",
+    condition: "Oculocutaneous Albinism (Progressive Visual Impairment)",
+    years: "Born 1977",
+    onset: "From birth, progressive loss of vision",
+    simulation: "arce-albinism-vision",
+    description: "Marta Arce Payno was born in Valladolid, Spain, with oculocutaneous albinism — a genetic condition causing lack of pigmentation in skin, hair, and eyes along with severe visual impairment. Her vision progressively deteriorated until she lost nearly all remaining sight. She is classified B3 in Paralympic judo.\n\nShe began judo after moving to Madrid for university, introduced to the sport by her brother. She works as a physical therapist at the Autonomous University of Madrid and speaks four languages.\n\n• Silver medals at both 2004 Athens and 2008 Beijing Paralympics in judo\n\n• Bronze medal at 2012 London Paralympics\n\n• Competed at 2024 Paris Paralympics — spanning 20 years of Paralympic competition\n\n• Gold medal at IPC European Judo Championships",
+    wikiUrl: "https://en.wikipedia.org/wiki/Marta_Arce_Payno",
+    nationality: { country: "Spain", flag: "🇪🇸" }
+  },
+  davidCasinos: {
+    name: "David Casinos",
+    achievement: "4x Paralympic Gold in shot put and discus",
+    condition: "Diabetic Retinopathy (Total Blindness)",
+    years: "Born 1972",
+    onset: "Age 26 (1998), sudden total blindness from diabetic retinopathy",
+    simulation: "casinos-diabetic-retinopathy",
+    description: "David Casinos Sierra was born in Valencia and diagnosed with type 1 diabetes at age 2. In 1998, at age 26, he experienced sudden onset of total blindness following a routine ophthalmological examination due to diabetic retinopathy. His vision deteriorated completely within one month despite surgical attempts to preserve it.\n\nClassified F11/T11/B1 (total blindness), he turned to Paralympic athletics through Spain's ONCE (National Organization of the Blind). He was the Spanish flag bearer at the 2008 Beijing Paralympics.\n\n• Three consecutive gold medals in shot put F11 (Sydney 2000, Athens 2004, Beijing 2008)\n\n• Gold medal in discus F11 at London 2012 Paralympics\n\n• Bronze medal in discus F11 at Rio 2016 Paralympics\n\n• World record holder in shot put (15.26m, set at Sydney 2000)",
+    wikiUrl: "https://en.wikipedia.org/wiki/David_Casinos",
+    nationality: { country: "Spain", flag: "🇪🇸" }
+  },
+  elenaCongost: {
+    name: "Elena Congost",
+    achievement: "Paralympic Marathon gold medalist",
+    condition: "Congenital Optic Nerve Atrophy",
+    years: "Born 1987",
+    onset: "From birth, progressive hereditary degeneration",
+    simulation: "congost-optic-atrophy",
+    description: "Elena Congost Mohedano was born in Madrid with congenital optic nerve atrophy, a degenerative hereditary eye disease that causes progressive loss of central vision. Her vision is approximately 10% functional and has continued to deteriorate since childhood. She is classified T12/B2.\n\nA teacher by profession who lives in Barcelona, she has competed at five Paralympic Games spanning two decades (2004, 2008, 2012, 2016, and 2024).\n\n• Paralympic gold medalist in the marathon at 2016 Rio Paralympics\n\n• Silver medal in 1500m T12 at 2012 London Paralympics\n\n• At 2024 Paris Paralympics, controversially disqualified from bronze in the marathon after briefly releasing her guide tether to prevent her guide from falling, just 2 meters from the finish line\n\n• World Para Athletics acknowledged her 'positive values of solidarity and sportsmanship'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Elena_Congost",
+    nationality: { country: "Spain", flag: "🇪🇸" }
+  },
+  majaReichard: {
+    name: "Maja Reichard",
+    achievement: "Paralympic gold medalist, 24 championship medals",
+    condition: "Retinitis Pigmentosa",
+    years: "Born 1991",
+    onset: "Teenage years, progressive vision loss",
+    simulation: "reichard-retinitis-pigmentosa",
+    description: "Maja Reichard began losing her sight in her teenage years due to retinitis pigmentosa, a genetic disorder affecting the retina. She competes in the S11 disability class — the most severe visual impairment classification in para-swimming — and became one of Sweden's most decorated para-athletes.\n\nShe earned a Master of Science in Engineering from KTH Royal Institute of Technology and now works in urban planning and accessibility.\n\n• Paralympic gold medalist in 100m breaststroke at the 2012 London Games\n\n• Won 24 medals at Paralympic Games and World Championships, including 7 gold medals\n\n• Set 5 world records in freestyle and breaststroke swimming\n\n• Works at WSP in urban planning, bringing her lived experience of disability to accessibility design",
+    wikiUrl: "https://en.wikipedia.org/wiki/Maja_Reichard",
+    nationality: { country: "Sweden", flag: "🇸🇪" }
   }
 };

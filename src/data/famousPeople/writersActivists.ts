@@ -495,5 +495,16 @@ export const writersActivists: Record<string, PersonData> = {
     description: "Inga Sæland became blind at five months old when meningitis and chickenpox, compounded by incorrect medication, caused brain stem damage. She was completely blind for her first two years before recovering approximately 10% of her vision — making her legally blind throughout life.\n\nShe founded the People's Party at her kitchen table in 2016 and was elected to parliament in 2017.\n\n• Appointed Minister of Social Affairs and Housing in 2024\n\n• Founded the People's Party (Flokkur fólksins), which became Iceland's largest party in the south constituency (2024)\n\n• Earned a Bachelor of Laws from the University of Iceland at age 57\n\n• Vocal disability rights advocate: 'Proud. Disabled. And endlessly grateful. Nothing About Us Without Us.'",
     wikiUrl: "https://en.wikipedia.org/wiki/Inga_S%C3%A6land",
     nationality: { country: "Iceland", flag: "🇮🇸" }
+  },
+  conchaEspina: {
+    name: "Concha Espina",
+    achievement: "Nobel-nominated Spanish novelist who wrote blind",
+    condition: "Progressive Blindness",
+    years: "1869-1955",
+    onset: "Age 69 (1938), completely blind by 1940",
+    simulation: "espina-progressive-blindness",
+    description: "Concha Espina was born in Santander, Spain, and became one of the most accomplished Spanish women writers of her era. She began losing her sight in 1938 at age 69 and underwent surgical operations that temporarily restored some vision, but the medical attempts ultimately failed and she became completely blind by 1940.\n\nDespite total blindness for the last 15 years of her life, she continued writing using a ruled guideline, publishing 13 novels in complete darkness.\n\n• Nominated for the Nobel Prize in Literature 25 times over 28 years\n\n• Authored over 50 books including novels, poetry, and plays\n\n• Considered the first Spanish woman to earn her living exclusively from writing\n\n• Major works include 'La esfinge maragata' and 'El metal de los muertos'",
+    wikiUrl: "https://en.wikipedia.org/wiki/Concha_Espina",
+    nationality: { country: "Spain", flag: "🇪🇸" }
   }
 };

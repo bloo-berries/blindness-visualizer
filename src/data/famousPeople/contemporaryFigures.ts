@@ -135,7 +135,7 @@ export const contemporaryFigures: Record<string, PersonData> = {
   },
   ashcharyaPeiris: {
     name: "Ashcharya Peiris",
-    achievement: "Sri Lanka's first blind fashion designer",
+    achievement: "BBC's Top 100 Influential Women",
     condition: "Optic Nerve Damage (Bomb Blast Trauma)",
     years: "Born 1980",
     onset: "Age 20, LTTE suicide bomb blast in March 2000",

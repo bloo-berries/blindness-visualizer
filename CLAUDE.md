@@ -11,6 +11,7 @@ npm run build:prod # Production build without sourcemaps
 npm test           # Run tests in watch mode
 npm test -- --watchAll=false   # Run tests once
 npm run clean      # Remove build/ and node_modules/.cache/
+npm run generate:llms  # Generate LLM data files (pre-build)
 ```
 
 **CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests` since no test files exist yet).
@@ -54,7 +55,7 @@ Overlay z-index hierarchy is defined in `overlayConstants.ts` - new overlays mus
 The Visualizer component uses modular hooks:
 - `useMediaSetup` - Webcam/video/image source initialization
 - `useEffectProcessor` - Main effect processing pipeline
-- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (20+ individual animation files in `hooks/animatedOverlays/`)
+- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (16+ individual animation files in `hooks/animatedOverlays/`)
 - `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision, hemianopia overlays
 - `useScreenshot` - Screenshot capture functionality
 
@@ -82,11 +83,28 @@ Effects are organized by category in `src/data/effects/`:
 - `visualDisturbanceEffects.ts` - Visual snow, auras, floaters, PPVP, palinopsia, starbursting
 - `retinalEffects.ts` - Retinal diseases (AMD, diabetic retinopathy)
 - `ocularEffects.ts` - Eye conditions (cataracts, glaucoma, keratoconus)
-- `famousPeopleEffects.ts` - Person-specific effect combinations (36+ individual files in `src/data/effects/famousPeopleEffects/`)
+- `famousPeopleEffects.ts` - Person-specific effect combinations (32+ individual files in `src/data/effects/famousPeopleEffects/`)
 
 ### Famous People Feature
 
-The Famous People section (`src/components/FamousBlindPeople.tsx`) links historical/contemporary figures to their specific vision conditions. Person data is in `src/data/famousPeopleData.ts`. Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/`.
+The Famous People section (`src/components/FamousBlindPeople.tsx`) links ~196 historical/contemporary figures to their specific vision conditions. Person data is organized by category in `src/data/famousPeople/`:
+- `types.ts` - Type definitions (`PersonData`, etc.)
+- `contemporaryFigures.ts` - Contemporary public figures
+- `athletes.ts` - Athletes
+- `scientists.ts` - Scientists and inventors
+- `musicians.ts` - Musicians
+- `artists.ts` - Visual artists
+- `writersActivists.ts` - Writers, poets, and activists
+- `historicalFigures.ts` - Historical figures
+- `fictionalCharacters.ts` - Fictional characters
+- `index.ts` - Aggregates all categories, defines display order
+
+Sub-components in `src/components/FamousBlindPeople/`:
+- `PersonCard.tsx` - Individual card with lazy-loaded image and custom `CUSTOM_POSITIONS` map for per-person image cropping
+- `PersonDialog.tsx` - Detail modal for each person
+- `EmbeddedVisualization.tsx` - Live simulation embedding within the dialog
+
+Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/` (19 overlay files).
 
 **Navigation Flow**: When a user clicks "Experience Simulation" on a person, React Router state passes preconfigured conditions to VisionSimulator:
 ```typescript
@@ -156,7 +174,7 @@ For effects requiring DOM elements (scotomas, field loss):
 These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` as `ANIMATED_EFFECTS`):
 ```typescript
 ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena', ...]
-// 21+ effect IDs total — check ANIMATED_EFFECTS constant for full list
+// 44 effect IDs total — check ANIMATED_EFFECTS constant for full list
 ```
 
 ## Performance

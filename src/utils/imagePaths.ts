@@ -229,7 +229,16 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   ashcharyaPeiris: 'Ashcharya-Peiris.webp',
   majaReichard: 'Maja-Reichard.webp',
   berthaTammelin: 'Bertha-Tammelin.webp',
-  francoisHuber: 'François-Huber.webp'
+  francoisHuber: 'François-Huber.webp',
+  dMadness: 'd-madness.webp',
+  moComeAsYouAre: 'mo.webp',
+  suNianQin: 'su-nian.webp',
+  sofiaInDarkness: 'Sofia.webp',
+  solomonTethered: 'solomon.webp',
+  michelleMcNally: 'Michelle-McNally.webp',
+  leonardoWayHeLooks: 'Leonardo.webp',
+  blindGirlCityLights: 'Blind-Girl.webp',
+  frankSlade: 'Frank-Slade.webp'
 };
 
 /**

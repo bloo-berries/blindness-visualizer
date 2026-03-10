@@ -177,6 +177,94 @@ export const fictionalCharacters: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/In_the_Dark_(American_TV_series)",
     nationality: { country: "United States", flag: "🇺🇸" }
   },
+  moComeAsYouAre: {
+    name: "Mo",
+    achievement: "Come As You Are (2019) Character",
+    condition: "Legal Blindness",
+    years: "Come As You Are (2019)",
+    onset: "Legally blind (unspecified cause)",
+    simulation: "mo-legal-blindness",
+    description: "Mo is one of three friends with disabilities in the comedy-drama film Come As You Are (2019), a remake of the Belgian film Hasta La Vista. He is legally blind and works at the clinic where the three main characters met.\n\nThe film follows Mo, Scotty (who has arthrogryposis), and Matt (a wheelchair user) as they embark on a road trip to Montreal with their hired nurse Sam.\n\n• Played by Ravi Patel\n\n• The film received a 95% approval rating on Rotten Tomatoes\n\n• Explores themes of disability, independence, and human connection\n\n• Loosely inspired by real events",
+    wikiUrl: "https://en.wikipedia.org/wiki/Come_as_You_Are_(2019_film)",
+    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+  },
+  suNianQin: {
+    name: "Su Nian Qin",
+    achievement: "Crush (2021) Protagonist",
+    condition: "Corneal Opacity",
+    years: "Crush (2021 Chinese Drama)",
+    onset: "Severe visual impairment from corneal opacity",
+    simulation: "suNianQin-corneal-opacity",
+    description: "Su Nian Qin is the male lead of the Chinese romance drama Crush (2021), adapted from the novel 'So I Love You Very Much.' He is a talented singer-songwriter who secretly creates music under the pen name 'Yi Jin,' while working as a teacher for blind children.\n\nHis corneal opacity limits his vision to distinguishing shapes and movements within approximately three feet. He eventually undergoes a successful cornea transplant.\n\n• Played by Evan Lin (Lin Yanjun)\n\n• Praised for authentic portrayal of visual impairment - reading braille, using a talking watch, orienting by touch\n\n• 24-episode drama on iQIYI with 7.6 IMDb rating\n\n• His love story with radio broadcaster Sang Wu Yan explores how disability affects relationships",
+    wikiUrl: "https://en.wikipedia.org/wiki/Crush_(2021_TV_series)",
+    nationality: { country: "China", flag: "\u{1F1E8}\u{1F1F3}" }
+  },
+  blindGirlCityLights: {
+    name: "Blind Girl (The Flower Girl)",
+    achievement: "City Lights (1931) Lead Character",
+    condition: "Corneal Blindness (Surgically Cured)",
+    years: "City Lights (1931)",
+    onset: "Blind (cause unspecified in film)",
+    simulation: "complete-blindness",
+    description: "The Blind Girl is a young, impoverished flower seller in Charlie Chaplin's masterpiece City Lights (1931). She is one of the most iconic blind characters in cinema history. When the Tramp falls in love with her, he embarks on comedic misadventures to raise money for an operation that could restore her sight.\n\nThe film's ending - where she recognizes her benefactor by touch after regaining her sight - is widely regarded as one of the greatest moments in film history.\n\n• Played by Virginia Cherrill, directed to 'look inwardly and not to see me' by Chaplin\n\n• The opening flower-selling scene required 342 takes over several weeks\n\n• 8.5 IMDb rating - considered one of the greatest films ever made\n\n• Medical analysis suggests her condition was likely trachoma or corneal dystrophy, treatable by corneal transplant",
+    wikiUrl: "https://en.wikipedia.org/wiki/City_Lights",
+    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+  },
+  frankSlade: {
+    name: "Lt. Col. Frank Slade",
+    achievement: "Scent of a Woman (1992) Protagonist",
+    condition: "Traumatic Blindness",
+    years: "Scent of a Woman (1992)",
+    onset: "Blinded by grenade explosion",
+    simulation: "complete-blindness",
+    description: "Lt. Col. Frank Slade is a retired, decorated Vietnam War veteran in Scent of a Woman (1992). He lost his sight completely when a grenade detonated during a reckless accident, a source of deep shame he conceals behind a story of combat injury.\n\nThe bitter, cynical blind veteran takes prep school student Charlie Simms on a final luxurious trip to New York City, secretly planning to end his life. Their unlikely bond ultimately redeems them both.\n\n• Played by Al Pacino, who won the Academy Award for Best Actor for this role\n\n• Famous for his acute sense of smell - identifying women's perfumes and navigating social situations\n\n• The tango scene at the Waldorf-Astoria is one of cinema's most celebrated sequences\n\n• Pacino trained with The Lighthouse vision rehabilitation organization to portray blindness authentically",
+    wikiUrl: "https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film)",
+    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+  },
+  solomonTethered: {
+    name: "Solomon",
+    achievement: "Tethered (2022) Protagonist",
+    condition: "Congenital Blindness",
+    years: "Tethered (2022)",
+    onset: "Born blind",
+    simulation: "complete-blindness",
+    description: "Solomon is the protagonist of the horror/drama film Tethered (2022). Born blind, he lives in complete isolation in a remote cabin in the North Carolina woods, navigating the wilderness using a rope tied around his waist as a lifeline back to his cabin.\n\nAfter his mother disappears when he is a child, Solomon survives alone for approximately ten years using survival skills she taught him. When a hunter named Henry stumbles onto his property, they discover a terrifying supernatural creature lurking in the woods.\n\n• Played by Jared Laufree (young adult) and Brody Bett (child)\n\n• His blindness heightens the horror - he cannot see what stalks him in the darkness\n\n• Despite his blindness, he is resourceful and self-sufficient, capable of hunting and fishing alone\n\n• The tether/rope is both a survival tool and metaphor for confinement",
+    wikiUrl: "https://en.wikipedia.org/wiki/Tethered_(film)",
+    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+  },
+  michelleMcNally: {
+    name: "Michelle McNally",
+    achievement: "Black (2005) Protagonist",
+    condition: "Deafblindness",
+    years: "Black (2005)",
+    onset: "Lost sight and hearing from illness at age 2",
+    simulation: "complete-blindness",
+    description: "Michelle McNally is the protagonist of the acclaimed Indian film Black (2005), directed by Sanjay Leela Bhansali. She is an Anglo-Indian woman from Shimla who lost her sight, hearing, and ability to speak after an illness at age two - a story inspired by Helen Keller's autobiography.\n\nHer dedicated teacher Debraj Sahai enters her life and teaches her to communicate, eventually guiding her to earn a university degree. In a poignant reversal, the aging Debraj develops Alzheimer's, and Michelle must care for the man who guided her out of darkness.\n\n• Played by Rani Mukerji (adult) and Ayesha Kapur (child)\n\n• Won all 11 nominations at the 51st Filmfare Awards including Best Film and Best Actress\n\n• 8.1 IMDb rating - widely regarded as one of the finest Bollywood dramas\n\n• Amitabh Bachchan won National Film Award for Best Actor as teacher Debraj Sahai",
+    wikiUrl: "https://en.wikipedia.org/wiki/Black_(2005_film)",
+    nationality: { country: "India", flag: "\u{1F1EE}\u{1F1F3}" }
+  },
+  leonardoWayHeLooks: {
+    name: "Leonardo",
+    achievement: "The Way He Looks (2014) Protagonist",
+    condition: "Congenital Blindness",
+    years: "The Way He Looks (2014)",
+    onset: "Born blind",
+    simulation: "complete-blindness",
+    description: "Leonardo is the protagonist of the Brazilian coming-of-age film The Way He Looks (2014), a blind high school student in S\u00e3o Paulo struggling for independence. His everyday life is constrained by an overprotective mother and the routine of being walked home by his best friend Giovana.\n\nWhen new student Gabriel arrives, Leonardo discovers first love and begins asserting his autonomy. The film portrays his blindness matter-of-factly, as one dimension of a teenager's life alongside universal struggles of adolescence and identity.\n\n• Played by Ghilherme Lobo, who won the APCA Trophy for Best Actor\n\n• Won FIPRESCI Prize and Teddy Award at the 64th Berlin International Film Festival\n\n• 7.9 IMDb rating\n\n• The title refers to Leonardo's desire to walk home alone - a symbol of his quest for autonomy",
+    wikiUrl: "https://en.wikipedia.org/wiki/The_Way_He_Looks",
+    nationality: { country: "Brazil", flag: "\u{1F1E7}\u{1F1F7}" }
+  },
+  sofiaInDarkness: {
+    name: "Sofia",
+    achievement: "In Darkness (2018) Protagonist",
+    condition: "Feigned Blindness",
+    years: "In Darkness (2018)",
+    onset: "Poses as completely blind as part of revenge plan",
+    simulation: "complete-blindness",
+    description: "Sofia is the protagonist of the thriller In Darkness (2018), a concert pianist living in London who presents herself as completely blind. After overhearing the murder of her upstairs neighbor Veronique, daughter of an accused Serbian war criminal, she is pulled into a dangerous underworld of corruption and violence.\n\nSofia's blindness is revealed to be an elaborate deception. Her real identity is that of a Bosnian War survivor who witnessed her family's massacre. She assumed a new identity and feigned blindness for years to get close to those responsible.\n\n• Played by Natalie Dormer, who also co-wrote the screenplay\n\n• The film explores themes of perception, deception, and revenge\n\n• Co-stars Ed Skrein, Emily Ratajkowski, and Jan Bijvoet\n\n• Sofia's feigned blindness allows her to be underestimated by dangerous adversaries",
+    wikiUrl: "https://en.wikipedia.org/wiki/In_Darkness_(2018_film)",
+    nationality: { country: "United Kingdom", flag: "\u{1F1EC}\u{1F1E7}" }
+  },
   fujitora: {
     name: "Fujitora (Issho)",
     achievement: "One Piece Marine Admiral",

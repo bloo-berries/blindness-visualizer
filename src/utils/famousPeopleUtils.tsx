@@ -245,7 +245,15 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'tammelin-progressive-blindness': ['blurryVision', 'lossOfContrast', 'cataracts'],
 
     // ===== SWISS =====
-    'huber-progressive-blindness': ['blurryVision', 'lossOfContrast', 'cataracts']
+    'huber-progressive-blindness': ['blurryVision', 'lossOfContrast', 'cataracts'],
+
+    // ===== ADDITIONAL MUSICIANS =====
+    'dmadness-congenital-blindness': ['completeBlindness'],
+
+    // ===== ADDITIONAL FICTIONAL CHARACTERS =====
+    'mo-legal-blindness': ['blurryVision', 'lossOfContrast'],
+    'suNianQin-corneal-opacity': ['cataracts', 'blurryVision', 'lossOfContrast'],
+    'sofia-feigned-blindness': ['completeBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];
@@ -267,7 +275,14 @@ const getTeamUsaUrl = (personId: string): string => {
  */
 const getImdbUrl = (personId: string): string => {
   const imdbMap: Record<string, string> = {
-    'marilee': 'https://www.imdb.com/name/nm3411258/'
+    'marilee': 'https://www.imdb.com/name/nm3411258/',
+    'moComeAsYouAre': 'https://www.imdb.com/title/tt6722726/',
+    'suNianQin': 'https://www.imdb.com/title/tt15173012/',
+    'solomonTethered': 'https://www.imdb.com/title/tt14112080/',
+    'michelleMcNally': 'https://www.imdb.com/title/tt0375611/',
+    'leonardoWayHeLooks': 'https://www.imdb.com/title/tt1702014/',
+    'blindGirlCityLights': 'https://www.imdb.com/title/tt0021749/',
+    'frankSlade': 'https://www.imdb.com/title/tt0105323/'
   };
   return imdbMap[personId] || '';
 };
@@ -378,7 +393,15 @@ const getWikipediaUrl = (personId: string): string => {
     'sharon': 'https://en.wikipedia.org/wiki/Sharon_Stone',
     'daredevil': 'https://en.wikipedia.org/wiki/Matt_Murdock_(Marvel_Cinematic_Universe)',
     'amadou': 'https://en.wikipedia.org/wiki/Amadou_%26_Mariam',
-    'anselmoRalph': 'https://en.wikipedia.org/wiki/Anselmo_Ralph'
+    'anselmoRalph': 'https://en.wikipedia.org/wiki/Anselmo_Ralph',
+    'moComeAsYouAre': 'https://en.wikipedia.org/wiki/Come_as_You_Are_(2019_film)',
+    'suNianQin': 'https://en.wikipedia.org/wiki/Crush_(2021_TV_series)',
+    'sofiaInDarkness': 'https://en.wikipedia.org/wiki/In_Darkness_(2018_film)',
+    'solomonTethered': 'https://en.wikipedia.org/wiki/Tethered_(film)',
+    'michelleMcNally': 'https://en.wikipedia.org/wiki/Black_(2005_film)',
+    'leonardoWayHeLooks': 'https://en.wikipedia.org/wiki/The_Way_He_Looks',
+    'blindGirlCityLights': 'https://en.wikipedia.org/wiki/City_Lights',
+    'frankSlade': 'https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film)'
   };
   return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
 };

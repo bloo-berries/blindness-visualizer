@@ -573,6 +573,16 @@ export const musicians: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Gordon_Koang",
     nationality: { country: "South Sudan", flag: "🇸🇸" }
   },
+  dMadness: {
+    name: "D-Madness (Lorenzo Dwayne Jackson Jr.)",
+    achievement: "Austin Funk Prodigy, Multi-Instrumentalist",
+    condition: "Congenital Blindness",
+    years: "Born 1971",
+    onset: "From birth (eyes never developed)",
+    simulation: "dmadness-congenital-blindness",
+    description: "Lorenzo Dwayne Jackson Jr., known as D-Madness, was born blind in Dallas, Texas. Doctors initially told his mother his eyes 'hadn't grown yet' but later confirmed he would never see. He began drumming at age 3 and was playing music in church by age 5.\n\nHe relocated to Austin in 1983 to attend the Texas School for the Blind & Visually Impaired, where he studied classical and jazz music, becoming an award-winning violinist.\n\n• Plays drums, bass, keyboards, saxophone, trombone, and violin - often two or three instruments simultaneously\n\n• Leads the D-Madness Project, performing funk, soul, hip-hop, and reggae\n\n• Released albums Funk Fest (2008), Clown Royal (2012), and Equinox\n\n• Met and performed with Stevie Wonder in 2015\n\n• Appeared on the Merv Griffin TV show as a child prodigy",
+    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+  },
   berthaTammelin: {
     name: "Bertha Tammelin",
     achievement: "Acclaimed Swedish opera singer and actress",

@@ -24,18 +24,24 @@ https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 
 ![Visualization Preview](./public/images/repo-assets/Visualization-Preview.png)
 
-- **Real-time visualization** of various vision conditions
+- **Real-time visualization** of 148 vision conditions using a multi-layer rendering pipeline
 - **Multiple input sources**:
-  - Webcam feed
   - Uploaded images
   - YouTube videos
 - **Adjustable intensity** for each condition
+- **Multi-layer rendering engine**:
+  - WebGL shaders (Three.js) for color blindness matrix transformations
+  - SVG filters for color vision effects
+  - CSS filters for blur, contrast, and person-specific adjustments
+  - DOM overlays for visual field loss, scotomas, and floaters
+  - 20 animated JS-driven overlays for dynamic effects
 - **Comprehensive condition library**:
-  - Color blindness (Protanopia, Deuteranopia, Tritanopia, etc.)
-  - Visual field defects (Hemianopia, Quadrantanopia, Scotoma)
-  - Eye conditions (Glaucoma, Cataracts, AMD, Diabetic Retinopathy)
-  - Neurological conditions (Visual Auras, Visual Snow, Hallucinations)
-  - Refractive errors (Nearsightedness, Farsightedness, Astigmatism)
+  - Color blindness (Protanopia, Deuteranopia, Tritanopia, Achromatopsia, etc.)
+  - Visual field defects (Hemianopia, Quadrantanopia, Scotoma, Tunnel Vision)
+  - Eye conditions (Glaucoma, Cataracts, AMD, Diabetic Retinopathy, Keratoconus)
+  - Neurological conditions (Visual Auras, Visual Snow, CBS Hallucinations)
+  - Visual disturbances (Floaters, Blue Field Phenomenon, Palinopsia, Starbursting, PPVP)
+  - Refractive errors (Nearsightedness, Farsightedness, Astigmatism, Diplopia)
   - Progressive conditions (Retinitis Pigmentosa, Stargardt Disease)
 
 *Real-time vision condition simulation with multiple effects applied*
@@ -44,36 +50,46 @@ https://github.com/user-attachments/assets/88988c3e-dc23-4d8d-82b8-d898a5cb3339
 
 ![Visualization Preview](./public/images/repo-assets/Claude-Monet-Preview.png)
 
-- **125+ famous individuals** across 8 categories:
-  - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman, Homer, Fanny Crosby, and more)
-  - Musicians (Ray Charles, Stevie Wonder, Andrea Bocelli, Blind Lemon Jefferson, Moondog, Rahsaan Roland Kirk, and more)
-  - Artists (Claude Monet, Georgia O'Keeffe, John Bramblitt, Esref Armagan, and more)
-  - Writers & Activists (Helen Keller, Jorge Luis Borges, James Joyce, Taha Hussein, Chen Guangcheng, and more)
+- **214 famous individuals** across 8 categories:
   - Contemporary Figures (Christine Ha, Lucy Edwards, Molly Burke, Haben Girma, Mila Kunis, Dame Judi Dench, and more)
   - Athletes (Erik Weihenmayer, Marla Runyan, Anastasia Pagonis, Lex Gillette, and more)
-  - Scientists (Dr. Mona Minkara, Joshua Miele, Abraham Nemeth, Leonhard Euler, and more)
-  - Fictional Characters (Daredevil, Geordi La Forge, Toph Beifong, Kenshi Takahashi, and more)
+  - Scientists & Medical Professionals (Dr. Mona Minkara, Joshua Miele, Abraham Nemeth, Leonhard Euler, and more)
+  - Musicians (Ray Charles, Stevie Wonder, Andrea Bocelli, Blind Lemon Jefferson, Moondog, Rahsaan Roland Kirk, and more)
+  - Artists (Claude Monet, Georgia O'Keeffe, John Bramblitt, Esref Armagan, and more)
+  - Writers, Activists & Politicians (Helen Keller, Jorge Luis Borges, James Joyce, Taha Hussein, Chen Guangcheng, and more)
+  - Historical Figures (John Milton, Louis Braille, Galileo Galilei, Harriet Tubman, Homer, Fanny Crosby, and more)
+  - Fictional Characters (Daredevil, Geordi La Forge, Toph Beifong, Kenshi Takahashi, Fujitora, Julia Carpenter, Chirrut Imwe, and more)
 - **Search and filter functionality** by name, condition, category, or country
 - **Detailed person cards** with achievements, medical information, and life stories
-- **Direct simulation integration** - experience each person's specific vision condition
-- **Custom visualizations** for select individuals with unique visual experiences
+- **Direct simulation integration** — experience each person's specific vision condition
+- **Custom visualizations** for select individuals with unique visual experiences (37 person-specific effect files, 32 custom CSS filters, 18 custom DOM overlays, 20 animated overlays)
+- **Embedded simulation preview** — live preview in each person's detail dialog
 
 *Example of famous person profile with detailed information and simulation integration*
 
+### Internationalization
+
+- **26 languages** supported: Arabic, Bengali, Catalan, Chinese, Dutch, English, Finnish, French, German, Greek, Hindi, Icelandic, Irish, Italian, Japanese, Korean, Norwegian, Polish, Portuguese, Russian, Spanish, Swahili, Swedish, Turkish, Ukrainian, Vietnamese
+- RTL support for Arabic
+- Language preference persisted to localStorage
+
 ### Accessibility Features
 
+- **Three theme modes**: Light, Dim (default), and Dark
 - **Screen reader compatibility**
 - **Keyboard navigation** support
 - **High contrast mode**
-- **Font size adjustments**
-- **Focus indicators** for better visibility
+- **Large text mode** with font size adjustments
+- **Increased spacing mode**
+- **Enhanced focus indicators** for better visibility
+- **Reduced motion mode**
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (version 14 or higher)
-- npm or yarn
+- Node.js (version 18 or higher)
+- npm
 
 ### Installation
 
@@ -103,7 +119,7 @@ The application will open at `http://localhost:3000`
 
 ### Vision Condition Simulator
 
-1. **Choose Input Source**: Select webcam, image upload, or YouTube video
+1. **Choose Input Source**: Select image upload or YouTube video
 2. **Select Conditions**: Toggle the vision conditions you want to simulate
 3. **Adjust Intensity**: Use sliders to control the severity of each condition
 4. **View Simulation**: Observe the real-time visualization
@@ -113,26 +129,35 @@ The application will open at `http://localhost:3000`
 1. **Browse Categories**: Explore people by category (Historical, Musicians, Artists, etc.)
 2. **Search & Filter**: Use the search bar or filters to find specific individuals by name, condition category, or country
 3. **View Details**: Click on any person to see their achievements, detailed biography, and condition information
-4. **Experience Simulation**: Click "Experience Simulation" to try their specific vision condition
+4. **Preview Simulation**: See a live simulation preview embedded in each person's detail dialog
+5. **Experience Simulation**: Click "Experience Simulation" to try their specific vision condition in the full simulator
 
 ## Project Structure
 
 ```bash
 src/
 ├── components/
-│   ├── HomePage.tsx              # Landing page with navigation options
-│   ├── VisionSimulator.tsx       # Main simulator component
-│   ├── FamousBlindPeople.tsx     # Famous people educational section
+│   ├── HomePage.tsx              # Landing page
+│   ├── VisionSimulator.tsx       # Main simulator (2-step flow)
+│   ├── FamousBlindPeople.tsx     # Famous people section
 │   ├── FamousBlindPeople/        # Famous people sub-components
-│   │   ├── PersonCard.tsx        # Individual person card display
-│   │   └── PersonDialog.tsx      # Person detail modal
-│   ├── Visualizer.tsx            # Real-time visualization engine
+│   │   ├── PersonCard.tsx        # Individual person card
+│   │   ├── PersonDialog.tsx      # Person detail modal
+│   │   └── EmbeddedVisualization.tsx  # Live simulation preview
+│   ├── Visualizer/
+│   │   ├── Visualizer.tsx        # Real-time visualization engine
+│   │   └── hooks/
+│   │       ├── useMediaSetup.ts       # Input source initialization
+│   │       ├── useEffectProcessor.ts  # Effect processing pipeline
+│   │       ├── useAnimatedOverlay.ts  # 27 animated effect IDs
+│   │       ├── useVisualFieldOverlay.ts # Field loss overlays
+│   │       ├── useScreenshot.ts       # Screenshot capture
+│   │       └── animatedOverlays/      # 20 animation generator files
 │   ├── ControlPanel.tsx          # Condition selection controls
 │   ├── InputSelector.tsx         # Input source selection
-│   ├── NavigationBar.tsx         # Site navigation
-│   └── [other components]
+│   └── NavigationBar.tsx         # Site navigation
 ├── data/
-│   ├── famousPeople/             # Famous people data by category
+│   ├── famousPeople/             # 214 people across 8 category files
 │   │   ├── artists.ts
 │   │   ├── athletes.ts
 │   │   ├── contemporaryFigures.ts
@@ -141,58 +166,76 @@ src/
 │   │   ├── musicians.ts
 │   │   ├── scientists.ts
 │   │   ├── writersActivists.ts
-│   │   └── types.ts              # PersonData type definition
-│   └── effects/                  # Vision condition effects
+│   │   └── types.ts
+│   ├── effects/                  # Vision condition definitions
+│   │   ├── colorVisionEffects.ts
+│   │   ├── visualFieldEffects.ts
+│   │   ├── visualDisturbanceEffects.ts
+│   │   ├── retinalEffects.ts
+│   │   ├── ocularEffects.ts
+│   │   └── famousPeopleEffects/  # 37 person-specific effect files
+│   └── visualEffects.ts          # Aggregates all effects
+├── utils/
+│   ├── shaders/                  # WebGL/GLSL shader system
+│   ├── cssFilters/               # CSS filter pipeline
+│   │   └── famousPeopleFilters/  # 32 person-specific filter files
+│   ├── overlays/
+│   │   └── famousPeople/         # 18 person-specific DOM overlays
+│   └── famousPeopleUtils.tsx     # Person → simulation mapping
 ├── contexts/
-│   └── AccessibilityContext.tsx  # Accessibility state management
+│   └── AccessibilityContext.tsx   # Theme & accessibility state
+├── i18n/
+│   └── index.ts                  # 26-language i18n configuration
+├── locales/                      # Translation JSON files
 ├── styles/
-│   ├── App.css                   # Main application styles
-│   ├── Visualizer.css            # Visualization-specific styles
+│   ├── App.css                   # Main styles + CSS variables
+│   ├── Visualizer.css            # Visualization styles
 │   └── Accessibility.css         # Accessibility feature styles
-└── assets/
-    └── images/
-        └── people/               # Famous people images
+└── types/
+    └── visualEffects.ts          # 148 ConditionType definitions
 ```
 
 ## Key Technologies
 
 - **React 18** with TypeScript
 - **Material-UI (MUI)** for UI components
-- **React Router** for navigation
-- **Canvas API** for real-time image processing
-- **WebRTC** for webcam integration
-- **YouTube API** for video integration
+- **Three.js** for WebGL shader-based visual effects
+- **React Router** for SPA navigation
+- **i18next** for internationalization (26 languages)
+- **YouTube IFrame API** for video integration
 
 ## Development
 
 ### Available Scripts
 
 ```bash
-# Start development server
-npm start
-
-# Build for production
-npm run build
-
-# Run tests
-npm test
-
-# Eject from Create React App
-npm run eject
+npm start              # Start development server
+npm run build          # Production build
+npm run build:prod     # Production build without sourcemaps
+npm run build:analyze  # Build with webpack bundle analyzer
+npm test               # Run tests in watch mode
+npm run clean          # Clear build artifacts and cache
+npm run generate:llms  # Generate LLM data files
 ```
 
 ### Adding New Vision Conditions
 
-1. Add the condition to the `effects` array in `VisionSimulator.tsx`
-2. Implement the visual effect in the `Visualizer.tsx` component
-3. Update the condition mapping in `FamousBlindPeople.tsx` if applicable
+1. Add the condition ID to the `ConditionType` union in `src/types/visualEffects.ts`
+2. Create the effect definition in the appropriate `src/data/effects/*.ts` file
+3. Implement the visual effect in the shader, CSS filter, or overlay system
+4. If animated, add to `ANIMATED_EFFECTS` in `useAnimatedOverlay.ts` and create an animation file
 
 ### Adding New Famous People
 
 1. Add person data to the appropriate file in `src/data/famousPeople/` (e.g., `musicians.ts`, `athletes.ts`)
-2. Include required fields: name, achievement, condition, years, onset, simulation, description, wikiUrl, and nationality
+2. Include required fields: `name`, `achievement`, `condition`, `years`, `onset`, `simulation`, `description`, `wikiUrl`, and `nationality`
 3. Add their image to `public/images/people/`
-4. Add them to the appropriate category in `src/data/famousPeople/index.ts`
+4. Map their simulation key to effect IDs in `src/utils/famousPeopleUtils.tsx`
+5. Optionally create custom effects, CSS filters, and/or animated overlays for unique visualizations
+
+## Deployment
+
+Deployed to **Cloudflare Pages** at [simulated.vision](https://simulated.vision). The GitHub repo is connected for automatic deployments on push to `main`.
 
 ## Contributing
 
@@ -211,12 +254,11 @@ We welcome contributions! Here's how you can help:
 - **Accessibility improvements**: Enhance screen reader support
 - **Performance optimization**: Improve rendering speed
 - **Mobile experience**: Enhance touch interactions
-- **Documentation**: Improve guides and tutorials
+- **New languages**: Add translation files for more locales
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 
 ## Support
 

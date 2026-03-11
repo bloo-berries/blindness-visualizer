@@ -20,6 +20,8 @@ npm run generate:llms  # Generate LLM data files (pre-build)
 
 This is a React 18 + TypeScript application built with Create React App that simulates various vision conditions in real-time. It uses Three.js for WebGL-based visual effects processing.
 
+**At a glance**: 214 famous people, 148 vision condition types, 27 animated effects, 26 languages, 8 pages.
+
 ### Core Data Flow
 
 1. **Input Sources** (`InputSource` type in `src/types/visualEffects.ts`): uploaded image or YouTube video (webcam is disabled, forced to YouTube)
@@ -45,17 +47,20 @@ The rendering pipeline uses multiple techniques simultaneously, each handling di
 |-------|------|---------|
 | WebGL Shaders | `shaders/` directory | Color blindness matrix transformations |
 | SVG Filters | `svgFilterManager.ts` | Additional color vision effects |
-| CSS Filters | `cssFilterManager.ts` | Blur, contrast adjustments |
-| DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters |
+| CSS Filters | `cssFilterManager.ts` | Blur, contrast, person-specific filters (32 custom filter files) |
+| DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters (18 custom person overlays) |
+| Animated Overlays | `hooks/animatedOverlays/` | JS-driven animated effects (20 animation files) |
 
 Overlay z-index hierarchy is defined in `overlayConstants.ts` - new overlays must respect this ordering.
+
+**Important**: CSS filters on the parent container also affect animated overlay children. When creating dark-themed animated overlays (e.g., Fujitora, Julia Carpenter), let the overlay itself provide darkness via its base gradient and keep the CSS filter brightness moderate (45%+). Crushing brightness below ~15% in the CSS filter will make overlays invisible.
 
 ### Visualizer Hooks (`src/components/Visualizer/hooks/`)
 
 The Visualizer component uses modular hooks:
 - `useMediaSetup` - Webcam/video/image source initialization
 - `useEffectProcessor` - Main effect processing pipeline
-- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (16+ individual animation files in `hooks/animatedOverlays/`)
+- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (20 individual animation files in `hooks/animatedOverlays/`)
 - `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision, hemianopia overlays
 - `useScreenshot` - Screenshot capture functionality
 
@@ -70,7 +75,7 @@ The shader system is modular:
 
 ### Key Type: `ConditionType`
 
-All vision conditions are typed in `src/types/visualEffects.ts`. When adding new conditions:
+All 148 vision conditions are typed in `src/types/visualEffects.ts`. When adding new conditions:
 1. Add the condition ID to the `ConditionType` union type
 2. Create the effect definition in the appropriate `src/data/effects/*.ts` file
 3. Implement the visual effect in the shader or overlay system
@@ -83,20 +88,20 @@ Effects are organized by category in `src/data/effects/`:
 - `visualDisturbanceEffects.ts` - Visual snow, auras, floaters, PPVP, palinopsia, starbursting
 - `retinalEffects.ts` - Retinal diseases (AMD, diabetic retinopathy)
 - `ocularEffects.ts` - Eye conditions (cataracts, glaucoma, keratoconus)
-- `famousPeopleEffects.ts` - Person-specific effect combinations (32+ individual files in `src/data/effects/famousPeopleEffects/`)
+- `famousPeopleEffects/` - Person-specific effect combinations (37 individual files in `src/data/effects/famousPeopleEffects/`)
 
 ### Famous People Feature
 
-The Famous People section (`src/components/FamousBlindPeople.tsx`) links ~196 historical/contemporary figures to their specific vision conditions. Person data is organized by category in `src/data/famousPeople/`:
+The Famous People section (`src/components/FamousBlindPeople.tsx`) links 214 historical/contemporary/fictional figures to their specific vision conditions. Person data is organized by category in `src/data/famousPeople/`:
 - `types.ts` - Type definitions (`PersonData`, etc.)
-- `contemporaryFigures.ts` - Contemporary public figures
-- `athletes.ts` - Athletes
-- `scientists.ts` - Scientists and inventors
-- `musicians.ts` - Musicians
-- `artists.ts` - Visual artists
-- `writersActivists.ts` - Writers, poets, and activists
-- `historicalFigures.ts` - Historical figures
-- `fictionalCharacters.ts` - Fictional characters
+- `contemporaryFigures.ts` - Contemporary public figures (~13 people)
+- `athletes.ts` - Athletes (~30 people)
+- `scientists.ts` - Scientists and medical professionals (~15 people)
+- `musicians.ts` - Musicians (~54 people)
+- `artists.ts` - Visual artists (~5 people)
+- `writersActivists.ts` - Writers, poets, activists, and politicians (~52 people)
+- `historicalFigures.ts` - Historical figures (~15 people)
+- `fictionalCharacters.ts` - Fictional characters (~25 people)
 - `index.ts` - Aggregates all categories, defines display order
 
 Sub-components in `src/components/FamousBlindPeople/`:
@@ -104,7 +109,9 @@ Sub-components in `src/components/FamousBlindPeople/`:
 - `PersonDialog.tsx` - Detail modal for each person
 - `EmbeddedVisualization.tsx` - Live simulation embedding within the dialog
 
-Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/` (19 overlay files).
+Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/` (18 overlay files).
+
+Custom CSS filter files for specific people are in `src/utils/cssFilters/famousPeopleFilters/` (32 filter files).
 
 **Navigation Flow**: When a user clicks "Experience Simulation" on a person, React Router state passes preconfigured conditions to VisionSimulator:
 ```typescript
@@ -174,8 +181,16 @@ For effects requiring DOM elements (scotomas, field loss):
 These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` as `ANIMATED_EFFECTS`):
 ```typescript
 ['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena', ...]
-// 44 effect IDs total — check ANIMATED_EFFECTS constant for full list
+// 27 effect IDs total — check ANIMATED_EFFECTS constant for full list
 ```
+
+To add a new animated effect:
+1. Create the overlay generator function in `hooks/animatedOverlays/`
+2. Export it from `hooks/animatedOverlays/index.ts`
+3. Import it in `useAnimatedOverlay.ts`
+4. Add the effect ID(s) to `ANIMATED_EFFECTS`
+5. Add an `if` block to check for the effect and call the generator
+6. If the effect needs custom CSS filters, create a filter file in `src/utils/cssFilters/famousPeopleFilters/` and register it in the index
 
 ## Performance
 

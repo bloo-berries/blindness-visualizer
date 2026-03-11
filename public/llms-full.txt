@@ -2,7 +2,7 @@
 
 > https://simulated.vision
 
-This file contains comprehensive information about all 42+ vision conditions and 128+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 42+ vision conditions and 203+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -1038,6 +1038,30 @@ Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite rela
 
 ---
 
+#### Ashcharya Peiris (Born 1980)
+
+**Condition**: Optic Nerve Damage (Bomb Blast Trauma)
+**Achievement**: BBC's Top 100 Influential Women
+**Onset**: Age 20, LTTE suicide bomb blast in March 2000
+
+Ashcharya Peiris lost her sight at age 20 when a suicide bomb blast struck near her car in Rajagiriya, Sri Lanka, in March 2000. She was driving home from her banking job at HSBC when the explosion occurred. She spent days in the ICU, and it was months before she accepted that damage to her optic nerve had left her permanently blind.
+
+Despite her blindness, she reinvented herself as a fashion designer, founding the Christina Glory brand in 2016.
+
+• Sri Lanka's first visually impaired fashion designer
+
+• Named to BBC's 100 Women list of inspiring and influential women (2019) — the only Sri Lankan woman on the list
+
+• Listed in Top 10 Most Remarkable Women of Sri Lanka by Independent Television Network (2017)
+
+• Motivational speaker and volunteer assisting the Sri Lanka Army through the Arya Foundation
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ashcharya_Peiris)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ### Athletes
 
 #### Erik Weihenmayer (Born 1968)
@@ -1340,6 +1364,364 @@ Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at cl
 
 ---
 
+#### Terezinha Guilhermina (Born 1978)
+
+**Condition**: Congenital Retinitis Pigmentosa
+**Achievement**: World's Fastest Blind Woman, 6 Paralympic Medals
+**Onset**: From birth, completely blind by age 26
+
+Terezinha Guilhermina was born with congenital retinitis pigmentosa, a hereditary condition shared by five of her twelve siblings. Born with approximately 95% vision loss, her sight progressively deteriorated until she became completely blind around age 26.
+
+She entered sports at age 22 through a government program for people with impairments.
+
+• Known as 'the world's fastest blind woman'
+
+• Six Paralympic medals including three golds (Beijing 2008, London 2012)
+
+• Multiple world records in 100m and 400m T11
+
+• Also holds a bachelor's degree in psychology
+
+[Wikipedia](https://en.wikipedia.org/wiki/Terezinha_Guilhermina)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Silvânia Costa de Oliveira (Born 1987)
+
+**Condition**: Stargardt Disease
+**Achievement**: Back-to-Back Paralympic Long Jump Gold
+**Onset**: Age 10, progressive hereditary
+
+Silvânia Costa de Oliveira was diagnosed with Stargardt disease at age 10, a hereditary retinal condition that progressively destroyed her central vision. The condition runs deeply in her family — her brother Ricardo, two sisters, and two cousins are all blind from the same disease.
+
+She competes in the T11 category (near-total/total blindness) wearing blacked-out glasses.
+
+• Gold medals in women's long jump T11 at both 2016 Rio and 2020 Tokyo Paralympics
+
+• World champion and world record holder in long jump T11
+
+• Her brother Ricardo also won long jump gold at Rio 2016, making them a remarkable sibling pair of Paralympic champions
+
+[Wikipedia](https://en.wikipedia.org/wiki/Silv%C3%A2nia_Costa_de_Oliveira)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Lúcia Teixeira (Born 1981)
+
+**Condition**: Congenital Toxoplasmosis (Low Vision)
+**Achievement**: 3x Paralympic Judo Medalist
+**Onset**: From birth, parasitic infection in utero
+
+Lúcia Teixeira was born with congenital toxoplasmosis — a parasitic infection transmitted from her mother during pregnancy that severely damaged her retinas. She is classified as B2, meaning severely impaired vision but not totally blind.
+
+She began judo at age 15 through her brothers but only discovered Paralympic judo at age 25.
+
+• Silver medals at 2012 London and 2016 Rio Paralympics in judo -57 kg
+
+• Bronze medal at 2020 Tokyo Paralympics
+
+• Multiple Parapan American gold medals
+
+• Elected president of the Brazilian Paralympic Committee's Athletes' Commission (2025)
+
+[Wikipedia](https://en.wikipedia.org/wiki/L%C3%BAcia_Teixeira)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Lahja Ishitile (Born (Contemporary))
+
+**Condition**: Progressive Blindness (T11 Classification)
+**Achievement**: Paralympic Gold Medalist, 'Ferrari' of Namibia
+**Onset**: Age 7, completely blind by 11
+
+Lahja Ishitile began losing her eyesight at age 7 due to a medical condition and was completely blind by age 11. She began running at Eluwa Special School in Ongwediva, Namibia, and rose to become one of Africa's fastest blind sprinters.
+
+Nicknamed 'Ferrari' for her blistering speed, she competes in the T11 category (total blindness) with guide runner Sem Shimanda.
+
+• Paralympic gold medalist in women's T11 400m at 2024 Paris Paralympics (Paralympic record: 56.20 seconds)
+
+• Bronze medal in women's T11 200m at 2024 Paris Paralympics
+
+• Silver medal at 2023 World Para Athletics Championships
+
+• Flag bearer for Namibia at the 2024 Paris Paralympics Opening Ceremony
+
+• Currently pursuing a Bachelor of Library and Information Science at the University of Namibia
+
+[Wikipedia](https://en.wikipedia.org/wiki/Lahja_Ishitile)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Roni Ohayon (Born 1999)
+
+**Condition**: Congenital Visual Impairment (Left Eye Blind)
+**Achievement**: Paralympic Silver Medalist, Goalball
+**Onset**: From birth
+
+Roni Ohayon was born in Beersheba, Israel, with multiple visual impairments including complete blindness in her left eye and severe difficulty seeing in her right eye. She is legally blind and uses a guide dog.
+
+She started playing goalball in the 4th grade at a center for the blind, joined the reserve team at age 13, and later moved to the senior national team.
+
+• Paralympic silver medalist with Israel in women's goalball at the 2024 Paris Paralympics
+
+• Advocate for disability rights — won a landmark court case against Israel Railways after being refused her paid disabled seat
+
+• Plays centre position for the Israeli national goalball team
+
+[Wikipedia](https://en.wikipedia.org/wiki/Roni_Ohayon)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Taonere Banda (Born 1996)
+
+**Condition**: Untreated Cataracts (Near-Total Blindness)
+**Achievement**: First Paralympian from Malawi
+**Onset**: Infancy, from untreated cataracts
+
+Taonere Banda was born in Malawi with cataracts that went untreated in infancy, leaving her almost totally blind. Despite growing up in a country with virtually no Paralympic infrastructure, she became Malawi's pioneering para-athlete.
+
+• First athlete to represent Malawi at a Paralympic Games (2016 Rio de Janeiro)
+
+• Competed at the 2020 Tokyo Paralympics as a middle-distance runner
+
+• Sightsavers Equal World campaign ambassador, fighting for inclusive education
+
+• Advocates for children with disabilities to have the right to attend school and fully participate in society
+
+[Wikipedia](https://en.wikipedia.org/wiki/Taonere_Banda)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Nojim Maiyegun (1941-2024)
+
+**Condition**: Progressive Blindness from Boxing Trauma
+**Achievement**: Nigeria's First Olympic Medalist
+**Onset**: Gradual from ~1973, fully blind by 2012
+
+Nojim Maiyegun won the bronze medal in light middleweight boxing at the 1964 Tokyo Olympics, becoming Nigeria's first-ever Olympic medalist. Around 1973, he gradually lost his vision — doctors attributed it to repeated head trauma from boxing.
+
+Despite his deteriorating sight, he fought a World Championship bout against Domenico Tiberia in December 1973, losing only on points — making him the first blind boxer to fight for a title. He became fully blind by 2012.
+
+• Nigeria's first Olympic medalist (bronze, 1964 Tokyo)
+
+• First blind boxer to fight for a world title
+
+• After going completely blind, climbed a 1,700-metre mountain and parachuted down
+
+• Lived his later years in Austria, largely uncelebrated by Nigeria despite his historic achievement
+
+[Wikipedia](https://en.wikipedia.org/wiki/Nojim_Maiyegun)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Mikhalina Lysova (Born 1992)
+
+**Condition**: Congenital Visual Impairment
+**Achievement**: 5x Paralympic Gold, Biathlon & Cross-Country
+**Onset**: From birth
+
+Mikhalina Lysova has had weak vision since birth. She began her sporting career in 2002 in Nizhny Tagil, Russia, and became one of the most decorated Paralympic winter athletes in history.
+
+She competes in visually impaired categories in both biathlon and cross-country skiing.
+
+• 5 Paralympic gold medals across three Winter Paralympics (2010, 2014, 2018)
+
+• Won 5 medals on debut at the 2010 Vancouver Paralympics including gold in cross-country skiing
+
+• 6 medals at the 2014 Sochi Paralympics including 3 golds; Russia's flag bearer at closing ceremony
+
+• Won gold in biathlon at the 2018 PyeongChang Paralympics competing as a Neutral Paralympic Athlete
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mikhalina_Lysova)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Andrew Jeptha (1879-1931)
+
+**Condition**: Progressive Boxing-Related Blindness
+**Achievement**: First Black British Boxing Champion
+**Onset**: Progressive eye damage, nearly blind by 1910
+
+Andrew Daries Jeptha was born in Cape Town and came to England in 1902. He had been experiencing eye damage before his historic title fight, and in October 1909 a bout against Jim Doran permanently destroyed the sight in his right eye. By 1910, nearly blind, he retired from boxing.
+
+After returning to South Africa, he could be seen selling a self-authored booklet on the sidewalks of Adderley Street, Cape Town.
+
+• First Black boxer to win a British boxing title — welterweight champion (25 March 1907)
+
+• Knocked out Curly Watson in the fourth round at Wonderland, Whitechapel Road, London
+
+• Author of 'A South African Boxer in Britain — Experiences of Andrew Jephta'
+
+• Won his passage to England by winning a competition organized by visiting world champion Kid McCoy
+
+[Wikipedia](https://en.wikipedia.org/wiki/Andrew_Jeptha)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Michael Barredo (Born 1955)
+
+**Condition**: Bilateral Traumatic Blindness (Car Accident)
+**Achievement**: Founding President, Paralympic Committee of Philippines
+**Onset**: Age 24, car accident in 1979
+
+Michael Barredo became completely blind at age 24 when a car accident in 1979 sent his head through a windshield, destroying his right eye immediately. Despite 10 surgeries including 3 in the United States, doctors could not save his left eye.
+
+Before the accident, he was a multi-sport varsity athlete at De La Salle University.
+
+• Founding President of the Paralympic Committee of the Philippines (1997)
+
+• 5th President of the International Blind Sports Federation (IBSA, 2005-2013)
+
+• First person with a disability to serve on the Philippine Sports Commission
+
+• Paralympic Order recipient (2013) — highest honor in the Paralympic Movement, first Filipino to receive it
+
+• Co-authored the White Cane Act of 1989
+
+[Wikipedia](https://en.wikipedia.org/wiki/Michael_Barredo)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Kwak Tae-hwi (Born 1981)
+
+**Condition**: Monocular Blindness (Left Eye)
+**Achievement**: South Korean international footballer blind in one eye
+**Onset**: From youth, blind in left eye
+
+Kwak Tae-hwi is a retired South Korean professional footballer who competed at the highest levels despite being completely blind in his left eye since youth. Playing as a centre-back — a position demanding exceptional spatial awareness and depth perception — he earned 59 international caps for South Korea and represented his country at the 2014 FIFA World Cup and AFC Asian Cups in 2011 and 2015.
+
+Born in Chilgok County, he developed through Daegu Technical High School and Chung-Ang University before debuting professionally with FC Seoul in 2005.
+
+• Captained Ulsan Hyundai FC to the AFC Champions League title in 2012
+
+• Won the K League 1 title with FC Seoul in 2016
+
+• Played internationally in Japan (Kyoto Sanga) and Saudi Arabia (Al Shabab, Al Hilal), winning the King Cup and Saudi Crown Prince Cup
+
+• Demonstrated that monocular vision need not be a barrier to elite athletic performance across a nearly two-decade career
+
+[Wikipedia](https://en.wikipedia.org/wiki/Kwak_Tae-hwi)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Marta Arce (Born 1977)
+
+**Condition**: Oculocutaneous Albinism (Progressive Visual Impairment)
+**Achievement**: Paralympic Judo medalist across 4 Games
+**Onset**: From birth, progressive loss of vision
+
+Marta Arce Payno was born in Valladolid, Spain, with oculocutaneous albinism — a genetic condition causing lack of pigmentation in skin, hair, and eyes along with severe visual impairment. Her vision progressively deteriorated until she lost nearly all remaining sight. She is classified B3 in Paralympic judo.
+
+She began judo after moving to Madrid for university, introduced to the sport by her brother. She works as a physical therapist at the Autonomous University of Madrid and speaks four languages.
+
+• Silver medals at both 2004 Athens and 2008 Beijing Paralympics in judo
+
+• Bronze medal at 2012 London Paralympics
+
+• Competed at 2024 Paris Paralympics — spanning 20 years of Paralympic competition
+
+• Gold medal at IPC European Judo Championships
+
+[Wikipedia](https://en.wikipedia.org/wiki/Marta_Arce_Payno)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### David Casinos (Born 1972)
+
+**Condition**: Diabetic Retinopathy (Total Blindness)
+**Achievement**: 4x Paralympic Gold in shot put and discus
+**Onset**: Age 26 (1998), sudden total blindness from diabetic retinopathy
+
+David Casinos Sierra was born in Valencia and diagnosed with type 1 diabetes at age 2. In 1998, at age 26, he experienced sudden onset of total blindness following a routine ophthalmological examination due to diabetic retinopathy. His vision deteriorated completely within one month despite surgical attempts to preserve it.
+
+Classified F11/T11/B1 (total blindness), he turned to Paralympic athletics through Spain's ONCE (National Organization of the Blind). He was the Spanish flag bearer at the 2008 Beijing Paralympics.
+
+• Three consecutive gold medals in shot put F11 (Sydney 2000, Athens 2004, Beijing 2008)
+
+• Gold medal in discus F11 at London 2012 Paralympics
+
+• Bronze medal in discus F11 at Rio 2016 Paralympics
+
+• World record holder in shot put (15.26m, set at Sydney 2000)
+
+[Wikipedia](https://en.wikipedia.org/wiki/David_Casinos)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Elena Congost (Born 1987)
+
+**Condition**: Congenital Optic Nerve Atrophy
+**Achievement**: Paralympic Marathon gold medalist
+**Onset**: From birth, progressive hereditary degeneration
+
+Elena Congost Mohedano was born in Madrid with congenital optic nerve atrophy, a degenerative hereditary eye disease that causes progressive loss of central vision. Her vision is approximately 10% functional and has continued to deteriorate since childhood. She is classified T12/B2.
+
+A teacher by profession who lives in Barcelona, she has competed at five Paralympic Games spanning two decades (2004, 2008, 2012, 2016, and 2024).
+
+• Paralympic gold medalist in the marathon at 2016 Rio Paralympics
+
+• Silver medal in 1500m T12 at 2012 London Paralympics
+
+• At 2024 Paris Paralympics, controversially disqualified from bronze in the marathon after briefly releasing her guide tether to prevent her guide from falling, just 2 meters from the finish line
+
+• World Para Athletics acknowledged her 'positive values of solidarity and sportsmanship'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Elena_Congost)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Maja Reichard (Born 1991)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: Paralympic gold medalist, 24 championship medals
+**Onset**: Teenage years, progressive vision loss
+
+Maja Reichard began losing her sight in her teenage years due to retinitis pigmentosa, a genetic disorder affecting the retina. She competes in the S11 disability class — the most severe visual impairment classification in para-swimming — and became one of Sweden's most decorated para-athletes.
+
+She earned a Master of Science in Engineering from KTH Royal Institute of Technology and now works in urban planning and accessibility.
+
+• Paralympic gold medalist in 100m breaststroke at the 2012 London Games
+
+• Won 24 medals at Paralympic Games and World Championships, including 7 gold medals
+
+• Set 5 world records in freestyle and breaststroke swimming
+
+• Works at WSP in urban planning, bringing her lived experience of disability to accessibility design
+
+[Wikipedia](https://en.wikipedia.org/wiki/Maja_Reichard)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ### Scientists & Medical Professionals
 
 #### Dr. Mona Minkara (Born 1984)
@@ -1567,6 +1949,126 @@ Educated at a school for the blind from childhood, his functional vision was min
 • His code enables transcription of complex equations, calculus, and scientific notation into braille
 
 [Wikipedia](https://en.wikipedia.org/wiki/Abraham_Nemeth)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Olga Hahn-Neurath (1882-1937)
+
+**Condition**: Total Blindness from Optic Neuritis
+**Achievement**: Founding Member of the Vienna Circle
+**Onset**: Age 22, from optic neuritis
+
+Olga Hahn-Neurath became totally blind at age 22 due to optic neuritis, an inflammation of the optic nerve that destroyed her vision just two years after enrolling at the University of Vienna.
+
+Despite complete vision loss, she continued her academic pursuits and earned her doctorate seven years later.
+
+• Third woman ever to earn a doctorate in philosophy at the University of Vienna (1911)
+
+• Founding member of the Vienna Circle, one of the most influential philosophical movements of the 20th century
+
+• Specialized in Boolean algebra and algebraic logic
+
+• Sister of mathematician Hans Hahn and wife of philosopher Otto Neurath
+
+[Wikipedia](https://en.wikipedia.org/wiki/Olga_Hahn-Neurath)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Gerrit van der Mey (1914-2002)
+
+**Condition**: Meningitis-Induced Bilateral Blindness + Deafness
+**Achievement**: Deafblind Computer Programming Pioneer
+**Onset**: Blind at age 4 (meningitis); deaf at age 31 (second meningitis, 1945)
+
+Gerrit van der Mey lost his sight at age 4 when meningitis destroyed his optic nerves. In 1945, a second bout of meningitis left him completely deaf, making him deafblind for the remaining 57 years of his life.
+
+Despite being deafblind, he earned a PhD in mathematics from Leiden University and became a pioneering computer programmer.
+
+• Wrote operating systems and code for PTERA and ZEBRA, among the first Dutch electronic computers
+
+• Created compilers for ALGOL, LISP, IPL V, SNOBOL3, and ALGOL 68
+
+• Communicated via a specially constructed braille reading-box connected to a keyboard
+
+• Knight of the Order of Orange-Nassau (1982)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Gerrit_van_der_Mey)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Maria Reiche (1903-1998)
+
+**Condition**: Progressive Vision Loss + Parkinson's Disease
+**Achievement**: Guardian of the Nazca Lines
+**Onset**: Late in life, progressive
+
+Maria Reiche was a German-born Peruvian mathematician and archaeologist who dedicated over 50 years to studying and preserving the Nazca Lines. In her later years, she lost her sight and also suffered from Parkinson's disease, yet continued her research — publishing 'Contributions to Geometry and Astronomy in Ancient Peru' at age 90.
+
+She first saw the Nazca Lines in 1941 with historian Paul Kosok and spent the rest of her life mapping them, identifying 18 different animal and bird figures.
+
+• Her work led to the Nazca Lines being designated a UNESCO World Heritage Site in 1994
+
+• Used her mathematics background to analyze how the Nazca created such precisely scaled figures
+
+• Spent her own money to hire guards and protect the lines from damage
+
+• Buried near Nazca with official honors; a museum bears her name
+
+[Wikipedia](https://en.wikipedia.org/wiki/Maria_Reiche)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Mélanie Lipinska (1865-1933)
+
+**Condition**: Blindness (Cause Unrecorded)
+**Achievement**: Pioneer Historian of Women in Medicine
+**Onset**: Blind by 1922
+
+Mélanie Lipinska was a Polish-French physician and historian who became blind by 1922. Despite losing her sight, she continued her research and later traveled to California to study resources for the blind with the American Society of the Blind.
+
+Born in Ostrołęka in Russian-controlled Poland, she studied medicine at the University of Paris.
+
+• Author of 'Histoire des femmes médecins' — the landmark history of women in medicine, submitted to the Académie de médecine de Paris in 1900
+
+• Won the Victor Hugo Award (1902) for her doctoral thesis
+
+• Worked closely with pioneering physiologist Joséphine Joteyko
+
+• Her commentary on the medical writings of Hildegard of Bingen remains an important scholarly contribution
+
+[Wikipedia](https://en.wikipedia.org/wiki/M%C3%A9lanie_Lipinska)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### François Huber (1750-1831)
+
+**Condition**: Amaurosis (Progressive Vision Loss to Total Blindness)
+**Achievement**: Blind naturalist, pioneer of bee science
+**Onset**: Age 15, progressive deterioration to total blindness
+
+François Huber's eyesight began deteriorating at age 15 from amaurosis, a condition causing progressive vision loss. He was sent to a village near Paris to recover, but his sight continued to worsen until he could only perceive light, eventually resulting in complete blindness.
+
+Despite total blindness, he conducted groundbreaking research on honeybees through his wife Marie-Aimée and his servant François Burnens, who served as his eyes.
+
+• Author of 'Nouvelles Observations sur les Abeilles' (1792), an 800-page landmark of entomological science
+
+• Invented the 'leaf hive' (Huber hive) allowing hive inspection without destroying the comb
+
+• Discovered that queen bees mate in flight, not in the hive, and made key discoveries about swarming and wax secretion
+
+• His work influenced Charles Darwin, who referenced it in 'On the Origin of Species'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fran%C3%A7ois_Huber)
 
 **Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
@@ -2210,21 +2712,23 @@ This is one of the most common forms of color vision deficiency.
 
 ---
 
-#### Amadou Bagayoko (Born 1954)
+#### Amadou & Mariam (Born 1954 & 1958)
 
-**Condition**: Congenital Cataracts to Total Blindness
-**Achievement**: Amadou & Mariam Duo, Grammy-Nominated
-**Onset**: Congenital, blind by age 16
+**Condition**: Congenital Cataracts (Amadou) & Measles Blindness (Mariam)
+**Achievement**: Mali's Legendary Blind Musical Duo
+**Onset**: Amadou blind by 16; Mariam blind at 5
 
-Amadou Bagayoko was born with congenital cataracts in Bamako, Mali. His world was always filtered through a milky haze that gradually thickened until total blindness at age 16.
+Amadou Bagayoko (born 1954) lost his sight at age 16 from congenital cataracts. Mariam Doumbia (born 1958) went blind at age 5 after contracting measles and receiving inadequate medical care. They met in 1975 at Mali's Bamako Institute for the Young Blind and formed a lifelong romantic and musical partnership.
 
-• One half of legendary Malian duo Amadou & Mariam
+Their 'Afro-funk' style blends traditional Malian sound with rock guitars, Cuban trumpets, and global influences.
 
-• Created joyful, vibrant music for over five decades
+• Grammy-nominated duo with international acclaim spanning five decades
 
-• Grammy-nominated
+• Breakthrough album 'Dimanche à Bamako' (2005) produced by Manu Chao
 
-• Quote: 'Beyond our vision, we can imagine'
+• Collaborated with Stevie Wonder, K'Naan, and TV on the Radio
+
+• Albums include 'Sou ni tilé,' 'Welcome to Mali,' and 'Folila'
 
 [Wikipedia](https://en.wikipedia.org/wiki/Amadou_%26_Mariam)
 
@@ -2446,6 +2950,392 @@ His signature dark sunglasses are a coping mechanism for severe photophobia, not
 
 ---
 
+#### Maria Anna Mozart (1751-1829)
+
+**Condition**: Age-Related Blindness (likely Cataracts)
+**Achievement**: Musical Prodigy, Sister of Wolfgang Amadeus Mozart
+**Onset**: Age 74, blind for final 4 years
+
+Maria Anna 'Nannerl' Mozart was a keyboard prodigy who toured Europe performing alongside her younger brother Wolfgang Amadeus Mozart. She received top billing during their early concert tours and was considered equally talented.
+
+She became blind at age 74, ending her ability to give piano instruction and leaving her in poverty during her final years. A visitor described her as 'blind, languid, exhausted, feeble and nearly speechless.'
+
+• Child prodigy who performed the most difficult sonatas and concertos by age 11
+
+• Toured Europe with her brother Wolfgang under their father Leopold Mozart
+
+• Supported herself as a piano teacher in Salzburg after her husband's death
+
+• The exact cause of her blindness is unrecorded, but age-related cataracts were the most common cause in that era
+
+[Wikipedia](https://en.wikipedia.org/wiki/Maria_Anna_Mozart)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Petko Staynov (1896-1977)
+
+**Condition**: Sympathetic Ophthalmia (Total Blindness)
+**Achievement**: Bulgarian Academician, Director of National Opera
+**Onset**: Eye injury at age 6, completely blind by age 11
+
+Petko Staynov injured one eye at age 6, and the infection spread to the other eye through sympathetic ophthalmia — the same condition that blinded Louis Braille. By age 11, he had lost his sight completely and lived in total blindness for the remaining 66 years of his life.
+
+He mastered Braille in both Bulgarian and German.
+
+• One of Bulgaria's most prominent classical composers
+
+• Composed the celebrated symphonic suite 'Thracian Dances,' a cornerstone of Bulgarian classical music
+
+• Director of the Bulgarian National Opera (1941-1944)
+
+• Founded the Institute of Music at the Bulgarian Academy of Sciences, where over 100,000 folk songs were recorded under his guidance
+
+[Wikipedia](https://en.wikipedia.org/wiki/Petko_Staynov)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Leandro Díaz (1928-2013)
+
+**Condition**: Congenital Blindness
+**Achievement**: King for Life of the Vallenato Legend Festival
+**Onset**: From birth
+
+Leandro Díaz was born blind in Hatonuevo, La Guajira, Colombia. Despite never having seen the world, he became one of Colombia's most celebrated songwriters, renowned for his remarkably vivid and descriptive lyrics.
+
+He composed his first song at age 17.
+
+• Proclaimed 'King for Life' of the Vallenato Legend Festival
+
+• His song 'Diosa Coronada' inspired Nobel laureate Gabriel García Márquez, appearing at the beginning of Love in the Time of Cholera
+
+• His works have been performed by Colombia's greatest musicians including Carlos Vives and Diomedes Díaz
+
+• A biographical film about his life was released in 2023
+
+[Wikipedia](https://en.wikipedia.org/wiki/Leandro_D%C3%ADaz_(composer))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Arsenio Rodríguez (1911-1970)
+
+**Condition**: Traumatic Optic Nerve Destruction
+**Achievement**: Godfather of Salsa, 'El Ciego Maravilloso'
+**Onset**: Age 7, from horse kick to head
+
+Arsenio Rodríguez was blinded at age 7 when a horse kicked him in the head, completely destroying both optic nerves. In 1947, renowned ophthalmologist Dr. Ramón Castroviejo confirmed the damage was irreversible, inspiring the bolero 'La vida es un sueño' (Life is a Dream).
+
+Nicknamed 'El Ciego Maravilloso' (The Marvellous Blind Man).
+
+• Often called the 'Godfather of Salsa' — pioneered the conjunto format and developed son montuno
+
+• Virtuoso tres player and composer of nearly 200 songs
+
+• His international hit 'Bruca manigua' remains an Afro-Cuban classic
+
+• One of the most influential figures in Latin music history
+
+[Wikipedia](https://en.wikipedia.org/wiki/Arsenio_Rodr%C3%ADguez)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Oskar Baum (1883-1941)
+
+**Condition**: Traumatic Blindness
+**Achievement**: Prague Circle Member with Kafka & Brod
+**Onset**: Vision problems from birth, completely blind at 11
+
+Oskar Baum had vision problems from birth, lost sight in one eye at age 8, and became completely blind at age 11 after a violent altercation between Czech and German students in Plzeň.
+
+Despite his blindness, he became a celebrated author and trained musician.
+
+• Core member of the Prague Circle alongside Franz Kafka, Max Brod, and Felix Weltsch
+
+• Author of the memoir 'Das Leben im Dunkeln' (Life in the Dark, 1909)
+
+• Trained as organist and pianist at the Israelite Institute for the Blind in Vienna
+
+• His literary works explored blindness as a source of heightened perception
+
+[Wikipedia](https://en.wikipedia.org/wiki/Oskar_Baum)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Jaroslav Ježek (1906-1942)
+
+**Condition**: Congenital Cataracts (Near-Total Blindness)
+**Achievement**: Czech Jazz Pioneer, Composer of 'Bugatti Step'
+**Onset**: From birth, near-total blindness
+
+Jaroslav Ježek was born with severe cataracts that left him nearly blind, able to perceive only shapes and shadows. Multiple surgeries failed to restore his vision. He spent seven years at the Institute for Blind and Weak-eyed Children.
+
+Remarkably, he could see best under blue light — his famous Blue Room, now a museum in Prague, had blue walls, ceiling, and light bulbs to accommodate his remaining vision.
+
+• Leading composer of interwar Czechoslovak theater and jazz
+
+• Created hundreds of songs for Prague's celebrated Liberated Theatre with Voskovec and Werich
+
+• His piano piece 'Bugatti Step' (1930) remains beloved in Czechia
+
+• Fled Nazi-occupied Czechoslovakia in 1939; died in New York exile at age 35
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jaroslav_Je%C5%BEek_(composer))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Wesseh Freeman (1976-2018)
+
+**Condition**: Childhood Blindness
+**Achievement**: Liberia's Viral Oil Can Guitar Virtuoso
+**Onset**: Childhood
+
+Wesseh Freeman (also known as Weesay) became blind as a child and turned to music to support himself and his family in Monrovia, Liberia. He built his own guitars from oil cans, shaped necks with a machete, and used bicycle cables for strings.
+
+A video of him performing on the streets of Monrovia went viral in 2016, with his Facebook page attracting over 7 million visitors and bringing international attention that helped fund a home for him.
+
+• Self-taught musician who built all his own instruments from scrap materials
+
+• Music addressed war, Liberian history, and his own life experiences
+
+• International viral sensation after 2016 street performance video
+
+• Died in a road accident in Monrovia on February 27, 2018
+
+[Wikipedia](https://en.wikipedia.org/wiki/Wesseh_Freeman)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Alan Namoko (1956-1995)
+
+**Condition**: Blindness
+**Achievement**: Malawi's Legendary Blind Blues Musician
+**Onset**: From birth or early childhood
+
+Alan Nomoko Namoko was a blind blues and jazz musician from Malawi who became one of the country's most influential musical figures in the 1970s and 1980s.
+
+He played banjo and sang in Lomwe, Chewa, and Nyanja languages, performing with his band Chimvu Jazz.
+
+• One of Malawi's most celebrated musicians
+
+• Toured internationally and was featured on the BBC's John Peel show
+
+• Performed with his band Chimvu Jazz throughout Malawi and abroad
+
+• Influential figure in Malawian popular music until his death in 1995
+
+[Wikipedia](https://en.wikipedia.org/wiki/Alan_Namoko)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Eddie Low (1943-2024)
+
+**Condition**: Congenital Blindness (Rubella)
+**Achievement**: NZ Country Legend, 60+ Year Career
+**Onset**: Blind from birth; partial sight in left eye restored at 12
+
+Eddie Low was born blind in Rotorua, New Zealand, after his Māori mother contracted German measles during pregnancy. His twin brother did not survive, and his mother died weeks after his birth. At age 12, a series of operations restored partial sight in his left eye.
+
+Despite a school report saying he had 'no musical ability,' he became an accomplished multi-instrumentalist and developed a rich baritone voice. At 13, he formed The Three Blind Mice, an instrumental trio.
+
+• New Zealand Entertainer and Songwriter of the Year (1980)
+
+• Member of the New Zealand Order of Merit (MNZM) for services to music
+
+• Wrote the iconic 'Songs of Home,' celebrating Aotearoa through Māori place names
+
+• Career spanning over 60 years including The Quin Tikis and the NZ Highwaymen
+
+• Inducted into the Country Hands of Fame in both Tamworth, Australia and Gore, New Zealand
+
+[Wikipedia](https://en.wikipedia.org/wiki/Eddie_Low)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Ana Lucrecia Taglioretti (1995-2020)
+
+**Condition**: Congenital Blindness
+**Achievement**: Paraguayan Violin Prodigy
+**Onset**: From birth
+
+Ana Lucrecia Taglioretti was born blind in Paraguay and abandoned twice — first at birth, then again after her blindness was discovered. Adopted by a music teacher, she began studying music at age five, starting with piano before specializing in violin.
+
+At six she joined the Luque International Sanatorium Choir, and in 2003 joined the youth orchestra project Sonidos de la Tierra (Sounds of the Earth).
+
+• Member of the National Symphonic Orchestra of Paraguay from 2014
+
+• Performed with artists including Carlos Vives, Rolando Chaparro, and Lizza Bogado
+
+• Regular performer at Teletón Paraguay and United Nations Paraguay events
+
+• Died in January 2020 at age 24
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ana_Lucrecia_Taglioretti)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Kelvin Tan (Born 1981)
+
+**Condition**: Leber's Congenital Amaurosis
+**Achievement**: Project SuperStar Winner, Platinum Artist
+**Onset**: From birth
+
+Kelvin Tan Wei Lian was born with Leber's congenital amaurosis, a genetic disorder causing severe vision loss from birth. Before his music breakthrough, he earned a living as a street busker across Singapore.
+
+He won the first edition of Project SuperStar in 2005, launching a successful Mandopop career.
+
+• Debut album 'All I Want Is...' certified platinum in Singapore within five days of release
+
+• Won Best TV Drama Theme Song at the 2019 Star Awards for 'You Can Be An Angel 3'
+
+• Guide at Singapore's Dialogue in the Dark exhibition
+
+• Ambassador for disability awareness campaigns in Singapore
+
+[Wikipedia](https://en.wikipedia.org/wiki/Kelvin_Tan)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Filip Višnjić (1767-1834)
+
+**Condition**: Blindness from Smallpox
+**Achievement**: The Serbian Homer, Greatest Gusle Poet
+**Onset**: Age 8-9, from smallpox
+
+Filip Višnjić went blind at age 8 or 9 after contracting smallpox. Despite this, he became the greatest epic poet of the Serbian oral tradition, performing on the gusle (a single-stringed bowed instrument).
+
+Notable Serbian scholar Miloš N. Đurić dubbed him 'the Serbian Homer.' His works were preserved when linguist Vuk Karadžić recorded his performances in 1815.
+
+• Composed 13 original epic poems chronicling the First Serbian Uprising against the Ottoman Empire
+
+• His work described as 'the swansong of the epic tradition' by scholar Svetozar Koljević
+
+• One of the few epic poets of his era whose works were attributed by name rather than anonymous
+
+• His epic poetry remains a cornerstone of Serbian literary heritage
+
+[Wikipedia](https://en.wikipedia.org/wiki/Filip_Vi%C5%A1nji%C4%87)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Aksel Agerby (1889-1942)
+
+**Condition**: Congenital Blindness (Cause Unknown)
+**Achievement**: Composer of Beloved Danish Folk Melody 'Jeg er havren'
+**Onset**: From birth or early childhood
+
+Aksel Agerby was blind from an early age and was educated at the Royal Institute for the Blind in Copenhagen. The specific medical cause of his blindness was never documented.
+
+He debuted as a concert pianist in 1911 at age 22.
+
+• Composed the melody to 'Jeg er havren,' one of Denmark's most beloved folk songs
+
+• Organist at Brønshøj Church (1930-1942)
+
+• Chairman of the Young Musicians' Society (DUT), championing contemporary music throughout the 1930s
+
+• Ran his own music publishing company
+
+[Wikipedia](https://en.wikipedia.org/wiki/Aksel_Agerby)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Gordon Koang (Born 1980)
+
+**Condition**: Congenital Blindness
+**Achievement**: South Sudan's 'King of Music', thom virtuoso
+**Onset**: From birth
+
+Gordon Koang is a South Sudanese musician known as the 'King of Music' in his homeland. Born blind in Nasir, Upper Nile, he was introduced to the thom — a traditional East African harp — at age eight by his cousin. He began composing original songs in 1996, singing in Nuer, English, and Arabic, blending traditional rhythms with original compositions.
+
+When civil war erupted in South Sudan in 2013 while he was touring Canada, he returned to find his home destroyed. As a Nuer, he faced danger from militias and fled to Uganda before seeking asylum in Australia.
+
+• Released eleven albums including 'Unity,' earning him the nickname 'Michael Jackson of South Sudan'
+
+• Won the prestigious Levi's Music Prize at Australia's BIGSOUND festival
+
+• Featured in NME and Pitchfork after resettling in Melbourne
+
+• Advocates for peace, refugees, and family reunification through his music
+
+[Wikipedia](https://en.wikipedia.org/wiki/Gordon_Koang)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Bertha Tammelin (1836-1915)
+
+**Condition**: Progressive Visual Impairment
+**Achievement**: Acclaimed Swedish opera singer and actress
+**Onset**: Weak eyesight from birth, progressively worsened, forced retirement in 1884
+
+Bertha Tammelin had weak eyesight her entire life, which progressively worsened throughout her career. She made her final stage appearance on March 7, 1884, when her vision had deteriorated to the point she could no longer perform.
+
+Born Bertha Carolina Mathilda Bock, she was a premier actress at the Royal Swedish Opera and Royal Dramatic Theatre from 1856.
+
+• Operatic mezzo-soprano, pianist, and composer who gave piano concerts at age 14
+
+• Studied with Italian conductor and composer Jacopo Foroni
+
+• Taught music at the Royal Swedish Academy of Music (from 1879) and drama at the Royal Dramatic Training Academy (from 1889)
+
+• Received the Litteris et Artibus award in 1885 for her contributions to Swedish arts
+
+[Wikipedia](https://en.wikipedia.org/wiki/Bertha_Tammelin)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### D-Madness (Lorenzo Dwayne Jackson Jr.) (Born 1971)
+
+**Condition**: Congenital Blindness
+**Achievement**: Austin Funk Prodigy, Multi-Instrumentalist
+**Onset**: From birth (eyes never developed)
+
+Lorenzo Dwayne Jackson Jr., known as D-Madness, was born blind in Dallas, Texas. Doctors initially told his mother his eyes 'hadn't grown yet' but later confirmed he would never see. He began drumming at age 3 and was playing music in church by age 5.
+
+He relocated to Austin in 1983 to attend the Texas School for the Blind & Visually Impaired, where he studied classical and jazz music, becoming an award-winning violinist.
+
+• Plays drums, bass, keyboards, saxophone, trombone, and violin - often two or three instruments simultaneously
+
+• Leads the D-Madness Project, performing funk, soul, hip-hop, and reggae
+
+• Released albums Funk Fest (2008), Clown Royal (2012), and Equinox
+
+• Met and performed with Stevie Wonder in 2015
+
+• Appeared on the Merv Griffin TV show as a child prodigy
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ### Artists
 
 #### Claude Monet (1840-1926)
@@ -2533,6 +3423,30 @@ Self-taught from age 6, he creates vivid paintings using touch to understand for
 • Creates accurate perspective and shadow in his paintings without ever seeing light
 
 [Wikipedia](https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Boris Dyozhkin (1914-1992)
+
+**Condition**: Lost Left Eye (Bomb Fragment) + Prior Vision Loss
+**Achievement**: Soviet Animation Pioneer at Soyuzmultfilm
+**Onset**: Prior vision loss; left eye lost in 1941 bombing
+
+Boris Dyozhkin already had impaired vision when, during the heavy bombing of Moscow in summer 1941, he shielded his wife Faina Yepifanova (also an animator) with his body. A shell fragment struck him, destroying his left eye. He wore an eyepatch for the rest of his life.
+
+Despite this, he worked at Soyuzmultfilm for 40 more years, often serving simultaneously as director, art director, and animator.
+
+• Created the beloved Soviet animated sports comedy series featuring rival teams competing in football, hockey, skiing, and boxing
+
+• Worked at Soyuzmultfilm for over four decades combining multiple creative roles
+
+• Also known as a caricaturist, book illustrator, and animation educator
+
+• His wife Faina, whom he saved during the bombing, was also an animator at the studio
+
+[Wikipedia](https://en.wikipedia.org/wiki/Boris_Dyozhkin)
 
 **Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
 
@@ -2956,6 +3870,664 @@ Self-taught in law, this 'barefoot lawyer' became a prominent Chinese civil righ
 
 ---
 
+#### Kerryann Ifill (Born 1973)
+
+**Condition**: Juvenile Cataracts (Total Blindness)
+**Achievement**: First Blind President of the Senate of Barbados
+**Onset**: Age 4-5, from juvenile cataracts
+
+Kerryann Ifill was diagnosed with juvenile cataracts as a young child and gradually lost her sight completely by age five. After initially leaving school, she attended a school for the blind from age six and went on to achieve historic firsts.
+
+• First woman, first person with a disability, and youngest person (age 38) to serve as President of the Senate of Barbados (2012-2018)
+
+• First totally blind student to graduate from the University of the West Indies (BSc in Sociology and Psychology, 1999)
+
+• President of the Caribbean Council for the Blind
+
+• Awarded the Order of Freedom of Barbados (2023)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Kerryann_Ifill)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Rhina Aguirre (1939-2021)
+
+**Condition**: Ocular Toxoplasmosis (Total Blindness)
+**Achievement**: First Blind Senator in Bolivian History
+**Onset**: 1983, from ocular toxoplasmosis
+
+Rhina Aguirre lost her sight entirely in 1983 due to ocular toxoplasmosis, a parasitic infection that attacked her retinas. She stated: 'I am a blind person and this is not pejorative; it simply means accepting reality.'
+
+• First blind person to hold a parliamentary seat in Bolivia's history, serving as Senator for Tarija (2010-2015)
+
+• Founding member of Bolivia's Permanent Assembly of Human Rights (1970)
+
+• Championed Bolivia's landmark 2012 General Law on Persons with Disabilities
+
+• Worked with indigenous and campesino organizations across Bolivia, Ecuador, and Peru
+
+[Wikipedia](https://en.wikipedia.org/wiki/Rhina_Aguirre)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### María Josefa Mujía (1812-1888)
+
+**Condition**: Total Blindness (Unknown Cause)
+**Achievement**: Bolivia's First Woman Writer After Independence
+**Onset**: Age 14
+
+María Josefa Mujía became completely blind at the age of 14, following the death of her father. The specific cause was never documented, and eye surgery later in life was unsuccessful.
+
+Known as 'la Alondra del dolor' (the Lark of Pain), her deeply personal poetry drew on her experience of blindness.
+
+• Bolivia's first woman writer following the country's independence
+
+• Authored over 320 poems and a novel
+
+• Her celebrated poem 'La ciega' ('Blind Woman') became an icon of Bolivian literary romanticism
+
+• Translated works by Lamartine and Victor Hugo from Italian and French
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mar%C3%ADa_Josefa_Muj%C3%ADa)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Glauco Mattoso (Born 1951)
+
+**Condition**: Childhood Glaucoma (Total Blindness)
+**Achievement**: Leading Voice of Brazil's Marginal Poetry Movement
+**Onset**: Childhood onset, completely blind by 1995
+
+Glauco Mattoso (pen name of Pedro José Ferreira da Silva) adopted his pseudonym as a direct reference to the childhood glaucoma that progressively robbed him of his sight. The condition worsened over decades until he became completely blind in 1995.
+
+After losing his vision, he abandoned the visual/graphic elements of his earlier poetry and became one of Brazil's most prolific sonnet writers.
+
+• Leading voice in Brazil's Marginal Poetry movement during the 1970s military dictatorship
+
+• Created Jornal Dobrabil, an influential artisanal poetry fanzine (1977-1981)
+
+• Published over fifty books of sonnets after becoming blind
+
+• Translator and essayist combining classical forms with radical experimentation
+
+[Wikipedia](https://en.wikipedia.org/wiki/Glauco_Mattoso)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Peyo Yavorov (1878-1914)
+
+**Condition**: Traumatic Blindness (Gunshot Wound)
+**Achievement**: Founder of Bulgarian Symbolist Poetry
+**Onset**: Age 35, from self-inflicted gunshot wound (1913)
+
+Peyo Yavorov, one of Bulgaria's greatest poets, became permanently blind in November 1913 when a self-inflicted gunshot wound to the temple damaged his optic nerves. The tragedy followed the suicide of his wife Lora Karavelova.
+
+He lived his final year in total darkness, grieving and falsely accused of his wife's murder, before his death in 1914 at age 36.
+
+• Considered one of the finest poetic talents in fin-de-siècle Bulgaria
+
+• Founded the Symbolist movement in Bulgarian poetry
+
+• Wrote approximately 160 poems, two plays, and a biography of revolutionary leader Gotse Delchev
+
+• Worked as dramaturg at Bulgaria's National Theatre
+
+[Wikipedia](https://en.wikipedia.org/wiki/Peyo_Yavorov)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Fabiola Campillai (Born 1983)
+
+**Condition**: Total Blindness (Tear Gas Canister Impact)
+**Achievement**: Chile's First Blind Senator
+**Onset**: Age 36, from police tear gas canister (2019)
+
+Fabiola Campillai lost her sight, smell, and taste on November 26, 2019, when a tear gas canister fired by police struck her face while she was walking to her factory night shift during Chile's social protests. The impact ruptured both eyeballs and fractured her skull.
+
+She was not a protester — she was simply on her way to work.
+
+• Elected as Chile's first blind senator in 2021, winning more votes than any other candidate in her district
+
+• Became a powerful symbol of police brutality victims during Chile's 2019 social uprising
+
+• The officer responsible was convicted and sentenced to over 12 years in prison
+
+[Wikipedia](https://en.wikipedia.org/wiki/Fabiola_Campillai)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### María Soledad Cisternas Reyes (Born 1959)
+
+**Condition**: Retinitis Pigmentosa
+**Achievement**: UN Special Envoy on Disability and Accessibility
+**Onset**: Diagnosed at age 14, progressive to total blindness
+
+María Soledad Cisternas Reyes was diagnosed with retinitis pigmentosa at age 14. Her vision progressively deteriorated throughout her teenage years and she became fully blind while attending university, hiding her worsening condition from teachers and classmates.
+
+• Chilean lawyer appointed UN Secretary-General's Special Envoy on Disability and Accessibility (2017)
+
+• Helped draft the UN Convention on the Rights of Persons with Disabilities
+
+• Chairperson of the UN Committee on the Rights of Persons with Disabilities
+
+• Awarded Chile's National Prize of Human Rights (2014)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Mar%C3%ADa_Soledad_Cisternas)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Joaquín Mosquera (1787-1878)
+
+**Condition**: Age-Related Blindness (likely Cataracts)
+**Achievement**: Twice President of Gran Colombia
+**Onset**: Age 71, lost sight in 1858
+
+Joaquín Mosquera lost his sight in 1858 at approximately age 71. The specific medical cause was never documented, though age-related cataracts were the most common cause of blindness in that era. He lived with total blindness for the remaining 20 years of his life.
+
+After losing his sight, he dedicated himself to education as rector and professor at the University of Cauca.
+
+• Twice President of Gran Colombia (1830, 1831)
+
+• Vice President of the Republic of New Granada (1833-1835)
+
+• Founding Father of Colombia who shaped independence through diplomacy rather than military force
+
+• Author of Memorias sobre la revolución de Colombia
+
+[Wikipedia](https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Mosquera)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Juan Carlos González Leiva (Born 1965)
+
+**Condition**: Birth Trauma Blindness
+**Achievement**: Founder, Cuban Foundation of Human Rights
+**Onset**: Near-blind from birth, completely blind at 21
+
+Juan Carlos González Leiva was born nearly blind due to complications during delivery. At age 21, hard physical labor on a sugar cane plantation caused him to lose his remaining sight completely.
+
+Despite his blindness, he graduated from law school and became one of Cuba's most prominent dissidents.
+
+• Founded the Brotherhood of the Independent Blind of Cuba (1998)
+
+• Founded the Cuban Foundation of Human Rights (1998)
+
+• Supporter of the Varela Project and the Ladies in White movement
+
+• Imprisoned for two years and endured torture for his human rights advocacy
+
+[Wikipedia](https://en.wikipedia.org/wiki/Juan_Carlos_Gonz%C3%A1lez_Leiva)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Princess Christina of the Netherlands (1947-2019)
+
+**Condition**: Congenital Rubella Syndrome (Near-Total Blindness)
+**Achievement**: Music Educator & Visual Impairment Advocate
+**Onset**: From birth, congenital rubella caused right eye blindness and left eye cataracts
+
+Princess Christina was born nearly blind due to congenital rubella syndrome — her mother, Crown Princess Juliana, contracted German measles during pregnancy. Her right eye was completely blind and her left eye had dense cataracts, leaving only minimal light perception.
+
+At age one, surgery in the United States partially restored vision in her left eye, allowing her to attend school with thick-lensed glasses, though she remained legally blind throughout life.
+
+• Classical vocalist and music educator based in New York City
+
+• The annual Prinses Christina Concours music competition was named in her honor
+
+• Worked with Koninklijke Visio foundation conducting workshops for visually impaired individuals
+
+• Youngest daughter of Queen Juliana and Prince Bernhard
+
+[Wikipedia](https://en.wikipedia.org/wiki/Princess_Christina_of_the_Netherlands)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Georg Eberhard Rumphius (c.1627-1702)
+
+**Condition**: Glaucoma (Total Blindness)
+**Achievement**: 'Pliny of the Indies', Blind Naturalist
+**Onset**: Age 42, rapid progression over 3 months in 1670
+
+Georg Eberhard Rumphius went blind at age 42 from what is now believed to be glaucoma simplex. His vision deteriorated rapidly over approximately three months in 1670, progressing to near-total blindness. He described it as a 'terrible misfortune that suddenly took away from me the entire world.'
+
+He spent the remaining 32 years of his life continuing his monumental botanical work, identifying plants by touch, smell, and taste.
+
+• Known as 'Plinius Indicus' — the most important natural historian of the 17th-century Indonesian archipelago
+
+• His Herbarium Amboinense described ~1,200 plant species with 800+ illustrations, completed blind
+
+• Overcame his wife's death in a tsunami (1674) and a fire destroying his manuscripts (1687)
+
+• His nomenclature contributed to Linnaeus's later binomial classification system
+
+[Wikipedia](https://en.wikipedia.org/wiki/Georg_Eberhard_Rumphius)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Ahmed Harara (Born 1980)
+
+**Condition**: Bilateral Traumatic Blindness (Shotgun Injuries)
+**Achievement**: 'Blind Hero of Egypt's Revolution'
+**Onset**: Right eye lost Jan 28, 2011; left eye lost Nov 19, 2011
+
+Ahmed Harara, an Egyptian dentist, lost both eyes during the 2011 Egyptian Revolution. On January 28, a shotgun blast on Qasr El Nile Bridge destroyed his right eye's retina. Ten months later on November 19, a shotgun pellet struck his left eye on Mohamed Mahmoud Street, leaving him completely blind.
+
+He became known as the 'Blind Hero of Egypt's Revolution' and was named spokesperson of the revolution by Tahrir Square activists.
+
+• Named TIME Magazine Person of the Year 2011 (as part of 'The Protester')
+
+• Co-founded the Dostor political party with Dr. Mohamed ElBaradei
+
+• Instrumental in constitutional amendments guaranteeing rights of disabled people in Egypt
+
+• Master's degree from the London School of Economics
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ahmed_Harara)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Aarne Arvonen (1897-2009)
+
+**Condition**: Monocular Blindness + Age-Related Vision Loss
+**Achievement**: Finland's Oldest Man, Founding Ursa Member
+**Onset**: One eye lost in childhood gun accident; remaining sight lost by age 111
+
+Aarne Arvonen lost one eye in a childhood accident while playing with a gun. His remaining vision progressively deteriorated in his centenarian years, becoming almost blind by age 110 and fully losing his sight by 2008.
+
+He was Finland's oldest man ever, living to 111 years and 150 days, and the last surviving veteran of the Finnish Civil War of 1918.
+
+• Founding member of Ursa, Finland's amateur astronomy association (1921) — a membership he maintained for nearly 87 years
+
+• Survived the Spanish flu at the Tammisaari prison camp after the Civil War
+
+• Built his own house in Järvenpää where he lived independently until age 108
+
+• Last known living Finnish person born in the 1800s
+
+[Wikipedia](https://en.wikipedia.org/wiki/Aarne_Arvonen)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Jussi Kekkonen (1910-1962)
+
+**Condition**: Bilateral Traumatic Blindness (Combat Injury)
+**Achievement**: War Hero, Brother of President Kekkonen
+**Onset**: Age 31, bullet ricochet destroyed both eyes in 1941
+
+Jussi Kekkonen lost both eyes during the Continuation War in 1941 when a rifle bullet struck his submachine gun magazine, ricocheted upward, and tore both eyes open. He lay bleeding in heavy rain for 24 hours before rescue. Multiple surgeries could not restore his vision.
+
+He was the younger brother of Urho Kekkonen, Finland's 8th President.
+
+• Led 'Battle Detachment Kekkonen,' a 270-person guerrilla unit in the Winter War
+
+• Promoted to Major despite his blindness
+
+• Became CEO of Ragnar Nordström's shipping company in Loviisa
+
+• Buried with military honors in Kajaani's heroes' cemetery
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jussi_Kekkonen)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Frank La Rue (Born 1952)
+
+**Condition**: Congenital Legal Blindness
+**Achievement**: UN Special Rapporteur, Human Rights Pioneer
+**Onset**: From birth
+
+Frank La Rue was born legally blind, yet graduated with a law degree from Universidad de San Carlos de Guatemala and built an extraordinary career in human rights law.
+
+He fled Guatemala in 1981 after being marked for death during the Civil War, and went on to become a leading international voice for human rights and freedom of expression.
+
+• UN Special Rapporteur on Freedom of Opinion and Expression (2008-2014)
+
+• Declared internet access a fundamental human right (2011)
+
+• Co-founded the Center for Legal Action for Human Rights (CALDH)
+
+• Nominated for the 2004 Nobel Peace Prize
+
+• EFF Pioneer Award recipient (2014)
+
+[Wikipedia](https://en.wikipedia.org/wiki/Frank_William_La_Rue)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Belo Cipriani (Born 1980)
+
+**Condition**: Traumatic Retinal Damage (Total Blindness)
+**Achievement**: Author, Disability & LGBT Advocate
+**Onset**: Age 26, violent assault in 2007
+
+Belo Cipriani became completely blind at age 26 after being brutally assaulted and robbed by former friends in San Francisco's Castro District on April 13, 2007. Repeated kicks to his face caused irreparable retinal nerve damage. Multiple surgeries failed to restore any vision.
+
+A therapist suggested writing to manage depression, leading to a new career as an author and advocate.
+
+• Author of 'Blind: A Memoir' — his first book, chronicling the two years after the attack
+
+• First blind writer to attend the Bread Loaf Writers' Conference
+
+• Founded Oleb Media (digital accessibility) and Oleb Books (publishing for writers with disabilities)
+
+• Community Grand Marshal, 45th San Francisco LGBT Pride Parade (2015) — first blind person in that role
+
+[Wikipedia](https://en.wikipedia.org/wiki/Belo_Cipriani)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Inga Sæland (Born 1959)
+
+**Condition**: Cortical Visual Impairment (10% Residual Vision)
+**Achievement**: Icelandic Minister of Social Affairs
+**Onset**: Age 5 months, meningitis and chickenpox caused brain stem damage
+
+Inga Sæland became blind at five months old when meningitis and chickenpox, compounded by incorrect medication, caused brain stem damage. She was completely blind for her first two years before recovering approximately 10% of her vision — making her legally blind throughout life.
+
+She founded the People's Party at her kitchen table in 2016 and was elected to parliament in 2017.
+
+• Appointed Minister of Social Affairs and Housing in 2024
+
+• Founded the People's Party (Flokkur fólksins), which became Iceland's largest party in the south constituency (2024)
+
+• Earned a Bachelor of Laws from the University of Iceland at age 57
+
+• Vocal disability rights advocate: 'Proud. Disabled. And endlessly grateful. Nothing About Us Without Us.'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Inga_S%C3%A6land)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Ameneh Bahrami (Born 1978)
+
+**Condition**: Total Blindness (Acid Attack)
+**Achievement**: Acid Attack Survivor, Symbol of Mercy
+**Onset**: Age 26, from acid attack in 2004
+
+Ameneh Bahrami was blinded in 2004 when Majid Movahedi threw acid in her face after she rejected his marriage proposal. She lost one eye immediately and suffered horrific burns to her face, scalp, and body. Despite 17 surgeries including reconstruction attempts in Spain, an infection in 2007 destroyed the remaining 40% vision in her other eye, leaving her completely blind.
+
+In a case that gained worldwide attention, a Tehran court sentenced her attacker to be blinded by acid under qisas (retributive justice). In 2011, moments before the sentence was to be carried out, Ameneh pardoned him, stating: 'God recommends pardon since pardon is greater than qesas.'
+
+• International symbol of both acid attack survivors and the power of forgiveness
+
+• Her decision to pardon her attacker was praised globally
+
+• Advocate for acid attack victims' rights
+
+[Wikipedia](https://en.wikipedia.org/wiki/Ameneh_Bahrami)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### John Asfour (1945-2014)
+
+**Condition**: Traumatic Blindness (Grenade Explosion)
+**Achievement**: Landmark Arabic Poetry Anthologist
+**Onset**: Age 13, grenade explosion during Lebanese crisis of 1958
+
+John Asfour was blinded at age 13 when a grenade exploded in his face during the 1958 Lebanese crisis. After multiple unsuccessful attempts to restore his sight, he emigrated to Canada in 1968 and built a distinguished literary career.
+
+• Author of 5 volumes of poetry in English and 2 in Arabic
+
+• Edited and translated 'When the Words Burn: An Anthology of Modern Arabic Poetry' — a landmark work bringing Arabic poetry to English-speaking audiences
+
+• President of the Canadian Arab Federation (1996-2002)
+
+• Taught literature at universities in Montreal
+
+[Wikipedia](https://en.wikipedia.org/wiki/John_Asfour)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Jock Orr (1908-1988)
+
+**Condition**: Partial Blindness (Occupational)
+**Achievement**: 'The Birdman' of Cathedral Square
+**Onset**: Progressive, from sun glare while window cleaning
+
+John Hastings 'Jock' Orr was partially sighted, which he attributed to glare from the sun while employed as a window cleaner. From 1972, he lived at the Fernwood Hostel for the Blind in Christchurch.
+
+He became one of Christchurch's most beloved eccentrics, spending his days feeding red-billed gulls in Cathedral Square. The birds would flock around him and perch on his head, making him a tourist attraction.
+
+• Known as 'The Birdman' — an iconic figure of Cathedral Square throughout the 1970s and 1980s
+
+• Memorial bronze plaque installed on the Chief Post Office building in Cathedral Square after his death
+
+• The Animal Defenders' League originally proposed a memorial birdbath in his honor
+
+[Wikipedia](https://en.wikipedia.org/wiki/Jock_Orr)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Oscar Ludvig Stoud Platou (1845-1929)
+
+**Condition**: Progressive Eye Disease (Total Blindness)
+**Achievement**: Maritime Law Pioneer, University Professor
+**Onset**: Eye disease from 1910, blind by 1915
+
+Oscar Ludvig Stoud Platou was a Norwegian jurist who developed an eye disease in 1910 and became completely blind by 1915. Despite his blindness, he continued as a professor at the Royal Frederick University for five more years until 1920.
+
+He had served as an assessor in Oslo City Court for fourteen years (1876-1890) before becoming a professor in 1890.
+
+• Co-founded the Comité Maritime International (1897), a leading international maritime law body
+
+• Vice president of the International Law Association from 1907
+
+• Professor at the Royal Frederick University for 30 years (1890-1920), continuing to teach for 5 years after going blind
+
+• Major contributor to Norwegian and international maritime law
+
+[Wikipedia](https://en.wikipedia.org/wiki/Oscar_Ludvig_Stoud_Platou)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Syed Sardar Ahmed Pirzada (Born 1961)
+
+**Condition**: Progressive Glaucoma
+**Achievement**: First Blind Journalist of Pakistan
+**Onset**: Partially sighted from birth, progressive
+
+Syed Sardar Ahmed Pirzada was partially sighted at birth but progressively lost his vision due to glaucoma. He earned his master's degree in journalism from the University of the Punjab in 1985 and became Pakistan's first blind journalist, adopting the title to turn what others saw as weakness into strength.
+
+Despite facing discrimination in mainstream media due to his visual impairment, he built a distinguished career across multiple national publications.
+
+• First Blind Journalist of Pakistan — worked for Daily Jang, Daily Jasarat, and other major publications
+
+• Editor-in-Chief of Monthly Akhbar-e-Urdu
+
+• Won the All Pakistan Newspaper Society Best Urdu Column Award (2012)
+
+• Advocate for representation of persons with disabilities in Pakistan's Parliament
+
+[Wikipedia](https://en.wikipedia.org/wiki/Syed_Sardar_Ahmed_Pirzada)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Costache Aristia (1800-1880)
+
+**Condition**: Total Blindness
+**Achievement**: Pioneer of Romanian Theater & Literature
+**Onset**: Completely blind from 1872
+
+Costache Aristia was a Wallachian-born poet, actor, translator, soldier, and philanthropist who became completely blind in 1872. Despite his blindness, he continued to compose poetry by dictation, including his final poem written in memory of philanthropist Ana Davila in 1874.
+
+A member of the Greek colony in Bucharest, he trained in France and became known for his powerful stage performances.
+
+• His translation of Alfieri's 'Saul' became a Romanian nationalist manifesto
+
+• Acclaimed for his landmark Romanian rendition of Homer's Iliad
+
+• Key figure in the early modernization of Romanian literature
+
+• Modeled his acting style on the legendary French tragedian François-Joseph Talma
+
+[Wikipedia](https://en.wikipedia.org/wiki/Costache_Aristia)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Vasily Eroshenko (1890-1952)
+
+**Condition**: Blindness from Measles
+**Achievement**: Blind Multilingual Esperantist & Fairy Tale Writer
+**Onset**: Age 4, from measles
+
+Vasily Eroshenko became blind at age 4 after contracting measles. Despite this, he became one of the most remarkable transnational literary figures of the early 20th century — a blind multilingual writer who lived and worked across Russia, Japan, and China.
+
+He learned Esperanto, English, and Japanese, and worked as a violinist in the Moscow orchestra for the blind (1907-1914). His political fairy tales in Japanese brought him fame in the Japanese literary community.
+
+• Befriended the great Chinese modernist writer Lu Xun, who translated his works into Chinese
+
+• Wrote political fairy tales compared to Hans Christian Andersen and Oscar Wilde
+
+• Deported from Japan in 1921 for participating in socialist protests
+
+• Taught Esperanto in Beijing and traveled extensively across Asia despite being completely blind
+
+[Wikipedia](https://en.wikipedia.org/wiki/Vasili_Eroshenko)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Theresa Poh Lin Chan (1943-2016)
+
+**Condition**: Deaf-Blindness
+**Achievement**: 'Helen Keller of Southeast Asia'
+**Onset**: Deaf at 12, blind at 14
+
+Theresa Poh Lin Chan became deaf at age 12 and lost her sight at age 14, yet went on to become one of Southeast Asia's most inspiring figures for people with disabilities. Known in her youth as 'the Helen Keller of Southeast Asia,' she fulfilled her dream of meeting Helen Keller herself in Connecticut in 1961.
+
+On the recommendation of John Wilson of the Royal Commonwealth Society for the Blind, she attended the Perkins School for the Blind in Massachusetts, where she topped the school in mathematics and became president of the sports club.
+
+• Teacher at the Singapore School for the Blind after returning from 13 years in the United States
+
+• Posthumously inducted into the Singapore Women's Hall of Fame (2017)
+
+• Learned to dance, ice skate, knit, and horseback ride despite being deafblind
+
+• Her message: 'Whatever their disabilities, they should have hope and not be unhappy and discouraged'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Theresa_Poh_Lin_Chan)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Viola Hashe (1926-1977)
+
+**Condition**: Blindness
+**Achievement**: First Woman Leader of an All-Male Union in SA
+**Onset**: Details unrecorded
+
+Viola Hashe was a blind teacher, anti-apartheid activist, and trade unionist who became a prominent figure in South Africa's labor and liberation movements despite her visual impairment.
+
+Born in the Orange Free State, she joined the African National Congress (ANC) in the 1950s and began working with the South African Clothing Workers Union (SACWU) from 1956.
+
+• First woman to lead an all-male trade union in South Africa, elected Secretary General of SACWU in March 1956
+
+• Vice-President of the South African Congress of Trade Unions (SACTU) from 1960
+
+• Member of SACTU's Management Committee from 1956
+
+• Defied both racial and gender barriers while navigating apartheid-era South Africa as a blind Black woman
+
+[Wikipedia](https://en.wikipedia.org/wiki/Viola_Hashe)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Concha Espina (1869-1955)
+
+**Condition**: Progressive Blindness
+**Achievement**: Nobel-nominated Spanish novelist who wrote blind
+**Onset**: Age 69 (1938), completely blind by 1940
+
+Concha Espina was born in Santander, Spain, and became one of the most accomplished Spanish women writers of her era. She began losing her sight in 1938 at age 69 and underwent surgical operations that temporarily restored some vision, but the medical attempts ultimately failed and she became completely blind by 1940.
+
+Despite total blindness for the last 15 years of her life, she continued writing using a ruled guideline, publishing 13 novels in complete darkness.
+
+• Nominated for the Nobel Prize in Literature 25 times over 28 years
+
+• Authored over 50 books including novels, poetry, and plays
+
+• Considered the first Spanish woman to earn her living exclusively from writing
+
+• Major works include 'La esfinge maragata' and 'El metal de los muertos'
+
+[Wikipedia](https://en.wikipedia.org/wiki/Concha_Espina)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Anita Lee Blair (1916-2010)
+
+**Condition**: Complete Blindness (Car Accident)
+**Achievement**: First Blind Woman Elected to U.S. State Legislature
+**Onset**: Age 20 (1936), car accident
+
+Anita Lee Blair was born in Oklahoma City and lost her sight completely at age 20 in a car accident in 1936. She became the first blind woman elected to any state legislature in the United States, serving in the Texas House of Representatives from 1953 to 1954.
+
+In 1940, she became the first El Paso resident to receive a guide dog, a German Shepherd named Fawn. Fawn saved her life during the 1946 LaSalle Hotel Fire in Chicago by guiding her through smoke-filled hallways to safety.
+
+• Served on President Truman's Presidential Committee on Traffic Safety
+
+• Active in disability rights and political advocacy throughout her life
+
+• Died in 2010 in El Paso at age 94
+
+[Wikipedia](https://en.wikipedia.org/wiki/Anita_Lee_Blair)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ### Historical Figures
 
 #### John Milton (1608-1674)
@@ -3264,6 +4836,30 @@ His vivid descriptions of Lord Krishna transcend his physical blindness.
 
 ---
 
+#### Infanta Margarita, Duchess of Soria (Born 1939)
+
+**Condition**: Congenital Blindness (Light Perception Only)
+**Achievement**: Blind Spanish Princess, ONCE Foundation President
+**Onset**: From birth, can perceive only light and shadows
+
+Infanta Margarita was born in Rome in 1939, the third child of Infante Juan, Count of Barcelona, and Princess María Mercedes of Bourbon-Two Sicilies. She is the younger sister of King Juan Carlos I and aunt of King Felipe VI. Born blind, her condition was identified within months of birth. After four years of medical interventions, a leading eye specialist determined she could see only 'light and shadows and rarely something more.'
+
+She married physician Carlos Zurita y Delgado in 1972 and renounced her right of succession to the throne. She holds the titles Duchess of Soria and 2nd Duchess of Hernani.
+
+• Honorary President of the ONCE Foundation (Spain's National Organization of the Blind)
+
+• Co-founded the Duke and Duchess of Soria Cultural Foundation (1989) for promotion of Spanish culture and heritage
+
+• Honorary President of Madrid's UNICEF delegation, Spanish Heart Foundation, and Spanish Federation of Hemophilia
+
+• Multilingual musician who has never let her blindness limit her public and cultural life
+
+[Wikipedia](https://en.wikipedia.org/wiki/Infanta_Margarita,_Duchess_of_Soria)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ### Fictional Characters
 
 #### Odin (Norse Mythology)
@@ -3466,7 +5062,7 @@ Blinkin is a comedic character from the Mel Brooks parody film Robin Hood: Men i
 
 #### Julia Carpenter (Arachne) (Marvel Comics)
 
-**Condition**: Blindness
+**Condition**: Psychic Web Perception
 **Achievement**: Marvel's Current Madame Web
 **Onset**: Inherited Madame Web powers
 
@@ -3574,7 +5170,7 @@ Mohammad is the protagonist of the Iranian film The Color of Paradise (1999). He
 
 #### Chirrut Îmwe (Star Wars: Rogue One)
 
-**Condition**: Blindness
+**Condition**: Force Perception (Born Blind)
 **Achievement**: Guardian of the Whills, Rogue One
 **Onset**: Born blind
 
@@ -3616,7 +5212,7 @@ Murphy Mason lost her sight completely at age 14 due to retinitis pigmentosa, a 
 
 #### Fujitora (Issho) (One Piece)
 
-**Condition**: Self-Inflicted Blindness
+**Condition**: Observation Haki (Self-Blinded)
 **Achievement**: One Piece Marine Admiral
 **Onset**: Blinded himself
 
@@ -3636,6 +5232,198 @@ He uses Observation Haki to sense his surroundings.
 
 ---
 
+#### Mo (Come As You Are (2019))
+
+**Condition**: Legal Blindness
+**Achievement**: Come As You Are (2019) Character
+**Onset**: Legally blind (unspecified cause)
+
+Mo is one of three friends with disabilities in the comedy-drama film Come As You Are (2019), a remake of the Belgian film Hasta La Vista. He is legally blind and works at the clinic where the three main characters met.
+
+The film follows Mo, Scotty (who has arthrogryposis), and Matt (a wheelchair user) as they embark on a road trip to Montreal with their hired nurse Sam.
+
+• Played by Ravi Patel
+
+• The film received a 95% approval rating on Rotten Tomatoes
+
+• Explores themes of disability, independence, and human connection
+
+• Loosely inspired by real events
+
+[Wikipedia](https://en.wikipedia.org/wiki/Come_as_You_Are_(2019_film))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Su Nian Qin (Crush (2021 Chinese Drama))
+
+**Condition**: Corneal Opacity
+**Achievement**: Crush (2021) Protagonist
+**Onset**: Severe visual impairment from corneal opacity
+
+Su Nian Qin is the male lead of the Chinese romance drama Crush (2021), adapted from the novel 'So I Love You Very Much.' He is a talented singer-songwriter who secretly creates music under the pen name 'Yi Jin,' while working as a teacher for blind children.
+
+His corneal opacity limits his vision to distinguishing shapes and movements within approximately three feet. He eventually undergoes a successful cornea transplant.
+
+• Played by Evan Lin (Lin Yanjun)
+
+• Praised for authentic portrayal of visual impairment - reading braille, using a talking watch, orienting by touch
+
+• 24-episode drama on iQIYI with 7.6 IMDb rating
+
+• His love story with radio broadcaster Sang Wu Yan explores how disability affects relationships
+
+[Wikipedia](https://en.wikipedia.org/wiki/Crush_(2021_TV_series))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Sofia (In Darkness (2018))
+
+**Condition**: Feigned Blindness
+**Achievement**: In Darkness (2018) Protagonist
+**Onset**: Poses as completely blind as part of revenge plan
+
+Sofia is the protagonist of the thriller In Darkness (2018), a concert pianist living in London who presents herself as completely blind. After overhearing the murder of her upstairs neighbor Veronique, daughter of an accused Serbian war criminal, she is pulled into a dangerous underworld of corruption and violence.
+
+Sofia's blindness is revealed to be an elaborate deception. Her real identity is that of a Bosnian War survivor who witnessed her family's massacre. She assumed a new identity and feigned blindness for years to get close to those responsible.
+
+• Played by Natalie Dormer, who also co-wrote the screenplay
+
+• The film explores themes of perception, deception, and revenge
+
+• Co-stars Ed Skrein, Emily Ratajkowski, and Jan Bijvoet
+
+• Sofia's feigned blindness allows her to be underestimated by dangerous adversaries
+
+[Wikipedia](https://en.wikipedia.org/wiki/In_Darkness_(2018_film))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Solomon (Tethered (2022))
+
+**Condition**: Congenital Blindness
+**Achievement**: Tethered (2022) Protagonist
+**Onset**: Born blind
+
+Solomon is the protagonist of the horror/drama film Tethered (2022). Born blind, he lives in complete isolation in a remote cabin in the North Carolina woods, navigating the wilderness using a rope tied around his waist as a lifeline back to his cabin.
+
+After his mother disappears when he is a child, Solomon survives alone for approximately ten years using survival skills she taught him. When a hunter named Henry stumbles onto his property, they discover a terrifying supernatural creature lurking in the woods.
+
+• Played by Jared Laufree (young adult) and Brody Bett (child)
+
+• His blindness heightens the horror - he cannot see what stalks him in the darkness
+
+• Despite his blindness, he is resourceful and self-sufficient, capable of hunting and fishing alone
+
+• The tether/rope is both a survival tool and metaphor for confinement
+
+[Wikipedia](https://en.wikipedia.org/wiki/Tethered_(film))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Michelle McNally (Black (2005))
+
+**Condition**: Deafblindness
+**Achievement**: Black (2005) Protagonist
+**Onset**: Lost sight and hearing from illness at age 2
+
+Michelle McNally is the protagonist of the acclaimed Indian film Black (2005), directed by Sanjay Leela Bhansali. She is an Anglo-Indian woman from Shimla who lost her sight, hearing, and ability to speak after an illness at age two - a story inspired by Helen Keller's autobiography.
+
+Her dedicated teacher Debraj Sahai enters her life and teaches her to communicate, eventually guiding her to earn a university degree. In a poignant reversal, the aging Debraj develops Alzheimer's, and Michelle must care for the man who guided her out of darkness.
+
+• Played by Rani Mukerji (adult) and Ayesha Kapur (child)
+
+• Won all 11 nominations at the 51st Filmfare Awards including Best Film and Best Actress
+
+• 8.1 IMDb rating - widely regarded as one of the finest Bollywood dramas
+
+• Amitabh Bachchan won National Film Award for Best Actor as teacher Debraj Sahai
+
+[Wikipedia](https://en.wikipedia.org/wiki/Black_(2005_film))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Leonardo (The Way He Looks (2014))
+
+**Condition**: Congenital Blindness
+**Achievement**: The Way He Looks (2014) Protagonist
+**Onset**: Born blind
+
+Leonardo is the protagonist of the Brazilian coming-of-age film The Way He Looks (2014), a blind high school student in S\u00e3o Paulo struggling for independence. His everyday life is constrained by an overprotective mother and the routine of being walked home by his best friend Giovana.
+
+When new student Gabriel arrives, Leonardo discovers first love and begins asserting his autonomy. The film portrays his blindness matter-of-factly, as one dimension of a teenager's life alongside universal struggles of adolescence and identity.
+
+• Played by Ghilherme Lobo, who won the APCA Trophy for Best Actor
+
+• Won FIPRESCI Prize and Teddy Award at the 64th Berlin International Film Festival
+
+• 7.9 IMDb rating
+
+• The title refers to Leonardo's desire to walk home alone - a symbol of his quest for autonomy
+
+[Wikipedia](https://en.wikipedia.org/wiki/The_Way_He_Looks)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Blind Girl (The Flower Girl) (City Lights (1931))
+
+**Condition**: Corneal Blindness (Surgically Cured)
+**Achievement**: City Lights (1931) Lead Character
+**Onset**: Blind (cause unspecified in film)
+
+The Blind Girl is a young, impoverished flower seller in Charlie Chaplin's masterpiece City Lights (1931). She is one of the most iconic blind characters in cinema history. When the Tramp falls in love with her, he embarks on comedic misadventures to raise money for an operation that could restore her sight.
+
+The film's ending - where she recognizes her benefactor by touch after regaining her sight - is widely regarded as one of the greatest moments in film history.
+
+• Played by Virginia Cherrill, directed to 'look inwardly and not to see me' by Chaplin
+
+• The opening flower-selling scene required 342 takes over several weeks
+
+• 8.5 IMDb rating - considered one of the greatest films ever made
+
+• Medical analysis suggests her condition was likely trachoma or corneal dystrophy, treatable by corneal transplant
+
+[Wikipedia](https://en.wikipedia.org/wiki/City_Lights)
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
+#### Lt. Col. Frank Slade (Scent of a Woman (1992))
+
+**Condition**: Traumatic Blindness
+**Achievement**: Scent of a Woman (1992) Protagonist
+**Onset**: Blinded by grenade explosion
+
+Lt. Col. Frank Slade is a retired, decorated Vietnam War veteran in Scent of a Woman (1992). He lost his sight completely when a grenade detonated during a reckless accident, a source of deep shame he conceals behind a story of combat injury.
+
+The bitter, cynical blind veteran takes prep school student Charlie Simms on a final luxurious trip to New York City, secretly planning to end his life. Their unlikely bond ultimately redeems them both.
+
+• Played by Al Pacino, who won the Academy Award for Best Actor for this role
+
+• Famous for his acute sense of smell - identifying women's perfumes and navigating social situations
+
+• The tango scene at the Waldorf-Astoria is one of cinema's most celebrated sequences
+
+• Pacino trained with The Lighthouse vision rehabilitation organization to portray blindness authentically
+
+[Wikipedia](https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film))
+
+**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+
+---
+
 ## About Simulated Vision
 
 Simulated Vision (https://simulated.vision) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
@@ -3643,7 +5431,7 @@ Simulated Vision (https://simulated.vision) is a free, open-source educational t
 ### Key Features
 - Real-time vision simulation with adjustable intensity
 - 42+ medically-researched vision conditions
-- 128+ famous people profiles with personalized simulations
+- 203+ famous people profiles with personalized simulations
 - Detailed condition descriptions with treatment information
 - Available in 26 languages
 - Fully accessible (WCAG-compliant)

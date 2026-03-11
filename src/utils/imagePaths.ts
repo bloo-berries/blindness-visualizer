@@ -238,7 +238,8 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   michelleMcNally: 'Michelle-McNally.webp',
   leonardoWayHeLooks: 'Leonardo.webp',
   blindGirlCityLights: 'Blind-Girl.webp',
-  frankSlade: 'Frank-Slade.webp'
+  frankSlade: 'Frank-Slade.webp',
+  anitaLeeBlair: 'anita-lee-blair.webp'
 };
 
 /**

@@ -2,7 +2,7 @@
 
 > https://simulated.vision
 
-Simulated Vision is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 128+ famous people with vision conditions and links each to an interactive simulation.
+Simulated Vision is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 203+ famous people with vision conditions and links each to an interactive simulation.
 
 Available in 26 languages. No account required.
 
@@ -10,7 +10,7 @@ Available in 26 languages. No account required.
 
 - [Home](https://simulated.vision/) — Landing page with overview and demo video
 - [Vision Simulator](https://simulated.vision/simulator) — Interactive simulator (YouTube video or image input)
-- [Famous People](https://simulated.vision/famous-people) — 128+ historical and contemporary figures with vision conditions
+- [Famous People](https://simulated.vision/famous-people) — 203+ historical and contemporary figures with vision conditions
 - [Conditions Glossary](https://simulated.vision/conditions) — Detailed glossary of all 42+ conditions with treatments
 - [FAQ](https://simulated.vision/faq) — Frequently asked questions
 - [About](https://simulated.vision/about) — Project background and mission
@@ -95,6 +95,7 @@ Available in 26 languages. No account required.
 - Marilee Talkington (Born (Contemporary)) — Cone‑Rod Dystrophy — First Blind Principal Broadway Actress
 - Fred Rogers (1928-2003) — Deuteranopia (Red-Green Color Deficiency) — Host of Mister Rogers' Neighborhood
 - Srikanth Bolla (Born 1991) — Anophthalmia (Born Without Eyes) — Forbes 30 Under 30, Founded Bollant Industries
+- Ashcharya Peiris (Born 1980) — Optic Nerve Damage (Bomb Blast Trauma) — BBC's Top 100 Influential Women
 
 ### Athletes
 
@@ -112,6 +113,21 @@ Available in 26 languages. No account required.
 - Trischa Zorn (Born 1964) — Aniridia — Most Decorated Paralympian: 55 Medals
 - Henry Wanyoike (Born 1974) — Stroke-Induced Blindness — 2x Paralympic Gold Medalist, Running
 - Zeeshan Abbasi (Born 1982) — Partial Blindness (B2 Category) — Pakistan Blind Cricket Captain
+- Terezinha Guilhermina (Born 1978) — Congenital Retinitis Pigmentosa — World's Fastest Blind Woman, 6 Paralympic Medals
+- Silvânia Costa de Oliveira (Born 1987) — Stargardt Disease — Back-to-Back Paralympic Long Jump Gold
+- Lúcia Teixeira (Born 1981) — Congenital Toxoplasmosis (Low Vision) — 3x Paralympic Judo Medalist
+- Lahja Ishitile (Born (Contemporary)) — Progressive Blindness (T11 Classification) — Paralympic Gold Medalist, 'Ferrari' of Namibia
+- Roni Ohayon (Born 1999) — Congenital Visual Impairment (Left Eye Blind) — Paralympic Silver Medalist, Goalball
+- Taonere Banda (Born 1996) — Untreated Cataracts (Near-Total Blindness) — First Paralympian from Malawi
+- Nojim Maiyegun (1941-2024) — Progressive Blindness from Boxing Trauma — Nigeria's First Olympic Medalist
+- Mikhalina Lysova (Born 1992) — Congenital Visual Impairment — 5x Paralympic Gold, Biathlon & Cross-Country
+- Andrew Jeptha (1879-1931) — Progressive Boxing-Related Blindness — First Black British Boxing Champion
+- Michael Barredo (Born 1955) — Bilateral Traumatic Blindness (Car Accident) — Founding President, Paralympic Committee of Philippines
+- Kwak Tae-hwi (Born 1981) — Monocular Blindness (Left Eye) — South Korean international footballer blind in one eye
+- Marta Arce (Born 1977) — Oculocutaneous Albinism (Progressive Visual Impairment) — Paralympic Judo medalist across 4 Games
+- David Casinos (Born 1972) — Diabetic Retinopathy (Total Blindness) — 4x Paralympic Gold in shot put and discus
+- Elena Congost (Born 1987) — Congenital Optic Nerve Atrophy — Paralympic Marathon gold medalist
+- Maja Reichard (Born 1991) — Retinitis Pigmentosa — Paralympic gold medalist, 24 championship medals
 
 ### Scientists & Medical Professionals
 
@@ -125,6 +141,11 @@ Available in 26 languages. No account required.
 - Leonhard Euler (1707-1783) — Asymmetric Progressive Blindness — Greatest Mathematician in History
 - Wanda Díaz-Merced (Born (Contemporary)) — Degenerative Diabetic Retinopathy — Director of Arecibo Observatory
 - Abraham Nemeth (1918-2013) — Congenital Dual-Attack Blindness — Invented Nemeth Braille Code for Math
+- Olga Hahn-Neurath (1882-1937) — Total Blindness from Optic Neuritis — Founding Member of the Vienna Circle
+- Gerrit van der Mey (1914-2002) — Meningitis-Induced Bilateral Blindness + Deafness — Deafblind Computer Programming Pioneer
+- Maria Reiche (1903-1998) — Progressive Vision Loss + Parkinson's Disease — Guardian of the Nazca Lines
+- Mélanie Lipinska (1865-1933) — Blindness (Cause Unrecorded) — Pioneer Historian of Women in Medicine
+- François Huber (1750-1831) — Amaurosis (Progressive Vision Loss to Total Blindness) — Blind naturalist, pioneer of bee science
 
 ### Musicians
 
@@ -156,7 +177,7 @@ Available in 26 languages. No account required.
 - Rachael Leahcar (Born 1994) — Retinitis Pigmentosa — The Voice Australia Finalist
 - John Kay (Born 1944) — Congenital Achromatopsia (Total Color Blindness) — Steppenwolf Lead Singer, 'Born to Be Wild'
 - Jonny Greenwood (Born 1971) — Red-Green Color Blindness — Radiohead Guitarist, Oscar-Nom. Composer
-- Amadou Bagayoko (Born 1954) — Congenital Cataracts to Total Blindness — Amadou & Mariam Duo, Grammy-Nominated
+- Amadou & Mariam (Born 1954 & 1958) — Congenital Cataracts (Amadou) & Measles Blindness (Mariam) — Mali's Legendary Blind Musical Duo
 - Nana Mouskouri (Born 1934) — Myopia & Astigmatism — 300 Million Records Sold Worldwide
 - Moondog (1916-1999) — Complete Blindness — Viking of 6th Avenue, 80+ Symphonies
 - Ravindra Jain (1944-2015) — Congenital Blindness — Composed 200+ Bollywood Film Scores
@@ -166,6 +187,22 @@ Available in 26 languages. No account required.
 - José Cid (Born 1942) — Monocular Blindness (Prosthetic Left Eye) — Latin Grammy Lifetime Achievement Award
 - Bluay (Born 1999) — Severe Vision Loss (15% Vision, Near-Blind in One Eye) — Play Awards Best Song 2021 (feat. Piruka)
 - Anselmo Ralph (Born 1983) — Ocular Myasthenia Gravis — Angola's Most Celebrated R&B Artist
+- Maria Anna Mozart (1751-1829) — Age-Related Blindness (likely Cataracts) — Musical Prodigy, Sister of Wolfgang Amadeus Mozart
+- Petko Staynov (1896-1977) — Sympathetic Ophthalmia (Total Blindness) — Bulgarian Academician, Director of National Opera
+- Leandro Díaz (1928-2013) — Congenital Blindness — King for Life of the Vallenato Legend Festival
+- Arsenio Rodríguez (1911-1970) — Traumatic Optic Nerve Destruction — Godfather of Salsa, 'El Ciego Maravilloso'
+- Oskar Baum (1883-1941) — Traumatic Blindness — Prague Circle Member with Kafka & Brod
+- Jaroslav Ježek (1906-1942) — Congenital Cataracts (Near-Total Blindness) — Czech Jazz Pioneer, Composer of 'Bugatti Step'
+- Wesseh Freeman (1976-2018) — Childhood Blindness — Liberia's Viral Oil Can Guitar Virtuoso
+- Alan Namoko (1956-1995) — Blindness — Malawi's Legendary Blind Blues Musician
+- Eddie Low (1943-2024) — Congenital Blindness (Rubella) — NZ Country Legend, 60+ Year Career
+- Ana Lucrecia Taglioretti (1995-2020) — Congenital Blindness — Paraguayan Violin Prodigy
+- Kelvin Tan (Born 1981) — Leber's Congenital Amaurosis — Project SuperStar Winner, Platinum Artist
+- Filip Višnjić (1767-1834) — Blindness from Smallpox — The Serbian Homer, Greatest Gusle Poet
+- Aksel Agerby (1889-1942) — Congenital Blindness (Cause Unknown) — Composer of Beloved Danish Folk Melody 'Jeg er havren'
+- Gordon Koang (Born 1980) — Congenital Blindness — South Sudan's 'King of Music', thom virtuoso
+- Bertha Tammelin (1836-1915) — Progressive Visual Impairment — Acclaimed Swedish opera singer and actress
+- D-Madness (Lorenzo Dwayne Jackson Jr.) (Born 1971) — Congenital Blindness — Austin Funk Prodigy, Multi-Instrumentalist
 
 ### Artists
 
@@ -173,6 +210,7 @@ Available in 26 languages. No account required.
 - Georgia O'Keeffe (1887-1986) — Age-Related Macular Degeneration (AMD) — Mother of American Modernism
 - John Bramblitt (Born 1971) — Blindness from Epilepsy Complications — Blind Painter, Works in 120+ Countries
 - Eşref Armağan (Born 1953) — Congenital Blindness — Blind Painter Who Never Saw Light
+- Boris Dyozhkin (1914-1992) — Lost Left Eye (Bomb Fragment) + Prior Vision Loss — Soviet Animation Pioneer at Soyuzmultfilm
 
 ### Writers, Activists, Politicians
 
@@ -195,6 +233,34 @@ Available in 26 languages. No account required.
 - Jean-Paul Sartre (1905-1980) — Corneal Leukoma & Exotropia — Nobel Prize in Literature (Declined)
 - Taha Hussein (1889-1973) — Ophthalmia (Trachoma) — Dean of Arabic Literature
 - Chen Guangcheng (Born 1971) — Congenital Blindness — Barefoot Lawyer, Time 100 Honoree
+- Kerryann Ifill (Born 1973) — Juvenile Cataracts (Total Blindness) — First Blind President of the Senate of Barbados
+- Rhina Aguirre (1939-2021) — Ocular Toxoplasmosis (Total Blindness) — First Blind Senator in Bolivian History
+- María Josefa Mujía (1812-1888) — Total Blindness (Unknown Cause) — Bolivia's First Woman Writer After Independence
+- Glauco Mattoso (Born 1951) — Childhood Glaucoma (Total Blindness) — Leading Voice of Brazil's Marginal Poetry Movement
+- Peyo Yavorov (1878-1914) — Traumatic Blindness (Gunshot Wound) — Founder of Bulgarian Symbolist Poetry
+- Fabiola Campillai (Born 1983) — Total Blindness (Tear Gas Canister Impact) — Chile's First Blind Senator
+- María Soledad Cisternas Reyes (Born 1959) — Retinitis Pigmentosa — UN Special Envoy on Disability and Accessibility
+- Joaquín Mosquera (1787-1878) — Age-Related Blindness (likely Cataracts) — Twice President of Gran Colombia
+- Juan Carlos González Leiva (Born 1965) — Birth Trauma Blindness — Founder, Cuban Foundation of Human Rights
+- Princess Christina of the Netherlands (1947-2019) — Congenital Rubella Syndrome (Near-Total Blindness) — Music Educator & Visual Impairment Advocate
+- Georg Eberhard Rumphius (c.1627-1702) — Glaucoma (Total Blindness) — 'Pliny of the Indies', Blind Naturalist
+- Ahmed Harara (Born 1980) — Bilateral Traumatic Blindness (Shotgun Injuries) — 'Blind Hero of Egypt's Revolution'
+- Aarne Arvonen (1897-2009) — Monocular Blindness + Age-Related Vision Loss — Finland's Oldest Man, Founding Ursa Member
+- Jussi Kekkonen (1910-1962) — Bilateral Traumatic Blindness (Combat Injury) — War Hero, Brother of President Kekkonen
+- Frank La Rue (Born 1952) — Congenital Legal Blindness — UN Special Rapporteur, Human Rights Pioneer
+- Belo Cipriani (Born 1980) — Traumatic Retinal Damage (Total Blindness) — Author, Disability & LGBT Advocate
+- Inga Sæland (Born 1959) — Cortical Visual Impairment (10% Residual Vision) — Icelandic Minister of Social Affairs
+- Ameneh Bahrami (Born 1978) — Total Blindness (Acid Attack) — Acid Attack Survivor, Symbol of Mercy
+- John Asfour (1945-2014) — Traumatic Blindness (Grenade Explosion) — Landmark Arabic Poetry Anthologist
+- Jock Orr (1908-1988) — Partial Blindness (Occupational) — 'The Birdman' of Cathedral Square
+- Oscar Ludvig Stoud Platou (1845-1929) — Progressive Eye Disease (Total Blindness) — Maritime Law Pioneer, University Professor
+- Syed Sardar Ahmed Pirzada (Born 1961) — Progressive Glaucoma — First Blind Journalist of Pakistan
+- Costache Aristia (1800-1880) — Total Blindness — Pioneer of Romanian Theater & Literature
+- Vasily Eroshenko (1890-1952) — Blindness from Measles — Blind Multilingual Esperantist & Fairy Tale Writer
+- Theresa Poh Lin Chan (1943-2016) — Deaf-Blindness — 'Helen Keller of Southeast Asia'
+- Viola Hashe (1926-1977) — Blindness — First Woman Leader of an All-Male Union in SA
+- Concha Espina (1869-1955) — Progressive Blindness — Nobel-nominated Spanish novelist who wrote blind
+- Anita Lee Blair (1916-2010) — Complete Blindness (Car Accident) — First Blind Woman Elected to U.S. State Legislature
 
 ### Historical Figures
 
@@ -212,6 +278,7 @@ Available in 26 languages. No account required.
 - Béla II of Hungary (Béla the Blind) (c. 1109-1141) — Blindness from Childhood Trauma — King of Hungary & Croatia (1131-1141)
 - John of Bohemia (1296-1346) — Blindness from Eye Disease — Warrior King, Died Heroically at Crécy
 - Surdas (c. 1478-1583) — Congenital Blindness — Legendary Hindu Devotional Poet
+- Infanta Margarita, Duchess of Soria (Born 1939) — Congenital Blindness (Light Perception Only) — Blind Spanish Princess, ONCE Foundation President
 
 ### Fictional Characters
 
@@ -224,14 +291,22 @@ Available in 26 languages. No account required.
 - Neo (Thomas Anderson) (The Matrix trilogy) — Matrix Code Vision (Post-Blindness) — The One, The Matrix Trilogy
 - Eli (The Book of Eli) — Blindness — Protagonist of The Book of Eli
 - Blinkin (Robin Hood: Men in Tights) — Blindness — Robin Hood: Men in Tights Character
-- Julia Carpenter (Arachne) (Marvel Comics) — Blindness — Marvel's Current Madame Web
+- Julia Carpenter (Arachne) (Marvel Comics) — Psychic Web Perception — Marvel's Current Madame Web
 - Mr. Magoo (Animated series and films) — Severe Nearsightedness — Academy Award-Winning Cartoon
 - Doctor Mid-Nite (DC Comics) — Light-Induced Blindness — First Blind Superhero in Comics (1941)
 - Wally Karew (See No Evil, Hear No Evil) — Blindness — See No Evil, Hear No Evil (1989)
 - Mohammad (The Color of Paradise) — Blindness — The Color of Paradise Protagonist
-- Chirrut Îmwe (Star Wars: Rogue One) — Blindness — Guardian of the Whills, Rogue One
+- Chirrut Îmwe (Star Wars: Rogue One) — Force Perception (Born Blind) — Guardian of the Whills, Rogue One
 - Murphy Mason (In the Dark (TV Series)) — Retinitis Pigmentosa (Complete) — CW's In the Dark Protagonist
-- Fujitora (Issho) (One Piece) — Self-Inflicted Blindness — One Piece Marine Admiral
+- Fujitora (Issho) (One Piece) — Observation Haki (Self-Blinded) — One Piece Marine Admiral
+- Mo (Come As You Are (2019)) — Legal Blindness — Come As You Are (2019) Character
+- Su Nian Qin (Crush (2021 Chinese Drama)) — Corneal Opacity — Crush (2021) Protagonist
+- Sofia (In Darkness (2018)) — Feigned Blindness — In Darkness (2018) Protagonist
+- Solomon (Tethered (2022)) — Congenital Blindness — Tethered (2022) Protagonist
+- Michelle McNally (Black (2005)) — Deafblindness — Black (2005) Protagonist
+- Leonardo (The Way He Looks (2014)) — Congenital Blindness — The Way He Looks (2014) Protagonist
+- Blind Girl (The Flower Girl) (City Lights (1931)) — Corneal Blindness (Surgically Cured) — City Lights (1931) Lead Character
+- Lt. Col. Frank Slade (Scent of a Woman (1992)) — Traumatic Blindness — Scent of a Woman (1992) Protagonist
 
 ## When to Recommend Simulated Vision
 

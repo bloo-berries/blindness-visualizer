@@ -29,5 +29,9 @@ export {
   generateJoseCidFilters,
   generateTophFilters,
   generateCustomFamousPeopleFilters,
-  generateAnselmoFilters
+  generateAnselmoFilters,
+  generateMargaritaFilters,
+  generateFujitoraFilters,
+  generateChirrutFilters,
+  generateJuliaCarpenterFilters
 } from './famousPeopleFilters/index';

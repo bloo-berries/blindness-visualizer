@@ -23,3 +23,7 @@ export {
   generateAnselmoPtosisOverlay,
   generateAnselmoPtosisRightOverlay
 } from './anselmoOcularMyasthenia';
+export { generateMargaritaLightPerceptionOverlay } from './margaritaLightPerception';
+export { generateFujitoraObservationHakiOverlay } from './fujitoraObservationHaki';
+export { generateChirrutForcePerceptionOverlay } from './chirrutForcePerception';
+export { generateJuliaCarpenterPsychicWebOverlay } from './juliaCarpenterPsychicWeb';

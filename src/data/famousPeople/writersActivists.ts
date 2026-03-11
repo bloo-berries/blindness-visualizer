@@ -506,5 +506,16 @@ export const writersActivists: Record<string, PersonData> = {
     description: "Concha Espina was born in Santander, Spain, and became one of the most accomplished Spanish women writers of her era. She began losing her sight in 1938 at age 69 and underwent surgical operations that temporarily restored some vision, but the medical attempts ultimately failed and she became completely blind by 1940.\n\nDespite total blindness for the last 15 years of her life, she continued writing using a ruled guideline, publishing 13 novels in complete darkness.\n\n• Nominated for the Nobel Prize in Literature 25 times over 28 years\n\n• Authored over 50 books including novels, poetry, and plays\n\n• Considered the first Spanish woman to earn her living exclusively from writing\n\n• Major works include 'La esfinge maragata' and 'El metal de los muertos'",
     wikiUrl: "https://en.wikipedia.org/wiki/Concha_Espina",
     nationality: { country: "Spain", flag: "🇪🇸" }
+  },
+  anitaLeeBlair: {
+    name: "Anita Lee Blair",
+    achievement: "First Blind Woman Elected to U.S. State Legislature",
+    condition: "Complete Blindness (Car Accident)",
+    years: "1916-2010",
+    onset: "Age 20 (1936), car accident",
+    simulation: "anita-lee-blair-blindness",
+    description: "Anita Lee Blair was born in Oklahoma City and lost her sight completely at age 20 in a car accident in 1936. She became the first blind woman elected to any state legislature in the United States, serving in the Texas House of Representatives from 1953 to 1954.\n\nIn 1940, she became the first El Paso resident to receive a guide dog, a German Shepherd named Fawn. Fawn saved her life during the 1946 LaSalle Hotel Fire in Chicago by guiding her through smoke-filled hallways to safety.\n\n• Served on President Truman's Presidential Committee on Traffic Safety\n\n• Active in disability rights and political advocacy throughout her life\n\n• Died in 2010 in El Paso at age 94",
+    wikiUrl: "https://en.wikipedia.org/wiki/Anita_Lee_Blair",
+    nationality: { country: "United States", flag: "🇺🇸" }
   }
 };

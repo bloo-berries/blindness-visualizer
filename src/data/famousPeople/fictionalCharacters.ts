@@ -103,10 +103,10 @@ export const fictionalCharacters: Record<string, PersonData> = {
   juliaCarpenter: {
     name: "Julia Carpenter (Arachne)",
     achievement: "Marvel's Current Madame Web",
-    condition: "Blindness",
+    condition: "Psychic Web Perception",
     years: "Marvel Comics",
     onset: "Inherited Madame Web powers",
-    simulation: "complete-blindness",
+    simulation: "julia-carpenter-psychic-web",
     description: "Julia Carpenter, also known as Arachne, is a Marvel Comics character who became blind when she inherited Madame Web's psychic powers.\n\nShe has demonstrated remarkable adaptability.\n\n• Former Spider-Woman and current Madame Web\n\n• Possesses precognitive and telepathic abilities\n\n• Her blindness came with enhanced psychic vision",
     wikiUrl: "https://en.wikipedia.org/wiki/Julia_Carpenter",
     nationality: { country: "United States", flag: "🇺🇸" }
@@ -158,10 +158,10 @@ export const fictionalCharacters: Record<string, PersonData> = {
   chirrutImwe: {
     name: "Chirrut Îmwe",
     achievement: "Guardian of the Whills, Rogue One",
-    condition: "Blindness",
+    condition: "Force Perception (Born Blind)",
     years: "Star Wars: Rogue One",
     onset: "Born blind",
-    simulation: "complete-blindness",
+    simulation: "chirrut-force-perception",
     description: "Chirrut Îmwe was a Guardian of the Whills from Jedha in the Star Wars universe.\n\nDespite being blind, he was a skilled warrior who used the Force to guide him.\n\n• Famous quote: 'I am one with the Force. The Force is with me.'\n\n• Fought alongside the Rebel Alliance to steal Death Star plans\n\n• Portrayed by Donnie Yen",
     wikiUrl: "https://en.wikipedia.org/wiki/Chirrut_%C3%8Emwe",
     nationality: { country: "China", flag: "🇨🇳" }
@@ -268,10 +268,10 @@ export const fictionalCharacters: Record<string, PersonData> = {
   fujitora: {
     name: "Fujitora (Issho)",
     achievement: "One Piece Marine Admiral",
-    condition: "Self-Inflicted Blindness",
+    condition: "Observation Haki (Self-Blinded)",
     years: "One Piece",
     onset: "Blinded himself",
-    simulation: "complete-blindness",
+    simulation: "fujitora-observation-haki",
     description: "Fujitora, also known as Issho, is a Marine Admiral who blinded himself because he did not want to see the world's wickedness.\n\nHe uses Observation Haki to sense his surroundings.\n\n• One of the most powerful fighters in the One Piece series\n\n• Can manipulate gravity through his Devil Fruit powers\n\n• Represents moral blindness to injustice vs. physical blindness",
     wikiUrl: "https://en.wikipedia.org/wiki/Fujitora",
     nationality: { country: "Japan", flag: "🇯🇵" }

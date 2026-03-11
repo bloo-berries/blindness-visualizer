@@ -129,6 +129,14 @@ export type ConditionType =
   | 'stevieWonderROP'
   | 'andreaBocelliBlindness'
   | 'vedMehtaBlindness'
+  // Infanta Margarita - Congenital Blindness (Light Perception Only)
+  | 'margaritaLightPerceptionComplete'
+  // Fujitora - Observation Haki
+  | 'fujitoraObservationHakiComplete'
+  // Chirrut Îmwe - Force Perception
+  | 'chirrutForcePerceptionComplete'
+  // Julia Carpenter - Psychic Web
+  | 'juliaCarpenterPsychicWebComplete'
   // Ocular Diseases - Missing from specialty.vision
   | 'keratoconus'
   | 'dryEye'

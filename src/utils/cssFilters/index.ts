@@ -31,7 +31,11 @@ import {
   generateJoseCidFilters,
   generateTophFilters,
   generateCustomFamousPeopleFilters,
-  generateAnselmoFilters
+  generateAnselmoFilters,
+  generateMargaritaFilters,
+  generateFujitoraFilters,
+  generateChirrutFilters,
+  generateJuliaCarpenterFilters
 } from './famousPeopleFilters';
 
 /**
@@ -97,6 +101,10 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateJoseCidFilters(effects),
     generateTophFilters(effects),
     generateAnselmoFilters(effects),
+    generateMargaritaFilters(effects),
+    generateFujitoraFilters(effects),
+    generateChirrutFilters(effects),
+    generateJuliaCarpenterFilters(effects),
     generateVisualSnowFilters(effects),
     generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),

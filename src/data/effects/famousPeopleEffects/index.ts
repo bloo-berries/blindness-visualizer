@@ -34,6 +34,10 @@ import { joseCidEffects } from './joseCidEffects';
 import { tophBeifongEffects } from './tophBeifongEffects';
 import { neoEffects } from './neoEffects';
 import { anselmoRalphEffects } from './anselmoRalphEffects';
+import { infantaMargaritaEffects } from './infantaMargaritaEffects';
+import { fujitoraEffects } from './fujitoraEffects';
+import { chirrutImweEffects } from './chirrutImweEffects';
+import { juliaCarpenterEffects } from './juliaCarpenterEffects';
 
 // Re-export individual arrays for direct access
 export {
@@ -69,7 +73,11 @@ export {
   joseCidEffects,
   tophBeifongEffects,
   neoEffects,
-  anselmoRalphEffects
+  anselmoRalphEffects,
+  infantaMargaritaEffects,
+  fujitoraEffects,
+  chirrutImweEffects,
+  juliaCarpenterEffects
 };
 
 /**
@@ -110,5 +118,9 @@ export const famousPeopleEffects: VisualEffect[] = [
   ...joseCidEffects,
   ...tophBeifongEffects,
   ...neoEffects,
-  ...anselmoRalphEffects
+  ...anselmoRalphEffects,
+  ...infantaMargaritaEffects,
+  ...fujitoraEffects,
+  ...chirrutImweEffects,
+  ...juliaCarpenterEffects
 ];

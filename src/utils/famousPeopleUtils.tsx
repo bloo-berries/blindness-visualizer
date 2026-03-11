@@ -235,7 +235,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'casinos-diabetic-retinopathy': ['diabeticRetinopathy', 'completeBlindness'],
     'congost-optic-atrophy': ['blurryVision', 'lossOfContrast', 'scotoma'],
     'espina-progressive-blindness': ['cataracts', 'blurryVision', 'lossOfContrast'],
-    'margarita-congenital-blindness': ['completeBlindness'],
+    'margarita-congenital-blindness': ['margaritaLightPerceptionComplete'],
 
     // ===== SRI LANKAN =====
     'peiris-traumatic-blindness': ['completeBlindness'],
@@ -253,7 +253,15 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== ADDITIONAL FICTIONAL CHARACTERS =====
     'mo-legal-blindness': ['blurryVision', 'lossOfContrast'],
     'suNianQin-corneal-opacity': ['cataracts', 'blurryVision', 'lossOfContrast'],
-    'sofia-feigned-blindness': ['completeBlindness']
+    'sofia-feigned-blindness': ['completeBlindness'],
+
+    // ===== FICTIONAL ENHANCED PERCEPTION =====
+    'fujitora-observation-haki': ['fujitoraObservationHakiComplete'],
+    'chirrut-force-perception': ['chirrutForcePerceptionComplete'],
+    'julia-carpenter-psychic-web': ['juliaCarpenterPsychicWebComplete'],
+
+    // ===== ANITA LEE BLAIR =====
+    'anita-lee-blair-blindness': ['completeBlindness']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

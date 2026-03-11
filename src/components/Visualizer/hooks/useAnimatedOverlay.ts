@@ -22,6 +22,10 @@ import {
   generateKenshiTelekineticSenseOverlay,
   generateTophSeismicSenseOverlay,
   generateAnselmoOcularMyastheniaOverlay,
+  generateMargaritaLightPerceptionOverlay,
+  generateFujitoraObservationHakiOverlay,
+  generateChirrutForcePerceptionOverlay,
+  generateJuliaCarpenterPsychicWebOverlay,
 } from './animatedOverlays';
 
 /**
@@ -40,7 +44,15 @@ export const ANIMATED_EFFECTS = [
   'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
   'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete', 'neoMatrixCodeVisionComplete',
   // Anselmo Ralph - Ocular Myasthenia Gravis
-  'anselmoOcularMyastheniaComplete', 'anselmoOcularMyastheniaPtosis', 'anselmoOcularMyastheniaPhotophobia'
+  'anselmoOcularMyastheniaComplete', 'anselmoOcularMyastheniaPtosis', 'anselmoOcularMyastheniaPhotophobia',
+  // Infanta Margarita - Congenital Blindness (Light Perception Only)
+  'margaritaLightPerceptionComplete',
+  // Fujitora - Observation Haki
+  'fujitoraObservationHakiComplete',
+  // Chirrut Îmwe - Force Perception
+  'chirrutForcePerceptionComplete',
+  // Julia Carpenter - Psychic Web
+  'juliaCarpenterPsychicWebComplete'
 ];
 
 /**
@@ -151,6 +163,30 @@ export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.
     );
     if (anselmoEffect) {
       return generateAnselmoOcularMyastheniaOverlay(anselmoEffect.intensity, now);
+    }
+
+    // Check for Infanta Margarita's Light Perception (light & shadow, no nystagmus)
+    const margaritaEffect = effects.find(e => e.id === 'margaritaLightPerceptionComplete' && e.enabled);
+    if (margaritaEffect) {
+      return generateMargaritaLightPerceptionOverlay(margaritaEffect.intensity, now);
+    }
+
+    // Check for Fujitora's Observation Haki (dark void, purple auras, Haki ripples)
+    const fujitoraEffect = effects.find(e => e.id === 'fujitoraObservationHakiComplete' && e.enabled);
+    if (fujitoraEffect) {
+      return generateFujitoraObservationHakiOverlay(fujitoraEffect.intensity, now);
+    }
+
+    // Check for Chirrut Îmwe's Force Perception (blue-cyan wash, Force wisps, sound ripples)
+    const chirrutEffect = effects.find(e => e.id === 'chirrutForcePerceptionComplete' && e.enabled);
+    if (chirrutEffect) {
+      return generateChirrutForcePerceptionOverlay(chirrutEffect.intensity, now);
+    }
+
+    // Check for Julia Carpenter's Psychic Web (crimson web, detection nodes, precog flashes)
+    const juliaEffect = effects.find(e => e.id === 'juliaCarpenterPsychicWebComplete' && e.enabled);
+    if (juliaEffect) {
+      return generateJuliaCarpenterPsychicWebOverlay(juliaEffect.intensity, now);
     }
 
     return null;

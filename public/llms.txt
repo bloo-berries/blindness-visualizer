@@ -2,7 +2,7 @@
 
 > https://simulated.vision
 
-Simulated Vision is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 203+ famous people with vision conditions and links each to an interactive simulation.
+Simulated Vision is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 209+ famous people with vision conditions and links each to an interactive simulation.
 
 Available in 26 languages. No account required.
 
@@ -10,7 +10,7 @@ Available in 26 languages. No account required.
 
 - [Home](https://simulated.vision/) — Landing page with overview and demo video
 - [Vision Simulator](https://simulated.vision/simulator) — Interactive simulator (YouTube video or image input)
-- [Famous People](https://simulated.vision/famous-people) — 203+ historical and contemporary figures with vision conditions
+- [Famous People](https://simulated.vision/famous-people) — 209+ historical and contemporary figures with vision conditions
 - [Conditions Glossary](https://simulated.vision/conditions) — Detailed glossary of all 42+ conditions with treatments
 - [FAQ](https://simulated.vision/faq) — Frequently asked questions
 - [About](https://simulated.vision/about) — Project background and mission

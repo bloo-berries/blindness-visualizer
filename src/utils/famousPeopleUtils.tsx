@@ -261,7 +261,16 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'julia-carpenter-psychic-web': ['juliaCarpenterPsychicWebComplete'],
 
     // ===== ANITA LEE BLAIR =====
-    'anita-lee-blair-blindness': ['completeBlindness']
+    'anita-lee-blair-blindness': ['completeBlindness'],
+
+    // ===== YIH-HSING PAO =====
+    'yihHsingPao-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness', 'lossOfContrast'],
+
+    // ===== LEE KAI-LIN =====
+    'lee-b2-low-vision': ['blurryVision', 'lossOfContrast'],
+
+    // ===== SERKAN YILDIRIM =====
+    'serkan-t12-low-vision': ['blurryVision', 'lossOfContrast']
   };
 
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];

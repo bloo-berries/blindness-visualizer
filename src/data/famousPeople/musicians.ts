@@ -593,5 +593,27 @@ export const musicians: Record<string, PersonData> = {
     description: "Bertha Tammelin had weak eyesight her entire life, which progressively worsened throughout her career. She made her final stage appearance on March 7, 1884, when her vision had deteriorated to the point she could no longer perform.\n\nBorn Bertha Carolina Mathilda Bock, she was a premier actress at the Royal Swedish Opera and Royal Dramatic Theatre from 1856.\n\n• Operatic mezzo-soprano, pianist, and composer who gave piano concerts at age 14\n\n• Studied with Italian conductor and composer Jacopo Foroni\n\n• Taught music at the Royal Swedish Academy of Music (from 1879) and drama at the Royal Dramatic Training Academy (from 1889)\n\n• Received the Litteris et Artibus award in 1885 for her contributions to Swedish arts",
     wikiUrl: "https://en.wikipedia.org/wiki/Bertha_Tammelin",
     nationality: { country: "Sweden", flag: "🇸🇪" }
+  },
+  bilalGoregen: {
+    name: "Bilal Göregen",
+    achievement: "Viral Internet Musician, 'Vibing Cat' Meme Star",
+    condition: "Congenital Blindness",
+    years: "Born 1988",
+    onset: "From birth",
+    simulation: "complete-blindness",
+    description: "Bilal Göregen is a Turkish street musician and darbuka player born blind in Hatay Province. Despite his blindness and a rare disorder causing his hands to shake uncontrollably, he became one of the most recognized musicians on the internet.\n\nIn 2020, his street performance of the Finnish folk song 'Ievan Polkka' went viral when a user superimposed an animated cat bobbing its head to the music, creating the legendary 'Vibing Cat' meme that spread across every social media platform.\n\n• His 'Ievan Polkka' video gained over 1.3 million views in one week after the cat meme went viral\n\n• Claims to be 'the only one in Turkey who can play percussion instruments and imitate various rhythms with my mouth'\n\n• Appeared on Turkey's Got Talent a decade before his viral fame\n\n• YouTube's official accounts promoted his channel after the meme's success\n\n• Covers range from 'Dance Monkey' to 'Tunak Tunak Tun' to the GTA: San Andreas theme",
+    wikiUrl: "https://en.wikipedia.org/wiki/Bilal_G%C3%B6regen",
+    nationality: { country: "Turkey", flag: "🇹🇷" }
+  },
+  hsiaoHuangChi: {
+    name: "Hsiao Huang-chi",
+    achievement: "Multi-award Taiwanese singer-songwriter & Paralympic judoka",
+    condition: "Congenital Cataracts (Total Blindness)",
+    years: "Born 1976",
+    onset: "Born blind; surgery at 4 partially restored vision; completely blind again at 15",
+    simulation: "complete-blindness",
+    description: "Hsiao Huang-chi (蕭煌奇), also known as Ricky Hsiao, was born blind due to congenital cataracts in Banqiao, Taiwan. Surgery at age 4 partially restored his vision, but it progressively deteriorated until he became completely blind again at age 15.\n\nDespite his blindness, he excelled in both athletics and music, competing internationally in judo before becoming one of Taiwan's most celebrated Hokkien pop artists.\n\n• Multiple Golden Melody Award winner — including Best Taiwanese Male Singer (4 times) and Best Taiwanese Album (3 times) across 19 nominations\n\n• Won bronze at the 1994 FESPIC Games in judo and competed at the 1996 Atlanta Paralympics, holding a 2nd dan black belt\n\n• Plays guitar, saxophone, and drum kit; released 15 studio albums spanning Mandopop and Taiwanese Hokkien pop\n\n• Opened a massage clinic in Taipei employing blind and deaf workers",
+    wikiUrl: "https://en.wikipedia.org/wiki/Hsiao_Huang-chi",
+    nationality: { country: "Taiwan", flag: "🇹🇼" }
   }
 };

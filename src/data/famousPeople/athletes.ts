@@ -300,6 +300,28 @@ export const athletes: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Elena_Congost",
     nationality: { country: "Spain", flag: "🇪🇸" }
   },
+  leeKailin: {
+    name: "Lee Kai-lin",
+    achievement: "Paralympic Silver Medalist, Judoka",
+    condition: "Visual Impairment (B2/B3 Classification)",
+    years: "Born 1992",
+    onset: "Visually impaired",
+    simulation: "lee-b2-low-vision",
+    description: "Lee Kai-lin (李凱琳) is a Taiwanese Paralympic judoka who competes in the women's 48 kg weight class. Classified as visually impaired under the IBSA system, she became the first Taiwanese female judoka to win a medal at the Paralympic Games.\n\nIn Paralympic judo, all visually impaired athletes (B1, B2, B3) compete against each other regardless of classification, meaning partially sighted athletes often face completely blind opponents.\n\n• Paralympic silver medalist at 2012 London Games in judo\n\n• IBSA World Games champion\n\n• Three-time Asian Para Games medalist\n\n• Competed at three consecutive Paralympic Games (2012, 2016, 2020)\n\n• Held world ranking #2 and was seeded second at the 2016 Rio Paralympics",
+    wikiUrl: "https://en.wikipedia.org/wiki/Lee_Kai-Lin",
+    nationality: { country: "Taiwan", flag: "🇹🇼" }
+  },
+  serkanYildirim: {
+    name: "Serkan Yıldırım",
+    achievement: "World Champion & World Record Holder, T12 Sprinter",
+    condition: "Progressive Visual Acuity Loss (T12/B2)",
+    years: "Born 1991",
+    onset: "Progressive reduction of visual acuity",
+    simulation: "serkan-t12-low-vision",
+    description: "Serkan Yıldırım (born Sajjad Hashemi Ahangari) is an Iranian-born Turkish para-athlete who originally competed as an able-bodied sprinter, representing Iran at the 2012 London and 2016 Rio Olympics. As his visual acuity progressively declined, he could no longer see track lines and transitioned to para-athletics, classified T12/B2.\n\nAt the Paris 2024 Paralympics, he initially won gold in the 100m T12 but couldn't see the scoreboard — he had to walk close to it to realize he'd won. The medal was later controversially revoked after a classification dispute.\n\n• World champion in both 100m T12 and 400m T12 at 2024 World Para Athletics Championships in Kobe\n\n• Set championship record of 10.53s in 100m T12 and world record in 400m T12\n\n• One of very few athletes to have competed at both the Olympic Games and Paralympic Games\n\n• His gold medal revocation at Paris 2024 sparked ongoing legal proceedings between Turkey and World Para Athletics",
+    wikiUrl: "https://en.wikipedia.org/wiki/Serkan_Y%C4%B1ld%C4%B1r%C4%B1m",
+    nationality: { country: "Turkey", flag: "🇹🇷" }
+  },
   majaReichard: {
     name: "Maja Reichard",
     achievement: "Paralympic gold medalist, 24 championship medals",

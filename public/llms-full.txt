@@ -2,7 +2,7 @@
 
 > https://simulated.vision
 
-This file contains comprehensive information about all 42+ vision conditions and 203+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 42+ vision conditions and 209+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -5431,7 +5431,7 @@ Simulated Vision (https://simulated.vision) is a free, open-source educational t
 ### Key Features
 - Real-time vision simulation with adjustable intensity
 - 42+ medically-researched vision conditions
-- 203+ famous people profiles with personalized simulations
+- 209+ famous people profiles with personalized simulations
 - Detailed condition descriptions with treatment information
 - Available in 26 languages
 - Fully accessible (WCAG-compliant)

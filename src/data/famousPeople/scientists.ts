@@ -165,5 +165,16 @@ export const scientists: Record<string, PersonData> = {
     description: "François Huber's eyesight began deteriorating at age 15 from amaurosis, a condition causing progressive vision loss. He was sent to a village near Paris to recover, but his sight continued to worsen until he could only perceive light, eventually resulting in complete blindness.\n\nDespite total blindness, he conducted groundbreaking research on honeybees through his wife Marie-Aimée and his servant François Burnens, who served as his eyes.\n\n• Author of 'Nouvelles Observations sur les Abeilles' (1792), an 800-page landmark of entomological science\n\n• Invented the 'leaf hive' (Huber hive) allowing hive inspection without destroying the comb\n\n• Discovered that queen bees mate in flight, not in the hive, and made key discoveries about swarming and wax secretion\n\n• His work influenced Charles Darwin, who referenced it in 'On the Origin of Species'",
     wikiUrl: "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Huber",
     nationality: { country: "Switzerland", flag: "🇨🇭" }
+  },
+  yihHsingPao: {
+    name: "Yih-Hsing Pao",
+    achievement: "Cornell professor, National Academy of Engineering member",
+    condition: "Retinitis Pigmentosa",
+    years: "1930-2013",
+    onset: "Diagnosed at age 50, progressive to total blindness",
+    simulation: "yihHsingPao-retinitis-pigmentosa",
+    description: "Yih-Hsing Pao (鮑亦興) was a Chinese-born American mechanical engineer diagnosed with retinitis pigmentosa in 1980 at age 50. The progressive condition gradually destroyed his peripheral vision, leading to tunnel vision and eventually total blindness — yet he continued his distinguished academic career for decades afterward.\n\nBorn in Nanjing, his early life was disrupted by the Second Sino-Japanese War and Chinese Civil War before his family settled in Taiwan.\n\n• Held the prestigious J. C. Ford Professorship at Cornell University (1985-2000), specializing in wave propagation in solids and applied mechanics\n\n• Elected to the United States National Academy of Engineering (1985) and Taiwan's Academia Sinica (1986)\n\n• Founded the Institute of Applied Mechanics at National Taiwan University in 1983\n\n• Recipient of Taiwan's Presidential Science Prize for Applied Sciences (2001)",
+    wikiUrl: "https://en.wikipedia.org/wiki/Yih-Hsing_Pao",
+    nationality: { country: "Taiwan", flag: "🇹🇼" }
   }
 };

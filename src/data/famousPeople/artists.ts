@@ -45,6 +45,17 @@ export const artists: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan",
     nationality: { country: "Turkey", flag: "🇹🇷" }
   },
+  abdallahNyangalio: {
+    name: "Abdallah Nyangalio",
+    achievement: "Tanzania's Only Blind Tailor, Dresses Politicians",
+    condition: "Hypertension-Induced Blindness",
+    years: "Born ~1959",
+    onset: "Age ~30, from complications of high blood pressure in 1989",
+    simulation: "complete-blindness",
+    description: "Abdallah Nyangalio is an independent tailor in Mbagala, Dar es Salaam, who lost his sight in 1989 from complications of high blood pressure. He says that though he lost his sight, he gained more insight — his incredible sense of touch allows him to recognize garments, textures, fabrics, and embellishments.\n\nHe cuts fabric with surgical precision by looping his left hand over the top of his scissors while cutting with his right, relying on sharp memory to track every piece of cloth.\n\n• Tanzania's only blind tailor — clients include former President Jakaya Kikwete and members of parliament\n\n• Self-taught after losing his sight; first piece was trousers he accidentally cut too short\n\n• Mentors young visually impaired people in Dar es Salaam through a Tanzania Trade Development Authority program\n\n• Among over 1.1 million visually impaired Tanzanians, demonstrating extraordinary resilience and craftsmanship",
+    wikiUrl: "https://www.aa.com.tr/en/africa/tanzanias-blind-tailor-who-makes-clothes-for-politicians/2047453",
+    nationality: { country: "Tanzania", flag: "🇹🇿" }
+  },
   borisDyozhkin: {
     name: "Boris Dyozhkin",
     achievement: "Soviet Animation Pioneer at Soyuzmultfilm",

@@ -239,7 +239,13 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
   leonardoWayHeLooks: 'Leonardo.webp',
   blindGirlCityLights: 'Blind-Girl.webp',
   frankSlade: 'Frank-Slade.webp',
-  anitaLeeBlair: 'anita-lee-blair.webp'
+  anitaLeeBlair: 'anita-lee-blair.webp',
+  hsiaoHuangChi: 'Hsiao-Huang-chi.webp',
+  yihHsingPao: 'Yih-Hsing-Pao.webp',
+  leeKailin: 'Lee-Kai-lin.webp',
+  abdallahNyangalio: 'Abdallah-Nyangalio.webp',
+  serkanYildirim: 'Serkan-Yıldırım.webp',
+  bilalGoregen: 'Bilal-Göregen.webp'
 };
 
 /**

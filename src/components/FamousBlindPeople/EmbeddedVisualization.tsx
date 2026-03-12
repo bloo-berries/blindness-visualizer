@@ -207,14 +207,6 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           )}
         </Box>
       </Box>
-
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ display: 'block', mt: 0.5, fontSize: '0.7rem' }}
-      >
-        Click "Experience Simulation" for full-screen view
-      </Typography>
     </Box>
   );
 };

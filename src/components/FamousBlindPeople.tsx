@@ -332,19 +332,6 @@ const FamousBlindPeople: React.FC = () => {
     updateSelectedPerson(null);
   }, [updateSelectedPerson]);
 
-  const handleExperienceSimulation = useCallback((personId: string) => {
-    const person = personData[personId];
-    const conditions = getSimulationConditions(person.simulation);
-
-    navigate('/simulator', {
-      state: {
-        preconfiguredConditions: conditions,
-        personName: person.name,
-        personCondition: person.condition
-      }
-    });
-  }, [navigate]);
-
   const clearFilters = useCallback(() => {
     setSearchTerm('');
     setCategoryFilter('');
@@ -576,11 +563,6 @@ const FamousBlindPeople: React.FC = () => {
         filteredPeople={displayOrder}
         onClose={handleCloseDialog}
         onNavigate={(personId) => updateSelectedPerson(personId)}
-        onExperienceSimulation={() => {
-          if (selectedPerson) {
-            handleExperienceSimulation(selectedPerson);
-          }
-        }}
       />
 
       <Footer />

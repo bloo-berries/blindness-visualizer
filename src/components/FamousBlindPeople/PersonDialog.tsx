@@ -66,7 +66,6 @@ interface PersonDialogProps {
   person: PersonData | null;
   filteredPeople: string[];
   onClose: () => void;
-  onExperienceSimulation: () => void;
   onNavigate: (personId: string) => void;
 }
 
@@ -76,7 +75,6 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
   person,
   filteredPeople,
   onClose,
-  onExperienceSimulation,
   onNavigate
 }) => {
   // Ref for scrolling dialog content to top
@@ -422,12 +420,6 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
             </IconButton>
           )}
         </Box>
-        <Button
-          variant="contained"
-          onClick={onExperienceSimulation}
-        >
-          Experience Simulation
-        </Button>
       </DialogActions>
 
       {/* Share notification */}

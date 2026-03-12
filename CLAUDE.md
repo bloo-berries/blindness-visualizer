@@ -232,6 +232,7 @@ CSP is set via `<meta>` tag in `public/index.html`. Allowed external domains:
 - **Wistia** (`fast.wistia.com`, `*.wistia.com`) — embedded video player
 - **YouTube** (`youtube.com`, `www.youtube.com`, `i.ytimg.com`, `s.ytimg.com`) — video source
 - **Formspree** (`formspree.io`) — feedback form submissions
+- **Sentry** (`browser.sentry-cdn.com`, `*.sentry-cdn.com`, `*.sentry.io`) — used by Wistia player for error reporting
 
 When adding new external resources, update the CSP meta tag or requests will be blocked.
 

@@ -14,11 +14,14 @@ import {
   ListItemIcon,
   ListItemText,
   Tooltip,
-  Snackbar
+  Snackbar,
+  Collapse,
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
-import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord, Share as ShareIcon } from '@mui/icons-material';
+import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord, Share as ShareIcon, ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
-import { getPersonImagePath } from '../../utils/imagePaths';
+import { getPersonImagePath, getPersonSecondaryImages, getPeopleImagePath } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks, getWebsiteUrl } from '../../utils/famousPeopleUtils';
 import { EmbeddedVisualization } from './EmbeddedVisualization';
 
@@ -79,6 +82,11 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
   // Ref for scrolling dialog content to top
   const dialogContentRef = useRef<HTMLDivElement>(null);
 
+  // Mobile detection for collapsible secondary images
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [secondaryImagesOpen, setSecondaryImagesOpen] = useState(false);
+
   // State for share notification
   const [shareNotification, setShareNotification] = useState<string | null>(null);
 
@@ -130,11 +138,12 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
   const hasPrevious = currentIndex > 0;
   const hasNext = currentIndex >= 0 && currentIndex < filteredPeople.length - 1;
 
-  // Scroll to top when person changes
+  // Scroll to top and reset toggle when person changes
   useEffect(() => {
     if (personId && dialogContentRef.current) {
       dialogContentRef.current.scrollTop = 0;
     }
+    setSecondaryImagesOpen(false);
   }, [personId]);
 
   // Handle keyboard navigation
@@ -195,8 +204,8 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
       <DialogContent ref={dialogContentRef}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img 
-              src={getPersonImagePath(personId)} 
+            <img
+              src={getPersonImagePath(personId)}
               alt={person.name}
               style={{ width: '100%', borderRadius: '8px' }}
               loading="eager"
@@ -205,6 +214,66 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
                 e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
               }}
             />
+            {(() => {
+              const secondaryImages = getPersonSecondaryImages(personId);
+              if (secondaryImages.length === 0) return null;
+
+              const imageElements = secondaryImages.map((entry, idx) => {
+                const imgEl = (
+                  <img
+                    key={idx}
+                    src={getPeopleImagePath(entry.filename)}
+                    alt={entry.caption || `${person.name} - additional`}
+                    style={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      display: 'block',
+                      ...(entry.maxHeight ? { maxHeight: entry.maxHeight, objectFit: 'contain' as const } : {}),
+                      ...(entry.link ? { cursor: 'pointer' } : {})
+                    }}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                );
+                return (
+                  <Box key={idx} sx={{ mt: 1.5 }}>
+                    {entry.link ? (
+                      <a href={entry.link} target="_blank" rel="noopener noreferrer">
+                        {imgEl}
+                      </a>
+                    ) : imgEl}
+                    {entry.caption && (
+                      <Typography
+                        variant="caption"
+                        sx={{ display: 'block', mt: 0.5, fontStyle: 'italic', color: 'text.secondary' }}
+                      >
+                        {entry.caption}
+                      </Typography>
+                    )}
+                  </Box>
+                );
+              });
+
+              if (isMobile) {
+                return (
+                  <Box sx={{ mt: 1.5 }}>
+                    <Button
+                      size="small"
+                      onClick={() => setSecondaryImagesOpen(!secondaryImagesOpen)}
+                      endIcon={secondaryImagesOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                      sx={{ textTransform: 'none', color: 'text.secondary', pl: 0 }}
+                    >
+                      {secondaryImagesOpen ? 'Hide photos' : 'More photos'}
+                    </Button>
+                    <Collapse in={secondaryImagesOpen}>
+                      {imageElements}
+                    </Collapse>
+                  </Box>
+                );
+              }
+
+              return <>{imageElements}</>;
+            })()}
           </Grid>
           <Grid item xs={12} md={8}>
             {person.achievement && (

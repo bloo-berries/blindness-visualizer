@@ -249,6 +249,73 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
 };
 
 /**
+ * Secondary image entry for a person's detail dialog
+ */
+export interface SecondaryImageEntry {
+  filename: string;
+  link?: string;
+  caption?: string;
+  maxHeight?: string;
+}
+
+/**
+ * Map of person IDs to their secondary images
+ * These appear below the primary photo in the person detail dialog
+ * Supports single or multiple images, optional links, and optional captions
+ */
+export const SECONDARY_IMAGE_MAP: Record<string, SecondaryImageEntry | SecondaryImageEntry[]> = {
+  christine: { filename: 'christine-ha-cookbook.webp' },
+  lucy: { filename: 'lucy-edwards-brit-awards.webp' },
+  paul: { filename: 'Paul-Castle-Book.webp', link: 'https://www.youtube.com/@MatthewandPaulOfficial' },
+  haben: { filename: 'haben-girma-book.webp', link: 'https://youtu.be/MOw8CgbFiuY' },
+  molly: { filename: 'molly-burke-trevor-noah.webp', link: 'https://youtu.be/dbNDmY1-vSs' },
+  mila: { filename: 'mila-kunis-award.webp', maxHeight: '300px' },
+  judi: { filename: 'dame-judi-dench-award.webp', maxHeight: '300px' },
+  sharon: { filename: 'sharon-stone-award.webp' },
+  chris: { filename: 'chris-mccausland-kate-middleton.webp', caption: 'Princess Kate speaks with Chris McCausland at the Royal Variety Performance at the Royal Albert Hall in 2021' },
+  marilee: { filename: 'Marilee-Talkington-premiere.webp', maxHeight: '300px' },
+  fredRogers: [
+    { filename: 'Fred-Rogers-giving-acceptance-speech.webp' },
+    { filename: 'fred-rogers-bill-nye.gif' }
+  ],
+  srikanth: { filename: 'Srikanth-Bolla-tv.webp' },
+  ashcharyaPeiris: { filename: 'Ashcharya-Peiris-top-100.webp', maxHeight: '300px' },
+  erik: { filename: 'Erik-Weihenmayer-time-magazine.webp' },
+  marla: { filename: 'Marla-Runyan-book.webp', maxHeight: '300px' },
+  anastasia: { filename: 'anastasia-pagonis-dodo.webp', link: 'https://youtu.be/SkSgwgqddKQ' },
+  sugar: { filename: 'Sugar-Ray-Leonard-with-Muhammad-Ali.webp', caption: 'Muhammad Ali & Sugar Ray Leonard' },
+  stephen: { filename: 'Stephen-Curry-with-president.webp', caption: 'Stephen Curry, Ayesha Curry, Michelle Obama, Barack Obama at the 2026 NBA All-Star Game.' },
+  lex: { filename: 'Lex-Gillette-forbes.webp', link: 'https://www.lexgillette.com/articles/leadership-lessons-from-paralympic-athletes-in-2024' },
+  davidBrown: { filename: 'David-Brown-medal.webp' },
+  anthonyClarke: { filename: 'Anthony-Clarke-medals-guide-dog.webp' },
+  crazzySteve: { filename: 'Crazzy-Steve-tv.webp' },
+  ross: { filename: 'ross-minor-gamer.webp' },
+  bilalGoregen: { filename: 'cat-vibing-drum-meme.gif' }
+};
+
+/**
+ * Get the secondary image entries for a person
+ * @param personId - The person's ID
+ * @returns Array of secondary image entries, or empty array if none
+ */
+export const getPersonSecondaryImages = (personId: string): SecondaryImageEntry[] => {
+  const entry = SECONDARY_IMAGE_MAP[personId];
+  if (!entry) return [];
+  return Array.isArray(entry) ? entry : [entry];
+};
+
+/**
+ * Get the full path to a person's secondary image/gif (legacy single-image helper)
+ * @param personId - The person's ID
+ * @returns Full path to the secondary image, or null if none exists
+ */
+export const getPersonSecondaryImagePath = (personId: string): string | null => {
+  const entries = getPersonSecondaryImages(personId);
+  if (entries.length === 0) return null;
+  return getPeopleImagePath(entries[0].filename);
+};
+
+/**
  * Get the full image path for a person by their ID
  * @param personId - The person's ID (e.g., 'milton', 'stevie')
  * @returns Full path to the person's image, or a placeholder if not found

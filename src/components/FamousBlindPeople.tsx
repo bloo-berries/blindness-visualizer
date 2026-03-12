@@ -579,7 +579,6 @@ const FamousBlindPeople: React.FC = () => {
         onExperienceSimulation={() => {
           if (selectedPerson) {
             handleExperienceSimulation(selectedPerson);
-            handleCloseDialog();
           }
         }}
       />

@@ -66,7 +66,9 @@ const CUSTOM_POSITIONS: Record<string, string> = {
   'suNianQin': 'center 30%',
   'frankSlade': 'center 40%',
   'solomonTethered': 'center 40%',
-  'leonardoWayHeLooks': 'center 40%'
+  'leonardoWayHeLooks': 'center 40%',
+  'yihHsingPao': 'center 40%',
+  'paul': 'center 35%'
 };
 
 // Default position for most images

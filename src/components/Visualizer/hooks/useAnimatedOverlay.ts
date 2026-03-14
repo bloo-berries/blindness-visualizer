@@ -1,7 +1,6 @@
 /**
  * Hook for generating animated overlay styles for visual effects
- * Handles Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting,
- * and person-specific effects (Christine Ha, Sugar Ray Leonard, Stephen Curry)
+ * Uses a registry pattern to map effect IDs to generator functions.
  */
 import { useMemo } from 'react';
 import { VisualEffect } from '../../../types/visualEffects';
@@ -28,31 +27,54 @@ import {
   generateJuliaCarpenterPsychicWebOverlay,
 } from './animatedOverlays';
 
+type OverlayGenerator = (intensity: number, now: number) => React.CSSProperties;
+
+/**
+ * Registry mapping effect IDs to their overlay generator functions.
+ * Visual aura variants use a wrapper that passes the effect ID.
+ * Grouped effects (e.g. Sugar Ray, Anselmo) map multiple IDs to the same generator.
+ */
+const EFFECT_GENERATORS: Record<string, OverlayGenerator> = {
+  // Visual aura — needs effect ID passed through
+  visualAura: (intensity, now) => generateVisualAuraOverlay('visualAura', intensity, now),
+  visualAuraLeft: (intensity, now) => generateVisualAuraOverlay('visualAuraLeft', intensity, now),
+  visualAuraRight: (intensity, now) => generateVisualAuraOverlay('visualAuraRight', intensity, now),
+  // Standard animated effects
+  hallucinations: generateHallucinationsOverlay,
+  blueFieldPhenomena: generateBlueFieldOverlay,
+  persistentPositiveVisualPhenomenon: generatePersistentPositiveOverlay,
+  palinopsia: generatePalinopsiaOverlay,
+  starbursting: generateStarburstingOverlay,
+  // Person-specific effects
+  christineFluctuatingVision: generateChristineFluctuatingOverlay,
+  sugarRetinalDetachmentComplete: generateSugarRetinalDetachmentOverlay,
+  sugarPeripheralFlashes: generateSugarRetinalDetachmentOverlay,
+  stephenKeratoconusComplete: generateStephenKeratoconusOverlay,
+  heatherLightPerceptionComplete: generateHeatherLightPerceptionOverlay,
+  daredevilRadarSenseComplete: generateDaredevilRadarSenseOverlay,
+  geordiVisorSenseComplete: generateGeordiVisorSenseOverlay,
+  blindspotSonarSenseComplete: generateBlindspotSonarSenseOverlay,
+  kenshiTelekineticSenseComplete: generateKenshiTelekineticSenseOverlay,
+  tophSeismicSenseComplete: generateTophSeismicSenseOverlay,
+  anselmoOcularMyastheniaComplete: generateAnselmoOcularMyastheniaOverlay,
+  anselmoOcularMyastheniaPtosis: generateAnselmoOcularMyastheniaOverlay,
+  anselmoOcularMyastheniaPhotophobia: generateAnselmoOcularMyastheniaOverlay,
+  margaritaLightPerceptionComplete: generateMargaritaLightPerceptionOverlay,
+  fujitoraObservationHakiComplete: generateFujitoraObservationHakiOverlay,
+  chirrutForcePerceptionComplete: generateChirrutForcePerceptionOverlay,
+  juliaCarpenterPsychicWebComplete: generateJuliaCarpenterPsychicWebOverlay,
+};
+
 /**
  * Effects that require animation updates
  */
 export const ANIMATED_EFFECTS = [
-  // Visual aura effects
-  'visualAura', 'visualAuraLeft', 'visualAuraRight',
+  ...Object.keys(EFFECT_GENERATORS),
   // Note: Visual snow variants use CSS @keyframes animations, not JS-driven animation ticks.
   // They are handled by DOM-based overlays in visualDisturbanceOverlays/visualSnowOverlays.ts
-  // Other animated effects
-  'hallucinations', 'visualFloaters', 'blueFieldPhenomena',
-  'persistentPositiveVisualPhenomenon', 'palinopsia', 'starbursting',
-  // Person-specific animated effects
-  'christineFluctuatingVision', 'sugarRetinalDetachmentComplete', 'sugarPeripheralFlashes', 'stephenKeratoconusComplete',
-  'heatherLightPerceptionComplete', 'daredevilRadarSenseComplete', 'geordiVisorSenseComplete', 'blindspotSonarSenseComplete',
-  'kenshiTelekineticSenseComplete', 'tophSeismicSenseComplete', 'neoMatrixCodeVisionComplete',
-  // Anselmo Ralph - Ocular Myasthenia Gravis
-  'anselmoOcularMyastheniaComplete', 'anselmoOcularMyastheniaPtosis', 'anselmoOcularMyastheniaPhotophobia',
-  // Infanta Margarita - Congenital Blindness (Light Perception Only)
-  'margaritaLightPerceptionComplete',
-  // Fujitora - Observation Haki
-  'fujitoraObservationHakiComplete',
-  // Chirrut Îmwe - Force Perception
-  'chirrutForcePerceptionComplete',
-  // Julia Carpenter - Psychic Web
-  'juliaCarpenterPsychicWebComplete'
+  'visualFloaters',
+  // Neo Matrix Code Vision uses a canvas-based renderer, not a CSS overlay generator
+  'neoMatrixCodeVisionComplete',
 ];
 
 /**
@@ -60,135 +82,8 @@ export const ANIMATED_EFFECTS = [
  */
 export const useAnimatedOverlay = (effects: VisualEffect[], now: number): React.CSSProperties | null => {
   return useMemo(() => {
-    // Check for visual aura variants
-    const auraEffect = effects.find(e =>
-      (e.id === 'visualAura' || e.id === 'visualAuraLeft' || e.id === 'visualAuraRight') && e.enabled
-    );
-
-    if (auraEffect) {
-      return generateVisualAuraOverlay(auraEffect.id, auraEffect.intensity, now);
-    }
-
-    // Check for CBS Hallucinations
-    const hallucinationsEffect = effects.find(e => e.id === 'hallucinations' && e.enabled);
-    if (hallucinationsEffect) {
-      return generateHallucinationsOverlay(hallucinationsEffect.intensity, now);
-    }
-
-    // Check for Blue Field Entoptic Phenomenon
-    const blueFieldEffect = effects.find(e => e.id === 'blueFieldPhenomena' && e.enabled);
-    if (blueFieldEffect) {
-      return generateBlueFieldOverlay(blueFieldEffect.intensity, now);
-    }
-
-    // Check for Persistent Positive Visual Phenomenon
-    const ppvpEffect = effects.find(e => e.id === 'persistentPositiveVisualPhenomenon' && e.enabled);
-    if (ppvpEffect) {
-      return generatePersistentPositiveOverlay(ppvpEffect.intensity, now);
-    }
-
-    // Check for Palinopsia
-    const palinopsiaEffect = effects.find(e => e.id === 'palinopsia' && e.enabled);
-    if (palinopsiaEffect) {
-      return generatePalinopsiaOverlay(palinopsiaEffect.intensity, now);
-    }
-
-    // Check for Starbursting
-    const starburstingEffect = effects.find(e => e.id === 'starbursting' && e.enabled);
-    if (starburstingEffect) {
-      return generateStarburstingOverlay(starburstingEffect.intensity, now);
-    }
-
-    // Check for Christine Ha's Fluctuating Vision (NMO)
-    const christineFluctuatingEffect = effects.find(e => e.id === 'christineFluctuatingVision' && e.enabled);
-    if (christineFluctuatingEffect) {
-      return generateChristineFluctuatingOverlay(christineFluctuatingEffect.intensity, now);
-    }
-
-    // Check for Sugar Ray Leonard's Retinal Detachment (peripheral flashes + drifting floaters)
-    const sugarRetinalEffect = effects.find(e =>
-      (e.id === 'sugarRetinalDetachmentComplete' || e.id === 'sugarPeripheralFlashes') && e.enabled
-    );
-    if (sugarRetinalEffect) {
-      return generateSugarRetinalDetachmentOverlay(sugarRetinalEffect.intensity, now);
-    }
-
-    // Check for Stephen Curry's Keratoconus (drifting ghosts, light streaks, waviness)
-    const stephenKeratoconusEffect = effects.find(e => e.id === 'stephenKeratoconusComplete' && e.enabled);
-    if (stephenKeratoconusEffect) {
-      return generateStephenKeratoconusOverlay(stephenKeratoconusEffect.intensity, now);
-    }
-
-    // Check for Heather Hutchison's Light Perception (nystagmus, diffuse light blobs)
-    const heatherLPEffect = effects.find(e => e.id === 'heatherLightPerceptionComplete' && e.enabled);
-    if (heatherLPEffect) {
-      return generateHeatherLightPerceptionOverlay(heatherLPEffect.intensity, now);
-    }
-
-    // Check for Daredevil's Radar Sense (red monochrome, edge detection, pulsing)
-    const daredevilEffect = effects.find(e => e.id === 'daredevilRadarSenseComplete' && e.enabled);
-    if (daredevilEffect) {
-      return generateDaredevilRadarSenseOverlay(daredevilEffect.intensity, now);
-    }
-
-    // Check for Geordi La Forge's VISOR Sense (EM spectrum, thermal, scan lines)
-    const geordiEffect = effects.find(e => e.id === 'geordiVisorSenseComplete' && e.enabled);
-    if (geordiEffect) {
-      return generateGeordiVisorSenseOverlay(geordiEffect.intensity, now);
-    }
-
-    // Check for Blindspot's Sonar Sense (echolocation, ping sweeps, depth mapping)
-    const blindspotEffect = effects.find(e => e.id === 'blindspotSonarSenseComplete' && e.enabled);
-    if (blindspotEffect) {
-      return generateBlindspotSonarSenseOverlay(blindspotEffect.intensity, now);
-    }
-
-    // Check for Kenshi's Telekinetic Sense (psychic perception, soul detection, spirit realm)
-    const kenshiEffect = effects.find(e => e.id === 'kenshiTelekineticSenseComplete' && e.enabled);
-    if (kenshiEffect) {
-      return generateKenshiTelekineticSenseOverlay(kenshiEffect.intensity, now);
-    }
-
-    // Check for Toph Beifong's Seismic Sense (earthbending vision, ground vibrations)
-    const tophEffect = effects.find(e => e.id === 'tophSeismicSenseComplete' && e.enabled);
-    if (tophEffect) {
-      return generateTophSeismicSenseOverlay(tophEffect.intensity, now);
-    }
-
-    // Check for Anselmo Ralph's Ocular Myasthenia Gravis (ptosis, photophobia, fatigue cycle)
-    const anselmoEffect = effects.find(e =>
-      (e.id === 'anselmoOcularMyastheniaComplete' ||
-       e.id === 'anselmoOcularMyastheniaPtosis' ||
-       e.id === 'anselmoOcularMyastheniaPhotophobia') && e.enabled
-    );
-    if (anselmoEffect) {
-      return generateAnselmoOcularMyastheniaOverlay(anselmoEffect.intensity, now);
-    }
-
-    // Check for Infanta Margarita's Light Perception (light & shadow, no nystagmus)
-    const margaritaEffect = effects.find(e => e.id === 'margaritaLightPerceptionComplete' && e.enabled);
-    if (margaritaEffect) {
-      return generateMargaritaLightPerceptionOverlay(margaritaEffect.intensity, now);
-    }
-
-    // Check for Fujitora's Observation Haki (dark void, purple auras, Haki ripples)
-    const fujitoraEffect = effects.find(e => e.id === 'fujitoraObservationHakiComplete' && e.enabled);
-    if (fujitoraEffect) {
-      return generateFujitoraObservationHakiOverlay(fujitoraEffect.intensity, now);
-    }
-
-    // Check for Chirrut Îmwe's Force Perception (blue-cyan wash, Force wisps, sound ripples)
-    const chirrutEffect = effects.find(e => e.id === 'chirrutForcePerceptionComplete' && e.enabled);
-    if (chirrutEffect) {
-      return generateChirrutForcePerceptionOverlay(chirrutEffect.intensity, now);
-    }
-
-    // Check for Julia Carpenter's Psychic Web (crimson web, detection nodes, precog flashes)
-    const juliaEffect = effects.find(e => e.id === 'juliaCarpenterPsychicWebComplete' && e.enabled);
-    if (juliaEffect) {
-      return generateJuliaCarpenterPsychicWebOverlay(juliaEffect.intensity, now);
-    }
-
-    return null;
+    const activeEffect = effects.find(e => e.enabled && EFFECT_GENERATORS[e.id]);
+    if (!activeEffect) return null;
+    return EFFECT_GENERATORS[activeEffect.id](activeEffect.intensity, now);
   }, [effects, now]);
 };

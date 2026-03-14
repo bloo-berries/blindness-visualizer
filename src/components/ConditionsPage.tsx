@@ -44,7 +44,6 @@ import PageMeta from './PageMeta';
 import ThumbnailImage from './ThumbnailImage';
 import { conditionCategories } from '../data/conditionCategories';
 import {
-  Visibility as VisibilityIconFaq,
   Smartphone as SmartphoneIcon,
   Home as HomeIconFaq,
   Directions as DirectionsIcon,
@@ -84,13 +83,13 @@ const ConditionsPage: React.FC = () => {
 
   // FAQ items structure with icons
   const faqItemsConfig = [
-    { id: 'darkness', icon: <VisibilityIconFaq />, categoryKey: 'visionPerception' },
+    { id: 'darkness', icon: <VisibilityIcon />, categoryKey: 'visionPerception' },
     { id: 'technology', icon: <SmartphoneIcon />, categoryKey: 'technologyAccessibility' },
     { id: 'independence', icon: <HomeIconFaq />, categoryKey: 'dailyLife' },
     { id: 'navigation', icon: <DirectionsIcon />, categoryKey: 'navigationMobility', hasList: true },
     { id: 'senses', icon: <PsychologyIcon />, categoryKey: 'visionPerception' },
     { id: 'interaction', icon: <PersonIcon />, categoryKey: 'socialInteraction', hasList: true },
-    { id: 'legalVsTotal', icon: <VisibilityIconFaq />, categoryKey: 'visionPerception', isSpecial: true },
+    { id: 'legalVsTotal', icon: <VisibilityIcon />, categoryKey: 'visionPerception', isSpecial: true },
     { id: 'employment', icon: <WorkIcon />, categoryKey: 'employmentCareer' },
     { id: 'identification', icon: <ColorLensIcon />, categoryKey: 'dailyLife', hasList: true },
     { id: 'causesTreatment', icon: <MedicalServicesIcon />, categoryKey: 'medicalTreatment', isSpecial: true }
@@ -246,7 +245,7 @@ const ConditionsPage: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Vision Conditions Glossary',
-    description: 'Comprehensive glossary of 42+ vision conditions with descriptions and treatment information.',
+    description: 'Comprehensive glossary of 148+ vision conditions with descriptions and treatment information.',
     numberOfItems: conditionCategories.reduce((n, cat) => n + cat.conditions.length, 0),
     itemListElement: conditionCategories.flatMap((cat, catIdx) =>
       cat.conditions.map((condition, condIdx) => ({
@@ -271,7 +270,7 @@ const ConditionsPage: React.FC = () => {
     <Box className="conditions-glossary" sx={{ pb: 10 }}>
       <PageMeta
         title="Vision Conditions Glossary"
-        description="Browse a comprehensive glossary of 42+ vision conditions including color blindness, macular degeneration, glaucoma, cataracts, and retinitis pigmentosa."
+        description="Browse a comprehensive glossary of 148+ vision conditions including color blindness, macular degeneration, glaucoma, cataracts, and retinitis pigmentosa."
         path="/conditions"
         jsonLd={conditionsJsonLd}
       />

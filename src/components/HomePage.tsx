@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <PageMeta
         title="Vision Condition Simulator"
-        description="Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and 30+ vision conditions."
+        description="Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and 148+ vision conditions."
         path="/"
       />
       <NavigationBar showHomeButton={false} onHomeClick={() => {}} />

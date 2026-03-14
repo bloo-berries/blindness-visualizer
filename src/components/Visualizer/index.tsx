@@ -311,6 +311,37 @@ const Visualizer: React.FC<VisualizerProps> = ({
     }
   }, [showComparison, effects, inputSource.type]);
 
+  // Shared CSS filter computation for enabled effects
+  const computeFilterString = useCallback((): string | null => {
+    const { enabledEffects } = effectProcessor.current.updateEffects(effects);
+
+    const colorVisionEffect = enabledEffects.find(e =>
+      ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+    );
+
+    const nonDiplopiaEffects = enabledEffects.filter(e =>
+      e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
+    );
+
+    const otherEffects = nonDiplopiaEffects.filter(e =>
+      !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
+    );
+
+    const filters: string[] = [];
+
+    if (colorVisionEffect) {
+      const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+      if (cssFilter) filters.push(cssFilter);
+    }
+
+    if (otherEffects.length > 0) {
+      const otherFilters = generateCSSFilters(otherEffects, diplopiaSeparation, diplopiaDirection);
+      if (otherFilters) filters.push(otherFilters);
+    }
+
+    return filters.length > 0 ? filters.join(' ') : null;
+  }, [effects, diplopiaSeparation, diplopiaDirection]);
+
   // Optimized CSS filter calculation
   const getEffectStyles = useCallback(() => {
     const baseStyle: React.CSSProperties = {
@@ -319,36 +350,12 @@ const Visualizer: React.FC<VisualizerProps> = ({
     };
 
     if (inputSource.type === 'youtube' || inputSource.type === 'image') {
-      const { enabledEffects } = effectProcessor.current.updateEffects(effects);
-      const nonDiplopiaEffects = enabledEffects.filter(e =>
-        e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
-      );
-
-      const colorVisionEffect = enabledEffects.find(e =>
-        ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-      );
-
-      const otherEffects = nonDiplopiaEffects.filter(e =>
-        !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-      );
-
-      const filters: string[] = [];
-
-      if (colorVisionEffect) {
-        const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-        if (cssFilter) filters.push(cssFilter);
-      }
-
-      if (otherEffects.length > 0) {
-        const otherFilters = generateCSSFilters(otherEffects, diplopiaSeparation, diplopiaDirection);
-        if (otherFilters) filters.push(otherFilters);
-      }
-
-      return filters.length > 0 ? { ...baseStyle, filter: filters.join(' ') } : baseStyle;
+      const filterStr = computeFilterString();
+      return filterStr ? { ...baseStyle, filter: filterStr } : baseStyle;
     }
 
     return baseStyle;
-  }, [effects, inputSource.type, diplopiaSeparation, diplopiaDirection]);
+  }, [inputSource.type, computeFilterString]);
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
@@ -489,37 +496,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
               maxHeight: '100%',
               aspectRatio: '16 / 9',
               overflow: 'hidden',
-              filter: (() => {
-                const { enabledEffects } = effectProcessor.current.updateEffects(effects);
-                const colorVisionEffect = enabledEffects.find(e =>
-                  ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-                );
-
-                const otherEffects = enabledEffects.filter(e =>
-                  !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-                );
-
-                const filters: string[] = [];
-
-                if (colorVisionEffect) {
-                  const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-                  if (cssFilter) filters.push(cssFilter);
-                }
-
-                if (otherEffects.length > 0) {
-                  const { enabledEffects: nonColorEffects } = effectProcessor.current.updateEffects(otherEffects);
-                  const nonDiplopiaEffects = nonColorEffects.filter(e =>
-                    e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
-                  );
-
-                  if (nonDiplopiaEffects.length > 0) {
-                    const otherFilters = generateCSSFilters(nonDiplopiaEffects, diplopiaSeparation, diplopiaDirection);
-                    if (otherFilters) filters.push(otherFilters);
-                  }
-                }
-
-                return filters.length > 0 ? filters.join(' ') : 'none';
-              })()
+              filter: computeFilterString() || 'none'
             }}>
               <iframe
                 {...YOUTUBE_IFRAME_PROPS}

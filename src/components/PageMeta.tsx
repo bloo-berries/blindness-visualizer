@@ -12,7 +12,7 @@ interface PageMetaProps {
 }
 
 const PageMeta: React.FC<PageMetaProps> = ({ title, description, path, jsonLd }) => {
-  const fullTitle = `${title} | ${SITE_NAME}`;
+  const fullTitle = path === '/' ? SITE_NAME : `${title} | ${SITE_NAME}`;
   const canonical = `${BASE_URL}${path}`;
 
   return (

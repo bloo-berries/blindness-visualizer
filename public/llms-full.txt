@@ -1,8 +1,8 @@
-# Simulated Vision — Full Content Reference
+# The Blind Spot — Full Content Reference
 
-> https://simulated.vision
+> https://theblind.spot
 
-This file contains comprehensive information about all 42+ vision conditions and 209+ famous people profiled on Simulated Vision. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 42+ vision conditions and 209+ famous people profiled on The Blind Spot. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -25,7 +25,7 @@ Loss of the left half of the visual field in both eyes. Caused by damage to the 
 
 *Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
 
-**Simulate**: [Experience Homonymous Hemianopia (Left-field) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Hemianopia (Left-field) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -42,7 +42,7 @@ Loss of the right half of the visual field in both eyes. Caused by damage to the
 
 *Vision loss from brain damage is typically permanent, but rehabilitation can help maximize remaining vision and develop compensatory strategies.*
 
-**Simulate**: [Experience Homonymous Hemianopia (Right-field) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Hemianopia (Right-field) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -58,7 +58,7 @@ Loss of vision in the same lower quadrant of visual field in both eyes. Caused b
 
 *Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
 
-**Simulate**: [Experience Homonymous Inferior Quadrantanopia on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Inferior Quadrantanopia on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -74,7 +74,7 @@ Loss of vision in the same upper quadrant of visual field in both eyes. Caused b
 
 *Treatment focuses on rehabilitation and adaptation rather than restoring lost vision.*
 
-**Simulate**: [Experience Homonymous Superior Quadrantanopia on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Homonymous Superior Quadrantanopia on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -95,7 +95,7 @@ Complete blindness in the left eye. Caused by damage to the left optic nerve. Re
 
 *Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
 
-**Simulate**: [Experience Complete Loss of Vision in Left Eye on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Complete Loss of Vision in Left Eye on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -116,7 +116,7 @@ Complete blindness in the right eye. Caused by damage to the right optic nerve. 
 
 *Vision loss in one eye is typically permanent. Treatment focuses on preserving the remaining eye and developing compensatory strategies for monocular vision.*
 
-**Simulate**: [Experience Complete Loss of Vision in Right Eye on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Complete Loss of Vision in Right Eye on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -133,7 +133,7 @@ Loss of vision in the outer (temporal) half of each eye\
 
 *Early treatment of the underlying cause (often pituitary tumors) may prevent further vision loss and sometimes improve vision.*
 
-**Simulate**: [Experience Bitemporal Hemianopia on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Bitemporal Hemianopia on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -153,7 +153,7 @@ A blind spot in the center of vision. Can be caused by macular degeneration, opt
 
 *Central scotomas are often permanent, but treatment of the underlying cause and low vision rehabilitation can help maximize remaining vision.*
 
-**Simulate**: [Experience Central Scotoma on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Central Scotoma on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -172,7 +172,7 @@ Loss of peripheral vision while central vision remains. Can be caused by glaucom
 
 *Peripheral vision loss is often progressive and irreversible, but early treatment of underlying conditions may slow progression.*
 
-**Simulate**: [Experience Tunnel Vision on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Tunnel Vision on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -192,7 +192,7 @@ Complete inability to distinguish between red and green colors. Red appears as b
 
 *Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
 
-**Simulate**: [Experience Protanopia (Red-Blind) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Protanopia (Red-Blind) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -208,7 +208,7 @@ Complete inability to distinguish between red and green colors. Green appears as
 
 *Color vision deficiencies are typically genetic and permanent. Specialized glasses can help some people but do not restore normal color vision.*
 
-**Simulate**: [Experience Deuteranopia (Green-Blind) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Deuteranopia (Green-Blind) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -224,7 +224,7 @@ Inability to distinguish between blue and yellow colors. Blue appears as green, 
 
 *Acquired tritanopia may improve if the underlying cause is treated. Inherited forms are permanent.*
 
-**Simulate**: [Experience Tritanopia (Blue-Blind) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Tritanopia (Blue-Blind) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -239,7 +239,7 @@ Reduced sensitivity to red light. Red appears darker and less bright than normal
 
 *Milder than protanopia but still permanent. Adaptive strategies are the primary management approach.*
 
-**Simulate**: [Experience Protanomaly (Red-Weak) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Protanomaly (Red-Weak) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -254,7 +254,7 @@ Reduced sensitivity to green light. Green appears more red than normal. Most com
 
 *Most common color vision deficiency. Usually does not significantly impact daily life, but adaptive strategies can help when needed.*
 
-**Simulate**: [Experience Deuteranomaly (Green-Weak) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Deuteranomaly (Green-Weak) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -269,7 +269,7 @@ Reduced sensitivity to blue light. Blue appears greener than normal, and yellow 
 
 *Very rare condition. Treatment depends on whether it is inherited or acquired.*
 
-**Simulate**: [Experience Tritanomaly (Blue-Weak) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Tritanomaly (Blue-Weak) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -285,7 +285,7 @@ Complete inability to see any colors. Vision is limited to shades of gray. Extre
 
 *Complete color blindness is typically genetic and permanent. Management focuses on maximizing remaining vision and adaptive strategies.*
 
-**Simulate**: [Experience Monochromacy (Complete Color Blindness) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Monochromacy (Complete Color Blindness) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -306,7 +306,7 @@ A group of eye diseases that damage the optic nerve, typically due to elevated i
 
 *Early detection and treatment can prevent or slow vision loss. Vision already lost cannot be restored, but treatment can preserve remaining vision. Regular eye exams are crucial.*
 
-**Simulate**: [Experience Glaucoma on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Glaucoma on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -323,7 +323,7 @@ Nuclear sclerotic cataract - the most common type of cataract affecting the cent
 
 *Cataract surgery is one of the most common and successful surgeries, with high success rates. It is reversible and can restore clear vision. Surgery is typically recommended when cataracts interfere with daily activities.*
 
-**Simulate**: [Experience Nuclear Sclerotic Cataract on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Nuclear Sclerotic Cataract on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -341,7 +341,7 @@ Small central area of light scatter behind the pupil, causing pronounced glare s
 
 *Posterior subcapsular cataracts often progress more quickly than other types and can significantly impact vision, especially in bright light. Surgery is typically recommended when vision is significantly affected.*
 
-**Simulate**: [Experience Posterior Subcapsular Cataract on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Posterior Subcapsular Cataract on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -359,7 +359,7 @@ Deterioration of the macula, the central part of the retina. Causes loss of cent
 
 *Wet AMD can be treated to slow progression and sometimes improve vision. Dry AMD progresses slowly and currently has no cure, but supplements may slow progression. Early detection is crucial.*
 
-**Simulate**: [Experience Age-Related Macular Degeneration (AMD) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Age-Related Macular Degeneration (AMD) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -377,7 +377,7 @@ Damage to the blood vessels in the retina caused by diabetes. Can cause blurry v
 
 *Early detection and good diabetes management can prevent or slow progression. Treatment can preserve vision, but vision already lost may not be fully restored.*
 
-**Simulate**: [Experience Diabetic Retinopathy on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Diabetic Retinopathy on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -394,7 +394,7 @@ Irregular curvature of the cornea or lens causing blurred or distorted vision at
 
 *Astigmatism is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction. Pterygium surgery has good success rates.*
 
-**Simulate**: [Experience Astigmatism/Pterygium on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Astigmatism/Pterygium on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -411,7 +411,7 @@ Difficulty seeing distant objects clearly while near objects appear normal. Caus
 
 *Myopia is easily correctable. In children, treatments can slow progression. Refractive surgery can provide permanent correction for adults.*
 
-**Simulate**: [Experience Myopia (Near-Sightedness) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Myopia (Near-Sightedness) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -427,7 +427,7 @@ Difficulty seeing near objects clearly while distant objects appear normal. Caus
 
 *Hyperopia is easily correctable with glasses or contacts. Refractive surgery can provide permanent correction.*
 
-**Simulate**: [Experience Hyperopia (Far-Sightedness) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Hyperopia (Far-Sightedness) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -451,7 +451,7 @@ Progressive genetic disorder causing gradual degeneration of photoreceptor cells
 
 *RP is progressive and currently has no cure for most forms. Treatment focuses on slowing progression and maximizing remaining vision. Gene therapy is available for specific genetic mutations.*
 
-**Simulate**: [Experience Retinitis Pigmentosa on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinitis Pigmentosa on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -471,7 +471,7 @@ Genetic eye disorder causing progressive vision loss in the macula. Usually begi
 
 *Stargardt disease is progressive and currently incurable. Management focuses on maximizing remaining peripheral vision and adaptive strategies. Research into gene and stem cell therapies is promising.*
 
-**Simulate**: [Experience Stargardt Disease on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Stargardt Disease on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -489,7 +489,7 @@ Separation of the retina from the underlying tissue. Can cause sudden flashes of
 
 *Retinal detachment is a medical emergency requiring immediate treatment. Success rates are high if treated promptly (within days). Delayed treatment can result in permanent vision loss.*
 
-**Simulate**: [Experience Retinal Detachment on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinal Detachment on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -511,7 +511,7 @@ Temporary visual disturbances that can precede migraines. May include flashing l
 
 *Visual auras typically resolve on their own. Treatment focuses on preventing migraines and managing symptoms. Most people with auras can identify triggers to avoid.*
 
-**Simulate**: [Experience Visual Aura on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Aura on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -528,7 +528,7 @@ A persistent visual disturbance where people see tiny, flickering dots across th
 
 *Visual snow syndrome has no definitive cure. Treatment is often trial-and-error. Some medications may help reduce symptoms. Research into the condition is ongoing.*
 
-**Simulate**: [Experience Visual Snow on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Snow on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -545,7 +545,7 @@ Shadows cast on the retina by debris floating in the vitreous humor. Includes co
 
 *Most floaters are benign and do not require treatment. Sudden increase in floaters, especially with flashes, requires immediate eye exam to rule out retinal tear or detachment.*
 
-**Simulate**: [Experience Visual Floaters (Myodesopsia) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Floaters (Myodesopsia) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -568,7 +568,7 @@ Seeing things that are not actually present. Can be simple (lights, shapes) or c
 
 *Treatment is highly dependent on the underlying cause. Charles Bonnet Syndrome (hallucinations due to vision loss) is usually harmless and may resolve on its own.*
 
-**Simulate**: [Experience Visual Hallucinations on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Visual Hallucinations on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -588,7 +588,7 @@ Seeing two images of a single object. Can be monocular (affecting one eye) or bi
 
 *Monocular diplopia is usually due to eye problems (cataracts, corneal issues). Binocular diplopia requires treatment of eye alignment or underlying neurological conditions.*
 
-**Simulate**: [Experience Diplopia (Double Vision) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Diplopia (Double Vision) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -607,7 +607,7 @@ Bloom or light-scatter effect proportional to scene luminance and eye adaptation
 
 *Glare sensitivity can be a symptom of various eye conditions. Treatment depends on the underlying cause. Anti-glare lenses and protective eyewear can significantly improve comfort.*
 
-**Simulate**: [Experience Glare Sensitivity on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Glare Sensitivity on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -628,7 +628,7 @@ Difficulty seeing in low light conditions or darkness. Vision becomes significan
 
 *Night blindness can be a symptom of various conditions. Some causes are treatable (vitamin deficiencies, cataracts), while others (retinitis pigmentosa) may be progressive. Early diagnosis is important.*
 
-**Simulate**: [Experience Night Blindness (Nyctalopia) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Night Blindness (Nyctalopia) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -649,7 +649,7 @@ Light sources appearing as star-like rays or spikes extending outward from the c
 
 *Starbursting after refractive surgery often improves over 6-12 months. If persistent, it may require additional treatment. Corneal irregularities may need specialized contact lenses or surgical correction.*
 
-**Simulate**: [Experience Starbursting on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Starbursting on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -670,7 +670,7 @@ An autoimmune response that can occur after injury to one eye, causing inflammat
 
 *Early, aggressive treatment is crucial to preserve vision. Treatment may need to be long-term to prevent recurrence. Modern treatment has improved outcomes significantly.*
 
-**Simulate**: [Experience Sympathetic Ophthalmia on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Sympathetic Ophthalmia on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -688,7 +688,7 @@ Inflammation of the membranes surrounding the brain and spinal cord. Can cause v
 
 *Immediate medical treatment is critical. Vision loss from meningitis is often permanent but early treatment can prevent complications. Vaccination is the best prevention.*
 
-**Simulate**: [Experience Meningitis on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Meningitis on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -709,7 +709,7 @@ Severe damage to the eyes caused by exposure to chemicals. Can result in complet
 
 *Immediate irrigation is critical - seconds count. Alkali burns (lye, ammonia) are more severe than acid burns. Severe burns may require multiple surgeries and have variable outcomes.*
 
-**Simulate**: [Experience Chemical Burns on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Chemical Burns on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -728,7 +728,7 @@ Abnormal blood vessel development in the retina of premature infants. Can cause 
 
 *Early detection and treatment can prevent blindness. Treatment is most effective when done promptly. Modern NICU care and screening have significantly improved outcomes.*
 
-**Simulate**: [Experience Retinopathy of Prematurity (ROP) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Retinopathy of Prematurity (ROP) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -746,7 +746,7 @@ Autoimmune disorder that attacks the optic nerves and spinal cord. Can cause sev
 
 *Early treatment of attacks and long-term immunosuppression can prevent further vision loss. Some vision may recover after attacks, but damage is often permanent. Modern treatments have significantly improved outcomes.*
 
-**Simulate**: [Experience Neuromyelitis Optica (NMO) on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Neuromyelitis Optica (NMO) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -765,7 +765,7 @@ Genetic condition causing splitting of retinal layers, leading to progressive vi
 
 *Juvenile retinoschisis is progressive and currently incurable. Treatment focuses on managing complications and maximizing remaining vision. Regular monitoring is essential.*
 
-**Simulate**: [Experience Juvenile Retinoschisis on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Juvenile Retinoschisis on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -784,7 +784,7 @@ Rare genetic condition that can affect multiple body systems, including the eyes
 
 *Treatment focuses on managing eye complications and other systemic manifestations. Regular monitoring is essential. Vision loss varies widely among individuals.*
 
-**Simulate**: [Experience Incontinentia Pigmenti on Simulated Vision](https://simulated.vision/simulator)
+**Simulate**: [Experience Incontinentia Pigmenti on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -806,7 +806,7 @@ Vision is approximately 20/1000+ with extreme blur, light scatter, and fluctuati
 
 [Wikipedia](https://en.wikipedia.org/wiki/Christine_Ha)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -826,7 +826,7 @@ She relies entirely on screen readers, her guide dog Molly, and adaptive technol
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lucy_Edwards)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -844,7 +844,7 @@ Paul Castle has lost over 95% of his vision to Retinitis Pigmentosa, an untreata
 
 [Wikipedia](https://en.wikipedia.org/wiki/Paul_Castle_(artist))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -866,7 +866,7 @@ Haben Girma has been deafblind from birth. She uses tactile sign language and as
 
 [Wikipedia](https://en.wikipedia.org/wiki/Haben_Girma)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -886,7 +886,7 @@ Molly Burke lost her vision to retinitis pigmentosa, diagnosed at age 4 and prog
 
 [Wikipedia](https://en.wikipedia.org/wiki/Molly_Burke)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -906,7 +906,7 @@ She has since had surgery to restore her vision.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mila_Kunis)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -928,7 +928,7 @@ She relies on friends to read scripts aloud and cannot attend events alone.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Judi_Dench)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -950,7 +950,7 @@ The stroke caused lasting visual disturbances: she couldn't read for years, saw 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sharon_Stone)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -972,7 +972,7 @@ Chris McCausland is blind due to retinitis pigmentosa, a degenerative condition 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chris_McCausland)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -992,7 +992,7 @@ Marilee Talkington has cone-rod dystrophy, causing legal blindness with severe l
 
 [Wikipedia](https://www.imdb.com/name/nm3411258/)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1012,7 +1012,7 @@ Fred Rogers lived with deuteranopia, a form of red-green color deficiency caused
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fred_Rogers)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1034,7 +1034,7 @@ Srikanth Bolla was born without eyes (anophthalmia) in rural India. Despite rela
 
 [Wikipedia](https://en.wikipedia.org/wiki/Srikanth_Bolla)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1058,7 +1058,7 @@ Despite her blindness, she reinvented herself as a fashion designer, founding th
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ashcharya_Peiris)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1078,7 +1078,7 @@ Ross Minor lost his sight at age 8 from a gunshot wound, resulting in complete b
 
 • Visit rossminor.com
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1100,7 +1100,7 @@ Retinoschisis causes splitting of retinal layers, leading to progressive vision 
 
 • Author and motivational speaker at erikweihenmayer.com
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1120,7 +1120,7 @@ Stargardt disease causes progressive macular degeneration, destroying central vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Marla_Runyan)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1138,7 +1138,7 @@ Anastasia Pagonis has Stargardt disease, a form of juvenile macular degeneration
 
 • Social media influencer with millions of followers, raising awareness about blindness
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1160,7 +1160,7 @@ The condition threatened to engulf his central vision.
 
 • International Boxing Hall of Fame inductee
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1180,7 +1180,7 @@ Stephen Curry has keratoconus, where the cornea thins into an irregular cone sha
 
 • All-time leader in three-point field goals made
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1202,7 +1202,7 @@ The clear zone shrank each cycle until nothing remained.
 
 • Team USA track and field athlete
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1224,7 +1224,7 @@ By 13, glaucoma took his remaining vision. He still experiences ongoing pain fro
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Brown_(sprinter))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1246,7 +1246,7 @@ Anthony 'Tony' Clarke became completely blind at age 17 following a car accident
 
 [Wikipedia](https://en.wikipedia.org/wiki/Anthony_Clarke_(judoka))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1268,7 +1268,7 @@ He describes his sight as 'the hazy aftermath of a dream' - relying on shapes an
 
 [Wikipedia](https://en.wikipedia.org/wiki/Crazzy_Steve)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1294,7 +1294,7 @@ He navigated Paralympic ski courses, marathon routes, and mountain ascents throu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tofiri_Kibuuka)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1316,7 +1316,7 @@ She is legally blind.
 
 • Earned Juris Doctor degree and works for Department of Veterans Affairs
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1340,7 +1340,7 @@ After struggling with depression, he discovered he could run with a guide.
 
 • Famous quote: 'I lost my sight, but I gained a vision'
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1360,7 +1360,7 @@ Zeeshan Abbasi is a B2 category athlete, meaning he can distinguish shapes at cl
 
 • Pakistan's Pride of Performance Award recipient (2013)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1384,7 +1384,7 @@ She entered sports at age 22 through a government program for people with impair
 
 [Wikipedia](https://en.wikipedia.org/wiki/Terezinha_Guilhermina)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1406,7 +1406,7 @@ She competes in the T11 category (near-total/total blindness) wearing blacked-ou
 
 [Wikipedia](https://en.wikipedia.org/wiki/Silv%C3%A2nia_Costa_de_Oliveira)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1430,7 +1430,7 @@ She began judo at age 15 through her brothers but only discovered Paralympic jud
 
 [Wikipedia](https://en.wikipedia.org/wiki/L%C3%BAcia_Teixeira)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1456,7 +1456,7 @@ Nicknamed 'Ferrari' for her blistering speed, she competes in the T11 category (
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lahja_Ishitile)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1478,7 +1478,7 @@ She started playing goalball in the 4th grade at a center for the blind, joined 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Roni_Ohayon)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1500,7 +1500,7 @@ Taonere Banda was born in Malawi with cataracts that went untreated in infancy, 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Taonere_Banda)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1524,7 +1524,7 @@ Despite his deteriorating sight, he fought a World Championship bout against Dom
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nojim_Maiyegun)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1548,7 +1548,7 @@ She competes in visually impaired categories in both biathlon and cross-country 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mikhalina_Lysova)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1572,7 +1572,7 @@ After returning to South Africa, he could be seen selling a self-authored bookle
 
 [Wikipedia](https://en.wikipedia.org/wiki/Andrew_Jeptha)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1598,7 +1598,7 @@ Before the accident, he was a multi-sport varsity athlete at De La Salle Univers
 
 [Wikipedia](https://en.wikipedia.org/wiki/Michael_Barredo)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1622,7 +1622,7 @@ Born in Chilgok County, he developed through Daegu Technical High School and Chu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kwak_Tae-hwi)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1646,7 +1646,7 @@ She began judo after moving to Madrid for university, introduced to the sport by
 
 [Wikipedia](https://en.wikipedia.org/wiki/Marta_Arce_Payno)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1670,7 +1670,7 @@ Classified F11/T11/B1 (total blindness), he turned to Paralympic athletics throu
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Casinos)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1694,7 +1694,7 @@ A teacher by profession who lives in Barcelona, she has competed at five Paralym
 
 [Wikipedia](https://en.wikipedia.org/wiki/Elena_Congost)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1720,7 +1720,7 @@ In Paralympic judo, all visually impaired athletes (B1, B2, B3) compete against 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lee_Kai-Lin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1744,7 +1744,7 @@ At the Paris 2024 Paralympics, he initially won gold in the 100m T12 but couldn'
 
 [Wikipedia](https://en.wikipedia.org/wiki/Serkan_Y%C4%B1ld%C4%B1r%C4%B1m)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1768,7 +1768,7 @@ She earned a Master of Science in Engineering from KTH Royal Institute of Techno
 
 [Wikipedia](https://en.wikipedia.org/wiki/Maja_Reichard)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1794,7 +1794,7 @@ The dual conditions create severe blur, loss of color perception, and extreme li
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mona_Minkara)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1818,7 +1818,7 @@ He has no light perception.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joshua_Miele)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1840,7 +1840,7 @@ Geerat Vermeij was born with congenital glaucoma, causing complete blindness fro
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geerat_Vermeij)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1862,7 +1862,7 @@ She uses screen magnifiers, screen readers, and a service dog.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Amy_Bower)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1884,7 +1884,7 @@ Gustaf Dalén became completely blind in 1912 when an acetylene experiment explo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1906,7 +1906,7 @@ Jacob Bolotin was born completely blind, with no light perception from birth. He
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jacob_Bolotin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1930,7 +1930,7 @@ He experienced a dark central scotoma (blind spot at fixation point), preserved 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joseph_Plateau)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1954,7 +1954,7 @@ For ~33 years he worked with only his left eye, then ~12 years in complete darkn
 
 [Wikipedia](https://en.wikipedia.org/wiki/Leonhard_Euler)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -1978,7 +1978,7 @@ Rather than abandon her career, she pioneered new methods to study astronomical 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2000,7 +2000,7 @@ Educated at a school for the blind from childhood, his functional vision was min
 
 [Wikipedia](https://en.wikipedia.org/wiki/Abraham_Nemeth)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2024,7 +2024,7 @@ Despite complete vision loss, she continued her academic pursuits and earned her
 
 [Wikipedia](https://en.wikipedia.org/wiki/Olga_Hahn-Neurath)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2048,7 +2048,7 @@ Despite being deafblind, he earned a PhD in mathematics from Leiden University a
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gerrit_van_der_Mey)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2072,7 +2072,7 @@ She first saw the Nazca Lines in 1941 with historian Paul Kosok and spent the re
 
 [Wikipedia](https://en.wikipedia.org/wiki/Maria_Reiche)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2096,7 +2096,7 @@ Born in Ostrołęka in Russian-controlled Poland, she studied medicine at the Un
 
 [Wikipedia](https://en.wikipedia.org/wiki/M%C3%A9lanie_Lipinska)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2120,7 +2120,7 @@ Despite total blindness, he conducted groundbreaking research on honeybees throu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fran%C3%A7ois_Huber)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2144,7 +2144,7 @@ Born in Nanjing, his early life was disrupted by the Second Sino-Japanese War an
 
 [Wikipedia](https://en.wikipedia.org/wiki/Yih-Hsing_Pao)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2170,7 +2170,7 @@ His right eye was later removed due to pain. He had no light perception.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ray_Charles)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2196,7 +2196,7 @@ This led to retinal detachment and complete blindness from infancy.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Stevie_Wonder)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2218,7 +2218,7 @@ Born with congenital glaucoma, Andrea Bocelli retained about 10% vision until a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Andrea_Bocelli)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2238,7 +2238,7 @@ Casey Harris has lived with retinitis pigmentosa since age 5, experiencing progr
 
 [Wikipedia](https://en.wikipedia.org/wiki/Casey_Harris)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2260,7 +2260,7 @@ Bono, lead singer of U2, has glaucoma which causes extreme light sensitivity. He
 
 [Wikipedia](https://en.wikipedia.org/wiki/Bono)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2286,7 +2286,7 @@ The condition damages blood vessels in the retina, creating floaters, blurred vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ella_Fitzgerald)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2308,7 +2308,7 @@ The constant movement makes focusing difficult and causes visual instability.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Apl.de.ap)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2328,7 +2328,7 @@ Fetty Wap lost his left eye to childhood glaucoma and now wears a prosthetic eye
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fetty_Wap)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2350,7 +2350,7 @@ Slick Rick was blinded in his right eye as an infant when broken glass from a bo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Slick_Rick)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2374,7 +2374,7 @@ He navigates with a guide dog, which became his trademark onstage.
 
 [Wikipedia](https://en.wikipedia.org/wiki/José_Feliciano)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2398,7 +2398,7 @@ An assault at age 20 left him completely blind in his left eye with very limited
 
 [Wikipedia](https://en.wikipedia.org/wiki/Art_Tatum)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2422,7 +2422,7 @@ Both eyes were eventually surgically removed.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ronnie_Milsap)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2446,7 +2446,7 @@ He could not see shapes or details.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Doc_Watson)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2470,7 +2470,7 @@ He had prosthetic eyes and no memory of sight.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jeff_Healey)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2492,7 +2492,7 @@ Diane Schuur was born two months premature weighing less than three pounds. Oxyg
 
 [Wikipedia](https://en.wikipedia.org/wiki/Diane_Schuur)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2514,7 +2514,7 @@ Nobuyuki Tsujii was born with microphthalmia, a developmental disorder leaving h
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nobuyuki_Tsujii)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2536,7 +2536,7 @@ Rahsaan Roland Kirk became blind at age 2 due to improper medical treatment. He 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Rahsaan_Roland_Kirk)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2558,7 +2558,7 @@ Blind Lemon Jefferson was blind from birth or early childhood, the exact cause u
 
 [Wikipedia](https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2580,7 +2580,7 @@ Charlotta Seuerling became blind at age 4 due to complications from smallpox vac
 
 [Wikipedia](https://en.wikipedia.org/wiki/Charlotta_Seuerling)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2602,7 +2602,7 @@ Francesco Landini was blind from childhood, likely due to smallpox which destroy
 
 [Wikipedia](https://en.wikipedia.org/wiki/Francesco_Landini)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2622,7 +2622,7 @@ Garret Barry became blind during childhood due to an illness, leaving him with c
 
 [Wikipedia](https://en.wikipedia.org/wiki/Garret_Barry_(uilleann_piper))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2646,7 +2646,7 @@ Geoffrey Gurrumul Yunupingu was born blind in Arnhem Land, Australia. He had no 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gurrumul_Yunupingu)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2668,7 +2668,7 @@ Geraldine 'Jerrie' Lawhorn was both deaf and blind from birth, living in complet
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geraldine_Lawhorn)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2692,7 +2692,7 @@ The visual experience: near-total opacity with milky/washed-out glow, diffuse am
 
 [Wikipedia](https://en.wikipedia.org/wiki/Heather_Hutchison)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2714,7 +2714,7 @@ Joaquín Rodrigo became completely blind at age 3 due to complications from diph
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joaquín_Rodrigo)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2736,7 +2736,7 @@ Rachael Leahcar is legally blind due to retinitis pigmentosa, retaining only 10%
 
 [Wikipedia](https://en.wikipedia.org/wiki/Rachael_Leahcar)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2758,7 +2758,7 @@ John Kay was born with congenital achromatopsia, a rare condition eliminating fu
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Kay_(musician))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2782,7 +2782,7 @@ This is one of the most common forms of color vision deficiency.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jonny_Greenwood)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2806,7 +2806,7 @@ Their 'Afro-funk' style blends traditional Malian sound with rock guitars, Cuban
 
 [Wikipedia](https://en.wikipedia.org/wiki/Amadou_%26_Mariam)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2830,7 +2830,7 @@ When Harry Belafonte asked her to remove them on tour, she nearly quit rather th
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nana_Mouskouri)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2852,7 +2852,7 @@ Moondog lost his sight at 16 when a dynamite cap exploded, leaving him completel
 
 [Wikipedia](https://en.wikipedia.org/wiki/Moondog)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2876,7 +2876,7 @@ Ravindra Jain was born completely blind in Aligarh, India. He had no visual expe
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ravindra_Jain)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2898,7 +2898,7 @@ Kimio Eto became completely blind at age 5. He retained no visual memory and lea
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kimio_Eto)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2922,7 +2922,7 @@ Diana Gurtskaya was completely blind from birth with no visual experience.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Diana_Gurtskaya)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2946,7 +2946,7 @@ His last visual memory was the color red from blood when he fell.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Âşık_Veysel_Şatıroğlu)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2970,7 +2970,7 @@ Despite this, he maintains a characteristically positive attitude, saying he nev
 
 [Wikipedia](https://en.wikipedia.org/wiki/José_Cid)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -2994,7 +2994,7 @@ His stage name comes from his heterochromia - one blue eye and one brown eye - '
 
 [Wikipedia](https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3020,7 +3020,7 @@ His signature dark sunglasses are a coping mechanism for severe photophobia, not
 
 [Wikipedia](https://en.wikipedia.org/wiki/Anselmo_Ralph)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3044,7 +3044,7 @@ She became blind at age 74, ending her ability to give piano instruction and lea
 
 [Wikipedia](https://en.wikipedia.org/wiki/Maria_Anna_Mozart)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3068,7 +3068,7 @@ He mastered Braille in both Bulgarian and German.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Petko_Staynov)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3092,7 +3092,7 @@ He composed his first song at age 17.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Leandro_D%C3%ADaz_(composer))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3116,7 +3116,7 @@ Nicknamed 'El Ciego Maravilloso' (The Marvellous Blind Man).
 
 [Wikipedia](https://en.wikipedia.org/wiki/Arsenio_Rodr%C3%ADguez)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3140,7 +3140,7 @@ Despite his blindness, he became a celebrated author and trained musician.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Oskar_Baum)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3164,7 +3164,7 @@ Remarkably, he could see best under blue light — his famous Blue Room, now a m
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jaroslav_Je%C5%BEek_(composer))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3188,7 +3188,7 @@ A video of him performing on the streets of Monrovia went viral in 2016, with hi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Wesseh_Freeman)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3212,7 +3212,7 @@ He played banjo and sang in Lomwe, Chewa, and Nyanja languages, performing with 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Alan_Namoko)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3238,7 +3238,7 @@ Despite a school report saying he had 'no musical ability,' he became an accompl
 
 [Wikipedia](https://en.wikipedia.org/wiki/Eddie_Low)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3262,7 +3262,7 @@ At six she joined the Luque International Sanatorium Choir, and in 2003 joined t
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ana_Lucrecia_Taglioretti)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3286,7 +3286,7 @@ He won the first edition of Project SuperStar in 2005, launching a successful Ma
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kelvin_Tan)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3310,7 +3310,7 @@ Notable Serbian scholar Miloš N. Đurić dubbed him 'the Serbian Homer.' His wo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Filip_Vi%C5%A1nji%C4%87)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3334,7 +3334,7 @@ He debuted as a concert pianist in 1911 at age 22.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Aksel_Agerby)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3358,7 +3358,7 @@ When civil war erupted in South Sudan in 2013 while he was touring Canada, he re
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gordon_Koang)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3382,7 +3382,7 @@ Born Bertha Carolina Mathilda Bock, she was a premier actress at the Royal Swedi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Bertha_Tammelin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3406,7 +3406,7 @@ He relocated to Austin in 1983 to attend the Texas School for the Blind & Visual
 
 • Appeared on the Merv Griffin TV show as a child prodigy
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3432,7 +3432,7 @@ In 2020, his street performance of the Finnish folk song 'Ievan Polkka' went vir
 
 [Wikipedia](https://en.wikipedia.org/wiki/Bilal_G%C3%B6regen)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3456,7 +3456,7 @@ Despite his blindness, he excelled in both athletics and music, competing intern
 
 [Wikipedia](https://en.wikipedia.org/wiki/Hsiao_Huang-chi)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3480,7 +3480,7 @@ He described seeing 'through a fog' and by 1922 was legally blind in his right e
 
 [Wikipedia](https://en.wikipedia.org/wiki/Claude_Monet)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3502,7 +3502,7 @@ Despite this significant visual impairment, she adapted her techniques to work w
 
 [Wikipedia](https://en.wikipedia.org/wiki/Georgia_O%27Keeffe)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3526,7 +3526,7 @@ He developed a unique method of painting by feeling the textures of the paint, c
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Bramblitt)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3548,7 +3548,7 @@ Self-taught from age 6, he creates vivid paintings using touch to understand for
 
 [Wikipedia](https://en.wikipedia.org/wiki/E%C5%9Fref_Arma%C4%9Fan)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3572,7 +3572,7 @@ He cuts fabric with surgical precision by looping his left hand over the top of 
 
 [Wikipedia](https://www.aa.com.tr/en/africa/tanzanias-blind-tailor-who-makes-clothes-for-politicians/2047453)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3596,7 +3596,7 @@ Despite this, he worked at Soyuzmultfilm for 40 more years, often serving simult
 
 [Wikipedia](https://en.wikipedia.org/wiki/Boris_Dyozhkin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3618,7 +3618,7 @@ A severe fever at 19 months, likely from bacterial meningitis, left Helen both b
 
 [Wikipedia](https://en.wikipedia.org/wiki/Helen_Keller)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3640,7 +3640,7 @@ Ved developed exceptional 'facial vision' using echolocation and air current per
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ved_Mehta)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3660,7 +3660,7 @@ Tilly Aston had congenital blindness from birth. She became a pioneering Austral
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tilly_Aston)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3682,7 +3682,7 @@ She dedicated her life to education and empowerment of people with disabilities 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Sabriye_Tenberken)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3704,7 +3704,7 @@ Despite this, he continued to write through dictation.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jorge_Luis_Borges)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3726,7 +3726,7 @@ His remaining eye's vision deteriorated throughout his life.
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Thurber)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3748,7 +3748,7 @@ His mother read mathematical books to him, using alternative names for math symb
 
 [Wikipedia](https://en.wikipedia.org/wiki/Lev_Pontryagin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3768,7 +3768,7 @@ Gary O'Donoghue has been blind from birth. He has built a distinguished career i
 
 [Wikipedia](https://en.wikipedia.org/wiki/Gary_O%27Donoghue)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3790,7 +3790,7 @@ Glaucoma later affected his right eye, creating a unique hemispheric vision loss
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Paterson)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3810,7 +3810,7 @@ David Blunkett was born blind and has never had sight. He became a prominent fig
 
 [Wikipedia](https://en.wikipedia.org/wiki/David_Blunkett)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3830,7 +3830,7 @@ Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a dist
 
 [Wikipedia](https://en.wikipedia.org/wiki/Floyd_Morris)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3852,7 +3852,7 @@ Despite this, he continued his career and made significant contributions to econ
 
 [Wikipedia](https://en.wikipedia.org/wiki/Henry_Fawcett)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3874,7 +3874,7 @@ He developed a remarkable sense of inner vision.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jacques_Lusseyran)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3900,7 +3900,7 @@ She is a trainer, campaigner for disability awareness, and advocate for an inclu
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tiffany_Brar)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3922,7 +3922,7 @@ He underwent about 12 eye surgeries without general anesthetic. By age 48, his l
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Joyce)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3944,7 +3944,7 @@ One eye recovered to only light perception, while the other improved enough to r
 
 [Wikipedia](https://en.wikipedia.org/wiki/Aldous_Huxley)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3966,7 +3966,7 @@ The lack of vision caused sensory exotropia (outward drifting eye), which made h
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jean-Paul_Sartre)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -3990,7 +3990,7 @@ Faulty treatment by an unskilled local practitioner led to complete blindness by
 
 [Wikipedia](https://en.wikipedia.org/wiki/Taha_Hussein)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4014,7 +4014,7 @@ Self-taught in law, this 'barefoot lawyer' became a prominent Chinese civil righ
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chen_Guangcheng)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4036,7 +4036,7 @@ Kerryann Ifill was diagnosed with juvenile cataracts as a young child and gradua
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kerryann_Ifill)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4058,7 +4058,7 @@ Rhina Aguirre lost her sight entirely in 1983 due to ocular toxoplasmosis, a par
 
 [Wikipedia](https://en.wikipedia.org/wiki/Rhina_Aguirre)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4082,7 +4082,7 @@ Known as 'la Alondra del dolor' (the Lark of Pain), her deeply personal poetry d
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mar%C3%ADa_Josefa_Muj%C3%ADa)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4106,7 +4106,7 @@ After losing his vision, he abandoned the visual/graphic elements of his earlier
 
 [Wikipedia](https://en.wikipedia.org/wiki/Glauco_Mattoso)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4130,7 +4130,7 @@ He lived his final year in total darkness, grieving and falsely accused of his w
 
 [Wikipedia](https://en.wikipedia.org/wiki/Peyo_Yavorov)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4152,7 +4152,7 @@ She was not a protester — she was simply on her way to work.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fabiola_Campillai)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4174,7 +4174,7 @@ María Soledad Cisternas Reyes was diagnosed with retinitis pigmentosa at age 14
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mar%C3%ADa_Soledad_Cisternas)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4198,7 +4198,7 @@ After losing his sight, he dedicated himself to education as rector and professo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Mosquera)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4222,7 +4222,7 @@ Despite his blindness, he graduated from law school and became one of Cuba's mos
 
 [Wikipedia](https://en.wikipedia.org/wiki/Juan_Carlos_Gonz%C3%A1lez_Leiva)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4246,7 +4246,7 @@ At age one, surgery in the United States partially restored vision in her left e
 
 [Wikipedia](https://en.wikipedia.org/wiki/Princess_Christina_of_the_Netherlands)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4270,7 +4270,7 @@ He spent the remaining 32 years of his life continuing his monumental botanical 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Georg_Eberhard_Rumphius)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4294,7 +4294,7 @@ He became known as the 'Blind Hero of Egypt's Revolution' and was named spokespe
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ahmed_Harara)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4318,7 +4318,7 @@ He was Finland's oldest man ever, living to 111 years and 150 days, and the last
 
 [Wikipedia](https://en.wikipedia.org/wiki/Aarne_Arvonen)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4342,7 +4342,7 @@ He was the younger brother of Urho Kekkonen, Finland's 8th President.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jussi_Kekkonen)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4368,7 +4368,7 @@ He fled Guatemala in 1981 after being marked for death during the Civil War, and
 
 [Wikipedia](https://en.wikipedia.org/wiki/Frank_William_La_Rue)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4392,7 +4392,7 @@ A therapist suggested writing to manage depression, leading to a new career as a
 
 [Wikipedia](https://en.wikipedia.org/wiki/Belo_Cipriani)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4416,7 +4416,7 @@ She founded the People's Party at her kitchen table in 2016 and was elected to p
 
 [Wikipedia](https://en.wikipedia.org/wiki/Inga_S%C3%A6land)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4438,7 +4438,7 @@ In a case that gained worldwide attention, a Tehran court sentenced her attacker
 
 [Wikipedia](https://en.wikipedia.org/wiki/Ameneh_Bahrami)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4460,7 +4460,7 @@ John Asfour was blinded at age 13 when a grenade exploded in his face during the
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Asfour)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4482,7 +4482,7 @@ He became one of Christchurch's most beloved eccentrics, spending his days feedi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Jock_Orr)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4506,7 +4506,7 @@ He had served as an assessor in Oslo City Court for fourteen years (1876-1890) b
 
 [Wikipedia](https://en.wikipedia.org/wiki/Oscar_Ludvig_Stoud_Platou)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4530,7 +4530,7 @@ Despite facing discrimination in mainstream media due to his visual impairment, 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Syed_Sardar_Ahmed_Pirzada)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4554,7 +4554,7 @@ A member of the Greek colony in Bucharest, he trained in France and became known
 
 [Wikipedia](https://en.wikipedia.org/wiki/Costache_Aristia)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4578,7 +4578,7 @@ He learned Esperanto, English, and Japanese, and worked as a violinist in the Mo
 
 [Wikipedia](https://en.wikipedia.org/wiki/Vasili_Eroshenko)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4602,7 +4602,7 @@ On the recommendation of John Wilson of the Royal Commonwealth Society for the B
 
 [Wikipedia](https://en.wikipedia.org/wiki/Theresa_Poh_Lin_Chan)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4626,7 +4626,7 @@ Born in the Orange Free State, she joined the African National Congress (ANC) in
 
 [Wikipedia](https://en.wikipedia.org/wiki/Viola_Hashe)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4650,7 +4650,7 @@ Despite total blindness for the last 15 years of her life, she continued writing
 
 [Wikipedia](https://en.wikipedia.org/wiki/Concha_Espina)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4672,7 +4672,7 @@ In 1940, she became the first El Paso resident to receive a guide dog, a German 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Anita_Lee_Blair)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4696,7 +4696,7 @@ His condition progressed from partial to complete blindness over 7 years.
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_Milton)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4716,7 +4716,7 @@ After injuring his right eye with an awl in his father's workshop, young Louis d
 
 [Wikipedia](https://en.wikipedia.org/wiki/Louis_Braille)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4738,7 +4738,7 @@ Each attack caused cumulative damage leading to sectoral defects, arcuate scotom
 
 [Wikipedia](https://en.wikipedia.org/wiki/Galileo_Galilei)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4760,7 +4760,7 @@ This caused a traumatic brain injury resulting in narcolepsy, visions, and visio
 
 [Wikipedia](https://en.wikipedia.org/wiki/Harriet_Tubman)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4784,7 +4784,7 @@ He realized existing embossed reading codes were difficult to learn and set out 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Moon_type)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4806,7 +4806,7 @@ While historical details are uncertain, tradition holds that he was blind.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Homer)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4826,7 +4826,7 @@ Fanny Crosby became blind at 6 weeks old due to improper medical treatment by a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fanny_Crosby)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4848,7 +4848,7 @@ Despite never having visual memory, he developed exceptional mathematical abilit
 
 [Wikipedia](https://en.wikipedia.org/wiki/Nicholas_Saunderson)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4870,7 +4870,7 @@ He pioneered the use of human echolocation for navigation.
 
 [Wikipedia](https://en.wikipedia.org/wiki/James_Holman)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4892,7 +4892,7 @@ Contemporary newspapers reported 'hemorrhage of the brain' with partial facial p
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mary_Ingalls)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4916,7 +4916,7 @@ A talented musician, he dedicated his life to education for the blind.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Francis_Campbell_(educator))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4936,7 +4936,7 @@ Béla II was blinded as a child along with his father Álmos by his uncle, King 
 
 [Wikipedia](https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4956,7 +4956,7 @@ John of Bohemia, also known as John the Blind, became blind around 1336 from an 
 
 [Wikipedia](https://en.wikipedia.org/wiki/John_of_Bohemia)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -4980,7 +4980,7 @@ His vivid descriptions of Lord Krishna transcend his physical blindness.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Surdas)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5004,7 +5004,7 @@ She married physician Carlos Zurita y Delgado in 1972 and renounced her right of
 
 [Wikipedia](https://en.wikipedia.org/wiki/Infanta_Margarita,_Duchess_of_Soria)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5028,7 +5028,7 @@ His partial blindness is symbolic, representing the price of knowledge and the a
 
 [Wikipedia](https://en.wikipedia.org/wiki/Odin)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5050,7 +5050,7 @@ The visualization: red monochrome 'World on Fire' with edge-detection style rend
 
 [Wikipedia](https://en.wikipedia.org/wiki/Daredevil_(Marvel_Comics_character))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5072,7 +5072,7 @@ The visualization: false-color thermal palette (blues for cold, oranges for warm
 
 [Wikipedia](https://en.wikipedia.org/wiki/Geordi_La_Forge)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5094,7 +5094,7 @@ The visualization: monochrome blue-green palette (submarine sonar aesthetic). De
 
 [Wikipedia](https://en.wikipedia.org/wiki/Blindspot_(character))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5116,7 +5116,7 @@ Toph Beifong is completely blind but 'sees' through seismic sense - detecting vi
 
 [Wikipedia](https://en.wikipedia.org/wiki/Toph_Beifong)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5140,7 +5140,7 @@ The visualization: Kenshi perceives through telekinetic fields, not reflected li
 
 [Wikipedia](https://en.wikipedia.org/wiki/Kenshi_(Mortal_Kombat))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5162,7 +5162,7 @@ The visualization: falling columns of katakana, Latin, numerals, and symbols in 
 
 [Wikipedia](https://en.wikipedia.org/wiki/Neo_(The_Matrix))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5184,7 +5184,7 @@ Despite being blind (revealed at the end), he travels across the wasteland prote
 
 [Wikipedia](https://en.wikipedia.org/wiki/The_Book_of_Eli)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5204,7 +5204,7 @@ Blinkin is a comedic character from the Mel Brooks parody film Robin Hood: Men i
 
 [Wikipedia](https://en.wikipedia.org/wiki/Robin_Hood:_Men_in_Tights)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5226,7 +5226,7 @@ She has demonstrated remarkable adaptability.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Julia_Carpenter)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5248,7 +5248,7 @@ Despite his poor vision, he manages to navigate through various adventures, ofte
 
 [Wikipedia](https://en.wikipedia.org/wiki/Mr._Magoo)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5270,7 +5270,7 @@ His condition is the inverse of night blindness - blind in light, seeing in dark
 
 [Wikipedia](https://en.wikipedia.org/wiki/Doctor_Mid-Nite)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5292,7 +5292,7 @@ He teams up with a deaf character to solve a crime, using his heightened senses.
 
 [Wikipedia](https://en.wikipedia.org/wiki/See_No_Evil,_Hear_No_Evil)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5312,7 +5312,7 @@ Mohammad is the protagonist of the Iranian film The Color of Paradise (1999). He
 
 [Wikipedia](https://en.wikipedia.org/wiki/The_Color_of_Paradise)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5334,7 +5334,7 @@ Despite being blind, he was a skilled warrior who used the Force to guide him.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Chirrut_%C3%8Emwe)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5354,7 +5354,7 @@ Murphy Mason lost her sight completely at age 14 due to retinitis pigmentosa, a 
 
 [Wikipedia](https://en.wikipedia.org/wiki/In_the_Dark_(American_TV_series))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5376,7 +5376,7 @@ He uses Observation Haki to sense his surroundings.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Fujitora)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5400,7 +5400,7 @@ The film follows Mo, Scotty (who has arthrogryposis), and Matt (a wheelchair use
 
 [Wikipedia](https://en.wikipedia.org/wiki/Come_as_You_Are_(2019_film))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5424,7 +5424,7 @@ His corneal opacity limits his vision to distinguishing shapes and movements wit
 
 [Wikipedia](https://en.wikipedia.org/wiki/Crush_(2021_TV_series))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5448,7 +5448,7 @@ Sofia's blindness is revealed to be an elaborate deception. Her real identity is
 
 [Wikipedia](https://en.wikipedia.org/wiki/In_Darkness_(2018_film))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5472,7 +5472,7 @@ After his mother disappears when he is a child, Solomon survives alone for appro
 
 [Wikipedia](https://en.wikipedia.org/wiki/Tethered_(film))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5496,7 +5496,7 @@ Her dedicated teacher Debraj Sahai enters her life and teaches her to communicat
 
 [Wikipedia](https://en.wikipedia.org/wiki/Black_(2005_film))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5520,7 +5520,7 @@ When new student Gabriel arrives, Leonardo discovers first love and begins asser
 
 [Wikipedia](https://en.wikipedia.org/wiki/The_Way_He_Looks)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5544,7 +5544,7 @@ The film's ending - where she recognizes her benefactor by touch after regaining
 
 [Wikipedia](https://en.wikipedia.org/wiki/City_Lights)
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
@@ -5568,13 +5568,13 @@ The bitter, cynical blind veteran takes prep school student Charlie Simms on a f
 
 [Wikipedia](https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film))
 
-**Simulate their vision**: [Experience on Simulated Vision](https://simulated.vision/famous-people)
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
 
 ---
 
-## About Simulated Vision
+## About The Blind Spot
 
-Simulated Vision (https://simulated.vision) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
+The Blind Spot (https://theblind.spot) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
 
 ### Key Features
 - Real-time vision simulation with adjustable intensity

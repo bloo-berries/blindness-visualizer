@@ -1,5 +1,5 @@
-# Robots.txt for Simulated Vision - Vision Condition Simulator
-# https://simulated.vision/
+# Robots.txt for The Blind Spot - Vision Condition Simulator
+# https://theblind.spot/
 
 # Default: allow all crawlers
 User-agent: *
@@ -40,8 +40,8 @@ User-agent: FacebookBot
 Allow: /
 
 # Sitemap
-Sitemap: https://simulated.vision/sitemap.xml
+Sitemap: https://theblind.spot/sitemap.xml
 
 # AI-readable content
-# llms.txt (concise): https://simulated.vision/llms.txt
-# llms-full.txt (comprehensive): https://simulated.vision/llms-full.txt
+# llms.txt (concise): https://theblind.spot/llms.txt
+# llms-full.txt (comprehensive): https://theblind.spot/llms-full.txt

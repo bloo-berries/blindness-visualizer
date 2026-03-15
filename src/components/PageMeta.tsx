@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
-const BASE_URL = 'https://simulated.vision';
-const SITE_NAME = 'Simulated Vision';
+const BASE_URL = 'https://theblind.spot';
+const SITE_NAME = 'The Blind Spot';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 interface PageMetaProps {

@@ -169,7 +169,7 @@ const FeedbackPage: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <PageMeta
         title="Send Feedback"
-        description="Share your feedback, report bugs, or suggest features for Simulated Vision. Help us improve the vision condition simulator."
+        description="Share your feedback, report bugs, or suggest features for The Blind Spot. Help us improve the vision condition simulator."
         path="/feedback"
       />
       <NavigationBar />

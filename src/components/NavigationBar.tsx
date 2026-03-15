@@ -187,7 +187,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))'
                 }}
               >
-                Simulated Vision
+                The Blind Spot
               </Typography>
             </Box>
           </Box>

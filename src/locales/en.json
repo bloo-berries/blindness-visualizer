@@ -275,7 +275,7 @@
     "subtitle": "Common questions about vision conditions and this simulator"
   },
   "about": {
-    "title": "About Simulated Vision",
+    "title": "About The Blind Spot",
     "subtitle": "Understanding our mission and approach",
     "personalJourney": "A Personal Journey",
     "greeting": "Hello to the Blind and Visually Impaired community — and to everyone curious to learn more!",
@@ -283,14 +283,14 @@
     "purpose": "I created this site so that people would be better equipped with tools to more accurately articulate and represent their blindness and/or vision conditions.",
     "previewVideo": "Preview How I See",
     "mission": "Our Mission",
-    "missionText": "Simulated Vision helps people understand what it's like to live with various vision conditions through accurate, research-based simulations.",
+    "missionText": "The Blind Spot helps people understand what it's like to live with various vision conditions through accurate, research-based simulations.",
     "howItWorks": "How It Works",
     "disclaimer": "Medical Disclaimer",
     "disclaimerText": "These simulations are for educational purposes only and may not perfectly represent how individuals experience their conditions."
   },
   "feedback": {
     "title": "Share Your Feedback",
-    "subtitle": "Help us improve Simulated Vision",
+    "subtitle": "Help us improve The Blind Spot",
     "nameLabel": "Your Name",
     "namePlaceholder": "Enter your name",
     "emailLabel": "Email Address",

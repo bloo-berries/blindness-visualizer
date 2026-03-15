@@ -275,7 +275,7 @@
     "subtitle": "視覚障害とこのシミュレーターに関する一般的な質問"
   },
   "about": {
-    "title": "Simulated Visionについて",
+    "title": "The Blind Spotについて",
     "subtitle": "私たちの使命とアプローチを理解する",
     "personalJourney": "個人的な旅",
     "greeting": "視覚障害者コミュニティの皆さん、そしてもっと学びたいと思っているすべての方々へ、こんにちは！",
@@ -283,14 +283,14 @@
     "purpose": "私がこのサイトを作ったのは、人々が自分の失明や視覚障害をより正確に表現し、伝えるためのツールをより良く備えられるようにするためです。",
     "previewVideo": "私の見え方のプレビュー",
     "mission": "私たちの使命",
-    "missionText": "Simulated Visionは、研究に基づいた正確なシミュレーションを通じて、さまざまな視覚障害を持つ人々の生活を理解する手助けをします。",
+    "missionText": "The Blind Spotは、研究に基づいた正確なシミュレーションを通じて、さまざまな視覚障害を持つ人々の生活を理解する手助けをします。",
     "howItWorks": "仕組み",
     "disclaimer": "医療に関する免責事項",
     "disclaimerText": "これらのシミュレーションは教育目的のみであり、個人が実際に経験する障害を完全に表現していない場合があります。"
   },
   "feedback": {
     "title": "フィードバックを共有",
-    "subtitle": "Simulated Visionの改善にご協力ください",
+    "subtitle": "The Blind Spotの改善にご協力ください",
     "nameLabel": "お名前",
     "namePlaceholder": "名前を入力",
     "emailLabel": "メールアドレス",

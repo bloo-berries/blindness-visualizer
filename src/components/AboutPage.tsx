@@ -30,8 +30,8 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <PageMeta
-        title="About Simulated Vision"
-        description="Learn about Simulated Vision, an educational tool that simulates vision conditions to build empathy and understanding of visual impairments."
+        title="About The Blind Spot"
+        description="Learn about The Blind Spot, an educational tool that simulates vision conditions to build empathy and understanding of visual impairments."
         path="/about"
       />
       <NavigationBar />

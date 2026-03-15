@@ -275,7 +275,7 @@
     "subtitle": "Görme durumları ve bu simülatör hakkında sık sorulan sorular"
   },
   "about": {
-    "title": "Simulated Vision Hakkında",
+    "title": "The Blind Spot Hakkında",
     "subtitle": "Misyonumuzu ve yaklaşımımızı anlamak",
     "personalJourney": "Kişisel Yolculuk",
     "greeting": "Görme engelliler topluluğuna ve daha fazlasını öğrenmek isteyen herkese merhaba!",
@@ -283,14 +283,14 @@
     "purpose": "Bu siteyi, insanların körlüklerini ve/veya görme durumlarını daha doğru bir şekilde ifade etmek ve temsil etmek için daha iyi araçlarla donatılması için oluşturdum.",
     "previewVideo": "Nasıl Gördüğümün Önizlemesi",
     "mission": "Misyonumuz",
-    "missionText": "Simulated Vision, insanların çeşitli görme durumlarıyla yaşamanın nasıl bir şey olduğunu doğru, araştırmaya dayalı simülasyonlar aracılığıyla anlamalarına yardımcı olur.",
+    "missionText": "The Blind Spot, insanların çeşitli görme durumlarıyla yaşamanın nasıl bir şey olduğunu doğru, araştırmaya dayalı simülasyonlar aracılığıyla anlamalarına yardımcı olur.",
     "howItWorks": "Nasıl Çalışır",
     "disclaimer": "Tıbbi Sorumluluk Reddi",
     "disclaimerText": "Bu simülasyonlar yalnızca eğitim amaçlıdır ve bireylerin durumlarını nasıl deneyimlediklerini mükemmel bir şekilde temsil etmeyebilir."
   },
   "feedback": {
     "title": "Geri Bildiriminizi Paylaşın",
-    "subtitle": "Simulated Vision'i geliştirmemize yardımcı olun",
+    "subtitle": "The Blind Spot'i geliştirmemize yardımcı olun",
     "nameLabel": "Adınız",
     "namePlaceholder": "Adınızı girin",
     "emailLabel": "E-posta Adresi",

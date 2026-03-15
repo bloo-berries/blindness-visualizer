@@ -1,6 +1,6 @@
 # Vision Condition Visualizer
 
-**Live site: [simulated.vision](https://simulated.vision)**
+**Live site: [theblind.spot](https://theblind.spot)**
 
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.
 
@@ -235,7 +235,7 @@ npm run generate:llms  # Generate LLM data files
 
 ## Deployment
 
-Deployed to **Cloudflare Pages** at [simulated.vision](https://simulated.vision). The GitHub repo is connected for automatic deployments on push to `main`.
+Deployed to **Cloudflare Pages** at [theblind.spot](https://theblind.spot). The GitHub repo is connected for automatic deployments on push to `main`.
 
 ## Contributing
 

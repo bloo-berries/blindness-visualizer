@@ -216,7 +216,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Galileo Galilei`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -237,7 +237,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Stevie Wonder`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -258,7 +258,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 35%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Helen Keller`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -279,7 +279,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 40%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Ray Charles`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -300,7 +300,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 40%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Sharon Stone`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -321,7 +321,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 40%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Bono`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -342,7 +342,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Georgia O'Keefe`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>
@@ -363,7 +363,7 @@ const HomePage: React.FC = () => {
                             objectPosition: 'center 20%'
                           }}
                           onError={(e) => {
-                            e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=Harriet Tubman`;
+                            e.currentTarget.style.display = 'none';
                           }}
                         />
                       </Box>

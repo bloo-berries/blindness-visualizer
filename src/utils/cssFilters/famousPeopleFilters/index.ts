@@ -5,8 +5,6 @@ export { generateGalileoFilters } from './galileoFilters';
 export { generateMonetFilters } from './monetFilters';
 export { generateChristineFilters } from './christineFilters';
 export { generateLucyFilters } from './lucyFilters';
-export { generateDavidFilters } from './davidFilters';
-export { generateMarlaFilters } from './marlaFilters';
 export { generateMinkaraFilters } from './minkaraFilters';
 export { generateJoshuaFilters } from './joshuaFilters';
 export { generateMilaFilters } from './milaFilters';

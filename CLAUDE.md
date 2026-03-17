@@ -6,12 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm start          # Start development server (localhost:3000)
-npm run build      # Production build
+npm run build      # Production build (prebuild generates llms + OG images)
 npm run build:prod # Production build without sourcemaps
 npm test           # Run tests in watch mode
 npm test -- --watchAll=false   # Run tests once
 npm run clean      # Remove build/ and node_modules/.cache/
-npm run generate:llms  # Generate LLM data files (pre-build)
+npm run generate:llms  # Generate LLM data files
+npm run generate:og    # Generate Open Graph images for famous people
 ```
 
 **CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests` since no test files exist yet).
@@ -102,6 +103,7 @@ The Famous People section (`src/components/FamousBlindPeople.tsx`) links 214 his
 - `writersActivists.ts` - Writers, poets, activists, and politicians (~52 people)
 - `historicalFigures.ts` - Historical figures (~15 people)
 - `fictionalCharacters.ts` - Fictional characters (~25 people)
+- `constants.ts` - Pre-computed lookup sets (`PERSON_IDS`, `CATEGORY_PEOPLE_SETS`, `PRECOMPUTED_CONDITION_CATEGORIES`, `PRECOMPUTED_COUNTRIES`) for O(1) filtering
 - `index.ts` - Aggregates all categories, defines display order
 
 Sub-components in `src/components/FamousBlindPeople/`:
@@ -134,9 +136,23 @@ Routes are defined in `App.tsx`:
 - `/feedback` - FeedbackPage
 - `/resources` - ResourcesPage
 
+### Build Scripts (`scripts/`)
+
+The `prebuild` npm script runs both generators before each build:
+
+- `generate-llms-txt.mjs` — Parses condition and people TS source files via regex, produces `public/llms.txt` (concise) and `public/llms-full.txt` (comprehensive) for AI crawlers
+- `generate-og-images.mjs` — Generates 1200×630 PNG Open Graph images per person using Sharp, plus `public/og/metadata.json` consumed by the Cloudflare middleware
+- `lib/people-parser.mjs` — Shared module extracting person-parsing logic (regex-based TS parsing without a compiler): `loadAllPeople()`, `parsePeopleFile()`, `parsePersonBlock()`, `parseFamousPeopleIndex()`, `unquote()`, `read()`, `BASE_URL`, `PEOPLE_DIR`
+
+Generated OG images (`public/og/`) are gitignored and rebuilt on each deploy.
+
 ### Deployment
 
-Deployed to Cloudflare Pages at `https://simulated.vision`. The GitHub repo is connected to Cloudflare Pages for automatic deployments on push to `main`. SPA routing is handled by `public/_redirects`. The `basename` for React Router is automatically configured via `getBasename()` in `App.tsx`, which reads `process.env.PUBLIC_URL`.
+Deployed to Cloudflare Pages at `https://theblind.spot`. Configuration is in `wrangler.jsonc`. The GitHub repo is connected to Cloudflare Pages for automatic deployments on push to `main`. SPA routing is handled by Cloudflare's `not_found_handling: "single-page-application"` setting. The `basename` for React Router is automatically configured via `getBasename()` in `App.tsx`, which reads `process.env.PUBLIC_URL`.
+
+**Cloudflare Pages Middleware** (`functions/_middleware.ts`): Intercepts crawler requests (Facebook, Twitter, LinkedIn, Slack, Discord, etc.) to `/famous-people?person=X` and injects person-specific OG meta tags into the HTML response. Loads person metadata from `/og/metadata.json`. Non-crawler requests pass through unchanged. The `PageMeta` component (`src/components/PageMeta.tsx`) handles client-side OG tags via `react-helmet-async` and accepts an optional `ogImage` prop for per-person images.
+
+**GitHub Pages** is a secondary deployment target (`.github/workflows/deploy-gh-pages.yml`) using `PUBLIC_URL=/blindness-visualizer`. The `public/404.html` handles SPA routing for GH Pages.
 
 ## Theme System
 

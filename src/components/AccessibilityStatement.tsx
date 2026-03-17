@@ -259,6 +259,9 @@ const AccessibilityStatement: React.FC = () => {
           accessibility barriers or have suggestions for improvement, please contact us:
         </Typography>
         <Typography variant="body2">
+          • Email: <Link href="mailto:hello@theblind.spot">hello@theblind.spot</Link>
+        </Typography>
+        <Typography variant="body2">
           • GitHub Issues: <Link href="https://github.com/bloo-berries/blindness-visualizer/issues" target="_blank">Report an issue</Link>
         </Typography>
       </Paper>

@@ -555,128 +555,153 @@ function generateNemethDualAttackOverlay(intensity: number): React.CSSProperties
 }
 
 /**
- * Hook that generates overlay styles for visual field effects
- * Returns null if animated effects are enabled (handled by useAnimatedOverlay)
+ * Generate Bitemporal Hemianopia overlay (loss of temporal/outer halves of both eyes)
  */
-export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSProperties | null => {
+function generateBitemporalHemianopiaOverlay(intensity: number): React.CSSProperties {
+  const i = intensity === 1 ? 1 : 0.95 * intensity;
+  return {
+    ...OVERLAY_BASE,
+    background: `linear-gradient(to right,
+      rgba(0,0,0,${i}) 0%,
+      rgba(0,0,0,${i}) 22.5%,
+      rgba(0,0,0,${i * 0.7}) 23.75%,
+      rgba(0,0,0,${i * 0.4}) 25%,
+      rgba(0,0,0,${i * 0.1}) 26.25%,
+      rgba(0,0,0,0) 27.5%,
+      rgba(0,0,0,0) 72.5%,
+      rgba(0,0,0,${i * 0.1}) 73.75%,
+      rgba(0,0,0,${i * 0.4}) 75%,
+      rgba(0,0,0,${i * 0.7}) 76.25%,
+      rgba(0,0,0,${i}) 77.5%,
+      rgba(0,0,0,${i}) 100%
+    )`,
+    mixBlendMode: intensity === 1 ? 'normal' as const : 'multiply' as const,
+    opacity: intensity === 1 ? 1 : Math.min(0.95, intensity)
+  };
+}
+
+/**
+ * Generate Quadrantanopia overlay for a given quadrant
+ */
+function generateQuadrantanopiaOverlay(
+  quadrant: 'left' | 'right' | 'inferiorLeft' | 'inferiorRight' | 'superiorLeft' | 'superiorRight',
+  intensity: number
+): React.CSSProperties {
+  const i = intensity === 1 ? 1 : 0.95 * intensity;
+  const blendMode = intensity === 1 ? 'normal' as const : 'multiply' as const;
+  const opacity = intensity === 1 ? 1 : Math.min(0.95, intensity);
+
+  const gradientMap: Record<string, string> = {
+    left: `conic-gradient(from 0deg at 50% 50%,
+      rgba(0,0,0,0) 0deg, rgba(0,0,0,0) 90deg,
+      rgba(0,0,0,${i}) 90deg, rgba(0,0,0,${i}) 180deg,
+      rgba(0,0,0,0) 180deg, rgba(0,0,0,0) 360deg)`,
+    right: `radial-gradient(circle at 0% 100%,
+      rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${Math.max(25, 40 - intensity * 20)}%,
+      rgba(0,0,0,1) ${Math.max(45, 60 - intensity * 20)}%, rgba(0,0,0,1) 100%)`,
+    inferiorLeft: `radial-gradient(ellipse 100% 100% at 0% 100%,
+      rgba(0,0,0,${i}) 0%, rgba(0,0,0,${i}) 65%,
+      rgba(0,0,0,${i * 0.6}) 72%, rgba(0,0,0,${i * 0.2}) 80%, rgba(0,0,0,0) 85%)`,
+    inferiorRight: `radial-gradient(ellipse 100% 100% at 100% 100%,
+      rgba(0,0,0,${i}) 0%, rgba(0,0,0,${i}) 65%,
+      rgba(0,0,0,${i * 0.6}) 72%, rgba(0,0,0,${i * 0.2}) 80%, rgba(0,0,0,0) 85%)`,
+    superiorLeft: `radial-gradient(ellipse 100% 100% at 0% 0%,
+      rgba(0,0,0,${i}) 0%, rgba(0,0,0,${i}) 65%,
+      rgba(0,0,0,${i * 0.6}) 72%, rgba(0,0,0,${i * 0.2}) 80%, rgba(0,0,0,0) 85%)`,
+    superiorRight: `radial-gradient(ellipse 100% 100% at 100% 0%,
+      rgba(0,0,0,${i}) 0%, rgba(0,0,0,${i}) 65%,
+      rgba(0,0,0,${i * 0.6}) 72%, rgba(0,0,0,${i * 0.2}) 80%, rgba(0,0,0,0) 85%)`,
+  };
+
+  return {
+    ...OVERLAY_BASE,
+    background: gradientMap[quadrant],
+    mixBlendMode: blendMode,
+    opacity,
+  };
+}
+
+/** Map of effect IDs to their overlay generator functions */
+type OverlayGenerator = (intensity: number) => React.CSSProperties;
+
+const SINGLE_ID_GENERATORS: Record<string, OverlayGenerator> = {
+  retinitisPigmentosa: generateRetinitisPigmentosaOverlay,
+  stargardt: generateStargardtOverlay,
+  amd: generateAmdOverlay,
+  judiAMDComplete: generateJudiAMDCompleteOverlay,
+  diabeticRetinopathy: generateDiabeticRetinopathyOverlay,
+  glaucoma: generateGlaucomaOverlay,
+  tunnelVision: generateTunnelVisionOverlay,
+  hemianopiaLeft: generateHemianopiaLeftOverlay,
+  hemianopiaRight: generateHemianopiaRightOverlay,
+  bitemporalHemianopia: generateBitemporalHemianopiaOverlay,
+  scotoma: generateScotomaOverlay,
+  blindnessLeftEye: generateBlindnessLeftEyeOverlay,
+  blindnessRightEye: generateBlindnessRightEyeOverlay,
+  joseCidMonocularVision: generateJoseCidMonocularOverlay,
+  retinalDetachment: generateRetinalDetachmentOverlay,
+  quadrantanopiaLeft: (i) => generateQuadrantanopiaOverlay('left', i),
+  quadrantanopiaRight: (i) => generateQuadrantanopiaOverlay('right', i),
+  quadrantanopiaInferiorLeft: (i) => generateQuadrantanopiaOverlay('inferiorLeft', i),
+  quadrantanopiaInferiorRight: (i) => generateQuadrantanopiaOverlay('inferiorRight', i),
+  quadrantanopiaSuperiorLeft: (i) => generateQuadrantanopiaOverlay('superiorLeft', i),
+  quadrantanopiaSuperiorRight: (i) => generateQuadrantanopiaOverlay('superiorRight', i),
+};
+
+/** Multi-ID effect groups (first matching ID triggers the generator) */
+const MULTI_ID_GENERATORS: Array<{ ids: string[]; generator: OverlayGenerator }> = [
+  {
+    ids: ['plateauComplete', 'plateauCentralScotoma', 'plateauEarlyStage', 'plateauMidStage', 'plateauLateStage'],
+    generator: generatePlateauSolarRetinopathyOverlay,
+  },
+  {
+    ids: ['eulerComplete', 'eulerRightEyeBlind', 'eulerLeftEyeCataract', 'eulerEarlyStage', 'eulerMidStage', 'eulerLateStage'],
+    generator: generateEulerAsymmetricOverlay,
+  },
+  {
+    ids: ['nemethComplete', 'nemethCentralScotoma', 'nemethPeripheralConstriction', 'nemethMidRingRemnant', 'nemethPartialRing'],
+    generator: generateNemethDualAttackOverlay,
+  },
+];
+
+/**
+ * Hook that generates overlay styles for visual field effects.
+ * Returns an array of CSS styles — one for each enabled visual field effect —
+ * so that multiple conditions can be rendered simultaneously.
+ */
+export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSProperties[] => {
   return useMemo(() => {
     // Skip if animated effects are enabled (handled by animated overlay)
     const hasAnimatedEffect = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
-    if (hasAnimatedEffect) return null;
+    if (hasAnimatedEffect) return [];
 
-    // Check for retinitis pigmentosa
-    const rpEffect = effects.find(e => e.id === 'retinitisPigmentosa' && e.enabled);
-    if (rpEffect) {
-      return generateRetinitisPigmentosaOverlay(rpEffect.intensity);
+    const overlays: React.CSSProperties[] = [];
+
+    // Track which multi-ID groups have already been matched
+    const matchedMultiGroups = new Set<number>();
+
+    for (const effect of effects) {
+      if (!effect.enabled) continue;
+
+      // Check single-ID generators
+      const singleGen = SINGLE_ID_GENERATORS[effect.id];
+      if (singleGen) {
+        overlays.push(singleGen(effect.intensity));
+        continue;
+      }
+
+      // Check multi-ID generators
+      for (let gi = 0; gi < MULTI_ID_GENERATORS.length; gi++) {
+        if (matchedMultiGroups.has(gi)) continue;
+        const group = MULTI_ID_GENERATORS[gi];
+        if (group.ids.includes(effect.id)) {
+          overlays.push(group.generator(effect.intensity));
+          matchedMultiGroups.add(gi);
+          break;
+        }
+      }
     }
 
-    // Check for Stargardt Disease
-    const stargardtEffect = effects.find(e => e.id === 'stargardt' && e.enabled);
-    if (stargardtEffect) {
-      return generateStargardtOverlay(stargardtEffect.intensity);
-    }
-
-    // Check for AMD
-    const amdEffect = effects.find(e => e.id === 'amd' && e.enabled);
-    if (amdEffect) {
-      return generateAmdOverlay(amdEffect.intensity);
-    }
-
-    // Check for Judi Dench AMD Complete (central scotoma with peripheral preservation)
-    const judiAMDEffect = effects.find(e => e.id === 'judiAMDComplete' && e.enabled);
-    if (judiAMDEffect) {
-      return generateJudiAMDCompleteOverlay(judiAMDEffect.intensity);
-    }
-
-    // Check for Joseph Plateau Solar Retinopathy (central scotoma from solar damage)
-    const plateauEffect = effects.find(e =>
-      (e.id === 'plateauComplete' || e.id === 'plateauCentralScotoma' ||
-       e.id === 'plateauEarlyStage' || e.id === 'plateauMidStage' || e.id === 'plateauLateStage') && e.enabled
-    );
-    if (plateauEffect) {
-      return generatePlateauSolarRetinopathyOverlay(plateauEffect.intensity);
-    }
-
-    // Check for Leonhard Euler's asymmetric vision loss (right eye blind, left eye cataract)
-    const eulerEffect = effects.find(e =>
-      (e.id === 'eulerComplete' || e.id === 'eulerRightEyeBlind' ||
-       e.id === 'eulerLeftEyeCataract' || e.id === 'eulerEarlyStage' ||
-       e.id === 'eulerMidStage' || e.id === 'eulerLateStage') && e.enabled
-    );
-    if (eulerEffect) {
-      return generateEulerAsymmetricOverlay(eulerEffect.intensity);
-    }
-
-    // Check for Abraham Nemeth's dual-attack blindness (central scotoma + peripheral constriction)
-    const nemethEffect = effects.find(e =>
-      (e.id === 'nemethComplete' || e.id === 'nemethCentralScotoma' ||
-       e.id === 'nemethPeripheralConstriction' || e.id === 'nemethMidRingRemnant' ||
-       e.id === 'nemethPartialRing') && e.enabled
-    );
-    if (nemethEffect) {
-      return generateNemethDualAttackOverlay(nemethEffect.intensity);
-    }
-
-    // Check for Diabetic Retinopathy
-    const drEffect = effects.find(e => e.id === 'diabeticRetinopathy' && e.enabled);
-    if (drEffect) {
-      return generateDiabeticRetinopathyOverlay(drEffect.intensity);
-    }
-
-    // Check for glaucoma
-    const glaucomaEffect = effects.find(e => e.id === 'glaucoma' && e.enabled);
-    if (glaucomaEffect) {
-      return generateGlaucomaOverlay(glaucomaEffect.intensity);
-    }
-
-    // Check for tunnel vision
-    const tunnelVisionEffect = effects.find(e => e.id === 'tunnelVision' && e.enabled);
-    if (tunnelVisionEffect) {
-      return generateTunnelVisionOverlay(tunnelVisionEffect.intensity);
-    }
-
-    // Check for hemianopia left
-    const hemianopiaLeftEffect = effects.find(e => e.id === 'hemianopiaLeft' && e.enabled);
-    if (hemianopiaLeftEffect) {
-      return generateHemianopiaLeftOverlay(hemianopiaLeftEffect.intensity);
-    }
-
-    // Check for hemianopia right
-    const hemianopiaRightEffect = effects.find(e => e.id === 'hemianopiaRight' && e.enabled);
-    if (hemianopiaRightEffect) {
-      return generateHemianopiaRightOverlay(hemianopiaRightEffect.intensity);
-    }
-
-    // Check for scotoma
-    const scotomaEffect = effects.find(e => e.id === 'scotoma' && e.enabled);
-    if (scotomaEffect) {
-      return generateScotomaOverlay(scotomaEffect.intensity);
-    }
-
-    // Check for blindness left eye
-    const blindnessLeftEyeEffect = effects.find(e => e.id === 'blindnessLeftEye' && e.enabled);
-    if (blindnessLeftEyeEffect) {
-      return generateBlindnessLeftEyeOverlay(blindnessLeftEyeEffect.intensity);
-    }
-
-    // Check for blindness right eye
-    const blindnessRightEyeEffect = effects.find(e => e.id === 'blindnessRightEye' && e.enabled);
-    if (blindnessRightEyeEffect) {
-      return generateBlindnessRightEyeOverlay(blindnessRightEyeEffect.intensity);
-    }
-
-    // Check for Jose Cid monocular vision (left eye prosthetic)
-    const joseCidMonocularEffect = effects.find(e => e.id === 'joseCidMonocularVision' && e.enabled);
-    if (joseCidMonocularEffect) {
-      return generateJoseCidMonocularOverlay(joseCidMonocularEffect.intensity);
-    }
-
-    // Check for retinal detachment
-    const retinalDetachmentEffect = effects.find(e => e.id === 'retinalDetachment' && e.enabled);
-    if (retinalDetachmentEffect) {
-      return generateRetinalDetachmentOverlay(retinalDetachmentEffect.intensity);
-    }
-
-    return null;
+    return overlays;
   }, [effects]);
 };

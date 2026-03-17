@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
             gap: 1
           }}>
             <Link
-              href="#"
+              href="/resources"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/resources');
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
               {t('nav.resources')}
             </Link>
             <Link
-              href="#"
+              href="/feedback"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/feedback');
@@ -126,8 +126,8 @@ const Footer: React.FC = () => {
         </Box>
 
         {/* Desktop Layout */}
-        <Box 
-          sx={{ 
+        <Box
+          sx={{
             display: { xs: 'none', sm: 'flex' },
             flexDirection: 'row',
             alignItems: 'center',
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
           >
             {t('footer.copyright', { year: new Date().getFullYear() })}
           </Typography>
-          
+
           {/* Center section - Support & Donate */}
           <Button
             variant="contained"
@@ -187,7 +187,7 @@ const Footer: React.FC = () => {
             }}
           >
             <Link
-              href="#"
+              href="/resources"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/resources');
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
               {t('nav.resources')}
             </Link>
             <Link
-              href="#"
+              href="/feedback"
               onClick={(e) => {
                 e.preventDefault();
                 navigate('/feedback');

@@ -18,6 +18,14 @@ import { conditionCategories, orientationGroups } from './ControlPanelConstants'
 import { EffectListItem } from './EffectListItem';
 import { OrientationGroupItem } from './OrientationGroupItem';
 
+// Quick filter definitions
+const QUICK_FILTERS = [
+  { id: 'common', label: 'Most Common', conditions: ['deuteranomaly', 'deuteranopia', 'protanopia', 'cataracts', 'astigmatism', 'nearSighted'] },
+  { id: 'red-green', label: 'Red-Green', conditions: ['protanopia', 'deuteranopia', 'protanomaly', 'deuteranomaly'] },
+  { id: 'field-loss', label: 'Field Loss', conditions: ['hemianopiaLeft', 'hemianopiaRight', 'tunnelVision', 'scotoma', 'quadrantanopiaRight'] },
+  { id: 'age-related', label: 'Age-Related', conditions: ['cataracts', 'amd', 'glaucoma', 'presbyopia'] },
+];
+
 interface EffectListProps {
   effects: VisualEffect[];
   highlightedEffect: VisualEffect | null;

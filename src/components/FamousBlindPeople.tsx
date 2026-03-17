@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
-import PageMeta from './PageMeta';
+import PageMeta, { BASE_URL } from './PageMeta';
 import { personData, categories } from '../data/famousPeople';
 import {
   PERSON_IDS,
@@ -253,9 +253,12 @@ const FamousBlindPeople: React.FC = () => {
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <PageMeta
-        title="Famous People with Vision Conditions"
-        description="Explore famous historical and contemporary figures who lived with vision conditions. Experience their visual impairments through interactive simulations."
-        path="/famous-people"
+        title={selectedPersonData ? `${selectedPersonData.name} — ${selectedPersonData.condition}` : "Famous People with Vision Conditions"}
+        description={selectedPersonData
+          ? `Learn about ${selectedPersonData.name}'s vision condition: ${selectedPersonData.condition}. ${selectedPersonData.achievement || ''}`
+          : "Explore famous historical and contemporary figures who lived with vision conditions. Experience their visual impairments through interactive simulations."}
+        path={selectedPerson ? `/famous-people?person=${selectedPerson}` : "/famous-people"}
+        ogImage={selectedPerson ? `${BASE_URL}/og/${selectedPerson}.png` : undefined}
         jsonLd={famousPeopleJsonLd}
       />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />

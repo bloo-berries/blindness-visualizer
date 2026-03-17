@@ -26,6 +26,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# generated OG images
+/public/og/
+/public/og-image.png
+
 # temporary files
 test-deploy.txt
 *.tmp src/components/ControlPanel.tsx.backup

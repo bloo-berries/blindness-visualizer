@@ -87,7 +87,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   const now = useAnimationTicker(needsAnimatedOverlay && !showComparison);
 
   // Get visual field overlay styles for React-based rendering (full simulation view)
-  const visualFieldOverlayStyle = useVisualFieldOverlay(effects);
+  const visualFieldOverlayStyles = useVisualFieldOverlay(effects);
 
   // Get animated overlay styles (for visual aura, PPVP, etc.) (full simulation view)
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
@@ -211,6 +211,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
     const mesh = createVisualizationMesh();
     scene.add(mesh);
 
+    let rafId: number;
+    let rafTimeoutId: ReturnType<typeof setTimeout>;
+
     const animate = () => {
       if (showComparison) return;
 
@@ -230,9 +233,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
 
       const frameRate = optimizer.current.getOptimalFrameRate(enabledEffectsCount);
       if (frameRate < 60) {
-        setTimeout(() => requestAnimationFrame(animate), 1000 / frameRate - 16.67);
+        rafTimeoutId = setTimeout(() => { rafId = requestAnimationFrame(animate); }, 1000 / frameRate - 16.67);
       } else {
-        requestAnimationFrame(animate);
+        rafId = requestAnimationFrame(animate);
       }
     };
 
@@ -241,6 +244,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
     }
 
     return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(rafTimeoutId);
       if (inputSource.type === 'webcam') return;
       currentAnimationManager.removeCallback(updateOverlays);
       currentOverlayManager.clearOverlays();
@@ -511,10 +516,10 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   border: 'none'
                 }}
               />
-              {/* React-based visual field overlay for reliable rendering */}
-              {visualFieldOverlayStyle && (
-                <div style={visualFieldOverlayStyle} aria-hidden="true" />
-              )}
+              {/* React-based visual field overlays for reliable rendering */}
+              {visualFieldOverlayStyles.map((style, i) => (
+                <div key={i} style={style} aria-hidden="true" />
+              ))}
               {/* Animated overlay for visual aura, PPVP, and other animated effects */}
               {animatedOverlayStyle && (
                 <div style={animatedOverlayStyle} aria-hidden="true" />

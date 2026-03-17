@@ -296,10 +296,6 @@ const VisionSimulator: React.FC = () => {
               <Typography variant="body2" sx={{ color: 'white', mb: 1 }}>
                 {t('simulator.condition', { condition: preconfiguredPerson.condition })}
               </Typography>
-              {/* Hidden technical details for cleaner UI */}
-              {/* <Typography variant="body2" sx={{ color: 'white' }}>
-                Active simulations: {preconfiguredPerson.conditions.join(', ')}
-              </Typography> */}
             </Box>
           )}
 

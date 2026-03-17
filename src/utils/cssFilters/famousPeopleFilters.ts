@@ -6,8 +6,6 @@ export {
   generateMonetFilters,
   generateChristineFilters,
   generateLucyFilters,
-  generateDavidFilters,
-  generateMarlaFilters,
   generateMinkaraFilters,
   generateJoshuaFilters,
   generateMilaFilters,

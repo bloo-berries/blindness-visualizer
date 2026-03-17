@@ -4,7 +4,6 @@
  */
 
 import { VisualEffect } from '../types/visualEffects';
-import html2canvas from 'html2canvas';
 import type { Options } from 'html2canvas';
 
 export interface ScreenshotMetadata {
@@ -35,6 +34,9 @@ export const captureVisualizerScreenshot = async (
     if (!visualizerContent) {
       throw new Error('Could not find visualizer content to capture');
     }
+
+    // Dynamically import html2canvas to reduce initial bundle size
+    const { default: html2canvas } = await import('html2canvas');
 
     // Use html2canvas for comprehensive screenshot capture
     const canvas = await html2canvas(visualizerContent as HTMLElement, {

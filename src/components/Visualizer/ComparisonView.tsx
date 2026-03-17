@@ -35,7 +35,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   const now = useAnimationTicker(needsAnimation);
 
   // Get visual field overlay styles for React-based rendering
-  const visualFieldOverlayStyle = useVisualFieldOverlay(effects);
+  const visualFieldOverlayStyles = useVisualFieldOverlay(effects);
 
   // Get animated overlay styles (for visual aura, etc.)
   const animatedOverlayStyle = useAnimatedOverlay(effects, now);
@@ -153,9 +153,9 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
                   }}
                 />
                 {/* React-based visual field overlay for reliable rendering */}
-                {visualFieldOverlayStyle && (
-                  <div style={visualFieldOverlayStyle} aria-hidden="true" />
-                )}
+                {visualFieldOverlayStyles.map((style, i) => (
+                  <div key={i} style={style} aria-hidden="true" />
+                ))}
                 {/* Animated overlay for visual aura effects */}
                 {animatedOverlayStyle && (
                   <div style={animatedOverlayStyle} aria-hidden="true" />

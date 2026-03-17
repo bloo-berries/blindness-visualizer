@@ -30,7 +30,7 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <PageMeta
-        title="About The Blind Spot"
+        title="About"
         description="Learn about The Blind Spot, an educational tool that simulates vision conditions to build empathy and understanding of visual impairments."
         path="/about"
       />
@@ -70,7 +70,7 @@ const AboutPage: React.FC = () => {
               fontSize: '1.1rem',
               lineHeight: 1.8,
               mb: 3,
-              color: '#A0AEB8'
+              color: '#000000'
             }}>
               {t('about.greeting')}
             </Typography>
@@ -79,7 +79,7 @@ const AboutPage: React.FC = () => {
               fontSize: '1.1rem',
               lineHeight: 1.8,
               mb: 3,
-              color: '#A0AEB8'
+              color: '#000000'
             }}>
               {t('about.story')}
             </Typography>

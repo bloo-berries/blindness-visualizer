@@ -32,6 +32,30 @@ import Footer from './Footer';
 import PageMeta from './PageMeta';
 import '../styles/FAQ.css';
 
+// Plain-text FAQ answers for JSON-LD structured data
+const FAQ_JSONLD_ITEMS = [
+  { q: 'Do blind people see complete darkness/blackness?', a: 'Not necessarily. About 85% of legally blind people have some remaining vision. Only 10-15% experience total darkness. Many see light/shadow, colors, or blurry shapes. Some who\'ve never had sight don\'t experience "blackness" as a concept.' },
+  { q: 'How do blind people use smartphones and computers?', a: 'Screen readers (JAWS, NVDA, VoiceOver) convert text to speech or braille. Gestures and keyboard shortcuts replace mouse use. Many use normal smartphones with built-in accessibility features. Voice assistants like Siri are heavily utilized.' },
+  { q: 'Can blind people live independently?', a: 'Yes. With proper training and adaptive techniques, blind people cook, clean, work, raise families, and live fully independent lives. They use systematic organization, tactile markers, assistive technology, and mobility tools.' },
+  { q: 'How do blind people navigate and get around?', a: 'Blind people use white canes, guide dogs, GPS apps with audio directions, memorized routes, and public transportation.' },
+  { q: 'Do blind people have heightened other senses?', a: 'No, their other senses aren\'t biologically superior. They develop better attention to and processing of audio/tactile information through practice and necessity. It\'s enhanced perception, not enhanced sensation.' },
+  { q: 'How should I interact with a blind person?', a: 'Speak normally and directly to them. Identify yourself when approaching. Ask before helping — don\'t grab or push. Give verbal descriptions when relevant. Use normal language. Never pet or distract guide dogs.' },
+  { q: "What's the difference between legally blind and totally blind?", a: 'Legally blind means vision 20/200 or worse with correction, or visual field less than 20 degrees. Totally blind (NLP) means no light perception. Most "blind" people fall between these extremes.' },
+  { q: 'Can blind people work regular jobs?', a: 'Yes. Blind people work as lawyers, teachers, programmers, musicians, psychologists, business owners, and countless other professions. Workplace accommodations like screen readers and braille displays enable most jobs.' },
+  { q: 'How do blind people identify money, colors, or objects?', a: 'They use apps like Seeing AI, different folding methods for money, color identifier apps, systematic organization, braille and tactile labels, and memory.' },
+  { q: 'What causes blindness and can it be cured?', a: 'Leading causes include cataracts (reversible via surgery), glaucoma, macular degeneration, diabetic retinopathy, and genetic conditions. Treatment depends on cause; research continues on gene therapy, stem cells, and bionic eyes.' },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_JSONLD_ITEMS.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+
 interface FAQItem {
   id: string;
   question: string;
@@ -330,6 +354,7 @@ const FAQPage: React.FC = () => {
         title="Frequently Asked Questions"
         description="Find answers to common questions about The Blind Spot, vision condition simulations, accessibility features, and how to use the simulator."
         path="/faq"
+        jsonLd={faqJsonLd}
       />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
       

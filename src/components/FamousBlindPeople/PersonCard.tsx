@@ -179,23 +179,17 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
   return (
-    <div style={{ display: 'flex', ...style }}>
+    <a
+      href={`/famous-people?person=${personId}`}
+      onClick={(e) => { e.preventDefault(); onClick(); }}
+      style={{ display: 'flex', textDecoration: 'none', color: 'inherit', ...style }}
+      aria-label={`View details about ${person.name}, ${person.condition || 'vision condition'}`}
+    >
       <Card
         ref={cardRef}
-        role="button"
-        tabIndex={0}
-        aria-label={`View details about ${person.name}, ${person.condition || 'vision condition'}`}
+        tabIndex={-1}
         sx={cardStyles}
-        onClick={onClick}
-        onKeyDown={handleKeyDown}
       >
         <Box sx={imageContainerStyles}>
           {!imageLoaded && !imageError && shouldLoad && (
@@ -299,7 +293,7 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
           </Typography>
         </CardContent>
       </Card>
-    </div>
+    </a>
   );
 };
 

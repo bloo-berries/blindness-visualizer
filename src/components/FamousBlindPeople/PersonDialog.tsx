@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import { Close as CloseIcon, ArrowBack, ArrowForward, OpenInNew as OpenInNewIcon, FiberManualRecord, Share as ShareIcon, ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui/icons-material';
 import { PersonData } from '../../data/famousPeople';
-import { getPersonImagePath, getPersonSecondaryImages, getPeopleImagePath } from '../../utils/imagePaths';
+import { getPersonImagePath, getPersonSecondaryImages, getPeopleImagePath, PLACEHOLDER_IMAGE } from '../../utils/imagePaths';
 import { parseDescriptionWithLinks, getWebsiteUrl } from '../../utils/famousPeopleUtils';
 import { EmbeddedVisualization } from './EmbeddedVisualization';
 
@@ -209,7 +209,7 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
               loading="eager"
               decoding="async"
               onError={(e) => {
-                e.currentTarget.src = `https://via.placeholder.com/300x400/cccccc/666666?text=${person.name}`;
+                e.currentTarget.src = PLACEHOLDER_IMAGE;
               }}
             />
             {(() => {

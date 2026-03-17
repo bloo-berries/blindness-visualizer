@@ -9,6 +9,11 @@
  */
 
 /**
+ * Local SVG placeholder for missing images (avoids external dependency on via.placeholder.com)
+ */
+export const PLACEHOLDER_IMAGE = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23cccccc' width='300' height='400'/%3E%3Ctext fill='%23666666' font-family='sans-serif' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EImage Not Found%3C/text%3E%3C/svg%3E`;
+
+/**
  * Base URL for public assets (handles both development and production)
  */
 const getBaseUrl = (): string => {
@@ -324,7 +329,7 @@ export const getPersonImagePath = (personId: string): string => {
   const filename = PEOPLE_IMAGE_MAP[personId];
   if (!filename) {
     // Return placeholder if person ID not found
-    return `https://via.placeholder.com/300x400/cccccc/666666?text=Image+Not+Found`;
+    return PLACEHOLDER_IMAGE;
   }
   return getPeopleImagePath(filename);
 };

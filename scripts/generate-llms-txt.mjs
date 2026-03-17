@@ -11,30 +11,14 @@
  * Run: node scripts/generate-llms-txt.mjs
  */
 
-import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { BASE_URL, read, unquote, loadAllPeople, parseFamousPeopleIndex } from './lib/people-parser.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
 const CONDITIONS_DIR = join(ROOT, 'src/data/conditionCategories');
-const PEOPLE_DIR = join(ROOT, 'src/data/famousPeople');
-const BASE_URL = 'https://theblind.spot';
-
-// ─── Helpers ──────────────────────────────────────────────────────────
-
-/** Read a file as UTF-8 */
-const read = (path) => readFileSync(path, 'utf-8');
-
-/** Strip surrounding quotes (single or double) and unescape */
-function unquote(s) {
-  if (!s) return '';
-  s = s.trim();
-  if ((s.startsWith("'") && s.endsWith("'")) || (s.startsWith('"') && s.endsWith('"'))) {
-    s = s.slice(1, -1);
-  }
-  return s.replace(/\\n/g, '\n').replace(/\\'/g, "'").replace(/\\"/g, '"');
-}
 
 /** Clean description text for display (collapse bullet points, trim) */
 function cleanDescription(text) {
@@ -157,96 +141,6 @@ function parseConditionFiles() {
   }
 
   return categories;
-}
-
-// ─── Parse Famous People ──────────────────────────────────────────────
-
-function parseFamousPeopleIndex() {
-  const src = read(join(PEOPLE_DIR, 'index.ts'));
-
-  // Extract categories array
-  const catMatch = src.match(/categories:\s*PersonCategory\[\]\s*=\s*\[([\s\S]*?)\];/);
-  if (!catMatch) throw new Error('Could not parse categories array');
-
-  const categories = [];
-  for (const m of catMatch[1].matchAll(/\{\s*id:\s*"(\w+)",\s*name:\s*"([^"]+)",\s*people:\s*\[([^\]]+)\]/g)) {
-    const people = m[3].match(/"(\w+)"/g)?.map((s) => s.replace(/"/g, '')) || [];
-    categories.push({ id: m[1], name: m[2], people });
-  }
-
-  return categories;
-}
-
-function parsePeopleFile(filePath) {
-  const src = read(filePath);
-  const people = {};
-
-  // Split into person blocks by finding top-level keys
-  // Pattern: key: { ... }  at depth 1 inside the Record
-  const recordStart = src.indexOf(': Record<string, PersonData>');
-  if (recordStart === -1) return people;
-
-  const recordBody = src.slice(src.indexOf('{', recordStart));
-
-  let depth = 0;
-  let blockStart = -1;
-  let currentKey = '';
-
-  for (let i = 0; i < recordBody.length; i++) {
-    if (recordBody[i] === '{') {
-      if (depth === 1) {
-        // Get the key name before this brace
-        const before = recordBody.slice(Math.max(0, i - 80), i);
-        const keyMatch = before.match(/(\w+)\s*:\s*$/);
-        if (keyMatch) currentKey = keyMatch[1];
-        blockStart = i;
-      }
-      depth++;
-    } else if (recordBody[i] === '}') {
-      depth--;
-      if (depth === 1 && blockStart !== -1 && currentKey) {
-        const block = recordBody.slice(blockStart, i + 1);
-        people[currentKey] = parsePersonBlock(block);
-        blockStart = -1;
-        currentKey = '';
-      }
-      if (depth === 0) break;
-    }
-  }
-
-  return people;
-}
-
-function parsePersonBlock(block) {
-  const getString = (key) => {
-    // Match key: "value" or key: 'value', handling escaped quotes
-    const pattern = new RegExp(`^\\s*${key}:\\s*(['"])((?:(?!\\1)[^\\\\]|\\\\.)*)\\1`, 'm');
-    const m = block.match(pattern);
-    return m ? unquote(`${m[1]}${m[2]}${m[1]}`) : '';
-  };
-
-  return {
-    name: getString('name'),
-    achievement: getString('achievement'),
-    condition: getString('condition'),
-    years: getString('years'),
-    onset: getString('onset'),
-    description: getString('description'),
-    wikiUrl: getString('wikiUrl'),
-  };
-}
-
-function loadAllPeople() {
-  const files = readdirSync(PEOPLE_DIR).filter(
-    (f) => f.endsWith('.ts') && f !== 'index.ts' && f !== 'types.ts'
-  );
-
-  let allPeople = {};
-  for (const f of files) {
-    const filePeople = parsePeopleFile(join(PEOPLE_DIR, f));
-    allPeople = { ...allPeople, ...filePeople };
-  }
-  return allPeople;
 }
 
 // ─── Generate llms.txt (concise) ──────────────────────────────────────

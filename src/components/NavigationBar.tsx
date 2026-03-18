@@ -16,7 +16,9 @@ import {
   ListItemButton,
   ListItemText,
   ListItemIcon,
-  Divider
+  Divider,
+  Menu,
+  MenuItem
 } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -26,9 +28,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LanguageIcon from '@mui/icons-material/Language';
+import CheckIcon from '@mui/icons-material/Check';
 import AccessibilityMenu from './AccessibilityMenu';
 import LanguageSelector from './LanguageSelector';
 import { useAccessibility } from '../contexts/AccessibilityContext';
+import { supportedLanguages, SupportedLanguage } from '../i18n';
 
 interface NavigationBarProps {
   showHomeButton?: boolean;
@@ -44,8 +50,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [settingsAnchorEl, setSettingsAnchorEl] = useState<null | HTMLElement>(null);
+  const [languageSubmenuOpen, setLanguageSubmenuOpen] = useState(false);
+  const settingsMenuOpen = Boolean(settingsAnchorEl);
   const { preferences, cycleThemeMode } = useAccessibility();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = (i18n.language?.split('-')[0] || 'en') as SupportedLanguage;
 
   const handleHomeClick = () => {
     if (onHomeClick) {
@@ -167,24 +177,25 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 }
               }}
             >
-              <VisibilityIcon 
-                sx={{ 
+              <VisibilityIcon
+                sx={{
                   color: preferences.highContrast ? '#000000' : 'white',
-                  fontSize: 32,
-                  mr: 1.25,
+                  fontSize: isMobile ? 22 : 32,
+                  mr: isMobile ? 0.75 : 1.25,
                   filter: preferences.highContrast ? 'none' : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
-                }} 
+                }}
               />
-              <Typography 
+              <Typography
                 variant="h5"
-                component="div" 
-                sx={{ 
+                component="div"
+                sx={{
                   fontWeight: 800,
                   color: 'white',
-                  fontSize: '1.5rem',
+                  fontSize: isMobile ? '0.85rem' : '1.5rem',
                   letterSpacing: '-0.02em',
                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
-                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))'
+                  filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2))',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 The Blind Spot
@@ -283,35 +294,140 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             </Tooltip>
           )}
 
-          {/* Language Selector */}
-          <LanguageSelector />
+          {/* Desktop: separate Language Selector + Theme Toggle */}
+          {!isMobile && (
+            <>
+              <LanguageSelector />
+              <Tooltip title={t(`theme.${preferences.themeMode}`)}>
+                <IconButton
+                  onClick={cycleThemeMode}
+                  aria-label={t('theme.toggle')}
+                  size="large"
+                  sx={{
+                    color: 'white',
+                    width: '40px',
+                    height: '40px',
+                    '&:hover': {
+                      color: '#60a5fa',
+                      backgroundColor: 'rgba(96, 165, 250, 0.15)',
+                    },
+                    '&.Mui-focusVisible': {
+                      outline: '3px solid #60a5fa',
+                      outlineOffset: '2px'
+                    },
+                    transition: 'all 0.2s ease-in-out'
+                  }}
+                >
+                  {preferences.themeMode === 'light' && <LightModeIcon fontSize="medium" />}
+                  {preferences.themeMode === 'dim' && <Brightness4Icon fontSize="medium" />}
+                  {preferences.themeMode === 'dark' && <DarkModeIcon fontSize="medium" />}
+                </IconButton>
+              </Tooltip>
+            </>
+          )}
 
-          {/* Theme Toggle */}
-          <Tooltip title={t(`theme.${preferences.themeMode}`)}>
-            <IconButton
-              onClick={cycleThemeMode}
-              aria-label={t('theme.toggle')}
-              size="large"
-              sx={{
-                color: 'white',
-                width: '40px',
-                height: '40px',
-                '&:hover': {
-                  color: '#60a5fa',
-                  backgroundColor: 'rgba(96, 165, 250, 0.15)',
-                },
-                '&.Mui-focusVisible': {
-                  outline: '3px solid #60a5fa',
-                  outlineOffset: '2px'
-                },
-                transition: 'all 0.2s ease-in-out'
-              }}
-            >
-              {preferences.themeMode === 'light' && <LightModeIcon fontSize="medium" />}
-              {preferences.themeMode === 'dim' && <Brightness4Icon fontSize="medium" />}
-              {preferences.themeMode === 'dark' && <DarkModeIcon fontSize="medium" />}
-            </IconButton>
-          </Tooltip>
+          {/* Mobile: combined Settings icon (language + theme) */}
+          {isMobile && (
+            <>
+              <IconButton
+                onClick={(e) => {
+                  setSettingsAnchorEl(e.currentTarget);
+                  setLanguageSubmenuOpen(false);
+                }}
+                aria-label={t('nav.settings', 'Settings')}
+                sx={{
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                }}
+              >
+                <SettingsIcon />
+              </IconButton>
+              <Menu
+                anchorEl={settingsAnchorEl}
+                open={settingsMenuOpen}
+                onClose={() => { setSettingsAnchorEl(null); setLanguageSubmenuOpen(false); }}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                PaperProps={{
+                  sx: {
+                    minWidth: 220,
+                    backgroundColor: 'var(--color-drawer-bg)',
+                    color: 'white',
+                    border: '1px solid var(--color-navbar-border)',
+                    maxHeight: 400,
+                  }
+                }}
+              >
+                {/* Theme section */}
+                <MenuItem
+                  onClick={() => { cycleThemeMode(); }}
+                  sx={{ '&:hover': { backgroundColor: 'rgba(96, 165, 250, 0.1)' } }}
+                >
+                  <ListItemIcon sx={{ color: 'white', minWidth: 36 }}>
+                    {preferences.themeMode === 'light' && <LightModeIcon fontSize="small" />}
+                    {preferences.themeMode === 'dim' && <Brightness4Icon fontSize="small" />}
+                    {preferences.themeMode === 'dark' && <DarkModeIcon fontSize="small" />}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={t('theme.toggle', 'Theme')}
+                    secondary={t(`theme.${preferences.themeMode}`)}
+                    primaryTypographyProps={{ color: 'white', fontSize: '0.9rem' }}
+                    secondaryTypographyProps={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}
+                  />
+                </MenuItem>
+                <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
+                {/* Language section */}
+                <MenuItem
+                  onClick={() => setLanguageSubmenuOpen(!languageSubmenuOpen)}
+                  sx={{ '&:hover': { backgroundColor: 'rgba(96, 165, 250, 0.1)' } }}
+                >
+                  <ListItemIcon sx={{ color: 'white', minWidth: 36 }}>
+                    <LanguageIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={t('language.select', 'Language')}
+                    secondary={supportedLanguages[currentLanguage]?.nativeName || currentLanguage}
+                    primaryTypographyProps={{ color: 'white', fontSize: '0.9rem' }}
+                    secondaryTypographyProps={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}
+                  />
+                </MenuItem>
+                {languageSubmenuOpen && (
+                  <Box sx={{ maxHeight: 200, overflowY: 'auto' }}>
+                    {Object.entries(supportedLanguages).map(([code, { nativeName }]) => (
+                      <MenuItem
+                        key={code}
+                        onClick={() => {
+                          i18n.changeLanguage(code);
+                          setSettingsAnchorEl(null);
+                          setLanguageSubmenuOpen(false);
+                        }}
+                        selected={currentLanguage === code}
+                        sx={{
+                          pl: 6,
+                          py: 0.75,
+                          fontSize: '0.85rem',
+                          color: 'white',
+                          '&.Mui-selected': { backgroundColor: 'rgba(96, 165, 250, 0.15)' },
+                          '&.Mui-selected:hover': { backgroundColor: 'rgba(96, 165, 250, 0.2)' },
+                          '&:hover': { backgroundColor: 'rgba(96, 165, 250, 0.1)' },
+                        }}
+                      >
+                        <ListItemText
+                          primary={nativeName}
+                          primaryTypographyProps={{ color: 'white', fontSize: '0.85rem' }}
+                        />
+                        {currentLanguage === code && (
+                          <CheckIcon fontSize="small" sx={{ color: '#60a5fa', ml: 1 }} />
+                        )}
+                      </MenuItem>
+                    ))}
+                  </Box>
+                )}
+              </Menu>
+            </>
+          )}
 
           {/* Accessibility Menu */}
           <AccessibilityMenu />

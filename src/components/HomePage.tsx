@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
       <Box 
         component="main"
         sx={{ 
-          pt: { xs: 10, md: 12 },
+          pt: { xs: 13, md: 12 },
           pb: { xs: 3, md: 4 },
           backgroundColor: 'background.default'
         }}

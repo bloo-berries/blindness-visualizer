@@ -13,7 +13,9 @@ import {
   InputLabel,
   Button,
   FormControlLabel,
-  Switch
+  Switch,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
@@ -40,6 +42,8 @@ const FamousBlindPeople: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const { preferences } = useAccessibility();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   // State
   const [searchTerm, setSearchTerm] = useState('');
@@ -383,25 +387,69 @@ const FamousBlindPeople: React.FC = () => {
             <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
               {t(`famousPeople.categories.${category.id}`, category.name)}
             </Typography>
-            <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
-              {categoryPeople.map((personId, categoryIndex) => {
-                const person = personData[personId];
-                const globalIndex = startIndex + categoryIndex;
-                const isPriority = globalIndex < 6;
+            {isMobile ? (
+              /* Mobile: horizontal swipeable carousel */
+              <Box
+                sx={{
+                  display: 'flex',
+                  overflowX: 'auto',
+                  scrollSnapType: 'x mandatory',
+                  WebkitOverflowScrolling: 'touch',
+                  gap: 1.5,
+                  pb: 1,
+                  mx: -2,
+                  px: 2,
+                  '&::-webkit-scrollbar': { display: 'none' },
+                  scrollbarWidth: 'none',
+                }}
+              >
+                {categoryPeople.map((personId, categoryIndex) => {
+                  const person = personData[personId];
+                  const globalIndex = startIndex + categoryIndex;
+                  const isPriority = globalIndex < 6;
 
-                return (
-                  <Grid item xs={4} sm={2} md={2} lg={2} xl={2} key={personId} sx={{ display: 'flex' }}>
-                    <PersonCard
-                      personId={personId}
-                      person={person}
-                      onClick={() => handlePersonClick(personId)}
-                      priority={isPriority}
-                      index={globalIndex}
-                    />
-                  </Grid>
-                );
-              })}
-            </Grid>
+                  return (
+                    <Box
+                      key={personId}
+                      sx={{
+                        flex: '0 0 140px',
+                        scrollSnapAlign: 'start',
+                        display: 'flex',
+                      }}
+                    >
+                      <PersonCard
+                        personId={personId}
+                        person={person}
+                        onClick={() => handlePersonClick(personId)}
+                        priority={isPriority}
+                        index={globalIndex}
+                      />
+                    </Box>
+                  );
+                })}
+              </Box>
+            ) : (
+              /* Desktop/Tablet: standard grid */
+              <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
+                {categoryPeople.map((personId, categoryIndex) => {
+                  const person = personData[personId];
+                  const globalIndex = startIndex + categoryIndex;
+                  const isPriority = globalIndex < 6;
+
+                  return (
+                    <Grid item xs={4} sm={2} md={2} lg={2} xl={2} key={personId} sx={{ display: 'flex' }}>
+                      <PersonCard
+                        personId={personId}
+                        person={person}
+                        onClick={() => handlePersonClick(personId)}
+                        priority={isPriority}
+                        index={globalIndex}
+                      />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            )}
           </Box>
         ))}
 

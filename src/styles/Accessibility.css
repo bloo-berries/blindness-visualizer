@@ -115,13 +115,13 @@
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description),
-.high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
+.high-contrast-mode .MuiCard-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode .MuiCardContent-root .MuiTypography-root:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description),
-.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.homepage-card-description):not(.library-of-blind-title):not(.library-of-blind-description) {
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.secondary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.library-of-blind-title):not(.library-of-blind-description),
+.high-contrast-mode .MuiCard-root .MuiTypography-root[color="text.primary"]:not(.demo-video-title):not(.demo-video-description):not(.homepage-card-title):not(.library-of-blind-title):not(.library-of-blind-description) {
   color: var(--hc-text) !important;
 }
 
@@ -284,17 +284,6 @@
   background-color: var(--hc-bg) !important;
 }
 
-.high-contrast-mode .effect-card {
-  background-color: var(--hc-bg) !important;
-  border: 2px solid var(--hc-border) !important;
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .effect-card:hover {
-  border-color: var(--hc-primary) !important;
-  background-color: rgba(0, 255, 255, 0.1) !important;
-}
-
 /* --- Page-Specific: Homepage --- */
 
 /* Homepage card text - white on black */
@@ -306,39 +295,6 @@
 .high-contrast-mode .homepage-card-title-left,
 .high-contrast-mode .homepage-card-title-right {
   color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-card-description,
-.high-contrast-mode .MuiCard-root .homepage-card-description,
-.high-contrast-mode .MuiCardContent-root .homepage-card-description,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .homepage-card-description,
-.high-contrast-mode .MuiCard-root .MuiCardContent-root .MuiTypography-root.homepage-card-description,
-.high-contrast-mode .homepage-card-description-left {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-features-title,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-features-title {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-feature-item,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-feature-item {
-  color: var(--hc-text) !important;
-}
-
-.high-contrast-mode .homepage-featured-title,
-.high-contrast-mode .MuiCard-root .MuiTypography-root.homepage-featured-title {
-  color: var(--hc-text) !important;
-}
-
-/* Video info text */
-.high-contrast-mode .video-info-text {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  border: 2px solid #000000 !important;
 }
 
 /* Personal journey section */
@@ -547,17 +503,6 @@ html.high-contrast-mode .library-of-blind-description {
 
 /* --- Page-Specific: Famous People --- */
 
-.high-contrast-mode .simulation-type-label {
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .simulation-type-chip,
-.high-contrast-mode .simulation-type-chip .MuiChip-label {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  border: 2px solid #000000 !important;
-}
-
 /* Famous People filter section (white bg, black text) */
 .high-contrast-mode .famous-people-filter-section {
   background-color: #ffffff !important;
@@ -600,15 +545,6 @@ html.high-contrast-mode .library-of-blind-description {
 }
 
 .high-contrast-mode .famous-people-filter-text.famous-people-filter-text {
-  color: #000000 !important;
-}
-
-.high-contrast-mode .famous-people-filter-switch .MuiSwitch-track {
-  background-color: #000000 !important;
-  opacity: 0.5 !important;
-}
-
-.high-contrast-mode .famous-people-filter-switch .MuiSwitch-thumb {
   color: #000000 !important;
 }
 

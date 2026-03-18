@@ -6,7 +6,7 @@
 import { VisualEffect } from '../types/visualEffects';
 import type { Options } from 'html2canvas';
 
-export interface ScreenshotMetadata {
+interface ScreenshotMetadata {
   timestamp: string;
   effects: VisualEffect[];
   inputSource: string;
@@ -21,7 +21,7 @@ export interface ScreenshotMetadata {
  * @param metadata - Metadata about the simulation
  * @returns Promise that resolves to the screenshot data URL
  */
-export const captureVisualizerScreenshot = async (
+const captureVisualizerScreenshot = async (
   container: HTMLElement,
   metadata: ScreenshotMetadata
 ): Promise<string> => {
@@ -85,7 +85,7 @@ export const captureVisualizerScreenshot = async (
  * @param metadata - Metadata about the simulation
  * @returns Promise that resolves to the file blob ready for download
  */
-export const createDownloadableFile = async (
+const createDownloadableFile = async (
   screenshotDataUrl: string,
   metadata: ScreenshotMetadata
 ): Promise<Blob> => {
@@ -158,7 +158,7 @@ export const createDownloadableFile = async (
  * @param blob - The file blob to download
  * @param filename - The filename for the download
  */
-export const downloadScreenshot = (blob: Blob, filename: string): void => {
+const downloadScreenshot = (blob: Blob, filename: string): void => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -174,7 +174,7 @@ export const downloadScreenshot = (blob: Blob, filename: string): void => {
  * @param metadata - Metadata about the simulation
  * @returns A sanitized filename
  */
-export const generateFilename = (metadata: ScreenshotMetadata): string => {
+const generateFilename = (metadata: ScreenshotMetadata): string => {
   const timestamp = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
   const enabledEffects = metadata.effects.filter(e => e.enabled);
   const effectsSuffix = enabledEffects.length > 0 

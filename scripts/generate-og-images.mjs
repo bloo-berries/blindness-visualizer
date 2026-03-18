@@ -24,12 +24,70 @@ const OG_DIR = join(PUBLIC, 'og');
 
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
-const PORTRAIT_WIDTH = 420;
+const PORTRAIT_WIDTH = 480;
+const BAR_HEIGHT = 55;
+const CIRCLE_SIZE = 300;
 const BATCH_SIZE = 20;
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 
 const read = (path) => readFileSync(path, 'utf-8');
+
+// ─── Condition severity classification ───────────────────────────────
+
+const COMPLETE_KEYWORDS = [
+  'complete blindness', 'total blindness', 'congenital blindness',
+  'born without eyes', 'anophthalmia', 'enucleation', 'bilateral enucleation',
+  'deaf-blind', 'deafblind', 'blindness from', 'total vision loss',
+  'traumatic blindness', 'bilateral traumatic', 'self-blinded',
+  'acid attack', 'gunshot wound',
+];
+
+const SEVERE_KEYWORDS = [
+  'retinopathy of prematurity', 'rop', 'optic nerve',
+  'leber', 'retinitis pigmentosa', 'cone-rod dystrophy',
+  'progressive blindness', 'near-total', 'legally blind',
+  'neuromyelitis optica', 'optic neuritis',
+  'stargardt', 'retinal detachment', 'bilateral aphakia',
+  'congenital rubella', 'advanced glaucoma',
+];
+
+const MODERATE_KEYWORDS = [
+  'cataracts', 'cataract', 'glaucoma', 'macular degeneration',
+  'amd', 'diabetic retinopathy', 'keratoconus', 'aniridia',
+  'nystagmus', 'albinism', 'coloboma', 'uveitis',
+  'corneal', 'retinal', 'aphakia',
+];
+
+/**
+ * Classify the severity of a vision condition based on keywords.
+ * Returns 'complete' | 'severe' | 'moderate' | 'mild'.
+ */
+function getConditionSeverity(condition) {
+  const lower = condition.toLowerCase();
+
+  if (COMPLETE_KEYWORDS.some(k => lower.includes(k))) return 'complete';
+  if (SEVERE_KEYWORDS.some(k => lower.includes(k))) return 'severe';
+  if (MODERATE_KEYWORDS.some(k => lower.includes(k))) return 'moderate';
+  return 'mild';
+}
+
+/**
+ * Get Sharp effect parameters based on condition severity.
+ */
+function getSeverityEffects(severity) {
+  switch (severity) {
+    case 'complete':
+      return { blur: 1, brightness: 0.02, saturation: 0 };
+    case 'severe':
+      return { blur: 12, brightness: 0.15, saturation: 0.2 };
+    case 'moderate':
+      return { blur: 6, brightness: 0.5, saturation: 0.4 };
+    case 'mild':
+    default:
+      return { blur: 3, brightness: 0.75, saturation: 0.7 };
+  }
+}
 
 // ─── Parse PEOPLE_IMAGE_MAP from imagePaths.ts ───────────────────────
 
@@ -76,57 +134,9 @@ async function generatePersonOG(personId, person, imageMap) {
   const imagePath = filename ? join(IMAGES_DIR, filename) : null;
   const hasImage = imagePath && existsSync(imagePath);
 
-  // Build the right-side text SVG overlay
-  const textX = hasImage ? 470 : 80;
-  const textWidth = hasImage ? 680 : 1040;
-  const maxChars = hasImage ? 36 : 55;
+  const contentHeight = OG_HEIGHT - BAR_HEIGHT; // 575px
 
-  const nameLines = wrapText(person.name, maxChars);
-  const conditionLines = wrapText(person.condition, maxChars + 5);
-
-  let svgParts = [];
-  let y = 180;
-
-  // Name (bold, white)
-  for (const line of nameLines) {
-    svgParts.push(`<text x="${textX}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="bold" fill="white">${escapeXml(line)}</text>`);
-    y += 54;
-  }
-
-  y += 12;
-
-  // Condition (muted)
-  for (const line of conditionLines) {
-    svgParts.push(`<text x="${textX}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#94a3b8">${escapeXml(line)}</text>`);
-    y += 34;
-  }
-
-  // Years
-  if (person.years) {
-    y += 8;
-    svgParts.push(`<text x="${textX}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#64748b">${escapeXml(person.years)}</text>`);
-    y += 30;
-  }
-
-  // Achievement (accent blue)
-  if (person.achievement) {
-    y += 8;
-    const achLines = wrapText(person.achievement, maxChars + 2);
-    for (const line of achLines) {
-      svgParts.push(`<text x="${textX}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#60a5fa">${escapeXml(line)}</text>`);
-      y += 30;
-    }
-  }
-
-  // Bottom branding bar
-  svgParts.push(`<rect x="0" y="${OG_HEIGHT - 50}" width="${OG_WIDTH}" height="50" fill="#1e3a8a"/>`);
-  svgParts.push(`<text x="${OG_WIDTH / 2}" y="${OG_HEIGHT - 18}" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">theblind.spot</text>`);
-
-  const textSvg = `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
-    ${svgParts.join('\n    ')}
-  </svg>`;
-
-  // Create dark gradient background
+  // ── Dark gradient background ──
   const bgSvg = `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -137,43 +147,125 @@ async function generatePersonOG(personId, person, imageMap) {
     <rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#bg)"/>
   </svg>`;
 
+  // ── Bottom info bar ──
+  const barText = buildBarText(person.name, person.condition);
+  const barSvg = `<svg width="${OG_WIDTH}" height="${BAR_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${OG_WIDTH}" height="${BAR_HEIGHT}" fill="#1e3a8a"/>
+    <text x="${OG_WIDTH / 2}" y="${BAR_HEIGHT / 2 + 7}" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">${escapeXml(barText)}</text>
+  </svg>`;
+
   const composites = [
-    { input: Buffer.from(textSvg), top: 0, left: 0 },
+    { input: Buffer.from(barSvg), top: contentHeight, left: 0 },
   ];
 
-  // Add person portrait on the left
   if (hasImage) {
     try {
-      const portraitHeight = OG_HEIGHT - 50; // Leave room for branding bar
+      // ── Left: Portrait with right-edge fade ──
       const portrait = await sharp(imagePath)
-        .resize(PORTRAIT_WIDTH, portraitHeight, { fit: 'cover', position: 'top' })
+        .resize(PORTRAIT_WIDTH, contentHeight, { fit: 'cover', position: 'top' })
         .png()
         .toBuffer();
 
-      // Create a gradient fade overlay for the right edge of the portrait
-      const fadeSvg = `<svg width="${PORTRAIT_WIDTH}" height="${portraitHeight}" xmlns="http://www.w3.org/2000/svg">
+      const fadeSvg = `<svg width="${PORTRAIT_WIDTH}" height="${contentHeight}" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="fade" x1="0.7" y1="0" x2="1" y2="0">
+          <linearGradient id="fade" x1="0.65" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="black" stop-opacity="1"/>
             <stop offset="100%" stop-color="black" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <rect width="${PORTRAIT_WIDTH}" height="${portraitHeight}" fill="url(#fade)"/>
+        <rect width="${PORTRAIT_WIDTH}" height="${contentHeight}" fill="url(#fade)"/>
       </svg>`;
 
-      // Apply fade mask to portrait
       const maskedPortrait = await sharp(portrait)
+        .composite([{ input: Buffer.from(fadeSvg), blend: 'dest-in' }])
+        .png()
+        .toBuffer();
+
+      composites.push({ input: maskedPortrait, top: 0, left: 0 });
+
+      // ── Right: "Their Vision" circle ──
+      const severity = getConditionSeverity(person.condition);
+      const effects = getSeverityEffects(severity);
+
+      // Crop portrait to square, apply vision effects
+      let circleImage = sharp(imagePath)
+        .resize(CIRCLE_SIZE, CIRCLE_SIZE, { fit: 'cover', position: 'top' });
+
+      // Apply blur (Sharp requires sigma >= 0.3)
+      if (effects.blur >= 1) {
+        circleImage = circleImage.blur(effects.blur);
+      }
+
+      // Apply brightness and saturation
+      circleImage = circleImage.modulate({
+        brightness: effects.brightness,
+        saturation: effects.saturation,
+      });
+
+      const circleBuffer = await circleImage.png().toBuffer();
+
+      // Circular mask with border ring
+      const circleMaskSvg = `<svg width="${CIRCLE_SIZE}" height="${CIRCLE_SIZE}" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="${CIRCLE_SIZE / 2}" cy="${CIRCLE_SIZE / 2}" r="${CIRCLE_SIZE / 2}" fill="white"/>
+      </svg>`;
+
+      const maskedCircle = await sharp(circleBuffer)
         .composite([{
-          input: Buffer.from(fadeSvg),
+          input: Buffer.from(circleMaskSvg),
           blend: 'dest-in',
         }])
         .png()
         .toBuffer();
 
-      composites.unshift({ input: maskedPortrait, top: 0, left: 0 });
+      // Border ring around circle
+      const borderSize = CIRCLE_SIZE + 4;
+      const borderSvg = `<svg width="${borderSize}" height="${borderSize}" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="${borderSize / 2}" cy="${borderSize / 2}" r="${CIRCLE_SIZE / 2 + 1}" fill="none" stroke="#334155" stroke-width="2"/>
+      </svg>`;
+
+      // Position circle: centered in right half of content area
+      const rightHalfCenter = PORTRAIT_WIDTH + (OG_WIDTH - PORTRAIT_WIDTH) / 2;
+      const circleLeft = Math.round(rightHalfCenter - CIRCLE_SIZE / 2);
+      const circleTop = Math.round((contentHeight - CIRCLE_SIZE) / 2);
+
+      composites.push({ input: maskedCircle, top: circleTop, left: circleLeft });
+      composites.push({
+        input: Buffer.from(borderSvg),
+        top: circleTop - 2,
+        left: circleLeft - 2,
+      });
+
+      // "Their Vision" label above circle
+      const labelSvg = `<svg width="200" height="30" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="22" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle" font-style="italic">Their Vision</text>
+      </svg>`;
+      composites.push({
+        input: Buffer.from(labelSvg),
+        top: circleTop - 35,
+        left: Math.round(rightHalfCenter - 100),
+      });
     } catch {
-      // If image processing fails, skip portrait
+      // If image processing fails, fall back to text-only
     }
+  }
+
+  // ── Fallback: if no image, add centered text ──
+  if (!hasImage) {
+    const nameLines = wrapText(person.name, 40);
+    const condLines = wrapText(person.condition, 50);
+    let svgParts = [];
+    let y = 240;
+    for (const line of nameLines) {
+      svgParts.push(`<text x="${OG_WIDTH / 2}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="bold" fill="white" text-anchor="middle">${escapeXml(line)}</text>`);
+      y += 54;
+    }
+    y += 12;
+    for (const line of condLines) {
+      svgParts.push(`<text x="${OG_WIDTH / 2}" y="${y}" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#94a3b8" text-anchor="middle">${escapeXml(line)}</text>`);
+      y += 34;
+    }
+    const fallbackSvg = `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">${svgParts.join('')}</svg>`;
+    composites.push({ input: Buffer.from(fallbackSvg), top: 0, left: 0 });
   }
 
   const result = await sharp(Buffer.from(bgSvg))
@@ -183,6 +275,23 @@ async function generatePersonOG(personId, person, imageMap) {
     .toBuffer();
 
   return result;
+}
+
+/** Build bottom bar text, truncating condition if needed to fit. */
+function buildBarText(name, condition) {
+  const suffix = ' | theblind.spot';
+  const sep = ' — ';
+  const maxLen = 70; // approximate char limit for 1200px at font-size 22
+  const base = name + sep + condition + suffix;
+  if (base.length <= maxLen) return base;
+
+  // Truncate condition
+  const available = maxLen - name.length - sep.length - suffix.length - 3; // 3 for "..."
+  if (available > 10) {
+    return name + sep + condition.slice(0, available) + '...' + suffix;
+  }
+  // If name alone is very long, just show name + brand
+  return name + suffix;
 }
 
 // ─── Generate generic site OG image ──────────────────────────────────

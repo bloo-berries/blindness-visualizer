@@ -1,4 +1,4 @@
-import { ConditionType, VisualEffect } from '../types/visualEffects';
+import { VisualEffect } from '../types/visualEffects';
 import { allEffects } from './effects';
 
 /**
@@ -6,29 +6,6 @@ import { allEffects } from './effects';
  * Combined from category-specific files for maintainability
  */
 export const VISUAL_EFFECTS: VisualEffect[] = allEffects;
-
-// Create a Map for O(1) lookup performance
-const EFFECT_MAP = new Map(VISUAL_EFFECTS.map(effect => [effect.id, effect]));
-
-/**
- * Gets a visual effect by its ID with O(1) performance
- *
- * @param id - The effect ID to find
- * @returns The visual effect or undefined if not found
- */
-export const getVisualEffectById = (id: ConditionType): VisualEffect | undefined => {
-  return EFFECT_MAP.get(id);
-};
-
-/**
- * Gets all enabled visual effects
- *
- * @param effects - Array of visual effects
- * @returns Array of enabled effects
- */
-export const getEnabledEffects = (effects: VisualEffect[]): VisualEffect[] => {
-  return effects.filter(effect => effect.enabled);
-};
 
 /**
  * Creates a new visual effects array with default values
@@ -42,13 +19,3 @@ export const createDefaultEffects = (): VisualEffect[] => {
     intensity: 0.0
   }));
 };
-
-// Re-export individual category arrays for direct access
-export {
-  colorVisionEffects,
-  visualFieldEffects,
-  visualDisturbanceEffects,
-  retinalEffects,
-  ocularEffects,
-  famousPeopleEffects
-} from './effects';

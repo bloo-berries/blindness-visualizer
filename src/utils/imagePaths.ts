@@ -40,7 +40,7 @@ export const getPeopleImagePath = (filename: string): string => {
  * Map of person IDs to their image filenames
  * This is the single source of truth for all people image mappings
  */
-export const PEOPLE_IMAGE_MAP: Record<string, string> = {
+const PEOPLE_IMAGE_MAP: Record<string, string> = {
   milton: 'john-milton.webp',
   braille: 'louis-Braille.webp',
   galileo: 'Galileo-Galilei.webp',
@@ -256,7 +256,7 @@ export const PEOPLE_IMAGE_MAP: Record<string, string> = {
 /**
  * Secondary image entry for a person's detail dialog
  */
-export interface SecondaryImageEntry {
+interface SecondaryImageEntry {
   filename: string;
   link?: string;
   caption?: string;
@@ -268,7 +268,7 @@ export interface SecondaryImageEntry {
  * These appear below the primary photo in the person detail dialog
  * Supports single or multiple images, optional links, and optional captions
  */
-export const SECONDARY_IMAGE_MAP: Record<string, SecondaryImageEntry | SecondaryImageEntry[]> = {
+const SECONDARY_IMAGE_MAP: Record<string, SecondaryImageEntry | SecondaryImageEntry[]> = {
   christine: { filename: 'christine-ha-cookbook.webp' },
   lucy: { filename: 'lucy-edwards-brit-awards.webp' },
   paul: { filename: 'Paul-Castle-Book.webp', link: 'https://www.youtube.com/@MatthewandPaulOfficial' },
@@ -307,17 +307,6 @@ export const getPersonSecondaryImages = (personId: string): SecondaryImageEntry[
   const entry = SECONDARY_IMAGE_MAP[personId];
   if (!entry) return [];
   return Array.isArray(entry) ? entry : [entry];
-};
-
-/**
- * Get the full path to a person's secondary image/gif (legacy single-image helper)
- * @param personId - The person's ID
- * @returns Full path to the secondary image, or null if none exists
- */
-export const getPersonSecondaryImagePath = (personId: string): string | null => {
-  const entries = getPersonSecondaryImages(personId);
-  if (entries.length === 0) return null;
-  return getPeopleImagePath(entries[0].filename);
 };
 
 /**

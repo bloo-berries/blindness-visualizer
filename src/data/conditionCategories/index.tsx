@@ -6,8 +6,6 @@ import { retinalConditionsCategory } from './retinalConditions';
 import { neurologicalConditionsCategory } from './neurologicalConditions';
 import { traumaInfectionConditionsCategory } from './traumaInfectionConditions';
 
-export type { ConditionCategory };
-
 export const conditionCategories: ConditionCategory[] = [
   visualFieldCategory,
   colorVisionCategory,

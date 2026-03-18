@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export interface SceneManager {
+interface SceneManager {
   scene: THREE.Scene;
   camera: THREE.OrthographicCamera;
   renderer: THREE.WebGLRenderer;

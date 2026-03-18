@@ -5,7 +5,7 @@ import React from 'react';
  * Flag emojis are made of Regional Indicator Symbols (U+1F1E6 to U+1F1FF)
  * Each letter is offset from U+1F1E6 by the position of the letter in the alphabet
  */
-export const flagEmojiToCountryCode = (flagEmoji: string): string => {
+const flagEmojiToCountryCode = (flagEmoji: string): string => {
   // Handle edge cases
   if (!flagEmoji || flagEmoji.length < 2) {
     return '';
@@ -58,7 +58,7 @@ interface FlagImageProps {
  * Renders a flag as an image that works on all platforms (including Windows)
  * Uses flagcdn.com for SVG flags
  */
-export const FlagImage: React.FC<FlagImageProps> = ({
+const FlagImage: React.FC<FlagImageProps> = ({
   flag,
   countryName = '',
   size = 20,

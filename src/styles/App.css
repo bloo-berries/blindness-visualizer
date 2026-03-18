@@ -121,10 +121,6 @@ html, body, #root {
   background-color: var(--color-bg-default);
 }
 
-.landing-page {
-  animation: fadeIn 0.8s ease-in;
-}
-
 .visualizer-container {
   position: relative;
   width: 100%;
@@ -135,17 +131,7 @@ html, body, #root {
   border: 1px solid var(--color-border);
 }
 
-.effect-card {
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-}
 
-.effect-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-primary);
-}
 
 /* Add helpful tooltips */
 [data-tooltip] {
@@ -226,10 +212,6 @@ html, body, #root {
 
 /* High contrast mode support */
 @media (forced-colors: active) {
-  .card-selected {
-    border: 3px solid SelectedText;
-  }
-  
   button, a {
     forced-color-adjust: none;
   }
@@ -422,12 +404,6 @@ html, body, #root {
   }
 }
 
-/* Combined visual snow animation class for the main overlay */
-.visual-snow-animated {
-  animation: visualSnowDrift 6s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
 /* ===== VISUAL HALLUCINATIONS ANIMATIONS ===== */
 /* Gentle fade and movement effects - hallucinations appear and fade gradually */
 
@@ -523,8 +499,3 @@ html, body, #root {
   }
 }
 
-/* Combined hallucination animation class */
-.hallucination-animated {
-  animation: hallucinationFigureDrift 12s ease-in-out infinite;
-  will-change: opacity, transform;
-}

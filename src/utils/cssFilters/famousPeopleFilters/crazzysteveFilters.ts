@@ -1,7 +1,7 @@
-import { VisualEffect } from '../../../types/visualEffects';
+import { CSSFilterEffectConfig } from './filterConfig';
 
 /**
- * Generates CSS filters for Crazzy Steve's Bilateral Aphakia + Secondary Glaucoma
+ * CSS filters for Crazzy Steve's Bilateral Aphakia + Secondary Glaucoma
  * Key visual characteristics:
  * - Heavy Gaussian blur (30-50px) - nothing resolves to sharp edges
  * - Severe desaturation (40-60%) - colors appear washed out/faded
@@ -9,69 +9,68 @@ import { VisualEffect } from '../../../types/visualEffects';
  * - Overall dreamlike quality - "hazy aftermath of a dream"
  * - Tunnel vision handled by visual field overlay
  */
-export const generateCrazzysteveFilters = (effects: VisualEffect[]): string => {
-  const crazzysteveEffects = effects.filter(e =>
-    e.id.startsWith('crazzysteve') || e.id.startsWith('crazzySteve')
-  );
-
-  if (crazzysteveEffects.length === 0) return '';
-
-  const filters: string[] = [];
-
-  const completeVision = effects.find(e => e.id === 'crazzysteveComplete' && e.enabled);
-  const dreamlikeBlur = effects.find(e => e.id === 'crazzySteveDreamlikeBlur' && e.enabled);
-  const desaturation = effects.find(e => e.id === 'crazzysteveDesaturation' && e.enabled);
-  const glaucomaTunnel = effects.find(e => e.id === 'crazzysteveGlaucomaTunnel' && e.enabled);
-  const lowContrast = effects.find(e => e.id === 'crazzySteveLowContrast' && e.enabled);
-  const aphakicHalos = effects.find(e => e.id === 'crazzysteveAphakicHalos' && e.enabled);
-
+export const crazzysteveFilterConfigs: CSSFilterEffectConfig[] = [
   // Complete Aphakia + Glaucoma vision
-  if (completeVision) {
-    const i = completeVision.intensity;
-    // Heavy blur (30-50px range) - "like looking through frost or waking from deep sleep"
-    filters.push(`blur(${30 + i * 20}px)`);
-    // Severe desaturation (40-60%) - colors present but muted, washed out
-    filters.push(`saturate(${60 - i * 20}%)`);
-    // Low contrast (~50% reduction) - dark objects disappear against dark backgrounds
-    filters.push(`contrast(${50 - i * 10}%)`);
-    // Slight brightness increase from light scatter (aphakic eyes lack UV filtering)
-    filters.push(`brightness(${100 + i * 15}%)`);
-  }
-
-  // Individual effects for customization
-  if (dreamlikeBlur && !completeVision) {
-    const i = dreamlikeBlur.intensity;
-    // Heavy Gaussian blur - nothing resolves to sharp edges
-    filters.push(`blur(${30 + i * 20}px)`);
-    // Slight brightness from scatter
-    filters.push(`brightness(${100 + i * 10}%)`);
-  }
-
-  if (desaturation && !completeVision) {
-    const i = desaturation.intensity;
-    // Washed out colors from missing natural lens filtering
-    filters.push(`saturate(${60 - i * 30}%)`);
-  }
-
-  if (glaucomaTunnel && !completeVision) {
-    // Tunnel vision is primarily handled by visual field overlay
-    // Add slight overall darkening for the peripheral loss
-    const i = glaucomaTunnel.intensity;
-    filters.push(`brightness(${100 - i * 15}%)`);
-  }
-
-  if (lowContrast && !completeVision) {
-    const i = lowContrast.intensity;
-    // Severely reduced contrast - only high-contrast boundaries register
-    filters.push(`contrast(${50 - i * 20}%)`);
-  }
-
-  if (aphakicHalos && !completeVision) {
-    const i = aphakicHalos.intensity;
-    // Light scatter and chromatic aberration
-    filters.push(`brightness(${100 + i * 20}%)`);
-    filters.push(`contrast(${100 - i * 15}%)`);
-  }
-
-  return filters.join(' ');
-};
+  {
+    effectId: 'crazzysteveComplete',
+    filters: i => [
+      // Heavy blur (30-50px range) - "like looking through frost or waking from deep sleep"
+      `blur(${30 + i * 20}px)`,
+      // Severe desaturation (40-60%) - colors present but muted, washed out
+      `saturate(${60 - i * 20}%)`,
+      // Low contrast (~50% reduction) - dark objects disappear against dark backgrounds
+      `contrast(${50 - i * 10}%)`,
+      // Slight brightness increase from light scatter (aphakic eyes lack UV filtering)
+      `brightness(${100 + i * 15}%)`,
+    ],
+  },
+  // Heavy Gaussian blur - nothing resolves to sharp edges
+  {
+    effectId: 'crazzySteveDreamlikeBlur',
+    filters: i => [
+      // Heavy Gaussian blur - nothing resolves to sharp edges
+      `blur(${30 + i * 20}px)`,
+      // Slight brightness from scatter
+      `brightness(${100 + i * 10}%)`,
+    ],
+    excludeWhenActive: ['crazzysteveComplete'],
+  },
+  // Washed out colors from missing natural lens filtering
+  {
+    effectId: 'crazzysteveDesaturation',
+    filters: i => [
+      // Washed out colors from missing natural lens filtering
+      `saturate(${60 - i * 30}%)`,
+    ],
+    excludeWhenActive: ['crazzysteveComplete'],
+  },
+  // Tunnel vision peripheral darkening
+  {
+    effectId: 'crazzysteveGlaucomaTunnel',
+    filters: i => [
+      // Tunnel vision is primarily handled by visual field overlay
+      // Add slight overall darkening for the peripheral loss
+      `brightness(${100 - i * 15}%)`,
+    ],
+    excludeWhenActive: ['crazzysteveComplete'],
+  },
+  // Severely reduced contrast
+  {
+    effectId: 'crazzySteveLowContrast',
+    filters: i => [
+      // Severely reduced contrast - only high-contrast boundaries register
+      `contrast(${50 - i * 20}%)`,
+    ],
+    excludeWhenActive: ['crazzysteveComplete'],
+  },
+  // Light scatter and chromatic aberration
+  {
+    effectId: 'crazzysteveAphakicHalos',
+    filters: i => [
+      // Light scatter and chromatic aberration
+      `brightness(${100 + i * 20}%)`,
+      `contrast(${100 - i * 15}%)`,
+    ],
+    excludeWhenActive: ['crazzysteveComplete'],
+  },
+];

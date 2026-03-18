@@ -10,7 +10,7 @@ export const CATEGORY_PEOPLE_SETS: Map<string, Set<string>> = new Map(
 );
 
 // Helper to convert category name to translation key
-export const CATEGORY_KEY_MAP: Record<string, string> = {
+const CATEGORY_KEY_MAP: Record<string, string> = {
   'Ocular Issues': 'ocularIssues',
   'Neurologic Issues': 'neurologicIssues',
   'Accident/Injury': 'accidentInjury',

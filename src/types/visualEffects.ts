@@ -32,7 +32,6 @@ export type ConditionType =
   | 'visualSnowTransparent'
   | 'visualSnowDense'
   | 'tunnelVision'
-  | 'aura'
   | 'glaucoma'
   | 'amd'
   | 'diabeticRetinopathy'

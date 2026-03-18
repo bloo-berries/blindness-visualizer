@@ -6,7 +6,7 @@
 /**
  * Visual Field Loss conditions that should always overlay on top
  */
-export const VISUAL_FIELD_LOSS_CONDITIONS = [
+const VISUAL_FIELD_LOSS_CONDITIONS = [
   'blindnessLeftEye', 'blindnessRightEye', 'hemianopiaLeft', 'hemianopiaRight', 
   'bitemporalHemianopia', 'quadrantanopiaRight', 'quadrantanopiaInferior', 
   'quadrantanopiaSuperior', 'scotoma', 'tunnelVision', 'retinitisPigmentosa'
@@ -15,7 +15,7 @@ export const VISUAL_FIELD_LOSS_CONDITIONS = [
 /**
  * Visual Disturbance conditions that should appear underneath other conditions
  */
-export const VISUAL_DISTURBANCE_CONDITIONS = [
+const VISUAL_DISTURBANCE_CONDITIONS = [
   'visualAura', 'visualFloaters', 'visualSnow', 'visualSnowFlashing',
   'visualSnowColored', 'visualSnowTransparent', 'visualSnowDense', 'hallucinations',
   'visualAuraLeft', 'visualAuraRight', 'blueFieldPhenomena'

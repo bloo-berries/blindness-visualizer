@@ -9,7 +9,9 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions
+  CardActions,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import {
   Visibility as VisibilityIcon,
@@ -22,18 +24,37 @@ import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 import { getPersonImagePath } from '../utils/imagePaths';
 
+const THUMBNAIL_PEOPLE = [
+  { id: 'galileo', alt: 'Galileo Galilei', pos: 'center 20%' },
+  { id: 'stevie', alt: 'Stevie Wonder', pos: 'center 20%' },
+  { id: 'helen', alt: 'Helen Keller', pos: 'center 35%' },
+  { id: 'ray', alt: 'Ray Charles', pos: 'center 40%' },
+  { id: 'sharon', alt: 'Sharon Stone', pos: 'center 40%' },
+  { id: 'bono', alt: 'Bono', pos: 'center 40%' },
+  { id: 'georgia', alt: "Georgia O'Keefe", pos: 'center 20%' },
+  { id: 'harriet', alt: 'Harriet Tubman', pos: 'center 20%' },
+];
+
+const homeCardSx = {
+  height: '100%',
+  p: { xs: 2, md: 3 },
+  background: 'var(--color-card-bg)',
+  border: '1px solid var(--color-border)',
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+  transition: 'transform 0.2s, box-shadow 0.2s',
+  display: 'flex',
+  flexDirection: 'column',
+  '&:hover': {
+    transform: 'translateY(-4px)',
+    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
+  }
+} as const;
+
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { preferences } = useAccessibility();
   const { t } = useTranslation();
-
-  const handleStartSimulator = () => {
-    navigate('/simulator');
-  };
-
-  const handleStartFamousPeople = () => {
-    navigate('/famous-people');
-  };
+  const isMobile = useMediaQuery(useTheme().breakpoints.down('md'));
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
@@ -75,31 +96,16 @@ const HomePage: React.FC = () => {
           </Box>
 
           {/* Main Options */}
-          <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: 4 }}>
             <Grid item xs={12} md={6}>
-              <Card
-                sx={{
-                  height: '100%',
-                  p: 3,
-                  background: 'var(--color-card-bg)',
-                  border: '1px solid var(--color-border)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
-                  }
-                }}
-              >
+              <Card sx={homeCardSx}>
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
-                    <Box sx={{ mb: 2 }}>
+                    <Box sx={{ mb: { xs: 1, md: 2 } }}>
                       <VisibilityIcon sx={{
-                        fontSize: 50,
+                        fontSize: isMobile ? 40 : 50,
                         color: 'var(--color-primary-accent)',
-                        mb: 1.5
+                        mb: 1
                       }} />
                       <Typography
                         variant="h5"
@@ -114,15 +120,15 @@ const HomePage: React.FC = () => {
                       >
                         {t('home.card1Title')}
                       </Typography>
-                      <Box sx={{ mb: 2, mt: 5.5, width: '100%' }}>
-                        <img 
+                      <Box sx={{ mb: { xs: 1, md: 2 }, mt: { xs: 2, md: 5.5 }, width: '100%' }}>
+                        <img
                           src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.webp`}
                           alt="Example vision condition comparison"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
-                          style={{ 
-                            width: '100%', 
+                          style={{
+                            width: '100%',
                             height: 'auto',
                             borderRadius: '8px',
                             display: 'block'
@@ -133,12 +139,12 @@ const HomePage: React.FC = () => {
                   </Box>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center', p: 0, mt: 'auto' }}>
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     size="large"
-                    onClick={handleStartSimulator}
-                    sx={{ 
-                      px: 3, 
+                    onClick={() => navigate('/simulator')}
+                    sx={{
+                      px: 3,
                       py: 1,
                       fontSize: '1rem',
                       fontWeight: 600
@@ -151,29 +157,14 @@ const HomePage: React.FC = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Card
-                sx={{
-                  height: '100%',
-                  p: 3,
-                  background: 'var(--color-card-bg)',
-                  border: '1px solid var(--color-border)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
-                  }
-                }}
-              >
+              <Card sx={homeCardSx}>
                 <CardContent sx={{ textAlign: 'center', p: 0, flex: 1, display: 'flex', flexDirection: 'column' }}>
                   <Box sx={{ flex: 1 }}>
-                    <Box sx={{ mb: 2 }}>
+                    <Box sx={{ mb: { xs: 1, md: 2 } }}>
                       <PeopleIcon sx={{
-                        fontSize: 50,
+                        fontSize: isMobile ? 40 : 50,
                         color: 'var(--color-primary-accent)',
-                        mb: 1.5
+                        mb: 1
                       }} />
                       <Typography
                         variant="h5"
@@ -189,195 +180,50 @@ const HomePage: React.FC = () => {
                         {t('home.card2Title')}
                       </Typography>
                     </Box>
-                    
+
                     {/* Image Preview Grid */}
-                    <Box sx={{ mb: 2, mt: 5.5 }}>
-                    <Box sx={{ 
-                      display: 'grid', 
-                      gridTemplateColumns: 'repeat(4, 1fr)', 
-                      gap: 1.5,
-                      maxWidth: '450px', 
-                      mx: 'auto' 
-                    }}>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
+                    <Box sx={{ mb: { xs: 1, md: 2 }, mt: { xs: 2, md: 5.5 } }}>
+                      <Box sx={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: 1.5,
+                        maxWidth: '450px',
+                        mx: 'auto'
                       }}>
-                        <img 
-                          src={getPersonImagePath('galileo')} 
-                          alt="Galileo Galilei"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 20%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('stevie')} 
-                          alt="Stevie Wonder"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 20%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('helen')} 
-                          alt="Helen Keller"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 35%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('ray')} 
-                          alt="Ray Charles"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 40%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('sharon')} 
-                          alt="Sharon Stone"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 40%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('bono')} 
-                          alt="Bono"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 40%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('georgia')} 
-                          alt="Georgia O'Keefe"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 20%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </Box>
-                      <Box sx={{ 
-                        width: '100%', 
-                        height: '70px', 
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                        border: '2px solid var(--color-border)'
-                      }}>
-                        <img 
-                          src={getPersonImagePath('harriet')} 
-                          alt="Harriet Tubman"
-                          style={{ 
-                            width: '100%', 
-                            height: '100%', 
-                            objectFit: 'cover',
-                            objectPosition: 'center 20%'
-                          }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
+                        {THUMBNAIL_PEOPLE.map(({ id, alt, pos }) => (
+                          <Box key={id} sx={{
+                            width: '100%',
+                            height: '70px',
+                            borderRadius: '10px',
+                            overflow: 'hidden',
+                            border: '2px solid var(--color-border)'
+                          }}>
+                            <img
+                              src={getPersonImagePath(id)}
+                              alt={alt}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                objectPosition: pos
+                              }}
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
+                          </Box>
+                        ))}
                       </Box>
                     </Box>
                   </Box>
-                </Box>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center', p: 0, mt: 'auto' }}>
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     size="large"
-                    onClick={handleStartFamousPeople}
-                    sx={{ 
-                      px: 3, 
+                    onClick={() => navigate('/famous-people')}
+                    sx={{
+                      px: 3,
                       py: 1,
                       fontSize: '1rem',
                       fontWeight: 600

@@ -20,7 +20,8 @@ import {
   YouTube,
   Star,
   Close,
-  Security
+  Security,
+  PhoneIphone
 } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { InputSource } from '../types/visualEffects';
@@ -39,11 +40,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
 
   const inputOptions = [
     {
-      type: 'webcam',
-      icon: <Videocam sx={{ fontSize: 36 }} aria-hidden="true" />,
-      title: t('inputSelector.webcam'),
-      description: t('inputSelector.webcamDesc'),
-      isPremium: true
+      type: 'youtube',
+      icon: <YouTube sx={{ fontSize: 36, color: '#1e3a8a' }} aria-hidden="true" />,
+      title: t('inputSelector.demoVideo'),
+      description: t('inputSelector.demoVideoDesc'),
+      isPremium: false
     },
     {
       type: 'image',
@@ -53,11 +54,18 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
       isPremium: false
     },
     {
-      type: 'youtube',
-      icon: <YouTube sx={{ fontSize: 36, color: '#1e3a8a' }} aria-hidden="true" />,
-      title: t('inputSelector.demoVideo'),
-      description: t('inputSelector.demoVideoDesc'),
-      isPremium: false
+      type: 'webcam',
+      icon: <Videocam sx={{ fontSize: 36 }} aria-hidden="true" />,
+      title: t('inputSelector.webcam'),
+      description: t('inputSelector.webcamDesc'),
+      isPremium: true
+    },
+    {
+      type: 'app',
+      icon: <PhoneIphone sx={{ fontSize: 36 }} aria-hidden="true" />,
+      title: 'Mobile App',
+      description: 'Experience vision simulations on the go',
+      isPremium: true
     }
   ];
 
@@ -69,63 +77,45 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
       
       <Grid container spacing={1.5}>
         {/* Demo Video - Large, prominent option */}
-        {inputOptions
-          .filter(option => option.type === 'youtube')
-          .map((option) => (
-            <Grid item xs={12} key={option.type}>
+        <Grid item xs={12}>
+          {(() => {
+            const option = inputOptions.find(o => o.type === 'youtube')!;
+            return (
               <Card
-                className={option.type === 'youtube' ? 'demo-video-card' : ''}
+                className="demo-video-card"
                 sx={{
-                  cursor: option.isPremium ? 'not-allowed' : 'pointer',
+                  cursor: 'pointer',
                   height: '100%',
                   transition: '0.3s',
-                  opacity: option.isPremium ? 0.6 : 1,
                   '&:hover': {
-                    transform: option.isPremium ? 'none' : 'translateY(-4px)',
-                    boxShadow: option.isPremium ? 1 : 3
+                    transform: 'translateY(-4px)',
+                    boxShadow: 3
                   },
                   '&:focus-visible': {
                     outline: '3px solid #1976d2',
                     outlineOffset: '2px',
                     boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
                   },
-                  border: currentSource.type === option.type ? 2 : 0,
+                  border: currentSource.type === 'youtube' ? 2 : 0,
                   borderColor: 'primary.main',
-                  backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent',
                   maxWidth: '500px',
                   mx: 'auto',
                   background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-                  ...(preferences.highContrast && option.type === 'youtube' && {
+                  ...(preferences.highContrast && {
                     backgroundColor: '#ffffff !important',
                     background: '#ffffff !important'
                   })
                 }}
-                onClick={() => {
-                  if (option.isPremium) {
-                    return; // Do nothing for premium features
-                  }
-                  if (option.type === 'image') {
-                    fileInputRef.current?.click();
-                  } else {
-                    onSourceChange({ type: option.type } as InputSource);
-                  }
-                }}
+                onClick={() => onSourceChange({ type: 'youtube' } as InputSource)}
                 role="button"
-                tabIndex={option.isPremium ? -1 : 0}
-                aria-pressed={currentSource.type === option.type}
-                aria-label={option.isPremium ? `${option.title} (Coming Soon - Premium Feature)` : option.title}
-                aria-describedby={`${option.type}-description`}
+                tabIndex={0}
+                aria-pressed={currentSource.type === 'youtube'}
+                aria-label={option.title}
+                aria-describedby="youtube-description"
                 onKeyDown={(e) => {
-                  if (option.isPremium) {
-                    return; // Do nothing for premium features
-                  }
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    if (option.type === 'image') {
-                      fileInputRef.current?.click();
-                    } else {
-                      onSourceChange({ type: option.type } as InputSource);
-                    }
+                    onSourceChange({ type: 'youtube' } as InputSource);
                   }
                 }}
               >
@@ -137,143 +127,123 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                     variant="h5"
                     component="div"
                     className="demo-video-title"
-                    sx={{
-                      mt: 1,
-                      fontWeight: 700,
-                      color: '#1e293b',
-                    }}
+                    sx={{ mt: 1, fontWeight: 700, color: '#1e293b' }}
                   >
                     {option.title}
                   </Typography>
                   <Typography
                     variant="body1"
-                    id={`${option.type}-description`}
+                    id="youtube-description"
                     className="demo-video-description"
-                    sx={{
-                      mt: 1,
-                      fontSize: '1rem',
-                      color: '#475569',
-                    }}
+                    sx={{ mt: 1, fontSize: '1rem', color: '#475569' }}
                   >
                     {option.description}
                   </Typography>
-                  {option.isPremium && (
-                    <Box sx={{ mt: 2 }}>
-                      <Chip
-                        icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
-                        label="Coming Soon: Premium Feature"
-                        variant="outlined"
-                        sx={{
-                          fontWeight: 'bold',
-                          fontSize: '0.8rem',
-                          height: '24px',
-                          color: 'var(--color-primary-accent)',
-                          borderColor: 'var(--color-primary-accent)',
-                          '& .MuiChip-icon': {
-                            fontSize: '16px'
-                          }
-                        }}
-                      />
-                    </Box>
-                  )}
                 </CardContent>
               </Card>
-            </Grid>
-          ))}
-        
-        {/* Other options - Side by side */}
+            );
+          })()}
+        </Grid>
+
+        {/* Upload Image - Below demo video */}
+        <Grid item xs={12}>
+          {(() => {
+            const option = inputOptions.find(o => o.type === 'image')!;
+            return (
+              <Card
+                sx={{
+                  cursor: 'pointer',
+                  height: '100%',
+                  transition: '0.3s',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: 3
+                  },
+                  '&:focus-visible': {
+                    outline: '3px solid #1976d2',
+                    outlineOffset: '2px',
+                    boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
+                  },
+                  border: currentSource.type === 'image' ? 2 : 0,
+                  borderColor: 'primary.main',
+                  maxWidth: '500px',
+                  mx: 'auto',
+                }}
+                onClick={() => fileInputRef.current?.click()}
+                role="button"
+                tabIndex={0}
+                aria-pressed={currentSource.type === 'image'}
+                aria-label={option.title}
+                aria-describedby="image-description"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    fileInputRef.current?.click();
+                  }
+                }}
+              >
+                <CardContent sx={{ textAlign: 'center', position: 'relative', p: 1.5 }}>
+                  <Box sx={{ fontSize: '32px', mb: 1 }}>
+                    {option.icon}
+                  </Box>
+                  <Typography variant="body1" component="div" sx={{ mt: 1, fontWeight: 600 }}>
+                    {option.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" id="image-description" sx={{ mt: 0.5, fontSize: '0.75rem' }}>
+                    {option.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            );
+          })()}
+        </Grid>
+
+        {/* Premium options - Side by side */}
         <Grid item xs={12}>
           <Grid container spacing={1.5} justifyContent="center">
             {inputOptions
-              .filter(option => option.type !== 'youtube')
+              .filter(option => option.isPremium)
               .map((option) => (
-                <Grid item xs={12} sm={6} md={5} key={option.type}>
+                <Grid item xs={6} sm={6} md={5} key={option.type}>
                   <Card
                     sx={{
-                      cursor: option.isPremium ? 'not-allowed' : 'pointer',
+                      cursor: 'not-allowed',
                       height: '100%',
                       transition: '0.3s',
-                      opacity: option.isPremium ? 0.6 : 1,
-                      '&:hover': {
-                        transform: option.isPremium ? 'none' : 'translateY(-4px)',
-                        boxShadow: option.isPremium ? 1 : 3
-                      },
-                      '&:focus-visible': {
-                        outline: '3px solid #1976d2',
-                        outlineOffset: '2px',
-                        boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
-                      },
-                      border: currentSource.type === option.type ? 2 : 0,
-                      borderColor: 'primary.main',
-                      backgroundColor: option.isPremium ? 'rgba(0, 0, 0, 0.02)' : 'transparent'
-                    }}
-                    onClick={() => {
-                      if (option.isPremium) {
-                        return; // Do nothing for premium features
-                      }
-                      if (option.type === 'image') {
-                        fileInputRef.current?.click();
-                      } else {
-                        onSourceChange({ type: option.type } as InputSource);
-                      }
+                      opacity: 0.6,
                     }}
                     role="button"
-                    tabIndex={option.isPremium ? -1 : 0}
-                    aria-pressed={currentSource.type === option.type}
-                    aria-label={option.isPremium ? `${option.title} (Coming Soon - Premium Feature)` : option.title}
+                    tabIndex={-1}
+                    aria-label={`${option.title} (Coming Soon - Premium Feature)`}
                     aria-describedby={`${option.type}-description`}
-                    onKeyDown={(e) => {
-                      if (option.isPremium) {
-                        return; // Do nothing for premium features
-                      }
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        if (option.type === 'image') {
-                          fileInputRef.current?.click();
-                        } else {
-                          onSourceChange({ type: option.type } as InputSource);
-                        }
-                      }
-                    }}
                   >
                     <CardContent sx={{ textAlign: 'center', position: 'relative', p: 1.5 }}>
                       <Box sx={{ fontSize: '32px', mb: 1 }}>
                         {option.icon}
                       </Box>
-                      <Typography 
-                        variant="body1" 
-                        component="div" 
-                        sx={{ mt: 1, fontWeight: 600 }}
-                      >
+                      <Typography variant="body1" component="div" sx={{ mt: 1, fontWeight: 600 }}>
                         {option.title}
                       </Typography>
-                      <Typography 
-                        variant="body2" 
-                        color="text.secondary"
-                        id={`${option.type}-description`}
-                        sx={{ mt: 0.5, fontSize: '0.75rem' }}
-                      >
+                      <Typography variant="body2" color="text.secondary" id={`${option.type}-description`} sx={{ mt: 0.5, fontSize: '0.75rem' }}>
                         {option.description}
                       </Typography>
-                      {option.isPremium && (
-                        <Box sx={{ mt: 0.5 }}>
-                          <Chip
-                            icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
-                            label="Coming Soon: Premium Feature"
-                            variant="outlined"
-                            sx={{
-                              fontWeight: 'bold',
-                              fontSize: '0.65rem',
-                              height: '18px',
-                              color: 'var(--color-primary-accent)',
-                              borderColor: 'var(--color-primary-accent)',
-                              '& .MuiChip-icon': {
-                                fontSize: '12px'
-                              }
-                            }}
-                          />
-                        </Box>
-                      )}
+                      <Box sx={{ mt: 0.5 }}>
+                        <Chip
+                          icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
+                          label="Coming Soon: Premium Feature"
+                          variant="outlined"
+                          sx={{
+                            fontWeight: 'bold',
+                            fontSize: '0.65rem',
+                            height: '18px',
+                            color: 'var(--color-primary-accent)',
+                            borderColor: 'var(--color-primary-accent)',
+                            '& .MuiChip-icon': {
+                              fontSize: '12px'
+                            }
+                          }}
+                        />
+                      </Box>
                     </CardContent>
                   </Card>
                 </Grid>

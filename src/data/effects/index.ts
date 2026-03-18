@@ -11,14 +11,6 @@ import { ocularEffects } from './ocularEffects';
 import { famousPeopleEffects } from './famousPeopleEffects';
 import { VisualEffect } from '../../types/visualEffects';
 
-// Re-export individual category arrays
-export { colorVisionEffects } from './colorVisionEffects';
-export { visualFieldEffects } from './visualFieldEffects';
-export { visualDisturbanceEffects } from './visualDisturbanceEffects';
-export { retinalEffects } from './retinalEffects';
-export { ocularEffects } from './ocularEffects';
-export { famousPeopleEffects } from './famousPeopleEffects';
-
 /**
  * Combined array of all visual effects
  */

@@ -8,7 +8,7 @@ import { writersActivists } from './writersActivists';
 import { historicalFigures } from './historicalFigures';
 import { fictionalCharacters } from './fictionalCharacters';
 
-export type { PersonData, PersonCategory };
+export type { PersonData };
 export { contemporaryFigures };
 export { athletes };
 export { scientists };

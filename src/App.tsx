@@ -23,6 +23,7 @@ const FAQPage = React.lazy(() => import('./components/FAQPage'));
 const AboutPage = React.lazy(() => import('./components/AboutPage'));
 const FeedbackPage = React.lazy(() => import('./components/FeedbackPage'));
 const ResourcesPage = React.lazy(() => import('./components/ResourcesPage'));
+const NotFoundPage = React.lazy(() => import('./components/NotFoundPage'));
 
 const getBasename = (): string => {
   const publicUrl = process.env.PUBLIC_URL || '';
@@ -239,6 +240,7 @@ const ThemedApp: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </Suspense>

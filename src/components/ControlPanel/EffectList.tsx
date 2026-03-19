@@ -179,7 +179,7 @@ export const EffectList: React.FC<EffectListProps> = ({
   }, []);
 
   return (
-    <Box sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '350px', md: '500px' } }}>
+    <Box data-tour-step="conditions" sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '350px', md: '500px' }, width: { xs: '100%', md: 'auto' } }}>
       {/* Search Input */}
       <TextField
         fullWidth

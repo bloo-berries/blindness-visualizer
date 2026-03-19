@@ -184,6 +184,59 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
   }
 
+  // 1b. Social crawlers on /simulator?preset=X → preset-specific OG tags
+  if (
+    isSocialCrawler &&
+    url.pathname === '/simulator' &&
+    url.searchParams.has('preset')
+  ) {
+    const presetParam = url.searchParams.get('preset')!;
+    let conditionNames: string[] = [];
+    try {
+      const decoded = JSON.parse(atob(presetParam));
+      if (decoded.c && Array.isArray(decoded.c)) {
+        conditionNames = decoded.c.map((c: { id: string }) =>
+          c.id.replace(/([A-Z])/g, ' $1').replace(/^./, (s: string) => s.toUpperCase()).trim()
+        );
+      }
+    } catch {
+      // Invalid preset, fall through
+    }
+
+    if (conditionNames.length > 0) {
+      const html = await fetchIndexHtml(env);
+      if (html) {
+        const conditionsStr = conditionNames.slice(0, 3).join(', ') + (conditionNames.length > 3 ? ` +${conditionNames.length - 3} more` : '');
+        const title = `See Through My Eyes — ${conditionsStr} | ${SITE_NAME}`;
+        const description = `Experience what vision looks like with ${conditionsStr}. Try the free interactive simulator.`;
+        const canonical = `${BASE_URL}/simulator?preset=${presetParam}`;
+        const image = `${BASE_URL}/og/preset-share.png`;
+        const ogTags = `
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="${escapeHtml(canonical)}" />
+    <meta property="og:title" content="${escapeHtml(title)}" />
+    <meta property="og:description" content="${escapeHtml(description)}" />
+    <meta property="og:image" content="${escapeHtml(image)}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="${SITE_NAME}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(title)}" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${escapeHtml(image)}" />`;
+        const result = injectMetaIntoHtml(html, title, description, canonical, ogTags);
+
+        return new Response(result, {
+          status: 200,
+          headers: {
+            'content-type': 'text/html; charset=utf-8',
+            'cache-control': 'public, max-age=3600',
+          },
+        });
+      }
+    }
+  }
+
   // 2. Search engine crawlers on any known route → route-specific meta
   if (isSearchEngine) {
     const routeMeta = ROUTE_META[url.pathname];

@@ -93,6 +93,7 @@
     "noResults": "No people found matching your search criteria.",
     "noResultsDesc": "Try adjusting your search or filters",
     "showingResults": "Showing {{count}} of {{total}} people",
+    "randomPerson": "Random Person",
     "hideTotalDarkness": "Hide total darkness simulations",
     "clearAllFilters": "Clear All Filters",
     "categories": {
@@ -348,6 +349,26 @@
     "fullscreen": "Fullscreen",
     "exitFullscreen": "Exit fullscreen"
   },
+  "tour": {
+    "step1Title": "Browse Vision Conditions",
+    "step1Desc": "Toggle conditions on and off to see how they affect vision. Use the search bar or quick filters to find specific conditions.",
+    "step2Title": "Adjust Severity",
+    "step2Desc": "Use the severity slider to see the range from mild to severe effects for each condition.",
+    "step3Title": "Compare Side-by-Side",
+    "step3Desc": "Compare the simulation with normal vision side-by-side to understand the difference.",
+    "step4Title": "Save Your Result",
+    "step4Desc": "Save a screenshot of your simulation to share or reference later.",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Got it!"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "home": "Home",
+    "simulator": "Simulator",
+    "famousPeople": "Famous People"
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
@@ -441,18 +462,73 @@
   "resourcesPage": {
     "title": "Resources",
     "subtitle": "Helpful resources for vision loss, mobility, and accessibility",
+    "categories": {
+      "organizations": "Organizations",
+      "assistiveTech": "Assistive Technology",
+      "education": "Education & Research",
+      "dailyLiving": "Daily Living",
+      "support": "Support & Advocacy"
+    },
     "resources": {
-      "braille": {
-        "title": "Two Blind Brothers - Braille Resources",
-        "description": "Learn about braille and find braille resources from Two Blind Brothers."
+      "nfb": {
+        "title": "National Federation of the Blind",
+        "description": "The largest organization of blind people in the United States, providing advocacy, education, research, technology, and programs encouraging independence."
+      },
+      "acb": {
+        "title": "American Council of the Blind",
+        "description": "Advocates for the civil rights, security, equality, and opportunity of all blind and visually impaired people."
+      },
+      "rnib": {
+        "title": "Royal National Institute of Blind People",
+        "description": "UK-based charity supporting people with vision loss through practical and emotional support, campaigning for change, and funding research."
+      },
+      "wbu": {
+        "title": "World Blind Union",
+        "description": "International organization representing the estimated 253 million people worldwide who are blind or partially sighted."
+      },
+      "perkins": {
+        "title": "Perkins School for the Blind",
+        "description": "Global leader in education for people with blindness and deafblindness, founded in 1829. Known for Helen Keller's early education."
+      },
+      "jaws": {
+        "title": "JAWS Screen Reader",
+        "description": "The world's most popular screen reader for Windows, providing speech and Braille output for computer applications and web browsing."
+      },
+      "nvda": {
+        "title": "NVDA - Free Screen Reader",
+        "description": "Free, open-source screen reader for Windows. Used by hundreds of thousands of people worldwide, available in 55+ languages."
+      },
+      "voiceover": {
+        "title": "Apple VoiceOver Guide",
+        "description": "Built-in screen reader for Mac, iPhone, iPad, and Apple Watch. Comprehensive guide to setting up and using VoiceOver effectively."
+      },
+      "bemyeyes": {
+        "title": "Be My Eyes",
+        "description": "Free app connecting blind and low-vision people with sighted volunteers and AI for visual assistance through live video calls."
       },
       "hadley": {
         "title": "Hadley - Learning Resources",
         "description": "Free educational workshops and resources for vision loss, including braille learning, daily living skills, and technology training."
       },
+      "visionaware": {
+        "title": "VisionAware",
+        "description": "Self-help resource for adults with vision loss, offering practical tips for independent living, technology guides, and personal stories."
+      },
+      "allaboutvision": {
+        "title": "All About Vision",
+        "description": "Comprehensive eye health resource with information about vision conditions, treatments, eyewear, and finding eye care professionals."
+      },
+      "braille": {
+        "title": "Two Blind Brothers - Braille Resources",
+        "description": "Learn about braille and find braille resources from Two Blind Brothers."
+      },
       "caneTips": {
         "title": "Ask a Blind Person - Cane Tips",
         "description": "Practical tips for white cane users to improve mobility and reduce common issues."
+      },
+      "guidedogs": {
+        "title": "Guide Dogs of America",
+        "description": "Provides guide dogs and training free of charge to blind and visually impaired individuals throughout the United States and Canada."
       },
       "freeCane": {
         "title": "NFB Free White Cane Program",
@@ -461,6 +537,10 @@
       "phoneLines": {
         "title": "Accessibility Support Phone Lines",
         "description": "A comprehensive list of accessibility support phone lines from major companies including Apple, Microsoft, Amazon, airlines, and telecommunications providers for customers with vision loss."
+      },
+      "ada": {
+        "title": "ADA.gov - Americans with Disabilities Act",
+        "description": "Official resource for the Americans with Disabilities Act, providing guidance on civil rights protections for individuals with disabilities including visual impairments."
       }
     }
   }

@@ -1,7 +1,7 @@
 {
   "short_name": "The Blind Spot",
   "name": "The Blind Spot - Vision Condition Simulator",
-  "description": "Experience and understand blindness and visual impairments through real-time simulations. Simulate color blindness, macular degeneration, glaucoma, and 30+ vision conditions.",
+  "description": "Experience and understand blindness and visual impairments through real-time simulations. Simulate color blindness, macular degeneration, glaucoma, and 148+ vision conditions.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -24,9 +24,29 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1976d2",
-  "background_color": "#ffffff",
-  "categories": ["education", "health", "accessibility"],
+  "background_color": "#15202b",
+  "categories": ["education", "health", "accessibility", "medical"],
   "lang": "en",
   "dir": "ltr",
-  "orientation": "any"
+  "orientation": "any",
+  "shortcuts": [
+    {
+      "name": "Vision Simulator",
+      "short_name": "Simulator",
+      "url": "/simulator",
+      "description": "Start the vision condition simulator"
+    },
+    {
+      "name": "Famous People",
+      "short_name": "Famous",
+      "url": "/famous-people",
+      "description": "Explore famous people with vision conditions"
+    },
+    {
+      "name": "Conditions Glossary",
+      "short_name": "Glossary",
+      "url": "/conditions",
+      "description": "Browse the vision conditions glossary"
+    }
+  ]
 }

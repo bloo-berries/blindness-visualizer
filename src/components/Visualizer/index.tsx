@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
-import { Download } from '@mui/icons-material';
+import { Download, CompareArrows } from '@mui/icons-material';
 import { generateEffectsDescription } from '../../utils/effectsDescription';
 import { createSceneManager } from '../../utils/threeSceneManager';
 import { createVisualizationMesh, updateShaderUniforms } from '../../utils/shaders';
@@ -459,24 +459,35 @@ const Visualizer: React.FC<VisualizerProps> = ({
           )}
 
           {!showComparison && (
-            <Box sx={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10000 }}>
+            <Box sx={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10000 }}>
               <Button
                 variant="contained"
-                color="primary"
-                size="small"
+                size="medium"
                 onClick={handleToggleComparison}
                 disabled={isLoading}
+                startIcon={<CompareArrows />}
+                data-tour-step="compare"
                 sx={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  color: 'white',
-                  fontSize: '0.7rem',
-                  px: 1.5,
-                  py: 0.5,
-                  minWidth: 'auto',
-                  '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  color: '#1e3a8a',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  px: 2,
+                  py: 0.75,
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                  animation: 'pulse-compare 2s ease-in-out 3',
+                  '@keyframes pulse-compare': {
+                    '0%, 100%': { boxShadow: '0 2px 8px rgba(0,0,0,0.3)' },
+                    '50%': { boxShadow: '0 2px 16px rgba(30,58,138,0.5)' },
+                  },
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 4px 12px rgba(30,58,138,0.4)',
+                  }
                 }}
               >
-                Compare to Normal Vision
+                Compare
               </Button>
             </Box>
           )}
@@ -571,6 +582,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
               onClick={handleSaveScreenshot}
               disabled={isSaving || isLoading}
               className="save-button"
+              data-tour-step="save"
               sx={{ minWidth: 140 }}
               title="Save your vision simulation result (Ctrl+S or Cmd+S)"
             >

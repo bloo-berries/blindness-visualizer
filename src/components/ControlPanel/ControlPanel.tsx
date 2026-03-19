@@ -170,7 +170,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
             {/* Severity slider - shown when there's a highlighted effect that's enabled */}
             {currentHighlightedEffect?.enabled && (
-              <Box sx={{ mt: 2, px: 1 }}>
+              <Box data-tour-step="severity" sx={{ mt: 2, px: 1 }}>
                 <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, color: 'text.secondary' }}>
                   {currentHighlightedEffect.name} Severity: {Math.round(currentHighlightedEffect.intensity * 100)}%
                 </Typography>

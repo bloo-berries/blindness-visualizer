@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Container,
@@ -13,6 +13,8 @@ import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import PageMeta from './PageMeta';
+import GuidedTour from './GuidedTour';
+import PresetManager, { decodePreset } from './PresetManager';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
@@ -20,6 +22,7 @@ import { createDefaultEffects } from '../data/visualEffects';
 const VisionSimulator: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [inputSource, setInputSource] = useState<InputSource>({
@@ -34,6 +37,28 @@ const VisionSimulator: React.FC = () => {
   const [diplopiaSeparation, setDiplopiaSeparation] = useState(1.0);
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
   const [showComparison, setShowComparison] = useState(false);
+
+  // Handle URL preset loading
+  const hasLoadedPreset = useRef(false);
+  useEffect(() => {
+    if (hasLoadedPreset.current) return;
+    const presetParam = searchParams.get('preset');
+    if (presetParam) {
+      hasLoadedPreset.current = true;
+      const conditions = decodePreset(presetParam);
+      if (conditions) {
+        setEffects(prevEffects =>
+          prevEffects.map(effect => {
+            const match = conditions.find(c => c.id === effect.id);
+            return match
+              ? { ...effect, enabled: true, intensity: match.intensity }
+              : { ...effect, enabled: false };
+          })
+        );
+        setActiveStep(1);
+      }
+    }
+  }, [searchParams]);
 
   // Handle pre-configured conditions from famous people page
   useEffect(() => {
@@ -85,6 +110,17 @@ const VisionSimulator: React.FC = () => {
 
   const handleDeselectAll = useCallback(() => {
     setEffects(prevEffects => prevEffects.map(effect => ({ ...effect, enabled: false })));
+  }, []);
+
+  const handleLoadPreset = useCallback((conditions: { id: string; intensity: number }[]) => {
+    setEffects(prevEffects =>
+      prevEffects.map(effect => {
+        const match = conditions.find(c => c.id === effect.id);
+        return match
+          ? { ...effect, enabled: true, intensity: match.intensity }
+          : { ...effect, enabled: false };
+      })
+    );
   }, []);
 
   const handleIntensityChange = useCallback((id: string, intensity: number) => {
@@ -169,6 +205,11 @@ const VisionSimulator: React.FC = () => {
                 </Box>
               }
             />
+            {!isFamousPeopleMode && (
+              <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid', borderColor: 'divider' }}>
+                <PresetManager effects={effects} onLoadPreset={handleLoadPreset} />
+              </Box>
+            )}
           </Box>
         );
       default:
@@ -303,6 +344,7 @@ const VisionSimulator: React.FC = () => {
           {getStepContent(activeStep)}
 
         </Paper>
+        {activeStep === 1 && !isFamousPeopleMode && <GuidedTour />}
       </Container>
       <Footer />
     </Box>

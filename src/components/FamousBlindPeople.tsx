@@ -17,6 +17,7 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
+import { Shuffle as ShuffleIcon } from '@mui/icons-material';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import PageMeta, { BASE_URL } from './PageMeta';
@@ -203,6 +204,11 @@ const FamousBlindPeople: React.FC = () => {
     setHideCompleteBlindness(false);
   }, []);
 
+  const handleRandomPerson = useCallback(() => {
+    const randomIndex = Math.floor(Math.random() * PERSON_IDS.length);
+    updateSelectedPerson(PERSON_IDS[randomIndex]);
+  }, [updateSelectedPerson]);
+
   const handleHomeClick = useCallback(() => {
     navigate('/');
   }, [navigate]);
@@ -374,6 +380,9 @@ const FamousBlindPeople: React.FC = () => {
                   </Typography>
                 }
               />
+              <Button onClick={handleRandomPerson} variant="outlined" size="small" startIcon={<ShuffleIcon />}>
+                {t('famousPeople.randomPerson', 'Random Person')}
+              </Button>
               <Button onClick={clearFilters} variant="outlined" size="small">
                 {t('buttons.clearFilters')}
               </Button>

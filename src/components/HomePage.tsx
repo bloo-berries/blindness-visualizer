@@ -82,10 +82,10 @@ const HomePage: React.FC = () => {
               gutterBottom
               id="main-heading"
               sx={{
-                fontSize: { xs: '2rem', md: '2.8rem' },
+                fontSize: { xs: '1.6rem', md: '2.2rem' },
                 fontWeight: 700,
                 color: 'text.primary',
-                mb: 1.5
+                mb: 0
               }}
             >
               <Box component="span" sx={{ color: 'var(--color-primary-accent)' }}>

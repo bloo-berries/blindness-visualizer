@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Box, Typography, Button, IconButton } from '@mui/material';
+import { Box, Typography, Button, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import { Close, ArrowForward, ArrowBack } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 
@@ -47,12 +47,19 @@ interface GuidedTourProps {
 
 const GuidedTour: React.FC<GuidedTourProps> = ({ forceShow, onComplete }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Don't show tour on mobile - not enough screen space
+    if (isMobile) {
+      setIsVisible(false);
+      return;
+    }
     if (forceShow) {
       setIsVisible(true);
       return;
@@ -63,7 +70,7 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ forceShow, onComplete }) => {
       const timer = setTimeout(() => setIsVisible(true), 1500);
       return () => clearTimeout(timer);
     }
-  }, [forceShow]);
+  }, [forceShow, isMobile]);
 
   const updateTargetRect = useCallback(() => {
     if (!isVisible) return;

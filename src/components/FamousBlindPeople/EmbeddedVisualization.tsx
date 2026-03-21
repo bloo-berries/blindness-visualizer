@@ -4,7 +4,8 @@ import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
 import { getSimulationConditions } from '../../utils/famousPeopleUtils';
 import { generateCSSFilters } from '../../utils/cssFilters';
-import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
+import { YOUTUBE_EMBED_URL } from '../../utils/appConstants';
+import YouTubeEmbed from '../YouTubeEmbed';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from '../Visualizer/hooks/animatedOverlays/neoMatrixCodeVision';
@@ -134,8 +135,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             filter: cssFilters || 'none'
           }}
         >
-          <iframe
-            {...YOUTUBE_IFRAME_PROPS}
+          <YouTubeEmbed
             src={YOUTUBE_EMBED_URL}
             title={`Vision simulation for ${personName}`}
             aria-label={`YouTube video with ${personName}'s vision condition simulation applied`}

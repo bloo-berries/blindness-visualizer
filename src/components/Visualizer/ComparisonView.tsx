@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
-import { YOUTUBE_IFRAME_PROPS, YOUTUBE_EMBED_URL } from '../../utils/appConstants';
+import { YOUTUBE_EMBED_URL } from '../../utils/appConstants';
+import YouTubeEmbed from '../YouTubeEmbed';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from './hooks/animatedOverlays/neoMatrixCodeVision';
@@ -138,8 +139,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
                 aspectRatio: '16 / 9',
                 overflow: 'hidden'
               }}>
-                <iframe
-                  {...YOUTUBE_IFRAME_PROPS}
+                <YouTubeEmbed
                   src={YOUTUBE_EMBED_URL}
                   title="Vision simulation video with applied visual effects"
                   aria-label="YouTube video with vision condition simulation applied"
@@ -252,8 +252,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
               aspectRatio: '16 / 9',
               overflow: 'hidden'
             }}>
-              <iframe
-                {...YOUTUBE_IFRAME_PROPS}
+              <YouTubeEmbed
                 src={YOUTUBE_EMBED_URL}
                 title="Original YouTube video"
                 style={{

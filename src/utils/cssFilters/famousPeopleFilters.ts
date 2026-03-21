@@ -1,0 +1,35 @@
+// Re-export all famous people filters from the split directory
+// This maintains backward compatibility with existing imports
+
+export {
+  galileoFilterConfigs,
+  monetFilterConfigs,
+  christineFilterConfigs,
+  lucyFilterConfigs,
+  minkaraFilterConfigs,
+  joshuaFilterConfigs,
+  milaFilterConfigs,
+  judiFilterConfigs,
+  sugarFilterConfigs,
+  generateAmadouFilters,
+  stephenFilterConfigs,
+  generateDavidBrownFilters,
+  generateLexFilters,
+  crazzysteveFilterConfigs,
+  generateTofiriFilters,
+  generatePlateauFilters,
+  generateEulerFilters,
+  heatherFilterConfigs,
+  generateNemethFilters,
+  daredevilFilterConfigs,
+  geordiFilterConfigs,
+  blindspotFilterConfigs,
+  joseCidFilterConfigs,
+  tophFilterConfigs,
+  generateCustomFamousPeopleFilters,
+  anselmoFilterConfigs,
+  margaritaFilterConfigs,
+  fujitoraFilterConfigs,
+  chirrutFilterConfigs,
+  juliaCarpenterFilterConfigs
+} from './famousPeopleFilters/index';

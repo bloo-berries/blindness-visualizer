@@ -9,7 +9,8 @@ import { createVisualizationMesh, updateShaderUniforms } from '../../utils/shade
 import { generateCSSFilters } from '../../utils/cssFilters';
 import { updateSVGFilters } from '../../utils/svgFilterManager';
 import { getColorVisionFilter } from '../../utils/colorVisionFilters';
-import { YOUTUBE_EMBED_URL, YOUTUBE_IFRAME_PROPS, getFamousPersonVideoUrl } from '../../utils/appConstants';
+import { YOUTUBE_EMBED_URL, getFamousPersonVideoUrl } from '../../utils/appConstants';
+import YouTubeEmbed from '../YouTubeEmbed';
 import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../../utils/performance';
 import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
 import { useAnimationTicker } from '../../hooks';
@@ -514,8 +515,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
               overflow: 'hidden',
               filter: computeFilterString() || 'none'
             }}>
-              <iframe
-                {...YOUTUBE_IFRAME_PROPS}
+              <YouTubeEmbed
                 src={YOUTUBE_EMBED_URL}
                 title="YouTube video player"
                 style={{

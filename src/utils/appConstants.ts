@@ -7,7 +7,7 @@
  * YouTube demo video IDs used throughout the application
  * Different videos for different contexts to provide more appropriate content
  */
-const DEMO_VIDEO_ID = '6BPuGeS6O4w'; // Default demo video
+export const DEMO_VIDEO_ID = '6BPuGeS6O4w'; // Default demo video
 const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be customized per person
 
 /**
@@ -20,9 +20,9 @@ const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be 
  * - playsinline=1: inline playback on mobile (avoids fullscreen)
  * - disablekb=1: disable keyboard controls (not needed)
  * - iv_load_policy=3: disable annotations
- * - vq=hd720: request 720p quality to avoid blurry playback
+ * - vq=hd1080: request 1080p quality to avoid blurry playback
  */
-const YOUTUBE_PARAMS = 'autoplay=1&mute=1&controls=0&enablejsapi=1&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd720';
+const YOUTUBE_PARAMS = 'autoplay=1&mute=1&controls=0&enablejsapi=1&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd1080';
 
 export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?${YOUTUBE_PARAMS}`;
 

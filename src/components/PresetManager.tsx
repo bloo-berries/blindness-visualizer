@@ -322,9 +322,9 @@ const PresetManager: React.FC<PresetManagerProps> = ({ effects, onLoadPreset }) 
             </Typography>
           ) : (
             <Stack spacing={1} sx={{ pt: 1 }}>
-              {savedPresets.map((preset, index) => (
+              {savedPresets.map((preset) => (
                 <Box
-                  key={index}
+                  key={preset.createdAt}
                   sx={{
                     display: 'flex',
                     justifyContent: 'space-between',

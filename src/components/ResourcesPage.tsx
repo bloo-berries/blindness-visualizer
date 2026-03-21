@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Container,
@@ -174,6 +175,7 @@ const resourceCategories: ResourceCategory[] = [
 
 const ResourcesPage: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -182,14 +184,14 @@ const ResourcesPage: React.FC = () => {
         description="Explore curated resources about vision conditions, accessibility, assistive technology, and organizations supporting people with visual impairments."
         path="/resources"
       />
-      <NavigationBar />
+      <NavigationBar showHomeButton={true} onHomeClick={() => navigate('/')} />
       <Box sx={{ pt: '80px', pb: 10 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1000px', py: 4 }}>
           {/* Hero Section */}
           <Box sx={{ textAlign: 'center', mb: 6 }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{
               fontWeight: 700,
-              background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
+              background: 'linear-gradient(45deg, var(--color-primary), var(--color-primary-accent, #42a5f5))',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -203,16 +205,16 @@ const ResourcesPage: React.FC = () => {
           </Box>
 
           {/* Categorized Resources */}
-          {resourceCategories.map((category, catIndex) => (
-            <Box key={catIndex} sx={{ mb: 5 }}>
+          {resourceCategories.map((category) => (
+            <Box key={category.nameKey} sx={{ mb: 5 }}>
               <Typography variant="h4" component="h2" sx={{ fontWeight: 600, mb: 1 }}>
                 {t(category.nameKey)}
               </Typography>
               <Divider sx={{ mb: 3 }} />
 
-              {category.resources.map((resource, index) => (
+              {category.resources.map((resource) => (
                 <Paper
-                  key={index}
+                  key={resource.titleKey}
                   elevation={2}
                   sx={{
                     p: 3,

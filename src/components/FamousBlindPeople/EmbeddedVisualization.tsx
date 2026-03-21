@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
 import { getSimulationConditions } from '../../utils/famousPeopleUtils';
@@ -26,6 +27,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   simulation,
   personName
 }) => {
+  const { t } = useTranslation();
+
   // Create effects array with the person's conditions enabled
   const effects: VisualEffect[] = useMemo(() => {
     const conditionIds = getSimulationConditions(simulation);
@@ -71,7 +74,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 500 }}>
-        Vision Simulation Preview
+        {t('famousPeople.dialog.visionSimulationPreview', 'Vision Simulation Preview')}
       </Typography>
 
       <Box
@@ -99,7 +102,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             fontSize: '10px'
           }}
         >
-          Simulation
+          {t('comparison.simulation', 'Simulation')}
         </Box>
 
         {/* Complete blindness / near-total blindness notification */}
@@ -120,7 +123,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
               maxWidth: '85%'
             }}
           >
-            Complete blindness - Total darkness
+            {t('comparison.completeBlindnessTotalDarkness', 'Complete blindness - Total darkness')}
           </Box>
         )}
 

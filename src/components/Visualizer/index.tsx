@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
+import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
 import { Download, CompareArrows } from '@mui/icons-material';
@@ -40,6 +41,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   onToggleComparison,
   isFamousPeopleMode = false
 }) => {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
@@ -404,7 +406,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
           aria-label="Loading visualization"
         >
           <CircularProgress />
-          <Typography sx={{ ml: 2 }}>Loading visualization...</Typography>
+          <Typography sx={{ ml: 2 }}>{t('visualizer.loading', 'Loading visualization...')}</Typography>
         </Box>
       )}
 
@@ -534,8 +536,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
                 <div key={i} style={style} aria-hidden="true" />
               ))}
               {/* Animated overlay for visual aura, PPVP, and other animated effects */}
+              {/* Visual disturbances render above visual field loss overlays */}
               {animatedOverlayStyle && (
-                <div style={animatedOverlayStyle} aria-hidden="true" />
+                <div style={{ ...animatedOverlayStyle, zIndex: 10000 }} aria-hidden="true" />
               )}
               {/* Neo Matrix Code Vision canvas overlay */}
               {neoEffect && (

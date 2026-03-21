@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   Box,
   Card,
@@ -12,7 +12,8 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  IconButton
+  IconButton,
+  Snackbar
 } from '@mui/material';
 import {
   Videocam,
@@ -27,6 +28,8 @@ import { useTranslation } from 'react-i18next';
 import { InputSource } from '../types/visualEffects';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
+const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+
 interface InputSelectorProps {
   currentSource: InputSource;
   onSourceChange: (source: InputSource) => void;
@@ -34,9 +37,20 @@ interface InputSelectorProps {
 
 const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceChange }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const blobUrlRef = useRef<string | null>(null);
   const { preferences } = useAccessibility();
   const { t } = useTranslation();
   const [dataPolicyOpen, setDataPolicyOpen] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  // Revoke blob URL on unmount
+  useEffect(() => {
+    return () => {
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+      }
+    };
+  }, []);
 
   const inputOptions = [
     {
@@ -230,7 +244,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                       <Box sx={{ mt: 0.5 }}>
                         <Chip
                           icon={<Star sx={{ color: 'var(--color-primary-accent) !important' }} />}
-                          label="Coming Soon: Premium Feature"
+                          label={t('inputSelector.comingSoon', 'Coming Soon: Premium Feature')}
                           variant="outlined"
                           sx={{
                             fontWeight: 'bold',
@@ -268,7 +282,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
             }
           }}
         >
-          Data Policy
+          {t('inputSelector.dataPolicy', 'Data Policy')}
         </Link>
       </Box>
 
@@ -283,7 +297,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         <DialogTitle id="data-policy-title" sx={{ pb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
           <Security fontSize="small" color="primary" />
           <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
-            Data Policy
+            {t('inputSelector.dataPolicy', 'Data Policy')}
           </Typography>
           <IconButton
             aria-label="close"
@@ -295,21 +309,21 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
         </DialogTitle>
         <DialogContent>
           <Typography variant="body2" paragraph>
-            <strong>Your privacy is protected.</strong>
+            <strong>{t('inputSelector.dataPolicyPrivacy', 'Your privacy is protected.')}</strong>
           </Typography>
           <Typography variant="body2" paragraph>
-            When you upload a photo or use your webcam, your images and video stay entirely on your device. There is no server communication - we never upload, store, or transmit your images anywhere.
+            {t('inputSelector.dataPolicyBody1', 'When you upload a photo or use your webcam, your images and video stay entirely on your device. There is no server communication - we never upload, store, or transmit your images anywhere.')}
           </Typography>
           <Typography variant="body2" paragraph>
-            The image exists only in your browser's local memory during your session. It's automatically deleted when you navigate away or close your browser tab.
+            {t('inputSelector.dataPolicyBody2', 'The image exists only in your browser\'s local memory during your session. It\'s automatically deleted when you navigate away or close your browser tab.')}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
-            This application runs entirely in your browser with no backend server for image processing.
+            {t('inputSelector.dataPolicyBody3', 'This application runs entirely in your browser with no backend server for image processing.')}
           </Typography>
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 2 }}>
           <Button onClick={() => setDataPolicyOpen(false)} variant="contained" size="small">
-            Got it
+            {t('inputSelector.gotIt', 'Got it')}
           </Button>
         </DialogActions>
       </Dialog>
@@ -323,24 +337,53 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
             const file = e.target.files?.[0];
 
             if (file) {
-              const imageUrl = URL.createObjectURL(file);
+              // Validate file type
+              if (!file.type.startsWith('image/')) {
+                setUploadError(t('inputSelector.invalidFileType', 'Please select a valid image file.'));
+                return;
+              }
+              // Validate file size
+              if (file.size > MAX_FILE_SIZE) {
+                setUploadError(t('inputSelector.fileTooLarge', 'File is too large. Maximum size is 20MB.'));
+                return;
+              }
 
-              onSourceChange({ 
-                type: 'image', 
-                url: imageUrl 
-              });
-              // Announce to screen readers
-              const announcement = document.createElement('div');
-              announcement.setAttribute('role', 'status');
-              announcement.setAttribute('aria-live', 'polite');
-              announcement.textContent = `Image ${file.name} loaded successfully`;
-              document.body.appendChild(announcement);
-              setTimeout(() => document.body.removeChild(announcement), 1000);
+              // Revoke previous blob URL to prevent memory leak
+              if (blobUrlRef.current) {
+                URL.revokeObjectURL(blobUrlRef.current);
+              }
+
+              try {
+                const imageUrl = URL.createObjectURL(file);
+                blobUrlRef.current = imageUrl;
+
+                onSourceChange({
+                  type: 'image',
+                  url: imageUrl
+                });
+                // Announce to screen readers
+                const announcement = document.createElement('div');
+                announcement.setAttribute('role', 'status');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.textContent = t('inputSelector.imageLoaded', { name: file.name, defaultValue: `Image ${file.name} loaded successfully` });
+                document.body.appendChild(announcement);
+                setTimeout(() => document.body.removeChild(announcement), 1000);
+              } catch {
+                setUploadError(t('inputSelector.uploadFailed', 'Failed to load image. Please try again.'));
+              }
             }
           }}
           aria-label="Upload an image"
         />
       </Box>
+
+      <Snackbar
+        open={!!uploadError}
+        autoHideDuration={5000}
+        onClose={() => setUploadError(null)}
+        message={uploadError}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 };

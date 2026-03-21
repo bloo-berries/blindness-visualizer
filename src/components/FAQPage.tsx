@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, 
-  Typography, 
-  Box, 
+import {
+  Container,
+  Typography,
+  Box,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Button,
   List,
   ListItem,
   ListItemIcon,
@@ -343,11 +344,6 @@ const FAQPage: React.FC = () => {
     navigate('/');
   };
 
-  const getCategoryColor = (category: string) => {
-    // Use the same blue color for all categories
-    return 'var(--color-primary)';
-  };
-
   return (
     <Box className="faq-page" sx={{ pb: 10 }}>
       <PageMeta
@@ -392,10 +388,10 @@ const FAQPage: React.FC = () => {
                 expandIcon={<ExpandMoreIcon />}
                 className="faq-summary"
                 sx={{
-                  backgroundColor: getCategoryColor(faq.category),
+                  backgroundColor: 'var(--color-primary)',
                   color: 'white',
                   '&:hover': {
-                    backgroundColor: getCategoryColor(faq.category),
+                    backgroundColor: 'var(--color-primary)',
                     opacity: 0.9,
                   },
                   '& .MuiAccordionSummary-content': {
@@ -450,9 +446,31 @@ const FAQPage: React.FC = () => {
             and it's always best to ask individuals about their specific needs and preferences.
           </Typography>
           <Typography variant="body1" className="faq-info-text">
-            For more detailed information about specific vision conditions, visit our <strong>Conditions Glossary</strong> page.
+            For more detailed information about specific vision conditions, visit our{' '}
+            <strong
+              style={{ cursor: 'pointer', textDecoration: 'underline' }}
+              onClick={() => navigate('/conditions')}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter') navigate('/conditions'); }}
+            >
+              Conditions Glossary
+            </strong>{' '}
+            page.
           </Typography>
         </Paper>
+
+        {/* CTA to simulator */}
+        <Box sx={{ textAlign: 'center', mt: 4 }}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => navigate('/simulator')}
+            sx={{ px: 4, py: 1.5, fontSize: '1rem', fontWeight: 600 }}
+          >
+            Try the Simulator
+          </Button>
+        </Box>
       </Container>
 
       <Footer />

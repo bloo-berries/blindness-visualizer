@@ -96,7 +96,7 @@ function buildTheme(mode: ThemeMode) {
       background: p.background,
       text: p.text,
       divider: p.divider,
-      grey: p.grey as any,
+      grey: p.grey as Record<string, string>,
     },
     typography: {
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -232,15 +232,15 @@ const ThemedApp: React.FC = () => {
           }}
         >
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/simulator" element={<VisionSimulator />} />
-            <Route path="/famous-people" element={<FamousBlindPeople />} />
-            <Route path="/conditions" element={<ConditionsPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/feedback" element={<FeedbackPage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" element={<ErrorBoundary><HomePage /></ErrorBoundary>} />
+            <Route path="/simulator" element={<ErrorBoundary><VisionSimulator /></ErrorBoundary>} />
+            <Route path="/famous-people" element={<ErrorBoundary><FamousBlindPeople /></ErrorBoundary>} />
+            <Route path="/conditions" element={<ErrorBoundary><ConditionsPage /></ErrorBoundary>} />
+            <Route path="/faq" element={<ErrorBoundary><FAQPage /></ErrorBoundary>} />
+            <Route path="/about" element={<ErrorBoundary><AboutPage /></ErrorBoundary>} />
+            <Route path="/feedback" element={<ErrorBoundary><FeedbackPage /></ErrorBoundary>} />
+            <Route path="/resources" element={<ErrorBoundary><ResourcesPage /></ErrorBoundary>} />
+            <Route path="*" element={<ErrorBoundary><NotFoundPage /></ErrorBoundary>} />
           </Routes>
         </Router>
       </Suspense>

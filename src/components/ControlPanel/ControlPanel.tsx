@@ -5,9 +5,11 @@ import {
   Typography,
   Slider,
   Chip,
-  Collapse
+  Collapse,
+  Tooltip
 } from '@mui/material';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { KeyboardArrowDown, KeyboardArrowUp, Undo as UndoIcon } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
 import { EffectList } from './EffectList';
@@ -24,6 +26,8 @@ interface ControlPanelProps {
   onDiplopiaDirectionChange?: (direction: number) => void;
   visualizerSlot?: React.ReactNode;
   inputSource?: InputSource;
+  onUndo?: () => void;
+  canUndo?: boolean;
 }
 
 const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -36,8 +40,11 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   onDiplopiaSeparationChange,
   onDiplopiaDirectionChange,
   visualizerSlot,
-  inputSource
+  inputSource,
+  onUndo,
+  canUndo = false
 }) => {
+  const { t } = useTranslation();
   // State for highlighted effect in the list (for UI indication)
   const [highlightedEffect, setHighlightedEffect] = useState<VisualEffect | null>(
     effects.find(effect => effect.enabled) || null
@@ -120,7 +127,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       <ControlPanelStyles />
       <Box
         role="region"
-        aria-label="Vision condition controls"
+        aria-label={t('controlPanel.ariaLabel', 'Vision condition controls')}
         sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}
       >
         {/* Screen Reader Announcements for Condition Changes */}
@@ -172,7 +179,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
             {currentHighlightedEffect?.enabled && (
               <Box data-tour-step="severity" sx={{ mt: 2, px: 1 }}>
                 <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, color: 'text.secondary' }}>
-                  {currentHighlightedEffect.name} Severity: {Math.round(currentHighlightedEffect.intensity * 100)}%
+                  {currentHighlightedEffect.name} {t('controlPanel.severity', 'Severity')}: {Math.round(currentHighlightedEffect.intensity * 100)}%
                 </Typography>
                 <Slider
                   size="small"
@@ -191,7 +198,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {enabledEffectsCount > 0 ? (
                   <Chip
-                    label={`${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected`}
+                    label={t('controlPanel.conditionsSelected', { count: enabledEffectsCount, defaultValue: `${enabledEffectsCount} condition${enabledEffectsCount > 1 ? 's' : ''} selected` })}
                     color="primary"
                     onClick={() => setShowSelectedConditions(!showSelectedConditions)}
                     onDelete={() => setShowSelectedConditions(!showSelectedConditions)}
@@ -201,15 +208,33 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 ) : (
                   <Box />
                 )}
-                <Button
-                  variant="outlined"
-                  onClick={onDeselectAll}
-                  disabled={enabledEffectsCount === 0}
-                  aria-label="Deselect all vision conditions"
-                  size="small"
-                >
-                  Deselect All
-                </Button>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  {onUndo && (
+                    <Tooltip title={t('controlPanel.undo', 'Undo')}>
+                      <span>
+                        <Button
+                          variant="outlined"
+                          onClick={onUndo}
+                          disabled={!canUndo}
+                          aria-label={t('controlPanel.undoAriaLabel', 'Undo last action')}
+                          size="small"
+                          sx={{ minWidth: 'auto', px: 1 }}
+                        >
+                          <UndoIcon fontSize="small" />
+                        </Button>
+                      </span>
+                    </Tooltip>
+                  )}
+                  <Button
+                    variant="outlined"
+                    onClick={onDeselectAll}
+                    disabled={enabledEffectsCount === 0}
+                    aria-label={t('controlPanel.deselectAllAriaLabel', 'Deselect all vision conditions')}
+                    size="small"
+                  >
+                    {t('buttons.deselectAll', 'Deselect All')}
+                  </Button>
+                </Box>
               </Box>
               <Collapse in={showSelectedConditions}>
                 <Box sx={{

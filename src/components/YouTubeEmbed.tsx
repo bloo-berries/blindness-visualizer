@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, memo } from 'react';
+import React, { useRef, useEffect, useState, memo } from 'react';
+import { Box, Typography, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { YOUTUBE_IFRAME_PROPS } from '../utils/appConstants';
 
 interface YouTubeEmbedProps {
@@ -22,6 +24,8 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
   'aria-label': ariaLabel,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [hasError, setHasError] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -41,7 +45,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
 
     // Listen for YouTube player ready/state messages from our iframe
     const handleMessage = (event: MessageEvent) => {
-      if (!event.origin.includes('youtube.com')) return;
+      if (event.origin !== 'https://www.youtube.com') return;
       // Only respond to messages from our specific iframe
       if (event.source !== iframe.contentWindow) return;
 
@@ -74,6 +78,38 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
     };
   }, [src]);
 
+  if (hasError) {
+    return (
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#1a1a1a',
+        color: 'white',
+        gap: 2,
+        ...(style || { position: 'absolute', top: 0, left: 0 })
+      }}>
+        <Typography variant="body1" sx={{ fontWeight: 500 }}>
+          {t('inputSelector.videoUnavailable', 'Video unavailable')}
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+          {t('inputSelector.videoUnavailableDesc', 'The video could not be loaded. Please try again.')}
+        </Typography>
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => setHasError(false)}
+          sx={{ color: 'white', borderColor: 'rgba(255,255,255,0.5)' }}
+        >
+          {t('inputSelector.retry', 'Retry')}
+        </Button>
+      </Box>
+    );
+  }
+
   return (
     <iframe
       ref={iframeRef}
@@ -82,6 +118,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
       title={title}
       tabIndex={tabIndex}
       aria-label={ariaLabel}
+      onError={() => setHasError(true)}
       style={style || {
         position: 'absolute',
         top: 0,

@@ -131,9 +131,14 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
   // Memoize object position
   const objectPosition = useMemo(() => getObjectPosition(personId), [personId]);
 
-  // Intersection Observer for lazy loading
+  // Intersection Observer for lazy loading (with fallback for older browsers)
   useEffect(() => {
     if (shouldLoad || !cardRef.current) return;
+
+    if (!('IntersectionObserver' in window)) {
+      setShouldLoad(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {

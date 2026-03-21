@@ -93,6 +93,18 @@ const HomePage: React.FC = () => {
               </Box>
               {' '}{t('home.titleHighlight')}
             </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: 'text.secondary',
+                mt: 1.5,
+                fontSize: { xs: '0.95rem', md: '1.1rem' },
+                maxWidth: '600px',
+                mx: 'auto'
+              }}
+            >
+              {t('home.subtitle', 'Understand vision conditions through real-time, research-based simulations.')}
+            </Typography>
           </Box>
 
           {/* Main Options */}
@@ -121,19 +133,25 @@ const HomePage: React.FC = () => {
                         {t('home.card1Title')}
                       </Typography>
                       <Box sx={{ mb: { xs: 1, md: 2 }, mt: { xs: 2, md: 5.5 }, width: '100%' }}>
-                        <img
-                          src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.webp`}
-                          alt="Example vision condition comparison"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                          style={{
-                            width: '100%',
-                            height: 'auto',
-                            borderRadius: '8px',
-                            display: 'block'
-                          }}
-                        />
+                        <picture>
+                          <source
+                            srcSet={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.webp`}
+                            type="image/webp"
+                          />
+                          <img
+                            src={`${process.env.PUBLIC_URL || ''}/images/home-page/example-comparison.jpg`}
+                            alt="Example vision condition comparison"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                            style={{
+                              width: '100%',
+                              height: 'auto',
+                              borderRadius: '8px',
+                              display: 'block'
+                            }}
+                          />
+                        </picture>
                       </Box>
                     </Box>
                   </Box>
@@ -201,6 +219,7 @@ const HomePage: React.FC = () => {
                             <img
                               src={getPersonImagePath(id)}
                               alt={alt}
+                              loading="lazy"
                               style={{
                                 width: '100%',
                                 height: '100%',
@@ -286,7 +305,10 @@ const HomePage: React.FC = () => {
                 sx={{
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  whiteSpace: 'normal'
                 }}
                 style={{ color: preferences.highContrast ? '#000000' : undefined }}
               >

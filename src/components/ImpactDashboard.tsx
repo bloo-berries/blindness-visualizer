@@ -62,6 +62,10 @@ const ImpactDashboard: React.FC = () => {
   const isMobile = useMediaQuery(useTheme().breakpoints.down('sm'));
 
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
       { threshold: 0.3 }

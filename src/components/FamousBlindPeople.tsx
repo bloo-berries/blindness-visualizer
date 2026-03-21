@@ -14,6 +14,7 @@ import {
   Button,
   FormControlLabel,
   Switch,
+  Chip,
   useTheme,
   useMediaQuery
 } from '@mui/material';
@@ -358,9 +359,47 @@ const FamousBlindPeople: React.FC = () => {
           </Grid>
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
-            <Typography variant="body2" className="famous-people-filter-text" sx={{ color: preferences.highContrast ? '#000000' : 'var(--color-text-primary)' }}>
-              {t('famousPeople.showingResults', { count: filteredPeople.length, total: PERSON_COUNT })}
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+              <Typography variant="body2" className="famous-people-filter-text" sx={{ color: preferences.highContrast ? '#000000' : 'var(--color-text-primary)' }}>
+                {t('famousPeople.showingResults', { count: filteredPeople.length, total: PERSON_COUNT })}
+              </Typography>
+              {categoryFilter && (
+                <Chip
+                  label={categoryFilter}
+                  size="small"
+                  onDelete={() => setCategoryFilter('')}
+                  color="primary"
+                  variant="outlined"
+                />
+              )}
+              {conditionFilter && (
+                <Chip
+                  label={conditionFilter}
+                  size="small"
+                  onDelete={() => setConditionFilter('')}
+                  color="primary"
+                  variant="outlined"
+                />
+              )}
+              {countryFilter && (
+                <Chip
+                  label={countryFilter}
+                  size="small"
+                  onDelete={() => setCountryFilter('')}
+                  color="primary"
+                  variant="outlined"
+                />
+              )}
+              {hideCompleteBlindness && (
+                <Chip
+                  label={t('famousPeople.hideTotalDarkness')}
+                  size="small"
+                  onDelete={() => setHideCompleteBlindness(false)}
+                  color="primary"
+                  variant="outlined"
+                />
+              )}
+            </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <FormControlLabel
                 control={

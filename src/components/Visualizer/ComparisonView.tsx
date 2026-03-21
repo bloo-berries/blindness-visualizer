@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { YOUTUBE_EMBED_URL } from '../../utils/appConstants';
 import YouTubeEmbed from '../YouTubeEmbed';
@@ -44,6 +45,8 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   // Check for Neo Matrix Code Vision (requires canvas-based rendering)
   const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
 
+  const { t } = useTranslation();
+
   // Detect mobile screen for responsive layout
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -72,7 +75,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         }}
       >
         {effects.filter(e => e.enabled).length > 0 &&
-          `Simulation active with ${effects.filter(e => e.enabled).length} vision condition${effects.filter(e => e.enabled).length > 1 ? 's' : ''} applied`
+          t('comparison.screenReaderActive', {
+            count: effects.filter(e => e.enabled).length,
+            defaultValue: `Simulation active with ${effects.filter(e => e.enabled).length} vision condition${effects.filter(e => e.enabled).length > 1 ? 's' : ''} applied`
+          })
         }
       </Box>
 
@@ -80,8 +86,8 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
       {effects.some(e => e.id === 'completeBlindness' && e.enabled) && (
         <Box sx={{
           position: 'absolute',
-          top: '50px',
-          left: '25%',
+          top: isMobile ? '25%' : '50px',
+          left: isMobile ? '50%' : '25%',
           transform: 'translateX(-50%)',
           zIndex: 1002,
           backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -90,9 +96,9 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           borderRadius: '4px',
           fontSize: '12px',
           textAlign: 'center',
-          maxWidth: '45%'
+          maxWidth: isMobile ? '90%' : '45%'
         }}>
-          Complete blindness - The blackness shown is the accurate visualization. Audio is still playing.
+          {t('comparison.completeBlindness', 'Complete blindness - The blackness shown is the accurate visualization. Audio is still playing.')}
         </Box>
       )}
 
@@ -117,7 +123,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           borderRadius: '4px',
           fontSize: '12px'
         }}>
-          Simulation
+          {t('comparison.simulation', 'Simulation')}
         </Box>
         <div ref={simulationContainerRef} style={getEffectStyles()}>
           {inputSource.type === 'youtube' ? (
@@ -205,7 +211,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
               justifyContent: 'center',
               color: 'white'
             }}>
-              <Typography>Simulation content would appear here</Typography>
+              <Typography>{t('comparison.simulationPlaceholder', 'Simulation content would appear here')}</Typography>
             </Box>
           )}
         </div>
@@ -231,7 +237,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           borderRadius: '4px',
           fontSize: '12px'
         }}>
-          Original
+          {t('comparison.original', 'Original')}
         </Box>
         {inputSource.type === 'youtube' ? (
           <div style={{
@@ -286,7 +292,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
             justifyContent: 'center',
             color: 'white'
           }}>
-            <Typography>Original content would appear here</Typography>
+            <Typography>{t('comparison.originalPlaceholder', 'Original content would appear here')}</Typography>
           </Box>
         )}
       </Box>
@@ -311,7 +317,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
             '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
           }}
         >
-          View Full Simulation
+          {t('comparison.viewFullSimulation', 'View Full Simulation')}
         </Button>
       </Box>
     </Box>

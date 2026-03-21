@@ -16,6 +16,7 @@ import {
   Tooltip,
   Snackbar,
   Collapse,
+  Skeleton,
   useMediaQuery,
   useTheme
 } from '@mui/material';
@@ -87,6 +88,12 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
 
   // State for share notification
   const [shareNotification, setShareNotification] = useState<string | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Reset image loaded state when person changes
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [personId]);
 
   // Generate shareable URL for this person
   const getShareableUrl = (): string => {
@@ -202,16 +209,31 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
       <DialogContent ref={dialogContentRef}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img
-              src={getPersonImagePath(personId)}
-              alt={person.name}
-              style={{ width: '100%', borderRadius: '8px' }}
-              loading="eager"
-              decoding="async"
-              onError={(e) => {
-                e.currentTarget.src = PLACEHOLDER_IMAGE;
-              }}
-            />
+            <Box sx={{ position: 'relative' }}>
+              {!imageLoaded && (
+                <Skeleton
+                  variant="rectangular"
+                  width="100%"
+                  sx={{ borderRadius: '8px', aspectRatio: '3/4' }}
+                />
+              )}
+              <img
+                src={getPersonImagePath(personId)}
+                alt={person.name}
+                style={{
+                  width: '100%',
+                  borderRadius: '8px',
+                  display: imageLoaded ? 'block' : 'none'
+                }}
+                loading="eager"
+                decoding="async"
+                onLoad={() => setImageLoaded(true)}
+                onError={(e) => {
+                  e.currentTarget.src = PLACEHOLDER_IMAGE;
+                  setImageLoaded(true);
+                }}
+              />
+            </Box>
             {(() => {
               const secondaryImages = getPersonSecondaryImages(personId);
               if (secondaryImages.length === 0) return null;

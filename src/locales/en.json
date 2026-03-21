@@ -32,6 +32,7 @@
     "card1Button": "Start Vision Simulator",
     "card2Title": "Famous Blind and Visually Impaired People",
     "card2Button": "Experience their Sight",
+    "subtitle": "Understand vision conditions through real-time, research-based simulations.",
     "libraryTitle": "Library of the Blind",
     "libraryDescription": "The world's largest catalog of Braille, tactile, audio, and multimodal accessibility systems"
   },
@@ -50,27 +51,6 @@
     "screenReaderStep1": "Step 1: Choose your input source - webcam, image upload, or YouTube video",
     "screenReaderStep2": "Step 2: Select vision conditions to simulate",
     "goBack": "Go back to select conditions"
-  },
-  "inputSelector": {
-    "title": "Choose Your Input Source",
-    "demoVideo": "Use Demo Video",
-    "demoVideoDesc": "Pre-recorded video to explore conditions",
-    "uploadImage": "Upload an Image",
-    "uploadImageDesc": "Upload from your device",
-    "webcam": "Use Webcam",
-    "webcamDesc": "Real-time camera feed",
-    "selected": "Selected",
-    "recommended": "(Recommended)"
-  },
-  "controlPanel": {
-    "searchPlaceholder": "Search conditions...",
-    "mostCommon": "Most Common",
-    "redGreen": "Red-Green",
-    "fieldLoss": "Field Loss",
-    "ageRelated": "Age-Related",
-    "intensity": "Intensity",
-    "separation": "Separation",
-    "direction": "Direction"
   },
   "categories": {
     "visualFieldLoss": "Visual Field Loss",
@@ -339,6 +319,57 @@
     "feedback": "Feedback",
     "resources": "Resources"
   },
+  "comparison": {
+    "simulation": "Simulation",
+    "original": "Original",
+    "viewFullSimulation": "View Full Simulation",
+    "completeBlindness": "Complete blindness - The blackness shown is the accurate visualization. Audio is still playing.",
+    "completeBlindnessTotalDarkness": "Complete blindness - Total darkness",
+    "screenReaderActive": "Simulation active with {{count}} vision condition(s) applied",
+    "simulationPlaceholder": "Simulation content would appear here",
+    "originalPlaceholder": "Original content would appear here"
+  },
+  "controlPanel": {
+    "searchPlaceholder": "Search conditions...",
+    "mostCommon": "Most Common",
+    "redGreen": "Red-Green",
+    "fieldLoss": "Field Loss",
+    "ageRelated": "Age-Related",
+    "intensity": "Intensity",
+    "separation": "Separation",
+    "direction": "Direction",
+    "ariaLabel": "Vision condition controls",
+    "severity": "Severity",
+    "conditionsSelected": "{{count}} condition(s) selected",
+    "deselectAllAriaLabel": "Deselect all vision conditions",
+    "undo": "Undo",
+    "undoAriaLabel": "Undo last action"
+  },
+  "inputSelector": {
+    "title": "Choose Your Input Source",
+    "demoVideo": "Use Demo Video",
+    "demoVideoDesc": "Pre-recorded video to explore conditions",
+    "uploadImage": "Upload an Image",
+    "uploadImageDesc": "Upload from your device",
+    "webcam": "Use Webcam",
+    "webcamDesc": "Real-time camera feed",
+    "selected": "Selected",
+    "recommended": "(Recommended)",
+    "comingSoon": "Coming Soon: Premium Feature",
+    "dataPolicy": "Data Policy",
+    "dataPolicyPrivacy": "Your privacy is protected.",
+    "dataPolicyBody1": "When you upload a photo or use your webcam, your images and video stay entirely on your device. There is no server communication - we never upload, store, or transmit your images anywhere.",
+    "dataPolicyBody2": "The image exists only in your browser's local memory during your session. It's automatically deleted when you navigate away or close your browser tab.",
+    "dataPolicyBody3": "This application runs entirely in your browser with no backend server for image processing.",
+    "gotIt": "Got it",
+    "invalidFileType": "Please select a valid image file.",
+    "fileTooLarge": "File is too large. Maximum size is 20MB.",
+    "uploadFailed": "Failed to load image. Please try again.",
+    "imageLoaded": "Image {{name}} loaded successfully",
+    "videoUnavailable": "Video unavailable",
+    "videoUnavailableDesc": "The video could not be loaded. Please try again.",
+    "retry": "Retry"
+  },
   "visualizer": {
     "comparison": "Comparison",
     "original": "Original",
@@ -347,7 +378,8 @@
     "screenshot": "Screenshot",
     "takeScreenshot": "Take screenshot",
     "fullscreen": "Fullscreen",
-    "exitFullscreen": "Exit fullscreen"
+    "exitFullscreen": "Exit fullscreen",
+    "loading": "Loading visualization..."
   },
   "tour": {
     "step1Title": "Browse Vision Conditions",

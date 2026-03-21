@@ -13,7 +13,6 @@ import InputSelector from './InputSelector';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import PageMeta from './PageMeta';
-import GuidedTour from './GuidedTour';
 import PresetManager, { decodePreset } from './PresetManager';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
@@ -37,6 +36,20 @@ const VisionSimulator: React.FC = () => {
   const [diplopiaSeparation, setDiplopiaSeparation] = useState(1.0);
   const [diplopiaDirection, setDiplopiaDirection] = useState(0.0);
   const [showComparison, setShowComparison] = useState(false);
+
+  // Undo history stack (Fix #19)
+  const historyRef = useRef<VisualEffect[][]>([]);
+  const MAX_HISTORY = 20;
+
+  const pushHistory = useCallback((currentEffects: VisualEffect[]) => {
+    historyRef.current = [...historyRef.current.slice(-(MAX_HISTORY - 1)), currentEffects];
+  }, []);
+
+  const handleUndo = useCallback(() => {
+    if (historyRef.current.length === 0) return;
+    const previousState = historyRef.current.pop()!;
+    setEffects(previousState);
+  }, []);
 
   // Handle URL preset loading
   const hasLoadedPreset = useRef(false);
@@ -93,8 +106,9 @@ const VisionSimulator: React.FC = () => {
       'protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy', 'monochromatic',
       'hemianopiaLeft', 'hemianopiaRight', 'quadrantanopiaRight', 'quadrantanopiaInferiorLeft', 'quadrantanopiaInferiorRight', 'quadrantanopiaSuperiorLeft', 'quadrantanopiaSuperiorRight', 'blindnessLeftEye', 'blindnessRightEye', 'bitemporalHemianopia', 'scotoma', 'tunnelVision'
     ];
-    setEffects(prevEffects =>
-      prevEffects.map(effect => {
+    setEffects(prevEffects => {
+      pushHistory(prevEffects);
+      return prevEffects.map(effect => {
         if (effect.id === id) {
           const defaultIntensity = FULL_INTENSITY_IDS.includes(id) ? 1.0 : 0.75;
           return {
@@ -104,32 +118,37 @@ const VisionSimulator: React.FC = () => {
           };
         }
         return effect;
-      })
-    );
-  }, []);
+      });
+    });
+  }, [pushHistory]);
 
   const handleDeselectAll = useCallback(() => {
-    setEffects(prevEffects => prevEffects.map(effect => ({ ...effect, enabled: false })));
-  }, []);
+    setEffects(prevEffects => {
+      pushHistory(prevEffects);
+      return prevEffects.map(effect => ({ ...effect, enabled: false }));
+    });
+  }, [pushHistory]);
 
   const handleLoadPreset = useCallback((conditions: { id: string; intensity: number }[]) => {
-    setEffects(prevEffects =>
-      prevEffects.map(effect => {
+    setEffects(prevEffects => {
+      pushHistory(prevEffects);
+      return prevEffects.map(effect => {
         const match = conditions.find(c => c.id === effect.id);
         return match
           ? { ...effect, enabled: true, intensity: match.intensity }
           : { ...effect, enabled: false };
-      })
-    );
-  }, []);
+      });
+    });
+  }, [pushHistory]);
 
   const handleIntensityChange = useCallback((id: string, intensity: number) => {
-    setEffects(prevEffects => 
-      prevEffects.map(effect =>
+    setEffects(prevEffects => {
+      pushHistory(prevEffects);
+      return prevEffects.map(effect =>
         effect.id === id ? { ...effect, intensity } : effect
-      )
-    );
-  }, []);
+      );
+    });
+  }, [pushHistory]);
 
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
@@ -180,6 +199,8 @@ const VisionSimulator: React.FC = () => {
               onToggle={handleToggle}
               onIntensityChange={handleIntensityChange}
               onDeselectAll={handleDeselectAll}
+              onUndo={handleUndo}
+              canUndo={historyRef.current.length > 0}
               diplopiaSeparation={diplopiaSeparation}
               diplopiaDirection={diplopiaDirection}
               onDiplopiaSeparationChange={setDiplopiaSeparation}

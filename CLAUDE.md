@@ -13,6 +13,7 @@ npm test -- --watchAll=false   # Run tests once
 npm run clean      # Remove build/ and node_modules/.cache/
 npm run generate:llms  # Generate LLM data files
 npm run generate:og    # Generate Open Graph images for famous people
+npm run build:analyze  # Build and open webpack bundle analyzer
 ```
 
 **CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests` since no test files exist yet).
@@ -21,7 +22,7 @@ npm run generate:og    # Generate Open Graph images for famous people
 
 This is a React 18 + TypeScript application built with Create React App that simulates various vision conditions in real-time. It uses Three.js for WebGL-based visual effects processing.
 
-**At a glance**: 214 famous people, 148 vision condition types, 27 animated effects, 26 languages, 8 pages.
+**At a glance**: 209 famous people, 144 vision condition types, 27 animated effects, 26 languages, 9 pages.
 
 ### Core Data Flow
 
@@ -40,43 +41,51 @@ The `VisionSimulator.tsx` component has a 2-step flow (no MUI Stepper UI):
 
 The `ControlPanel` accepts a `visualizerSlot: React.ReactNode` prop — the `Visualizer` component is passed in as a slot and rendered alongside the effects list. The container widens to `1400px` on step 1 to accommodate the side-by-side layout.
 
+**Note**: The `GuidedTour` component is currently disabled (commented out in `VisionSimulator.tsx` JSX, import still present). The component file remains at `src/components/GuidedTour.tsx`.
+
 ### Multi-Layer Rendering System
 
 The rendering pipeline uses multiple techniques simultaneously, each handling different effect types:
 
 | Layer | File | Purpose |
 |-------|------|---------|
-| WebGL Shaders | `shaders/` directory | Color blindness matrix transformations |
-| SVG Filters | `svgFilterManager.ts` | Additional color vision effects |
-| CSS Filters | `cssFilterManager.ts` | Blur, contrast, person-specific filters (32 custom filter files) |
-| DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters (18 custom person overlays) |
-| Animated Overlays | `hooks/animatedOverlays/` | JS-driven animated effects (20 animation files) |
+| WebGL Shaders | `shaders/` directory | Color blindness matrix transformations (for canvas-based rendering) |
+| CSS Filters + Inline SVG Data URIs | `colorVisionFilters.ts`, `cssFilterManager.ts` | Color vision simulation (data URI approach), blur, contrast, person-specific filters (29 custom filter files) |
+| DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters (19 custom person overlays) |
+| Animated Overlays | `hooks/animatedOverlays/` | JS-driven animated effects (21 animation files) |
 
-Overlay z-index hierarchy is defined in `overlayConstants.ts` - new overlays must respect this ordering.
+**Color vision filter approach**: `getColorVisionFilter()` in `colorVisionFilters.ts` returns self-contained SVG data URIs (`data:image/svg+xml,...#f`) with `<feColorMatrix>` elements. This avoids cross-origin iframe issues on mobile browsers that block document-level `url(#filterId)` references. The Machado 2009 matrices are blended with identity based on intensity, then encoded inline.
+
+Overlay z-index hierarchy is defined in `overlayConstants.ts` — new overlays must respect this ordering:
+- `Z_INDEX.VISUAL_FIELD_LOSS`: 9000 (top)
+- `Z_INDEX.BASE`: 5000 (default overlays)
+- `Z_INDEX.DIPLOPIA`: 5001
+- `Z_INDEX.VISUAL_DISTURBANCE`: 4000
+- `Z_INDEX.ANIMATED`: 10 (relative)
+- `Z_INDEX.ANIMATED_VISUAL_FIELD_LOSS`: 110
 
 **Important**: CSS filters on the parent container also affect animated overlay children. When creating dark-themed animated overlays (e.g., Fujitora, Julia Carpenter), let the overlay itself provide darkness via its base gradient and keep the CSS filter brightness moderate (45%+). Crushing brightness below ~15% in the CSS filter will make overlays invisible.
 
 ### Visualizer Hooks (`src/components/Visualizer/hooks/`)
 
 The Visualizer component uses modular hooks:
-- `useMediaSetup` - Webcam/video/image source initialization
-- `useEffectProcessor` - Main effect processing pipeline
-- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (20 individual animation files in `hooks/animatedOverlays/`)
+- `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (21 individual animation files in `hooks/animatedOverlays/`)
 - `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision, hemianopia overlays
 - `useScreenshot` - Screenshot capture functionality
 
 ### Shader System (`src/utils/shaders/`)
 
 The shader system is modular:
-- `fragmentShader.ts` - GLSL code organized by category (color blindness, retinal, diplopia, etc.)
-- `shaderUniforms.ts` - Uniform declarations for Three.js
+- `fragmentShader.ts` - Monolithic GLSL code organized by category (color blindness, retinal, diplopia, Milton, Galileo, etc.)
+- `shaderUniforms.ts` - Uniform declarations for Three.js (31 uniforms)
 - `uniformUpdater.ts` - Updates uniform values based on active effects
 - `shaderMaterial.ts` - Creates the Three.js ShaderMaterial
-- `shaderFunctions.ts` - Additional GLSL helper functions
+- `meshCreator.ts` - Creates the WebGL mesh
+- `index.ts` - Barrel exports
 
 ### Key Type: `ConditionType`
 
-All 148 vision conditions are typed in `src/types/visualEffects.ts`. When adding new conditions:
+All 144 vision conditions are typed in `src/types/visualEffects.ts`. When adding new conditions:
 1. Add the condition ID to the `ConditionType` union type
 2. Create the effect definition in the appropriate `src/data/effects/*.ts` file
 3. Implement the visual effect in the shader or overlay system
@@ -93,16 +102,16 @@ Effects are organized by category in `src/data/effects/`:
 
 ### Famous People Feature
 
-The Famous People section (`src/components/FamousBlindPeople.tsx`) links 214 historical/contemporary/fictional figures to their specific vision conditions. Person data is organized by category in `src/data/famousPeople/`:
+The Famous People section (`src/components/FamousBlindPeople.tsx`) links 209 historical/contemporary/fictional figures to their specific vision conditions. Person data is organized by category in `src/data/famousPeople/`:
 - `types.ts` - Type definitions (`PersonData`, etc.)
-- `contemporaryFigures.ts` - Contemporary public figures (~13 people)
-- `athletes.ts` - Athletes (~30 people)
-- `scientists.ts` - Scientists and medical professionals (~15 people)
-- `musicians.ts` - Musicians (~54 people)
-- `artists.ts` - Visual artists (~5 people)
-- `writersActivists.ts` - Writers, poets, activists, and politicians (~52 people)
-- `historicalFigures.ts` - Historical figures (~15 people)
-- `fictionalCharacters.ts` - Fictional characters (~25 people)
+- `contemporaryFigures.ts` - Contemporary public figures (14 people)
+- `athletes.ts` - Athletes (30 people)
+- `scientists.ts` - Scientists and medical professionals (16 people)
+- `musicians.ts` - Musicians (56 people)
+- `artists.ts` - Visual artists (6 people)
+- `writersActivists.ts` - Writers, poets, activists, and politicians (47 people)
+- `historicalFigures.ts` - Historical figures (15 people)
+- `fictionalCharacters.ts` - Fictional characters (25 people)
 - `constants.ts` - Pre-computed lookup sets (`PERSON_IDS`, `CATEGORY_PEOPLE_SETS`, `PRECOMPUTED_CONDITION_CATEGORIES`, `PRECOMPUTED_COUNTRIES`) for O(1) filtering
 - `index.ts` - Aggregates all categories, defines display order
 
@@ -111,9 +120,9 @@ Sub-components in `src/components/FamousBlindPeople/`:
 - `PersonDialog.tsx` - Detail modal for each person
 - `EmbeddedVisualization.tsx` - Live simulation embedding within the dialog
 
-Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/` (18 overlay files).
+Custom overlay effects for specific people are in `src/utils/overlays/famousPeople/` (19 overlay files).
 
-Custom CSS filter files for specific people are in `src/utils/cssFilters/famousPeopleFilters/` (32 filter files).
+Custom CSS filter files for specific people are in `src/utils/cssFilters/famousPeopleFilters/` (29 filter files + filterConfig.ts, customFilters.ts, index.ts).
 
 **Navigation Flow**: When a user clicks "Experience Simulation" on a person, React Router state passes preconfigured conditions to VisionSimulator:
 ```typescript
@@ -135,13 +144,14 @@ Routes are defined in `App.tsx`:
 - `/about` - AboutPage
 - `/feedback` - FeedbackPage
 - `/resources` - ResourcesPage
+- `*` - NotFoundPage (404)
 
 ### Build Scripts (`scripts/`)
 
 The `prebuild` npm script runs both generators before each build:
 
 - `generate-llms-txt.mjs` — Parses condition and people TS source files via regex, produces `public/llms.txt` (concise) and `public/llms-full.txt` (comprehensive) for AI crawlers
-- `generate-og-images.mjs` — Generates 1200×630 PNG Open Graph images per person using Sharp, plus `public/og/metadata.json` consumed by the Cloudflare middleware
+- `generate-og-images.mjs` — Generates 1200x630 PNG Open Graph images per person using Sharp, plus `public/og/metadata.json` consumed by the Cloudflare middleware
 - `lib/people-parser.mjs` — Shared module extracting person-parsing logic (regex-based TS parsing without a compiler): `loadAllPeople()`, `parsePeopleFile()`, `parsePersonBlock()`, `parseFamousPeopleIndex()`, `unquote()`, `read()`, `BASE_URL`, `PEOPLE_DIR`
 
 Generated OG images (`public/og/`) are gitignored and rebuilt on each deploy.
@@ -168,10 +178,11 @@ Three theme modes are available, controlled via `AccessibilityContext`:
 1. CSS variables are defined in `src/styles/App.css` — `:root` (light), `.dim-mode`, `.dark-mode`
 2. `AccessibilityContext` applies the CSS class (`dim-mode` or `dark-mode`) to `document.documentElement`
 3. MUI theme is built dynamically in `App.tsx` via `buildTheme()` based on the current mode
-4. Preferences persist to `localStorage` key `accessibility-preferences`
-5. Existing users migrated from light → dim default via one-time `theme-migrated-v1` flag
+4. Preferences persist to `localStorage` key `accessibility-preferences` (wrapped in try-catch for incognito mode)
+5. Existing users migrated from light -> dim default via one-time `theme-migrated-v1` flag
+6. FOUC prevention: script in `public/index.html` applies theme class before React renders
 
-Key CSS variables: `--color-bg-default`, `--color-bg-paper`, `--color-text-primary`, `--color-text-secondary`, `--color-border`, `--color-navbar-bg`, `--color-card-bg`, `--color-primary`, `--color-drawer-bg`, etc.
+Key CSS variables: `--color-bg-default`, `--color-bg-paper`, `--color-text-primary`, `--color-text-secondary`, `--color-border`, `--color-navbar-bg`, `--color-card-bg`, `--color-primary`, `--color-drawer-bg`, `--color-info-bg`, `--color-search-bg`, etc.
 
 ## Adding New Effects
 
@@ -194,19 +205,23 @@ For effects requiring DOM elements (scotomas, field loss):
 
 ### Animated Effects
 
-These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` as `ANIMATED_EFFECTS`):
+These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` via `EFFECT_GENERATORS` registry + `ANIMATED_EFFECTS`):
 ```typescript
-['visualAura', 'visualAuraLeft', 'visualAuraRight', 'hallucinations', 'blueFieldPhenomena', ...]
-// 27 effect IDs total — check ANIMATED_EFFECTS constant for full list
+// 25 generator entries + 'visualFloaters' + 'neoMatrixCodeVisionComplete' = 27 total
 ```
 
 To add a new animated effect:
 1. Create the overlay generator function in `hooks/animatedOverlays/`
 2. Export it from `hooks/animatedOverlays/index.ts`
-3. Import it in `useAnimatedOverlay.ts`
-4. Add the effect ID(s) to `ANIMATED_EFFECTS`
-5. Add an `if` block to check for the effect and call the generator
-6. If the effect needs custom CSS filters, create a filter file in `src/utils/cssFilters/famousPeopleFilters/` and register it in the index
+3. Import it in `useAnimatedOverlay.ts` and add to `EFFECT_GENERATORS` registry
+4. The effect is automatically included in `ANIMATED_EFFECTS` via `Object.keys(EFFECT_GENERATORS)`
+5. If the effect needs custom CSS filters, create a filter file in `src/utils/cssFilters/famousPeopleFilters/` and register it in the index
+
+## Error Handling
+
+- **ErrorBoundary** (`src/components/ErrorBoundary.tsx`): Wraps the React tree. Shows fallback UI with "Refresh Page" button on unhandled errors.
+- **localStorage**: All `localStorage.setItem()` calls are wrapped in try-catch to prevent `QuotaExceededError` crashes in private/incognito mode (affects `AccessibilityContext.tsx`, `GuidedTour.tsx`, `PresetManager.tsx`).
+- **WebGL**: `createSceneManager()` in `threeSceneManager.ts` may throw if WebGL is unavailable. The `Visualizer` catches this and shows an error message, falling back to CSS-only rendering for YouTube/image sources.
 
 ## Adding New Famous People
 
@@ -224,21 +239,29 @@ To add a new animated effect:
 - 4-5 effects: 45 FPS
 - 6+ effects: 30 FPS
 
+All page components use `React.lazy()` with Suspense for code splitting.
+
 ## Accessibility System
 
 The `AccessibilityContext` persists user preferences to localStorage and applies CSS classes to `document.documentElement`:
 
-| Preference | CSS Class |
-|------------|-----------|
-| High Contrast | `high-contrast-mode` |
-| Large Text | `large-text-mode` |
-| Increased Spacing | `increased-spacing-mode` |
-| Enhanced Focus | `enhanced-focus-mode` |
-| Reduced Motion | `reduced-motion-mode` |
+| Preference | CSS Class | WCAG Criterion |
+|------------|-----------|----------------|
+| High Contrast | `high-contrast-mode` | 1.4.3 (Contrast Minimum) |
+| Large Text (125%) | `large-text-mode` | 1.4.4 (Resize Text) |
+| Increased Spacing | `increased-spacing-mode` | 1.4.8 (Visual Presentation) |
+| Enhanced Focus | `enhanced-focus-mode` | 2.4.7 (Focus Visible) |
+| Reduced Motion | `reduced-motion-mode` | 2.3.3 (Animation from Interactions) |
 
-Styles for these classes are defined in `styles/Accessibility.css`.
+Styles for these classes are defined in `styles/Accessibility.css` (~700 lines).
 
-The `NavigationBar` includes a theme toggle (cycles light → dim → dark), language selector, and accessibility menu. On mobile, navigation collapses into a right-side drawer (280px wide) and the start-simulator shortcut icon is hidden.
+Additional accessibility features:
+- **Skip-to-content link**: Visible on focus, jumps to `#main-content`
+- **Keyboard shortcut**: Alt+A (Windows/Linux) or Option+A (Mac) opens the accessibility menu
+- **RTL support**: Arabic (`ar`) sets `document.documentElement.dir = "rtl"`
+- **Semantic HTML**: `nav`, `main`, `role` attributes, `aria-label`, `aria-current="page"`
+
+The `NavigationBar` includes a theme toggle (cycles light -> dim -> dark), language selector, and accessibility menu. On mobile, navigation collapses into a right-side drawer (280px wide) and the start-simulator shortcut icon is hidden.
 
 ## Internationalization (i18n)
 
@@ -251,18 +274,40 @@ Uses `i18next` + `react-i18next` with 26 languages. Configuration is in `src/i18
 
 To add a new language: add the JSON file in `src/locales/`, import it in `src/i18n/index.ts`, and add to both `supportedLanguages` and `resources`.
 
+## PWA Support
+
+Configured via `public/manifest.json` and `src/service-worker.ts` (Workbox):
+- Display mode: `standalone`
+- App shortcuts: Simulator, Famous People, Glossary
+- Service worker: precaches build assets, Cache-First for images (60 entries, 30-day expiry), Stale-While-Revalidate for Google Fonts
+- Icons: favicon.ico, logo192.png, logo512.png (maskable)
+
+## SEO
+
+- `PageMeta` component (`src/components/PageMeta.tsx`) uses `react-helmet-async` for per-page meta tags (title, description, OG, Twitter Card, canonical URL, JSON-LD)
+- Structured data: WebApplication, EducationalOrganization, Dataset schemas in `public/index.html`
+- OG images: Per-person 1200x630 PNGs generated at build time, served via Cloudflare middleware for crawlers
+
 ## Content Security Policy
 
 CSP is set via `<meta>` tag in `public/index.html`. Allowed external domains:
 - **Wistia** (`fast.wistia.com`, `*.wistia.com`) — embedded video player
-- **YouTube** (`youtube.com`, `www.youtube.com`, `i.ytimg.com`, `s.ytimg.com`) — video source
+- **YouTube** (`youtube.com`, `www.youtube.com`, `i.ytimg.com`, `s.ytimg.com`, `yt3.ggpht.com`) — video source
 - **Formspree** (`formspree.io`) — feedback form submissions
 - **Sentry** (`browser.sentry-cdn.com`, `*.sentry-cdn.com`, `*.sentry.io`) — used by Wistia player for error reporting
+- **Cloudflare Analytics** (`static.cloudflareinsights.com`) — web analytics (token not yet configured)
 
 When adding new external resources, update the CSP meta tag or requests will be blocked.
 
-## Bundle Analysis
+## Known Redundancies and Dead Code
 
-```bash
-npm run build:analyze  # Build and open webpack bundle analyzer
-```
+The following items are known dead code left in place intentionally or pending cleanup:
+
+| Item | Status | Notes |
+|------|--------|-------|
+| `src/utils/svgFilterManager.ts` | **Unused** | No longer imported anywhere. Was replaced by inline SVG data URI approach in `colorVisionFilters.ts`. Safe to delete. |
+| SVG `<filter>` definitions in `public/index.html` (lines 212-281) | **Orphaned** | 8 inline SVG filter elements (`#protanopia`, `#deuteranopia`, etc.) are no longer referenced by JS. Harmless but removable. |
+| `GuidedTour` import in `VisionSimulator.tsx` | **Unused import** | Component is disabled (JSX commented out), but the import remains on line 16. |
+| `src/utils/shaders/shaderFunctions.ts` | **Untracked, unused** | Duplicates logic in the monolithic `fragmentShader.ts`. Never imported. |
+| `src/utils/shaders/fragmentShader/` directory | **Untracked, unused** | Modular split of `fragmentShader.ts` that was removed in a prior commit. The monolithic `.ts` file takes precedence in module resolution. |
+| `src/data/effects/famousPeopleEffects.ts` | **Untracked** | Barrel re-export file for `./famousPeopleEffects/index`. Check if needed or if direct imports are used. |

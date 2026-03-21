@@ -344,7 +344,7 @@ const VisionSimulator: React.FC = () => {
           {getStepContent(activeStep)}
 
         </Paper>
-        {activeStep === 1 && !isFamousPeopleMode && <GuidedTour />}
+        {/* GuidedTour temporarily disabled */}
       </Container>
       <Footer />
     </Box>

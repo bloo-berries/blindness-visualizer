@@ -8,8 +8,7 @@ import React from 'react';
  * Maps simulation types to actual condition IDs for navigation
  * Uses standard vision condition effect IDs that have working YouTube overlays
  */
-export const getSimulationConditions = (simulation: string): string[] => {
-  const simulationMap: Record<string, string[]> = {
+export const simulationMap: Record<string, string[]> = {
     // ===== COMPLETE BLINDNESS / NO LIGHT PERCEPTION =====
     'complete-blindness': ['completeBlindness'],
     'abraham-congenital-blindness': ['nemethComplete'],
@@ -32,6 +31,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'ved-spatial-awareness': ['completeBlindness'],
     'srikanth-complete-blindness': ['completeBlindness'],
     'henry-stroke-blindness': ['completeBlindness'],
+    'tilly-complete-blindness': ['completeBlindness'],
+    'sabriye-complete-blindness': ['completeBlindness'],
+    'haben-deafblind': ['completeBlindness'],
 
     // ===== RETINITIS PIGMENTOSA (Tunnel Vision) =====
     'paul-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
@@ -43,6 +45,7 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'progressive-loss tunnel-vision': ['retinitisPigmentosa', 'nightBlindness', 'lossOfContrast'],
     'minkara-end-stage-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
     'erik-retinoschisis-islands': ['retinitisPigmentosa', 'scotoma'],
+    'anastasia-stargardt': ['stargardt', 'scotoma', 'lossOfContrast'],
 
     // ===== GLAUCOMA =====
     'glaucoma-halos progressive-loss': ['glaucoma', 'halos', 'tunnelVision'],
@@ -103,6 +106,9 @@ export const getSimulationConditions = (simulation: string): string[] => {
     // ===== KERATOCONUS / ASTIGMATISM =====
     'stephen-keratoconus': ['stephenKeratoconusComplete'],
     'allan-nystagmus': ['astigmatism', 'blurryVision'],
+
+    // ===== TUNNEL VISION (Non-RP) =====
+    'harriet-tunnel-vision': ['tunnelVision', 'blurryVision'],
 
     // ===== VISUAL DISTURBANCES =====
     'sharon-stroke-visual-distortions': ['visualAura', 'hallucinations', 'visualFloaters'],
@@ -270,9 +276,13 @@ export const getSimulationConditions = (simulation: string): string[] => {
     'lee-b2-low-vision': ['blurryVision', 'lossOfContrast'],
 
     // ===== SERKAN YILDIRIM =====
-    'serkan-t12-low-vision': ['blurryVision', 'lossOfContrast']
-  };
+    'serkan-t12-low-vision': ['blurryVision', 'lossOfContrast'],
 
+    // ===== SEVERE VISION LOSS =====
+    'bluay-severe-vision-loss': ['blurryVision', 'lossOfContrast', 'blindnessRightEye']
+};
+
+export const getSimulationConditions = (simulation: string): string[] => {
   return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];
 };
 

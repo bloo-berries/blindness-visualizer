@@ -208,6 +208,15 @@ To add a new animated effect:
 5. Add an `if` block to check for the effect and call the generator
 6. If the effect needs custom CSS filters, create a filter file in `src/utils/cssFilters/famousPeopleFilters/` and register it in the index
 
+## Adding New Famous People
+
+1. Add person data to the appropriate file in `src/data/famousPeople/` (e.g., `musicians.ts`, `athletes.ts`)
+2. Required `PersonData` fields: `name`, `condition`, `years`, `onset`, `simulation`, `description`, `nationality` (`{ country, flag }`). Optional: `achievement`, `wikiUrl`
+3. Add their image to `public/images/people/` (filename should match the convention used by existing images)
+4. Map their `simulation` key to effect IDs in `src/utils/famousPeopleUtils.tsx` (`getSimulationConditions`)
+5. If the person needs custom image cropping, add an entry to `CUSTOM_POSITIONS` in `src/components/FamousBlindPeople/PersonCard.tsx`
+6. Optionally create custom effects (`src/data/effects/famousPeopleEffects/`), CSS filters (`src/utils/cssFilters/famousPeopleFilters/`), DOM overlays (`src/utils/overlays/famousPeople/`), or animated overlays (`src/components/Visualizer/hooks/animatedOverlays/`) for unique visualizations
+
 ## Performance
 
 `PerformanceOptimizer` (`performanceOptimizer.ts`) is a singleton that throttles animation frame rate based on enabled effect count:

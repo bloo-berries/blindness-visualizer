@@ -93,18 +93,6 @@ const HomePage: React.FC = () => {
               </Box>
               {' '}{t('home.titleHighlight')}
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-                mt: 1.5,
-                fontSize: { xs: '0.95rem', md: '1.1rem' },
-                maxWidth: '600px',
-                mx: 'auto'
-              }}
-            >
-              {t('home.subtitle', 'Understand vision conditions through real-time, research-based simulations.')}
-            </Typography>
           </Box>
 
           {/* Main Options */}

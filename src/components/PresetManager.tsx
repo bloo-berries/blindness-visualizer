@@ -70,7 +70,11 @@ function getSavedPresets(): SavedPreset[] {
 }
 
 function savePresets(presets: SavedPreset[]) {
-  localStorage.setItem(PRESETS_STORAGE_KEY, JSON.stringify(presets));
+  try {
+    localStorage.setItem(PRESETS_STORAGE_KEY, JSON.stringify(presets));
+  } catch {
+    // localStorage unavailable (private/incognito mode quota exceeded)
+  }
 }
 
 // Exported for use in VisionSimulator

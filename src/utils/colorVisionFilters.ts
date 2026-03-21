@@ -146,12 +146,30 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
 };
 
 /**
- * Generates CSS filter for color vision deficiency simulation
- * Since CSS filters don't support arbitrary matrix transformations,
- * we'll use SVG filters with URL references
+ * Builds a self-contained SVG data URI filter from a 3x3 color matrix.
+ * Uses inline SVG so the filter works across cross-origin iframe boundaries
+ * (mobile browsers block document-level url(#id) references on iframes).
+ */
+const buildSVGFilterDataURI = (matrix: number[]): string => {
+  // Convert 3x3 matrix to 5x4 feColorMatrix format (add zero bias columns + alpha row)
+  const cssMatrix = [
+    matrix[0], matrix[1], matrix[2], 0, 0,
+    matrix[3], matrix[4], matrix[5], 0, 0,
+    matrix[6], matrix[7], matrix[8], 0, 0,
+    0, 0, 0, 1, 0
+  ].join(' ');
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg"><filter id="f" color-interpolation-filters="linearRGB"><feColorMatrix type="matrix" values="${cssMatrix}"/></filter></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}#f")`;
+};
+
+/**
+ * Generates CSS filter for color vision deficiency simulation.
+ * Returns self-contained SVG data URI filters that work on all browsers
+ * including mobile cross-origin iframe contexts.
  */
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
-  
+
   // For achromatopsia, use a simpler approach with saturate and contrast
   if (type === 'monochromatic' || type === 'monochromacy') {
     // At 0% intensity, show normal color vision (no filter)
@@ -162,34 +180,24 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
     const filter = `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
     return filter;
   }
-  
+
   // For all other color vision conditions, ensure 0% intensity shows normal vision
   if (intensity === 0) {
     return '';
   }
-  
-  // Use SVG filters for matrix transformations
-  // The SVG filters are defined in the HTML and updated by updateSVGFilters
-  const filterId = getFilterId(type);
-  return `url(#${filterId})`;
-};
 
-/**
- * Gets the SVG filter ID for a condition
- */
-const getFilterId = (conditionId: ConditionType): string => {
-  const filterMap: Partial<Record<ConditionType, string>> = {
-    'protanopia': 'protanopia',
-    'deuteranopia': 'deuteranopia',
-    'tritanopia': 'tritanopia',
-    'protanomaly': 'protanomaly',
-    'deuteranomaly': 'deuteranomaly',
-    'tritanomaly': 'tritanomaly',
-    'monochromacy': 'monochromacy',
-    'monochromatic': 'monochromacy'
-  };
-  
-  return filterMap[conditionId] || conditionId;
+  // Get the full matrix for this condition
+  const fullMatrix = getColorVisionMatrix(type, 1.0);
+
+  // Identity matrix for normal vision
+  const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+
+  // Blend between identity and full matrix based on intensity
+  const blendedMatrix = fullMatrix.map((val, index) =>
+    val * intensity + identityMatrix[index] * (1 - intensity)
+  );
+
+  return buildSVGFilterDataURI(blendedMatrix);
 };
 
 /**

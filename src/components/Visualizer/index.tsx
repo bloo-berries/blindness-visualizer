@@ -7,7 +7,6 @@ import { generateEffectsDescription } from '../../utils/effectsDescription';
 import { createSceneManager } from '../../utils/threeSceneManager';
 import { createVisualizationMesh, updateShaderUniforms } from '../../utils/shaders';
 import { generateCSSFilters } from '../../utils/cssFilters';
-import { updateSVGFilters } from '../../utils/svgFilterManager';
 import { getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { YOUTUBE_EMBED_URL, getFamousPersonVideoUrl } from '../../utils/appConstants';
 import YouTubeEmbed from '../YouTubeEmbed';
@@ -59,11 +58,6 @@ const Visualizer: React.FC<VisualizerProps> = ({
       setShowComparison(true);
     }
   }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
-
-  // Update SVG filters when effects change
-  useEffect(() => {
-    updateSVGFilters(effects);
-  }, [effects]);
 
   // Performance optimization instances
   const optimizer = useRef(PerformanceOptimizer.getInstance());
@@ -132,7 +126,15 @@ const Visualizer: React.FC<VisualizerProps> = ({
     setIsLoading(true);
     setError(null);
 
-    const sceneManager = createSceneManager(containerRef.current);
+    let sceneManager: ReturnType<typeof createSceneManager>;
+    try {
+      sceneManager = createSceneManager(containerRef.current);
+    } catch {
+      // WebGL unavailable on this device — fall back to CSS-only rendering
+      setError('WebGL is not available on this device. Some visual effects may be limited.');
+      setIsLoading(false);
+      return;
+    }
     const { scene, camera, renderer, dispose } = sceneManager;
 
     const currentAnimationManager = animationManager.current;

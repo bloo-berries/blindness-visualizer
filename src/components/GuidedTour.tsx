@@ -95,7 +95,11 @@ const GuidedTour: React.FC<GuidedTourProps> = ({ forceShow, onComplete }) => {
 
   const completeTour = useCallback(() => {
     setIsVisible(false);
-    localStorage.setItem(TOUR_STORAGE_KEY, 'true');
+    try {
+      localStorage.setItem(TOUR_STORAGE_KEY, 'true');
+    } catch {
+      // localStorage unavailable (private/incognito mode quota exceeded)
+    }
     onComplete?.();
   }, [onComplete]);
 

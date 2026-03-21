@@ -72,7 +72,11 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
 
   // Save preferences to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem('accessibility-preferences', JSON.stringify(preferences));
+    try {
+      localStorage.setItem('accessibility-preferences', JSON.stringify(preferences));
+    } catch {
+      // localStorage unavailable (private/incognito mode quota exceeded)
+    }
 
     // Apply preferences to document
     applyPreferencesToDocument(preferences);

@@ -91,6 +91,11 @@
 body {
   margin: 0;
   padding: 0;
+  /* Safe area insets for notched devices (iPhone X+, Dynamic Island) */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--color-bg-default);
   color: var(--color-text-primary);
@@ -124,11 +129,20 @@ html, body, #root {
 .visualizer-container {
   position: relative;
   width: 100%;
-  height: 480px;
+  aspect-ratio: 16 / 9;
+  max-height: 80vh;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border: 1px solid var(--color-border);
+}
+
+/* Fallback for browsers without aspect-ratio support (iOS Safari < 15) */
+@supports not (aspect-ratio: 16 / 9) {
+  .visualizer-container {
+    height: 0;
+    padding-bottom: 56.25%; /* 9/16 = 56.25% */
+  }
 }
 
 
@@ -162,12 +176,48 @@ html, body, #root {
   visibility: visible;
 }
 
+/* Aspect ratio wrapper — used for YouTube embed containers */
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+  .aspect-ratio-16-9 {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+  .aspect-ratio-16-9 > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Mobile touch targets — WCAG 2.5.5 minimum 44x44px */
+@media (max-width: 600px) {
+  .MuiSlider-thumb {
+    width: 28px !important;
+    height: 28px !important;
+    /* Invisible padding expands hit area to 44px without visual change */
+  }
+  .MuiSlider-thumb::after {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .MuiSwitch-root {
+    padding: 10px !important;
+  }
+}
+
 /* Add responsive design */
 @media (max-width: 600px) {
   .landing-page h1 {
     font-size: 2rem;
   }
-  
+
   .landing-page h5 {
     font-size: 1.1rem;
   }
@@ -246,83 +296,6 @@ html, body, #root {
   }
 }
 
-/* Animation for the left visual aura (expands from center to left) */
-@keyframes scintillateLeft {
-  0% { 
-    background-position: 40% center;
-    opacity: 0.7; 
-    filter: hue-rotate(0deg) brightness(100%) saturate(100%); 
-  }
-  25% { 
-    background-position: 30% center;
-    opacity: 0.9; 
-    filter: hue-rotate(90deg) brightness(130%) saturate(130%); 
-  }
-  50% { 
-    background-position: 20% center;
-    opacity: 0.8; 
-    filter: hue-rotate(180deg) brightness(120%) saturate(110%); 
-  }
-  75% { 
-    background-position: 10% center;
-    opacity: 0.95; 
-    filter: hue-rotate(270deg) brightness(140%) saturate(120%); 
-  }
-  100% { 
-    background-position: 0% center;
-    opacity: 0.7; 
-    filter: hue-rotate(360deg) brightness(100%) saturate(100%); 
-  }
-}
-
-/* Animation for the right visual aura (expands from center to right) */
-@keyframes scintillateRight {
-  0% { 
-    background-position: 60% center;
-    opacity: 0.7; 
-    filter: hue-rotate(0deg) brightness(100%) saturate(100%); 
-  }
-  25% { 
-    background-position: 70% center;
-    opacity: 0.9; 
-    filter: hue-rotate(90deg) brightness(130%) saturate(130%); 
-  }
-  50% { 
-    background-position: 80% center;
-    opacity: 0.8; 
-    filter: hue-rotate(180deg) brightness(120%) saturate(110%); 
-  }
-  75% { 
-    background-position: 90% center;
-    opacity: 0.95; 
-    filter: hue-rotate(270deg) brightness(140%) saturate(120%); 
-  }
-  100% { 
-    background-position: 100% center;
-    opacity: 0.7; 
-    filter: hue-rotate(360deg) brightness(100%) saturate(100%); 
-  }
-}
-
-/* Animation for Visual Snow drift motion */
-@keyframes visualSnowDrift {
-  0% { 
-    transform: translateX(-2px);
-  }
-  100% { 
-    transform: translateX(2px);
-  }
-}
-
-/* Animation for Visual Floaters sway motion */
-@keyframes floaterSway {
-  0% { 
-    transform: translateY(-1px) rotate(0.5deg);
-  }
-  100% { 
-    transform: translateY(1px) rotate(-0.5deg);
-  }
-}
 
 /* Animation for Vitreous Hemorrhage floaters - slow drift and movement */
 @keyframes vitreousFloaterDrift {
@@ -340,20 +313,6 @@ html, body, #root {
   }
   100% { 
     transform: translate(0px, 0px) rotate(0deg);
-  }
-}
-
-/* Animation for gravitational settling - blood moves downward over time */
-/* Note: Actual gravitational settling is handled by JavaScript animation updates */
-@keyframes vitreousGravitationalSettle {
-  0% { 
-    opacity: 0.85;
-  }
-  50% { 
-    opacity: 0.9;
-  }
-  100% { 
-    opacity: 0.85;
   }
 }
 
@@ -385,117 +344,4 @@ html, body, #root {
   }
 }
 
-/* Fine grain layer - subtle position shift for TV static effect */
-@keyframes visualSnowGrain {
-  0% {
-    background-position: 0px 0px, 0px 0px;
-  }
-  25% {
-    background-position: 1px 0px, 0px 1px;
-  }
-  50% {
-    background-position: 0px 1px, 1px 0px;
-  }
-  75% {
-    background-position: 1px 1px, 1px 1px;
-  }
-  100% {
-    background-position: 0px 0px, 0px 0px;
-  }
-}
-
-/* ===== VISUAL HALLUCINATIONS ANIMATIONS ===== */
-/* Gentle fade and movement effects - hallucinations appear and fade gradually */
-
-/* Geometric pattern layer - slow fade in/out */
-@keyframes hallucinationPatternFade {
-  0% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  30% {
-    opacity: 0.6;
-    transform: scale(1.02);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.01);
-  }
-  70% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-}
-
-/* Light phenomena - gentle pulsing glow */
-@keyframes hallucinationLightPulse {
-  0% {
-    opacity: 0.4;
-    filter: blur(0px);
-  }
-  25% {
-    opacity: 0.7;
-    filter: blur(1px);
-  }
-  50% {
-    opacity: 0.5;
-    filter: blur(0.5px);
-  }
-  75% {
-    opacity: 0.8;
-    filter: blur(1px);
-  }
-  100% {
-    opacity: 0.4;
-    filter: blur(0px);
-  }
-}
-
-/* Shadowy figures - slow drift in periphery */
-@keyframes hallucinationFigureDrift {
-  0% {
-    opacity: 0.5;
-    transform: translate(0px, 0px);
-  }
-  25% {
-    opacity: 0.7;
-    transform: translate(2px, -1px);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-1px, 1px);
-  }
-  75% {
-    opacity: 0.8;
-    transform: translate(1px, 2px);
-  }
-  100% {
-    opacity: 0.5;
-    transform: translate(0px, 0px);
-  }
-}
-
-/* Face-like patterns - very slow fade (pareidolia effect) */
-@keyframes hallucinationFaceFade {
-  0% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  40% {
-    opacity: 0.6;
-    transform: scale(1.03);
-  }
-  60% {
-    opacity: 0.5;
-    transform: scale(1.01);
-  }
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-}
 

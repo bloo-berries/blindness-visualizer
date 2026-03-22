@@ -715,6 +715,23 @@ html.high-contrast-mode .library-of-blind-description {
 }
 
 /* ============================================
+   SYSTEM REDUCED MOTION PREFERENCE
+   Respects OS-level "reduce motion" setting
+   (independent of the manual toggle above)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
    MEDIA QUERIES
    ============================================ */
 

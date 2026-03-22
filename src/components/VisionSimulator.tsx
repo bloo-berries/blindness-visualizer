@@ -297,7 +297,9 @@ const VisionSimulator: React.FC = () => {
       <Container
         maxWidth={false}
         sx={{
-          maxWidth: activeStep === 1 ? '1400px' : '1000px',
+          maxWidth: activeStep === 1
+            ? { xs: '100%', sm: '100%', md: '1000px', lg: '1400px' }
+            : { xs: '100%', sm: '100%', md: '1000px' },
           pt: 10,
           pb: 2,
           transition: 'max-width 0.3s ease',
@@ -365,7 +367,6 @@ const VisionSimulator: React.FC = () => {
           {getStepContent(activeStep)}
 
         </Paper>
-        {/* GuidedTour temporarily disabled */}
       </Container>
       <Footer />
     </Box>

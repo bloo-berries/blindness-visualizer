@@ -137,12 +137,11 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
               justifyContent: 'center'
             }}>
               {/* Aspect ratio wrapper - constrains content to 16:9 video area */}
-              <div style={{
+              <div className="aspect-ratio-16-9" style={{
                 position: 'relative',
                 width: '100%',
                 maxWidth: '100%',
                 maxHeight: '100%',
-                aspectRatio: '16 / 9',
                 overflow: 'hidden'
               }}>
                 <YouTubeEmbed
@@ -250,12 +249,11 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
             justifyContent: 'center'
           }}>
             {/* Aspect ratio wrapper - matches simulation side */}
-            <div style={{
+            <div className="aspect-ratio-16-9" style={{
               position: 'relative',
               width: '100%',
               maxWidth: '100%',
               maxHeight: '100%',
-              aspectRatio: '16 / 9',
               overflow: 'hidden'
             }}>
               <YouTubeEmbed

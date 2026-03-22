@@ -123,7 +123,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         left: 0,
         right: 0,
         backgroundColor: 'var(--color-navbar-bg)',
-        backdropFilter: 'blur(10px)',
+        backdropFilter: { xs: 'none', md: 'blur(10px)' },
         borderTop: 'none !important',
         borderBottom: '1px solid var(--color-navbar-border)',
         boxShadow: 'none',
@@ -448,7 +448,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         display: { xs: 'block', md: 'none' },
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
-          width: 280,
+          width: 'min(280px, 75vw)',
           backgroundColor: 'var(--color-drawer-bg)',
           color: 'white',
         },
@@ -456,7 +456,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
     >
       <Box
         sx={{
-          width: 280,
+          width: '100%',
           pt: 2,
           display: 'flex',
           flexDirection: 'column',

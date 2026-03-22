@@ -128,13 +128,21 @@ const Visualizer: React.FC<VisualizerProps> = ({
     setIsLoading(true);
     setError(null);
 
-    let sceneManager: ReturnType<typeof createSceneManager>;
+    let sceneManager: ReturnType<typeof createSceneManager> | null = null;
     try {
       sceneManager = createSceneManager(containerRef.current);
     } catch {
-      // WebGL unavailable on this device — fall back to CSS-only rendering
-      setError('WebGL is not available on this device. Some visual effects may be limited.');
+      // WebGL unavailable — CSS filters & DOM overlays still work for YouTube/image.
+      // Don't block rendering; just skip shader-based effects.
+      // eslint-disable-next-line no-console
+      console.warn('WebGL is not available on this device. Falling back to CSS-only rendering.');
       setIsLoading(false);
+      // For YouTube/image sources, CSS filters handle color vision, overlays handle field loss.
+      // Only WebGL canvas rendering is lost (webcam texture processing).
+      if (inputSource.type === 'youtube' || inputSource.type === 'image') {
+        return; // CSS rendering will continue via the JSX path below
+      }
+      setError('WebGL is not available on this device. Some visual effects may be limited.');
       return;
     }
     const { scene, camera, renderer, dispose } = sceneManager;
@@ -510,12 +518,11 @@ const Visualizer: React.FC<VisualizerProps> = ({
             overflow: 'hidden'
           }}>
             {/* Aspect ratio wrapper - constrains content to 16:9 video area */}
-            <div style={{
+            <div className="aspect-ratio-16-9" style={{
               position: 'relative',
               width: '100%',
               maxWidth: '100%',
               maxHeight: '100%',
-              aspectRatio: '16 / 9',
               overflow: 'hidden',
               filter: computeFilterString() || 'none'
             }}>

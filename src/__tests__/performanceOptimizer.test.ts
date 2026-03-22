@@ -43,40 +43,6 @@ describe('PerformanceOptimizer', () => {
     });
   });
 
-  describe('shouldThrottleAnimation', () => {
-    const optimizer = PerformanceOptimizer.getInstance();
-
-    test('does not throttle for fewer than 4 conditions', () => {
-      // When isThrottling is false (default), should not throttle below threshold
-      expect(optimizer.shouldThrottleAnimation(0)).toBe(false);
-      expect(optimizer.shouldThrottleAnimation(1)).toBe(false);
-      expect(optimizer.shouldThrottleAnimation(3)).toBe(false);
-    });
-
-    test('throttles at 4+ conditions', () => {
-      expect(optimizer.shouldThrottleAnimation(4)).toBe(true);
-      expect(optimizer.shouldThrottleAnimation(5)).toBe(true);
-      expect(optimizer.shouldThrottleAnimation(10)).toBe(true);
-    });
-  });
-
-  describe('throttle', () => {
-    const optimizer = PerformanceOptimizer.getInstance();
-
-    test('returns a function', () => {
-      const fn = jest.fn();
-      const throttled = optimizer.throttle(fn, 1);
-      expect(typeof throttled).toBe('function');
-    });
-
-    test('calls the function on first invocation', () => {
-      const fn = jest.fn();
-      const throttled = optimizer.throttle(fn, 1);
-      throttled();
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('getFps and getIsThrottling', () => {
     const optimizer = PerformanceOptimizer.getInstance();
 

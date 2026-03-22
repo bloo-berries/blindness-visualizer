@@ -45,7 +45,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({
 
     // Listen for YouTube player ready/state messages from our iframe
     const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== 'https://www.youtube.com') return;
+      if (event.origin !== 'https://www.youtube.com' && event.origin !== 'https://www.youtube-nocookie.com') return;
       // Only respond to messages from our specific iframe
       if (event.source !== iframe.contentWindow) return;
 

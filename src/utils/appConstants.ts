@@ -24,7 +24,7 @@ const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be 
  */
 const YOUTUBE_PARAMS = 'autoplay=1&mute=1&controls=0&enablejsapi=1&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd1080';
 
-export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?${YOUTUBE_PARAMS}`;
+export const YOUTUBE_EMBED_URL = `https://www.youtube-nocookie.com/embed/${DEMO_VIDEO_ID}?${YOUTUBE_PARAMS}`;
 
 /**
  * Get contextually appropriate video URL for famous people
@@ -33,7 +33,7 @@ export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}
  */
 export const getFamousPersonVideoUrl = (personId?: string): string => {
   const videoId = FAMOUS_PEOPLE_VIDEO_ID;
-  return `https://www.youtube.com/embed/${videoId}?${YOUTUBE_PARAMS}`;
+  return `https://www.youtube-nocookie.com/embed/${videoId}?${YOUTUBE_PARAMS}`;
 };
 
 /**

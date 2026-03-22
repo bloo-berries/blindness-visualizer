@@ -156,24 +156,40 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 /** Track the currently active filter so we can clean up when switching conditions */
 let currentActiveFilterId: string | null = null;
 
-/** Creates or returns the hidden SVG container in the document body */
+/** Creates or returns the hidden SVG container in the document body.
+ *  Safari/WebKit requires:
+ *  - No zero width/height SVG attributes (use CSS hiding instead)
+ *  - Filters wrapped in <defs> for proper processing
+ *  - SVG must not use display:none or visibility:hidden
+ */
 const ensureSVGContainer = (): SVGSVGElement => {
   let container = document.getElementById(SVG_CONTAINER_ID) as unknown as SVGSVGElement;
   if (!container) {
     container = document.createElementNS(SVG_NS, 'svg');
     container.setAttribute('id', SVG_CONTAINER_ID);
-    container.setAttribute('width', '0');
-    container.setAttribute('height', '0');
+    // IMPORTANT: Do NOT set width="0" height="0" as SVG attributes — Safari
+    // ignores filter definitions inside zero-sized SVG viewports.
+    // Instead, use CSS to visually hide the container while keeping it active.
     container.style.position = 'absolute';
+    container.style.width = '0';
+    container.style.height = '0';
+    container.style.overflow = 'hidden';
     container.style.pointerEvents = 'none';
+
+    // Wrap filters in <defs> — the proper SVG way, required by Safari/WebKit
+    const defs = document.createElementNS(SVG_NS, 'defs');
+    defs.setAttribute('id', `${SVG_CONTAINER_ID}-defs`);
+    container.appendChild(defs);
+
     document.body.appendChild(container);
   }
   return container;
 };
 
-/** Creates or updates a <filter> element inside the SVG container */
+/** Creates or updates a <filter> element inside the SVG container's <defs> */
 const injectDOMFilter = (filterId: string, cssMatrix: string): void => {
   const container = ensureSVGContainer();
+  const defs = container.querySelector('defs') || container;
   let filterEl = document.getElementById(filterId) as unknown as SVGFilterElement;
 
   if (!filterEl) {
@@ -184,7 +200,7 @@ const injectDOMFilter = (filterId: string, cssMatrix: string): void => {
     feColorMatrix.setAttribute('type', 'matrix');
     feColorMatrix.setAttribute('values', cssMatrix);
     filterEl.appendChild(feColorMatrix);
-    container.appendChild(filterEl);
+    defs.appendChild(filterEl);
   } else {
     // Update existing filter's matrix values
     const feColorMatrix = filterEl.querySelector('feColorMatrix');

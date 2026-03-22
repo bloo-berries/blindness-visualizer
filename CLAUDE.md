@@ -76,10 +76,10 @@ The Visualizer component uses modular hooks:
 ### Shader System (`src/utils/shaders/`)
 
 The shader system is modular:
-- `fragmentShader.ts` - Monolithic GLSL code organized by category (color blindness, retinal, diplopia, Milton, Galileo, etc.)
+- `fragmentShader/` - GLSL code split by category: `colorBlindnessFunctions.ts`, `retinalFunctions.ts`, `diplopiaFunctions.ts`, `glaucomaFunction.ts`, `miltonFunctions.ts`, `galileoFunctions.ts`, `utilityFunctions.ts`, `uniformDeclarations.ts`, `mainFunction.ts`. Barrel `index.ts` combines all parts via `getFragmentShader()`.
 - `shaderUniforms.ts` - Uniform declarations for Three.js (31 uniforms)
 - `uniformUpdater.ts` - Updates uniform values based on active effects
-- `shaderMaterial.ts` - Creates the Three.js ShaderMaterial
+- `shaderMaterial.ts` - Creates the Three.js ShaderMaterial (imports `getFragmentShader` from `./fragmentShader`)
 - `meshCreator.ts` - Creates the WebGL mesh
 - `index.ts` - Barrel exports
 
@@ -191,7 +191,7 @@ Key CSS variables: `--color-bg-default`, `--color-bg-paper`, `--color-text-prima
 For effects requiring color/pixel manipulation:
 
 1. Add uniform in `shaders/shaderUniforms.ts`
-2. Add GLSL function in `shaders/fragmentShader.ts` (in appropriate category section)
+2. Add GLSL function in the appropriate file under `shaders/fragmentShader/` (e.g., `retinalFunctions.ts`)
 3. Update `shaders/uniformUpdater.ts` to pass the intensity value
 4. Add to `ConditionType` union and create effect definition in `src/data/effects/`
 
@@ -301,11 +301,4 @@ When adding new external resources, update the CSP meta tag or requests will be 
 
 ## Known Redundancies and Dead Code
 
-The following items are known dead code left in place intentionally or pending cleanup:
-
-| Item | Status | Notes |
-|------|--------|-------|
-| `src/utils/svgFilterManager.ts` | **Unused** | No longer imported anywhere. Was replaced by DOM-injected SVG approach in `colorVisionFilters.ts`. Safe to delete. |
-| `src/utils/shaders/shaderFunctions.ts` | **Untracked, unused** | Duplicates logic in the monolithic `fragmentShader.ts`. Never imported. |
-| `src/utils/shaders/fragmentShader/` directory | **Untracked, unused** | Modular split of `fragmentShader.ts` that was removed in a prior commit. The monolithic `.ts` file takes precedence in module resolution. |
-| `src/data/effects/famousPeopleEffects.ts` | **Untracked** | Barrel re-export file for `./famousPeopleEffects/index`. Check if needed or if direct imports are used. |
+No known dead code remains. Previous items (`svgFilterManager.ts`, `shaderFunctions.ts`, orphaned SVG filters in `index.html`, stale `GuidedTour` import) have been cleaned up.

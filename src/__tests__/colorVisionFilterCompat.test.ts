@@ -57,6 +57,28 @@ describe('DOM injection creates valid SVG structure', () => {
     expect(container?.tagName.toLowerCase()).toBe('svg');
   });
 
+  test('SVG container uses CSS hiding, not zero-size SVG attributes (Safari fix)', () => {
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    const container = document.getElementById('cvd-svg-filters') as HTMLElement;
+    expect(container).not.toBeNull();
+    // Must NOT have width/height SVG attributes (Safari ignores filters in zero-sized SVGs)
+    expect(container.getAttribute('width')).toBeNull();
+    expect(container.getAttribute('height')).toBeNull();
+    // Must use CSS for hiding (jsdom normalizes '0' to '0px')
+    expect(['0', '0px']).toContain(container.style.width);
+    expect(container.style.overflow).toBe('hidden');
+  });
+
+  test('SVG container wraps filters in <defs> (Safari requirement)', () => {
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    const container = document.getElementById('cvd-svg-filters');
+    const defs = container?.querySelector('defs');
+    expect(defs).not.toBeNull();
+    // Filter should be inside <defs>
+    const filterInsideDefs = defs?.querySelector('filter#cvd-protanopia');
+    expect(filterInsideDefs).not.toBeNull();
+  });
+
   test.each(SVG_FILTER_CONDITIONS)(
     '%s: filter element has correct id and structure',
     (type) => {

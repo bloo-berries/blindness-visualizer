@@ -11,7 +11,6 @@ import React from 'react';
 export const simulationMap: Record<string, string[]> = {
     // ===== COMPLETE BLINDNESS / NO LIGHT PERCEPTION =====
     'complete-blindness': ['completeBlindness'],
-    'abraham-congenital-blindness': ['nemethComplete'],
     'abraham-dual-attack-blindness': ['nemethComplete'],
     'moon-complete-blindness': ['completeBlindness'],
     'doc-light-perception': ['blurryVision', 'lossOfContrast', 'tunnelVision'],
@@ -25,7 +24,6 @@ export const simulationMap: Record<string, string[]> = {
     'holman-complete-blindness': ['completeBlindness'],
     'tiffany-complete-blindness': ['completeBlindness'],
     'ross-complete-blindness': ['completeBlindness'],
-    'tofiri-complete-blindness': ['completeBlindness'],
     'tofiri-b1-blindness': ['tofiriComplete'],
     'joshua-complete-blindness': ['completeBlindness'],
     'ved-spatial-awareness': ['completeBlindness'],
@@ -41,8 +39,6 @@ export const simulationMap: Record<string, string[]> = {
     'molly-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
     'chris-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
     'rachael-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
-    'peripheral-islands progressive-loss': ['retinitisPigmentosa', 'nightBlindness'],
-    'progressive-loss tunnel-vision': ['retinitisPigmentosa', 'nightBlindness', 'lossOfContrast'],
     'minkara-end-stage-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],
     'erik-retinoschisis-islands': ['retinitisPigmentosa', 'scotoma'],
     'anastasia-stargardt': ['stargardt', 'scotoma', 'lossOfContrast'],
@@ -50,22 +46,15 @@ export const simulationMap: Record<string, string[]> = {
     // ===== GLAUCOMA =====
     'glaucoma-halos progressive-loss': ['glaucoma', 'halos', 'tunnelVision'],
     'acute-glaucoma-attacks': ['glaucoma', 'halos', 'blurryVision'],
-    'tunnel-vision glaucoma-halos': ['glaucoma', 'halos', 'tunnelVision'],
-    'jose-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
-    'ronnie-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
     'geerat-congenital-glaucoma': ['glaucoma', 'tunnelVision'],
     'bono-glaucoma-sensitivity': ['glaucoma', 'halos', 'glare'],
     'borges-progressive-blindness': ['glaucoma', 'tunnelVision', 'lossOfContrast'],
-    'euler-progressive-blindness': ['eulerComplete'],
     'euler-asymmetric-blindness': ['eulerComplete'],
     'fetty-glaucoma-prosthetic': ['glaucoma', 'blindnessLeftEye'],
 
     // ===== CATARACTS =====
     'cataracts color-distortion': ['cataracts', 'glare', 'lossOfContrast'],
-    'art-congenital-cataracts': ['cataracts', 'blurryVision', 'glare'],
-    'diane-congenital-cataracts': ['cataracts', 'blurryVision'],
     'mila-iritis-cataracts': ['milaCompleteVision'],
-    'nmo-blur': ['cataracts', 'blurryVision', 'glare'],
     'amadou-cataract-progression': ['amadouCataractProgression'],
 
     // ===== NMO / OPTIC NEURITIS (Christine Ha, Lucy Edwards) =====
@@ -73,8 +62,6 @@ export const simulationMap: Record<string, string[]> = {
     'lucy-complete-vision': ['lucyCompleteVision'],
 
     // ===== MACULAR DEGENERATION / STARGARDT =====
-    'central-scotoma metamorphopsia': ['amd', 'scotoma'],
-    'central-scotoma progressive-loss': ['stargardt', 'scotoma'],
     'judi-amd-progression': ['judiAMDComplete'],
     'georgia-amd-central-loss': ['amd', 'scotoma', 'lossOfContrast'],
     'marla-stargardt-complete': ['stargardt', 'scotoma', 'lossOfContrast'],
@@ -94,7 +81,6 @@ export const simulationMap: Record<string, string[]> = {
 
     // ===== RETINAL DETACHMENT =====
     'sugar-retinal-detachment': ['sugarRetinalDetachmentComplete'],
-    'jeff-retinoblastoma': ['retinalDetachment', 'blindnessLeftEye'],
     'lex-rop': ['lexRecurrentDetachmentCycle'],
 
     // ===== HEMIANOPIA / PARTIAL VISION LOSS =====
@@ -124,7 +110,6 @@ export const simulationMap: Record<string, string[]> = {
 
     // ===== COLOR BLINDNESS =====
     'fred-rogers-deuteranopia': ['deuteranopia'],
-    'bill-gates-deuteranomaly': ['deuteranomaly'],
     'john-kay-achromatopsia': ['monochromacy'],
     'jonny-greenwood-color-blindness': ['deuteranomaly'],
 
@@ -210,9 +195,6 @@ export const simulationMap: Record<string, string[]> = {
     // ===== ICELANDIC =====
     'saeland-cortical-impairment': ['blurryVision', 'lossOfContrast', 'tunnelVision', 'glare'],
 
-    // ===== IRANIAN =====
-    'ameneh-acid-blindness': ['completeBlindness'],
-
     // ===== ISRAELI =====
     'roni-congenital-blindness': ['blindnessLeftEye', 'blurryVision'],
 
@@ -259,8 +241,6 @@ export const simulationMap: Record<string, string[]> = {
     // ===== ADDITIONAL FICTIONAL CHARACTERS =====
     'mo-legal-blindness': ['blurryVision', 'lossOfContrast'],
     'suNianQin-corneal-opacity': ['cataracts', 'blurryVision', 'lossOfContrast'],
-    'sofia-feigned-blindness': ['completeBlindness'],
-
     // ===== FICTIONAL ENHANCED PERCEPTION =====
     'fujitora-observation-haki': ['fujitoraObservationHakiComplete'],
     'chirrut-force-perception': ['chirrutForcePerceptionComplete'],

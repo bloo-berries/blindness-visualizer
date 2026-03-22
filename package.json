@@ -36,6 +36,8 @@
     "build:analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "clean": "rm -rf build/ node_modules/.cache/",
     "test": "react-scripts test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -64,7 +66,13 @@
     ]
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@cloudflare/workers-types": "^4.20260316.1",
+    "@playwright/test": "^1.58.2",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "canvas": "^3.2.1",
     "sharp": "^0.34.5",
     "webpack-bundle-analyzer": "^4.10.2"

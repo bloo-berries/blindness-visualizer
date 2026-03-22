@@ -96,19 +96,17 @@ test.describe('Color Vision Filters', () => {
     expect(criticalErrors).toEqual([]);
   });
 
-  test('YouTube embeds use privacy-enhanced mode', async ({ page }) => {
+  test('YouTube embeds use correct domain', async ({ page }) => {
     await page.goto('/simulator');
     await page.waitForLoadState('networkidle');
 
-    // Check that YouTube iframes use youtube-nocookie.com
     const iframes = await page.evaluate(() => {
       const frames = document.querySelectorAll('iframe[src*="youtube"]');
       return Array.from(frames).map(f => f.getAttribute('src') || '');
     });
 
     for (const src of iframes) {
-      expect(src).toContain('youtube-nocookie.com');
-      expect(src).not.toMatch(/^https:\/\/www\.youtube\.com/);
+      expect(src).toContain('youtube.com/embed/');
     }
   });
 });

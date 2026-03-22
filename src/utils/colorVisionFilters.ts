@@ -145,12 +145,84 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
   return fullMatrix;
 };
 
+// --- DOM-injected SVG filter management ---
+// Safari/WebKit does NOT support filter: url("data:image/svg+xml,...") (WebKit Bug #104169).
+// Instead, we inject <filter> elements into a hidden <svg> in the document body and
+// reference them via url("#cvd-{type}"), which works in ALL browsers.
+
+const SVG_CONTAINER_ID = 'cvd-svg-filters';
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/** Track the currently active filter so we can clean up when switching conditions */
+let currentActiveFilterId: string | null = null;
+
+/** Creates or returns the hidden SVG container in the document body */
+const ensureSVGContainer = (): SVGSVGElement => {
+  let container = document.getElementById(SVG_CONTAINER_ID) as unknown as SVGSVGElement;
+  if (!container) {
+    container = document.createElementNS(SVG_NS, 'svg');
+    container.setAttribute('id', SVG_CONTAINER_ID);
+    container.setAttribute('width', '0');
+    container.setAttribute('height', '0');
+    container.style.position = 'absolute';
+    container.style.pointerEvents = 'none';
+    document.body.appendChild(container);
+  }
+  return container;
+};
+
+/** Creates or updates a <filter> element inside the SVG container */
+const injectDOMFilter = (filterId: string, cssMatrix: string): void => {
+  const container = ensureSVGContainer();
+  let filterEl = document.getElementById(filterId) as unknown as SVGFilterElement;
+
+  if (!filterEl) {
+    filterEl = document.createElementNS(SVG_NS, 'filter') as unknown as SVGFilterElement;
+    filterEl.setAttribute('id', filterId);
+    filterEl.setAttribute('color-interpolation-filters', 'linearRGB');
+    const feColorMatrix = document.createElementNS(SVG_NS, 'feColorMatrix');
+    feColorMatrix.setAttribute('type', 'matrix');
+    feColorMatrix.setAttribute('values', cssMatrix);
+    filterEl.appendChild(feColorMatrix);
+    container.appendChild(filterEl);
+  } else {
+    // Update existing filter's matrix values
+    const feColorMatrix = filterEl.querySelector('feColorMatrix');
+    if (feColorMatrix) {
+      feColorMatrix.setAttribute('values', cssMatrix);
+    }
+  }
+};
+
+/** Removes a specific filter element from the DOM */
+const removeDOMFilter = (filterId: string): void => {
+  const filterEl = document.getElementById(filterId);
+  if (filterEl) {
+    filterEl.remove();
+  }
+};
+
+/** Removes the entire SVG filter container from the DOM */
+export const cleanupAllDOMFilters = (): void => {
+  const container = document.getElementById(SVG_CONTAINER_ID);
+  if (container) {
+    container.remove();
+  }
+  currentActiveFilterId = null;
+};
+
 /**
- * Builds a self-contained SVG data URI filter from a 3x3 color matrix.
- * Uses inline SVG so the filter works across cross-origin iframe boundaries
- * (mobile browsers block document-level url(#id) references on iframes).
+ * Injects a DOM filter and returns a CSS url() reference to it.
+ * Cleans up the previous filter if switching conditions.
  */
-const buildSVGFilterDataURI = (matrix: number[]): string => {
+const applyDOMFilter = (type: string, matrix: number[]): string => {
+  const filterId = `cvd-${type}`;
+
+  // Clean up old filter if switching conditions
+  if (currentActiveFilterId && currentActiveFilterId !== filterId) {
+    removeDOMFilter(currentActiveFilterId);
+  }
+
   // Convert 3x3 matrix to 5x4 feColorMatrix format (add zero bias columns + alpha row)
   const cssMatrix = [
     matrix[0], matrix[1], matrix[2], 0, 0,
@@ -159,14 +231,16 @@ const buildSVGFilterDataURI = (matrix: number[]): string => {
     0, 0, 0, 1, 0
   ].join(' ');
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg"><filter id="f" color-interpolation-filters="linearRGB"><feColorMatrix type="matrix" values="${cssMatrix}"/></filter></svg>`;
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}#f")`;
+  injectDOMFilter(filterId, cssMatrix);
+  currentActiveFilterId = filterId;
+
+  return `url("#${filterId}")`;
 };
 
 /**
  * Generates CSS filter for color vision deficiency simulation.
- * Returns self-contained SVG data URI filters that work on all browsers
- * including mobile cross-origin iframe contexts.
+ * Injects SVG <filter> elements directly into the DOM and returns url("#id")
+ * references, which work in all browsers including Safari/WebKit.
  */
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
 
@@ -176,6 +250,11 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
     if (intensity === 0) {
       return '';
     }
+    // Clean up any active DOM filter when switching to monochromacy
+    if (currentActiveFilterId) {
+      removeDOMFilter(currentActiveFilterId);
+      currentActiveFilterId = null;
+    }
     // Gradually increase desaturation and contrast as intensity increases
     const filter = `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
     return filter;
@@ -183,6 +262,11 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
 
   // For all other color vision conditions, ensure 0% intensity shows normal vision
   if (intensity === 0) {
+    // Clean up any active DOM filter
+    if (currentActiveFilterId) {
+      removeDOMFilter(currentActiveFilterId);
+      currentActiveFilterId = null;
+    }
     return '';
   }
 
@@ -197,7 +281,7 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
     val * intensity + identityMatrix[index] * (1 - intensity)
   );
 
-  return buildSVGFilterDataURI(blendedMatrix);
+  return applyDOMFilter(type, blendedMatrix);
 };
 
 /**

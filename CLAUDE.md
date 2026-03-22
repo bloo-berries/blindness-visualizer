@@ -16,7 +16,7 @@ npm run generate:og    # Generate Open Graph images for famous people
 npm run build:analyze  # Build and open webpack bundle analyzer
 ```
 
-**CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests` since no test files exist yet).
+**CI note**: CI sets `CI=true`, which treats ESLint warnings as errors. Suppress intentional console statements with `// eslint-disable-next-line no-console`. CI uses Node 18.x, runs `npm ci`, build, and tests (with `--passWithNoTests`). Tests live in `src/__tests__/`.
 
 ## Architecture Overview
 
@@ -41,7 +41,7 @@ The `VisionSimulator.tsx` component has a 2-step flow (no MUI Stepper UI):
 
 The `ControlPanel` accepts a `visualizerSlot: React.ReactNode` prop — the `Visualizer` component is passed in as a slot and rendered alongside the effects list. The container widens to `1400px` on step 1 to accommodate the side-by-side layout.
 
-**Note**: The `GuidedTour` component is currently disabled (commented out in `VisionSimulator.tsx` JSX, import still present). The component file remains at `src/components/GuidedTour.tsx`.
+**Note**: The `GuidedTour` component is currently disabled (JSX commented out in `VisionSimulator.tsx`, import removed). The component file remains at `src/components/GuidedTour.tsx`.
 
 ### Multi-Layer Rendering System
 
@@ -50,11 +50,11 @@ The rendering pipeline uses multiple techniques simultaneously, each handling di
 | Layer | File | Purpose |
 |-------|------|---------|
 | WebGL Shaders | `shaders/` directory | Color blindness matrix transformations (for canvas-based rendering) |
-| CSS Filters + Inline SVG Data URIs | `colorVisionFilters.ts`, `cssFilterManager.ts` | Color vision simulation (data URI approach), blur, contrast, person-specific filters (29 custom filter files) |
+| CSS Filters + DOM-injected SVG | `colorVisionFilters.ts`, `cssFilterManager.ts` | Color vision simulation (DOM-injected SVG filters), blur, contrast, person-specific filters (29 custom filter files) |
 | DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters (19 custom person overlays) |
 | Animated Overlays | `hooks/animatedOverlays/` | JS-driven animated effects (21 animation files) |
 
-**Color vision filter approach**: `getColorVisionFilter()` in `colorVisionFilters.ts` returns self-contained SVG data URIs (`data:image/svg+xml,...#f`) with `<feColorMatrix>` elements. This avoids cross-origin iframe issues on mobile browsers that block document-level `url(#filterId)` references. The Machado 2009 matrices are blended with identity based on intensity, then encoded inline.
+**Color vision filter approach**: `getColorVisionFilter()` in `colorVisionFilters.ts` injects `<filter>` elements with `<feColorMatrix>` into a hidden `<svg id="cvd-svg-filters">` container in `document.body`, returning `url("#cvd-{type}")` references. This DOM-injection approach replaced the earlier data URI method because Safari/WebKit does not support `filter: url("data:image/svg+xml,...")` (WebKit Bug #104169). The Machado 2009 matrices are blended with identity based on intensity. Monochromacy uses CSS `saturate()/contrast()` instead of SVG. `cleanupAllDOMFilters()` removes all injected elements.
 
 Overlay z-index hierarchy is defined in `overlayConstants.ts` — new overlays must respect this ordering:
 - `Z_INDEX.VISUAL_FIELD_LOSS`: 9000 (top)
@@ -305,9 +305,7 @@ The following items are known dead code left in place intentionally or pending c
 
 | Item | Status | Notes |
 |------|--------|-------|
-| `src/utils/svgFilterManager.ts` | **Unused** | No longer imported anywhere. Was replaced by inline SVG data URI approach in `colorVisionFilters.ts`. Safe to delete. |
-| SVG `<filter>` definitions in `public/index.html` (lines 212-281) | **Orphaned** | 8 inline SVG filter elements (`#protanopia`, `#deuteranopia`, etc.) are no longer referenced by JS. Harmless but removable. |
-| `GuidedTour` import in `VisionSimulator.tsx` | **Unused import** | Component is disabled (JSX commented out), but the import remains on line 16. |
+| `src/utils/svgFilterManager.ts` | **Unused** | No longer imported anywhere. Was replaced by DOM-injected SVG approach in `colorVisionFilters.ts`. Safe to delete. |
 | `src/utils/shaders/shaderFunctions.ts` | **Untracked, unused** | Duplicates logic in the monolithic `fragmentShader.ts`. Never imported. |
 | `src/utils/shaders/fragmentShader/` directory | **Untracked, unused** | Modular split of `fragmentShader.ts` that was removed in a prior commit. The monolithic `.ts` file takes precedence in module resolution. |
 | `src/data/effects/famousPeopleEffects.ts` | **Untracked** | Barrel re-export file for `./famousPeopleEffects/index`. Check if needed or if direct imports are used. |

@@ -290,14 +290,16 @@ Configured via `public/manifest.json` and `src/service-worker.ts` (Workbox):
 
 ## Content Security Policy
 
-CSP is set via `<meta>` tag in `public/index.html`. Allowed external domains:
+CSP is set **only** in `public/_headers` (Cloudflare Pages HTTP header). There is no CSP meta tag in `index.html` — this is intentional to maintain a single source of truth. Do NOT add a CSP meta tag; if both exist, browsers enforce both independently and the stricter one wins, causing hard-to-debug blocking.
+
+Allowed external domains:
 - **Wistia** (`fast.wistia.com`, `*.wistia.com`) — embedded video player
 - **YouTube** (`youtube.com`, `www.youtube.com`, `i.ytimg.com`, `s.ytimg.com`, `yt3.ggpht.com`) — video source
 - **Formspree** (`formspree.io`) — feedback form submissions
 - **Sentry** (`browser.sentry-cdn.com`, `*.sentry-cdn.com`, `*.sentry.io`) — used by Wistia player for error reporting
-- **Cloudflare Analytics** (`static.cloudflareinsights.com`) — web analytics (token not yet configured)
+- **Cloudflare Analytics** (`static.cloudflareinsights.com`, `cloudflareinsights.com`) — web analytics
 
-When adding new external resources, update the CSP meta tag or requests will be blocked.
+When adding new external resources, update `public/_headers` or requests will be blocked.
 
 ## Known Redundancies and Dead Code
 

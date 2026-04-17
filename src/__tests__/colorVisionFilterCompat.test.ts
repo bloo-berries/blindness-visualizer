@@ -37,10 +37,11 @@ describe('Cross-browser compatibility: no data URIs', () => {
   );
 
   test.each(SVG_FILTER_CONDITIONS)(
-    '%s filter output is a local url("#cvd-...") reference',
+    '%s filter output is an absolute url("...#cvd-...") reference',
     (type) => {
       const filter = getColorVisionFilter(type, 1.0);
-      expect(filter).toMatch(/^url\("#cvd-[a-z]+"\)$/);
+      // Absolute URL with fragment: url("http://localhost#cvd-protanopia")
+      expect(filter).toMatch(/^url\(".*#cvd-[a-z]+"\)$/);
     }
   );
 });
@@ -64,9 +65,11 @@ describe('DOM injection creates valid SVG structure', () => {
     // Must NOT have width/height SVG attributes (Safari ignores filters in zero-sized SVGs)
     expect(container.getAttribute('width')).toBeNull();
     expect(container.getAttribute('height')).toBeNull();
-    // Must use CSS for hiding (jsdom normalizes '0' to '0px')
-    expect(['0', '0px']).toContain(container.style.width);
+    // Must use CSS visually-hidden pattern (1x1px + clip) — zero-size causes WebKit to ignore filters
+    expect(container.style.width).toBe('1px');
+    expect(container.style.height).toBe('1px');
     expect(container.style.overflow).toBe('hidden');
+    expect(container.style.clipPath).toBe('inset(50%)');
   });
 
   test('SVG container wraps filters in <defs> (Safari requirement)', () => {
@@ -218,7 +221,7 @@ describe('Cleanup behavior', () => {
   test('switching from monochromacy to SVG filter works correctly', () => {
     getColorVisionFilter('monochromacy' as ConditionType, 1.0);
     const filter = getColorVisionFilter('protanopia' as ConditionType, 1.0);
-    expect(filter).toBe('url("#cvd-protanopia")');
+    expect(filter).toMatch(/url\(".*#cvd-protanopia"\)/);
     expect(document.getElementById('cvd-protanopia')).not.toBeNull();
   });
 

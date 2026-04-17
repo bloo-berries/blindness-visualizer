@@ -171,9 +171,12 @@ const ensureSVGContainer = (): SVGSVGElement => {
     // ignores filter definitions inside zero-sized SVG viewports.
     // Instead, use CSS to visually hide the container while keeping it active.
     container.style.position = 'absolute';
-    container.style.width = '0';
-    container.style.height = '0';
+    container.style.width = '1px';
+    container.style.height = '1px';
     container.style.overflow = 'hidden';
+    container.style.clip = 'rect(0, 0, 0, 0)';
+    container.style.clipPath = 'inset(50%)';
+    container.style.whiteSpace = 'nowrap';
     container.style.pointerEvents = 'none';
 
     // Wrap filters in <defs> — the proper SVG way, required by Safari/WebKit
@@ -250,7 +253,12 @@ const applyDOMFilter = (type: string, matrix: number[]): string => {
   injectDOMFilter(filterId, cssMatrix);
   currentActiveFilterId = filterId;
 
-  return `url("#${filterId}")`;
+  // Use absolute URL for the SVG filter reference. Mobile browsers (iOS Safari,
+  // Android WebView) fail to resolve bare `url("#id")` when the page URL has
+  // been changed via pushState (React Router), because WebKit resolves the
+  // fragment relative to the current URL path rather than the document root.
+  const baseUrl = window.location.href.split('#')[0];
+  return `url("${baseUrl}#${filterId}")`;
 };
 
 /**

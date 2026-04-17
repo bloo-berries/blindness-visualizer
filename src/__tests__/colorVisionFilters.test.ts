@@ -16,7 +16,7 @@ describe('getColorVisionFilter', () => {
 
   test('returns a DOM filter reference for protanopia at full intensity', () => {
     const filter = getColorVisionFilter('protanopia' as ConditionType, 1.0);
-    expect(filter).toBe('url("#cvd-protanopia")');
+    expect(filter).toMatch(/url\(".*#cvd-protanopia"\)/);
   });
 
   test('creates DOM filter element for protanopia', () => {
@@ -30,12 +30,12 @@ describe('getColorVisionFilter', () => {
 
   test('returns a DOM filter reference for deuteranopia at full intensity', () => {
     const filter = getColorVisionFilter('deuteranopia' as ConditionType, 1.0);
-    expect(filter).toBe('url("#cvd-deuteranopia")');
+    expect(filter).toMatch(/url\(".*#cvd-deuteranopia"\)/);
   });
 
   test('returns a DOM filter reference for tritanopia at full intensity', () => {
     const filter = getColorVisionFilter('tritanopia' as ConditionType, 1.0);
-    expect(filter).toBe('url("#cvd-tritanopia")');
+    expect(filter).toMatch(/url\(".*#cvd-tritanopia"\)/);
   });
 
   test('returns CSS saturate filter for monochromacy at full intensity', () => {
@@ -48,7 +48,7 @@ describe('getColorVisionFilter', () => {
     'protanomaly', 'deuteranomaly', 'tritanomaly',
   ] as ConditionType[])('%s returns a DOM filter reference at 0.5 intensity', (type) => {
     const filter = getColorVisionFilter(type, 0.5);
-    expect(filter).toBe(`url("#cvd-${type}")`);
+    expect(filter).toMatch(new RegExp(`url\\(".*#cvd-${type}"\\)`));
   });
 
   test('removes DOM filter when intensity goes to 0', () => {
@@ -86,7 +86,7 @@ describe('getColorVisionFilter', () => {
     cleanupAllDOMFilters();
     const filterExplicit = getColorVisionFilter('protanopia' as ConditionType, 1.0);
     expect(filterDefault).toBe(filterExplicit);
-    expect(filterDefault).toBe('url("#cvd-protanopia")');
+    expect(filterDefault).toMatch(/url\(".*#cvd-protanopia"\)/);
   });
 
   test('updates existing DOM element when intensity changes for same condition', () => {

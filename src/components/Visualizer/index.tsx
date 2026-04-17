@@ -1,20 +1,15 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import * as THREE from 'three';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
 import { Download, CompareArrows } from '@mui/icons-material';
 import { generateEffectsDescription } from '../../utils/effectsDescription';
-import { createSceneManager } from '../../utils/threeSceneManager';
-import { createVisualizationMesh, updateShaderUniforms } from '../../utils/shaders';
-import { generateCSSFilters } from '../../utils/cssFilters';
-import { getColorVisionFilter } from '../../utils/colorVisionFilters';
 import { YOUTUBE_EMBED_URL, getFamousPersonVideoUrl } from '../../utils/appConstants';
 import YouTubeEmbed from '../YouTubeEmbed';
-import { PerformanceOptimizer, EffectProcessor, OverlayManager, AnimationManager } from '../../utils/performance';
-import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
+import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS, useCSSFilters, useSceneSetup } from './hooks';
 import { useAnimationTicker } from '../../hooks';
 import ComparisonView from './ComparisonView';
+import ColorVisionFilterSVG from './ColorVisionFilterSVG';
 import { useDiplopiaOverlay } from './DiplopiaOverlay';
 import NeoMatrixCodeVision from './hooks/animatedOverlays/neoMatrixCodeVision';
 
@@ -46,10 +41,6 @@ const Visualizer: React.FC<VisualizerProps> = ({
   const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
-  const [texture, setTexture] = useState<THREE.Texture | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
   const [showComparison, setShowComparison] = useState(propShowComparison || false);
 
   // Update local showComparison state when prop changes
@@ -61,11 +52,17 @@ const Visualizer: React.FC<VisualizerProps> = ({
     }
   }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
 
-  // Performance optimization instances
-  const optimizer = useRef(PerformanceOptimizer.getInstance());
-  const effectProcessor = useRef(new EffectProcessor());
-  const overlayManager = useRef(new OverlayManager());
-  const animationManager = useRef(AnimationManager.getInstance());
+  // Scene setup: WebGL lifecycle, media loading, animation loop
+  const { isLoading, error, handleRetryCamera, effectProcessor, overlayManager } = useSceneSetup(
+    containerRef,
+    mediaRef,
+    streamRef,
+    effects,
+    inputSource,
+    diplopiaSeparation,
+    diplopiaDirection,
+    showComparison,
+  );
 
   // Use screenshot hook
   const { isSaving, saveMessage, handleSaveScreenshot, clearSaveMessage } = useScreenshot(
@@ -92,13 +89,6 @@ const Visualizer: React.FC<VisualizerProps> = ({
   // Check for Neo Matrix Code Vision (requires canvas-based rendering)
   const neoEffect = effects.find(e => e.id === 'neoMatrixCodeVisionComplete' && e.enabled);
 
-  // Retry camera access
-  const handleRetryCamera = useCallback(() => {
-    setError(null);
-    setIsLoading(true);
-    setRetryCount(prev => prev + 1);
-  }, []);
-
   // Get appropriate video URL based on context
   const getVideoUrl = useCallback(() => {
     if (isFamousPeopleMode && personName && personCondition) {
@@ -116,155 +106,14 @@ const Visualizer: React.FC<VisualizerProps> = ({
     getVideoUrl
   );
 
-  // Main scene setup effect
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    if (showComparison) {
-      setIsLoading(false);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    let sceneManager: ReturnType<typeof createSceneManager> | null = null;
-    try {
-      sceneManager = createSceneManager(containerRef.current);
-    } catch {
-      // WebGL unavailable — CSS filters & DOM overlays still work for YouTube/image.
-      // Don't block rendering; just skip shader-based effects.
-      // eslint-disable-next-line no-console
-      console.warn('WebGL is not available on this device. Falling back to CSS-only rendering.');
-      setIsLoading(false);
-      // For YouTube/image sources, CSS filters handle color vision, overlays handle field loss.
-      // Only WebGL canvas rendering is lost (webcam texture processing).
-      if (inputSource.type === 'youtube' || inputSource.type === 'image') {
-        return; // CSS rendering will continue via the JSX path below
-      }
-      setError('WebGL is not available on this device. Some visual effects may be limited.');
-      return;
-    }
-    const { scene, camera, renderer, dispose } = sceneManager;
-
-    const currentAnimationManager = animationManager.current;
-    const currentOverlayManager = overlayManager.current;
-
-    const enabledEffectsCount = effects.filter(e => e.enabled).length;
-    const needsAnimation = effects.some(e =>
-      (e.id === 'scotoma' || e.id === 'visualFloaters' || e.id === 'retinitisPigmentosa' || e.id === 'vitreousHemorrhage') && e.enabled
-    );
-
-    const updateOverlays = () => {
-      const { changed, enabledEffects } = effectProcessor.current.updateEffects(effects);
-
-      if (changed && containerRef.current) {
-        overlayManager.current.updateOverlays(enabledEffects, containerRef.current);
-      }
-
-      overlayManager.current.updateAnimatedOverlays(enabledEffects);
-    };
-
-    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
-      animationManager.current.addCallback(updateOverlays);
-    }
-
-    // Handle different input sources
-    const setupMedia = async () => {
-      try {
-        if (inputSource.type === 'webcam') {
-          setError('Camera feature is currently disabled. This is a premium feature coming soon.');
-          setIsLoading(false);
-          return;
-
-        } else if (inputSource.type === 'image' && inputSource.url) {
-          const textureLoader = new THREE.TextureLoader();
-          const imageTexture = await textureLoader.loadAsync(inputSource.url);
-          setTexture(imageTexture);
-          setIsLoading(false);
-        } else if (inputSource.type === 'youtube') {
-          setTexture(null);
-          setIsLoading(false);
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          if (err.name === 'NotAllowedError') {
-            setError('Camera access denied. Please allow camera permissions and refresh the page.');
-          } else if (err.name === 'NotFoundError') {
-            setError('No camera found. Please connect a camera and try again.');
-          } else if (err.name === 'NotReadableError') {
-            setError('Camera is already in use by another application. Please close other camera applications and try again.');
-          } else if (err.name === 'OverconstrainedError') {
-            setError('Camera constraints cannot be satisfied. Trying with basic settings...');
-            try {
-              const basicStream = await navigator.mediaDevices.getUserMedia({ video: true });
-              streamRef.current = basicStream;
-              const video = mediaRef.current as HTMLVideoElement;
-              video.srcObject = basicStream;
-              await video.play();
-              const videoTexture = new THREE.VideoTexture(video);
-              setTexture(videoTexture);
-              setIsLoading(false);
-              return;
-            } catch {
-              setError('Failed to access camera with basic settings. Please check your camera permissions.');
-            }
-          } else {
-            setError(`Camera error: ${err.message}`);
-          }
-        } else {
-          setError('Failed to load media');
-        }
-        setIsLoading(false);
-      }
-    };
-
-    setupMedia();
-
-    const mesh = createVisualizationMesh();
-    scene.add(mesh);
-
-    let rafId: number;
-    let rafTimeoutId: ReturnType<typeof setTimeout>;
-
-    const animate = () => {
-      if (showComparison) return;
-
-      optimizer.current.monitorPerformance();
-
-      if (mesh && texture) {
-        const material = mesh.material as THREE.ShaderMaterial;
-        material.uniforms.tDiffuse.value = texture;
-
-        const { changed } = effectProcessor.current.updateEffects(effects);
-        if (changed) {
-          updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
-        }
-
-        renderer.render(scene, camera);
-      }
-
-      const frameRate = optimizer.current.getOptimalFrameRate(enabledEffectsCount);
-      if (frameRate < 60) {
-        rafTimeoutId = setTimeout(() => { rafId = requestAnimationFrame(animate); }, 1000 / frameRate - 16.67);
-      } else {
-        rafId = requestAnimationFrame(animate);
-      }
-    };
-
-    if (!showComparison) {
-      animate();
-    }
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      clearTimeout(rafTimeoutId);
-      if (inputSource.type === 'webcam') return;
-      currentAnimationManager.removeCallback(updateOverlays);
-      currentOverlayManager.clearOverlays();
-      dispose();
-    };
-  }, [inputSource, retryCount, diplopiaDirection, diplopiaSeparation, effects, texture, showComparison]);
+  // CSS filter computation and effect styles
+  const { computeFilterString, getEffectStyles } = useCSSFilters(
+    effects,
+    inputSource,
+    diplopiaSeparation,
+    diplopiaDirection,
+    effectProcessor,
+  );
 
   // Optimized effect state changes handling
   useEffect(() => {
@@ -297,7 +146,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
     } else {
       overlayManager.current.clearOverlays();
     }
-  }, [effects, inputSource.type, showComparison, isFamousPeopleMode]);
+  }, [effects, inputSource.type, showComparison, isFamousPeopleMode, effectProcessor, overlayManager]);
 
   // Ensure overlays are created when container becomes available
   useEffect(() => {
@@ -327,53 +176,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
         return () => clearTimeout(timeoutId);
       }
     }
-  }, [showComparison, effects, inputSource.type]);
-
-  // Shared CSS filter computation for enabled effects
-  const computeFilterString = useCallback((): string | null => {
-    const { enabledEffects } = effectProcessor.current.updateEffects(effects);
-
-    const colorVisionEffect = enabledEffects.find(e =>
-      ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-    );
-
-    const nonDiplopiaEffects = enabledEffects.filter(e =>
-      e.id !== 'diplopiaMonocular' && e.id !== 'diplopiaBinocular'
-    );
-
-    const otherEffects = nonDiplopiaEffects.filter(e =>
-      !['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly', 'monochromacy'].includes(e.id)
-    );
-
-    const filters: string[] = [];
-
-    if (colorVisionEffect) {
-      const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-      if (cssFilter) filters.push(cssFilter);
-    }
-
-    if (otherEffects.length > 0) {
-      const otherFilters = generateCSSFilters(otherEffects, diplopiaSeparation, diplopiaDirection);
-      if (otherFilters) filters.push(otherFilters);
-    }
-
-    return filters.length > 0 ? filters.join(' ') : null;
-  }, [effects, diplopiaSeparation, diplopiaDirection]);
-
-  // Optimized CSS filter calculation
-  const getEffectStyles = useCallback(() => {
-    const baseStyle: React.CSSProperties = {
-      position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-      maxWidth: '100%', maxHeight: '100%', width: '100%', height: '100%', objectFit: 'contain'
-    };
-
-    if (inputSource.type === 'youtube' || inputSource.type === 'image') {
-      const filterStr = computeFilterString();
-      return filterStr ? { ...baseStyle, filter: filterStr } : baseStyle;
-    }
-
-    return baseStyle;
-  }, [inputSource.type, computeFilterString]);
+  }, [showComparison, effects, inputSource.type, effectProcessor, overlayManager]);
 
   const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
 
@@ -526,6 +329,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
               overflow: 'hidden',
               filter: computeFilterString() || 'none'
             }}>
+              {/* Inline SVG filter for mobile WebKit compatibility */}
+              <ColorVisionFilterSVG effects={effects} />
               <YouTubeEmbed
                 src={YOUTUBE_EMBED_URL}
                 title="YouTube video player"

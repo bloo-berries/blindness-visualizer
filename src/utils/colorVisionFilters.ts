@@ -309,6 +309,41 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
 };
 
 /**
+ * Pure data function: returns filter ID and matrix values for a color vision
+ * condition WITHOUT any DOM side effects. Used by React components to render
+ * inline SVG filter definitions (required for mobile WebKit compatibility).
+ */
+export interface ColorVisionFilterData {
+  filterId: string;
+  matrixValues: string;
+}
+
+export const getColorVisionFilterData = (
+  type: ConditionType,
+  intensity: number = 1.0
+): ColorVisionFilterData | null => {
+  // Monochromacy uses pure CSS filters, no SVG needed
+  if (type === 'monochromatic' || type === 'monochromacy') return null;
+  if (intensity === 0) return null;
+
+  const fullMatrix = getColorVisionMatrix(type, 1.0);
+  const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+  const blended = fullMatrix.map((val, i) =>
+    val * intensity + identityMatrix[i] * (1 - intensity)
+  );
+
+  const filterId = `cvd-${type}`;
+  const matrixValues = [
+    blended[0], blended[1], blended[2], 0, 0,
+    blended[3], blended[4], blended[5], 0, 0,
+    blended[6], blended[7], blended[8], 0, 0,
+    0, 0, 0, 1, 0
+  ].join(' ');
+
+  return { filterId, matrixValues };
+};
+
+/**
  * Checks if a condition is a color vision deficiency type
  */
 export const isColorVisionCondition = (type: ConditionType): boolean => {

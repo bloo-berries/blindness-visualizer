@@ -10,6 +10,7 @@ import YouTubeEmbed from '../YouTubeEmbed';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from '../Visualizer/hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from '../Visualizer/hooks/animatedOverlays/neoMatrixCodeVision';
+import ColorVisionFilterSVG from '../Visualizer/ColorVisionFilterSVG';
 
 interface EmbeddedVisualizationProps {
   personId: string;
@@ -83,6 +84,10 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           width: '100%',
           maxWidth: '400px',
           aspectRatio: '16 / 9',
+          '@supports not (aspect-ratio: 16 / 9)': {
+            paddingBottom: '56.25%',
+            height: 0,
+          },
           backgroundColor: '#000',
           borderRadius: '6px',
           overflow: 'hidden'
@@ -138,6 +143,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
             filter: cssFilters || 'none'
           }}
         >
+          {/* Inline SVG filter for mobile WebKit compatibility */}
+          <ColorVisionFilterSVG effects={effects} />
           <YouTubeEmbed
             src={YOUTUBE_EMBED_URL}
             title={`Vision simulation for ${personName}`}

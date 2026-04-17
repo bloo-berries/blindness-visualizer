@@ -7,6 +7,7 @@ import YouTubeEmbed from '../YouTubeEmbed';
 import { useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS } from './hooks';
 import { useAnimationTicker } from '../../hooks';
 import NeoMatrixCodeVision from './hooks/animatedOverlays/neoMatrixCodeVision';
+import ColorVisionFilterSVG from './ColorVisionFilterSVG';
 
 interface ComparisonViewProps {
   effects: VisualEffect[];
@@ -126,6 +127,8 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           {t('comparison.simulation', 'Simulation')}
         </Box>
         <div ref={simulationContainerRef} style={getEffectStyles()}>
+          {/* Inline SVG filter for mobile WebKit compatibility */}
+          <ColorVisionFilterSVG effects={effects} />
           {inputSource.type === 'youtube' ? (
             <div style={{
               width: '100%',

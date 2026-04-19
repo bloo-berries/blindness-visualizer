@@ -41,7 +41,7 @@ const captureVisualizerScreenshot = async (
     // Use html2canvas for comprehensive screenshot capture
     const canvas = await html2canvas(visualizerContent as HTMLElement, {
       backgroundColor: null,
-      scale: 2, // Higher resolution for better quality
+      scale: Math.min(window.devicePixelRatio || 2, 3), // Match device DPI (cap at 3x to limit memory)
       useCORS: true,
       allowTaint: true,
       foreignObjectRendering: true,

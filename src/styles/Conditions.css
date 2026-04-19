@@ -3,6 +3,7 @@
 .conditions-glossary {
   background: var(--color-card-bg);
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .conditions-search-section {
@@ -29,7 +30,8 @@
   padding: 0 16px !important;
 }
 
-.condition-category-header:hover {
+.condition-category-header:hover,
+.condition-category-header:active {
   background: linear-gradient(135deg, var(--color-primary-gradient-end) 0%, var(--color-primary-gradient-end) 100%) !important;
 }
 
@@ -63,7 +65,8 @@
   position: relative;
 }
 
-.condition-item:hover {
+.condition-item:hover,
+.condition-item:active {
   background-color: var(--color-hover-bg);
 }
 
@@ -90,9 +93,10 @@
   transition: all 0.2s ease;
 }
 
-.condition-simulator-button:hover {
+.condition-simulator-button:hover,
+.condition-simulator-button:active {
   background-color: #dbeafe !important;
-  color: #1e40af !important;
+  color: var(--color-primary) !important;
   transform: scale(1.1);
 }
 
@@ -182,16 +186,7 @@
   animation: slideDown 0.3s ease-out;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* slideDown animation is defined in App.css */
 
 /* Enhanced focus states for accessibility */
 .condition-simulator-button:focus {
@@ -218,7 +213,7 @@
 /* Enhanced chip styling for related people */
 .condition-related-chip {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-  color: #1e40af !important;
+  color: var(--color-primary) !important;
   border: 1px solid #93c5fd !important;
   font-weight: 500 !important;
   font-size: 0.75rem !important;

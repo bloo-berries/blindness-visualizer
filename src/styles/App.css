@@ -131,6 +131,7 @@ html, body, #root {
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 80vh;
+  max-height: 80dvh;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -160,8 +161,8 @@ html, body, #root {
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 12px;
-  background: #1e293b;
-  color: white;
+  background: var(--color-text-primary);
+  color: var(--color-bg-default);
   border-radius: 6px;
   font-size: 14px;
   white-space: nowrap;
@@ -212,6 +213,15 @@ html, body, #root {
   }
 }
 
+/* Eliminate 300ms tap delay on older iOS Safari for interactive elements */
+a, button, [role="button"],
+.MuiButton-root, .MuiIconButton-root,
+.MuiSwitch-root, .MuiSlider-root,
+.MuiAccordionSummary-root, .MuiChip-root,
+.MuiMenuItem-root, .MuiListItem-root {
+  touch-action: manipulation;
+}
+
 /* Add responsive design */
 @media (max-width: 600px) {
   .landing-page h1 {
@@ -228,31 +238,19 @@ html, body, #root {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Add to your App.css */
-.skip-to-content {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  z-index: 999;
+/* Shared accordion expansion animation (used by Conditions + FAQ) */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.skip-to-content:focus {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  padding: 15px 20px;
-  background: var(--color-primary);
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 0 0 8px 0;
-  z-index: 9999;
-}
+/* Skip-to-content styles are in Accessibility.css */
 
 /* Make sure focus states are visible */
 :focus {
@@ -299,19 +297,19 @@ html, body, #root {
 
 /* Animation for Vitreous Hemorrhage floaters - slow drift and movement */
 @keyframes vitreousFloaterDrift {
-  0% { 
+  0% {
     transform: translate(0px, 0px) rotate(0deg);
   }
-  25% { 
-    transform: translate(1px, -0.5px) rotate(0.2deg);
+  25% {
+    transform: translate(1px, -1px) rotate(0.2deg);
   }
-  50% { 
-    transform: translate(-0.5px, 1px) rotate(-0.2deg);
+  50% {
+    transform: translate(-1px, 1px) rotate(-0.2deg);
   }
-  75% { 
-    transform: translate(0.5px, 0.5px) rotate(0.1deg);
+  75% {
+    transform: translate(1px, 1px) rotate(0.1deg);
   }
-  100% { 
+  100% {
     transform: translate(0px, 0px) rotate(0deg);
   }
 }
@@ -331,13 +329,13 @@ html, body, #root {
     transform: translate(0px, 0px);
   }
   25% {
-    transform: translate(1.5px, -1px);
+    transform: translate(2px, -1px);
   }
   50% {
-    transform: translate(0.5px, 1px);
+    transform: translate(1px, 1px);
   }
   75% {
-    transform: translate(-1px, 0.5px);
+    transform: translate(-1px, 1px);
   }
   100% {
     transform: translate(0px, 0px);

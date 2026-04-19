@@ -3,6 +3,7 @@
 .faq-page {
   background: var(--color-card-bg);
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .faq-accordion {
@@ -19,7 +20,8 @@
   transition: all 0.3s ease;
 }
 
-.faq-summary:hover {
+.faq-summary:hover,
+.faq-summary:active {
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -119,16 +121,7 @@
   animation: slideDown 0.3s ease-out;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* slideDown animation is defined in App.css */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -182,8 +175,9 @@
   font-weight: 600 !important;
 }
 
-/* Hover effects for interactive elements */
-.faq-details .MuiListItem-root:hover {
+/* Hover/active effects for interactive elements */
+.faq-details .MuiListItem-root:hover,
+.faq-details .MuiListItem-root:active {
   background-color: var(--color-hover-bg);
   border-radius: 4px;
   margin: 0 -8px;
@@ -214,7 +208,8 @@
 }
 
 /* Enhanced visual feedback */
-.faq-accordion:hover {
+.faq-accordion:hover,
+.faq-accordion:active {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;

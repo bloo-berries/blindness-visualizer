@@ -8,7 +8,10 @@ interface SceneManager {
 }
 
 /**
- * Creates and configures a Three.js scene for visualization
+ * Creates and configures a Three.js scene for visualization.
+ *
+ * Handles WebGL context loss (common on mobile when the GPU reclaims memory)
+ * by listening for `webglcontextlost` / `webglcontextrestored` events.
  *
  * @param container - The DOM element to attach the renderer to
  * @returns Scene manager with scene, camera, renderer and cleanup function.
@@ -27,8 +30,32 @@ export const createSceneManager = (container: HTMLDivElement): SceneManager => {
 
   container.appendChild(renderer.domElement);
 
+  // --- WebGL context loss / restore handlers ---
+  // Mobile GPUs may reclaim the WebGL context under memory pressure.
+  // Calling preventDefault() tells the browser we intend to restore.
+  const canvas = renderer.domElement;
+
+  const handleContextLost = (event: Event) => {
+    event.preventDefault();
+    // eslint-disable-next-line no-console
+    console.warn('WebGL context lost — waiting for restore');
+  };
+
+  const handleContextRestored = () => {
+    // eslint-disable-next-line no-console
+    console.info('WebGL context restored');
+    // Re-apply renderer size after context is restored
+    const rect = container.getBoundingClientRect();
+    renderer.setSize(rect.width, rect.height);
+  };
+
+  canvas.addEventListener('webglcontextlost', handleContextLost);
+  canvas.addEventListener('webglcontextrestored', handleContextRestored);
+
   // Cleanup function
   const dispose = () => {
+    canvas.removeEventListener('webglcontextlost', handleContextLost);
+    canvas.removeEventListener('webglcontextrestored', handleContextRestored);
     if (container && renderer.domElement) {
       container.removeChild(renderer.domElement);
     }

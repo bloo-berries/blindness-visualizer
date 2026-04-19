@@ -2,12 +2,127 @@ import { ConditionType } from '../types/visualEffects';
 
 /**
  * Accurate Color Vision Deficiency Simulation
- * 
+ *
  * This module provides scientifically accurate color vision deficiency simulation
  * using Machado 2009 transformation matrices and proper CSS filter implementations.
- * 
+ *
  * Based on established color science algorithms for realistic CVD simulation.
+ *
+ * Desktop: Uses SVG feColorMatrix filters injected into the DOM for pixel-accurate
+ * color transformation (Machado 2009 matrices in linearRGB space).
+ *
+ * Mobile: SVG url("#id") CSS filter references do not work on mobile WebKit/Blink
+ * (tested with body-injected SVG, inline SVG, absolute URLs — all fail). Instead,
+ * we use CSS filter function approximations (sepia, hue-rotate, saturate, brightness)
+ * which are pure CSS and work reliably on all mobile browsers.
  */
+
+// --- Mobile detection ---
+// Cache the result since UA doesn't change during a session.
+let _isMobile: boolean | null = null;
+
+/**
+ * Detects whether the current browser is a mobile device.
+ * Mobile browsers cannot resolve SVG url("#id") CSS filter references,
+ * so we fall back to pure CSS filter approximations.
+ */
+export const isMobileBrowser = (): boolean => {
+  if (_isMobile !== null) return _isMobile;
+
+  if (typeof navigator === 'undefined') {
+    _isMobile = false;
+    return false;
+  }
+
+  // Check touch capability + small viewport (avoids matching touch-enabled laptops)
+  const hasCoarsePointer = typeof matchMedia !== 'undefined' &&
+    matchMedia('(pointer: coarse)').matches;
+  const isSmallScreen = typeof matchMedia !== 'undefined' &&
+    matchMedia('(max-width: 1024px)').matches;
+
+  // UA-based check as secondary signal
+  const mobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i
+    .test(navigator.userAgent);
+
+  // iPad with desktop UA still has coarse pointer
+  _isMobile = (hasCoarsePointer && isSmallScreen) || mobileUA;
+  return _isMobile;
+};
+
+// --- CSS filter approximations for mobile ---
+// These use combinations of sepia(), hue-rotate(), saturate(), and brightness()
+// to approximate color vision deficiency effects. Less accurate than feColorMatrix
+// but pure CSS — guaranteed to work on all mobile browsers.
+
+interface CSSFilterApprox {
+  /** CSS filter string at full intensity */
+  filter: string;
+}
+
+const CSS_FILTER_APPROXIMATIONS: Record<string, CSSFilterApprox> = {
+  // Protanopia: loss of red sensitivity, world shifts to blue-yellow
+  // Simulate by removing red channel contribution via hue rotation + desaturation
+  protanopia: {
+    filter: 'sepia(40%) hue-rotate(330deg) saturate(85%) brightness(98%)',
+  },
+
+  // Deuteranopia: loss of green sensitivity, red-green confusion
+  // Similar spectral shift but different luminosity response
+  deuteranopia: {
+    filter: 'sepia(35%) hue-rotate(345deg) saturate(80%) brightness(100%)',
+  },
+
+  // Tritanopia: loss of blue sensitivity, blue-yellow confusion
+  // World appears in red-green spectrum
+  tritanopia: {
+    filter: 'sepia(50%) hue-rotate(20deg) saturate(90%) brightness(98%)',
+  },
+
+  // Anomalous trichromacy — milder versions of the above
+  protanomaly: {
+    filter: 'sepia(20%) hue-rotate(340deg) saturate(90%) brightness(99%)',
+  },
+
+  deuteranomaly: {
+    filter: 'sepia(18%) hue-rotate(350deg) saturate(88%) brightness(100%)',
+  },
+
+  tritanomaly: {
+    filter: 'sepia(25%) hue-rotate(15deg) saturate(92%) brightness(99%)',
+  },
+};
+
+/**
+ * Returns a pure CSS filter string for mobile devices, or null if the
+ * condition type doesn't have a CSS approximation (e.g. monochromacy,
+ * which already uses pure CSS).
+ */
+const getMobileCSSFilter = (type: string, intensity: number): string | null => {
+  const approx = CSS_FILTER_APPROXIMATIONS[type];
+  if (!approx) return null;
+
+  // At full intensity, use the approximation directly
+  if (intensity >= 1.0) return approx.filter;
+
+  // Scale each filter function's deviation from identity proportionally
+  // Parse the filter string and interpolate values toward identity
+  // Identity: sepia(0%) hue-rotate(0deg) saturate(100%) brightness(100%)
+  return approx.filter
+    .replace(/sepia\((\d+)%?\)/, (_, v) => `sepia(${parseFloat(v) * intensity}%)`)
+    .replace(/hue-rotate\((\d+)deg\)/, (_, v) => `hue-rotate(${parseFloat(v) * intensity}deg)`)
+    .replace(/saturate\((\d+)%?\)/, (_, v) => {
+      // Interpolate toward 100% (identity)
+      const target = parseFloat(v);
+      const interpolated = 100 + (target - 100) * intensity;
+      return `saturate(${interpolated}%)`;
+    })
+    .replace(/brightness\((\d+)%?\)/, (_, v) => {
+      // Interpolate toward 100% (identity)
+      const target = parseFloat(v);
+      const interpolated = 100 + (target - 100) * intensity;
+      return `brightness(${interpolated}%)`;
+    });
+};
 
 // Machado, Oliveira & Fernandes 2009 transformation matrices for dichromatic conditions
 // These are physiologically accurate matrices for color vision deficiency simulation
@@ -263,12 +378,18 @@ const applyDOMFilter = (type: string, matrix: number[]): string => {
 
 /**
  * Generates CSS filter for color vision deficiency simulation.
- * Injects SVG <filter> elements directly into the DOM and returns url("#id")
- * references, which work in all browsers including Safari/WebKit.
+ *
+ * Desktop: Injects SVG <filter> elements into the DOM and returns url("#id")
+ * references for pixel-accurate Machado 2009 simulation.
+ *
+ * Mobile: Returns pure CSS filter function approximations (sepia, hue-rotate,
+ * saturate, brightness) because SVG url("#id") references do not work on
+ * mobile WebKit/Blink regardless of SVG placement or URL format.
  */
 export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.0): string => {
 
   // For achromatopsia, use a simpler approach with saturate and contrast
+  // (works on both desktop and mobile — pure CSS)
   if (type === 'monochromatic' || type === 'monochromacy') {
     // At 0% intensity, show normal color vision (no filter)
     if (intensity === 0) {
@@ -294,6 +415,19 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
     return '';
   }
 
+  // Mobile: use pure CSS filter approximations (SVG url() doesn't work)
+  if (isMobileBrowser()) {
+    // Clean up any lingering DOM filter
+    if (currentActiveFilterId) {
+      removeDOMFilter(currentActiveFilterId);
+      currentActiveFilterId = null;
+    }
+    const cssFilter = getMobileCSSFilter(type, intensity);
+    if (cssFilter) return cssFilter;
+    // Fall through to SVG if no CSS approximation (shouldn't happen)
+  }
+
+  // Desktop: use SVG feColorMatrix for accurate simulation
   // Get the full matrix for this condition
   const fullMatrix = getColorVisionMatrix(type, 1.0);
 

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { VisualEffect, InputSource } from '../../../types/visualEffects';
 import { generateCSSFilters } from '../../../utils/cssFilters';
-import { getColorVisionFilter, getColorVisionFilterData } from '../../../utils/colorVisionFilters';
+import { getColorVisionFilter, getColorVisionFilterData, isMobileBrowser } from '../../../utils/colorVisionFilters';
 import { EffectProcessor } from '../../../utils/performance';
 
 const COLOR_VISION_IDS = [
@@ -15,15 +15,17 @@ const COLOR_VISION_IDS = [
  * from active visual effects.
  *
  * - `computeFilterString` builds the CSS `filter` value by combining
- *   color-vision SVG filters with other effect CSS filters.
+ *   color-vision filters with other effect CSS filters.
  * - `getEffectStyles` returns a full CSSProperties object suitable for
  *   positioning media content and applying the computed filter.
  *
- * For color vision conditions that use SVG feColorMatrix (everything except
- * monochromacy), the companion <ColorVisionFilterSVG> component must be
- * rendered in the same container to provide the inline SVG filter definition.
- * This is required because mobile WebKit cannot resolve url("#id") references
- * to SVG filters injected into document.body.
+ * Desktop: Uses SVG feColorMatrix via url("#id") for accurate simulation.
+ * The companion <ColorVisionFilterSVG> component provides the inline SVG
+ * filter definition.
+ *
+ * Mobile: Uses pure CSS filter approximations (sepia, hue-rotate, saturate,
+ * brightness) because SVG url("#id") references do not work on mobile
+ * browsers. The approximations are returned directly by getColorVisionFilter().
  */
 export function useCSSFilters(
   effects: VisualEffect[],
@@ -51,20 +53,27 @@ export function useCSSFilters(
     const filters: string[] = [];
 
     if (colorVisionEffect) {
-      // For monochromacy, getColorVisionFilter returns pure CSS (saturate/contrast).
-      // For SVG-based conditions, getColorVisionFilterData gives us the filter ID
-      // and the inline <ColorVisionFilterSVG> component provides the <filter> def.
-      // We also call getColorVisionFilter to maintain the body-injected fallback.
-      const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
-      if (filterData) {
-        // SVG-based filter — use bare url("#id") which resolves to the inline SVG
-        filters.push(`url("#${filterData.filterId}")`);
-        // Also inject into body as desktop fallback (harmless duplicate)
-        getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-      } else {
-        // Monochromacy or zero intensity — pure CSS filter string
+      const mobile = isMobileBrowser();
+
+      if (mobile) {
+        // Mobile: getColorVisionFilter returns pure CSS approximation
+        // (no SVG url() references — those don't work on mobile)
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
+      } else {
+        // Desktop: use SVG feColorMatrix for accurate simulation
+        // getColorVisionFilterData gives us the filter ID; the inline
+        // <ColorVisionFilterSVG> component provides the <filter> def.
+        const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
+        if (filterData) {
+          filters.push(`url("#${filterData.filterId}")`);
+          // Also inject into body as fallback
+          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+        } else {
+          // Monochromacy or zero intensity — pure CSS filter string
+          const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+          if (cssFilter) filters.push(cssFilter);
+        }
       }
     }
 

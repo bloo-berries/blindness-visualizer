@@ -17,35 +17,45 @@ import { ConditionType } from '../types/visualEffects';
  * which are pure CSS and work reliably on all mobile browsers.
  */
 
-// --- Mobile detection ---
-// Cache the result since UA doesn't change during a session.
+// --- Mobile/touch device detection ---
+// SVG url("#id") CSS filter references fail on touch browsers (iOS Safari,
+// Android Chrome, iPadOS Safari) regardless of SVG placement or URL format.
+// We detect these devices and use pure CSS filter approximations instead.
+// Cache the result since the answer doesn't change during a session.
 let _isMobile: boolean | null = null;
 
+/** Reset cached mobile detection (for testing) */
+export const _resetMobileDetection = (): void => { _isMobile = null; };
+
 /**
- * Detects whether the current browser is a mobile device.
- * Mobile browsers cannot resolve SVG url("#id") CSS filter references,
- * so we fall back to pure CSS filter approximations.
+ * Detects whether the current browser is a mobile/touch device where
+ * SVG url("#id") CSS filter references do not work.
  */
 export const isMobileBrowser = (): boolean => {
   if (_isMobile !== null) return _isMobile;
 
-  if (typeof navigator === 'undefined') {
+  if (typeof navigator === 'undefined' || typeof window === 'undefined') {
     _isMobile = false;
     return false;
   }
 
-  // Check touch capability + small viewport (avoids matching touch-enabled laptops)
-  const hasCoarsePointer = typeof matchMedia !== 'undefined' &&
-    matchMedia('(pointer: coarse)').matches;
-  const isSmallScreen = typeof matchMedia !== 'undefined' &&
-    matchMedia('(max-width: 1024px)').matches;
+  // Primary pointer is coarse (finger/stylus) with no fine pointer (mouse) =
+  // phone or tablet. Touch-enabled laptops have BOTH coarse + fine pointers,
+  // so checking "coarse and NOT fine" avoids degrading desktop touch laptops.
+  const mm = typeof matchMedia !== 'undefined';
+  const primaryIsCoarse = mm && matchMedia('(pointer: coarse)').matches;
+  const primaryIsFine = mm && matchMedia('(pointer: fine)').matches;
+  const isTouchOnly = primaryIsCoarse && !primaryIsFine;
 
-  // UA-based check as secondary signal
+  // UA-based check (catches most phones + older iPads)
   const mobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i
     .test(navigator.userAgent);
 
-  // iPad with desktop UA still has coarse pointer
-  _isMobile = (hasCoarsePointer && isSmallScreen) || mobileUA;
+  // iPadOS 13+ sends a desktop Mac UA but still has touch points
+  const isIPadOS = /Macintosh/i.test(navigator.userAgent) &&
+    navigator.maxTouchPoints > 1;
+
+  _isMobile = isTouchOnly || mobileUA || isIPadOS;
   return _isMobile;
 };
 
@@ -60,35 +70,36 @@ interface CSSFilterApprox {
 }
 
 const CSS_FILTER_APPROXIMATIONS: Record<string, CSSFilterApprox> = {
-  // Protanopia: loss of red sensitivity, world shifts to blue-yellow
-  // Simulate by removing red channel contribution via hue rotation + desaturation
+  // Protanopia (red-blind): reds become dark, world shifts to blue-yellow.
+  // Chain: saturate down to collapse red-green → sepia for warm base →
+  // hue-rotate into the blue-yellow axis → re-saturate slightly.
   protanopia: {
-    filter: 'sepia(40%) hue-rotate(330deg) saturate(85%) brightness(98%)',
+    filter: 'saturate(40%) sepia(100%) hue-rotate(290deg) saturate(130%) brightness(92%)',
   },
 
-  // Deuteranopia: loss of green sensitivity, red-green confusion
-  // Similar spectral shift but different luminosity response
+  // Deuteranopia (green-blind): greens become brownish, red-green confusion.
+  // Similar to protanopia but different hue shift and slightly brighter.
   deuteranopia: {
-    filter: 'sepia(35%) hue-rotate(345deg) saturate(80%) brightness(100%)',
+    filter: 'saturate(45%) sepia(100%) hue-rotate(315deg) saturate(120%) brightness(95%)',
   },
 
-  // Tritanopia: loss of blue sensitivity, blue-yellow confusion
-  // World appears in red-green spectrum
+  // Tritanopia (blue-blind): blues disappear, world appears in red-green.
+  // Shift warm, keep high saturation in the red-green range.
   tritanopia: {
-    filter: 'sepia(50%) hue-rotate(20deg) saturate(90%) brightness(98%)',
+    filter: 'saturate(50%) sepia(100%) hue-rotate(15deg) saturate(150%) brightness(94%)',
   },
 
-  // Anomalous trichromacy — milder versions of the above
+  // Anomalous trichromacy — reduced severity versions of the above
   protanomaly: {
-    filter: 'sepia(20%) hue-rotate(340deg) saturate(90%) brightness(99%)',
+    filter: 'saturate(65%) sepia(60%) hue-rotate(290deg) saturate(115%) brightness(96%)',
   },
 
   deuteranomaly: {
-    filter: 'sepia(18%) hue-rotate(350deg) saturate(88%) brightness(100%)',
+    filter: 'saturate(70%) sepia(55%) hue-rotate(315deg) saturate(110%) brightness(98%)',
   },
 
   tritanomaly: {
-    filter: 'sepia(25%) hue-rotate(15deg) saturate(92%) brightness(99%)',
+    filter: 'saturate(70%) sepia(60%) hue-rotate(15deg) saturate(130%) brightness(97%)',
   },
 };
 
@@ -104,24 +115,29 @@ const getMobileCSSFilter = (type: string, intensity: number): string | null => {
   // At full intensity, use the approximation directly
   if (intensity >= 1.0) return approx.filter;
 
-  // Scale each filter function's deviation from identity proportionally
-  // Parse the filter string and interpolate values toward identity
-  // Identity: sepia(0%) hue-rotate(0deg) saturate(100%) brightness(100%)
-  return approx.filter
-    .replace(/sepia\((\d+)%?\)/, (_, v) => `sepia(${parseFloat(v) * intensity}%)`)
-    .replace(/hue-rotate\((\d+)deg\)/, (_, v) => `hue-rotate(${parseFloat(v) * intensity}deg)`)
-    .replace(/saturate\((\d+)%?\)/, (_, v) => {
-      // Interpolate toward 100% (identity)
-      const target = parseFloat(v);
-      const interpolated = 100 + (target - 100) * intensity;
-      return `saturate(${interpolated}%)`;
-    })
-    .replace(/brightness\((\d+)%?\)/, (_, v) => {
-      // Interpolate toward 100% (identity)
-      const target = parseFloat(v);
-      const interpolated = 100 + (target - 100) * intensity;
-      return `brightness(${interpolated}%)`;
-    });
+  // Scale each filter function's deviation from identity proportionally.
+  // Identity values: sepia(0%), hue-rotate(0deg), saturate(100%), brightness(100%).
+  // Use replaceAll since saturate() may appear more than once in the chain.
+  let result = approx.filter;
+
+  result = result.replace(/sepia\((\d+)%?\)/g, (_, v) =>
+    `sepia(${Math.round(parseFloat(v) * intensity)}%)`
+  );
+  result = result.replace(/hue-rotate\((\d+)deg\)/g, (_, v) =>
+    `hue-rotate(${Math.round(parseFloat(v) * intensity)}deg)`
+  );
+  result = result.replace(/saturate\((\d+)%?\)/g, (_, v) => {
+    const target = parseFloat(v);
+    const interpolated = Math.round(100 + (target - 100) * intensity);
+    return `saturate(${interpolated}%)`;
+  });
+  result = result.replace(/brightness\((\d+)%?\)/g, (_, v) => {
+    const target = parseFloat(v);
+    const interpolated = Math.round(100 + (target - 100) * intensity);
+    return `brightness(${interpolated}%)`;
+  });
+
+  return result;
 };
 
 // Machado, Oliveira & Fernandes 2009 transformation matrices for dichromatic conditions

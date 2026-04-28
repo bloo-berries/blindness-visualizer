@@ -245,20 +245,87 @@ const Visualizer: React.FC<VisualizerProps> = ({
           position: 'absolute',
           width: '100%',
           height: '100%',
-          display: inputSource.type === 'youtube' ? 'none' : 'block'
+          display: inputSource.type === 'webcam' ? 'block' : 'none'
         }}
       >
-        {inputSource.type === 'webcam' ? (
+        {inputSource.type === 'webcam' && (
           <video ref={mediaRef as React.RefObject<HTMLVideoElement>} style={{ display: 'none' }} />
-        ) : inputSource.type === 'image' ? (
-          <img
-            ref={mediaRef as React.RefObject<HTMLImageElement>}
-            style={{ display: 'none' }}
-            src={inputSource.url}
-            alt="Uploaded content for visualization"
-          />
-        ) : null}
+        )}
       </div>
+
+      {inputSource.type === 'image' && inputSource.url && (
+        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+          {!showComparison && (
+            <Box sx={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10000 }}>
+              <Button
+                variant="contained"
+                size="medium"
+                onClick={handleToggleComparison}
+                disabled={isLoading}
+                startIcon={<CompareArrows />}
+                sx={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  color: '#1e3a8a',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  px: 2,
+                  py: 0.75,
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 4px 12px rgba(30,58,138,0.4)',
+                  }
+                }}
+              >
+                Compare
+              </Button>
+            </Box>
+          )}
+
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+              filter: computeFilterString() || 'none'
+            }}>
+              <ColorVisionFilterSVG effects={effects} />
+              <img
+                src={inputSource.url}
+                alt="Uploaded content for visualization"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
+              />
+              {visualFieldOverlayStyles.map((style, i) => (
+                <div key={i} style={style} aria-hidden="true" />
+              ))}
+              {animatedOverlayStyle && (
+                <div style={{ ...animatedOverlayStyle, zIndex: 10000 }} aria-hidden="true" />
+              )}
+              {neoEffect && (
+                <NeoMatrixCodeVision intensity={neoEffect.intensity} />
+              )}
+            </div>
+          </div>
+          {getDiplopiaOverlay()}
+        </Box>
+      )}
 
       {inputSource.type === 'youtube' && (
         <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>

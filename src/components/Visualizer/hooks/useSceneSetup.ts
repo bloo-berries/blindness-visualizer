@@ -35,7 +35,7 @@ export function useSceneSetup(
   diplopiaDirection: number,
   showComparison: boolean,
 ): SceneSetupResult {
-  const [texture, setTexture] = useState<THREE.Texture | null>(null);
+  const [texture] = useState<THREE.Texture | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
@@ -55,6 +55,12 @@ export function useSceneSetup(
 
   // Main scene setup effect
   useEffect(() => {
+    // YouTube and image sources use CSS-based rendering (no WebGL needed)
+    if (inputSource.type === 'youtube' || inputSource.type === 'image') {
+      setIsLoading(false);
+      return;
+    }
+
     if (!containerRef.current) return;
 
     if (showComparison) {
@@ -69,16 +75,9 @@ export function useSceneSetup(
     try {
       sceneManager = createSceneManager(containerRef.current);
     } catch {
-      // WebGL unavailable — CSS filters & DOM overlays still work for YouTube/image.
-      // Don't block rendering; just skip shader-based effects.
       // eslint-disable-next-line no-console
       console.warn('WebGL is not available on this device. Falling back to CSS-only rendering.');
       setIsLoading(false);
-      // For YouTube/image sources, CSS filters handle color vision, overlays handle field loss.
-      // Only WebGL canvas rendering is lost (webcam texture processing).
-      if (inputSource.type === 'youtube' || inputSource.type === 'image') {
-        return; // CSS rendering will continue via the JSX path below
-      }
       setError('WebGL is not available on this device. Some visual effects may be limited.');
       return;
     }
@@ -102,55 +101,20 @@ export function useSceneSetup(
       overlayManager.current.updateAnimatedOverlays(enabledEffects);
     };
 
-    if (needsAnimation && (inputSource.type === 'youtube' || inputSource.type === 'image')) {
+    if (needsAnimation) {
       animationManager.current.addCallback(updateOverlays);
     }
 
-    // Handle different input sources
+    // Handle webcam input
     const setupMedia = async () => {
       try {
         if (inputSource.type === 'webcam') {
           setError('Camera feature is currently disabled. This is a premium feature coming soon.');
           setIsLoading(false);
-          return;
-
-        } else if (inputSource.type === 'image' && inputSource.url) {
-          const textureLoader = new THREE.TextureLoader();
-          const imageTexture = await textureLoader.loadAsync(inputSource.url);
-          setTexture(imageTexture);
-          setIsLoading(false);
-        } else if (inputSource.type === 'youtube') {
-          setTexture(null);
-          setIsLoading(false);
         }
       } catch (err) {
-        if (inputSource.type === 'image') {
-          setError('Failed to load image. The file may be corrupted or unsupported. Please try uploading again.');
-        } else if (err instanceof Error) {
-          if (err.name === 'NotAllowedError') {
-            setError('Camera access denied. Please allow camera permissions and refresh the page.');
-          } else if (err.name === 'NotFoundError') {
-            setError('No camera found. Please connect a camera and try again.');
-          } else if (err.name === 'NotReadableError') {
-            setError('Camera is already in use by another application. Please close other camera applications and try again.');
-          } else if (err.name === 'OverconstrainedError') {
-            setError('Camera constraints cannot be satisfied. Trying with basic settings...');
-            try {
-              const basicStream = await navigator.mediaDevices.getUserMedia({ video: true });
-              streamRef.current = basicStream;
-              const video = mediaRef.current as HTMLVideoElement;
-              video.srcObject = basicStream;
-              await video.play();
-              const videoTexture = new THREE.VideoTexture(video);
-              setTexture(videoTexture);
-              setIsLoading(false);
-              return;
-            } catch {
-              setError('Failed to access camera with basic settings. Please check your camera permissions.');
-            }
-          } else {
-            setError(`Camera error: ${err.message}`);
-          }
+        if (err instanceof Error) {
+          setError(`Camera error: ${err.message}`);
         } else {
           setError('Failed to load media');
         }
@@ -198,7 +162,6 @@ export function useSceneSetup(
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(rafTimeoutId);
-      if (inputSource.type === 'webcam') return;
       currentAnimationManager.removeCallback(updateOverlays);
       currentOverlayManager.clearOverlays();
       dispose();

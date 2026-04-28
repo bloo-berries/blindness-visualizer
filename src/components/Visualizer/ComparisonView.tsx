@@ -190,10 +190,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
                   objectFit: 'contain'
                 }}
               />
-              {/* React-based visual field overlay for reliable rendering */}
-              {visualFieldOverlayStyle && (
-                <div style={visualFieldOverlayStyle} aria-hidden="true" />
-              )}
+              {/* React-based visual field overlays for reliable rendering */}
+              {visualFieldOverlayStyles.map((style, i) => (
+                <div key={i} style={style} aria-hidden="true" />
+              ))}
               {/* Animated overlay for visual aura effects */}
               {animatedOverlayStyle && (
                 <div style={animatedOverlayStyle} aria-hidden="true" />

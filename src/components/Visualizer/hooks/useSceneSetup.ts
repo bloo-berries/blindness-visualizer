@@ -124,7 +124,9 @@ export function useSceneSetup(
           setIsLoading(false);
         }
       } catch (err) {
-        if (err instanceof Error) {
+        if (inputSource.type === 'image') {
+          setError('Failed to load image. The file may be corrupted or unsupported. Please try uploading again.');
+        } else if (err instanceof Error) {
           if (err.name === 'NotAllowedError') {
             setError('Camera access denied. Please allow camera permissions and refresh the page.');
           } else if (err.name === 'NotFoundError') {

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Box,
   Card,
@@ -43,14 +43,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
   const [dataPolicyOpen, setDataPolicyOpen] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
-  // Revoke blob URL on unmount
-  useEffect(() => {
-    return () => {
-      if (blobUrlRef.current) {
-        URL.revokeObjectURL(blobUrlRef.current);
-      }
-    };
-  }, []);
+  // Note: We intentionally do NOT revoke the blob URL on unmount.
+  // The URL must survive InputSelector unmounting during step transitions
+  // (step 0 → step 1) so the Visualizer can load it. Previous blob URLs
+  // are revoked when a new image is uploaded (see onChange handler below),
+  // and the browser cleans up all blob URLs on page unload.
 
   const inputOptions = [
     {
@@ -367,7 +364,11 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                 announcement.setAttribute('aria-live', 'polite');
                 announcement.textContent = t('inputSelector.imageLoaded', { name: file.name, defaultValue: `Image ${file.name} loaded successfully` });
                 document.body.appendChild(announcement);
-                setTimeout(() => document.body.removeChild(announcement), 1000);
+                setTimeout(() => {
+                  if (document.body.contains(announcement)) {
+                    document.body.removeChild(announcement);
+                  }
+                }, 1000);
               } catch {
                 setUploadError(t('inputSelector.uploadFailed', 'Failed to load image. Please try again.'));
               }

@@ -4,7 +4,6 @@
  */
 import { useMemo } from 'react';
 import { VisualEffect } from '../../../types/visualEffects';
-import { ANIMATED_EFFECTS } from './useAnimatedOverlay';
 
 /** Base styles shared by all overlay generators */
 const OVERLAY_BASE: Pick<React.CSSProperties, 'position' | 'top' | 'left' | 'right' | 'bottom' | 'width' | 'height' | 'pointerEvents' | 'zIndex'> = {
@@ -671,10 +670,6 @@ const MULTI_ID_GENERATORS: Array<{ ids: string[]; generator: OverlayGenerator }>
  */
 export const useVisualFieldOverlay = (effects: VisualEffect[]): React.CSSProperties[] => {
   return useMemo(() => {
-    // Skip if animated effects are enabled (handled by animated overlay)
-    const hasAnimatedEffect = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
-    if (hasAnimatedEffect) return [];
-
     const overlays: React.CSSProperties[] = [];
 
     // Track which multi-ID groups have already been matched

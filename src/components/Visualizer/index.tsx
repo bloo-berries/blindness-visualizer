@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
-import { Download, CompareArrows } from '@mui/icons-material';
+import { Download, CompareArrows, Fullscreen } from '@mui/icons-material';
 import { generateEffectsDescription } from '../../utils/effectsDescription';
 import { YOUTUBE_EMBED_URL, getFamousPersonVideoUrl } from '../../utils/appConstants';
 import YouTubeEmbed from '../YouTubeEmbed';
@@ -37,7 +37,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
   isFamousPeopleMode = false
 }) => {
   const { t } = useTranslation();
+  const visualizerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
   const simulationContainerRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -64,15 +66,28 @@ const Visualizer: React.FC<VisualizerProps> = ({
     showComparison,
   );
 
-  // Use screenshot hook
+  // Use screenshot hook - use visualizerRef (always visible) instead of containerRef (hidden for images)
   const { isSaving, saveMessage, handleSaveScreenshot, clearSaveMessage } = useScreenshot(
-    containerRef,
+    visualizerRef,
     effects,
     inputSource,
     diplopiaSeparation,
     diplopiaDirection,
     isLoading
   );
+
+  // Fullscreen handler for image preview
+  const handleFullscreen = useCallback(() => {
+    const container = imageContainerRef.current;
+    if (!container) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      container.requestFullscreen().catch(() => {
+        // Fullscreen not supported or denied — ignore silently
+      });
+    }
+  }, []);
 
   // Check if any enabled effect needs animation
   const needsAnimatedOverlay = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
@@ -198,7 +213,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
   }
 
   return (
-    <Box className="visualizer-container" sx={{
+    <Box ref={visualizerRef} className="visualizer-container" sx={{
       position: 'relative',
       width: '100%',
       height: { xs: 'auto', md: '600px' },
@@ -254,9 +269,9 @@ const Visualizer: React.FC<VisualizerProps> = ({
       </div>
 
       {inputSource.type === 'image' && inputSource.url && (
-        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+        <Box ref={imageContainerRef} sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#000' }}>
           {!showComparison && (
-            <Box sx={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10000 }}>
+            <Box sx={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10000, display: 'flex', gap: 1 }}>
               <Button
                 variant="contained"
                 size="medium"
@@ -282,6 +297,56 @@ const Visualizer: React.FC<VisualizerProps> = ({
               </Button>
             </Box>
           )}
+
+          {/* Floating action buttons - top right */}
+          <Box sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 10000, display: 'flex', gap: 1 }}>
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={handleSaveScreenshot}
+              disabled={isSaving || isLoading}
+              startIcon={isSaving ? <CircularProgress size={16} color="inherit" /> : <Download />}
+              sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#1e3a8a',
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                px: 2,
+                py: 0.75,
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                '&:hover': {
+                  backgroundColor: '#ffffff',
+                  boxShadow: '0 4px 12px rgba(30,58,138,0.4)',
+                }
+              }}
+            >
+              {isSaving ? 'Saving...' : 'Save'}
+            </Button>
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={handleFullscreen}
+              startIcon={<Fullscreen />}
+              sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#1e3a8a',
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                px: 2,
+                py: 0.75,
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                minWidth: 'auto',
+                '&:hover': {
+                  backgroundColor: '#ffffff',
+                  boxShadow: '0 4px 12px rgba(30,58,138,0.4)',
+                }
+              }}
+            >
+              Fullscreen
+            </Button>
+          </Box>
 
           <div style={{
             position: 'absolute',

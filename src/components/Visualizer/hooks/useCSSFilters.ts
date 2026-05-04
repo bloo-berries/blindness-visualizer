@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { VisualEffect, InputSource } from '../../../types/visualEffects';
 import { generateCSSFilters } from '../../../utils/cssFilters';
-import { getColorVisionFilter, getColorVisionFilterData, isMobileBrowser } from '../../../utils/colorVisionFilters';
+import { getColorVisionFilter, getColorVisionFilterData } from '../../../utils/colorVisionFilters';
 import { EffectProcessor } from '../../../utils/performance';
 
 const COLOR_VISION_IDS = [
@@ -19,13 +19,11 @@ const COLOR_VISION_IDS = [
  * - `getEffectStyles` returns a full CSSProperties object suitable for
  *   positioning media content and applying the computed filter.
  *
- * Desktop: Uses SVG feColorMatrix via url("#id") for accurate simulation.
- * The companion <ColorVisionFilterSVG> component provides the inline SVG
- * filter definition.
- *
- * Mobile: Uses pure CSS filter approximations (sepia, hue-rotate, saturate,
- * brightness) because SVG url("#id") references do not work on mobile
- * browsers. The approximations are returned directly by getColorVisionFilter().
+ * All platforms: Uses inline SVG feColorMatrix via url("#id") for accurate
+ * Machado 2009 simulation. The companion <ColorVisionFilterSVG> component
+ * renders the <filter> definition in the same subtree, which resolves
+ * correctly on both desktop and mobile browsers (placing the SVG inline
+ * avoids the pushState fragment resolution bug on mobile WebKit).
  */
 export function useCSSFilters(
   effects: VisualEffect[],
@@ -53,27 +51,17 @@ export function useCSSFilters(
     const filters: string[] = [];
 
     if (colorVisionEffect) {
-      const mobile = isMobileBrowser();
-
-      if (mobile) {
-        // Mobile: getColorVisionFilter returns pure CSS approximation
-        // (no SVG url() references — those don't work on mobile)
+      // Use inline SVG feColorMatrix for accurate simulation on ALL platforms.
+      // The companion <ColorVisionFilterSVG> component renders an inline <filter>
+      // definition in the same subtree, which resolves correctly on both desktop
+      // and mobile browsers (avoids the pushState fragment resolution bug).
+      const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
+      if (filterData) {
+        filters.push(`url("#${filterData.filterId}")`);
+      } else {
+        // Monochromacy or zero intensity — pure CSS filter string
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
-      } else {
-        // Desktop: use SVG feColorMatrix for accurate simulation
-        // getColorVisionFilterData gives us the filter ID; the inline
-        // <ColorVisionFilterSVG> component provides the <filter> def.
-        const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
-        if (filterData) {
-          filters.push(`url("#${filterData.filterId}")`);
-          // Also inject into body as fallback
-          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-        } else {
-          // Monochromacy or zero intensity — pure CSS filter string
-          const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-          if (cssFilter) filters.push(cssFilter);
-        }
       }
     }
 

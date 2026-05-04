@@ -31,7 +31,15 @@ const ColorVisionFilterSVG: React.FC<{ effects: VisualEffect[] }> = ({ effects }
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable={false}
-      style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', pointerEvents: 'none' }}
+      style={{
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        clipPath: 'inset(50%)',
+        pointerEvents: 'none'
+      }}
     >
       <defs>
         <filter id={filterData.filterId} colorInterpolationFilters="linearRGB">

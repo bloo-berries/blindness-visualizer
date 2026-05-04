@@ -62,11 +62,14 @@ export function useCSSFilters(
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
       } else {
-        // Desktop: use inline SVG feColorMatrix for accurate simulation.
-        // The <ColorVisionFilterSVG> component provides the inline <filter>.
+        // Desktop: use SVG feColorMatrix for accurate simulation.
         const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
         if (filterData) {
           filters.push(`url("#${filterData.filterId}")`);
+          // Inject filter into document.body for reliable url("#id") resolution.
+          // The inline <ColorVisionFilterSVG> also renders a definition, but
+          // body injection is the proven working approach on desktop browsers.
+          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         } else {
           // Monochromacy or zero intensity — pure CSS filter string
           const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);

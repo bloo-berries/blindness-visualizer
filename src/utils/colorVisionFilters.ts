@@ -51,9 +51,13 @@ export const isMobileBrowser = (): boolean => {
   const mobileUA = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i
     .test(navigator.userAgent);
 
-  // iPadOS 13+ sends a desktop Mac UA but still has touch points
+  // iPadOS 13+ sends a desktop Mac UA but still has touch points.
+  // Also require pointer:coarse to distinguish actual iPadOS from Mac
+  // desktops that may report maxTouchPoints > 1 (e.g., Sidecar, external
+  // touch displays, or recent macOS versions).
   const isIPadOS = /Macintosh/i.test(navigator.userAgent) &&
-    navigator.maxTouchPoints > 1;
+    navigator.maxTouchPoints > 1 &&
+    primaryIsCoarse;
 
   _isMobile = isTouchOnly || mobileUA || isIPadOS;
   return _isMobile;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { VisualEffect, InputSource } from '../../../types/visualEffects';
 import { generateCSSFilters } from '../../../utils/cssFilters';
-import { getColorVisionFilter, getColorVisionFilterData } from '../../../utils/colorVisionFilters';
+import { getColorVisionFilter, getColorVisionFilterData, isMobileBrowser } from '../../../utils/colorVisionFilters';
 import { EffectProcessor } from '../../../utils/performance';
 
 const COLOR_VISION_IDS = [
@@ -19,11 +19,14 @@ const COLOR_VISION_IDS = [
  * - `getEffectStyles` returns a full CSSProperties object suitable for
  *   positioning media content and applying the computed filter.
  *
- * All platforms: Uses inline SVG feColorMatrix via url("#id") for accurate
+ * Desktop: Uses inline SVG feColorMatrix via url("#id") for accurate
  * Machado 2009 simulation. The companion <ColorVisionFilterSVG> component
- * renders the <filter> definition in the same subtree, which resolves
- * correctly on both desktop and mobile browsers (placing the SVG inline
- * avoids the pushState fragment resolution bug on mobile WebKit).
+ * renders the <filter> definition in the same subtree.
+ *
+ * Mobile (iOS/Android): CSS filter: url("#id") does not work on mobile
+ * WebKit/Blink regardless of SVG placement. Falls back to calibrated CSS
+ * filter approximations (saturate, sepia, hue-rotate) that preserve the
+ * correct color axis for each CVD type.
  */
 export function useCSSFilters(
   effects: VisualEffect[],
@@ -51,17 +54,24 @@ export function useCSSFilters(
     const filters: string[] = [];
 
     if (colorVisionEffect) {
-      // Use inline SVG feColorMatrix for accurate simulation on ALL platforms.
-      // The companion <ColorVisionFilterSVG> component renders an inline <filter>
-      // definition in the same subtree, which resolves correctly on both desktop
-      // and mobile browsers (avoids the pushState fragment resolution bug).
-      const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
-      if (filterData) {
-        filters.push(`url("#${filterData.filterId}")`);
-      } else {
-        // Monochromacy or zero intensity — pure CSS filter string
+      const mobile = isMobileBrowser();
+
+      if (mobile) {
+        // Mobile (iOS/Android): CSS filter: url("#id") does not work on
+        // mobile WebKit/Blink. Use calibrated CSS filter approximations.
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
+      } else {
+        // Desktop: use inline SVG feColorMatrix for accurate simulation.
+        // The <ColorVisionFilterSVG> component provides the inline <filter>.
+        const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
+        if (filterData) {
+          filters.push(`url("#${filterData.filterId}")`);
+        } else {
+          // Monochromacy or zero intensity — pure CSS filter string
+          const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+          if (cssFilter) filters.push(cssFilter);
+        }
       }
     }
 

@@ -70,36 +70,39 @@ interface CSSFilterApprox {
 }
 
 const CSS_FILTER_APPROXIMATIONS: Record<string, CSSFilterApprox> = {
-  // Protanopia (red-blind): reds become dark, world shifts to blue-yellow.
-  // Chain: saturate down to collapse red-green → sepia for warm base →
-  // hue-rotate into the blue-yellow axis → re-saturate slightly.
+  // Protanopia (red-blind): world shifts to blue-yellow, reds appear dark.
+  // Low saturate preserves some color variation before sepia collapses
+  // red-green info. hue-rotate(50deg) shifts sepia's amber (~35°) toward
+  // yellow-green (~85°), matching the blue-yellow axis of protanopia.
   protanopia: {
-    filter: 'saturate(40%) sepia(100%) hue-rotate(290deg) saturate(130%) brightness(92%)',
+    filter: 'saturate(20%) sepia(80%) hue-rotate(50deg) saturate(180%) brightness(88%)',
   },
 
-  // Deuteranopia (green-blind): greens become brownish, red-green confusion.
-  // Similar to protanopia but different hue shift and slightly brighter.
+  // Deuteranopia (green-blind): similar to protanopia (blue-yellow world)
+  // but reds are slightly brighter. Slightly different hue shift angle.
   deuteranopia: {
-    filter: 'saturate(45%) sepia(100%) hue-rotate(315deg) saturate(120%) brightness(95%)',
+    filter: 'saturate(25%) sepia(75%) hue-rotate(55deg) saturate(170%) brightness(91%)',
   },
 
-  // Tritanopia (blue-blind): blues disappear, world appears in red-green.
-  // Shift warm, keep high saturation in the red-green range.
+  // Tritanopia (blue-blind): blues disappear, world appears warm/pinkish.
+  // Higher saturate retention preserves the red-green distinction that
+  // tritanopes still have. Low hue-rotate keeps warm amber tones.
   tritanopia: {
-    filter: 'saturate(50%) sepia(100%) hue-rotate(15deg) saturate(150%) brightness(94%)',
+    filter: 'saturate(35%) sepia(60%) hue-rotate(355deg) saturate(200%) brightness(92%)',
   },
 
-  // Anomalous trichromacy — reduced severity versions of the above
+  // Anomalous trichromacy — reduced severity versions of the above.
+  // Higher saturate retention since color vision is reduced, not absent.
   protanomaly: {
-    filter: 'saturate(65%) sepia(60%) hue-rotate(290deg) saturate(115%) brightness(96%)',
+    filter: 'saturate(50%) sepia(50%) hue-rotate(50deg) saturate(140%) brightness(94%)',
   },
 
   deuteranomaly: {
-    filter: 'saturate(70%) sepia(55%) hue-rotate(315deg) saturate(110%) brightness(98%)',
+    filter: 'saturate(55%) sepia(45%) hue-rotate(55deg) saturate(130%) brightness(95%)',
   },
 
   tritanomaly: {
-    filter: 'saturate(70%) sepia(60%) hue-rotate(15deg) saturate(130%) brightness(97%)',
+    filter: 'saturate(55%) sepia(40%) hue-rotate(355deg) saturate(160%) brightness(96%)',
   },
 };
 

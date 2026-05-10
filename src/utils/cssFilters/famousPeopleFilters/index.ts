@@ -1,5 +1,5 @@
 // Famous people CSS filters - split into individual files for maintainability
-// Re-export all filter functions
+// Re-export all filter configs and imperative generators
 
 export { galileoFilterConfigs } from './galileoFilters';
 export { monetFilterConfigs } from './monetFilters';
@@ -15,17 +15,19 @@ export { stephenFilterConfigs } from './stephenFilters';
 export { generateDavidBrownFilters } from './davidBrownFilters';
 export { generateLexFilters } from './lexFilters';
 export { crazzysteveFilterConfigs } from './crazzysteveFilters';
-export { generateTofiriFilters } from './tofiriFilters';
-export { generatePlateauFilters } from './plateauFilters';
-export { generateEulerFilters } from './eulerFilters';
+export { tofiriFilterConfigs } from './tofiriFilters';
+export { plateauFilterConfigs } from './plateauFilters';
+export { eulerFilterConfigs } from './eulerFilters';
 export { heatherFilterConfigs } from './heatherFilters';
-export { generateNemethFilters } from './nemethFilters';
+export { nemethFilterConfigs } from './nemethFilters';
 export { daredevilFilterConfigs } from './daredevilFilters';
 export { geordiFilterConfigs } from './geordiFilters';
 export { blindspotFilterConfigs } from './blindspotFilters';
 export { joseCidFilterConfigs } from './joseCidFilters';
 export { tophFilterConfigs } from './tophFilters';
-export { generateCustomFamousPeopleFilters } from './customFilters';
+export { customFamousPeopleFilterConfigs } from './customFilters';
+export { davidFilterConfigs } from './davidFilters';
+export { marlaFilterConfigs } from './marlaFilters';
 export { anselmoFilterConfigs } from './anselmoFilters';
 export { margaritaFilterConfigs } from './margaritaFilters';
 export { fujitoraFilterConfigs } from './fujitoraFilters';

@@ -1,74 +1,81 @@
-import { VisualEffect } from '../../../types/visualEffects';
+import { CSSFilterEffectConfig } from './filterConfig';
 
 /**
- * Generates CSS filters for custom famous people effects
+ * CSS filters for custom famous people effects
  */
-export const generateCustomFamousPeopleFilters = (effects: VisualEffect[]): string => {
-  const customEffects = effects.filter(e =>
-    (e.id === 'helenKellerBlindness' ||
-     e.id === 'johnMiltonBlindness' ||
-     e.id === 'louisBrailleBlindness' ||
-     e.id === 'erikWeihenmayerRetinoschisis' ||
-     e.id === 'marlaRunyanStargardt' ||
-     e.id === 'joshuaMieleBlindness' ||
-     e.id === 'davidPatersonBlindness' ||
-     e.id === 'rayCharlesBlindness' ||
-     e.id === 'stevieWonderROP' ||
-     e.id === 'andreaBocelliBlindness' ||
-     e.id === 'vedMehtaBlindness') && e.enabled
-  );
 
-  if (customEffects.length === 0) return '';
+const completeBlindnessFilters = (): string[] => [
+  'brightness(0%)',
+  'contrast(0%)',
+  'saturate(0%)',
+  'hue-rotate(0deg)',
+  'sepia(100%)',
+];
 
-  const filters: string[] = [];
-
-  const completeBlindnessEffects = customEffects.filter(e =>
-    e.id === 'helenKellerBlindness' ||
-    e.id === 'louisBrailleBlindness' ||
-    e.id === 'joshuaMieleBlindness' ||
-    e.id === 'rayCharlesBlindness' ||
-    e.id === 'andreaBocelliBlindness' ||
-    e.id === 'vedMehtaBlindness'
-  );
-
-  if (completeBlindnessEffects.length > 0) {
-    filters.push(`brightness(0%)`);
-    filters.push(`contrast(0%)`);
-    filters.push(`saturate(0%)`);
-    filters.push(`hue-rotate(0deg)`);
-    filters.push(`sepia(100%)`);
-  }
-
-  const johnMiltonEffect = customEffects.find(e => e.id === 'johnMiltonBlindness');
-  if (johnMiltonEffect) {
-    filters.push(`brightness(${100 - johnMiltonEffect.intensity * 95}%)`);
-    filters.push(`contrast(${100 - johnMiltonEffect.intensity * 90}%)`);
-  }
-
-  const stevieWonderEffect = customEffects.find(e => e.id === 'stevieWonderROP');
-  if (stevieWonderEffect) {
-    filters.push(`brightness(${100 - stevieWonderEffect.intensity * 98}%)`);
-    filters.push(`contrast(${100 - stevieWonderEffect.intensity * 95}%)`);
-  }
-
-  const davidPatersonEffect = customEffects.find(e => e.id === 'davidPatersonBlindness');
-  if (davidPatersonEffect) {
-    filters.push(`blur(${davidPatersonEffect.intensity * 8}px)`);
-    filters.push(`brightness(${100 - davidPatersonEffect.intensity * 70}%)`);
-    filters.push(`contrast(${100 - davidPatersonEffect.intensity * 80}%)`);
-  }
-
-  const marlaRunyanEffect = customEffects.find(e => e.id === 'marlaRunyanStargardt');
-  if (marlaRunyanEffect) {
-    const intensity = marlaRunyanEffect.intensity;
-    filters.push(`saturate(${100 - intensity * 40}%)`);
-  }
-
-  const erikWeihenmayerEffect = customEffects.find(e => e.id === 'erikWeihenmayerRetinoschisis');
-  if (erikWeihenmayerEffect) {
-    filters.push(`brightness(${100 - erikWeihenmayerEffect.intensity * 60}%)`);
-    filters.push(`contrast(${100 - erikWeihenmayerEffect.intensity * 70}%)`);
-  }
-
-  return filters.join(' ');
-};
+export const customFamousPeopleFilterConfigs: CSSFilterEffectConfig[] = [
+  // Complete blindness effects - all share the same total darkness filter
+  {
+    effectId: 'helenKellerBlindness',
+    filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'louisBrailleBlindness',
+    filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'joshuaMieleBlindness',
+    filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'rayCharlesBlindness',
+    filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'andreaBocelliBlindness',
+    filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'vedMehtaBlindness',
+    filters: completeBlindnessFilters,
+  },
+  // John Milton - progressive blindness
+  {
+    effectId: 'johnMiltonBlindness',
+    filters: (i) => [
+      `brightness(${100 - i * 95}%)`,
+      `contrast(${100 - i * 90}%)`,
+    ],
+  },
+  // Stevie Wonder - Retinopathy of Prematurity
+  {
+    effectId: 'stevieWonderROP',
+    filters: (i) => [
+      `brightness(${100 - i * 98}%)`,
+      `contrast(${100 - i * 95}%)`,
+    ],
+  },
+  // David Paterson - blindness
+  {
+    effectId: 'davidPatersonBlindness',
+    filters: (i) => [
+      `blur(${i * 8}px)`,
+      `brightness(${100 - i * 70}%)`,
+      `contrast(${100 - i * 80}%)`,
+    ],
+  },
+  // Marla Runyan - Stargardt disease
+  {
+    effectId: 'marlaRunyanStargardt',
+    filters: (i) => [
+      `saturate(${100 - i * 40}%)`,
+    ],
+  },
+  // Erik Weihenmayer - Retinoschisis
+  {
+    effectId: 'erikWeihenmayerRetinoschisis',
+    filters: (i) => [
+      `brightness(${100 - i * 60}%)`,
+      `contrast(${100 - i * 70}%)`,
+    ],
+  },
+];

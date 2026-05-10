@@ -1,4 +1,5 @@
 import { PersonData } from './types';
+import { NATIONALITIES } from './nationalities';
 
 export const scientists: Record<string, PersonData> = {
   mona: {
@@ -10,7 +11,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "minkara-end-stage-complete",
     description: "Dr. Mona Minkara has combined macular degeneration and cone-rod dystrophy, resulting in near-total vision loss affecting both central and peripheral vision.\n\nThe dual conditions create severe blur, loss of color perception, and extreme light sensitivity.\n\n• Blind chemist and computational biologist at Northeastern University\n\n• Uses sonification and tactile models to conduct molecular dynamics research\n\n• Pioneering accessible STEM education methods\n\n• NSF CAREER Award recipient",
     wikiUrl: "https://en.wikipedia.org/wiki/Mona_Minkara",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   joshua: {
     name: "Joshua Miele",
@@ -21,7 +22,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "joshua-complete-blindness",
     description: "Joshua Miele became completely blind at age 4 when a family acquaintance threw acid on him, causing severe corneal scarring and tissue destruction.\n\nHe has no light perception.\n\n• MacArthur 'Genius' Fellowship recipient (2021)\n\n• Developed tactile maps, accessible graphics, and sonification tools for blind users\n\n• Senior researcher at Smith-Kettlewell Eye Research Institute\n\n• Principal accessibility researcher at Amazon",
     wikiUrl: "https://en.wikipedia.org/wiki/Joshua_Miele",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   geerat: {
     name: "Geerat Vermeij",
@@ -32,7 +33,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "geerat-congenital-glaucoma",
     description: "Geerat Vermeij was born with congenital glaucoma, causing complete blindness from birth. He has never had visual experience and relies entirely on touch and other senses to understand the world.\n\n• Distinguished Professor of Geology at UC Davis\n\n• Revolutionary evolutionary biologist who studies fossils and shells by touch\n\n• Discovered key patterns in evolution by feeling specimen surfaces other scientists overlooked\n\n• MacArthur 'Genius' Fellowship recipient",
     wikiUrl: "https://en.wikipedia.org/wiki/Geerat_Vermeij",
-    nationality: { country: "Netherlands", flag: "🇳🇱" }
+    nationality: NATIONALITIES.NL
   },
   amyBower: {
     name: "Dr. Amy Bower",
@@ -43,7 +44,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "amy-amd-rp",
     description: "Dr. Amy Bower was diagnosed at 24 with juvenile macular degeneration and retinitis pigmentosa. She retains a 'small crescent-shaped sliver' of vision and light perception, watching her sight slowly slip away over decades.\n\nShe uses screen magnifiers, screen readers, and a service dog.\n\n• Senior Scientist at Woods Hole Oceanographic Institution\n\n• Groundbreaking research on ocean currents using sound and non-visual methods\n\n• Pioneer in making oceanographic research accessible",
     wikiUrl: "https://en.wikipedia.org/wiki/Amy_Bower",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   gustafDalen: {
     name: "Gustaf Dalén",
@@ -54,7 +55,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Gustaf Dalén became completely blind in 1912 when an acetylene experiment exploded during testing. The accident destroyed both eyes, leaving him with no light perception.\n\n• Nobel Prize in Physics (1912) for automatic regulators for lighthouse illumination - awarded while recovering from the accident\n\n• Continued as managing director of AGA despite blindness\n\n• Invented the AGA cooker (still sold today as Aga range cookers)\n\n• Held over 100 patents",
     wikiUrl: "https://en.wikipedia.org/wiki/Gustaf_Dal%C3%A9n",
-    nationality: { country: "Sweden", flag: "🇸🇪" }
+    nationality: NATIONALITIES.SE
   },
   jacobBolotin: {
     name: "Jacob Bolotin",
@@ -65,7 +66,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Jacob Bolotin was born completely blind, with no light perception from birth. He overcame immense barriers in medical education at a time when blind people were expected to live in institutions.\n\n• World's first totally blind licensed physician\n\n• Specialized in diseases of the heart and lungs\n\n• Strong advocate for employment and integration of blind individuals\n\n• Proved that blindness need not be a barrier to professional achievement",
     wikiUrl: "https://en.wikipedia.org/wiki/Jacob_Bolotin",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   josephPlateau: {
     name: "Joseph Plateau",
@@ -76,7 +77,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "plateau-solar-retinopathy",
     description: "Joseph Plateau damaged his retinas through prolonged direct solar observation around 1829, leading to progressive deterioration and total blindness by 1843.\n\nHe experienced a dark central scotoma (blind spot at fixation point), preserved peripheral vision initially, severe acuity loss, and persistent afterimages from the solar damage. Over ~14 years, his remaining vision gradually dimmed until complete blindness.\n\n• Invented the phenakistoscope - precursor to modern cinema and animation\n\n• Made fundamental contributions to understanding visual perception and persistence of vision\n\n• Continued scientific work after blindness with help from family and colleagues\n\n• Plateau's laws of soap films still used in mathematics and physics",
     wikiUrl: "https://en.wikipedia.org/wiki/Joseph_Plateau",
-    nationality: { country: "Belgium", flag: "🇧🇪" }
+    nationality: NATIONALITIES.BE
   },
   euler: {
     name: "Leonhard Euler",
@@ -87,7 +88,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "euler-asymmetric-blindness",
     description: "Leonhard Euler lost his right eye completely around 1738 from a severe fever/infection, leaving that side in total darkness. His left eye developed a progressive cataract, creating milky fog, glare sensitivity, and washed-out colors that worsened until total blindness by 1771.\n\nFor ~33 years he worked with only his left eye, then ~12 years in complete darkness.\n\n• One of the greatest mathematicians in history\n\n• Produced roughly half of his life's work after becoming totally blind\n\n• Made fundamental contributions to calculus, graph theory, mechanics, and optics\n\n• Dictated research to assistants, including his children",
     wikiUrl: "https://en.wikipedia.org/wiki/Leonhard_Euler",
-    nationality: { country: "Switzerland", flag: "🇨🇭" }
+    nationality: NATIONALITIES.CH
   },
   wanda: {
     name: "Wanda Díaz-Merced",
@@ -98,7 +99,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "wanda-diabetic-retinopathy",
     description: "Wanda Díaz-Merced lost her sight in her early twenties due to complications from degenerative diabetic retinopathy.\n\nRather than abandon her career, she pioneered new methods to study astronomical data.\n\n• Director of the Arecibo Observatory\n\n• Pioneered sonification to turn astronomical data into audible sound\n\n• Discovered patterns in stellar radio data through audio that were obscured visually\n\n• Named one of BBC's 7 most trailblazing women in science",
     wikiUrl: "https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced",
-    nationality: { country: "Puerto Rico", flag: "🇵🇷" }
+    nationality: NATIONALITIES.PR
   },
   olgaHahnNeurath: {
     name: "Olga Hahn-Neurath",
@@ -109,7 +110,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "olga-optic-neuritis-blindness",
     description: "Olga Hahn-Neurath became totally blind at age 22 due to optic neuritis, an inflammation of the optic nerve that destroyed her vision just two years after enrolling at the University of Vienna.\n\nDespite complete vision loss, she continued her academic pursuits and earned her doctorate seven years later.\n\n• Third woman ever to earn a doctorate in philosophy at the University of Vienna (1911)\n\n• Founding member of the Vienna Circle, one of the most influential philosophical movements of the 20th century\n\n• Specialized in Boolean algebra and algebraic logic\n\n• Sister of mathematician Hans Hahn and wife of philosopher Otto Neurath",
     wikiUrl: "https://en.wikipedia.org/wiki/Olga_Hahn-Neurath",
-    nationality: { country: "Austria", flag: "🇦🇹" }
+    nationality: NATIONALITIES.AT
   },
   abraham: {
     name: "Abraham Nemeth",
@@ -120,7 +121,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "abraham-dual-attack-blindness",
     description: "Abraham Nemeth was born with a dual-attack condition affecting both central vision (macular degeneration component) and peripheral vision (retinitis pigmentosa component), leaving only a fragile mid-peripheral ring.\n\nEducated at a school for the blind from childhood, his functional vision was minimal to none throughout life - effectively total blindness.\n\n• Developed the Nemeth Braille Code for Mathematics and Science Notation - still the standard worldwide\n\n• Professor of mathematics who made STEM accessible to blind students\n\n• His code enables transcription of complex equations, calculus, and scientific notation into braille",
     wikiUrl: "https://en.wikipedia.org/wiki/Abraham_Nemeth",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   gerritVanDerMey: {
     name: "Gerrit van der Mey",
@@ -131,7 +132,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Gerrit van der Mey lost his sight at age 4 when meningitis destroyed his optic nerves. In 1945, a second bout of meningitis left him completely deaf, making him deafblind for the remaining 57 years of his life.\n\nDespite being deafblind, he earned a PhD in mathematics from Leiden University and became a pioneering computer programmer.\n\n• Wrote operating systems and code for PTERA and ZEBRA, among the first Dutch electronic computers\n\n• Created compilers for ALGOL, LISP, IPL V, SNOBOL3, and ALGOL 68\n\n• Communicated via a specially constructed braille reading-box connected to a keyboard\n\n• Knight of the Order of Orange-Nassau (1982)",
     wikiUrl: "https://en.wikipedia.org/wiki/Gerrit_van_der_Mey",
-    nationality: { country: "Netherlands", flag: "🇳🇱" }
+    nationality: NATIONALITIES.NL
   },
   mariaReiche: {
     name: "Maria Reiche",
@@ -142,7 +143,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "reiche-progressive-blindness",
     description: "Maria Reiche was a German-born Peruvian mathematician and archaeologist who dedicated over 50 years to studying and preserving the Nazca Lines. In her later years, she lost her sight and also suffered from Parkinson's disease, yet continued her research — publishing 'Contributions to Geometry and Astronomy in Ancient Peru' at age 90.\n\nShe first saw the Nazca Lines in 1941 with historian Paul Kosok and spent the rest of her life mapping them, identifying 18 different animal and bird figures.\n\n• Her work led to the Nazca Lines being designated a UNESCO World Heritage Site in 1994\n\n• Used her mathematics background to analyze how the Nazca created such precisely scaled figures\n\n• Spent her own money to hire guards and protect the lines from damage\n\n• Buried near Nazca with official honors; a museum bears her name",
     wikiUrl: "https://en.wikipedia.org/wiki/Maria_Reiche",
-    nationality: { country: "Peru", flag: "🇵🇪" }
+    nationality: NATIONALITIES.PE
   },
   melanieLipinska: {
     name: "Mélanie Lipinska",
@@ -153,7 +154,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Mélanie Lipinska was a Polish-French physician and historian who became blind by 1922. Despite losing her sight, she continued her research and later traveled to California to study resources for the blind with the American Society of the Blind.\n\nBorn in Ostrołęka in Russian-controlled Poland, she studied medicine at the University of Paris.\n\n• Author of 'Histoire des femmes médecins' — the landmark history of women in medicine, submitted to the Académie de médecine de Paris in 1900\n\n• Won the Victor Hugo Award (1902) for her doctoral thesis\n\n• Worked closely with pioneering physiologist Joséphine Joteyko\n\n• Her commentary on the medical writings of Hildegard of Bingen remains an important scholarly contribution",
     wikiUrl: "https://en.wikipedia.org/wiki/M%C3%A9lanie_Lipinska",
-    nationality: { country: "Poland", flag: "🇵🇱" }
+    nationality: NATIONALITIES.PL
   },
   francoisHuber: {
     name: "François Huber",
@@ -164,7 +165,7 @@ export const scientists: Record<string, PersonData> = {
     simulation: "huber-progressive-blindness",
     description: "François Huber's eyesight began deteriorating at age 15 from amaurosis, a condition causing progressive vision loss. He was sent to a village near Paris to recover, but his sight continued to worsen until he could only perceive light, eventually resulting in complete blindness.\n\nDespite total blindness, he conducted groundbreaking research on honeybees through his wife Marie-Aimée and his servant François Burnens, who served as his eyes.\n\n• Author of 'Nouvelles Observations sur les Abeilles' (1792), an 800-page landmark of entomological science\n\n• Invented the 'leaf hive' (Huber hive) allowing hive inspection without destroying the comb\n\n• Discovered that queen bees mate in flight, not in the hive, and made key discoveries about swarming and wax secretion\n\n• His work influenced Charles Darwin, who referenced it in 'On the Origin of Species'",
     wikiUrl: "https://en.wikipedia.org/wiki/Fran%C3%A7ois_Huber",
-    nationality: { country: "Switzerland", flag: "🇨🇭" }
+    nationality: NATIONALITIES.CH
   },
   yihHsingPao: {
     name: "Yih-Hsing Pao",
@@ -175,6 +176,6 @@ export const scientists: Record<string, PersonData> = {
     simulation: "yihHsingPao-retinitis-pigmentosa",
     description: "Yih-Hsing Pao (鮑亦興) was a Chinese-born American mechanical engineer diagnosed with retinitis pigmentosa in 1980 at age 50. The progressive condition gradually destroyed his peripheral vision, leading to tunnel vision and eventually total blindness — yet he continued his distinguished academic career for decades afterward.\n\nBorn in Nanjing, his early life was disrupted by the Second Sino-Japanese War and Chinese Civil War before his family settled in Taiwan.\n\n• Held the prestigious J. C. Ford Professorship at Cornell University (1985-2000), specializing in wave propagation in solids and applied mechanics\n\n• Elected to the United States National Academy of Engineering (1985) and Taiwan's Academia Sinica (1986)\n\n• Founded the Institute of Applied Mechanics at National Taiwan University in 1983\n\n• Recipient of Taiwan's Presidential Science Prize for Applied Sciences (2001)",
     wikiUrl: "https://en.wikipedia.org/wiki/Yih-Hsing_Pao",
-    nationality: { country: "Taiwan", flag: "🇹🇼" }
+    nationality: NATIONALITIES.TW
   }
 };

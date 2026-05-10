@@ -1,5 +1,10 @@
 # Vision Condition Visualizer
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
 [![CI](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bloo-berries/blindness-visualizer/badge)](https://scorecard.dev/viewer/?uri=github.com/bloo-berries/blindness-visualizer)

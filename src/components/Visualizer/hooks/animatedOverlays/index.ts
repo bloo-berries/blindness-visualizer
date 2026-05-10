@@ -3,6 +3,7 @@
  * Each generator creates CSS gradient-based overlays for specific visual effects
  */
 
+export { createOverlayStyle } from './createOverlayStyle';
 export { generateVisualAuraOverlay } from './visualAura';
 export { generateHallucinationsOverlay } from './hallucinations';
 export { generateBlueFieldOverlay } from './blueField';

@@ -1,4 +1,5 @@
 import { PersonData } from './types';
+import { NATIONALITIES } from './nationalities';
 
 export const musicians: Record<string, PersonData> = {
   ray: {
@@ -10,7 +11,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Ray Charles experienced progressive vision loss from glaucoma starting at age 4. The increased eye pressure gradually destroyed his optic nerves, leading to complete blindness by age 7.\n\nHis right eye was later removed due to pain. He had no light perception.\n\n• 'Father of Soul' - pioneered soul music by combining gospel, R&B, and blues\n\n• 17 Grammy Awards including Lifetime Achievement Award\n\n• Rock and Roll Hall of Fame inductee\n\n• His song 'Georgia on My Mind' became Georgia's state song",
     wikiUrl: "https://en.wikipedia.org/wiki/Ray_Charles",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   stevie: {
     name: "Stevie Wonder",
@@ -21,7 +22,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Born six weeks premature, Stevie received excess oxygen in his incubator which caused abnormal blood vessel growth in his retinas.\n\nThis led to retinal detachment and complete blindness from infancy.\n\n• 25 Grammy Awards - most awarded male solo artist\n\n• Signed to Motown at age 11\n\n• Rock and Roll Hall of Fame inductee\n\n• Pioneered synthesizers in popular music\n\n• Hits include 'Superstition,' 'Isn't She Lovely,' and 'I Just Called to Say I Love You'",
     wikiUrl: "https://en.wikipedia.org/wiki/Stevie_Wonder",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   bocelli: {
     name: "Andrea Bocelli",
@@ -32,7 +33,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Born with congenital glaucoma, Andrea Bocelli retained about 10% vision until a football accident at age 12 caused a brain hemorrhage, resulting in complete blindness with no light perception.\n\n• Best-selling classical artist in history with over 90 million records sold\n\n• Performed at major world events including the Olympics and World Cup\n\n• Golden Globe and Grammy nominated\n\n• Famous duets include 'Time to Say Goodbye' with Sarah Brightman",
     wikiUrl: "https://en.wikipedia.org/wiki/Andrea_Bocelli",
-    nationality: { country: "Italy", flag: "🇮🇹" }
+    nationality: NATIONALITIES.IT
   },
   casey: {
     name: "Casey Harris",
@@ -43,7 +44,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "casey-retinitis-pigmentosa",
     description: "Casey Harris has lived with retinitis pigmentosa since age 5, experiencing progressive tunnel vision, night blindness, and gradual visual field loss.\n\n• Keyboardist for Grammy-nominated band X Ambassadors\n\n• Helped write hits including 'Renegades' and 'Unsteady'\n\n• Advocate for disability representation in music industry",
     wikiUrl: "https://en.wikipedia.org/wiki/Casey_Harris",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   bono: {
     name: "Bono",
@@ -54,7 +55,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "bono-glaucoma-sensitivity",
     description: "Bono, lead singer of U2, has glaucoma which causes extreme light sensitivity. He has worn his trademark sunglasses for over two decades due to the condition, not as a fashion statement.\n\n• Lead singer of U2 - one of the best-selling bands in history\n\n• 22 Grammy Awards with U2\n\n• Rock and Roll Hall of Fame inductee\n\n• Humanitarian work with ONE Campaign and (RED) fighting AIDS and poverty",
     wikiUrl: "https://en.wikipedia.org/wiki/Bono",
-    nationality: { country: "Ireland", flag: "🇮🇪" }
+    nationality: NATIONALITIES.IE
   },
   ella: {
     name: "Ella Fitzgerald",
@@ -65,7 +66,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "ella-diabetic-retinopathy",
     description: "Ella Fitzgerald developed diabetic retinopathy as a complication of diabetes, causing progressive vision loss that eventually led to blindness.\n\nThe condition damages blood vessels in the retina, creating floaters, blurred vision, and dark areas.\n\n• 'First Lady of Song' and 'Queen of Jazz'\n\n• 13 Grammy Awards including Lifetime Achievement\n\n• Sold over 40 million albums\n\n• Pioneered scat singing\n\n• Performed at Carnegie Hall, Royal Albert Hall, and with every major jazz artist",
     wikiUrl: "https://en.wikipedia.org/wiki/Ella_Fitzgerald",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   allan: {
     name: "Allan Pineda Lindo (Apl.de.ap)",
@@ -76,7 +77,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "allan-nystagmus",
     description: "Apl.de.ap was born with nystagmus, a condition causing involuntary rapid eye movements and severely reduced vision.\n\nThe constant movement makes focusing difficult and causes visual instability.\n\n• Founding member of Black Eyed Peas - one of the best-selling groups of all time\n\n• Multiple Grammy Awards\n\n• Philanthropist supporting education in the Philippines through Apl.de.ap Foundation",
     wikiUrl: "https://en.wikipedia.org/wiki/Apl.de.ap",
-    nationality: { country: "Philippines", flag: "🇵🇭" }
+    nationality: NATIONALITIES.PH
   },
   fetty: {
     name: "Fetty Wap",
@@ -87,7 +88,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "fetty-glaucoma-prosthetic",
     description: "Fetty Wap lost his left eye to childhood glaucoma and now wears a prosthetic eye. The glaucoma caused irreversible damage to his optic nerve, and the eye was eventually removed.\n\n• Breakthrough hit 'Trap Queen' reached #2 on Billboard Hot 100\n\n• Debut album reached #1 on Billboard 200\n\n• Known for not hiding his condition and normalizing visible differences",
     wikiUrl: "https://en.wikipedia.org/wiki/Fetty_Wap",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   slick: {
     name: "Slick Rick",
@@ -98,7 +99,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "slick-rick-blindness",
     description: "Slick Rick was blinded in his right eye as an infant when broken glass from a bottle hit his eye. He incorporated his eye patch into his distinctive visual persona.\n\n• Hip-hop pioneer and master storyteller\n\n• 'Children's Story' considered one of the greatest hip-hop songs ever\n\n• Influenced generations of rappers including Snoop Dogg and Nas\n\n• Rock and Roll Hall of Fame nominee",
     wikiUrl: "https://en.wikipedia.org/wiki/Slick_Rick",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   jose: {
     name: "José Feliciano",
@@ -109,7 +110,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "jose-complete-blindness",
     description: "José Feliciano was born in Lares, Puerto Rico, permanently blind from birth due to congenital glaucoma.\n\nHe navigates with a guide dog, which became his trademark onstage.\n\n• Virtuoso guitarist who pioneered Latin crossover music\n\n• Multiple Grammy Awards including Latin Grammy Lifetime Achievement\n\n• His 'Feliz Navidad' is one of the most-played Christmas songs worldwide\n\n• First Latin artist to cross over into English-language pop charts",
     wikiUrl: "https://en.wikipedia.org/wiki/José_Feliciano",
-    nationality: { country: "Puerto Rico", flag: "🇵🇷" }
+    nationality: NATIONALITIES.PR
   },
   art: {
     name: "Art Tatum",
@@ -120,7 +121,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "art-partial-blindness",
     description: "Art Tatum was born with congenital cataracts. After surgeries at age 11, he could see close objects and distinguish colors.\n\nAn assault at age 20 left him completely blind in his left eye with very limited vision in his right. Despite being legally blind, he could still play cards and pool.\n\n• Considered the greatest jazz pianist of all time by many critics\n\n• Technical abilities remain unmatched - could play at superhuman speed\n\n• Grammy Lifetime Achievement Award\n\n• Jazz at Lincoln Center Hall of Fame",
     wikiUrl: "https://en.wikipedia.org/wiki/Art_Tatum",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   ronnie: {
     name: "Ronnie Milsap",
@@ -131,7 +132,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "ronnie-complete-blindness",
     description: "Ronnie Milsap was born with congenital glaucoma and cataracts. He had only light perception in his left eye (right eye blind), which was destroyed by trauma at age 14.\n\nBoth eyes were eventually surgically removed.\n\n• 40 number-one country hits\n\n• 6 Grammy Awards\n\n• Country Music Hall of Fame inductee\n\n• Pioneered country-pop crossover sound",
     wikiUrl: "https://en.wikipedia.org/wiki/Ronnie_Milsap",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   doc: {
     name: "Doc Watson",
@@ -142,7 +143,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "doc-light-perception",
     description: "Doc Watson lost most of his sight to an eye infection before age one. He stated: 'I have a little bit of light perception left. I am conscious of bright lights.'\n\nHe could not see shapes or details.\n\n• One of the most influential flatpicking guitarists in American music history\n\n• 8 Grammy Awards including Lifetime Achievement\n\n• National Medal of Arts recipient\n\n• Preserved and popularized Appalachian folk music",
     wikiUrl: "https://en.wikipedia.org/wiki/Doc_Watson",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   jeff: {
     name: "Jeff Healey",
@@ -153,7 +154,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "jeff-complete-blindness",
     description: "Jeff Healey was diagnosed with retinoblastoma, a rare eye cancer, in infancy. His right eye was removed at 8 months and left eye at 11 months to prevent the cancer spreading.\n\nHe had prosthetic eyes and no memory of sight.\n\n• Developed unique technique playing guitar flat on his lap\n\n• Featured in movie 'Road House' starring Patrick Swayze\n\n• 'Angel Eyes' reached #5 on Billboard Hot 100\n\n• Juno Award winner",
     wikiUrl: "https://en.wikipedia.org/wiki/Jeff_Healey",
-    nationality: { country: "Canada", flag: "🇨🇦" }
+    nationality: NATIONALITIES.CA
   },
   diane: {
     name: "Diane Schuur",
@@ -164,7 +165,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "diane-complete-blindness",
     description: "Diane Schuur was born two months premature weighing less than three pounds. Oxygen treatment in her incubator caused retinopathy of prematurity (ROP), leaving her completely blind.\n\n• Two-time Grammy Award winner for Best Jazz Vocal Album\n\n• Helen Keller Achievement Award recipient (2000)\n\n• Performed with Count Basie Orchestra, Quincy Jones, and Ray Charles\n\n• Known as 'Deedles' - one of the premier jazz vocalists of her generation",
     wikiUrl: "https://en.wikipedia.org/wiki/Diane_Schuur",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   nobuyuki: {
     name: "Nobuyuki Tsujii",
@@ -175,7 +176,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "nobuyuki-congenital-blindness",
     description: "Nobuyuki Tsujii was born with microphthalmia, a developmental disorder leaving him completely blind from birth with no visual memory.\n\n• Won Van Cliburn International Piano Competition (2009) - first blind winner\n\n• Learns entire orchestral scores by ear\n\n• Internationally touring classical pianist\n\n• Multiple platinum-selling albums in Japan",
     wikiUrl: "https://en.wikipedia.org/wiki/Nobuyuki_Tsujii",
-    nationality: { country: "Japan", flag: "🇯🇵" }
+    nationality: NATIONALITIES.JP
   },
   rahsaan: {
     name: "Rahsaan Roland Kirk",
@@ -186,7 +187,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "rahsaan-childhood-blindness",
     description: "Rahsaan Roland Kirk became blind at age 2 due to improper medical treatment. He was left with no light perception.\n\n• Revolutionary jazz multi-instrumentalist\n\n• Famous for playing three saxophones simultaneously\n\n• Invented several instruments including the 'stritch' and 'manzello'\n\n• Grammy Lifetime Achievement Award",
     wikiUrl: "https://en.wikipedia.org/wiki/Rahsaan_Roland_Kirk",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   blindLemonJefferson: {
     name: "Blind Lemon Jefferson",
@@ -197,7 +198,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Blind Lemon Jefferson was blind from birth or early childhood, the exact cause unknown. He had no visual experience and learned to navigate the world entirely by sound and touch.\n\n• 'Father of Texas Blues'\n\n• First commercially successful blues artist - recorded over 100 songs\n\n• Influenced nearly every major blues musician who followed\n\n• Rock and Roll Hall of Fame inductee",
     wikiUrl: "https://en.wikipedia.org/wiki/Blind_Lemon_Jefferson",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   charlottaSeuerling: {
     name: "Charlotta Seuerling",
@@ -208,7 +209,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Charlotta Seuerling became blind at age 4 due to complications from smallpox vaccination. Known as 'The Blind Song-Maiden,' she lost all vision permanently.\n\n• Concert singer, harpsichordist, composer, and poet\n\n• Performed throughout Sweden, Finland, and Russia\n\n• Authored the popular song 'Sång i en melankolisk stund'\n\n• Helped develop Valentin Haüy's Institute for the Blind in Saint Petersburg",
     wikiUrl: "https://en.wikipedia.org/wiki/Charlotta_Seuerling",
-    nationality: { country: "Sweden", flag: "🇸🇪" }
+    nationality: NATIONALITIES.SE
   },
   francescoLandini: {
     name: "Francesco Landini",
@@ -219,7 +220,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Francesco Landini was blind from childhood, likely due to smallpox which destroyed his vision completely.\n\n• Most famous composer of the 14th-century Italian Trecento\n\n• Virtuoso organist who won competitions against sighted musicians\n\n• Composed over 150 works including madrigals and ballate\n\n• Also known as an instrument maker and poet",
     wikiUrl: "https://en.wikipedia.org/wiki/Francesco_Landini",
-    nationality: { country: "Italy", flag: "🇮🇹" }
+    nationality: NATIONALITIES.IT
   },
   garretBarry: {
     name: "Garret Barry",
@@ -230,7 +231,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Garret Barry became blind during childhood due to an illness, leaving him with complete vision loss.\n\n• One of the most celebrated traditional Irish uilleann pipers\n\n• Master of the uilleann pipes - influenced generations of Irish musicians\n\n• Remembered as one of the great figures in Irish traditional music",
     wikiUrl: "https://en.wikipedia.org/wiki/Garret_Barry_(uilleann_piper)",
-    nationality: { country: "Ireland", flag: "🇮🇪" }
+    nationality: NATIONALITIES.IE
   },
   gurrumulYunupingu: {
     name: "Geoffrey Gurrumul Yunupingu",
@@ -241,7 +242,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Geoffrey Gurrumul Yunupingu was born blind in Arnhem Land, Australia. He had no visual experience but developed extraordinary musical abilities.\n\n• One of Australia's most celebrated musicians\n\n• Multi-instrumentalist: guitar, keyboards, drums, didgeridoo\n\n• Sang in his native Yolngu language, bringing Indigenous culture to global audiences\n\n• Multiple ARIA Award winner\n\n• Subject of documentary 'Gurrumul'",
     wikiUrl: "https://en.wikipedia.org/wiki/Gurrumul_Yunupingu",
-    nationality: { country: "Australia", flag: "🇦🇺" }
+    nationality: NATIONALITIES.AU
   },
   geraldineLawhorn: {
     name: "Geraldine Lawhorn",
@@ -252,7 +253,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Geraldine 'Jerrie' Lawhorn was both deaf and blind from birth, living in complete silence and darkness.\n\n• First deaf-blind African American to earn a college degree in the United States\n\n• Concert pianist and actress who performed one-woman shows\n\n• Educator at Hadley Institute for the Blind\n\n• Trailblazer for people with multiple disabilities",
     wikiUrl: "https://en.wikipedia.org/wiki/Geraldine_Lawhorn",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   heatherHutchison: {
     name: "Heather Hutchison",
@@ -263,7 +264,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "heather-light-perception",
     description: "Heather Hutchison has congenital blindness with only light perception - no form vision, only diffuse awareness of brightness variation. Her vision includes nystagmus (involuntary eye oscillation).\n\nThe visual experience: near-total opacity with milky/washed-out glow, diffuse amorphous light blobs with no edges or shapes, continuous jitter, and no color perception.\n\n• Award-winning Canadian singer-songwriter and author\n\n• Multiple album releases\n\n• Advocate for disability and mental health awareness\n\n• Visit heather-hutchison.com",
     wikiUrl: "https://en.wikipedia.org/wiki/Heather_Hutchison",
-    nationality: { country: "Canada", flag: "🇨🇦" }
+    nationality: NATIONALITIES.CA
   },
   joaquinRodrigo: {
     name: "Joaquín Rodrigo",
@@ -274,7 +275,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Joaquín Rodrigo became completely blind at age 3 due to complications from diphtheria. He retained no visual memory.\n\n• Composed 'Concierto de Aranjuez' - cornerstone of classical guitar repertoire\n\n• Most important Spanish composer of the 20th century\n\n• Marquess of the Gardens of Aranjuez (nobility title)\n\n• Prince of Asturias Award for the Arts",
     wikiUrl: "https://en.wikipedia.org/wiki/Joaquín_Rodrigo",
-    nationality: { country: "Spain", flag: "🇪🇸" }
+    nationality: NATIONALITIES.ES
   },
   rachael: {
     name: "Rachael Leahcar",
@@ -285,7 +286,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "rachael-retinitis-pigmentosa",
     description: "Rachael Leahcar is legally blind due to retinitis pigmentosa, retaining only 10% of her vision. She experiences tunnel vision, night blindness, and progressive visual field loss.\n\n• Finished third on The Voice Australia Season 1 (2012)\n\n• Debut album reached #5 on ARIA Albums Chart\n\n• Performs in multiple languages: English, French, Italian, Spanish\n\n• Ambassador for the Royal Society for the Blind",
     wikiUrl: "https://en.wikipedia.org/wiki/Rachael_Leahcar",
-    nationality: { country: "Australia", flag: "🇦🇺" }
+    nationality: NATIONALITIES.AU
   },
   johnKay: {
     name: "John Kay",
@@ -296,7 +297,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "john-kay-achromatopsia",
     description: "John Kay was born with congenital achromatopsia, a rare condition eliminating functional cone cells. He sees essentially in black-and-white with extreme light sensitivity.\n\n• Lead singer and founding member of Steppenwolf\n\n• 'Born to Be Wild' coined the phrase 'heavy metal' in music\n\n• Rock and Roll Hall of Fame nominee\n\n• Environmentalist and animal rights activist",
     wikiUrl: "https://en.wikipedia.org/wiki/John_Kay_(musician)",
-    nationality: { country: "Germany", flag: "🇩🇪" }
+    nationality: NATIONALITIES.DE
   },
   jonnyGreenwood: {
     name: "Jonny Greenwood",
@@ -307,7 +308,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "jonny-greenwood-color-blindness",
     description: "Jonny Greenwood has red-green color blindness, affecting his ability to distinguish between red and green colors.\n\nThis is one of the most common forms of color vision deficiency.\n\n• Lead guitarist and multi-instrumentalist for Radiohead\n\n• Acclaimed film composer: 'There Will Be Blood,' 'Phantom Thread,' 'The Power of the Dog'\n\n• Academy Award nominee\n\n• BBC Composer in Association",
     wikiUrl: "https://en.wikipedia.org/wiki/Jonny_Greenwood",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   amadou: {
     name: "Amadou & Mariam",
@@ -318,7 +319,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "amadou-cataract-progression",
     description: "Amadou Bagayoko (born 1954) lost his sight at age 16 from congenital cataracts. Mariam Doumbia (born 1958) went blind at age 5 after contracting measles and receiving inadequate medical care. They met in 1975 at Mali's Bamako Institute for the Young Blind and formed a lifelong romantic and musical partnership.\n\nTheir 'Afro-funk' style blends traditional Malian sound with rock guitars, Cuban trumpets, and global influences.\n\n• Grammy-nominated duo with international acclaim spanning five decades\n\n• Breakthrough album 'Dimanche à Bamako' (2005) produced by Manu Chao\n\n• Collaborated with Stevie Wonder, K'Naan, and TV on the Radio\n\n• Albums include 'Sou ni tilé,' 'Welcome to Mali,' and 'Folila'",
     wikiUrl: "https://en.wikipedia.org/wiki/Amadou_%26_Mariam",
-    nationality: { country: "Mali", flag: "🇲🇱" }
+    nationality: NATIONALITIES.ML
   },
   nanaMouskouri: {
     name: "Nana Mouskouri",
@@ -329,7 +330,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "nana-myopia-astigmatism",
     description: "Nana Mouskouri has severe myopia (nearsightedness) and astigmatism, requiring her signature black-rimmed glasses.\n\nWhen Harry Belafonte asked her to remove them on tour, she nearly quit rather than perform without them.\n\n• Over 300 million records sold worldwide\n\n• UNICEF Goodwill Ambassador\n\n• Member of European Parliament (1994-1999)\n\n• 'All my life I wanted to be on stage as I am in life'",
     wikiUrl: "https://en.wikipedia.org/wiki/Nana_Mouskouri",
-    nationality: { country: "Greece", flag: "🇬🇷" }
+    nationality: NATIONALITIES.GR
   },
   moondog: {
     name: "Moondog",
@@ -340,7 +341,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "moondog-complete-blindness",
     description: "Moondog lost his sight at 16 when a dynamite cap exploded, leaving him completely blind with no light perception.\n\n• Legendary NYC street performer known as 'The Viking of 6th Avenue'\n\n• Wrote over 80 symphonies while completely blind\n\n• Built custom instruments\n\n• Collaborated with Philip Glass and influenced minimalist composers",
     wikiUrl: "https://en.wikipedia.org/wiki/Moondog",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   ravindraJain: {
     name: "Ravindra Jain",
@@ -351,7 +352,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "ravindra-complete-blindness",
     description: "Ravindra Jain was born completely blind in Aligarh, India. He had no visual experience but developed extraordinary musical abilities.\n\n• Composed music for over 200 Bollywood films\n\n• Created iconic music for TV Ramayana series\n\n• Three Filmfare Awards\n\n• Introduced K.J. Yesudas to Hindi cinema\n\n• Padma Shri award recipient (2015)",
     wikiUrl: "https://en.wikipedia.org/wiki/Ravindra_Jain",
-    nationality: { country: "India", flag: "🇮🇳" }
+    nationality: NATIONALITIES.IN
   },
   kimioEto: {
     name: "Kimio Eto",
@@ -362,7 +363,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "kimio-complete-blindness",
     description: "Kimio Eto became completely blind at age 5. He retained no visual memory and learned music entirely by ear.\n\n• Virtuoso koto player who introduced Japanese music to Western audiences\n\n• Won three consecutive national prizes by age 16\n\n• Performed with Philadelphia Orchestra under Leopold Stokowski (1964)\n\n• Collaborated with Gene Krupa and Harry Belafonte",
     wikiUrl: "https://en.wikipedia.org/wiki/Kimio_Eto",
-    nationality: { country: "Japan", flag: "🇯🇵" }
+    nationality: NATIONALITIES.JP
   },
   dianaGurtskaya: {
     name: "Diana Gurtskaya",
@@ -373,7 +374,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "diana-complete-blindness",
     description: "Diana Gurtskaya was completely blind from birth with no visual experience.\n\n• First blind singer from Eastern Europe to compete at Eurovision (2008, Georgia)\n\n• Performed duets with Ray Charles, Toto Cutugno, Demis Roussos\n\n• 'Honored Artist of Russia' (2006)\n\n• Founded Diana Gurtskaya Foundation for visually impaired children\n\n• Sochi 2014 Paralympic Ambassador",
     wikiUrl: "https://en.wikipedia.org/wiki/Diana_Gurtskaya",
-    nationality: { country: "Georgia", flag: "🇬🇪" }
+    nationality: NATIONALITIES.GE
   },
   asikVeysel: {
     name: "Âşık Veysel",
@@ -384,7 +385,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "asik-complete-blindness",
     description: "Âşık Veysel lost one eye to smallpox at age 7 and the other in an accident, leaving him completely blind.\n\nHis last visual memory was the color red from blood when he fell.\n\n• Turkey's most beloved folk poet and bağlama player\n\n• National treasure whose songs blend joy and melancholy\n\n• Inspired Joe Satriani's tribute songs 'Andalusia' and 'Asik Veysel'\n\n• Turkish Parliament honored him with lifetime salary",
     wikiUrl: "https://en.wikipedia.org/wiki/Âşık_Veysel_Şatıroğlu",
-    nationality: { country: "Turkey", flag: "🇹🇷" }
+    nationality: NATIONALITIES.TR
   },
   joseCid: {
     name: "José Cid",
@@ -395,7 +396,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "jose-cid-monocular",
     description: "José Cid lost the sight in his left eye due to a tragic accident and now wears a prosthetic eye. His signature sunglasses, which have become part of his iconic look, are worn because of this condition.\n\nDespite this, he maintains a characteristically positive attitude, saying he never felt life had been unfair to him.\n\n• Latin Grammy Lifetime Achievement Award (2019) - second Portuguese artist to receive the honor\n\n• Founded Quarteto 1111, Portugal's first symphonic rock band\n\n• Represented Portugal at Eurovision 1980 with 'Um grande, grande amor'\n\n• Over 60 years in music with 25 Silver, 8 Gold, and 3 Platinum records in Portugal",
     wikiUrl: "https://en.wikipedia.org/wiki/José_Cid",
-    nationality: { country: "Portugal", flag: "🇵🇹" }
+    nationality: NATIONALITIES.PT
   },
   bluay: {
     name: "Bluay",
@@ -406,7 +407,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "bluay-severe-vision-loss",
     description: "Bluay (José Carlos Tavares) has only 15% vision and is practically blind in one eye. Despite also suffering from idiopathic arthritis, he entered the music world at just 14 years old and never gave up on his dreams.\n\nHis stage name comes from his heterochromia - one blue eye and one brown eye - 'Bluay' meaning 'blue eye.'\n\n• Featured on Piruka's 'Crazy' which won Best Song at Play Awards 2021\n\n• Rising star in Portuguese hip-hop/R&B scene\n\n• Started music career at age 14\n\n• Advocate for perseverance despite physical challenges",
     wikiUrl: "https://open.spotify.com/artist/18jB1ZnaJSWmro1ExvqZo4",
-    nationality: { country: "Portugal", flag: "🇵🇹" }
+    nationality: NATIONALITIES.PT
   },
   mariaAnnaMozart: {
     name: "Maria Anna Mozart",
@@ -417,7 +418,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "maria-anna-cataracts-blindness",
     description: "Maria Anna 'Nannerl' Mozart was a keyboard prodigy who toured Europe performing alongside her younger brother Wolfgang Amadeus Mozart. She received top billing during their early concert tours and was considered equally talented.\n\nShe became blind at age 74, ending her ability to give piano instruction and leaving her in poverty during her final years. A visitor described her as 'blind, languid, exhausted, feeble and nearly speechless.'\n\n• Child prodigy who performed the most difficult sonatas and concertos by age 11\n\n• Toured Europe with her brother Wolfgang under their father Leopold Mozart\n\n• Supported herself as a piano teacher in Salzburg after her husband's death\n\n• The exact cause of her blindness is unrecorded, but age-related cataracts were the most common cause in that era",
     wikiUrl: "https://en.wikipedia.org/wiki/Maria_Anna_Mozart",
-    nationality: { country: "Austria", flag: "🇦🇹" }
+    nationality: NATIONALITIES.AT
   },
   anselmoRalph: {
     name: "Anselmo Ralph",
@@ -428,7 +429,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "anselmo-ocular-myasthenia",
     description: "Anselmo Ralph has ocular myasthenia gravis, an autoimmune neuromuscular disease that causes weakness and abnormal fatigue in voluntary muscles, particularly his eyelid muscles. Diagnosed at age 5, he lacks strength in his eyelids, with lights and camera flashes forcing his eyes to close involuntarily.\n\nHis signature dark sunglasses are a coping mechanism for severe photophobia, not a fashion statement.\n\n• Angola's most celebrated R&B and kizomba artist\n\n• Multiple platinum albums across Africa and Portugal\n\n• Known as the 'King of Kizomba'\n\n• MTV Africa Music Award winner\n\n• His condition causes ptosis (eyelid droop), diplopia (double vision), and extreme light sensitivity",
     wikiUrl: "https://en.wikipedia.org/wiki/Anselmo_Ralph",
-    nationality: { country: "Angola", flag: "🇦🇴" }
+    nationality: NATIONALITIES.AO
   },
   petkoStaynov: {
     name: "Petko Staynov",
@@ -439,7 +440,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "petko-sympathetic-ophthalmia",
     description: "Petko Staynov injured one eye at age 6, and the infection spread to the other eye through sympathetic ophthalmia — the same condition that blinded Louis Braille. By age 11, he had lost his sight completely and lived in total blindness for the remaining 66 years of his life.\n\nHe mastered Braille in both Bulgarian and German.\n\n• One of Bulgaria's most prominent classical composers\n\n• Composed the celebrated symphonic suite 'Thracian Dances,' a cornerstone of Bulgarian classical music\n\n• Director of the Bulgarian National Opera (1941-1944)\n\n• Founded the Institute of Music at the Bulgarian Academy of Sciences, where over 100,000 folk songs were recorded under his guidance",
     wikiUrl: "https://en.wikipedia.org/wiki/Petko_Staynov",
-    nationality: { country: "Bulgaria", flag: "🇧🇬" }
+    nationality: NATIONALITIES.BG
   },
   leandroDiaz: {
     name: "Leandro Díaz",
@@ -450,7 +451,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Leandro Díaz was born blind in Hatonuevo, La Guajira, Colombia. Despite never having seen the world, he became one of Colombia's most celebrated songwriters, renowned for his remarkably vivid and descriptive lyrics.\n\nHe composed his first song at age 17.\n\n• Proclaimed 'King for Life' of the Vallenato Legend Festival\n\n• His song 'Diosa Coronada' inspired Nobel laureate Gabriel García Márquez, appearing at the beginning of Love in the Time of Cholera\n\n• His works have been performed by Colombia's greatest musicians including Carlos Vives and Diomedes Díaz\n\n• A biographical film about his life was released in 2023",
     wikiUrl: "https://en.wikipedia.org/wiki/Leandro_D%C3%ADaz_(composer)",
-    nationality: { country: "Colombia", flag: "🇨🇴" }
+    nationality: NATIONALITIES.CO
   },
   arsenioRodriguez: {
     name: "Arsenio Rodríguez",
@@ -461,7 +462,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Arsenio Rodríguez was blinded at age 7 when a horse kicked him in the head, completely destroying both optic nerves. In 1947, renowned ophthalmologist Dr. Ramón Castroviejo confirmed the damage was irreversible, inspiring the bolero 'La vida es un sueño' (Life is a Dream).\n\nNicknamed 'El Ciego Maravilloso' (The Marvellous Blind Man).\n\n• Often called the 'Godfather of Salsa' — pioneered the conjunto format and developed son montuno\n\n• Virtuoso tres player and composer of nearly 200 songs\n\n• His international hit 'Bruca manigua' remains an Afro-Cuban classic\n\n• One of the most influential figures in Latin music history",
     wikiUrl: "https://en.wikipedia.org/wiki/Arsenio_Rodr%C3%ADguez",
-    nationality: { country: "Cuba", flag: "🇨🇺" }
+    nationality: NATIONALITIES.CU
   },
   oskarBaum: {
     name: "Oskar Baum",
@@ -472,7 +473,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Oskar Baum had vision problems from birth, lost sight in one eye at age 8, and became completely blind at age 11 after a violent altercation between Czech and German students in Plzeň.\n\nDespite his blindness, he became a celebrated author and trained musician.\n\n• Core member of the Prague Circle alongside Franz Kafka, Max Brod, and Felix Weltsch\n\n• Author of the memoir 'Das Leben im Dunkeln' (Life in the Dark, 1909)\n\n• Trained as organist and pianist at the Israelite Institute for the Blind in Vienna\n\n• His literary works explored blindness as a source of heightened perception",
     wikiUrl: "https://en.wikipedia.org/wiki/Oskar_Baum",
-    nationality: { country: "Czechia", flag: "🇨🇿" }
+    nationality: NATIONALITIES.CZ
   },
   jaroslavJezek: {
     name: "Jaroslav Ježek",
@@ -483,7 +484,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "jezek-severe-cataracts",
     description: "Jaroslav Ježek was born with severe cataracts that left him nearly blind, able to perceive only shapes and shadows. Multiple surgeries failed to restore his vision. He spent seven years at the Institute for Blind and Weak-eyed Children.\n\nRemarkably, he could see best under blue light — his famous Blue Room, now a museum in Prague, had blue walls, ceiling, and light bulbs to accommodate his remaining vision.\n\n• Leading composer of interwar Czechoslovak theater and jazz\n\n• Created hundreds of songs for Prague's celebrated Liberated Theatre with Voskovec and Werich\n\n• His piano piece 'Bugatti Step' (1930) remains beloved in Czechia\n\n• Fled Nazi-occupied Czechoslovakia in 1939; died in New York exile at age 35",
     wikiUrl: "https://en.wikipedia.org/wiki/Jaroslav_Je%C5%BEek_(composer)",
-    nationality: { country: "Czechia", flag: "🇨🇿" }
+    nationality: NATIONALITIES.CZ
   },
   wessehFreeman: {
     name: "Wesseh Freeman",
@@ -494,7 +495,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Wesseh Freeman (also known as Weesay) became blind as a child and turned to music to support himself and his family in Monrovia, Liberia. He built his own guitars from oil cans, shaped necks with a machete, and used bicycle cables for strings.\n\nA video of him performing on the streets of Monrovia went viral in 2016, with his Facebook page attracting over 7 million visitors and bringing international attention that helped fund a home for him.\n\n• Self-taught musician who built all his own instruments from scrap materials\n\n• Music addressed war, Liberian history, and his own life experiences\n\n• International viral sensation after 2016 street performance video\n\n• Died in a road accident in Monrovia on February 27, 2018",
     wikiUrl: "https://en.wikipedia.org/wiki/Wesseh_Freeman",
-    nationality: { country: "Liberia", flag: "🇱🇷" }
+    nationality: NATIONALITIES.LR
   },
   alanNamoko: {
     name: "Alan Namoko",
@@ -505,7 +506,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Alan Nomoko Namoko was a blind blues and jazz musician from Malawi who became one of the country's most influential musical figures in the 1970s and 1980s.\n\nHe played banjo and sang in Lomwe, Chewa, and Nyanja languages, performing with his band Chimvu Jazz.\n\n• One of Malawi's most celebrated musicians\n\n• Toured internationally and was featured on the BBC's John Peel show\n\n• Performed with his band Chimvu Jazz throughout Malawi and abroad\n\n• Influential figure in Malawian popular music until his death in 1995",
     wikiUrl: "https://en.wikipedia.org/wiki/Alan_Namoko",
-    nationality: { country: "Malawi", flag: "🇲🇼" }
+    nationality: NATIONALITIES.MW
   },
   eddieLow: {
     name: "Eddie Low",
@@ -516,7 +517,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "eddie-congenital-blindness",
     description: "Eddie Low was born blind in Rotorua, New Zealand, after his Māori mother contracted German measles during pregnancy. His twin brother did not survive, and his mother died weeks after his birth. At age 12, a series of operations restored partial sight in his left eye.\n\nDespite a school report saying he had 'no musical ability,' he became an accomplished multi-instrumentalist and developed a rich baritone voice. At 13, he formed The Three Blind Mice, an instrumental trio.\n\n• New Zealand Entertainer and Songwriter of the Year (1980)\n\n• Member of the New Zealand Order of Merit (MNZM) for services to music\n\n• Wrote the iconic 'Songs of Home,' celebrating Aotearoa through Māori place names\n\n• Career spanning over 60 years including The Quin Tikis and the NZ Highwaymen\n\n• Inducted into the Country Hands of Fame in both Tamworth, Australia and Gore, New Zealand",
     wikiUrl: "https://en.wikipedia.org/wiki/Eddie_Low",
-    nationality: { country: "New Zealand", flag: "🇳🇿" }
+    nationality: NATIONALITIES.NZ
   },
   anaLucreciaTaglioretti: {
     name: "Ana Lucrecia Taglioretti",
@@ -527,7 +528,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Ana Lucrecia Taglioretti was born blind in Paraguay and abandoned twice — first at birth, then again after her blindness was discovered. Adopted by a music teacher, she began studying music at age five, starting with piano before specializing in violin.\n\nAt six she joined the Luque International Sanatorium Choir, and in 2003 joined the youth orchestra project Sonidos de la Tierra (Sounds of the Earth).\n\n• Member of the National Symphonic Orchestra of Paraguay from 2014\n\n• Performed with artists including Carlos Vives, Rolando Chaparro, and Lizza Bogado\n\n• Regular performer at Teletón Paraguay and United Nations Paraguay events\n\n• Died in January 2020 at age 24",
     wikiUrl: "https://en.wikipedia.org/wiki/Ana_Lucrecia_Taglioretti",
-    nationality: { country: "Paraguay", flag: "🇵🇾" }
+    nationality: NATIONALITIES.PY
   },
   filipVisnjic: {
     name: "Filip Višnjić",
@@ -538,7 +539,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Filip Višnjić went blind at age 8 or 9 after contracting smallpox. Despite this, he became the greatest epic poet of the Serbian oral tradition, performing on the gusle (a single-stringed bowed instrument).\n\nNotable Serbian scholar Miloš N. Đurić dubbed him 'the Serbian Homer.' His works were preserved when linguist Vuk Karadžić recorded his performances in 1815.\n\n• Composed 13 original epic poems chronicling the First Serbian Uprising against the Ottoman Empire\n\n• His work described as 'the swansong of the epic tradition' by scholar Svetozar Koljević\n\n• One of the few epic poets of his era whose works were attributed by name rather than anonymous\n\n• His epic poetry remains a cornerstone of Serbian literary heritage",
     wikiUrl: "https://en.wikipedia.org/wiki/Filip_Vi%C5%A1nji%C4%87",
-    nationality: { country: "Serbia", flag: "🇷🇸" }
+    nationality: NATIONALITIES.RS
   },
   kelvinTan: {
     name: "Kelvin Tan",
@@ -549,7 +550,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Kelvin Tan Wei Lian was born with Leber's congenital amaurosis, a genetic disorder causing severe vision loss from birth. Before his music breakthrough, he earned a living as a street busker across Singapore.\n\nHe won the first edition of Project SuperStar in 2005, launching a successful Mandopop career.\n\n• Debut album 'All I Want Is...' certified platinum in Singapore within five days of release\n\n• Won Best TV Drama Theme Song at the 2019 Star Awards for 'You Can Be An Angel 3'\n\n• Guide at Singapore's Dialogue in the Dark exhibition\n\n• Ambassador for disability awareness campaigns in Singapore",
     wikiUrl: "https://en.wikipedia.org/wiki/Kelvin_Tan",
-    nationality: { country: "Singapore", flag: "🇸🇬" }
+    nationality: NATIONALITIES.SG
   },
   akselAgerby: {
     name: "Aksel Agerby",
@@ -560,7 +561,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Aksel Agerby was blind from an early age and was educated at the Royal Institute for the Blind in Copenhagen. The specific medical cause of his blindness was never documented.\n\nHe debuted as a concert pianist in 1911 at age 22.\n\n• Composed the melody to 'Jeg er havren,' one of Denmark's most beloved folk songs\n\n• Organist at Brønshøj Church (1930-1942)\n\n• Chairman of the Young Musicians' Society (DUT), championing contemporary music throughout the 1930s\n\n• Ran his own music publishing company",
     wikiUrl: "https://en.wikipedia.org/wiki/Aksel_Agerby",
-    nationality: { country: "Denmark", flag: "🇩🇰" }
+    nationality: NATIONALITIES.DK
   },
   gordonKoang: {
     name: "Gordon Koang",
@@ -571,7 +572,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Gordon Koang is a South Sudanese musician known as the 'King of Music' in his homeland. Born blind in Nasir, Upper Nile, he was introduced to the thom — a traditional East African harp — at age eight by his cousin. He began composing original songs in 1996, singing in Nuer, English, and Arabic, blending traditional rhythms with original compositions.\n\nWhen civil war erupted in South Sudan in 2013 while he was touring Canada, he returned to find his home destroyed. As a Nuer, he faced danger from militias and fled to Uganda before seeking asylum in Australia.\n\n• Released eleven albums including 'Unity,' earning him the nickname 'Michael Jackson of South Sudan'\n\n• Won the prestigious Levi's Music Prize at Australia's BIGSOUND festival\n\n• Featured in NME and Pitchfork after resettling in Melbourne\n\n• Advocates for peace, refugees, and family reunification through his music",
     wikiUrl: "https://en.wikipedia.org/wiki/Gordon_Koang",
-    nationality: { country: "South Sudan", flag: "🇸🇸" }
+    nationality: NATIONALITIES.SS
   },
   dMadness: {
     name: "D-Madness (Lorenzo Dwayne Jackson Jr.)",
@@ -581,7 +582,7 @@ export const musicians: Record<string, PersonData> = {
     onset: "From birth (eyes never developed)",
     simulation: "dmadness-congenital-blindness",
     description: "Lorenzo Dwayne Jackson Jr., known as D-Madness, was born blind in Dallas, Texas. Doctors initially told his mother his eyes 'hadn't grown yet' but later confirmed he would never see. He began drumming at age 3 and was playing music in church by age 5.\n\nHe relocated to Austin in 1983 to attend the Texas School for the Blind & Visually Impaired, where he studied classical and jazz music, becoming an award-winning violinist.\n\n• Plays drums, bass, keyboards, saxophone, trombone, and violin - often two or three instruments simultaneously\n\n• Leads the D-Madness Project, performing funk, soul, hip-hop, and reggae\n\n• Released albums Funk Fest (2008), Clown Royal (2012), and Equinox\n\n• Met and performed with Stevie Wonder in 2015\n\n• Appeared on the Merv Griffin TV show as a child prodigy",
-    nationality: { country: "United States", flag: "\u{1F1FA}\u{1F1F8}" }
+    nationality: NATIONALITIES.US
   },
   berthaTammelin: {
     name: "Bertha Tammelin",
@@ -592,7 +593,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "tammelin-progressive-blindness",
     description: "Bertha Tammelin had weak eyesight her entire life, which progressively worsened throughout her career. She made her final stage appearance on March 7, 1884, when her vision had deteriorated to the point she could no longer perform.\n\nBorn Bertha Carolina Mathilda Bock, she was a premier actress at the Royal Swedish Opera and Royal Dramatic Theatre from 1856.\n\n• Operatic mezzo-soprano, pianist, and composer who gave piano concerts at age 14\n\n• Studied with Italian conductor and composer Jacopo Foroni\n\n• Taught music at the Royal Swedish Academy of Music (from 1879) and drama at the Royal Dramatic Training Academy (from 1889)\n\n• Received the Litteris et Artibus award in 1885 for her contributions to Swedish arts",
     wikiUrl: "https://en.wikipedia.org/wiki/Bertha_Tammelin",
-    nationality: { country: "Sweden", flag: "🇸🇪" }
+    nationality: NATIONALITIES.SE
   },
   bilalGoregen: {
     name: "Bilal Göregen",
@@ -603,7 +604,7 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Bilal Göregen is a Turkish street musician and darbuka player born blind in Hatay Province. Despite his blindness and a rare disorder causing his hands to shake uncontrollably, he became one of the most recognized musicians on the internet.\n\nIn 2020, his street performance of the Finnish folk song 'Ievan Polkka' went viral when a user superimposed an animated cat bobbing its head to the music, creating the legendary 'Vibing Cat' meme that spread across every social media platform.\n\n• His 'Ievan Polkka' video gained over 1.3 million views in one week after the cat meme went viral\n\n• Claims to be 'the only one in Turkey who can play percussion instruments and imitate various rhythms with my mouth'\n\n• Appeared on Turkey's Got Talent a decade before his viral fame\n\n• YouTube's official accounts promoted his channel after the meme's success\n\n• Covers range from 'Dance Monkey' to 'Tunak Tunak Tun' to the GTA: San Andreas theme",
     wikiUrl: "https://en.wikipedia.org/wiki/Bilal_G%C3%B6regen",
-    nationality: { country: "Turkey", flag: "🇹🇷" }
+    nationality: NATIONALITIES.TR
   },
   hsiaoHuangChi: {
     name: "Hsiao Huang-chi",
@@ -614,6 +615,6 @@ export const musicians: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Hsiao Huang-chi (蕭煌奇), also known as Ricky Hsiao, was born blind due to congenital cataracts in Banqiao, Taiwan. Surgery at age 4 partially restored his vision, but it progressively deteriorated until he became completely blind again at age 15.\n\nDespite his blindness, he excelled in both athletics and music, competing internationally in judo before becoming one of Taiwan's most celebrated Hokkien pop artists.\n\n• Multiple Golden Melody Award winner — including Best Taiwanese Male Singer (4 times) and Best Taiwanese Album (3 times) across 19 nominations\n\n• Won bronze at the 1994 FESPIC Games in judo and competed at the 1996 Atlanta Paralympics, holding a 2nd dan black belt\n\n• Plays guitar, saxophone, and drum kit; released 15 studio albums spanning Mandopop and Taiwanese Hokkien pop\n\n• Opened a massage clinic in Taipei employing blind and deaf workers",
     wikiUrl: "https://en.wikipedia.org/wiki/Hsiao_Huang-chi",
-    nationality: { country: "Taiwan", flag: "🇹🇼" }
+    nationality: NATIONALITIES.TW
   }
 };

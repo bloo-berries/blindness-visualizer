@@ -208,7 +208,7 @@ const VisionSimulator: React.FC = () => {
               inputSource={inputSource}
               visualizerSlot={
                 <Box sx={{
-                  '& .visualizer-container': { height: 'unset', aspectRatio: '16 / 9' },
+                  '& .visualizer-container': { height: 'auto' },
                   '& .comparison-container': { minHeight: '300px' },
                   '& .visualizer-description': { display: 'none' }
                 }}>

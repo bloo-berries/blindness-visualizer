@@ -17,6 +17,8 @@
  * - Fading effect representing temporal decay of perception
  */
 
+import { createOverlayStyle } from './createOverlayStyle';
+
 /**
  * Generate Toph Beifong's Seismic Sense overlay
  */
@@ -193,18 +195,5 @@ export function generateTophSeismicSenseOverlay(
     ${darkBase}
   `;
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background,
-    mixBlendMode: 'normal' as const,
-    opacity: 1,
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  return createOverlayStyle(background);
 }

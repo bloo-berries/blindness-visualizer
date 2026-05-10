@@ -2,6 +2,7 @@
  * Visual Aura overlay generator
  * Generates migraine aura effects with scintillating patterns
  */
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate visual aura overlay styles
@@ -203,19 +204,8 @@ export function generateVisualAuraOverlay(
     ${mainScotoma}
   `;
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: background,
+  return createOverlayStyle(background, {
     opacity: Math.min(0.95, 0.7 + intensity * 0.25),
-    pointerEvents: 'none' as const,
     filter: `blur(${2 + intensity * 3}px)`,
-    mixBlendMode: 'normal' as const,
-    zIndex: 9999
-  };
+  });
 }

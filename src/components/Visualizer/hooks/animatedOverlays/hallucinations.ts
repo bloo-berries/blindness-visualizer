@@ -9,6 +9,7 @@ import {
   createVisionLossGradient,
   getHallucinationsStartTime
 } from '../../../../utils/overlays/cbsHallucinations';
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate CBS Hallucinations overlay styles
@@ -63,18 +64,7 @@ export function generateHallucinationsOverlay(
   // Vision loss area gradient
   elements.push(createVisionLossGradient(intensity));
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: elements.join(', '),
-    mixBlendMode: 'normal' as const,
+  return createOverlayStyle(elements.join(', '), {
     opacity: Math.min(0.9, 0.6 + intensity * 0.3),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

@@ -19,17 +19,19 @@ import {
   generateDavidBrownFilters,
   generateLexFilters,
   crazzysteveFilterConfigs,
-  generateTofiriFilters,
-  generatePlateauFilters,
-  generateEulerFilters,
-  generateNemethFilters,
+  tofiriFilterConfigs,
+  plateauFilterConfigs,
+  eulerFilterConfigs,
+  nemethFilterConfigs,
   heatherFilterConfigs,
   daredevilFilterConfigs,
   geordiFilterConfigs,
   blindspotFilterConfigs,
   joseCidFilterConfigs,
   tophFilterConfigs,
-  generateCustomFamousPeopleFilters,
+  customFamousPeopleFilterConfigs,
+  davidFilterConfigs,
+  marlaFilterConfigs,
   anselmoFilterConfigs,
   margaritaFilterConfigs,
   fujitoraFilterConfigs,
@@ -61,6 +63,13 @@ const allFilterConfigs = [
   ...fujitoraFilterConfigs,
   ...chirrutFilterConfigs,
   ...juliaCarpenterFilterConfigs,
+  ...tofiriFilterConfigs,
+  ...plateauFilterConfigs,
+  ...eulerFilterConfigs,
+  ...nemethFilterConfigs,
+  ...customFamousPeopleFilterConfigs,
+  ...davidFilterConfigs,
+  ...marlaFilterConfigs,
 ];
 
 /**
@@ -102,12 +111,7 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
     generateAmadouFilters(effects),
     generateDavidBrownFilters(effects),
     generateLexFilters(effects),
-    generateTofiriFilters(effects),
-    generatePlateauFilters(effects),
-    generateEulerFilters(effects),
-    generateNemethFilters(effects),
     generateVisualSnowFilters(effects),
-    generateCustomFamousPeopleFilters(effects),
     generateOcularDiseaseFilters(effects),
     generateSymptomFilters(effects),
     generateRefractiveErrorFilters(effects),
@@ -118,4 +122,3 @@ export const generateCSSFilters = (effects: VisualEffect[], diplopiaSeparation: 
 
   return finalFilter;
 };
-

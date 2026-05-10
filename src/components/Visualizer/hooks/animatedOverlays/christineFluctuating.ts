@@ -3,6 +3,7 @@
  * Simulates Uhthoff's phenomenon - vision that fluctuates with subtle variations in fog density
  * Creates drifting fog layers and animated light scatter bloom points
  */
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate Christine Ha's Fluctuating Vision overlay
@@ -110,18 +111,8 @@ export function generateChristineFluctuatingOverlay(
     ${driftingFog1}
   `;
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background,
-    mixBlendMode: 'screen' as const,
+  return createOverlayStyle(background, {
+    mixBlendMode: 'screen',
     opacity: Math.min(0.92, 0.65 + intensity * 0.27),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

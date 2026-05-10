@@ -2,33 +2,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Import translation files (alphabetically ordered)
-import ar from '../locales/ar.json';
-import bn from '../locales/bn.json';
-import ca from '../locales/ca.json';
-import zh from '../locales/zh.json';
-import nl from '../locales/nl.json';
+// Only English is statically imported (always needed as fallback).
+// All other languages are loaded on demand via dynamic import().
 import en from '../locales/en.json';
-import fi from '../locales/fi.json';
-import fr from '../locales/fr.json';
-import de from '../locales/de.json';
-import el from '../locales/el.json';
-import hi from '../locales/hi.json';
-import is from '../locales/is.json';
-import ga from '../locales/ga.json';
-import it from '../locales/it.json';
-import ja from '../locales/ja.json';
-import ko from '../locales/ko.json';
-import no from '../locales/no.json';
-import pl from '../locales/pl.json';
-import pt from '../locales/pt.json';
-import ru from '../locales/ru.json';
-import es from '../locales/es.json';
-import sw from '../locales/sw.json';
-import sv from '../locales/sv.json';
-import tr from '../locales/tr.json';
-import uk from '../locales/uk.json';
-import vi from '../locales/vi.json';
 
 // Languages sorted alphabetically by English name
 export const supportedLanguages = {
@@ -62,42 +38,57 @@ export const supportedLanguages = {
 
 export type SupportedLanguage = keyof typeof supportedLanguages;
 
-const resources = {
-  ar: { translation: ar },
-  bn: { translation: bn },
-  ca: { translation: ca },
-  zh: { translation: zh },
-  nl: { translation: nl },
-  en: { translation: en },
-  fi: { translation: fi },
-  fr: { translation: fr },
-  de: { translation: de },
-  el: { translation: el },
-  hi: { translation: hi },
-  is: { translation: is },
-  ga: { translation: ga },
-  it: { translation: it },
-  ja: { translation: ja },
-  ko: { translation: ko },
-  no: { translation: no },
-  pl: { translation: pl },
-  pt: { translation: pt },
-  ru: { translation: ru },
-  es: { translation: es },
-  sw: { translation: sw },
-  sv: { translation: sv },
-  tr: { translation: tr },
-  uk: { translation: uk },
-  vi: { translation: vi },
+// Dynamic import map for lazy-loaded languages
+const localeImports: Record<string, () => Promise<{ default: Record<string, string> }>> = {
+  ar: () => import('../locales/ar.json'),
+  bn: () => import('../locales/bn.json'),
+  ca: () => import('../locales/ca.json'),
+  zh: () => import('../locales/zh.json'),
+  nl: () => import('../locales/nl.json'),
+  fi: () => import('../locales/fi.json'),
+  fr: () => import('../locales/fr.json'),
+  de: () => import('../locales/de.json'),
+  el: () => import('../locales/el.json'),
+  hi: () => import('../locales/hi.json'),
+  is: () => import('../locales/is.json'),
+  ga: () => import('../locales/ga.json'),
+  it: () => import('../locales/it.json'),
+  ja: () => import('../locales/ja.json'),
+  ko: () => import('../locales/ko.json'),
+  no: () => import('../locales/no.json'),
+  pl: () => import('../locales/pl.json'),
+  pt: () => import('../locales/pt.json'),
+  ru: () => import('../locales/ru.json'),
+  es: () => import('../locales/es.json'),
+  sw: () => import('../locales/sw.json'),
+  sv: () => import('../locales/sv.json'),
+  tr: () => import('../locales/tr.json'),
+  uk: () => import('../locales/uk.json'),
+  vi: () => import('../locales/vi.json'),
 };
+
+/**
+ * Dynamically load a language's translations.
+ * Returns immediately if the language is already loaded or is English.
+ */
+export async function loadLanguage(lng: string): Promise<void> {
+  if (lng === 'en' || i18n.hasResourceBundle(lng, 'translation')) return;
+  const loader = localeImports[lng];
+  if (!loader) return;
+  const module = await loader();
+  i18n.addResourceBundle(lng, 'translation', module.default, true, true);
+}
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources,
+    resources: {
+      en: { translation: en },
+    },
     lng: 'en', // Default to English for new users
     fallbackLng: 'en',
+    partialBundledLanguages: true,
     supportedLngs: Object.keys(supportedLanguages),
 
     detection: {
@@ -116,13 +107,23 @@ i18n
     },
   });
 
-// Update document direction on language change
+// Load the saved language preference (if non-English) on startup
+const savedLng = i18n.language;
+if (savedLng && savedLng !== 'en') {
+  loadLanguage(savedLng).then(() => {
+    i18n.changeLanguage(savedLng);
+  });
+}
+
+// Update document direction on language change, and lazy-load translations
 i18n.on('languageChanged', (lng) => {
   const lang = lng as SupportedLanguage;
   if (supportedLanguages[lang]) {
     document.documentElement.dir = supportedLanguages[lang].dir;
     document.documentElement.lang = lang;
   }
+  // Ensure translations are loaded for the new language
+  loadLanguage(lng);
 });
 
 export default i18n;

@@ -14,6 +14,8 @@
  * The perception skews heavily toward white/light gray
  */
 
+import { createOverlayStyle } from './createOverlayStyle';
+
 /**
  * Generate Heather Hutchison's Light Perception overlay
  */
@@ -110,21 +112,8 @@ export function generateHeatherLightPerceptionOverlay(
   `;
 
   return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background,
-    mixBlendMode: 'normal' as const,
-    opacity: 1,
-    pointerEvents: 'none' as const,
-    zIndex: 9999,
-    // Apply nystagmus jitter via transform
+    ...createOverlayStyle(background),
     transform: `translateX(${nystagmusOffset}px)`,
-    // Smooth out the jitter slightly for more natural movement
-    transition: 'transform 0.016s linear'
+    transition: 'transform 0.05s linear',
   };
 }

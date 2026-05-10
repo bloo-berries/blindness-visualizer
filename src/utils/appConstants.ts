@@ -13,7 +13,7 @@ const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be 
 /**
  * YouTube embed URL query parameters optimized for fast loading:
  * - autoplay=1&mute=1: auto-start muted (required for autoplay)
- * - controls=0: hide player controls (overlays cover them anyway)
+ * - controls=1: show player controls (iOS Safari blocks autoplay; controls give users a tap target)
  * - enablejsapi=1: allow JS control
  * - rel=0: don't load related videos (reduces network requests)
  * - modestbranding=1: minimal YouTube branding
@@ -22,7 +22,7 @@ const FAMOUS_PEOPLE_VIDEO_ID = '6BPuGeS6O4w'; // Same video for now, but can be 
  * - iv_load_policy=3: disable annotations
  * - vq=hd1080: request 1080p quality to avoid blurry playback
  */
-const YOUTUBE_PARAMS = 'autoplay=1&mute=1&controls=0&enablejsapi=1&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd1080';
+const YOUTUBE_PARAMS = 'autoplay=1&mute=1&controls=1&enablejsapi=1&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&vq=hd1080';
 
 export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}?${YOUTUBE_PARAMS}`;
 

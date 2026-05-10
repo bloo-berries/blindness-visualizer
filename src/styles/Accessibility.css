@@ -149,7 +149,7 @@
 
 /* VisionSim logo eye icon */
 .high-contrast-mode .MuiAppBar-root .MuiBox-root[role="button"] .MuiSvgIcon-root {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* Switches */
@@ -299,26 +299,26 @@
 
 /* Personal journey section */
 .high-contrast-mode .personal-journey-section {
-  background-color: #ffffff !important;
-  border: 2px solid #000000 !important;
+  background-color: var(--hc-text) !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 .high-contrast-mode .personal-journey-title,
 .high-contrast-mode .personal-journey-text {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .personal-journey-highlight {
-  color: #000000 !important;
-  background-color: #ffff00 !important;
+  color: var(--hc-bg) !important;
+  background-color: var(--hc-secondary) !important;
   padding: 8px 12px !important;
   border-radius: 4px !important;
-  border: 2px solid #000000 !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 /* Preview How I See text */
 .high-contrast-mode .preview-how-i-see-text {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* --- Page-Specific: Demo Video Card (white bg, black text) --- */
@@ -331,9 +331,9 @@
 .high-contrast-mode .demo-video-card[style*="#e2e8f0"],
 .high-contrast-mode .demo-video-card[style*="background-color: rgb(248, 250, 252)"],
 .high-contrast-mode .demo-video-card[style*="background-color: rgb(226, 232, 240)"] {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
+  background-color: var(--hc-text) !important;
+  background: var(--hc-text) !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 .high-contrast-mode .demo-video-title,
@@ -342,7 +342,7 @@
 .high-contrast-mode .MuiCard-root .demo-video-description,
 .high-contrast-mode .MuiCardContent-root .demo-video-title,
 .high-contrast-mode .MuiCardContent-root .demo-video-description {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* --- Page-Specific: Library of the Blind Card (white bg, black text) --- */
@@ -356,9 +356,9 @@
 html.high-contrast-mode .library-of-blind-card,
 html.high-contrast-mode .MuiCard-root.library-of-blind-card,
 html.high-contrast-mode a.library-of-blind-card.MuiCard-root {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  border: 2px solid #000000 !important;
+  background-color: var(--hc-text) !important;
+  background: var(--hc-text) !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 .high-contrast-mode .library-of-blind-title,
@@ -369,39 +369,39 @@ html.high-contrast-mode a.library-of-blind-card.MuiCard-root {
 .high-contrast-mode .library-of-blind-card .MuiBox-root .MuiTypography-root,
 html.high-contrast-mode .library-of-blind-title,
 html.high-contrast-mode .library-of-blind-description {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .library-of-blind-card .MuiSvgIcon-root {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* --- Page-Specific: Conditions Glossary --- */
 
 .high-contrast-mode .conditions-stats {
-  color: #000000 !important;
-  background-color: #ffffff !important;
+  color: var(--hc-bg) !important;
+  background-color: var(--hc-text) !important;
   padding: 8px 12px !important;
   border-radius: 4px !important;
-  border: 2px solid #000000 !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 /* Category header buttons - dark bg with white text */
 .high-contrast-mode .condition-category-header {
-  background: #000000 !important;
-  background-color: #000000 !important;
+  background: var(--hc-bg) !important;
+  background-color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .condition-category-header .condition-category-title,
 .high-contrast-mode .condition-category-header .condition-category-subtitle,
 .high-contrast-mode .condition-category-header .MuiTypography-root {
-  color: #ffffff !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .condition-category-header .condition-category-icon,
 .high-contrast-mode .condition-category-header .MuiSvgIcon-root,
 .high-contrast-mode .condition-category-header .MuiAccordionSummary-expandIconWrapper .MuiSvgIcon-root {
-  color: #ffffff !important;
+  color: var(--hc-text) !important;
 }
 
 /* Non-header condition text */
@@ -411,29 +411,29 @@ html.high-contrast-mode .library-of-blind-description {
 .high-contrast-mode .condition-description,
 .high-contrast-mode .conditions-info-title,
 .high-contrast-mode .conditions-info-text {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .condition-related-chip {
-  color: #000000 !important;
-  background-color: #ffff00 !important;
-  border: 2px solid #000000 !important;
+  color: var(--hc-bg) !important;
+  background-color: var(--hc-secondary) !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 .high-contrast-mode .conditions-empty-state {
-  color: #000000 !important;
-  background-color: #ffffff !important;
+  color: var(--hc-bg) !important;
+  background-color: var(--hc-text) !important;
   padding: 16px !important;
   border-radius: 4px !important;
-  border: 2px solid #000000 !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 /* Clear Filters button */
 .high-contrast-mode .conditions-clear-button,
 .high-contrast-mode .conditions-clear-button .MuiButton-label,
 .high-contrast-mode .conditions-clear-button .MuiTypography-root {
-  color: #ffffff !important;
-  border-color: #ffffff !important;
+  color: var(--hc-text) !important;
+  border-color: var(--hc-text) !important;
 }
 
 /* Treatment options */
@@ -444,21 +444,21 @@ html.high-contrast-mode .library-of-blind-description {
 .high-contrast-mode .condition-treatment-list .MuiListItemText-primary,
 .high-contrast-mode .condition-treatment-list .MuiTypography-root,
 .high-contrast-mode .condition-treatment-item .MuiTypography-root {
-  color: #ffffff !important;
+  color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .condition-treatment-bullet {
-  background-color: #ffffff !important;
+  background-color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .condition-treatment-notes {
-  background-color: #000000 !important;
-  border-color: #ffffff !important;
+  background-color: var(--hc-bg) !important;
+  border-color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .condition-treatment-notes-text,
 .high-contrast-mode .condition-treatment-notes .MuiSvgIcon-root {
-  color: #ffffff !important;
+  color: var(--hc-text) !important;
 }
 
 /* Accordion details text */
@@ -471,26 +471,26 @@ html.high-contrast-mode .library-of-blind-description {
 .high-contrast-mode .MuiAccordionDetails-root .MuiListItemText-root .MuiTypography-root,
 .high-contrast-mode .MuiAccordionDetails-root .MuiTypography-body2,
 .high-contrast-mode .MuiAccordionDetails-root .MuiTypography-subtitle2 {
-  color: #ffffff !important;
+  color: var(--hc-text) !important;
 }
 
 /* --- Page-Specific: Feedback Form --- */
 
 .high-contrast-mode .feedback-form .MuiOutlinedInput-notchedOutline,
 .high-contrast-mode .feedback-form-paper .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
+  border-color: var(--hc-text) !important;
   border-width: 3px !important;
 }
 
 .high-contrast-mode .feedback-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 .high-contrast-mode .feedback-form-paper .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
+  border-color: var(--hc-text) !important;
   border-width: 3px !important;
 }
 
 .high-contrast-mode .feedback-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
 .high-contrast-mode .feedback-form-paper .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff !important;
+  border-color: var(--hc-text) !important;
   border-width: 4px !important;
 }
 
@@ -498,22 +498,22 @@ html.high-contrast-mode .library-of-blind-description {
 
 .high-contrast-mode .faq-info-title,
 .high-contrast-mode .faq-info-text {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* --- Page-Specific: Famous People --- */
 
 /* Famous People filter section (white bg, black text) */
 .high-contrast-mode .famous-people-filter-section {
-  background-color: #ffffff !important;
+  background-color: var(--hc-text) !important;
   padding: 16px !important;
   border-radius: 8px !important;
-  border: 2px solid #000000 !important;
+  border: 2px solid var(--hc-bg) !important;
 }
 
 .high-contrast-mode .famous-people-filter-section .MuiTextField-root,
 .high-contrast-mode .famous-people-filter-section .MuiFormControl-root {
-  background-color: #ffffff !important;
+  background-color: var(--hc-text) !important;
 }
 
 .high-contrast-mode .famous-people-filter-section .MuiInputBase-root,
@@ -526,26 +526,26 @@ html.high-contrast-mode .library-of-blind-description {
 .high-contrast-mode .famous-people-filter-section input::placeholder,
 .high-contrast-mode .famous-people-filter-section input::-webkit-input-placeholder,
 .high-contrast-mode .famous-people-filter-section input::-moz-placeholder {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-notchedOutline {
-  border-color: #000000 !important;
+  border-color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
 .high-contrast-mode .famous-people-filter-section .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #000000 !important;
+  border-color: var(--hc-bg) !important;
   border-width: 2px !important;
 }
 
 .high-contrast-mode .famous-people-filter-section .MuiButton-outlined {
-  color: #000000 !important;
-  border-color: #000000 !important;
+  color: var(--hc-bg) !important;
+  border-color: var(--hc-bg) !important;
 }
 
 .high-contrast-mode .famous-people-filter-text.famous-people-filter-text {
-  color: #000000 !important;
+  color: var(--hc-bg) !important;
 }
 
 /* ============================================

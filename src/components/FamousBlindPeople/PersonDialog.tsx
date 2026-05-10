@@ -214,7 +214,13 @@ export const PersonDialog: React.FC<PersonDialogProps> = ({
                 <Skeleton
                   variant="rectangular"
                   width="100%"
-                  sx={{ borderRadius: '8px', aspectRatio: '3/4' }}
+                  sx={{
+                    borderRadius: '8px',
+                    aspectRatio: '3/4',
+                    '@supports not (aspect-ratio: 3/4)': {
+                      height: '300px',
+                    },
+                  }}
                 />
               )}
               <img

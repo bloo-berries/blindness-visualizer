@@ -2,6 +2,7 @@
  * Palinopsia (Visual Perseveration) overlay generator
  * Trailing images, light streaking, and prolonged afterimages
  */
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate Palinopsia (Visual Perseveration) overlay styles
@@ -92,18 +93,8 @@ export function generatePalinopsiaOverlay(
     )
   `);
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: elements.join(', '),
-    mixBlendMode: 'screen' as const,
+  return createOverlayStyle(elements.join(', '), {
+    mixBlendMode: 'screen',
     opacity: Math.min(0.9, 0.5 + intensity * 0.4),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

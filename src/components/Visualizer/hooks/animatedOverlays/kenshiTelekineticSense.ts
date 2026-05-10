@@ -14,6 +14,8 @@
  * - Telekinetic force streams (arcs/tendrils of light)
  */
 
+import { createOverlayStyle } from './createOverlayStyle';
+
 /**
  * Generate Kenshi's Telekinetic Sense overlay
  * Creates a psychic energy field perception with soul detection and spirit realm visibility
@@ -400,18 +402,7 @@ export function generateKenshiTelekineticSenseOverlay(
     ${heavyDarkOverlay}
   `;
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background,
-    mixBlendMode: 'hard-light' as const,
-    opacity: 1,
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  return createOverlayStyle(background, {
+    mixBlendMode: 'hard-light',
+  });
 }

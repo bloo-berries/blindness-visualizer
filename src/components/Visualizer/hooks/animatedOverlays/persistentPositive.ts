@@ -2,6 +2,7 @@
  * Persistent Positive Visual Phenomenon (PPVP) overlay generator
  * Afterimages that persist much longer than normal, bright spots, and complementary colored shapes
  */
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate Persistent Positive Visual Phenomenon overlay styles
@@ -132,18 +133,8 @@ export function generatePersistentPositiveOverlay(
     )
   `);
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: elements.join(', '),
-    mixBlendMode: 'screen' as const,
+  return createOverlayStyle(elements.join(', '), {
+    mixBlendMode: 'screen',
     opacity: Math.min(0.95, 0.6 + intensity * 0.35),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

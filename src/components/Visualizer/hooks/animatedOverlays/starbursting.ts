@@ -2,6 +2,7 @@
  * Starbursting overlay generator
  * Creates dynamic starbursts that move across the frame to catch various light sources
  */
+import { createOverlayStyle } from './createOverlayStyle';
 
 /**
  * Generate animated Starbursting overlay
@@ -124,18 +125,8 @@ export function generateStarburstingOverlay(
     `);
   }
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: elements.join(', '),
-    mixBlendMode: 'screen' as const,
+  return createOverlayStyle(elements.join(', '), {
+    mixBlendMode: 'screen',
     opacity: Math.min(0.95, 0.5 + intensity * 0.45),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

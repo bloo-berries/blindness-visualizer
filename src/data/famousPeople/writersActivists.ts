@@ -1,4 +1,5 @@
 import { PersonData } from './types';
+import { NATIONALITIES } from './nationalities';
 
 export const writersActivists: Record<string, PersonData> = {
   helen: {
@@ -10,7 +11,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "A severe fever at 19 months, likely from bacterial meningitis, left Helen both blind and deaf. She had no light perception or visual input, relying entirely on touch and learning to communicate through finger spelling with teacher Anne Sullivan.\n\n• First deafblind person to earn a bachelor's degree\n\n• Author of 12 books including 'The Story of My Life'\n\n• Lifelong advocate for people with disabilities, women's suffrage, and labor rights",
     wikiUrl: "https://en.wikipedia.org/wiki/Helen_Keller",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   ved: {
     name: "Ved Mehta",
@@ -21,7 +22,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "ved-spatial-awareness",
     description: "Meningitis at age 3 resulted in complete bilateral blindness.\n\nVed developed exceptional 'facial vision' using echolocation and air current perception for navigation.\n\n• Staff writer at The New Yorker for 33 years\n\n• Author of more than 25 books, including the autobiographical 'Continents of Exile' series\n\n• Educated at Pomona College, Oxford, and Harvard",
     wikiUrl: "https://en.wikipedia.org/wiki/Ved_Mehta",
-    nationality: { country: "India", flag: "🇮🇳" }
+    nationality: NATIONALITIES.IN
   },
   tilly: {
     name: "Tilly Aston",
@@ -32,7 +33,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "tilly-complete-blindness",
     description: "Tilly Aston had congenital blindness from birth. She became a pioneering Australian writer, teacher, and advocate for the blind.\n\n• First blind person in Australia to attend university\n\n• Founded the Victorian Association of Braille Writers\n\n• Helped establish services for the blind in Australia",
     wikiUrl: "https://en.wikipedia.org/wiki/Tilly_Aston",
-    nationality: { country: "Australia", flag: "🇦🇺" }
+    nationality: NATIONALITIES.AU
   },
   sabriye: {
     name: "Sabriye Tenberken",
@@ -43,7 +44,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "sabriye-complete-blindness",
     description: "Sabriye Tenberken lost her sight to retinitis pigmentosa, becoming completely blind by age 12.\n\nShe dedicated her life to education and empowerment of people with disabilities worldwide.\n\n• Co-founder of Braille Without Borders\n\n• Developed Tibetan Braille script\n\n• Established schools for blind children in Tibet",
     wikiUrl: "https://en.wikipedia.org/wiki/Sabriye_Tenberken",
-    nationality: { country: "Germany", flag: "🇩🇪" }
+    nationality: NATIONALITIES.DE
   },
   borges: {
     name: "Jorge Luis Borges",
@@ -54,7 +55,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "borges-progressive-blindness",
     description: "Jorge Luis Borges experienced progressive blindness from an inherited condition, losing sight completely by age 55.\n\nDespite this, he continued to write through dictation.\n\n• One of the most important literary figures of the 20th century\n\n• Known for innovative short stories exploring infinity, labyrinths, and metaphysics\n\n• Director of the National Library of Argentina",
     wikiUrl: "https://en.wikipedia.org/wiki/Jorge_Luis_Borges",
-    nationality: { country: "Argentina", flag: "🇦🇷" }
+    nationality: NATIONALITIES.AR
   },
   thurber: {
     name: "James Thurber",
@@ -65,7 +66,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "thurber-eye-injury",
     description: "James Thurber lost sight in one eye from a childhood accident at age 7 when his brother shot him with an arrow during a game.\n\nHis remaining eye's vision deteriorated throughout his life.\n\n• One of the most celebrated American humorists\n\n• Staff writer and cartoonist for The New Yorker\n\n• Author of 'The Secret Life of Walter Mitty' (adapted to film starring Ben Stiller)",
     wikiUrl: "https://en.wikipedia.org/wiki/James_Thurber",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   levPontryagin: {
     name: "Lev Pontryagin",
@@ -76,7 +77,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Lev Pontryagin became completely blind at age 14 due to an unsuccessful eye surgery after a primus stove explosion.\n\nHis mother read mathematical books to him, using alternative names for math symbols.\n\n• Made major discoveries in algebraic topology, differential topology, and optimal control theory\n\n• Developed Pontryagin duality, Pontryagin classes, and Pontryagin's maximum principle\n\n• Fundamental contributions to modern optimization theory",
     wikiUrl: "https://en.wikipedia.org/wiki/Lev_Pontryagin",
-    nationality: { country: "Russia", flag: "🇷🇺" }
+    nationality: NATIONALITIES.RU
   },
   garyODonoghue: {
     name: "Gary O'Donoghue",
@@ -87,7 +88,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Gary O'Donoghue has been blind from birth. He has built a distinguished career in journalism, demonstrating that visual impairment does not prevent excellence in media.\n\n• BBC journalist and broadcaster covering politics and current affairs\n\n• Washington correspondent for BBC News\n\n• Award-winning reporter with decades of experience",
     wikiUrl: "https://en.wikipedia.org/wiki/Gary_O%27Donoghue",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   paterson: {
     name: "David Paterson",
@@ -98,7 +99,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "david-hemispheric-vision",
     description: "An ear infection at 3 months old spread to his optic nerve, causing blindness in his left eye.\n\nGlaucoma later affected his right eye, creating a unique hemispheric vision loss.\n\n• 55th Governor of New York State\n\n• First legally blind person to serve as a state governor in the United States\n\n• Continues advocacy work at governordavidpaterson.com",
     wikiUrl: "https://en.wikipedia.org/wiki/David_Paterson",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   blunkett: {
     name: "David Blunkett",
@@ -109,7 +110,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "blunkett-congenital-blindness",
     description: "David Blunkett was born blind and has never had sight. He became a prominent figure in British politics and a strong advocate for disability rights.\n\n• UK Home Secretary from 2001 to 2004\n\n• First blind person to hold a major cabinet position in the British government\n\n• Famous for being accompanied by his guide dogs in Parliament",
     wikiUrl: "https://en.wikipedia.org/wiki/David_Blunkett",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   floydMorris: {
     name: "Floyd Morris",
@@ -120,7 +121,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Floyd Morris lost his sight at age 16 due to glaucoma. He went on to have a distinguished political career in Jamaica.\n\n• First blind person to serve as President of the Senate of Jamaica\n\n• Advocate for disability rights and inclusion\n\n• Holds multiple academic degrees including a PhD",
     wikiUrl: "https://en.wikipedia.org/wiki/Floyd_Morris",
-    nationality: { country: "Jamaica", flag: "🇯🇲" }
+    nationality: NATIONALITIES.JM
   },
   henryFawcett: {
     name: "Henry Fawcett",
@@ -131,7 +132,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Henry Fawcett became blind at age 25 when accidentally shot by his father during a hunting trip.\n\nDespite this, he continued his career and made significant contributions to economics and politics.\n\n• Member of Parliament and Postmaster-General of the United Kingdom\n\n• Strong advocate for women's suffrage and education\n\n• Made significant contributions to economic theory",
     wikiUrl: "https://en.wikipedia.org/wiki/Henry_Fawcett",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   jacquesLusseyran: {
     name: "Jacques Lusseyran",
@@ -142,7 +143,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Jacques Lusseyran became blind at age 8 when a classmate accidentally pushed him into the corner of a teacher's desk, destroying both eyes.\n\nHe developed a remarkable sense of inner vision.\n\n• Led French Resistance group against Nazi occupation during WWII\n\n• Survived imprisonment at Buchenwald concentration camp\n\n• Author of memoir 'And There Was Light'",
     wikiUrl: "https://en.wikipedia.org/wiki/Jacques_Lusseyran",
-    nationality: { country: "France", flag: "🇫🇷" }
+    nationality: NATIONALITIES.FR
   },
   tiffany: {
     name: "Tiffany Brar",
@@ -153,7 +154,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "tiffany-complete-blindness",
     description: "Tiffany Brar became blind at six months due to oxygen toxicity (Terry Syndrome).\n\nShe is a trainer, campaigner for disability awareness, and advocate for an inclusive society.\n\n• Founder of Jyothirgamaya Foundation mobile school for the blind (2012)\n\n• Designed the Tiffy template to identify Indian currency notes\n\n• National Award from President of India for Best Role Model\n\n• First Indian recipient of the Holman Prize\n\n• Nari Shakti Puraskar recipient (highest civilian honor for women in India)",
     wikiUrl: "https://en.wikipedia.org/wiki/Tiffany_Brar",
-    nationality: { country: "India", flag: "🇮🇳" }
+    nationality: NATIONALITIES.IN
   },
   jamesJoyce: {
     name: "James Joyce",
@@ -164,7 +165,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "joyce-progressive-eye-disease",
     description: "James Joyce suffered from recurring iritis (uveitis) starting at age 25, which led to glaucoma and cataracts. The inflammation caused his irises to attach to the lenses, increasing eye pressure and eroding his optic nerves.\n\nHe underwent about 12 eye surgeries without general anesthetic. By age 48, his left eye functioned at 1/800th normal capacity.\n\n• Author of 'Ulysses' and 'Finnegans Wake'\n\n• Wrote using red crayon on large white sheets and dictated to typists\n\n• Named his daughter Lucia after the patron saint of the blind",
     wikiUrl: "https://en.wikipedia.org/wiki/James_Joyce",
-    nationality: { country: "Ireland", flag: "🇮🇪" }
+    nationality: NATIONALITIES.IE
   },
   aldousHuxley: {
     name: "Aldous Huxley",
@@ -175,7 +176,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "huxley-keratitis",
     description: "At age 16, Aldous Huxley suffered keratitis punctata that left him nearly totally blind for 18 months. He had to learn Braille and use a guide for walking.\n\nOne eye recovered to only light perception, while the other improved enough to read with special thick glasses.\n\n• Author of 'Brave New World'\n\n• Wrote: 'I started writing when I was 17, during a period when I was almost totally blind'\n\n• Continued writing and philosophical work throughout his life",
     wikiUrl: "https://en.wikipedia.org/wiki/Aldous_Huxley",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   jeanPaulSartre: {
     name: "Jean-Paul Sartre",
@@ -186,7 +187,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "sartre-monocular-vision",
     description: "At age three, Jean-Paul Sartre contracted a severe flu that evolved into corneal leukoma, leaving him almost completely blind in his right eye.\n\nThe lack of vision caused sensory exotropia (outward drifting eye), which made him a target for bullying in school.\n\n• One of the most influential philosophers of the 20th century\n\n• Author of 'Being and Nothingness' and 'No Exit'\n\n• His eye condition exempted him from frontline combat in WWII",
     wikiUrl: "https://en.wikipedia.org/wiki/Jean-Paul_Sartre",
-    nationality: { country: "France", flag: "🇫🇷" }
+    nationality: NATIONALITIES.FR
   },
   tahaHussein: {
     name: "Taha Hussein",
@@ -197,7 +198,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "taha-complete-blindness",
     description: "Taha Hussein contracted ophthalmia (likely trachoma) at age two in rural Egypt.\n\nFaulty treatment by an unskilled local practitioner led to complete blindness by age five.\n\n• Known as 'The Dean of Arabic Literature'\n\n• First Egyptian to hold a PhD from Cairo University; second PhD from the Sorbonne\n\n• As Egypt's Minister of Education (1950), made public education free\n\n• Nominated for the Nobel Prize in Literature 21 times",
     wikiUrl: "https://en.wikipedia.org/wiki/Taha_Hussein",
-    nationality: { country: "Egypt", flag: "🇪🇬" }
+    nationality: NATIONALITIES.EG
   },
   kerryannIfill: {
     name: "Kerryann Ifill",
@@ -208,7 +209,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Kerryann Ifill was diagnosed with juvenile cataracts as a young child and gradually lost her sight completely by age five. After initially leaving school, she attended a school for the blind from age six and went on to achieve historic firsts.\n\n• First woman, first person with a disability, and youngest person (age 38) to serve as President of the Senate of Barbados (2012-2018)\n\n• First totally blind student to graduate from the University of the West Indies (BSc in Sociology and Psychology, 1999)\n\n• President of the Caribbean Council for the Blind\n\n• Awarded the Order of Freedom of Barbados (2023)",
     wikiUrl: "https://en.wikipedia.org/wiki/Kerryann_Ifill",
-    nationality: { country: "Barbados", flag: "🇧🇧" }
+    nationality: NATIONALITIES.BB
   },
   rhinaAguirre: {
     name: "Rhina Aguirre",
@@ -219,7 +220,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Rhina Aguirre lost her sight entirely in 1983 due to ocular toxoplasmosis, a parasitic infection that attacked her retinas. She stated: 'I am a blind person and this is not pejorative; it simply means accepting reality.'\n\n• First blind person to hold a parliamentary seat in Bolivia's history, serving as Senator for Tarija (2010-2015)\n\n• Founding member of Bolivia's Permanent Assembly of Human Rights (1970)\n\n• Championed Bolivia's landmark 2012 General Law on Persons with Disabilities\n\n• Worked with indigenous and campesino organizations across Bolivia, Ecuador, and Peru",
     wikiUrl: "https://en.wikipedia.org/wiki/Rhina_Aguirre",
-    nationality: { country: "Bolivia", flag: "🇧🇴" }
+    nationality: NATIONALITIES.BO
   },
   mariaJosefaMujia: {
     name: "María Josefa Mujía",
@@ -230,7 +231,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "María Josefa Mujía became completely blind at the age of 14, following the death of her father. The specific cause was never documented, and eye surgery later in life was unsuccessful.\n\nKnown as 'la Alondra del dolor' (the Lark of Pain), her deeply personal poetry drew on her experience of blindness.\n\n• Bolivia's first woman writer following the country's independence\n\n• Authored over 320 poems and a novel\n\n• Her celebrated poem 'La ciega' ('Blind Woman') became an icon of Bolivian literary romanticism\n\n• Translated works by Lamartine and Victor Hugo from Italian and French",
     wikiUrl: "https://en.wikipedia.org/wiki/Mar%C3%ADa_Josefa_Muj%C3%ADa",
-    nationality: { country: "Bolivia", flag: "🇧🇴" }
+    nationality: NATIONALITIES.BO
   },
   glaucoMattoso: {
     name: "Glauco Mattoso",
@@ -241,7 +242,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "glauco-glaucoma-blindness",
     description: "Glauco Mattoso (pen name of Pedro José Ferreira da Silva) adopted his pseudonym as a direct reference to the childhood glaucoma that progressively robbed him of his sight. The condition worsened over decades until he became completely blind in 1995.\n\nAfter losing his vision, he abandoned the visual/graphic elements of his earlier poetry and became one of Brazil's most prolific sonnet writers.\n\n• Leading voice in Brazil's Marginal Poetry movement during the 1970s military dictatorship\n\n• Created Jornal Dobrabil, an influential artisanal poetry fanzine (1977-1981)\n\n• Published over fifty books of sonnets after becoming blind\n\n• Translator and essayist combining classical forms with radical experimentation",
     wikiUrl: "https://en.wikipedia.org/wiki/Glauco_Mattoso",
-    nationality: { country: "Brazil", flag: "🇧🇷" }
+    nationality: NATIONALITIES.BR
   },
   peyoYavorov: {
     name: "Peyo Yavorov",
@@ -252,7 +253,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Peyo Yavorov, one of Bulgaria's greatest poets, became permanently blind in November 1913 when a self-inflicted gunshot wound to the temple damaged his optic nerves. The tragedy followed the suicide of his wife Lora Karavelova.\n\nHe lived his final year in total darkness, grieving and falsely accused of his wife's murder, before his death in 1914 at age 36.\n\n• Considered one of the finest poetic talents in fin-de-siècle Bulgaria\n\n• Founded the Symbolist movement in Bulgarian poetry\n\n• Wrote approximately 160 poems, two plays, and a biography of revolutionary leader Gotse Delchev\n\n• Worked as dramaturg at Bulgaria's National Theatre",
     wikiUrl: "https://en.wikipedia.org/wiki/Peyo_Yavorov",
-    nationality: { country: "Bulgaria", flag: "🇧🇬" }
+    nationality: NATIONALITIES.BG
   },
   fabiolaCampillai: {
     name: "Fabiola Campillai",
@@ -263,7 +264,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Fabiola Campillai lost her sight, smell, and taste on November 26, 2019, when a tear gas canister fired by police struck her face while she was walking to her factory night shift during Chile's social protests. The impact ruptured both eyeballs and fractured her skull.\n\nShe was not a protester — she was simply on her way to work.\n\n• Elected as Chile's first blind senator in 2021, winning more votes than any other candidate in her district\n\n• Became a powerful symbol of police brutality victims during Chile's 2019 social uprising\n\n• The officer responsible was convicted and sentenced to over 12 years in prison",
     wikiUrl: "https://en.wikipedia.org/wiki/Fabiola_Campillai",
-    nationality: { country: "Chile", flag: "🇨🇱" }
+    nationality: NATIONALITIES.CL
   },
   chenGuangcheng: {
     name: "Chen Guangcheng",
@@ -274,7 +275,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "chen-complete-blindness",
     description: "Chen Guangcheng went blind before his first birthday.\n\nSelf-taught in law, this 'barefoot lawyer' became a prominent Chinese civil rights activist.\n\n• Organized landmark class-action lawsuit against forced sterilizations under China's one-child policy\n\n• Escaped house arrest in 2012 and fled to the U.S. Embassy in Beijing\n\n• Named Time 100 (2006) and won Ramon Magsaysay Award (2007)\n\n• Author of memoir 'The Barefoot Lawyer' (2015)",
     wikiUrl: "https://en.wikipedia.org/wiki/Chen_Guangcheng",
-    nationality: { country: "China", flag: "🇨🇳" }
+    nationality: NATIONALITIES.CN
   },
   mariaSoledadCisternas: {
     name: "María Soledad Cisternas Reyes",
@@ -285,7 +286,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "cisternas-retinitis-pigmentosa",
     description: "María Soledad Cisternas Reyes was diagnosed with retinitis pigmentosa at age 14. Her vision progressively deteriorated throughout her teenage years and she became fully blind while attending university, hiding her worsening condition from teachers and classmates.\n\n• Chilean lawyer appointed UN Secretary-General's Special Envoy on Disability and Accessibility (2017)\n\n• Helped draft the UN Convention on the Rights of Persons with Disabilities\n\n• Chairperson of the UN Committee on the Rights of Persons with Disabilities\n\n• Awarded Chile's National Prize of Human Rights (2014)",
     wikiUrl: "https://en.wikipedia.org/wiki/Mar%C3%ADa_Soledad_Cisternas",
-    nationality: { country: "Chile", flag: "🇨🇱" }
+    nationality: NATIONALITIES.CL
   },
   joaquinMosquera: {
     name: "Joaquín Mosquera",
@@ -296,7 +297,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "mosquera-age-blindness",
     description: "Joaquín Mosquera lost his sight in 1858 at approximately age 71. The specific medical cause was never documented, though age-related cataracts were the most common cause of blindness in that era. He lived with total blindness for the remaining 20 years of his life.\n\nAfter losing his sight, he dedicated himself to education as rector and professor at the University of Cauca.\n\n• Twice President of Gran Colombia (1830, 1831)\n\n• Vice President of the Republic of New Granada (1833-1835)\n\n• Founding Father of Colombia who shaped independence through diplomacy rather than military force\n\n• Author of Memorias sobre la revolución de Colombia",
     wikiUrl: "https://en.wikipedia.org/wiki/Joaqu%C3%ADn_Mosquera",
-    nationality: { country: "Colombia", flag: "🇨🇴" }
+    nationality: NATIONALITIES.CO
   },
   juanCarlosGonzalez: {
     name: "Juan Carlos González Leiva",
@@ -307,7 +308,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Juan Carlos González Leiva was born nearly blind due to complications during delivery. At age 21, hard physical labor on a sugar cane plantation caused him to lose his remaining sight completely.\n\nDespite his blindness, he graduated from law school and became one of Cuba's most prominent dissidents.\n\n• Founded the Brotherhood of the Independent Blind of Cuba (1998)\n\n• Founded the Cuban Foundation of Human Rights (1998)\n\n• Supporter of the Varela Project and the Ladies in White movement\n\n• Imprisoned for two years and endured torture for his human rights advocacy",
     wikiUrl: "https://en.wikipedia.org/wiki/Juan_Carlos_Gonz%C3%A1lez_Leiva",
-    nationality: { country: "Cuba", flag: "🇨🇺" }
+    nationality: NATIONALITIES.CU
   },
   princessChristina: {
     name: "Princess Christina of the Netherlands",
@@ -318,7 +319,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "christina-rubella-blindness",
     description: "Princess Christina was born nearly blind due to congenital rubella syndrome — her mother, Crown Princess Juliana, contracted German measles during pregnancy. Her right eye was completely blind and her left eye had dense cataracts, leaving only minimal light perception.\n\nAt age one, surgery in the United States partially restored vision in her left eye, allowing her to attend school with thick-lensed glasses, though she remained legally blind throughout life.\n\n• Classical vocalist and music educator based in New York City\n\n• The annual Prinses Christina Concours music competition was named in her honor\n\n• Worked with Koninklijke Visio foundation conducting workshops for visually impaired individuals\n\n• Youngest daughter of Queen Juliana and Prince Bernhard",
     wikiUrl: "https://en.wikipedia.org/wiki/Princess_Christina_of_the_Netherlands",
-    nationality: { country: "Netherlands", flag: "🇳🇱" }
+    nationality: NATIONALITIES.NL
   },
   georgeRumphius: {
     name: "Georg Eberhard Rumphius",
@@ -329,7 +330,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "rumphius-glaucoma-blindness",
     description: "Georg Eberhard Rumphius went blind at age 42 from what is now believed to be glaucoma simplex. His vision deteriorated rapidly over approximately three months in 1670, progressing to near-total blindness. He described it as a 'terrible misfortune that suddenly took away from me the entire world.'\n\nHe spent the remaining 32 years of his life continuing his monumental botanical work, identifying plants by touch, smell, and taste.\n\n• Known as 'Plinius Indicus' — the most important natural historian of the 17th-century Indonesian archipelago\n\n• His Herbarium Amboinense described ~1,200 plant species with 800+ illustrations, completed blind\n\n• Overcame his wife's death in a tsunami (1674) and a fire destroying his manuscripts (1687)\n\n• His nomenclature contributed to Linnaeus's later binomial classification system",
     wikiUrl: "https://en.wikipedia.org/wiki/Georg_Eberhard_Rumphius",
-    nationality: { country: "Netherlands", flag: "🇳🇱" }
+    nationality: NATIONALITIES.NL
   },
   ahmedHarara: {
     name: "Ahmed Harara",
@@ -340,7 +341,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "harara-traumatic-blindness",
     description: "Ahmed Harara, an Egyptian dentist, lost both eyes during the 2011 Egyptian Revolution. On January 28, a shotgun blast on Qasr El Nile Bridge destroyed his right eye's retina. Ten months later on November 19, a shotgun pellet struck his left eye on Mohamed Mahmoud Street, leaving him completely blind.\n\nHe became known as the 'Blind Hero of Egypt's Revolution' and was named spokesperson of the revolution by Tahrir Square activists.\n\n• Named TIME Magazine Person of the Year 2011 (as part of 'The Protester')\n\n• Co-founded the Dostor political party with Dr. Mohamed ElBaradei\n\n• Instrumental in constitutional amendments guaranteeing rights of disabled people in Egypt\n\n• Master's degree from the London School of Economics",
     wikiUrl: "https://en.wikipedia.org/wiki/Ahmed_Harara",
-    nationality: { country: "Egypt", flag: "🇪🇬" }
+    nationality: NATIONALITIES.EG
   },
   aarneArvonen: {
     name: "Aarne Arvonen",
@@ -351,7 +352,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "arvonen-progressive-blindness",
     description: "Aarne Arvonen lost one eye in a childhood accident while playing with a gun. His remaining vision progressively deteriorated in his centenarian years, becoming almost blind by age 110 and fully losing his sight by 2008.\n\nHe was Finland's oldest man ever, living to 111 years and 150 days, and the last surviving veteran of the Finnish Civil War of 1918.\n\n• Founding member of Ursa, Finland's amateur astronomy association (1921) — a membership he maintained for nearly 87 years\n\n• Survived the Spanish flu at the Tammisaari prison camp after the Civil War\n\n• Built his own house in Järvenpää where he lived independently until age 108\n\n• Last known living Finnish person born in the 1800s",
     wikiUrl: "https://en.wikipedia.org/wiki/Aarne_Arvonen",
-    nationality: { country: "Finland", flag: "🇫🇮" }
+    nationality: NATIONALITIES.FI
   },
   jussiKekkonen: {
     name: "Jussi Kekkonen",
@@ -362,7 +363,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Jussi Kekkonen lost both eyes during the Continuation War in 1941 when a rifle bullet struck his submachine gun magazine, ricocheted upward, and tore both eyes open. He lay bleeding in heavy rain for 24 hours before rescue. Multiple surgeries could not restore his vision.\n\nHe was the younger brother of Urho Kekkonen, Finland's 8th President.\n\n• Led 'Battle Detachment Kekkonen,' a 270-person guerrilla unit in the Winter War\n\n• Promoted to Major despite his blindness\n\n• Became CEO of Ragnar Nordström's shipping company in Loviisa\n\n• Buried with military honors in Kajaani's heroes' cemetery",
     wikiUrl: "https://en.wikipedia.org/wiki/Jussi_Kekkonen",
-    nationality: { country: "Finland", flag: "🇫🇮" }
+    nationality: NATIONALITIES.FI
   },
   frankLaRue: {
     name: "Frank La Rue",
@@ -373,7 +374,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "larue-legal-blindness",
     description: "Frank La Rue was born legally blind, yet graduated with a law degree from Universidad de San Carlos de Guatemala and built an extraordinary career in human rights law.\n\nHe fled Guatemala in 1981 after being marked for death during the Civil War, and went on to become a leading international voice for human rights and freedom of expression.\n\n• UN Special Rapporteur on Freedom of Opinion and Expression (2008-2014)\n\n• Declared internet access a fundamental human right (2011)\n\n• Co-founded the Center for Legal Action for Human Rights (CALDH)\n\n• Nominated for the 2004 Nobel Peace Prize\n\n• EFF Pioneer Award recipient (2014)",
     wikiUrl: "https://en.wikipedia.org/wiki/Frank_William_La_Rue",
-    nationality: { country: "Guatemala", flag: "🇬🇹" }
+    nationality: NATIONALITIES.GT
   },
   beloCipriani: {
     name: "Belo Cipriani",
@@ -384,7 +385,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Belo Cipriani became completely blind at age 26 after being brutally assaulted and robbed by former friends in San Francisco's Castro District on April 13, 2007. Repeated kicks to his face caused irreparable retinal nerve damage. Multiple surgeries failed to restore any vision.\n\nA therapist suggested writing to manage depression, leading to a new career as an author and advocate.\n\n• Author of 'Blind: A Memoir' — his first book, chronicling the two years after the attack\n\n• First blind writer to attend the Bread Loaf Writers' Conference\n\n• Founded Oleb Media (digital accessibility) and Oleb Books (publishing for writers with disabilities)\n\n• Community Grand Marshal, 45th San Francisco LGBT Pride Parade (2015) — first blind person in that role",
     wikiUrl: "https://en.wikipedia.org/wiki/Belo_Cipriani",
-    nationality: { country: "Guatemala", flag: "🇬🇹" }
+    nationality: NATIONALITIES.GT
   },
   amenehBahrami: {
     name: "Ameneh Bahrami",
@@ -395,7 +396,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Ameneh Bahrami was blinded in 2004 when Majid Movahedi threw acid in her face after she rejected his marriage proposal. She lost one eye immediately and suffered horrific burns to her face, scalp, and body. Despite 17 surgeries including reconstruction attempts in Spain, an infection in 2007 destroyed the remaining 40% vision in her other eye, leaving her completely blind.\n\nIn a case that gained worldwide attention, a Tehran court sentenced her attacker to be blinded by acid under qisas (retributive justice). In 2011, moments before the sentence was to be carried out, Ameneh pardoned him, stating: 'God recommends pardon since pardon is greater than qesas.'\n\n• International symbol of both acid attack survivors and the power of forgiveness\n\n• Her decision to pardon her attacker was praised globally\n\n• Advocate for acid attack victims' rights",
     wikiUrl: "https://en.wikipedia.org/wiki/Ameneh_Bahrami",
-    nationality: { country: "Iran", flag: "🇮🇷" }
+    nationality: NATIONALITIES.IR
   },
   johnAsfour: {
     name: "John Asfour",
@@ -406,7 +407,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "John Asfour was blinded at age 13 when a grenade exploded in his face during the 1958 Lebanese crisis. After multiple unsuccessful attempts to restore his sight, he emigrated to Canada in 1968 and built a distinguished literary career.\n\n• Author of 5 volumes of poetry in English and 2 in Arabic\n\n• Edited and translated 'When the Words Burn: An Anthology of Modern Arabic Poetry' — a landmark work bringing Arabic poetry to English-speaking audiences\n\n• President of the Canadian Arab Federation (1996-2002)\n\n• Taught literature at universities in Montreal",
     wikiUrl: "https://en.wikipedia.org/wiki/John_Asfour",
-    nationality: { country: "Lebanon", flag: "🇱🇧" }
+    nationality: NATIONALITIES.LB
   },
   jockOrr: {
     name: "Jock Orr",
@@ -417,7 +418,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "jock-partial-blindness",
     description: "John Hastings 'Jock' Orr was partially sighted, which he attributed to glare from the sun while employed as a window cleaner. From 1972, he lived at the Fernwood Hostel for the Blind in Christchurch.\n\nHe became one of Christchurch's most beloved eccentrics, spending his days feeding red-billed gulls in Cathedral Square. The birds would flock around him and perch on his head, making him a tourist attraction.\n\n• Known as 'The Birdman' — an iconic figure of Cathedral Square throughout the 1970s and 1980s\n\n• Memorial bronze plaque installed on the Chief Post Office building in Cathedral Square after his death\n\n• The Animal Defenders' League originally proposed a memorial birdbath in his honor",
     wikiUrl: "https://en.wikipedia.org/wiki/Jock_Orr",
-    nationality: { country: "New Zealand", flag: "🇳🇿" }
+    nationality: NATIONALITIES.NZ
   },
   oscarPlatou: {
     name: "Oscar Ludvig Stoud Platou",
@@ -428,7 +429,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Oscar Ludvig Stoud Platou was a Norwegian jurist who developed an eye disease in 1910 and became completely blind by 1915. Despite his blindness, he continued as a professor at the Royal Frederick University for five more years until 1920.\n\nHe had served as an assessor in Oslo City Court for fourteen years (1876-1890) before becoming a professor in 1890.\n\n• Co-founded the Comité Maritime International (1897), a leading international maritime law body\n\n• Vice president of the International Law Association from 1907\n\n• Professor at the Royal Frederick University for 30 years (1890-1920), continuing to teach for 5 years after going blind\n\n• Major contributor to Norwegian and international maritime law",
     wikiUrl: "https://en.wikipedia.org/wiki/Oscar_Ludvig_Stoud_Platou",
-    nationality: { country: "Norway", flag: "🇳🇴" }
+    nationality: NATIONALITIES.NO
   },
   syedPirzada: {
     name: "Syed Sardar Ahmed Pirzada",
@@ -439,7 +440,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "pirzada-glaucoma",
     description: "Syed Sardar Ahmed Pirzada was partially sighted at birth but progressively lost his vision due to glaucoma. He earned his master's degree in journalism from the University of the Punjab in 1985 and became Pakistan's first blind journalist, adopting the title to turn what others saw as weakness into strength.\n\nDespite facing discrimination in mainstream media due to his visual impairment, he built a distinguished career across multiple national publications.\n\n• First Blind Journalist of Pakistan — worked for Daily Jang, Daily Jasarat, and other major publications\n\n• Editor-in-Chief of Monthly Akhbar-e-Urdu\n\n• Won the All Pakistan Newspaper Society Best Urdu Column Award (2012)\n\n• Advocate for representation of persons with disabilities in Pakistan's Parliament",
     wikiUrl: "https://en.wikipedia.org/wiki/Syed_Sardar_Ahmed_Pirzada",
-    nationality: { country: "Pakistan", flag: "🇵🇰" }
+    nationality: NATIONALITIES.PK
   },
   costacheAristia: {
     name: "Costache Aristia",
@@ -450,7 +451,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Costache Aristia was a Wallachian-born poet, actor, translator, soldier, and philanthropist who became completely blind in 1872. Despite his blindness, he continued to compose poetry by dictation, including his final poem written in memory of philanthropist Ana Davila in 1874.\n\nA member of the Greek colony in Bucharest, he trained in France and became known for his powerful stage performances.\n\n• His translation of Alfieri's 'Saul' became a Romanian nationalist manifesto\n\n• Acclaimed for his landmark Romanian rendition of Homer's Iliad\n\n• Key figure in the early modernization of Romanian literature\n\n• Modeled his acting style on the legendary French tragedian François-Joseph Talma",
     wikiUrl: "https://en.wikipedia.org/wiki/Costache_Aristia",
-    nationality: { country: "Romania", flag: "🇷🇴" }
+    nationality: NATIONALITIES.RO
   },
   vasilyEroshenko: {
     name: "Vasily Eroshenko",
@@ -461,7 +462,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Vasily Eroshenko became blind at age 4 after contracting measles. Despite this, he became one of the most remarkable transnational literary figures of the early 20th century — a blind multilingual writer who lived and worked across Russia, Japan, and China.\n\nHe learned Esperanto, English, and Japanese, and worked as a violinist in the Moscow orchestra for the blind (1907-1914). His political fairy tales in Japanese brought him fame in the Japanese literary community.\n\n• Befriended the great Chinese modernist writer Lu Xun, who translated his works into Chinese\n\n• Wrote political fairy tales compared to Hans Christian Andersen and Oscar Wilde\n\n• Deported from Japan in 1921 for participating in socialist protests\n\n• Taught Esperanto in Beijing and traveled extensively across Asia despite being completely blind",
     wikiUrl: "https://en.wikipedia.org/wiki/Vasili_Eroshenko",
-    nationality: { country: "Russia", flag: "🇷🇺" }
+    nationality: NATIONALITIES.RU
   },
   violaHashe: {
     name: "Viola Hashe",
@@ -472,7 +473,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Viola Hashe was a blind teacher, anti-apartheid activist, and trade unionist who became a prominent figure in South Africa's labor and liberation movements despite her visual impairment.\n\nBorn in the Orange Free State, she joined the African National Congress (ANC) in the 1950s and began working with the South African Clothing Workers Union (SACWU) from 1956.\n\n• First woman to lead an all-male trade union in South Africa, elected Secretary General of SACWU in March 1956\n\n• Vice-President of the South African Congress of Trade Unions (SACTU) from 1960\n\n• Member of SACTU's Management Committee from 1956\n\n• Defied both racial and gender barriers while navigating apartheid-era South Africa as a blind Black woman",
     wikiUrl: "https://en.wikipedia.org/wiki/Viola_Hashe",
-    nationality: { country: "South Africa", flag: "🇿🇦" }
+    nationality: NATIONALITIES.ZA
   },
   theresaChan: {
     name: "Theresa Poh Lin Chan",
@@ -483,7 +484,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Theresa Poh Lin Chan became deaf at age 12 and lost her sight at age 14, yet went on to become one of Southeast Asia's most inspiring figures for people with disabilities. Known in her youth as 'the Helen Keller of Southeast Asia,' she fulfilled her dream of meeting Helen Keller herself in Connecticut in 1961.\n\nOn the recommendation of John Wilson of the Royal Commonwealth Society for the Blind, she attended the Perkins School for the Blind in Massachusetts, where she topped the school in mathematics and became president of the sports club.\n\n• Teacher at the Singapore School for the Blind after returning from 13 years in the United States\n\n• Posthumously inducted into the Singapore Women's Hall of Fame (2017)\n\n• Learned to dance, ice skate, knit, and horseback ride despite being deafblind\n\n• Her message: 'Whatever their disabilities, they should have hope and not be unhappy and discouraged'",
     wikiUrl: "https://en.wikipedia.org/wiki/Theresa_Poh_Lin_Chan",
-    nationality: { country: "Singapore", flag: "🇸🇬" }
+    nationality: NATIONALITIES.SG
   },
   ingaSaeland: {
     name: "Inga Sæland",
@@ -494,7 +495,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "saeland-cortical-impairment",
     description: "Inga Sæland became blind at five months old when meningitis and chickenpox, compounded by incorrect medication, caused brain stem damage. She was completely blind for her first two years before recovering approximately 10% of her vision — making her legally blind throughout life.\n\nShe founded the People's Party at her kitchen table in 2016 and was elected to parliament in 2017.\n\n• Appointed Minister of Social Affairs and Housing in 2024\n\n• Founded the People's Party (Flokkur fólksins), which became Iceland's largest party in the south constituency (2024)\n\n• Earned a Bachelor of Laws from the University of Iceland at age 57\n\n• Vocal disability rights advocate: 'Proud. Disabled. And endlessly grateful. Nothing About Us Without Us.'",
     wikiUrl: "https://en.wikipedia.org/wiki/Inga_S%C3%A6land",
-    nationality: { country: "Iceland", flag: "🇮🇸" }
+    nationality: NATIONALITIES.IS
   },
   conchaEspina: {
     name: "Concha Espina",
@@ -505,7 +506,7 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "espina-progressive-blindness",
     description: "Concha Espina was born in Santander, Spain, and became one of the most accomplished Spanish women writers of her era. She began losing her sight in 1938 at age 69 and underwent surgical operations that temporarily restored some vision, but the medical attempts ultimately failed and she became completely blind by 1940.\n\nDespite total blindness for the last 15 years of her life, she continued writing using a ruled guideline, publishing 13 novels in complete darkness.\n\n• Nominated for the Nobel Prize in Literature 25 times over 28 years\n\n• Authored over 50 books including novels, poetry, and plays\n\n• Considered the first Spanish woman to earn her living exclusively from writing\n\n• Major works include 'La esfinge maragata' and 'El metal de los muertos'",
     wikiUrl: "https://en.wikipedia.org/wiki/Concha_Espina",
-    nationality: { country: "Spain", flag: "🇪🇸" }
+    nationality: NATIONALITIES.ES
   },
   anitaLeeBlair: {
     name: "Anita Lee Blair",
@@ -516,6 +517,6 @@ export const writersActivists: Record<string, PersonData> = {
     simulation: "anita-lee-blair-blindness",
     description: "Anita Lee Blair was born in Oklahoma City and lost her sight completely at age 20 in a car accident in 1936. She became the first blind woman elected to any state legislature in the United States, serving in the Texas House of Representatives from 1953 to 1954.\n\nIn 1940, she became the first El Paso resident to receive a guide dog, a German Shepherd named Fawn. Fawn saved her life during the 1946 LaSalle Hotel Fire in Chicago by guiding her through smoke-filled hallways to safety.\n\n• Served on President Truman's Presidential Committee on Traffic Safety\n\n• Active in disability rights and political advocacy throughout her life\n\n• Died in 2010 in El Paso at age 94",
     wikiUrl: "https://en.wikipedia.org/wiki/Anita_Lee_Blair",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   }
 };

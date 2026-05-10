@@ -1,4 +1,5 @@
 import { PersonData } from './types';
+import { NATIONALITIES } from './nationalities';
 
 export const historicalFigures: Record<string, PersonData> = {
   milton: {
@@ -10,7 +11,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "glaucoma-halos progressive-loss",
     description: "Milton experienced progressive vision loss with temporal field defects, photophobia, and 'rainbow halos' around lights - classic symptoms of glaucoma with corneal edema.\n\nHis condition progressed from partial to complete blindness over 7 years.\n\n• Author of 'Paradise Lost,' composed entirely after going blind\n\n• Dictated his epic poems to his daughters and assistants\n\n• Served as Secretary for Foreign Tongues under Oliver Cromwell",
     wikiUrl: "https://en.wikipedia.org/wiki/John_Milton",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   braille: {
     name: "Louis Braille",
@@ -21,7 +22,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "After injuring his right eye with an awl in his father's workshop, young Louis developed sympathetic ophthalmia - an autoimmune response that attacked both eyes, leading to complete bilateral blindness with no light perception.\n\n• Invented the Braille system at age 15, revolutionizing literacy for blind people worldwide\n\n• Became a teacher at the Royal Institute for Blind Youth in Paris\n\n• His system remains the primary tactile reading method used globally today",
     wikiUrl: "https://en.wikipedia.org/wiki/Louis_Braille",
-    nationality: { country: "France", flag: "🇫🇷" }
+    nationality: NATIONALITIES.FR
   },
   galileo: {
     name: "Galileo Galilei",
@@ -32,7 +33,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "acute-glaucoma-attacks",
     description: "Galileo suffered from acute angle-closure glaucoma attacks with sudden onset symptoms including intense rainbow halos, severe blurring, red eye effects, and extreme photophobia.\n\nEach attack caused cumulative damage leading to sectoral defects, arcuate scotomas, and eventual complete blindness.\n\n• 'Father of Modern Science' and 'Father of Modern Physics'\n\n• Discovered Jupiter's moons, Saturn's rings, and sunspots through his telescope\n\n• Continued scientific work after blindness, including mechanics and pendulum theory",
     wikiUrl: "https://en.wikipedia.org/wiki/Galileo_Galilei",
-    nationality: { country: "Italy", flag: "🇮🇹" }
+    nationality: NATIONALITIES.IT
   },
   harriet: {
     name: "Harriet Tubman",
@@ -43,7 +44,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "harriet-tunnel-vision",
     description: "Harriet Tubman suffered a severe head injury at age 12 when an overseer threw a heavy metal weight at another slave, hitting her instead.\n\nThis caused a traumatic brain injury resulting in narcolepsy, visions, and vision problems including tunnel vision.\n\n• Legendary conductor of the Underground Railroad\n\n• Led approximately 70 enslaved people to freedom in about 13 missions\n\n• Served as scout, spy, and nurse for the Union Army during the Civil War",
     wikiUrl: "https://en.wikipedia.org/wiki/Harriet_Tubman",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   moon: {
     name: "William Moon",
@@ -54,7 +55,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "moon-complete-blindness",
     description: "William Moon lost sight in one eye from scarlet fever as a small child, and by age 21 had become totally blind.\n\nHe realized existing embossed reading codes were difficult to learn and set out to create a simpler system.\n\n• Invented Moon type (1845), a simplified tactile reading alphabet still used today\n\n• Designed his system to be easier to learn than Braille for those who lose sight later in life\n\n• Fellow of the Royal Geographical Society and Royal Society of Arts\n\n• Received honorary LLD degree from the University of Philadelphia",
     wikiUrl: "https://en.wikipedia.org/wiki/Moon_type",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   homer: {
     name: "Homer",
@@ -65,7 +66,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "homer-traditional-blindness",
     description: "Homer is the legendary ancient Greek epic poet traditionally credited with composing the Iliad and the Odyssey.\n\nWhile historical details are uncertain, tradition holds that he was blind.\n\n• Credited with composing the foundational works of Western literature\n\n• The Iliad and Odyssey shaped Greek culture and education for millennia\n\n• His epic poems continue to be studied and admired worldwide",
     wikiUrl: "https://en.wikipedia.org/wiki/Homer",
-    nationality: { country: "Greece", flag: "🇬🇷" }
+    nationality: NATIONALITIES.GR
   },
   fanny: {
     name: "Fanny Crosby",
@@ -76,7 +77,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "fanny-iatrogenic-blindness",
     description: "Fanny Crosby became blind at 6 weeks old due to improper medical treatment by a man posing as a doctor who applied hot poultices to her inflamed eyes, scarring her corneas permanently.\n\n• Wrote over 8,000 hymns, making her one of the most prolific hymn writers in history\n\n• Famous hymns include 'Blessed Assurance' and 'To God Be the Glory'\n\n• One of the most influential hymn writers in American history",
     wikiUrl: "https://en.wikipedia.org/wiki/Fanny_Crosby",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   saunderson: {
     name: "Nicholas Saunderson",
@@ -87,7 +88,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "saunderson-smallpox-blindness",
     description: "Nicholas Saunderson became blind from smallpox at age 1, losing both his eyes to the disease.\n\nDespite never having visual memory, he developed exceptional mathematical abilities.\n\n• Lucasian Professor of Mathematics at Cambridge University (a position held by Newton and later Hawking)\n\n• Developed innovative teaching methods for mathematics\n\n• Invented a calculating board that allowed him to perform complex arithmetic by touch",
     wikiUrl: "https://en.wikipedia.org/wiki/Nicholas_Saunderson",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   holman: {
     name: "James Holman",
@@ -98,7 +99,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "holman-complete-blindness",
     description: "James Holman, known as the 'Blind Traveller,' became completely blind at age 25 due to an illness while serving in the Royal Navy.\n\nHe pioneered the use of human echolocation for navigation.\n\n• First blind person to circumnavigate the globe (1832)\n\n• Traveled extensively through Europe, Asia, Africa, and the Americas\n\n• Elected Fellow of the Royal Society",
     wikiUrl: "https://en.wikipedia.org/wiki/James_Holman",
-    nationality: { country: "United Kingdom", flag: "🇬🇧" }
+    nationality: NATIONALITIES.GB
   },
   maryIngalls: {
     name: "Mary Ingalls",
@@ -109,7 +110,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Mary Ingalls, older sister of author Laura Ingalls Wilder, went blind at age 14. A 2013 University of Michigan study found she likely had viral meningoencephalitis ('brain fever'), not scarlet fever as written in the books.\n\nContemporary newspapers reported 'hemorrhage of the brain' with partial facial paralysis.\n\n• Attended the Iowa College for the Blind\n\n• Consistently rated 'very smart' by her teachers\n\n• Her story was immortalized in her sister's 'Little House' books",
     wikiUrl: "https://en.wikipedia.org/wiki/Mary_Ingalls",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   francisCampbell: {
     name: "Sir Francis Joseph Campbell",
@@ -120,7 +121,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Sir Francis Joseph Campbell lost his sight at age 5 following an accident.\n\nA talented musician, he dedicated his life to education for the blind.\n\n• Co-founder and first principal of the Royal National College for the Blind\n\n• Anti-slavery campaigner\n\n• First blind person to climb Mont Blanc\n\n• Knighted by King Edward VII in 1909",
     wikiUrl: "https://en.wikipedia.org/wiki/Francis_Campbell_(educator)",
-    nationality: { country: "United States", flag: "🇺🇸" }
+    nationality: NATIONALITIES.US
   },
   belaTheBlind: {
     name: "Béla II of Hungary (Béla the Blind)",
@@ -131,7 +132,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "Béla II was blinded as a child along with his father Álmos by his uncle, King Coloman of Hungary, in an attempt to prevent them from claiming the throne.\n\n• King of Hungary and Croatia from 1131 to 1141\n\n• Successfully ruled Hungary for a decade despite his blindness\n\n• Governed with assistance from his wife Helena and son Géza II",
     wikiUrl: "https://en.wikipedia.org/wiki/B%C3%A9la_II_of_Hungary",
-    nationality: { country: "Hungary", flag: "🇭🇺" }
+    nationality: NATIONALITIES.HU
   },
   johnOfBohemia: {
     name: "John of Bohemia",
@@ -142,7 +143,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "complete-blindness",
     description: "John of Bohemia, also known as John the Blind, became blind around 1336 from an eye disease, possibly from an infection contracted during a crusade.\n\n• King of Bohemia and Count of Luxembourg from 1310 until his death\n\n• Continued to participate in military campaigns after losing his sight\n\n• Died heroically at the Battle of Crécy (1346), with his knights tying their horses to his so they could fight together",
     wikiUrl: "https://en.wikipedia.org/wiki/John_of_Bohemia",
-    nationality: { country: "Czech Republic", flag: "🇨🇿" }
+    nationality: NATIONALITIES.CZ
   },
   surdas: {
     name: "Surdas",
@@ -153,7 +154,7 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "surdas-complete-blindness",
     description: "Surdas was a 16th-century blind Hindu devotional poet and singer, traditionally believed to have been blind from birth.\n\nHis vivid descriptions of Lord Krishna transcend his physical blindness.\n\n• Author of 'Sur Sagar' (Sur's Ocean), containing vivid descriptions of Krishna's childhood\n\n• Elevated Braj Bhasha from a common dialect to a literary language\n\n• Key figure of the Bhakti devotional movement\n\n• To this day, blind singers in North India refer to themselves as 'Surdas' in his honor",
     wikiUrl: "https://en.wikipedia.org/wiki/Surdas",
-    nationality: { country: "India", flag: "🇮🇳" }
+    nationality: NATIONALITIES.IN
   },
   infantaMargarita: {
     name: "Infanta Margarita, Duchess of Soria",
@@ -164,6 +165,6 @@ export const historicalFigures: Record<string, PersonData> = {
     simulation: "margarita-congenital-blindness",
     description: "Infanta Margarita was born in Rome in 1939, the third child of Infante Juan, Count of Barcelona, and Princess María Mercedes of Bourbon-Two Sicilies. She is the younger sister of King Juan Carlos I and aunt of King Felipe VI. Born blind, her condition was identified within months of birth. After four years of medical interventions, a leading eye specialist determined she could see only 'light and shadows and rarely something more.'\n\nShe married physician Carlos Zurita y Delgado in 1972 and renounced her right of succession to the throne. She holds the titles Duchess of Soria and 2nd Duchess of Hernani.\n\n• Honorary President of the ONCE Foundation (Spain's National Organization of the Blind)\n\n• Co-founded the Duke and Duchess of Soria Cultural Foundation (1989) for promotion of Spanish culture and heritage\n\n• Honorary President of Madrid's UNICEF delegation, Spanish Heart Foundation, and Spanish Federation of Hemophilia\n\n• Multilingual musician who has never let her blindness limit her public and cultural life",
     wikiUrl: "https://en.wikipedia.org/wiki/Infanta_Margarita,_Duchess_of_Soria",
-    nationality: { country: "Spain", flag: "🇪🇸" }
+    nationality: NATIONALITIES.ES
   }
 };

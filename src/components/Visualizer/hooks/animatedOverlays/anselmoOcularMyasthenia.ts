@@ -15,6 +15,8 @@
  * - Fatigue: State machine cycling through rest/mild/heavy/blink phases
  */
 
+import { createOverlayStyle } from './createOverlayStyle';
+
 // Fatigue cycle state machine
 // Periods represent how long each state lasts in seconds
 const FATIGUE_STATES = {
@@ -195,20 +197,9 @@ export function generateAnselmoOcularMyastheniaOverlay(
     ${haloGlow}
   `;
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background,
-    mixBlendMode: 'normal' as const,
-    opacity: 1,
-    pointerEvents: 'none' as const,
-    zIndex: 9998
-  };
+  return createOverlayStyle(background, {
+    zIndex: 9998,
+  });
 }
 
 /**

@@ -4,6 +4,8 @@
  * Also includes subtle floater drift animation
  */
 
+import { createOverlayStyle } from './createOverlayStyle';
+
 /**
  * Generate Sugar Ray Leonard's Retinal Detachment animated effects
  */
@@ -131,18 +133,8 @@ export function generateSugarRetinalDetachmentOverlay(
     )
   `);
 
-  return {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: '100%',
-    height: '100%',
-    background: elements.length > 0 ? elements.join(', ') : 'transparent',
-    mixBlendMode: 'screen' as const,
+  return createOverlayStyle(elements.length > 0 ? elements.join(', ') : 'transparent', {
+    mixBlendMode: 'screen',
     opacity: Math.min(0.95, 0.6 + intensity * 0.35),
-    pointerEvents: 'none' as const,
-    zIndex: 9999
-  };
+  });
 }

@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
       run: npm run build
 
     - name: Run tests
-      run: npm test -- --passWithNoTests --coverage --watchAll=false
+      run: npm test -- --passWithNoTests --coverage --watchAll=false --coverageReporters=json-summary --coverageReporters=cobertura
 
     - name: Extract coverage percentage
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -53,3 +54,20 @@ jobs:
         minColorRange: 50
         maxColorRange: 90
         namedLogo: jest
+
+    - name: Generate coverage report
+      if: github.event_name == 'pull_request'
+      uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0
+      with:
+        filename: coverage/cobertura-coverage.xml
+        badge: true
+        format: markdown
+        output: both
+        thresholds: '60 80'
+
+    - name: Post coverage comment on PR
+      if: github.event_name == 'pull_request'
+      uses: marocchino/sticky-pull-request-comment@322a2451dae6c7831d1a8b931275a7f78147c888 # v2.1.0
+      with:
+        recreate: true
+        path: code-coverage-results.md

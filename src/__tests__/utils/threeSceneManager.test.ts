@@ -166,4 +166,12 @@ describe('createSceneManager', () => {
     handler();
     expect(THREE.WebGLRenderer.prototype.setSize).toHaveBeenCalledWith(800, 600);
   });
+
+  test('WebGL unavailable throws error when renderer construction fails', () => {
+    (THREE.WebGLRenderer as jest.Mock).mockImplementationOnce(() => {
+      throw new Error('WebGL is not supported');
+    });
+
+    expect(() => createSceneManager(container)).toThrow();
+  });
 });

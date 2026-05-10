@@ -14,6 +14,7 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import PageMeta from './PageMeta';
 import PresetManager, { decodePreset } from './PresetManager';
+import GuidedTour from './GuidedTour';
 
 import { VisualEffect, InputSource } from '../types/visualEffects';
 import { createDefaultEffects } from '../data/visualEffects';
@@ -231,6 +232,7 @@ const VisionSimulator: React.FC = () => {
                 <PresetManager effects={effects} onLoadPreset={handleLoadPreset} />
               </Box>
             )}
+            {!isFamousPeopleMode && <GuidedTour />}
           </Box>
         );
       default:

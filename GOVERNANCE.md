@@ -31,7 +31,19 @@ Anyone who submits a pull request, opens an issue, or contributes translations. 
 
 All contributions are welcome via pull requests. See the [Contributing section](readme.md#contributing) in the README for guidelines.
 
-By submitting a contribution, you agree to the [Developer Certificate of Origin (DCO)](https://developercertificate.org/).
+By submitting a contribution, you agree to the [Developer Certificate of Origin (DCO)](DCO) ([full text](https://developercertificate.org/)). All commits must include a `Signed-off-by` trailer to indicate DCO agreement. Add it automatically with:
+
+```bash
+git commit -s -m "Your commit message"
+```
+
+To sign off all commits in an existing branch retroactively:
+
+```bash
+git rebase HEAD~N --signoff
+```
+
+A [GitHub Action](.github/workflows/dco.yml) enforces sign-off on every pull request.
 
 ## Access Continuity
 

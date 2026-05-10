@@ -1,10 +1,12 @@
+import type { SimulationKey } from '../../utils/famousPeopleUtils';
+
 export interface PersonData {
   name: string;
   achievement?: string;
   condition: string;
   years: string;
   onset: string;
-  simulation: string;
+  simulation: SimulationKey;
   description: string;
   wikiUrl?: string;
   nationality: {

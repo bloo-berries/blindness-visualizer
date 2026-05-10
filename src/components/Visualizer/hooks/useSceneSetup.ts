@@ -149,7 +149,10 @@ export function useSceneSetup(
 
       const frameRate = optimizer.current.getOptimalFrameRate(enabledEffectsCount);
       if (frameRate < 60) {
-        rafTimeoutId = setTimeout(() => { rafId = requestAnimationFrame(animate); }, 1000 / frameRate - 16.67);
+        rafTimeoutId = setTimeout(() => {
+          rafTimeoutId = undefined as unknown as ReturnType<typeof setTimeout>;
+          rafId = requestAnimationFrame(animate);
+        }, 1000 / frameRate - 16.67);
       } else {
         rafId = requestAnimationFrame(animate);
       }
@@ -164,6 +167,12 @@ export function useSceneSetup(
       clearTimeout(rafTimeoutId);
       currentAnimationManager.removeCallback(updateOverlays);
       currentOverlayManager.clearOverlays();
+      // Dispose mesh geometry and material before disposing the renderer
+      if (mesh) {
+        mesh.geometry.dispose();
+        (mesh.material as THREE.ShaderMaterial).dispose();
+        scene.remove(mesh);
+      }
       dispose();
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps

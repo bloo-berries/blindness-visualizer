@@ -8,7 +8,7 @@ import React from 'react';
  * Maps simulation types to actual condition IDs for navigation
  * Uses standard vision condition effect IDs that have working YouTube overlays
  */
-export const simulationMap: Record<string, string[]> = {
+const simulationMapDef = {
     // ===== COMPLETE BLINDNESS / NO LIGHT PERCEPTION =====
     'complete-blindness': ['completeBlindness'],
     'abraham-dual-attack-blindness': ['nemethComplete'],
@@ -260,65 +260,48 @@ export const simulationMap: Record<string, string[]> = {
 
     // ===== SEVERE VISION LOSS =====
     'bluay-severe-vision-loss': ['blurryVision', 'lossOfContrast', 'blindnessRightEye']
+} as const satisfies Record<string, readonly string[]>;
+
+/** All valid simulation keys used by PersonData.simulation */
+export type SimulationKey = keyof typeof simulationMapDef;
+
+export const simulationMap: Record<SimulationKey, readonly string[]> = simulationMapDef;
+
+const DEFAULT_FALLBACK_CONDITIONS: string[] = ['blurryVision', 'lossOfContrast'];
+
+export const getSimulationConditions = (simulation: string): readonly string[] => {
+  return simulationMap[simulation as SimulationKey] || DEFAULT_FALLBACK_CONDITIONS;
 };
 
-export const getSimulationConditions = (simulation: string): string[] => {
-  return simulationMap[simulation] || ['blurryVision', 'lossOfContrast'];
+/** Person-specific URL maps for various domains */
+const TEAM_USA_URLS: Record<string, string> = {
+  marla: 'https://www.teamusa.com/profiles/marla-runyan',
+  anastasia: 'https://www.teamusa.com/profiles/anastasia-pagonis-1136100',
+  lex: 'https://www.teamusa.com/profiles/lex-gillette',
+  davidBrown: 'https://www.teamusa.com/profiles/david-brown',
+};
+const DEFAULT_TEAM_USA_URL = 'https://www.teamusa.com/profiles/marla-runyan';
+
+const IMDB_URLS: Record<string, string> = {
+  marilee: 'https://www.imdb.com/name/nm3411258/',
+  moComeAsYouAre: 'https://www.imdb.com/title/tt6722726/',
+  suNianQin: 'https://www.imdb.com/title/tt15173012/',
+  solomonTethered: 'https://www.imdb.com/title/tt14112080/',
+  michelleMcNally: 'https://www.imdb.com/title/tt0375611/',
+  leonardoWayHeLooks: 'https://www.imdb.com/title/tt1702014/',
+  blindGirlCityLights: 'https://www.imdb.com/title/tt0021749/',
+  frankSlade: 'https://www.imdb.com/title/tt0105323/',
 };
 
-/**
- * Helper function to get teamusa.com URL based on personId
- */
-const getTeamUsaUrl = (personId: string): string => {
-  if (personId === 'marla') return 'https://www.teamusa.com/profiles/marla-runyan';
-  if (personId === 'anastasia') return 'https://www.teamusa.com/profiles/anastasia-pagonis-1136100';
-  if (personId === 'lex') return 'https://www.teamusa.com/profiles/lex-gillette';
-  if (personId === 'davidBrown') return 'https://www.teamusa.com/profiles/david-brown';
-  return 'https://www.teamusa.com/profiles/marla-runyan';
+const PARALYMPIC_URLS: Record<string, string> = {
+  tofiri: 'https://www.paralympic.org/news/throwback-thursday-uganda-s-tofiri-kibuuka',
 };
 
-/**
- * Helper function to get IMDb URL based on personId
- */
-const getImdbUrl = (personId: string): string => {
-  const imdbMap: Record<string, string> = {
-    'marilee': 'https://www.imdb.com/name/nm3411258/',
-    'moComeAsYouAre': 'https://www.imdb.com/title/tt6722726/',
-    'suNianQin': 'https://www.imdb.com/title/tt15173012/',
-    'solomonTethered': 'https://www.imdb.com/title/tt14112080/',
-    'michelleMcNally': 'https://www.imdb.com/title/tt0375611/',
-    'leonardoWayHeLooks': 'https://www.imdb.com/title/tt1702014/',
-    'blindGirlCityLights': 'https://www.imdb.com/title/tt0021749/',
-    'frankSlade': 'https://www.imdb.com/title/tt0105323/'
-  };
-  return imdbMap[personId] || '';
+const ISHOF_URLS: Record<string, string> = {
+  trischa: 'https://ishof.org/honoree/trischa-zorn',
 };
 
-/**
- * Helper function to get Paralympic.org URL based on personId
- */
-const getParalympicUrl = (personId: string): string => {
-  const paralympicMap: Record<string, string> = {
-    'tofiri': 'https://www.paralympic.org/news/throwback-thursday-uganda-s-tofiri-kibuuka'
-  };
-  return paralympicMap[personId] || '';
-};
-
-/**
- * Helper function to get ishof.org URL based on personId
- */
-const getIshofUrl = (personId: string): string => {
-  const ishofMap: Record<string, string> = {
-    'trischa': 'https://ishof.org/honoree/trischa-zorn'
-  };
-  return ishofMap[personId] || '';
-};
-
-/**
- * Helper function to get Wikipedia URL based on personId
- */
-const getWikipediaUrl = (personId: string): string => {
-  const wikipediaMap: Record<string, string> = {
+const WIKIPEDIA_URLS: Record<string, string> = {
     'monet': 'https://en.wikipedia.org/wiki/Claude_Monet',
     'braille': 'https://en.wikipedia.org/wiki/Louis_Braille',
     'milton': 'https://en.wikipedia.org/wiki/John_Milton',
@@ -408,10 +391,9 @@ const getWikipediaUrl = (personId: string): string => {
     'michelleMcNally': 'https://en.wikipedia.org/wiki/Black_(2005_film)',
     'leonardoWayHeLooks': 'https://en.wikipedia.org/wiki/The_Way_He_Looks',
     'blindGirlCityLights': 'https://en.wikipedia.org/wiki/City_Lights',
-    'frankSlade': 'https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film)'
-  };
-  return wikipediaMap[personId] || 'https://en.wikipedia.org/wiki/Claude_Monet';
+  frankSlade: 'https://en.wikipedia.org/wiki/Scent_of_a_Woman_(1992_film)',
 };
+const DEFAULT_WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/Claude_Monet';
 
 /**
  * Static website URLs that don't require personId
@@ -446,17 +428,28 @@ const STATIC_WEBSITE_URLS: Record<string, string> = {
 };
 
 /**
- * Builds the complete website map including person-specific URLs
+ * Builds the complete website map including person-specific URLs.
+ * Memoized by personId to avoid rebuilding on repeated calls.
  */
-const buildWebsiteMap = (personId: string): Record<string, string> => ({
-  ...STATIC_WEBSITE_URLS,
-  'teamusa.com': getTeamUsaUrl(personId),
-  'en.wikipedia.org': getWikipediaUrl(personId),
-  'starwars.fandom.com': getWikipediaUrl(personId),
-  'imdb.com': getImdbUrl(personId),
-  'paralympic.org': getParalympicUrl(personId),
-  'ishof.org': getIshofUrl(personId)
-});
+const websiteMapCache = new Map<string, Record<string, string>>();
+
+const buildWebsiteMap = (personId: string): Record<string, string> => {
+  const cached = websiteMapCache.get(personId);
+  if (cached) return cached;
+
+  const wikiUrl = WIKIPEDIA_URLS[personId] || DEFAULT_WIKIPEDIA_URL;
+  const map: Record<string, string> = {
+    ...STATIC_WEBSITE_URLS,
+    'teamusa.com': TEAM_USA_URLS[personId] || DEFAULT_TEAM_USA_URL,
+    'en.wikipedia.org': wikiUrl,
+    'starwars.fandom.com': wikiUrl,
+    'imdb.com': IMDB_URLS[personId] || '',
+    'paralympic.org': PARALYMPIC_URLS[personId] || '',
+    'ishof.org': ISHOF_URLS[personId] || '',
+  };
+  websiteMapCache.set(personId, map);
+  return map;
+};
 
 /**
  * Maps website domains to full URLs for person descriptions

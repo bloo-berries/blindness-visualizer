@@ -29,6 +29,9 @@ export const useMediaSetup = (inputSource: InputSource): MediaSetupResult => {
     setRetryCount(prev => prev + 1);
   }, []);
 
+  // Track texture for cleanup
+  const textureRef = useRef<THREE.Texture | null>(null);
+
   useEffect(() => {
     const setupMedia = async () => {
       try {
@@ -41,6 +44,7 @@ export const useMediaSetup = (inputSource: InputSource): MediaSetupResult => {
         } else if (inputSource.type === 'image' && inputSource.url) {
           const textureLoader = new THREE.TextureLoader();
           const imageTexture = await textureLoader.loadAsync(inputSource.url);
+          textureRef.current = imageTexture;
           setTexture(imageTexture);
           setIsLoading(false);
         } else if (inputSource.type === 'youtube') {
@@ -88,6 +92,14 @@ export const useMediaSetup = (inputSource: InputSource): MediaSetupResult => {
     setIsLoading(true);
     setError(null);
     setupMedia();
+
+    return () => {
+      // Dispose previous texture to prevent GPU memory leak
+      if (textureRef.current) {
+        textureRef.current.dispose();
+        textureRef.current = null;
+      }
+    };
   }, [inputSource, retryCount]);
 
   return {

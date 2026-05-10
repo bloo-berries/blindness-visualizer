@@ -30,6 +30,60 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 
+interface AccessibilityMenuItemData {
+  id: string;
+  label: string;
+  description: string;
+  icon: React.ReactNode;
+  checked: boolean;
+  toggle: () => void;
+  wcag: string;
+}
+
+/** Shared content for a single accessibility toggle (used in both desktop Menu and mobile Drawer) */
+const AccessibilityMenuItemContent: React.FC<{ item: AccessibilityMenuItemData; switchSize?: 'small' | 'medium'; iconMinWidth?: number }> = ({
+  item, switchSize = 'small', iconMinWidth = 40
+}) => (
+  <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
+    <ListItemIcon sx={{ minWidth: iconMinWidth, ...(switchSize === 'medium' ? { color: 'primary.main' } : {}) }}>
+      {item.icon}
+    </ListItemIcon>
+    <ListItemText
+      primary={
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+            {item.label}
+          </Typography>
+          <Chip
+            label={item.wcag}
+            size="small"
+            variant="outlined"
+            sx={{
+              height: switchSize === 'medium' ? 22 : 20,
+              fontSize: '0.7rem',
+              '& .MuiChip-label': { px: 1 }
+            }}
+          />
+        </Box>
+      }
+      secondary={
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          {item.description}
+        </Typography>
+      }
+    />
+    <Switch
+      checked={item.checked}
+      onChange={item.toggle}
+      onClick={(e) => e.stopPropagation()}
+      inputProps={{
+        'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
+      }}
+      size={switchSize}
+    />
+  </Box>
+);
+
 const AccessibilityMenu: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -226,11 +280,10 @@ const AccessibilityMenu: React.FC = () => {
           
           <Divider />
           
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
             <MenuItem
               key={item.id}
               onClick={(e) => {
-                // Only toggle if the click wasn't on the switch
                 if (!(e.target as HTMLElement).closest('.MuiSwitch-root')) {
                   item.toggle();
                 }
@@ -248,44 +301,7 @@ const AccessibilityMenu: React.FC = () => {
               role="menuitemcheckbox"
               aria-checked={item.checked}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
-                <ListItemIcon sx={{ minWidth: 40 }}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText
-                  primary={
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                      <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
-                        {item.label}
-                      </Typography>
-                      <Chip
-                        label={item.wcag}
-                        size="small"
-                        variant="outlined"
-                        sx={{ 
-                          height: 20, 
-                          fontSize: '0.7rem',
-                          '& .MuiChip-label': { px: 1 }
-                        }}
-                      />
-                    </Box>
-                  }
-                  secondary={
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                      {item.description}
-                    </Typography>
-                  }
-                />
-                <Switch
-                  checked={item.checked}
-                  onChange={item.toggle}
-                  onClick={(e) => e.stopPropagation()}
-                  inputProps={{
-                    'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
-                  }}
-                  size="small"
-                />
-              </Box>
+              <AccessibilityMenuItemContent item={item} />
             </MenuItem>
           ))}
           
@@ -373,7 +389,6 @@ const AccessibilityMenu: React.FC = () => {
                   <ListItem disablePadding>
                     <ListItemButton
                       onClick={(e) => {
-                        // Only toggle if the click wasn't on the switch
                         if (!(e.target as HTMLElement).closest('.MuiSwitch-root')) {
                           item.toggle();
                         }
@@ -390,44 +405,7 @@ const AccessibilityMenu: React.FC = () => {
                       role="checkbox"
                       aria-checked={item.checked}
                     >
-                      <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', mb: 1 }}>
-                        <ListItemIcon sx={{ minWidth: 44, color: 'primary.main' }}>
-                          {item.icon}
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                              <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
-                                {item.label}
-                              </Typography>
-                              <Chip
-                                label={item.wcag}
-                                size="small"
-                                variant="outlined"
-                                sx={{ 
-                                  height: 22, 
-                                  fontSize: '0.7rem',
-                                  '& .MuiChip-label': { px: 1 }
-                                }}
-                              />
-                            </Box>
-                          }
-                          secondary={
-                            <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                              {item.description}
-                            </Typography>
-                          }
-                        />
-                        <Switch
-                          checked={item.checked}
-                          onChange={item.toggle}
-                          onClick={(e) => e.stopPropagation()}
-                          inputProps={{
-                            'aria-label': `${item.label} ${item.checked ? 'enabled' : 'disabled'}`,
-                          }}
-                          size="medium"
-                        />
-                      </Box>
+                      <AccessibilityMenuItemContent item={item} switchSize="medium" iconMinWidth={44} />
                     </ListItemButton>
                   </ListItem>
                   <Divider />

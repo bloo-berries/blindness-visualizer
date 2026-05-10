@@ -5,6 +5,7 @@ import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui
 import { Download, CompareArrows, Fullscreen } from '@mui/icons-material';
 import { generateEffectsDescription } from '../../utils/effectsDescription';
 import { YOUTUBE_EMBED_URL, getFamousPersonVideoUrl } from '../../utils/appConstants';
+import { cleanupAllDOMFilters } from '../../utils/colorVisionFilters';
 import YouTubeEmbed from '../YouTubeEmbed';
 import { useScreenshot, useAnimatedOverlay, useVisualFieldOverlay, ANIMATED_EFFECTS, useCSSFilters, useSceneSetup } from './hooks';
 import { useAnimationTicker } from '../../hooks';
@@ -53,6 +54,11 @@ const Visualizer: React.FC<VisualizerProps> = ({
       setShowComparison(true);
     }
   }, [personName, personCondition, propShowComparison, isFamousPeopleMode]);
+
+  // Cleanup DOM-injected SVG filters on unmount
+  useEffect(() => {
+    return () => { cleanupAllDOMFilters(); };
+  }, []);
 
   // Scene setup: WebGL lifecycle, media loading, animation loop
   const { isLoading, error, handleRetryCamera, effectProcessor, overlayManager } = useSceneSetup(

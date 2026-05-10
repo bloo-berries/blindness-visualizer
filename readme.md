@@ -1,5 +1,12 @@
 # Vision Condition Visualizer
 
+[![CI](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bloo-berries/blindness-visualizer/badge)](https://scorecard.dev/viewer/?uri=github.com/bloo-berries/blindness-visualizer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Ftheblind.spot)](https://theblind.spot)
+[![i18n: 26 languages](https://img.shields.io/badge/i18n-26_languages-blue.svg)](https://github.com/bloo-berries/blindness-visualizer/tree/main/src/locales)
+
 **Live site: [theblind.spot](https://theblind.spot)**
 
 A comprehensive web-based tool for visualizing various vision conditions and impairments. This tool helps create awareness and understanding of different visual conditions by simulating their effects on images and videos, while also educating users about famous blind and visually impaired individuals throughout history.

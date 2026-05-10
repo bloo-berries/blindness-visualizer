@@ -10,41 +10,51 @@ import { renderHook } from '@testing-library/react';
 import { useEffectProcessor } from '../../components/Visualizer/hooks/useEffectProcessor';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 
-// Mock the performance utilities
+// Mock the performance utilities — shape must match what useEffectProcessor imports
 jest.mock('../../utils/performance', () => {
-  const mockOptimizer = {
-    getInstance: jest.fn(() => ({
-      getTargetFPS: jest.fn(() => 60),
-    })),
-  };
-
+  // EffectProcessor is instantiated with `new`
   class MockEffectProcessor {
-    updateEffects(effects: VisualEffect[]) {
+    updateEffects(effects: any[]) {
       return {
         changed: true,
-        enabledEffects: effects.filter((e) => e.enabled),
-        effectMap: new Map(effects.map((e) => [e.id, e])),
+        enabledEffects: effects.filter((e: any) => e.enabled),
+        effectMap: new Map(effects.map((e: any) => [e.id, e])),
       };
     }
   }
 
+  // OverlayManager is instantiated with `new`
   class MockOverlayManager {
     clearOverlays = jest.fn();
     updateOverlays = jest.fn();
   }
 
-  const mockAnimationManager = {
-    getInstance: jest.fn(() => ({
-      start: jest.fn(),
-      stop: jest.fn(),
-    })),
-  };
+  // PerformanceOptimizer — used as a singleton via getInstance()
+  // Must be a class with a static getInstance method
+  class MockPerformanceOptimizer {
+    static _instance = new MockPerformanceOptimizer();
+    static getInstance() { return MockPerformanceOptimizer._instance; }
+    getOptimalFrameRate() { return 60; }
+    getTargetFPS() { return 60; }
+    monitorPerformance() {}
+    getFps() { return 60; }
+  }
+
+  // AnimationManager — used as a singleton via getInstance()
+  class MockAnimationManager {
+    static _instance = new MockAnimationManager();
+    static getInstance() { return MockAnimationManager._instance; }
+    start = jest.fn();
+    stop = jest.fn();
+    addCallback = jest.fn();
+    removeCallback = jest.fn();
+  }
 
   return {
-    PerformanceOptimizer: mockOptimizer,
+    PerformanceOptimizer: MockPerformanceOptimizer,
     EffectProcessor: MockEffectProcessor,
     OverlayManager: MockOverlayManager,
-    AnimationManager: mockAnimationManager,
+    AnimationManager: MockAnimationManager,
   };
 });
 
@@ -54,7 +64,20 @@ jest.mock('../../utils/cssFilters', () => ({
 
 jest.mock('../../utils/colorVisionFilters', () => ({
   getColorVisionFilter: jest.fn(() => 'saturate(0.5)'),
+  getColorVisionFilterData: jest.fn(() => null),
+  isMobileBrowser: jest.fn(() => false),
+  cleanupAllDOMFilters: jest.fn(),
 }));
+
+// Re-apply default return values after clearAllMocks
+beforeEach(() => {
+  const cssFilters = require('../../utils/cssFilters');
+  (cssFilters.generateCSSFilters as jest.Mock).mockReturnValue('blur(2px)');
+  const cvf = require('../../utils/colorVisionFilters');
+  (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0.5)');
+  (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue(null);
+  (cvf.isMobileBrowser as jest.Mock).mockReturnValue(false);
+});
 
 function makeEffect(
   id: string,
@@ -181,7 +204,6 @@ describe('useEffectProcessor', () => {
       const styles = result.current.getEffectStyles();
 
       // Diplopia is excluded from CSS filter generation
-      // Since it is the only effect and it is excluded, no filter string should be generated
       expect(styles.filter).toBeUndefined();
     });
 

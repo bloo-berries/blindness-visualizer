@@ -11,17 +11,19 @@ import { renderHook } from '@testing-library/react';
 import { useCSSFilters } from '../../components/Visualizer/hooks/useCSSFilters';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 
-// The hook imports from colorVisionFilters and cssFilters.
-// We mock those modules at their absolute paths (resolved from baseUrl "src")
-// so the mock applies regardless of relative path differences.
+// Mock the color vision filters module
+jest.mock('../../utils/colorVisionFilters', () => {
+  let _cached: boolean | null = null;
+  return {
+    getColorVisionFilter: jest.fn(() => 'url("#cvd-protanopia")'),
+    getColorVisionFilterData: jest.fn(() => ({ filterId: 'cvd-protanopia', matrixValues: '0.15 0.85 0 0 0.15 0.85 0 0 1' })),
+    isMobileBrowser: jest.fn(() => false),
+    _resetMobileDetection: jest.fn(() => { _cached = null; }),
+  };
+});
+
 jest.mock('../../utils/cssFilters', () => ({
   generateCSSFilters: jest.fn(() => 'blur(2px) contrast(90%)'),
-}));
-
-jest.mock('../../utils/colorVisionFilters', () => ({
-  getColorVisionFilter: jest.fn(() => 'url("#cvd-protanopia")'),
-  getColorVisionFilterData: jest.fn(() => ({ filterId: 'cvd-protanopia', matrix: [] })),
-  isMobileBrowser: jest.fn(() => false),
 }));
 
 function makeEffect(
@@ -60,6 +62,21 @@ describe('useCSSFilters', () => {
   const imageSource: InputSource = { type: 'image', url: 'test.png' };
   const webcamSource: InputSource = { type: 'webcam' };
 
+  beforeEach(() => {
+    jest.clearAllMocks();
+    // Re-setup default return values after clearAllMocks resets them
+    const cvf = require('../../utils/colorVisionFilters');
+    (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('url("#cvd-protanopia")');
+    (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue({
+      filterId: 'cvd-protanopia',
+      matrixValues: '0.15 0.85 0 0 0.15 0.85 0 0 1',
+    });
+    (cvf.isMobileBrowser as jest.Mock).mockReturnValue(false);
+
+    const cssFilters = require('../../utils/cssFilters');
+    (cssFilters.generateCSSFilters as jest.Mock).mockReturnValue('blur(2px) contrast(90%)');
+  });
+
   describe('computeFilterString', () => {
     test('returns null when no effects are enabled', () => {
       const effects: VisualEffect[] = [makeEffect('protanopia', false, 0.5)];
@@ -74,13 +91,6 @@ describe('useCSSFilters', () => {
     });
 
     test('returns filter string for color vision effect on desktop', () => {
-      // Verify mock is working
-      const cvf = require('../../utils/colorVisionFilters');
-      const result1 = cvf.getColorVisionFilterData('protanopia', 0.8);
-      expect(result1).toEqual({ filterId: 'cvd-protanopia', matrix: [] });
-      const result2 = cvf.isMobileBrowser();
-      expect(result2).toBe(false);
-
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
 
@@ -91,6 +101,7 @@ describe('useCSSFilters', () => {
       const filterString = result.current.computeFilterString();
       expect(filterString).not.toBeNull();
       expect(typeof filterString).toBe('string');
+      expect(filterString).toContain('cvd-protanopia');
     });
 
     test('returns filter string for non-color-vision effects', () => {
@@ -137,8 +148,9 @@ describe('useCSSFilters', () => {
     });
 
     test('handles mobile browser fallback', () => {
-      const { isMobileBrowser } = require('../../utils/colorVisionFilters');
-      (isMobileBrowser as jest.Mock).mockReturnValueOnce(true);
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.isMobileBrowser as jest.Mock).mockReturnValue(true);
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0.3) hue-rotate(30deg)');
 
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
@@ -152,10 +164,9 @@ describe('useCSSFilters', () => {
     });
 
     test('handles monochromacy via CSS filter (no SVG)', () => {
-      const { getColorVisionFilterData, getColorVisionFilter } =
-        require('../../utils/colorVisionFilters');
-      (getColorVisionFilterData as jest.Mock).mockReturnValueOnce(null);
-      (getColorVisionFilter as jest.Mock).mockReturnValueOnce('saturate(0) contrast(1.1)');
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue(null);
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0) contrast(1.1)');
 
       const effects: VisualEffect[] = [makeEffect('monochromacy', true, 0.9)];
       const processorRef = createMockEffectProcessorRef();
@@ -170,10 +181,9 @@ describe('useCSSFilters', () => {
     });
 
     test('returns null when color vision filter functions return null', () => {
-      const { getColorVisionFilterData, getColorVisionFilter } =
-        require('../../utils/colorVisionFilters');
-      (getColorVisionFilterData as jest.Mock).mockReturnValueOnce(null);
-      (getColorVisionFilter as jest.Mock).mockReturnValueOnce(null);
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue(null);
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue(null);
 
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0)];
       const processorRef = createMockEffectProcessorRef();

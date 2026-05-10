@@ -42,3 +42,9 @@ export const makeEffect = (
   intensity,
   description: `Description for ${id}`,
 });
+
+// Placeholder test so Jest doesn't fail with "must contain at least one test"
+test('testUtils exports render helper', () => {
+  expect(typeof renderWithProviders).toBe('function');
+  expect(typeof makeEffect).toBe('function');
+});

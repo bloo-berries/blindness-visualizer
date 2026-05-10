@@ -2,6 +2,7 @@
   "name": "vision-condition-visualizer",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "homepage": "https://theblind.spot",
   "dependencies": {
     "@emotion/react": "^11.14.0",

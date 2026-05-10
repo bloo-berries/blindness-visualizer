@@ -12,7 +12,6 @@
 
 # production
 /build
-/docs
 
 # deployment
 deploy.sh

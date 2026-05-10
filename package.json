@@ -54,6 +54,13 @@
       "no-var": "error"
     }
   },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 80
+      }
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -125,6 +125,23 @@ describe('generateVisualDisturbancePreviewStyle', () => {
     expect(result!.mixBlendMode).toBe('screen');
   });
 
+  test('visualAuraLeft returns a style with blur filter', () => {
+    const result = generateVisualDisturbancePreviewStyle('visualAuraLeft' as ConditionType, 0.5, Date.now());
+    expect(result).not.toBeNull();
+    expect(result!.filter).toContain('blur');
+  });
+
+  test('visualAuraRight returns a style with blur filter', () => {
+    const result = generateVisualDisturbancePreviewStyle('visualAuraRight' as ConditionType, 0.5, Date.now());
+    expect(result).not.toBeNull();
+    expect(result!.filter).toContain('blur');
+  });
+
+  test('persistentPositiveVisualPhenomenon returns a style', () => {
+    const result = generateVisualDisturbancePreviewStyle('persistentPositiveVisualPhenomenon' as ConditionType, 0.5, Date.now());
+    expect(result).not.toBeNull();
+  });
+
   test('returns null for unknown condition', () => {
     const result = generateVisualDisturbancePreviewStyle('cataracts' as ConditionType, 0.5, Date.now());
     expect(result).toBeNull();
@@ -252,5 +269,106 @@ describe('generatePreviewOverlayStyle (combined)', () => {
     expect(result!.width).toBe('100%');
     expect(result!.height).toBe('100%');
     expect(result!.pointerEvents).toBe('none');
+  });
+
+  test('visualSnowFlashing returns flashing dot pattern', () => {
+    const effect = createEffect('visualSnowFlashing', 0.6);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+    expect(result!.opacity).toBe(1);
+  });
+
+  test('visualSnowColored returns colored dot pattern', () => {
+    const effect = createEffect('visualSnowColored', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+    expect(result!.opacity).toBe(1);
+  });
+
+  test('visualSnowTransparent returns transparent dot pattern', () => {
+    const effect = createEffect('visualSnowTransparent', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+    expect(result!.opacity).toBe(1);
+  });
+
+  test('visualSnowDense returns dense dot pattern', () => {
+    const effect = createEffect('visualSnowDense', 0.6);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+    expect(result!.opacity).toBe(1);
+  });
+
+  test('visual field loss condition gets VISUAL_FIELD_LOSS z-index', () => {
+    const effect = createEffect('tunnelVision', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.zIndex).toBe(9000); // Z_INDEX.VISUAL_FIELD_LOSS
+  });
+
+  test('retinal disease condition delegates correctly', () => {
+    const effect = createEffect('glaucoma', 0.6);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+  });
+
+  test('symptom condition delegates correctly', () => {
+    const effect = createEffect('keratoconus', 0.6);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.mixBlendMode).toBe('screen');
+  });
+
+  test('visual disturbance condition delegates through combined function', () => {
+    const effect = createEffect('blueFieldPhenomena', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('rgba(255,255,255');
+  });
+
+  test('starbursting delegates through combined function', () => {
+    const effect = createEffect('starbursting', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.mixBlendMode).toBe('screen');
+  });
+
+  test('palinopsia delegates through combined function', () => {
+    const effect = createEffect('palinopsia', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.mixBlendMode).toBe('screen');
+  });
+
+  test('amd delegates through retinal disease path', () => {
+    const effect = createEffect('amd', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.mixBlendMode).toBe('multiply');
+  });
+
+  test('diabeticRetinopathy delegates through retinal path', () => {
+    const effect = createEffect('diabeticRetinopathy', 0.5);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+  });
+
+  test('scotoma delegates through visual field loss path', () => {
+    const effect = createEffect('scotoma', 0.7);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
+    expect(result!.background).toContain('radial-gradient');
+  });
+
+  test('hemianopiaLeft delegates through visual field loss path', () => {
+    const effect = createEffect('hemianopiaLeft', 0.8);
+    const result = generatePreviewOverlayStyle(effect, [effect]);
+    expect(result).not.toBeNull();
   });
 });

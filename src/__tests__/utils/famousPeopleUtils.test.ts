@@ -2,10 +2,14 @@
  * Tests for famous people utilities (src/utils/famousPeopleUtils.tsx)
  */
 
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import {
   getSimulationConditions,
   simulationMap,
   getWebsiteUrl,
+  parseDescriptionWithLinks,
 } from '../../utils/famousPeopleUtils';
 
 describe('getSimulationConditions', () => {
@@ -101,6 +105,45 @@ describe('getWebsiteUrl', () => {
     const url = getWebsiteUrl('paralympic.org', 'tofiri');
     expect(url).toBeTruthy();
     expect(url).toContain('paralympic.org');
+  });
+});
+
+describe('parseDescriptionWithLinks', () => {
+  test('returns text when no domains are present', () => {
+    const nodes = parseDescriptionWithLinks('Simple description text.', 'monet');
+    const { container } = render(React.createElement(React.Fragment, null, ...nodes));
+    expect(container.textContent).toBe('Simple description text.');
+  });
+
+  test('converts known domain to clickable link', () => {
+    const nodes = parseDescriptionWithLinks('Visit andreabocelli.com for more.', 'bocelli');
+    const { container } = render(React.createElement(React.Fragment, null, ...nodes));
+    const link = container.querySelector('a');
+    expect(link).not.toBeNull();
+    expect(link!.href).toBe('https://www.andreabocelli.com/');
+    expect(link!.textContent).toBe('andreabocelli.com');
+    expect(link!.target).toBe('_blank');
+    expect(link!.rel).toContain('noopener');
+  });
+
+  test('converts en.wikipedia.org to person-specific link', () => {
+    const nodes = parseDescriptionWithLinks('See en.wikipedia.org article.', 'monet');
+    const { container } = render(React.createElement(React.Fragment, null, ...nodes));
+    const link = container.querySelector('a');
+    expect(link!.href).toBe('https://en.wikipedia.org/wiki/Claude_Monet');
+  });
+
+  test('renders multiple domains as separate links', () => {
+    const nodes = parseDescriptionWithLinks('Visit teamusa.com and en.wikipedia.org for info.', 'marla');
+    const { container } = render(React.createElement(React.Fragment, null, ...nodes));
+    const links = container.querySelectorAll('a');
+    expect(links.length).toBe(2);
+  });
+
+  test('preserves surrounding text', () => {
+    const nodes = parseDescriptionWithLinks('Before andreabocelli.com after.', 'bocelli');
+    const { container } = render(React.createElement(React.Fragment, null, ...nodes));
+    expect(container.textContent).toBe('Before andreabocelli.com after.');
   });
 });
 

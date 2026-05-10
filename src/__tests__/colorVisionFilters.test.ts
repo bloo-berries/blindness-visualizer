@@ -1,4 +1,4 @@
-import { getColorVisionFilter, getColorVisionMatrix, cleanupAllDOMFilters, isColorVisionCondition } from '../utils/colorVisionFilters';
+import { getColorVisionFilter, getColorVisionMatrix, cleanupAllDOMFilters, isColorVisionCondition, getColorVisionFilterData, _resetMobileDetection, isMobileBrowser, getColorVisionDescription, getColorVisionPrevalence } from '../utils/colorVisionFilters';
 import { ConditionType } from '../types/visualEffects';
 
 describe('getColorVisionFilter', () => {
@@ -125,6 +125,134 @@ describe('isColorVisionCondition', () => {
   });
 });
 
+describe('getColorVisionFilterData', () => {
+  test('returns filter data for protanopia', () => {
+    const data = getColorVisionFilterData('protanopia' as ConditionType, 1.0);
+    expect(data).not.toBeNull();
+    expect(data!.filterId).toBe('cvd-protanopia');
+    expect(data!.matrixValues).toBeTruthy();
+  });
+
+  test('returns null for monochromacy', () => {
+    const data = getColorVisionFilterData('monochromacy' as ConditionType, 1.0);
+    expect(data).toBeNull();
+  });
+
+  test('returns null for monochromatic', () => {
+    const data = getColorVisionFilterData('monochromatic' as ConditionType, 1.0);
+    expect(data).toBeNull();
+  });
+
+  test('returns null at zero intensity', () => {
+    const data = getColorVisionFilterData('protanopia' as ConditionType, 0);
+    expect(data).toBeNull();
+  });
+
+  test('matrix values contain 20 numbers for 5x4 matrix', () => {
+    const data = getColorVisionFilterData('deuteranopia' as ConditionType, 0.7);
+    expect(data).not.toBeNull();
+    const nums = data!.matrixValues.split(' ');
+    expect(nums).toHaveLength(20);
+  });
+
+  test('partial intensity produces blended matrix', () => {
+    const dataFull = getColorVisionFilterData('tritanopia' as ConditionType, 1.0);
+    const dataHalf = getColorVisionFilterData('tritanopia' as ConditionType, 0.5);
+    expect(dataFull).not.toBeNull();
+    expect(dataHalf).not.toBeNull();
+    expect(dataFull!.matrixValues).not.toBe(dataHalf!.matrixValues);
+  });
+});
+
+describe('_resetMobileDetection', () => {
+  test('can be called without error', () => {
+    expect(() => _resetMobileDetection()).not.toThrow();
+  });
+});
+
+describe('isMobileBrowser', () => {
+  afterEach(() => {
+    _resetMobileDetection();
+  });
+
+  test('returns false in JSDOM environment', () => {
+    _resetMobileDetection();
+    expect(isMobileBrowser()).toBe(false);
+  });
+
+  test('result is cached after first call', () => {
+    _resetMobileDetection();
+    const first = isMobileBrowser();
+    const second = isMobileBrowser();
+    expect(first).toBe(second);
+  });
+});
+
+describe('getColorVisionFilter mobile path', () => {
+  const originalMatchMedia = window.matchMedia;
+  const originalUserAgent = Object.getOwnPropertyDescriptor(navigator, 'userAgent');
+
+  afterEach(() => {
+    _resetMobileDetection();
+    cleanupAllDOMFilters();
+    window.matchMedia = originalMatchMedia;
+    if (originalUserAgent) {
+      Object.defineProperty(navigator, 'userAgent', originalUserAgent);
+    }
+  });
+
+  test('returns CSS filter string on mobile for protanopia', () => {
+    _resetMobileDetection();
+    // Simulate mobile UA
+    Object.defineProperty(navigator, 'userAgent', {
+      value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X)',
+      configurable: true,
+    });
+    window.matchMedia = jest.fn().mockReturnValue({ matches: false }) as any;
+
+    const filter = getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    expect(filter).toContain('sepia');
+    expect(filter).toContain('hue-rotate');
+  });
+
+  test('returns scaled CSS filter at partial intensity on mobile', () => {
+    _resetMobileDetection();
+    Object.defineProperty(navigator, 'userAgent', {
+      value: 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X)',
+      configurable: true,
+    });
+    window.matchMedia = jest.fn().mockReturnValue({ matches: false }) as any;
+
+    const filter = getColorVisionFilter('deuteranopia' as ConditionType, 0.5);
+    expect(filter).toContain('sepia');
+    expect(filter).toContain('saturate');
+  });
+});
+
+describe('cleanupAllDOMFilters', () => {
+  beforeEach(() => {
+    _resetMobileDetection();
+  });
+
+  test('removes all injected SVG filter elements', () => {
+    // Ensure we're not in mobile mode
+    _resetMobileDetection();
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    const container = document.getElementById('cvd-svg-filters');
+    // On desktop, SVG filters should be created
+    if (container) {
+      cleanupAllDOMFilters();
+      expect(document.getElementById('cvd-svg-filters')).toBeNull();
+      expect(document.getElementById('cvd-protanopia')).toBeNull();
+    }
+  });
+
+  test('is safe to call when no filters exist', () => {
+    cleanupAllDOMFilters();
+    expect(() => cleanupAllDOMFilters()).not.toThrow();
+  });
+});
+
 describe('getColorVisionMatrix', () => {
   test('returns identity matrix for unknown condition', () => {
     const matrix = getColorVisionMatrix('unknownCondition' as ConditionType);
@@ -150,11 +278,81 @@ describe('getColorVisionMatrix', () => {
     expect(matrix).toHaveLength(9);
   });
 
+  test('monochromatic returns achromatopsia matrix', () => {
+    const matrix = getColorVisionMatrix('monochromatic' as ConditionType, 1.0);
+    const identity = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    expect(matrix).not.toEqual(identity);
+    expect(matrix).toHaveLength(9);
+  });
+
+  test('monochromacy returns same matrix as monochromatic', () => {
+    const monochromatic = getColorVisionMatrix('monochromatic' as ConditionType, 1.0);
+    const monochromacy = getColorVisionMatrix('monochromacy' as ConditionType, 1.0);
+    expect(monochromatic).toEqual(monochromacy);
+  });
+
   test('anomaly interpolation produces intermediate values', () => {
     const at0 = getColorVisionMatrix('protanomaly' as ConditionType, 0.0);
     const at05 = getColorVisionMatrix('protanomaly' as ConditionType, 0.5);
     const at1 = getColorVisionMatrix('protanomaly' as ConditionType, 1.0);
     expect(at05).not.toEqual(at0);
     expect(at05).not.toEqual(at1);
+  });
+});
+
+describe('getColorVisionDescription', () => {
+  test('returns description for protanopia', () => {
+    const desc = getColorVisionDescription('protanopia' as ConditionType);
+    expect(desc).toContain('red-blindness');
+    expect(desc).toContain('L-cones');
+  });
+
+  test('returns description for deuteranopia', () => {
+    const desc = getColorVisionDescription('deuteranopia' as ConditionType);
+    expect(desc).toContain('green-blindness');
+  });
+
+  test('returns description for tritanopia', () => {
+    const desc = getColorVisionDescription('tritanopia' as ConditionType);
+    expect(desc).toContain('blue-blindness');
+  });
+
+  test('returns description for anomaly types', () => {
+    expect(getColorVisionDescription('protanomaly' as ConditionType)).toContain('red-weakness');
+    expect(getColorVisionDescription('deuteranomaly' as ConditionType)).toContain('green-weakness');
+    expect(getColorVisionDescription('tritanomaly' as ConditionType)).toContain('blue-weakness');
+  });
+
+  test('returns description for monochromacy', () => {
+    const desc = getColorVisionDescription('monochromacy' as ConditionType);
+    expect(desc).toContain('achromatopsia');
+  });
+
+  test('returns fallback for unknown type', () => {
+    const desc = getColorVisionDescription('unknownType' as ConditionType);
+    expect(desc).toBe('Color vision deficiency simulation');
+  });
+});
+
+describe('getColorVisionPrevalence', () => {
+  test('returns prevalence for protanopia', () => {
+    const prev = getColorVisionPrevalence('protanopia' as ConditionType);
+    expect(prev).toContain('males');
+    expect(prev).toContain('females');
+  });
+
+  test('returns prevalence for deuteranomaly as most common', () => {
+    const prev = getColorVisionPrevalence('deuteranomaly' as ConditionType);
+    expect(prev).toContain('6%');
+  });
+
+  test('returns prevalence for monochromacy', () => {
+    const prev = getColorVisionPrevalence('monochromacy' as ConditionType);
+    expect(prev).toContain('30,000');
+  });
+
+  test('returns unknown for unrecognized type', () => {
+    const prev = getColorVisionPrevalence('unknownType' as ConditionType);
+    expect(prev).toBe('Unknown prevalence');
   });
 });

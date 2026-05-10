@@ -182,4 +182,78 @@ describe('PersonDialog', () => {
     fireEvent.click(prevButton);
     expect(defaultProps.onNavigate).toHaveBeenCalledWith('monet');
   });
+
+  test('share button copies link to clipboard', async () => {
+    const writeText = jest.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, {
+      clipboard: { writeText },
+      share: undefined,
+    });
+
+    render(<PersonDialog {...defaultProps} />);
+    const shareButton = screen.getByLabelText('Share profile');
+    fireEvent.click(shareButton);
+
+    await screen.findByText('Link copied to clipboard!');
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining('?person=monet'));
+  });
+
+  test('share falls back to execCommand when clipboard API fails', async () => {
+    Object.assign(navigator, {
+      clipboard: { writeText: jest.fn().mockRejectedValue(new Error('fail')) },
+      share: undefined,
+    });
+    document.execCommand = jest.fn();
+
+    render(<PersonDialog {...defaultProps} />);
+    fireEvent.click(screen.getByLabelText('Share profile'));
+
+    await screen.findByText('Link copied to clipboard!');
+    expect(document.execCommand).toHaveBeenCalledWith('copy');
+  });
+
+  test('ArrowRight key navigates to next person', () => {
+    render(<PersonDialog {...defaultProps} />);
+    fireEvent.keyDown(window, { key: 'ArrowRight' });
+    expect(defaultProps.onNavigate).toHaveBeenCalledWith('georgia');
+  });
+
+  test('ArrowLeft key navigates to previous person', () => {
+    render(<PersonDialog {...defaultProps} personId="georgia" />);
+    fireEvent.keyDown(window, { key: 'ArrowLeft' });
+    expect(defaultProps.onNavigate).toHaveBeenCalledWith('monet');
+  });
+
+  test('ArrowLeft does nothing when at first person', () => {
+    render(<PersonDialog {...defaultProps} />);
+    fireEvent.keyDown(window, { key: 'ArrowLeft' });
+    expect(defaultProps.onNavigate).not.toHaveBeenCalled();
+  });
+
+  test('image shows skeleton before loading', () => {
+    render(<PersonDialog {...defaultProps} />);
+    // The image should be hidden before load and skeleton visible
+    const img = screen.getByAltText('Claude Monet');
+    expect(img.style.display).toBe('none');
+  });
+
+  test('image becomes visible after onLoad', () => {
+    render(<PersonDialog {...defaultProps} />);
+    const img = screen.getByAltText('Claude Monet');
+    fireEvent.load(img);
+    expect(img.style.display).toBe('block');
+  });
+
+  test('image error sets placeholder src', () => {
+    render(<PersonDialog {...defaultProps} />);
+    const img = screen.getByAltText('Claude Monet');
+    fireEvent.error(img);
+    expect(img).toHaveAttribute('src', 'data:image/svg+xml,placeholder');
+  });
+
+  test('description with bullet points renders list items', () => {
+    render(<PersonDialog {...defaultProps} person={mockPersonWithBullets} personId="testPerson" />);
+    expect(screen.getByText('Bullet point one')).toBeInTheDocument();
+    expect(screen.getByText('Bullet point two')).toBeInTheDocument();
+  });
 });

@@ -14,6 +14,8 @@ import {
   createVisualAuraRightOverlay,
 } from '../../utils/overlays/visualDisturbanceOverlays/auraOverlays';
 import { createBlueFieldOverlay } from '../../utils/overlays/visualDisturbanceOverlays/blueFieldOverlays';
+import { createHallucinationsOverlay } from '../../utils/overlays/visualDisturbanceOverlays/hallucinationOverlays';
+import { resetHallucinationsStartTime } from '../../utils/overlays/cbsHallucinations';
 import { ContainerFinder } from '../../utils/overlays/visualDisturbanceOverlays/types';
 
 function makeEffect(intensity: number): VisualEffect {
@@ -367,6 +369,112 @@ describe('Visual Disturbance Overlays', () => {
       createBlueFieldOverlay(disabled, finder);
 
       expect(document.getElementById('visual-field-overlay-blueField')).toBeNull();
+    });
+  });
+
+  // --- Hallucinations (CBS) ---
+  describe('createHallucinationsOverlay', () => {
+    beforeEach(() => {
+      resetHallucinationsStartTime();
+    });
+
+    it('creates overlay element with correct id when enabled', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+
+      const overlay = document.getElementById('visual-field-overlay-hallucinations');
+      expect(overlay).not.toBeNull();
+    });
+
+    it('creates pattern, flash, and vision-loss sub-layers', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.6), finder);
+
+      expect(document.getElementById('hallucination-pattern-layer')).not.toBeNull();
+      expect(document.getElementById('hallucination-flash-layer')).not.toBeNull();
+      expect(document.getElementById('hallucination-vision-loss')).not.toBeNull();
+    });
+
+    it('flash layer has mixBlendMode screen', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+
+      const flashLayer = document.getElementById('hallucination-flash-layer');
+      expect(flashLayer!.style.mixBlendMode).toBe('screen');
+    });
+
+    it('does not create overlay when effect is disabled', () => {
+      const { finder } = makeContainerFinder();
+      const effect = makeEffect(0.5);
+      effect.enabled = false;
+      createHallucinationsOverlay(effect, finder);
+
+      expect(document.getElementById('visual-field-overlay-hallucinations')).toBeNull();
+    });
+
+    it('does not create overlay when effect is undefined', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(undefined, finder);
+
+      expect(document.getElementById('visual-field-overlay-hallucinations')).toBeNull();
+    });
+
+    it('resets start time when disabled', () => {
+      const { finder } = makeContainerFinder();
+      // First create the overlay
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+      expect(document.getElementById('visual-field-overlay-hallucinations')).not.toBeNull();
+
+      // Now disable — should call resetHallucinationsStartTime internally
+      document.body.innerHTML = '';
+      const effect = makeEffect(0.5);
+      effect.enabled = false;
+      createHallucinationsOverlay(effect, () => document.body);
+
+      expect(document.getElementById('visual-field-overlay-hallucinations')).toBeNull();
+    });
+
+    it('injects animation style element', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+
+      const style = document.getElementById('cbs-hallucination-animations');
+      expect(style).not.toBeNull();
+      expect(style!.tagName).toBe('STYLE');
+    });
+
+    it('falls back to document.body when container finder returns null', () => {
+      const nullFinder: ContainerFinder = () => null;
+      createHallucinationsOverlay(makeEffect(0.5), nullFinder);
+
+      const overlay = document.getElementById('visual-field-overlay-hallucinations');
+      expect(overlay).not.toBeNull();
+      expect(overlay!.parentElement).toBe(document.body);
+    });
+
+    it('re-uses existing overlay on subsequent calls', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+      createHallucinationsOverlay(makeEffect(0.7), finder);
+
+      const overlays = document.querySelectorAll('#visual-field-overlay-hallucinations');
+      expect(overlays.length).toBe(1);
+    });
+
+    it('pattern layer has absolute positioning', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+
+      const patternLayer = document.getElementById('hallucination-pattern-layer');
+      expect(patternLayer!.style.position).toBe('absolute');
+    });
+
+    it('vision loss layer has pointer-events none', () => {
+      const { finder } = makeContainerFinder();
+      createHallucinationsOverlay(makeEffect(0.5), finder);
+
+      const visionLossLayer = document.getElementById('hallucination-vision-loss');
+      expect(visionLossLayer!.style.pointerEvents).toBe('none');
     });
   });
 

@@ -257,6 +257,10 @@ We welcome contributions! Here's how you can help:
 6. **Push to the branch**: `git push origin feature/amazing-feature`
 7. **Open a Pull Request**
 
+### Code Style
+
+This project follows the [Create React App ESLint configuration](https://www.npmjs.com/package/eslint-config-react-app) with additional rules defined in `package.json`. TypeScript strict mode provides further enforcement. CI treats all ESLint warnings as errors, so contributions must pass linting to be merged.
+
 ### Areas for Contribution
 
 - **New vision conditions**: Add more realistic simulations

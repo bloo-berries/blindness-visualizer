@@ -45,6 +45,10 @@ git rebase HEAD~N --signoff
 
 A [GitHub Action](.github/workflows/dco.yml) enforces sign-off on every pull request.
 
+## Versioning and Upgrades
+
+This project is a continuously deployed web application hosted at [theblind.spot](https://theblind.spot). All users automatically receive the latest version on every deployment — there are no separately maintained older versions, installable packages, or manual upgrade steps. This makes version maintenance and upgrade path documentation not applicable.
+
 ## Access Continuity
 
 The project is MIT licensed and hosted on a public GitHub repository. The following measures ensure the project can continue with minimal interruption if the maintainer becomes unavailable:

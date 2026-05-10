@@ -2,6 +2,7 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
 [![CI](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/bloo-berries/REPLACE_WITH_YOUR_GIST_ID/raw/coverage-badge.json)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bloo-berries/blindness-visualizer/badge)](https://scorecard.dev/viewer/?uri=github.com/bloo-berries/blindness-visualizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

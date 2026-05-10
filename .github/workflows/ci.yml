@@ -32,3 +32,24 @@ jobs:
 
     - name: Run tests
       run: npm test -- --passWithNoTests --coverage --watchAll=false
+
+    - name: Extract coverage percentage
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      id: coverage
+      run: |
+        COVERAGE=$(node -e "const c = require('./coverage/coverage-summary.json'); console.log(c.total.statements.pct)")
+        echo "percentage=$COVERAGE" >> $GITHUB_OUTPUT
+
+    - name: Update coverage badge
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      uses: schneegans/dynamic-badges-action@e9a478b16159b29571c815a8f8c1bab3626086c4 # v1.7.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: REPLACE_WITH_YOUR_GIST_ID
+        filename: coverage-badge.json
+        label: coverage
+        message: ${{ steps.coverage.outputs.percentage }}%
+        valColorRange: ${{ steps.coverage.outputs.percentage }}
+        minColorRange: 50
+        maxColorRange: 90
+        namedLogo: jest

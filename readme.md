@@ -8,6 +8,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Ftheblind.spot)](https://theblind.spot)
 [![i18n: 26 languages](https://img.shields.io/badge/i18n-26_languages-blue.svg)](https://github.com/bloo-berries/blindness-visualizer/tree/main/src/locales)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![WCAG 2.1 AA](https://img.shields.io/badge/WCAG_2.1-AA-green?logo=accessibility)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![Cloudflare Pages](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-F38020?logo=cloudflare&logoColor=white)](https://pages.cloudflare.com/)
+[![DCO](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/dco.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/dco.yml)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/bloo-berries/blindness-visualizer/pulls)
 
 **Live site: [theblind.spot](https://theblind.spot)**
 

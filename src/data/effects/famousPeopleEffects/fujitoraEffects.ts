@@ -1,7 +1,8 @@
 import { VisualEffect } from '../../../types/visualEffects';
+import { effect } from '../effectHelper';
 
 /**
- * Fujitora (Issho) — Observation Haki Perception
+ * Fujitora (Issho) -- Observation Haki Perception
  *
  * Marine Admiral who blinded himself. Uses Observation Haki to perceive
  * living beings as aura silhouettes. The physical world is a dark void;
@@ -15,11 +16,5 @@ import { VisualEffect } from '../../../types/visualEffects';
  * - Blend mode: hard-light
  */
 export const fujitoraEffects: VisualEffect[] = [
-  {
-    id: 'fujitoraObservationHakiComplete',
-    name: 'Observation Haki (Fujitora)',
-    enabled: false,
-    intensity: 1.0,
-    description: 'Near-total dark void with purple/indigo aura silhouettes representing Observation Haki perception. Living beings appear as glowing purple life-force outlines. Expanding concentric Haki ripple waves pulse outward, sensing surroundings. Strong fighters radiate warm amber. The physical world is invisible — only life-force auras register.'
-  }
+  effect('fujitoraObservationHakiComplete', 'Observation Haki (Fujitora)', 'Near-total dark void with purple/indigo aura silhouettes representing Observation Haki perception. Living beings appear as glowing purple life-force outlines. Expanding concentric Haki ripple waves pulse outward, sensing surroundings. Strong fighters radiate warm amber. The physical world is invisible \u2014 only life-force auras register.'),
 ];

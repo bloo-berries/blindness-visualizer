@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 export type ThemeMode = 'light' | 'dim' | 'dark';
 
-export interface AccessibilityPreferences {
+interface AccessibilityPreferences {
   highContrast: boolean;
   largeText: boolean;
   increasedSpacing: boolean;

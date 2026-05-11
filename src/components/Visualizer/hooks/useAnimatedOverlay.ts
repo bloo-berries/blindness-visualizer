@@ -66,16 +66,16 @@ const EFFECT_GENERATORS: Record<string, OverlayGenerator> = {
 };
 
 /**
- * Effects that require animation updates
+ * Effects that require animation updates (Set for O(1) lookup)
  */
-export const ANIMATED_EFFECTS = [
+export const ANIMATED_EFFECTS: ReadonlySet<string> = new Set([
   ...Object.keys(EFFECT_GENERATORS),
   // Note: Visual snow variants use CSS @keyframes animations, not JS-driven animation ticks.
   // They are handled by DOM-based overlays in visualDisturbanceOverlays/visualSnowOverlays.ts
   'visualFloaters',
   // Neo Matrix Code Vision uses a canvas-based renderer, not a CSS overlay generator
   'neoMatrixCodeVisionComplete',
-];
+]);
 
 /**
  * Hook that generates animated overlay styles for visual effects

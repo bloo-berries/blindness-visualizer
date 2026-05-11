@@ -20,13 +20,12 @@ const COLOR_VISION_IDS = [
  *   positioning media content and applying the computed filter.
  *
  * Desktop: Uses inline SVG feColorMatrix via url("#id") for accurate
- * Machado 2009 simulation. The companion <ColorVisionFilterSVG> component
- * renders the <filter> definition in the same subtree.
+ * Machado 2009 simulation, with body-injected backup via getColorVisionFilter().
  *
  * Mobile (iOS/Android): CSS filter: url("#id") does not work on mobile
- * WebKit/Blink regardless of SVG placement. Falls back to calibrated CSS
- * filter approximations (saturate, sepia, hue-rotate) that preserve the
- * correct color axis for each CVD type.
+ * WebKit/Blink regardless of SVG placement. Uses calibrated CSS filter
+ * approximations (saturate, sepia, hue-rotate, contrast) that preserve
+ * the correct color axis for each CVD type.
  */
 export function useCSSFilters(
   effects: VisualEffect[],
@@ -54,21 +53,25 @@ export function useCSSFilters(
     const filters: string[] = [];
 
     if (colorVisionEffect) {
-      // Use inline SVG feColorMatrix for accurate Machado 2009 simulation
-      // on both desktop and mobile. The companion <ColorVisionFilterSVG>
-      // component renders the <filter> definition in the same subtree.
-      const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
-      if (filterData) {
-        filters.push(`url("#${filterData.filterId}")`);
-        // On desktop, also inject filter into document.body as a backup
-        // for url("#id") resolution reliability.
-        if (!isMobileBrowser()) {
-          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-        }
-      } else {
-        // Monochromacy or zero intensity — pure CSS filter string
+      if (isMobileBrowser()) {
+        // Mobile: use CSS filter approximations (SVG url("#id") doesn't work
+        // on iOS Safari / mobile WebKit regardless of SVG placement)
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
+      } else {
+        // Desktop: use inline SVG feColorMatrix for accurate Machado 2009
+        // simulation. The companion <ColorVisionFilterSVG> component renders
+        // the <filter> definition in the same subtree.
+        const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
+        if (filterData) {
+          filters.push(`url("#${filterData.filterId}")`);
+          // Also inject filter into document.body as a backup
+          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+        } else {
+          // Monochromacy or zero intensity — pure CSS filter string
+          const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+          if (cssFilter) filters.push(cssFilter);
+        }
       }
     }
 

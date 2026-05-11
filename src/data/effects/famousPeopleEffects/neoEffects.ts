@@ -15,14 +15,8 @@
  */
 
 import { VisualEffect } from '../../../types/visualEffects';
+import { effect } from '../effectHelper';
 
 export const neoEffects: VisualEffect[] = [
-  {
-    id: 'neoMatrixCodeVisionComplete',
-    name: 'Matrix Code Vision (Neo)',
-    description: 'Complete Matrix code perception - seeing the world as cascading digital rain',
-    enabled: false,
-    intensity: 1.0,
-    animatedOverlay: true
-  }
+  effect('neoMatrixCodeVisionComplete', 'Matrix Code Vision (Neo)', 'Complete Matrix code perception - seeing the world as cascading digital rain'),
 ];

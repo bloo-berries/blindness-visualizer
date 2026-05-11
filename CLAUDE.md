@@ -41,7 +41,7 @@ The `VisionSimulator.tsx` component has a 2-step flow (no MUI Stepper UI):
 
 The `ControlPanel` accepts a `visualizerSlot: React.ReactNode` prop — the `Visualizer` component is passed in as a slot and rendered alongside the effects list. The container widens to `1400px` on step 1 to accommodate the side-by-side layout.
 
-**Note**: The `GuidedTour` component is currently disabled (JSX commented out in `VisionSimulator.tsx`, import removed). The component file remains at `src/components/GuidedTour.tsx`.
+**Note**: The `GuidedTour` component is active — imported and rendered in `VisionSimulator.tsx` (hidden in famous-people preconfigured mode). The component file is at `src/components/GuidedTour.tsx`.
 
 ### Multi-Layer Rendering System
 
@@ -76,7 +76,7 @@ The Visualizer component uses modular hooks:
 ### Shader System (`src/utils/shaders/`)
 
 The shader system is modular:
-- `fragmentShader/` - GLSL code split by category: `colorBlindnessFunctions.ts`, `retinalFunctions.ts`, `diplopiaFunctions.ts`, `glaucomaFunction.ts`, `miltonFunctions.ts`, `galileoFunctions.ts`, `utilityFunctions.ts`, `uniformDeclarations.ts`, `mainFunction.ts`. Barrel `index.ts` combines all parts via `getFragmentShader()`.
+- `fragmentShader.ts` - GLSL fragment shader code (all functions combined in a single file)
 - `shaderUniforms.ts` - Uniform declarations for Three.js (31 uniforms)
 - `uniformUpdater.ts` - Updates uniform values based on active effects
 - `shaderMaterial.ts` - Creates the Three.js ShaderMaterial (imports `getFragmentShader` from `./fragmentShader`)
@@ -191,7 +191,7 @@ Key CSS variables: `--color-bg-default`, `--color-bg-paper`, `--color-text-prima
 For effects requiring color/pixel manipulation:
 
 1. Add uniform in `shaders/shaderUniforms.ts`
-2. Add GLSL function in the appropriate file under `shaders/fragmentShader/` (e.g., `retinalFunctions.ts`)
+2. Add GLSL function in `shaders/fragmentShader.ts`
 3. Update `shaders/uniformUpdater.ts` to pass the intensity value
 4. Add to `ConditionType` union and create effect definition in `src/data/effects/`
 
@@ -205,16 +205,18 @@ For effects requiring DOM elements (scotomas, field loss):
 
 ### Animated Effects
 
-These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` via `EFFECT_GENERATORS` registry + `ANIMATED_EFFECTS`):
+These effects require continuous re-rendering (listed in `hooks/useAnimatedOverlay.ts` via `EFFECT_GENERATORS` registry + `ANIMATED_EFFECTS` Set):
 ```typescript
 // 25 generator entries + 'visualFloaters' + 'neoMatrixCodeVisionComplete' = 27 total
 ```
 
+Shared utility functions for common animated overlay patterns (expanding rings, vignettes, glow nodes, drifting positions, heartbeat) are in `hooks/animatedOverlays/overlayUtils.ts`.
+
 To add a new animated effect:
-1. Create the overlay generator function in `hooks/animatedOverlays/`
+1. Create the overlay generator function in `hooks/animatedOverlays/` (use utilities from `overlayUtils.ts` where applicable)
 2. Export it from `hooks/animatedOverlays/index.ts`
 3. Import it in `useAnimatedOverlay.ts` and add to `EFFECT_GENERATORS` registry
-4. The effect is automatically included in `ANIMATED_EFFECTS` via `Object.keys(EFFECT_GENERATORS)`
+4. The effect is automatically included in `ANIMATED_EFFECTS` Set via `Object.keys(EFFECT_GENERATORS)`
 5. If the effect needs custom CSS filters, create a filter file in `src/utils/cssFilters/famousPeopleFilters/` and register it in the index
 
 ## Error Handling
@@ -230,7 +232,7 @@ To add a new animated effect:
 3. Add their image to `public/images/people/` (filename should match the convention used by existing images)
 4. Map their `simulation` key to effect IDs in `src/utils/famousPeopleUtils.tsx` (`getSimulationConditions`)
 5. If the person needs custom image cropping, add an entry to `CUSTOM_POSITIONS` in `src/components/FamousBlindPeople/PersonCard.tsx`
-6. Optionally create custom effects (`src/data/effects/famousPeopleEffects/`), CSS filters (`src/utils/cssFilters/famousPeopleFilters/`), DOM overlays (`src/utils/overlays/famousPeople/`), or animated overlays (`src/components/Visualizer/hooks/animatedOverlays/`) for unique visualizations
+6. Optionally create custom effects using the `effect()` helper from `src/data/effects/effectHelper.ts` (`src/data/effects/famousPeopleEffects/`), CSS filters (`src/utils/cssFilters/famousPeopleFilters/`), DOM overlays (`src/utils/overlays/famousPeople/`), or animated overlays (`src/components/Visualizer/hooks/animatedOverlays/`) for unique visualizations
 
 ## Performance
 
@@ -303,4 +305,4 @@ When adding new external resources, update `public/_headers` or requests will be
 
 ## Known Redundancies and Dead Code
 
-No known dead code remains. Previous items (`svgFilterManager.ts`, `shaderFunctions.ts`, orphaned SVG filters in `index.html`, stale `GuidedTour` import) have been cleaned up.
+No known dead code remains. Previous cleanups include `svgFilterManager.ts`, `shaderFunctions.ts`, `fragmentShader/` directory (shadowed by `fragmentShader.ts`), `ImpactDashboard.tsx`, `PreviewOverlayGenerator.ts`, `previewOverlays/` directory, `useMediaSetup.ts`, `useEffectProcessor.ts`, `animationUtils.ts`, orphaned SVG filters in `index.html`, stale `GuidedTour` import, and the bypassed `ControlPanel/index.ts` barrel.

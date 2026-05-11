@@ -28,3 +28,20 @@ export { generateMargaritaLightPerceptionOverlay } from './margaritaLightPercept
 export { generateFujitoraObservationHakiOverlay } from './fujitoraObservationHaki';
 export { generateChirrutForcePerceptionOverlay } from './chirrutForcePerception';
 export { generateJuliaCarpenterPsychicWebOverlay } from './juliaCarpenterPsychicWeb';
+
+// Shared overlay utility functions and types
+export {
+  generateExpandingRing,
+  generateRippleRings,
+  generateVignette,
+  generateGlowNode,
+  driftPosition,
+  heartbeat,
+} from './overlayUtils';
+export type {
+  RGBColor,
+  RingConfig,
+  RippleConfig,
+  VignetteConfig,
+  GlowNodeConfig,
+} from './overlayUtils';

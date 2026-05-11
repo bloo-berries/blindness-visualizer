@@ -9,14 +9,6 @@ import { historicalFigures } from './historicalFigures';
 import { fictionalCharacters } from './fictionalCharacters';
 
 export type { PersonData };
-export { contemporaryFigures };
-export { athletes };
-export { scientists };
-export { musicians };
-export { artists };
-export { writersActivists };
-export { historicalFigures };
-export { fictionalCharacters };
 
 export const personData: Record<string, PersonData> = {
   ...contemporaryFigures,

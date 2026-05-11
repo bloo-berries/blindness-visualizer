@@ -79,7 +79,7 @@ jest.mock('../../components/Visualizer/hooks', () => ({
     computeFilterString: () => '',
     getEffectStyles: () => ({}),
   }),
-  ANIMATED_EFFECTS: [],
+  ANIMATED_EFFECTS: new Set(),
 }));
 
 jest.mock('../../hooks', () => ({

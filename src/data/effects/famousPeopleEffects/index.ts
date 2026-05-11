@@ -1,6 +1,5 @@
 import { VisualEffect } from '../../../types/visualEffects';
 
-// Import all individual effect arrays
 import { miltonEffects } from './miltonEffects';
 import { galileoEffects } from './galileoEffects';
 import { monetEffects } from './monetEffects';
@@ -39,8 +38,7 @@ import { fujitoraEffects } from './fujitoraEffects';
 import { chirrutImweEffects } from './chirrutImweEffects';
 import { juliaCarpenterEffects } from './juliaCarpenterEffects';
 
-// Re-export individual arrays for direct access
-export {
+const allEffectArrays: VisualEffect[][] = [
   miltonEffects,
   galileoEffects,
   monetEffects,
@@ -77,50 +75,11 @@ export {
   infantaMargaritaEffects,
   fujitoraEffects,
   chirrutImweEffects,
-  juliaCarpenterEffects
-};
+  juliaCarpenterEffects,
+];
 
 /**
  * Famous People Effects
  * Specific visualizations for notable blind individuals
- * Combined array for backward compatibility
  */
-export const famousPeopleEffects: VisualEffect[] = [
-  ...miltonEffects,
-  ...galileoEffects,
-  ...monetEffects,
-  ...vedMehtaEffects,
-  ...christineHaEffects,
-  ...lucyEdwardsEffects,
-  ...davidPatersonEffects,
-  ...erikWeihenmayerEffects,
-  ...marlaRunyanEffects,
-  ...monaMinkaraEffects,
-  ...joshuaMieleEffects,
-  ...customFamousPeopleEffects,
-  ...milaKunisEffects,
-  ...judiDenchEffects,
-  ...amadouBagayokoEffects,
-  ...stephenCurryEffects,
-  ...lexGilletteEffects,
-  ...davidBrownEffects,
-  ...sugarRayLeonardEffects,
-  ...crazzysteveEffects,
-  ...tofiriKibuukaEffects,
-  ...josephPlateauEffects,
-  ...eulerEffects,
-  ...nemethEffects,
-  ...heatherHutchisonEffects,
-  ...daredevilEffects,
-  ...geordiLaForgeEffects,
-  ...blindspotEffects,
-  ...kenshiEffects,
-  ...joseCidEffects,
-  ...tophBeifongEffects,
-  ...neoEffects,
-  ...anselmoRalphEffects,
-  ...infantaMargaritaEffects,
-  ...fujitoraEffects,
-  ...chirrutImweEffects,
-  ...juliaCarpenterEffects
-];
+export const famousPeopleEffects: VisualEffect[] = allEffectArrays.flat();

@@ -1,13 +1,14 @@
 import { VisualEffect } from '../../../types/visualEffects';
+import { effect } from '../effectHelper';
 
 /**
- * Chirrut Îmwe — Force Perception
+ * Chirrut Imwe -- Force Perception
  *
  * Guardian of the Whills from Jedha. Born blind but deeply attuned
  * to the Force, providing spatial awareness beyond physical sight.
  *
  * Visual Concept:
- * - NOT pitch black — Force attunement + heightened senses
+ * - NOT pitch black -- Force attunement + heightened senses
  * - Strong desaturation with pale blue-cyan wash
  * - Soft blue-white (#B0D4F1) luminous glows around living beings
  * - Drifting Force energy wisps in pale cyan
@@ -16,11 +17,5 @@ import { VisualEffect } from '../../../types/visualEffects';
  * - Blend mode: screen
  */
 export const chirrutImweEffects: VisualEffect[] = [
-  {
-    id: 'chirrutForcePerceptionComplete',
-    name: 'Force Perception (Chirrut Îmwe)',
-    enabled: false,
-    intensity: 1.0,
-    description: 'Force-attuned spatial awareness. Strong desaturation with pale blue-cyan wash creates a serene, meditative atmosphere. Soft blue-white luminous glows represent living beings sensed through the Force. Drifting cyan wisps of Force energy float across the field. Subtle expanding sound ripple rings suggest heightened auditory perception. Not darkness — a calm, blue-gray awareness.'
-  }
+  effect('chirrutForcePerceptionComplete', 'Force Perception (Chirrut \u00cemwe)', 'Force-attuned spatial awareness. Strong desaturation with pale blue-cyan wash creates a serene, meditative atmosphere. Soft blue-white luminous glows represent living beings sensed through the Force. Drifting cyan wisps of Force energy float across the field. Subtle expanding sound ripple rings suggest heightened auditory perception. Not darkness \u2014 a calm, blue-gray awareness.'),
 ];

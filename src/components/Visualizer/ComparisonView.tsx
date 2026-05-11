@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
@@ -32,7 +32,10 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   simulationContainerRef
 }) => {
   // Check if any enabled effect needs animation
-  const needsAnimation = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
+  const needsAnimation = useMemo(() =>
+    effects.some(e => ANIMATED_EFFECTS.has(e.id) && e.enabled),
+    [effects]
+  );
 
   // Animation ticker for animated effects
   const now = useAnimationTicker(needsAnimation);

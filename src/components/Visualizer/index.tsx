@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { Box, Typography, CircularProgress, Alert, Button, Snackbar } from '@mui/material';
@@ -96,7 +96,10 @@ const Visualizer: React.FC<VisualizerProps> = ({
   }, []);
 
   // Check if any enabled effect needs animation
-  const needsAnimatedOverlay = effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled);
+  const needsAnimatedOverlay = useMemo(() =>
+    effects.some(e => ANIMATED_EFFECTS.has(e.id) && e.enabled),
+    [effects]
+  );
 
   // Animation ticker for animated effects (used in full simulation view)
   const now = useAnimationTicker(needsAnimatedOverlay && !showComparison);
@@ -199,7 +202,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
     }
   }, [showComparison, effects, inputSource.type, effectProcessor, overlayManager]);
 
-  const getVisualizerDescription = () => generateEffectsDescription(effects, inputSource);
+  const visualizerDescription = useMemo(() => generateEffectsDescription(effects, inputSource), [effects, inputSource]);
 
   const handleToggleComparison = onToggleComparison || (() => setShowComparison(prev => !prev));
 
@@ -261,7 +264,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
       <div
         ref={containerRef}
         role="img"
-        aria-label={getVisualizerDescription()}
+        aria-label={visualizerDescription}
         style={{
           position: 'absolute',
           width: '100%',
@@ -545,7 +548,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
             </Button>
           </Box>
         </Box>
-        <Typography>{getVisualizerDescription()}</Typography>
+        <Typography>{visualizerDescription}</Typography>
       </Box>
 
       <Snackbar

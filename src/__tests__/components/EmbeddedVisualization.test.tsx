@@ -21,7 +21,7 @@ const mockVisualFieldOverlayStyles: React.CSSProperties[] = [];
 jest.mock('../../components/Visualizer/hooks', () => ({
   useAnimatedOverlay: () => mockAnimatedOverlayStyle,
   useVisualFieldOverlay: () => mockVisualFieldOverlayStyles,
-  ANIMATED_EFFECTS: ['visualAura', 'neoMatrixCodeVisionComplete'],
+  ANIMATED_EFFECTS: new Set(['visualAura', 'neoMatrixCodeVisionComplete']),
 }));
 
 jest.mock('../../hooks', () => ({

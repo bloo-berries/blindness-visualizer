@@ -79,38 +79,37 @@ interface CSSFilterApprox {
 
 const CSS_FILTER_APPROXIMATIONS: Record<string, CSSFilterApprox> = {
   // Protanopia (red-blind): world shifts to blue-yellow, reds appear dark.
-  // Low saturate preserves some color variation before sepia collapses
-  // red-green info. hue-rotate(50deg) shifts sepia's amber (~35°) toward
-  // yellow-green (~85°), matching the blue-yellow axis of protanopia.
+  // Low sepia preserves color variety; subtle hue-rotate shifts red-green
+  // confusion axis without collapsing everything to monochrome green/yellow.
   protanopia: {
-    filter: 'saturate(20%) sepia(80%) hue-rotate(50deg) saturate(180%) brightness(88%)',
+    filter: 'saturate(35%) sepia(15%) hue-rotate(345deg) saturate(125%) brightness(94%) contrast(95%)',
   },
 
   // Deuteranopia (green-blind): similar to protanopia (blue-yellow world)
   // but reds are slightly brighter. Slightly different hue shift angle.
   deuteranopia: {
-    filter: 'saturate(25%) sepia(75%) hue-rotate(55deg) saturate(170%) brightness(91%)',
+    filter: 'saturate(40%) sepia(12%) hue-rotate(350deg) saturate(120%) brightness(96%) contrast(93%)',
   },
 
   // Tritanopia (blue-blind): blues disappear, world appears warm/pinkish.
   // Higher saturate retention preserves the red-green distinction that
-  // tritanopes still have. Low hue-rotate keeps warm amber tones.
+  // tritanopes still have. Slight positive hue-rotate keeps warm tones.
   tritanopia: {
-    filter: 'saturate(35%) sepia(60%) hue-rotate(355deg) saturate(200%) brightness(92%)',
+    filter: 'saturate(45%) sepia(10%) hue-rotate(30deg) saturate(130%) brightness(94%) contrast(97%)',
   },
 
   // Anomalous trichromacy — reduced severity versions of the above.
   // Higher saturate retention since color vision is reduced, not absent.
   protanomaly: {
-    filter: 'saturate(50%) sepia(50%) hue-rotate(50deg) saturate(140%) brightness(94%)',
+    filter: 'saturate(60%) sepia(8%) hue-rotate(350deg) saturate(110%) brightness(97%) contrast(97%)',
   },
 
   deuteranomaly: {
-    filter: 'saturate(55%) sepia(45%) hue-rotate(55deg) saturate(130%) brightness(95%)',
+    filter: 'saturate(65%) sepia(6%) hue-rotate(355deg) saturate(108%) brightness(98%) contrast(96%)',
   },
 
   tritanomaly: {
-    filter: 'saturate(55%) sepia(40%) hue-rotate(355deg) saturate(160%) brightness(96%)',
+    filter: 'saturate(65%) sepia(5%) hue-rotate(15deg) saturate(115%) brightness(97%) contrast(98%)',
   },
 };
 
@@ -146,6 +145,11 @@ const getMobileCSSFilter = (type: string, intensity: number): string | null => {
     const target = parseFloat(v);
     const interpolated = Math.round(100 + (target - 100) * intensity);
     return `brightness(${interpolated}%)`;
+  });
+  result = result.replace(/contrast\((\d+)%?\)/g, (_, v) => {
+    const target = parseFloat(v);
+    const interpolated = Math.round(100 + (target - 100) * intensity);
+    return `contrast(${interpolated}%)`;
   });
 
   return result;

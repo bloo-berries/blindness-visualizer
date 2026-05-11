@@ -1,4 +1,5 @@
 import { VisualEffect } from '../../../types/visualEffects';
+import { effect } from '../effectHelper';
 
 /**
  * Infanta Margarita, Duchess of Soria - Congenital Blindness (Light Perception Only)
@@ -19,11 +20,5 @@ import { VisualEffect } from '../../../types/visualEffects';
  * light vs dark areas (e.g., a sunlit window vs a dark wall). No nystagmus.
  */
 export const infantaMargaritaEffects: VisualEffect[] = [
-  {
-    id: 'margaritaLightPerceptionComplete',
-    name: 'Light & Shadow Perception (Infanta Margarita)',
-    enabled: false,
-    intensity: 1.0,
-    description: 'Congenital light perception only vision. Heavy blur (60-80px) destroys all form and detail. Near-total desaturation strips color. Moderate contrast reduction preserves only the strongest light-vs-dark transitions. Brightness creates a light gray/white perception. She can perceive light and shadows - broad luminance regions register as vague light and dark gradients, but no shapes, faces, or text are visible.'
-  }
+  effect('margaritaLightPerceptionComplete', 'Light & Shadow Perception (Infanta Margarita)', 'Congenital light perception only vision. Heavy blur (60-80px) destroys all form and detail. Near-total desaturation strips color. Moderate contrast reduction preserves only the strongest light-vs-dark transitions. Brightness creates a light gray/white perception. She can perceive light and shadows - broad luminance regions register as vague light and dark gradients, but no shapes, faces, or text are visible.'),
 ];

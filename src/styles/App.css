@@ -222,16 +222,6 @@ a, button, [role="button"],
   touch-action: manipulation;
 }
 
-/* Add responsive design */
-@media (max-width: 600px) {
-  .landing-page h1 {
-    font-size: 2rem;
-  }
-
-  .landing-page h5 {
-    font-size: 1.1rem;
-  }
-}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

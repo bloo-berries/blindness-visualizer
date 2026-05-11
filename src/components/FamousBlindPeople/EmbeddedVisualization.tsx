@@ -43,7 +43,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
 
   // Check if any enabled effect needs animation
   const needsAnimation = useMemo(() =>
-    effects.some(e => ANIMATED_EFFECTS.includes(e.id) && e.enabled),
+    effects.some(e => ANIMATED_EFFECTS.has(e.id) && e.enabled),
     [effects]
   );
 

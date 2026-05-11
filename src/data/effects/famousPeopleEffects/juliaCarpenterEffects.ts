@@ -1,10 +1,11 @@
 import { VisualEffect } from '../../../types/visualEffects';
+import { effect } from '../effectHelper';
 
 /**
- * Julia Carpenter (Arachne) — Psychic Web Perception
+ * Julia Carpenter (Arachne) -- Psychic Web Perception
  *
  * Marvel's current Madame Web. Blind but perceives a psychic web
- * connecting all living beings — a spider-web of crimson and magenta
+ * connecting all living beings -- a spider-web of crimson and magenta
  * strands radiating from her center of awareness.
  *
  * Visual Concept:
@@ -17,11 +18,5 @@ import { VisualEffect } from '../../../types/visualEffects';
  * - Blend mode: screen
  */
 export const juliaCarpenterEffects: VisualEffect[] = [
-  {
-    id: 'juliaCarpenterPsychicWebComplete',
-    name: 'Psychic Web (Julia Carpenter)',
-    enabled: false,
-    intensity: 1.0,
-    description: 'Psychic web perception. Dark red-black void overlaid with a spider-web pattern of crimson and magenta-pink strands radiating from center. Conic-gradient spokes intersect with concentric ring patterns. White-hot detection nodes pulse at web intersections where living presences are sensed. Brief precognitive flashes illuminate future events. The outer web constantly reforms and extends, reaching for new connections.'
-  }
+  effect('juliaCarpenterPsychicWebComplete', 'Psychic Web (Julia Carpenter)', 'Psychic web perception. Dark red-black void overlaid with a spider-web pattern of crimson and magenta-pink strands radiating from center. Conic-gradient spokes intersect with concentric ring patterns. White-hot detection nodes pulse at web intersections where living presences are sensed. Brief precognitive flashes illuminate future events. The outer web constantly reforms and extends, reaching for new connections.'),
 ];

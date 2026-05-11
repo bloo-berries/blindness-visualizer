@@ -11,10 +11,14 @@ import { ConditionType } from '../types/visualEffects';
  * Desktop: Uses SVG feColorMatrix filters injected into the DOM for pixel-accurate
  * color transformation (Machado 2009 matrices in linearRGB space).
  *
- * Mobile: SVG url("#id") CSS filter references do not work on mobile WebKit/Blink
- * (tested with body-injected SVG, inline SVG, absolute URLs — all fail). Instead,
- * we use CSS filter function approximations (sepia, hue-rotate, saturate, brightness)
- * which are pure CSS and work reliably on all mobile browsers.
+ * Mobile: Uses inline SVG feColorMatrix via the <ColorVisionFilterSVG> component
+ * rendered in the same subtree as the filtered element. This avoids the mobile
+ * WebKit/Blink issue where body-injected SVG url("#id") references fail after
+ * pushState navigation. The inline approach works reliably on iOS Safari 15+.
+ *
+ * Legacy CSS filter approximations (sepia, hue-rotate, saturate) are retained
+ * in getMobileCSSFilter() but no longer used by default — they produced
+ * inaccurate monochrome green/yellow tints instead of correct CVD simulation.
  */
 
 // --- Mobile/touch device detection ---

@@ -54,27 +54,21 @@ export function useCSSFilters(
     const filters: string[] = [];
 
     if (colorVisionEffect) {
-      const mobile = isMobileBrowser();
-
-      if (mobile) {
-        // Mobile (iOS/Android): CSS filter: url("#id") does not work on
-        // mobile WebKit/Blink. Use calibrated CSS filter approximations.
+      // Use inline SVG feColorMatrix for accurate Machado 2009 simulation
+      // on both desktop and mobile. The companion <ColorVisionFilterSVG>
+      // component renders the <filter> definition in the same subtree.
+      const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
+      if (filterData) {
+        filters.push(`url("#${filterData.filterId}")`);
+        // On desktop, also inject filter into document.body as a backup
+        // for url("#id") resolution reliability.
+        if (!isMobileBrowser()) {
+          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
+        }
+      } else {
+        // Monochromacy or zero intensity — pure CSS filter string
         const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
         if (cssFilter) filters.push(cssFilter);
-      } else {
-        // Desktop: use SVG feColorMatrix for accurate simulation.
-        const filterData = getColorVisionFilterData(colorVisionEffect.id, colorVisionEffect.intensity);
-        if (filterData) {
-          filters.push(`url("#${filterData.filterId}")`);
-          // Inject filter into document.body for reliable url("#id") resolution.
-          // The inline <ColorVisionFilterSVG> also renders a definition, but
-          // body injection is the proven working approach on desktop browsers.
-          getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-        } else {
-          // Monochromacy or zero intensity — pure CSS filter string
-          const cssFilter = getColorVisionFilter(colorVisionEffect.id, colorVisionEffect.intensity);
-          if (cssFilter) filters.push(cssFilter);
-        }
       }
     }
 

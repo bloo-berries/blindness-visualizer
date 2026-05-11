@@ -19,7 +19,7 @@
     "react-i18next": "^16.5.4",
     "react-router-dom": "^6.30.1",
     "react-scripts": "5.0.1",
-    "three": "^0.152.2",
+    "three": "^0.184.0",
     "typescript": "^4.9.5"
   },
   "scripts": {

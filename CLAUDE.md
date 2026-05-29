@@ -50,11 +50,11 @@ The rendering pipeline uses multiple techniques simultaneously, each handling di
 | Layer | File | Purpose |
 |-------|------|---------|
 | WebGL Shaders | `shaders/` directory | Color blindness matrix transformations (for canvas-based rendering) |
-| CSS Filters + DOM-injected SVG | `colorVisionFilters.ts`, `cssFilterManager.ts` | Color vision simulation (DOM-injected SVG filters), blur, contrast, person-specific filters (29 custom filter files) |
+| CSS Filters + DOM-injected SVG | `colorVisionFilters/`, `cssFilterManager.ts` | Color vision simulation (DOM-injected SVG filters), blur, contrast, person-specific filters (29 custom filter files) |
 | DOM Overlays | `overlayManager.ts` | Visual field loss, scotomas, floaters (19 custom person overlays) |
 | Animated Overlays | `hooks/animatedOverlays/` | JS-driven animated effects (21 animation files) |
 
-**Color vision filter approach**: `getColorVisionFilter()` in `colorVisionFilters.ts` injects `<filter>` elements with `<feColorMatrix>` into a hidden `<svg id="cvd-svg-filters">` container in `document.body`, returning `url("#cvd-{type}")` references. This DOM-injection approach replaced the earlier data URI method because Safari/WebKit does not support `filter: url("data:image/svg+xml,...")` (WebKit Bug #104169). The Machado 2009 matrices are blended with identity based on intensity. Monochromacy uses CSS `saturate()/contrast()` instead of SVG. `cleanupAllDOMFilters()` removes all injected elements.
+**Color vision filter approach**: The `colorVisionFilters/` directory is split into focused modules: `mobileDetection.ts` (device detection + CSS fallbacks), `colorVisionMatrices.ts` (Machado 2009 matrices + interpolation), `domSvgManager.ts` (SVG container/filter injection/cleanup), and `index.ts` (barrel re-exports + main `getColorVisionFilter`/`getColorVisionFilterData`/metadata functions). `getColorVisionFilter()` injects `<filter>` elements with `<feColorMatrix>` into a hidden `<svg id="cvd-svg-filters">` container in `document.body`, returning `url("#cvd-{type}")` references. This DOM-injection approach replaced the earlier data URI method because Safari/WebKit does not support `filter: url("data:image/svg+xml,...")` (WebKit Bug #104169). The Machado 2009 matrices are blended with identity based on intensity. Monochromacy uses CSS `saturate()/contrast()` instead of SVG. `cleanupAllDOMFilters()` removes all injected elements.
 
 Overlay z-index hierarchy is defined in `overlayConstants.ts` — new overlays must respect this ordering:
 - `Z_INDEX.VISUAL_FIELD_LOSS`: 9000 (top)
@@ -70,13 +70,18 @@ Overlay z-index hierarchy is defined in `overlayConstants.ts` — new overlays m
 
 The Visualizer component uses modular hooks:
 - `useAnimatedOverlay` - Visual Aura, CBS Hallucinations, Blue Field, PPVP, Palinopsia, Starbursting, and person-specific animated effects (21 individual animation files in `hooks/animatedOverlays/`)
-- `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision, hemianopia overlays
+- `useVisualFieldOverlay` - Retinitis Pigmentosa, AMD, glaucoma, tunnel vision, hemianopia overlays (split into `hooks/visualFieldOverlays/`: `puckeringUtils.ts`, `standardOverlays.ts`, `personOverlays.ts`, `useVisualFieldOverlay.ts`)
 - `useScreenshot` - Screenshot capture functionality
 
 ### Shader System (`src/utils/shaders/`)
 
 The shader system is modular:
-- `fragmentShader.ts` - GLSL fragment shader code (all functions combined in a single file)
+- `fragmentShader.ts` - Assembles all GLSL shader parts, exports `getFragmentShader()` + re-exports all shader consts
+- `colorBlindnessShader.ts` - Color blindness transformation functions (protanopia, deuteranopia, tritanopia, anomalous trichromacy)
+- `retinalShader.ts` - Retinal condition functions (RP, Stargardt, AMD, Diabetic Retinopathy)
+- `diplopiaShader.ts` - Diplopia (double vision) functions
+- `glaucomaShader.ts` - Utility functions (noise, blur) + Glaucoma effect
+- `personShaders.ts` - Person-specific shader functions (Milton, Galileo)
 - `shaderUniforms.ts` - Uniform declarations for Three.js (31 uniforms)
 - `uniformUpdater.ts` - Updates uniform values based on active effects
 - `shaderMaterial.ts` - Creates the Three.js ShaderMaterial (imports `getFragmentShader` from `./fragmentShader`)
@@ -191,7 +196,7 @@ Key CSS variables: `--color-bg-default`, `--color-bg-paper`, `--color-text-prima
 For effects requiring color/pixel manipulation:
 
 1. Add uniform in `shaders/shaderUniforms.ts`
-2. Add GLSL function in `shaders/fragmentShader.ts`
+2. Add GLSL function in the appropriate shader module (e.g., `shaders/retinalShader.ts`) and import it in `shaders/fragmentShader.ts`
 3. Update `shaders/uniformUpdater.ts` to pass the intensity value
 4. Add to `ConditionType` union and create effect definition in `src/data/effects/`
 
@@ -305,4 +310,4 @@ When adding new external resources, update `public/_headers` or requests will be
 
 ## Known Redundancies and Dead Code
 
-No known dead code remains. Previous cleanups include `svgFilterManager.ts`, `shaderFunctions.ts`, `fragmentShader/` directory (shadowed by `fragmentShader.ts`), `ImpactDashboard.tsx`, `PreviewOverlayGenerator.ts`, `previewOverlays/` directory, `useMediaSetup.ts`, `useEffectProcessor.ts`, `animationUtils.ts`, orphaned SVG filters in `index.html`, stale `GuidedTour` import, and the bypassed `ControlPanel/index.ts` barrel.
+No known dead code remains. Previous cleanups include `svgFilterManager.ts`, `shaderFunctions.ts`, `fragmentShader/` directory (shadowed by `fragmentShader.ts`), `ImpactDashboard.tsx`, `PreviewOverlayGenerator.ts`, `previewOverlays/` directory, `useMediaSetup.ts`, `useEffectProcessor.ts`, `animationUtils.ts`, orphaned SVG filters in `index.html`, stale `GuidedTour` import, the bypassed `ControlPanel/index.ts` barrel, and `generateAnselmoPtosisOverlay`/`generateAnselmoPtosisRightOverlay` (unused ptosis overlay functions not in EFFECT_GENERATORS registry).

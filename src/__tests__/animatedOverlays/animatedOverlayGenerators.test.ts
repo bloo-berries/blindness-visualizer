@@ -25,8 +25,6 @@ import {
   generateKenshiTelekineticSenseOverlay,
   generateTophSeismicSenseOverlay,
   generateAnselmoOcularMyastheniaOverlay,
-  generateAnselmoPtosisOverlay,
-  generateAnselmoPtosisRightOverlay,
   generateMargaritaLightPerceptionOverlay,
   generateFujitoraObservationHakiOverlay,
   generateChirrutForcePerceptionOverlay,
@@ -54,8 +52,6 @@ const standardGenerators: Array<{
   { name: 'generateKenshiTelekineticSenseOverlay', fn: generateKenshiTelekineticSenseOverlay },
   { name: 'generateTophSeismicSenseOverlay', fn: generateTophSeismicSenseOverlay },
   { name: 'generateAnselmoOcularMyastheniaOverlay', fn: generateAnselmoOcularMyastheniaOverlay },
-  { name: 'generateAnselmoPtosisOverlay', fn: generateAnselmoPtosisOverlay },
-  { name: 'generateAnselmoPtosisRightOverlay', fn: generateAnselmoPtosisRightOverlay },
   { name: 'generateMargaritaLightPerceptionOverlay', fn: generateMargaritaLightPerceptionOverlay },
   { name: 'generateFujitoraObservationHakiOverlay', fn: generateFujitoraObservationHakiOverlay },
   { name: 'generateChirrutForcePerceptionOverlay', fn: generateChirrutForcePerceptionOverlay },
@@ -149,10 +145,8 @@ describe.each(standardGenerators)('$name', ({ fn }) => {
 
   test('width and height are 100%', () => {
     const result = fn(0.5, NOW);
-    // Most generators use createOverlayStyle which sets width/height to '100%'.
-    // The Anselmo ptosis overlays intentionally use '50%' width.
-    expect(result.width).toBeDefined();
-    expect(result.height).toBeDefined();
+    expect(result.width).toBe('100%');
+    expect(result.height).toBe('100%');
   });
 
   test('opacity is a number between 0 and 1 inclusive', () => {
@@ -226,40 +220,6 @@ describe('generateVisualAuraOverlay', () => {
 });
 
 // ---- Specific generator behavior tests ----
-
-describe('generateAnselmoPtosisOverlay (left eye)', () => {
-  test('width is 50% (covers left half only)', () => {
-    const result = generateAnselmoPtosisOverlay(0.7, 5000);
-    expect(result.width).toBe('50%');
-  });
-
-  test('has left=0 positioning', () => {
-    const result = generateAnselmoPtosisOverlay(0.7, 5000);
-    expect(result.left).toBe(0);
-  });
-
-  test('zIndex is 9997 (below main overlay)', () => {
-    const result = generateAnselmoPtosisOverlay(0.7, 5000);
-    expect(result.zIndex).toBe(9997);
-  });
-});
-
-describe('generateAnselmoPtosisRightOverlay (right eye)', () => {
-  test('width is 50% (covers right half only)', () => {
-    const result = generateAnselmoPtosisRightOverlay(0.7, 5000);
-    expect(result.width).toBe('50%');
-  });
-
-  test('has right=0 positioning', () => {
-    const result = generateAnselmoPtosisRightOverlay(0.7, 5000);
-    expect(result.right).toBe(0);
-  });
-
-  test('zIndex is 9997 (below main overlay)', () => {
-    const result = generateAnselmoPtosisRightOverlay(0.7, 5000);
-    expect(result.zIndex).toBe(9997);
-  });
-});
 
 describe('generateDaredevilRadarSenseOverlay', () => {
   test('uses multiply blend mode', () => {

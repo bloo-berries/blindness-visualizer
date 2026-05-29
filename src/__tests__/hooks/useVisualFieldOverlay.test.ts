@@ -7,7 +7,7 @@
  */
 
 import { renderHook } from '@testing-library/react';
-import { useVisualFieldOverlay } from '../../components/Visualizer/hooks/useVisualFieldOverlay';
+import { useVisualFieldOverlay } from '../../components/Visualizer/hooks/visualFieldOverlays/useVisualFieldOverlay';
 import { VisualEffect } from '../../types/visualEffects';
 
 function makeEffect(

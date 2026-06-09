@@ -66,7 +66,6 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Right
   if (quadrantanopiaRight?.enabled) {
-    const qri = quadrantanopiaRight.intensity === 1 ? 1 : 0.85 * quadrantanopiaRight.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaRight',
       `radial-gradient(circle at 0% 100%,

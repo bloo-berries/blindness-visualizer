@@ -8,24 +8,19 @@ import {
   createAmadouBagayokoOverlays,
   createDavidBrownOverlays,
   createLexGilletteOverlays,
-  createGalileoOverlays,
-  createVedMehtaOverlays,
-  createLucyEdwardsOverlays,
-  createDavidPatersonOverlays,
-  createErikWeihenmayerOverlays,
-  createMarlaRunyanOverlays,
-  createMinkaraOverlays,
-  createJoshuaMieleOverlays,
-  createMilaKunisOverlays,
-  createJoseCidOverlays,
+  galileoOverlays,
+  vedMehtaOverlays,
+  lucyEdwardsOverlays,
+  davidPatersonOverlays,
+  erikWeihenmayerOverlays,
+  marlaRunyanOverlays,
+  minkaraOverlays,
+  joshuaMieleOverlays,
+  milaKunisOverlays,
+  joseCidOverlays,
   createAllFamousPeopleOverlays,
 } from '../../utils/overlays/famousPeople';
 
-import { galileoOverlays } from '../../utils/overlays/famousPeople/galileoOverlays';
-import { vedMehtaOverlays } from '../../utils/overlays/famousPeople/vedMehtaOverlays';
-import { lucyEdwardsOverlays } from '../../utils/overlays/famousPeople/lucyEdwardsOverlays';
-import { davidPatersonOverlays } from '../../utils/overlays/famousPeople/davidPatersonOverlays';
-import { joseCidOverlays } from '../../utils/overlays/famousPeople/joseCidOverlays';
 import {
   processOverlayConfigs,
   createOverlayProcessor,
@@ -188,11 +183,11 @@ describe('Famous People Overlays', () => {
       configs: OverlayConfig[];
       createFn: (effects: Map<string, VisualEffect>, container?: HTMLElement) => void;
     }> = [
-      { name: 'galileo', configs: galileoOverlays, createFn: createGalileoOverlays },
-      { name: 'vedMehta', configs: vedMehtaOverlays, createFn: createVedMehtaOverlays },
-      { name: 'lucyEdwards', configs: lucyEdwardsOverlays, createFn: createLucyEdwardsOverlays },
-      { name: 'davidPaterson', configs: davidPatersonOverlays, createFn: createDavidPatersonOverlays },
-      { name: 'joseCid', configs: joseCidOverlays, createFn: createJoseCidOverlays },
+      { name: 'galileo', configs: galileoOverlays, createFn: (effects, container) => processOverlayConfigs(galileoOverlays, effects, container) },
+      { name: 'vedMehta', configs: vedMehtaOverlays, createFn: (effects, container) => processOverlayConfigs(vedMehtaOverlays, effects, container) },
+      { name: 'lucyEdwards', configs: lucyEdwardsOverlays, createFn: (effects, container) => processOverlayConfigs(lucyEdwardsOverlays, effects, container) },
+      { name: 'davidPaterson', configs: davidPatersonOverlays, createFn: (effects, container) => processOverlayConfigs(davidPatersonOverlays, effects, container) },
+      { name: 'joseCid', configs: joseCidOverlays, createFn: (effects, container) => processOverlayConfigs(joseCidOverlays, effects, container) },
     ];
 
     test.each(declarativeOverlays)(
@@ -482,25 +477,25 @@ describe('Famous People Overlays', () => {
     );
   });
 
-  // --- Wrapped declarative overlay creators via test.each ---
-  describe('wrapped declarative overlay creators', () => {
+  // --- Declarative overlay configs via processOverlayConfigs ---
+  describe('declarative overlay configs via processOverlayConfigs', () => {
     const wrappedCreators: Array<{
       name: string;
-      createFn: (effects: Map<string, VisualEffect>, container?: HTMLElement) => void;
+      configs: OverlayConfig[];
       sampleEffectId: string;
     }> = [
-      { name: 'erikWeihenmayer', createFn: createErikWeihenmayerOverlays, sampleEffectId: 'erikRetinoschisisIslands' },
-      { name: 'marlaRunyan', createFn: createMarlaRunyanOverlays, sampleEffectId: 'marlaCentralScotoma' },
-      { name: 'minkara', createFn: createMinkaraOverlays, sampleEffectId: 'minkaraEndStageComplete' },
-      { name: 'joshuaMiele', createFn: createJoshuaMieleOverlays, sampleEffectId: 'joshuaCompleteBlindness' },
-      { name: 'milaKunis', createFn: createMilaKunisOverlays, sampleEffectId: 'milaCompleteVision' },
+      { name: 'erikWeihenmayer', configs: erikWeihenmayerOverlays, sampleEffectId: 'erikRetinoschisisIslands' },
+      { name: 'marlaRunyan', configs: marlaRunyanOverlays, sampleEffectId: 'marlaCentralScotoma' },
+      { name: 'minkara', configs: minkaraOverlays, sampleEffectId: 'minkaraEndStageComplete' },
+      { name: 'joshuaMiele', configs: joshuaMieleOverlays, sampleEffectId: 'joshuaCompleteBlindness' },
+      { name: 'milaKunis', configs: milaKunisOverlays, sampleEffectId: 'milaCompleteVision' },
     ];
 
     test.each(wrappedCreators)(
       '$name creates overlay when effect is enabled',
-      ({ createFn, sampleEffectId }) => {
+      ({ configs, sampleEffectId }) => {
         const effects = effectsMap(makeEffect(sampleEffectId, 0.6));
-        createFn(effects);
+        processOverlayConfigs(configs, effects);
 
         const overlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
         expect(overlays.length).toBeGreaterThan(0);
@@ -509,8 +504,8 @@ describe('Famous People Overlays', () => {
 
     test.each(wrappedCreators)(
       '$name creates no overlays for empty effects map',
-      ({ createFn }) => {
-        createFn(new Map());
+      ({ configs }) => {
+        processOverlayConfigs(configs, new Map());
 
         const overlays = document.querySelectorAll('[id^="visual-field-overlay-"]');
         expect(overlays.length).toBe(0);

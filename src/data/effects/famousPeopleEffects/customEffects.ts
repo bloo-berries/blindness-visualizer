@@ -17,4 +17,5 @@ export const customFamousPeopleEffects: VisualEffect[] = [
   effect('stevieWonderROP', 'Retinopathy of Prematurity (Stevie Wonder)', 'Total or near-total blindness from retinopathy of prematurity. Caused by excess oxygen in incubator as premature infant.'),
   effect('andreaBocelliBlindness', 'Congenital Glaucoma (Andrea Bocelli)', 'Complete blindness following soccer accident at age 12. Brain hemorrhage during soccer match resulted in total darkness.'),
   effect('vedMehtaBlindness', 'Meningitis Blindness (Ved Mehta)', 'Complete blindness from cerebrospinal meningitis at age 3. Total darkness with retained visual memories from before age 3.'),
+  effect('mollyBurkeBlindness', 'RP Blindness (Molly Burke)', 'Complete blindness by age 14 from retinitis pigmentosa. Progressive peripheral and night vision loss culminating in total blindness.'),
 ];

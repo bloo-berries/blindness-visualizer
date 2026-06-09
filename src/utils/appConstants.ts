@@ -28,12 +28,10 @@ export const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${DEMO_VIDEO_ID}
 
 /**
  * Get contextually appropriate video URL for famous people
- * @param personId - The ID of the famous person
  * @returns YouTube embed URL with appropriate video
  */
-export const getFamousPersonVideoUrl = (personId?: string): string => {
-  const videoId = FAMOUS_PEOPLE_VIDEO_ID;
-  return `https://www.youtube.com/embed/${videoId}?${YOUTUBE_PARAMS}`;
+export const getFamousPersonVideoUrl = (): string => {
+  return `https://www.youtube.com/embed/${FAMOUS_PEOPLE_VIDEO_ID}?${YOUTUBE_PARAMS}`;
 };
 
 /**

@@ -6,10 +6,6 @@ import { CSSFilterEffectConfig } from './filterConfig';
 
 const completeBlindnessFilters = (): string[] => [
   'brightness(0%)',
-  'contrast(0%)',
-  'saturate(0%)',
-  'hue-rotate(0deg)',
-  'sepia(100%)',
 ];
 
 export const customFamousPeopleFilterConfigs: CSSFilterEffectConfig[] = [
@@ -37,6 +33,14 @@ export const customFamousPeopleFilterConfigs: CSSFilterEffectConfig[] = [
   {
     effectId: 'vedMehtaBlindness',
     filters: completeBlindnessFilters,
+  },
+  {
+    effectId: 'mollyBurkeBlindness',
+    filters: () => [
+      'brightness(5%)',
+      'contrast(10%)',
+      'blur(12px)',
+    ],
   },
   // John Milton - progressive blindness
   {

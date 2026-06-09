@@ -24,7 +24,12 @@ import {
   Person as PersonIcon,
   Work as WorkIcon,
   ColorLens as ColorLensIcon,
-  MedicalServices as MedicalServicesIcon
+  MedicalServices as MedicalServicesIcon,
+  Pets as PetsIcon,
+  Biotech as BiotechIcon,
+  ChildCare as ChildCareIcon,
+  Devices as DevicesIcon,
+  Warning as WarningIcon
 } from '@mui/icons-material';
 
 const FAQ_ITEMS_CONFIG = [
@@ -37,7 +42,12 @@ const FAQ_ITEMS_CONFIG = [
   { id: 'legalVsTotal', icon: <VisibilityIcon />, categoryKey: 'visionPerception', isSpecial: true },
   { id: 'employment', icon: <WorkIcon />, categoryKey: 'employmentCareer' },
   { id: 'identification', icon: <ColorLensIcon />, categoryKey: 'dailyLife', hasList: true },
-  { id: 'causesTreatment', icon: <MedicalServicesIcon />, categoryKey: 'medicalTreatment', isSpecial: true }
+  { id: 'causesTreatment', icon: <MedicalServicesIcon />, categoryKey: 'medicalTreatment', isSpecial: true },
+  { id: 'genetics', icon: <BiotechIcon />, categoryKey: 'medicalTreatment' },
+  { id: 'childScreening', icon: <ChildCareIcon />, categoryKey: 'medicalTreatment' },
+  { id: 'adaptiveTech', icon: <DevicesIcon />, categoryKey: 'technologyAccessibility', hasList: true },
+  { id: 'guideDogs', icon: <PetsIcon />, categoryKey: 'navigationMobility' },
+  { id: 'visionChanges', icon: <WarningIcon />, categoryKey: 'medicalTreatment', hasList: true }
 ] as const;
 
 const FAQTab: React.FC = () => {

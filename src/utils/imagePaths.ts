@@ -14,26 +14,12 @@
 export const PLACEHOLDER_IMAGE = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect fill='%23cccccc' width='300' height='400'/%3E%3Ctext fill='%23666666' font-family='sans-serif' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EImage Not Found%3C/text%3E%3C/svg%3E`;
 
 /**
- * Base URL for public assets (handles both development and production)
- */
-const getBaseUrl = (): string => {
-  return process.env.PUBLIC_URL || '';
-};
-
-/**
- * Base path for people images
- * Source: public/images/people/
- * Served at: /images/people/ (or {PUBLIC_URL}/images/people/ in production)
- */
-const PEOPLE_IMAGES_BASE = '/images/people/';
-
-/**
  * Get the full path to a people image
  * @param filename - The image filename (e.g., 'john-milton.webp')
  * @returns Full path to the image (e.g., '/images/people/john-milton.webp')
  */
 export const getPeopleImagePath = (filename: string): string => {
-  return `${getBaseUrl()}${PEOPLE_IMAGES_BASE}${filename}`;
+  return `${process.env.PUBLIC_URL || ''}/images/people/${filename}`;
 };
 
 /**
@@ -250,7 +236,8 @@ const PEOPLE_IMAGE_MAP: Record<string, string> = {
   leeKailin: 'Lee-Kai-lin.webp',
   abdallahNyangalio: 'Abdallah-Nyangalio.webp',
   serkanYildirim: 'Serkan-Yıldırım.webp',
-  bilalGoregen: 'Bilal-Göregen.webp'
+  bilalGoregen: 'Bilal-Göregen.webp',
+  joseGarciaAntonio: 'Jose-Garcia-Antonio.webp'
 };
 
 /**

@@ -7,7 +7,7 @@ import {
   CircularProgress,
   Box
 } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AccessibilityProvider, useAccessibility } from './contexts/AccessibilityContext';
 import type { ThemeMode } from './contexts/AccessibilityContext';
@@ -19,7 +19,6 @@ const HomePage = React.lazy(() => import('./components/HomePage'));
 const VisionSimulator = React.lazy(() => import('./components/VisionSimulator'));
 const FamousBlindPeople = React.lazy(() => import('./components/FamousBlindPeople'));
 const ConditionsPage = React.lazy(() => import('./components/ConditionsPage'));
-const FAQPage = React.lazy(() => import('./components/FAQPage'));
 const AboutPage = React.lazy(() => import('./components/AboutPage'));
 const FeedbackPage = React.lazy(() => import('./components/FeedbackPage'));
 const ResourcesPage = React.lazy(() => import('./components/ResourcesPage'));
@@ -236,7 +235,7 @@ const ThemedApp: React.FC = () => {
             <Route path="/simulator" element={<ErrorBoundary><VisionSimulator /></ErrorBoundary>} />
             <Route path="/famous-people" element={<ErrorBoundary><FamousBlindPeople /></ErrorBoundary>} />
             <Route path="/conditions" element={<ErrorBoundary><ConditionsPage /></ErrorBoundary>} />
-            <Route path="/faq" element={<ErrorBoundary><FAQPage /></ErrorBoundary>} />
+            <Route path="/faq" element={<Navigate to="/conditions?tab=faq" replace />} />
             <Route path="/about" element={<ErrorBoundary><AboutPage /></ErrorBoundary>} />
             <Route path="/feedback" element={<ErrorBoundary><FeedbackPage /></ErrorBoundary>} />
             <Route path="/resources" element={<ErrorBoundary><ResourcesPage /></ErrorBoundary>} />

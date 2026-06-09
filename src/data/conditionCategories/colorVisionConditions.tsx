@@ -13,6 +13,11 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Protanopia (Red-Blind)',
       imagePath: `${PUBLIC_URL}/images/glossary/Protanopia (Red-Blind).webp`,
       description: 'Complete inability to distinguish between red and green colors. Red appears as black, and green appears as yellow. Affects about 1% of males and 0.01% of females.',
+      prevalence: '~1% of males, ~0.01% of females',
+      resourceLinks: [
+        { label: 'NEI - Color Blindness', url: 'https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness' },
+        { label: 'Prevent Blindness - Color Deficiency', url: 'https://preventblindness.org/color-blindness/' }
+      ],
       treatments: {
         available: false,
         options: [
@@ -29,6 +34,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Deuteranopia (Green-Blind)',
       imagePath: `${PUBLIC_URL}/images/glossary/Deuteranopia (Green-Blind).webp`,
       description: 'Complete inability to distinguish between red and green colors. Green appears as light gray or beige, and red appears as brown. Most common form of color blindness.',
+      prevalence: '~1% of males',
       treatments: {
         available: false,
         options: [
@@ -45,6 +51,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Tritanopia (Blue-Blind)',
       imagePath: `${PUBLIC_URL}/images/glossary/Tritanopia (Blue-Blind).webp`,
       description: 'Inability to distinguish between blue and yellow colors. Blue appears as green, and yellow appears as light gray or violet. Very rare form of color blindness.',
+      prevalence: '~0.001% of the population',
       treatments: {
         available: false,
         options: [
@@ -61,6 +68,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Protanomaly (Red-Weak)',
       imagePath: `${PUBLIC_URL}/images/glossary/Protanomaly (Red-Weak).webp`,
       description: 'Reduced sensitivity to red light. Red appears darker and less bright than normal. Difficulty distinguishing between red and green, especially in low light.',
+      prevalence: '~1% of males, ~0.03% of females',
       treatments: {
         available: false,
         options: [
@@ -76,6 +84,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Deuteranomaly (Green-Weak)',
       imagePath: `${PUBLIC_URL}/images/glossary/Deuteranomaly (Green-Weak).webp`,
       description: 'Reduced sensitivity to green light. Green appears more red than normal. Most common form of color vision deficiency, affecting about 6% of males.',
+      prevalence: '~6% of males, ~0.4% of females',
       treatments: {
         available: false,
         options: [
@@ -91,6 +100,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Tritanomaly (Blue-Weak)',
       imagePath: `${PUBLIC_URL}/images/glossary/Tritanomaly (Blue-Weak).webp`,
       description: 'Reduced sensitivity to blue light. Blue appears greener than normal, and yellow appears lighter. Very rare form of color vision deficiency.',
+      prevalence: 'Extremely rare; exact prevalence unknown',
       treatments: {
         available: false,
         options: [
@@ -106,6 +116,7 @@ export const colorVisionCategory: ConditionCategory = {
       name: 'Monochromacy (Complete Color Blindness)',
       imagePath: `${PUBLIC_URL}/images/glossary/Monochromacy (Complete Color Blindness).webp`,
       description: 'Complete inability to see any colors. Vision is limited to shades of gray. Extremely rare, affecting only about 1 in 33,000 people.',
+      prevalence: '~1 in 33,000 people',
       treatments: {
         available: false,
         options: [

@@ -57,8 +57,8 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
       removeDOMFilter(activeId);
       setCurrentActiveFilterId(null);
     }
-    // Gradually increase desaturation and contrast as intensity increases
-    const filter = `saturate(${100 - intensity * 100}%) contrast(${100 + intensity * 20}%)`;
+    // Desaturation + reduced contrast + brightness reduction (photophobia) + slight blur (reduced acuity ~20/200)
+    const filter = `saturate(${100 - intensity * 100}%) contrast(${100 - intensity * 15}%) brightness(${100 - intensity * 25}%) blur(${intensity * 1.5}px)`;
     return filter;
   }
 

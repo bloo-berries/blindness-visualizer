@@ -69,6 +69,7 @@ describe('useVisualFieldOverlay', () => {
       'blindnessRightEye',
       'joseCidMonocularVision',
       'retinalDetachment',
+      'astigmatism',
       'quadrantanopiaLeft',
       'quadrantanopiaRight',
       'quadrantanopiaInferiorLeft',
@@ -213,10 +214,10 @@ describe('useVisualFieldOverlay', () => {
   });
 
   describe('specific overlay characteristics', () => {
-    test('retinitisPigmentosa uses multiply blend mode', () => {
+    test('retinitisPigmentosa uses normal blend mode', () => {
       const effects = [makeEffect('retinitisPigmentosa', true, 0.7)];
       const { result } = renderHook(() => useVisualFieldOverlay(effects));
-      expect(result.current[0].mixBlendMode).toBe('multiply');
+      expect(result.current[0].mixBlendMode).toBe('normal');
     });
 
     test('hemianopiaLeft background is a left-to-right gradient', () => {
@@ -237,10 +238,10 @@ describe('useVisualFieldOverlay', () => {
       expect(result.current[0].mixBlendMode).toBe('normal');
     });
 
-    test('blindnessLeftEye at partial intensity uses multiply blend mode', () => {
+    test('blindnessLeftEye at partial intensity uses normal blend mode', () => {
       const effects = [makeEffect('blindnessLeftEye', true, 0.5)];
       const { result } = renderHook(() => useVisualFieldOverlay(effects));
-      expect(result.current[0].mixBlendMode).toBe('multiply');
+      expect(result.current[0].mixBlendMode).toBe('normal');
     });
 
     test('diabeticRetinopathy has filter property', () => {
@@ -248,6 +249,127 @@ describe('useVisualFieldOverlay', () => {
       const { result } = renderHook(() => useVisualFieldOverlay(effects));
       expect(result.current[0].filter).toBeDefined();
       expect(result.current[0].filter).toContain('blur');
+    });
+  });
+
+  describe('multi-layer generators (visual floaters)', () => {
+    test('visualFloaters returns two overlay layers', () => {
+      const effects = [makeEffect('visualFloaters', true, 0.5)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current.length).toBe(2);
+      for (const overlay of result.current) {
+        for (const key of OVERLAY_BASE_KEYS) {
+          expect(overlay).toHaveProperty(key);
+        }
+        expect(overlay.pointerEvents).toBe('none');
+      }
+    });
+
+    test('visualFloaters layers include drift animation', () => {
+      const effects = [makeEffect('visualFloaters', true, 0.7)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current[0].animation).toContain('floaterDrift');
+      expect(result.current[1].animation).toContain('floaterDrift');
+    });
+
+    test('disabled visualFloaters returns no overlays', () => {
+      const effects = [makeEffect('visualFloaters', false, 0.5)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current).toEqual([]);
+    });
+  });
+
+  describe('multi-layer generators (visual snow)', () => {
+    test('visualSnow returns multiple overlay layers', () => {
+      const effects = [makeEffect('visualSnow', true, 0.5)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      // Visual snow produces 4 layers: dots1, dots2, blue field+photopsia, contrast
+      expect(result.current.length).toBe(4);
+      for (const overlay of result.current) {
+        for (const key of OVERLAY_BASE_KEYS) {
+          expect(overlay).toHaveProperty(key);
+        }
+        expect(overlay.pointerEvents).toBe('none');
+      }
+    });
+
+    test('visualSnow layers include animation', () => {
+      const effects = [makeEffect('visualSnow', true, 0.7)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      // First layer should have drift animation
+      expect(result.current[0].animation).toContain('visualSnowDrift');
+    });
+
+    test('visualSnowDense returns multiple overlay layers', () => {
+      const effects = [makeEffect('visualSnowDense', true, 0.6)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      // Dense produces 4 layers: 3 dot layers + contrast
+      expect(result.current.length).toBe(4);
+    });
+
+    test('visualSnowFlashing returns overlay layer', () => {
+      const effects = [makeEffect('visualSnowFlashing', true, 0.5)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current.length).toBe(1);
+    });
+
+    test('visualSnow combined with regular overlay effects', () => {
+      const effects = [
+        makeEffect('retinitisPigmentosa', true, 0.6),
+        makeEffect('visualSnow', true, 0.5),
+      ];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      // 1 RP overlay + 4 visual snow layers = 5
+      expect(result.current.length).toBe(5);
+    });
+
+    test('disabled visual snow returns no overlays', () => {
+      const effects = [makeEffect('visualSnow', false, 0.5)];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current).toEqual([]);
+    });
+  });
+
+  describe('z-index layering', () => {
+    test('refractive errors render behind visual field loss', () => {
+      // Astigmatism toggled on AFTER hemianopia — should still sort behind it
+      const effects = [
+        makeEffect('hemianopiaLeft', true, 0.7),
+        makeEffect('astigmatism', true, 0.5),
+      ];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      expect(result.current.length).toBe(2);
+      // Astigmatism (refractive) should come first (lower z), hemianopia second (higher z)
+      const astigmatismZ = result.current[0].zIndex as number;
+      const hemianopiaZ = result.current[1].zIndex as number;
+      expect(astigmatismZ).toBeLessThan(hemianopiaZ);
+    });
+
+    test('visual disturbances render on top of visual field loss', () => {
+      const effects = [
+        makeEffect('visualSnow', true, 0.5),
+        makeEffect('tunnelVision', true, 0.6),
+      ];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      // Tunnel vision (field loss) should come before visual snow (disturbance)
+      const fieldLossOverlays = result.current.filter(o => (o.zIndex as number) < 9800);
+      const disturbanceOverlays = result.current.filter(o => (o.zIndex as number) >= 9800);
+      expect(fieldLossOverlays.length).toBeGreaterThan(0);
+      expect(disturbanceOverlays.length).toBeGreaterThan(0);
+    });
+
+    test('refractive + field loss + disturbance all layer correctly', () => {
+      const effects = [
+        makeEffect('visualFloaters', true, 0.5),
+        makeEffect('astigmatism', true, 0.5),
+        makeEffect('scotoma', true, 0.6),
+      ];
+      const { result } = renderHook(() => useVisualFieldOverlay(effects));
+      const zValues = result.current.map(o => o.zIndex as number);
+      // Should be sorted: refractive < field loss < disturbance
+      for (let i = 1; i < zValues.length; i++) {
+        expect(zValues[i]).toBeGreaterThanOrEqual(zValues[i - 1]);
+      }
     });
   });
 });

@@ -1,4 +1,5 @@
 import { personData, categories } from './index';
+import { NATIONALITIES } from './nationalities';
 
 // Pre-computed person keys and count (never changes)
 export const PERSON_IDS = Object.keys(personData);
@@ -108,15 +109,7 @@ export const PRECOMPUTED_CONDITION_CATEGORIES = (() => {
   return categorized;
 })();
 
-// Pre-compute countries (static data, never changes)
-export const PRECOMPUTED_COUNTRIES = (() => {
-  const countryMap = new Map<string, string>();
-  Object.values(personData).forEach(person => {
-    if (person.nationality) {
-      countryMap.set(person.nationality.country, person.nationality.flag);
-    }
-  });
-  return Array.from(countryMap.entries())
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([country, flag]) => ({ country, flag }));
-})();
+// Pre-compute countries from the full nationalities table (static data, never changes)
+export const PRECOMPUTED_COUNTRIES = Object.values(NATIONALITIES)
+  .map(({ country, flag }) => ({ country, flag }))
+  .sort((a, b) => a.country.localeCompare(b.country));

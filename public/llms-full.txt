@@ -2,7 +2,7 @@
 
 > https://theblind.spot
 
-This file contains comprehensive information about all 42+ vision conditions and 209+ famous people profiled on The Blind Spot. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 42+ vision conditions and 210+ famous people profiled on The Blind Spot. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -3576,6 +3576,26 @@ He cuts fabric with surgical precision by looping his left hand over the top of 
 
 ---
 
+#### Jose Garcia Antonio (Born 1951)
+
+**Condition**: Complete Blindness
+**Achievement**: Blind Master Sculptor from Oaxaca
+**Onset**: Lost sight as a young man
+
+Jose Garcia Antonio is a master sculptor and artisan from Oaxaca, Mexico, who creates intricate pieces entirely from memory despite losing his sight.
+
+Working with wood and other materials, he relies on touch and spatial memory to craft detailed figures and traditional Oaxacan art forms.
+
+• Creates sculptures and carvings by touch, guided by decades of visual memory
+
+• His work preserves traditional Oaxacan artistic traditions
+
+• Demonstrates extraordinary spatial awareness and craftsmanship without sight
+
+**Simulate their vision**: [Experience on The Blind Spot](https://theblind.spot/famous-people)
+
+---
+
 #### Boris Dyozhkin (1914-1992)
 
 **Condition**: Lost Left Eye (Bomb Fragment) + Prior Vision Loss
@@ -5579,7 +5599,7 @@ The Blind Spot (https://theblind.spot) is a free, open-source educational tool t
 ### Key Features
 - Real-time vision simulation with adjustable intensity
 - 42+ medically-researched vision conditions
-- 209+ famous people profiles with personalized simulations
+- 210+ famous people profiles with personalized simulations
 - Detailed condition descriptions with treatment information
 - Available in 26 languages
 - Fully accessible (WCAG-compliant)

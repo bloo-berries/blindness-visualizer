@@ -37,6 +37,59 @@ export const orientationGroupConditions: ConditionType[] = Object.values(orienta
   .flatMap(group => [group.leftCondition, group.rightCondition]);
 
 /**
+ * Stage marks for the intensity slider, providing clinical context.
+ * Marks are visual reference points — the slider does not snap to them.
+ */
+export const CONDITION_STAGE_MARKS: Partial<Record<ConditionType, Array<{ value: number; label: string }>>> = {
+  glaucoma: [
+    { value: 0, label: 'Normal' },
+    { value: 20, label: 'Early (~20/25)' },
+    { value: 50, label: 'Moderate (~20/50)' },
+    { value: 80, label: 'Advanced (~20/100)' },
+    { value: 100, label: 'End stage' },
+  ],
+  retinitisPigmentosa: [
+    { value: 0, label: 'Normal' },
+    { value: 25, label: 'Early' },
+    { value: 50, label: 'Moderate (~20/60)' },
+    { value: 75, label: 'Advanced (~20/200)' },
+    { value: 100, label: 'Severe' },
+  ],
+  amd: [
+    { value: 0, label: 'Normal' },
+    { value: 25, label: 'Early' },
+    { value: 50, label: 'Intermediate' },
+    { value: 75, label: 'Advanced (~20/200)' },
+    { value: 100, label: 'End stage' },
+  ],
+  cataracts: [
+    { value: 0, label: 'Normal' },
+    { value: 33, label: 'Early (~20/30)' },
+    { value: 66, label: 'Moderate (~20/60)' },
+    { value: 100, label: 'Advanced (~20/200)' },
+  ],
+  posteriorSubcapsularCataract: [
+    { value: 0, label: 'Normal' },
+    { value: 33, label: 'Early (~20/30)' },
+    { value: 66, label: 'Moderate (~20/60)' },
+    { value: 100, label: 'Advanced (~20/200)' },
+  ],
+  corticalCataract: [
+    { value: 0, label: 'Normal' },
+    { value: 33, label: 'Early (~20/30)' },
+    { value: 66, label: 'Moderate (~20/60)' },
+    { value: 100, label: 'Advanced (~20/200)' },
+  ],
+  diabeticRetinopathy: [
+    { value: 0, label: 'Normal' },
+    { value: 25, label: 'Mild NPDR' },
+    { value: 50, label: 'Moderate' },
+    { value: 75, label: 'Severe' },
+    { value: 100, label: 'PDR' },
+  ],
+};
+
+/**
  * Condition categories for organizing effects in the control panel
  */
 export const conditionCategories: Record<string, ConditionType[]> = {

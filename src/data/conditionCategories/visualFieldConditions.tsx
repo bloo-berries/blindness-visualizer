@@ -13,6 +13,7 @@ export const visualFieldCategory: ConditionCategory = {
       name: 'Homonymous Hemianopia (Left-field)',
       imagePath: `${PUBLIC_URL}/images/glossary/Homonymous Hemianopia (Left-field).webp`,
       description: 'Loss of the left half of the visual field in both eyes. Caused by damage to the right side of the brain\'s visual pathways. May cause difficulty seeing objects to the left and problems with navigation.',
+      prevalence: '~1 in 1,000 people; occurs in 8-10% of stroke patients',
       relatedPeople: ['John Milton'],
       treatments: {
         available: true,
@@ -122,6 +123,7 @@ export const visualFieldCategory: ConditionCategory = {
       name: 'Bitemporal Hemianopia',
       imagePath: `${PUBLIC_URL}/images/glossary/Bitemporal Hemianopia.webp`,
       description: 'Loss of vision in the outer (temporal) half of each eye\'s visual field. Caused by damage to the optic chiasm, often from pituitary tumors. Creates a "tunnel vision" effect.',
+      prevalence: 'Occurs in ~50% of pituitary adenoma patients',
       treatments: {
         available: true,
         options: [
@@ -139,6 +141,7 @@ export const visualFieldCategory: ConditionCategory = {
       name: 'Central Scotoma',
       imagePath: `${PUBLIC_URL}/images/glossary/Central Scotoma.webp`,
       description: 'A blind spot in the center of vision. Can be caused by macular degeneration, optic neuritis, or other conditions affecting the macula. Makes reading and recognizing faces difficult.',
+      prevalence: 'Common; occurs in most AMD patients and many optic nerve conditions',
       relatedPeople: ['Marla Runyan', 'Dr. Mona Minkara'],
       treatments: {
         available: true,
@@ -160,6 +163,7 @@ export const visualFieldCategory: ConditionCategory = {
       name: 'Tunnel Vision',
       imagePath: `${PUBLIC_URL}/images/glossary/Tunnel Vision.webp`,
       description: 'Loss of peripheral vision while central vision remains. Can be caused by glaucoma, retinitis pigmentosa, or other conditions affecting the retina or optic nerve.',
+      prevalence: 'Varies by cause; affects most advanced glaucoma and RP patients',
       relatedPeople: ['Erik Weihenmayer'],
       treatments: {
         available: true,

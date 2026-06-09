@@ -16,6 +16,32 @@ import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
 import { renderDescriptionWithLinks } from '../../utils/textRendering';
 
+const FIELD_LOSS_NOTE = 'This shows what visual information is lost. A real person typically doesn\'t perceive dark areas \u2014 the brain fills in missing regions, and many are unaware of their loss.';
+
+const SIMULATION_NOTES: Partial<Record<ConditionType, string>> = {
+  // Field loss conditions share the same note
+  glaucoma: FIELD_LOSS_NOTE,
+  retinitisPigmentosa: FIELD_LOSS_NOTE,
+  tunnelVision: FIELD_LOSS_NOTE,
+  hemianopiaLeft: FIELD_LOSS_NOTE,
+  hemianopiaRight: FIELD_LOSS_NOTE,
+  bitemporalHemianopia: FIELD_LOSS_NOTE,
+  quadrantanopiaLeft: FIELD_LOSS_NOTE,
+  quadrantanopiaRight: FIELD_LOSS_NOTE,
+  quadrantanopiaInferiorLeft: FIELD_LOSS_NOTE,
+  quadrantanopiaInferiorRight: FIELD_LOSS_NOTE,
+  quadrantanopiaSuperiorLeft: FIELD_LOSS_NOTE,
+  quadrantanopiaSuperiorRight: FIELD_LOSS_NOTE,
+  scotoma: FIELD_LOSS_NOTE,
+  blindnessLeftEye: FIELD_LOSS_NOTE,
+  blindnessRightEye: FIELD_LOSS_NOTE,
+  retinalDetachment: FIELD_LOSS_NOTE,
+  // Condition-specific notes
+  amd: 'Metamorphopsia (wavy distortion) is shown, but the brain\'s filling-in of the central scotoma cannot be simulated on screen.',
+  monochromacy: 'Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.',
+  monochromatic: 'Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.',
+};
+
 export interface EffectListItemProps {
   effect: VisualEffect;
   isHighlighted: boolean;
@@ -148,23 +174,17 @@ export const EffectListItem = memo<EffectListItemProps>(({
                 />
               </Box>
             )}
-            {/* Glaucoma-specific information */}
-            {effect.id === 'glaucoma' && effect.enabled && (
-              <Box sx={{ mt: 2, pl: 1 }}>
-                <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary', fontStyle: 'italic' }}>
-                  Glaucoma Stages:
-                </Typography>
-                <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
-                  • 0-20%: Early - Small paracentral scotomas
-                </Typography>
-                <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
-                  • 20-50%: Moderate - Arc-shaped defects
-                </Typography>
-                <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
-                  • 50-80%: Advanced - Tunnel vision
-                </Typography>
-                <Typography variant="caption" sx={{ display: 'block', mb: 0.5, color: 'text.secondary', fontSize: '0.7rem' }}>
-                  • 80-100%: End stage - Severe constriction
+            {/* Simulation disclaimer note */}
+            {effect.enabled && SIMULATION_NOTES[effect.id as ConditionType] && (
+              <Box sx={{
+                mt: 1.5,
+                pl: 1.5,
+                borderLeft: '3px solid',
+                borderColor: 'info.main',
+                py: 0.5,
+              }}>
+                <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary', fontStyle: 'italic', lineHeight: 1.4 }}>
+                  {SIMULATION_NOTES[effect.id as ConditionType]}
                 </Typography>
               </Box>
             )}

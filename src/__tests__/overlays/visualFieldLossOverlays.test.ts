@@ -34,20 +34,20 @@ describe('createVisualFieldLossOverlays', () => {
       expect(overlay).not.toBeNull();
     });
 
-    it('uses multiply blend mode', () => {
+    it('uses normal blend mode', () => {
       const effects = effectsMap(makeEffect('tunnelVision', 0.5));
       createVisualFieldLossOverlays(effects);
 
       const overlay = document.getElementById('visual-field-overlay-tunnelVision');
-      expect(overlay!.style.mixBlendMode).toBe('multiply');
+      expect(overlay!.style.mixBlendMode).toBe('normal');
     });
 
-    it('caps opacity at 0.95', () => {
+    it('caps opacity at 0.85', () => {
       const effects = effectsMap(makeEffect('tunnelVision', 1.0));
       createVisualFieldLossOverlays(effects);
 
       const overlay = document.getElementById('visual-field-overlay-tunnelVision');
-      expect(parseFloat(overlay!.style.opacity)).toBeLessThanOrEqual(0.95);
+      expect(parseFloat(overlay!.style.opacity)).toBeLessThanOrEqual(0.85);
     });
 
     it('sets pointer-events to none', () => {
@@ -85,12 +85,12 @@ describe('createVisualFieldLossOverlays', () => {
       expect(overlay!.style.mixBlendMode).toBe('normal');
     });
 
-    it('uses multiply blend mode at partial intensity', () => {
+    it('uses normal blend mode at partial intensity', () => {
       const effects = effectsMap(makeEffect('hemianopiaLeft', 0.5));
       createVisualFieldLossOverlays(effects);
 
       const overlay = document.getElementById('visual-field-overlay-hemianopiaLeft');
-      expect(overlay!.style.mixBlendMode).toBe('multiply');
+      expect(overlay!.style.mixBlendMode).toBe('normal');
     });
 
     it('sets position to absolute', () => {
@@ -134,7 +134,7 @@ describe('createVisualFieldLossOverlays', () => {
       const overlay = document.getElementById('visual-field-overlay-quadrantanopiaRight');
       expect(overlay).not.toBeNull();
       expect(overlay!.style.mixBlendMode).toBe('normal');
-      expect(overlay!.style.opacity).toBe('1');
+      expect(parseFloat(overlay!.style.opacity)).toBeLessThanOrEqual(0.85);
     });
   });
 
@@ -238,12 +238,12 @@ describe('createVisualFieldLossOverlays', () => {
       expect(overlay).not.toBeNull();
     });
 
-    it('overlay has multiply blend mode', () => {
+    it('overlay has normal blend mode', () => {
       const effects = effectsMap(makeEffect('scotoma', 0.5));
       createVisualFieldLossOverlays(effects);
 
       const overlay = document.getElementById('visual-field-overlay-scotoma');
-      expect(overlay!.style.mixBlendMode).toBe('multiply');
+      expect(overlay!.style.mixBlendMode).toBe('normal');
     });
 
     it('opacity changes with different intensity values', () => {

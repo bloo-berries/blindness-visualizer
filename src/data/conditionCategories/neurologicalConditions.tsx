@@ -12,6 +12,7 @@ export const neurologicalConditionsCategory: ConditionCategory = {
       id: 'visualAura',
       name: 'Visual Aura',
       description: 'Temporary visual disturbances that can precede migraines. May include flashing lights, zigzag patterns, or blind spots. Usually lasts 20-60 minutes before the headache begins.',
+      prevalence: '~25-30% of migraine sufferers experience aura',
       treatments: {
         available: true,
         options: [
@@ -29,6 +30,7 @@ export const neurologicalConditionsCategory: ConditionCategory = {
       id: 'visualSnow',
       name: 'Visual Snow',
       description: 'A persistent visual disturbance where people see tiny, flickering dots across their entire visual field. Similar to the static noise on an old television. Can be constant or intermittent.',
+      prevalence: '~2-3% of the population; likely underdiagnosed',
       treatments: {
         available: true,
         options: [
@@ -45,6 +47,7 @@ export const neurologicalConditionsCategory: ConditionCategory = {
       id: 'visualFloaters',
       name: 'Visual Floaters (Myodesopsia)',
       description: 'Shadows cast on the retina by debris floating in the vitreous humor. Includes cobweb/string floaters, dots/spots, ring floaters (Weiss Ring), and cloud/sheet floaters. Move with eye movement but lag behind, following fluid dynamics. Most visible against bright backgrounds, can interfere with reading and detailed tasks.',
+      prevalence: 'Very common; ~70% of people experience floaters by age 70',
       treatments: {
         available: true,
         options: [
@@ -79,6 +82,7 @@ export const neurologicalConditionsCategory: ConditionCategory = {
       id: 'diplopia',
       name: 'Diplopia (Double Vision)',
       description: 'Seeing two images of a single object. Can be monocular (affecting one eye) or binocular (affecting both eyes). Usually caused by misalignment of the eyes or problems within the eye itself.',
+      prevalence: '~850,000 visits per year in the US',
       treatments: {
         available: true,
         options: [
@@ -118,6 +122,7 @@ export const neurologicalConditionsCategory: ConditionCategory = {
       name: 'Night Blindness (Nyctalopia)',
       imagePath: `${PUBLIC_URL}/images/glossary/Night Blindness (Nyctalopia).webp`,
       description: 'Difficulty seeing in low light conditions or darkness. Vision becomes significantly impaired in dim lighting, making navigation and object recognition challenging. Often associated with rod cell dysfunction or vitamin A deficiency.',
+      prevalence: 'Common symptom; vitamin A deficiency affects ~250 million preschool children globally',
       treatments: {
         available: true,
         options: [

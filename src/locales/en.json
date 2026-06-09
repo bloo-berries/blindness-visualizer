@@ -237,6 +237,45 @@
         ],
         "treatmentInfo": "Treatment depends on cause. Some conditions are preventable/treatable, others currently aren't. Research continues on treatments like gene therapy, stem cells, and bionic eyes.",
         "neurologicalNote": "People can also lose their vision from neurological conditions like trauma or stroke."
+      },
+      "genetics": {
+        "question": "Are vision conditions hereditary?",
+        "answer": "Many vision conditions have a genetic component. Retinitis pigmentosa, Stargardt disease, Leber hereditary optic neuropathy (LHON), and some forms of glaucoma are inherited. Color vision deficiencies are X-linked recessive, explaining why they affect males more often. However, many common conditions like cataracts and AMD are multifactorial, involving both genetic predisposition and environmental factors. Genetic counseling can help families understand their risk."
+      },
+      "childScreening": {
+        "question": "When should children have their first eye exam?",
+        "answer": "The American Academy of Ophthalmology recommends eye screening at birth, 6-12 months, 12-36 months, and 3-5 years. A comprehensive eye exam should occur before first grade. Children with risk factors (family history, premature birth, developmental delays) should be examined earlier and more frequently. Early detection of conditions like amblyopia and strabismus is critical, as treatment is most effective before age 7."
+      },
+      "adaptiveTech": {
+        "question": "What adaptive technologies are available for visually impaired people?",
+        "answerIntro": "A wide range of adaptive technologies help visually impaired people in daily life:",
+        "answerItems": [
+          "Screen readers (JAWS, NVDA, VoiceOver) and screen magnifiers (ZoomText)",
+          "Refreshable braille displays and braille notetakers",
+          "AI-powered visual assistance apps (Be My Eyes, Seeing AI, Envision)",
+          "Smart glasses and wearable devices (OrCam MyEye, eSight)",
+          "GPS and navigation apps (Soundscape, BlindSquare, Google Maps accessibility)",
+          "Optical character recognition (OCR) for reading printed text",
+          "Voice assistants (Siri, Alexa, Google Assistant) for hands-free control"
+        ]
+      },
+      "guideDogs": {
+        "question": "How do guide dogs help blind people?",
+        "answer": "Guide dogs are specially trained to navigate obstacles, stop at curbs and stairs, find doors and seats, and practice 'intelligent disobedience' — refusing commands that would put their handler in danger. Training takes about 2 years, and the bond between handler and dog requires several weeks of intensive partnership training. Guide dogs work in harness and should not be petted or distracted while working. Only about 2% of blind people use guide dogs; most rely on white canes or other mobility aids."
+      },
+      "visionChanges": {
+        "question": "What are the early warning signs of vision loss?",
+        "answerIntro": "Seek prompt medical attention if you experience any of these warning signs:",
+        "answerItems": [
+          "Sudden loss of vision in one or both eyes",
+          "Sudden onset of flashes of light or a shower of new floaters",
+          "A curtain or shadow moving across your visual field",
+          "Gradual blurring or hazy vision that doesn't improve with blinking",
+          "Difficulty seeing at night or adjusting to dark rooms",
+          "Seeing halos around lights or increased sensitivity to glare",
+          "Changes in color perception or difficulty distinguishing colors",
+          "Eye pain, redness, or swelling accompanied by vision changes"
+        ]
       }
     }
   },

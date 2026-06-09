@@ -479,23 +479,22 @@ describe('Visual Disturbance Overlays', () => {
   });
 
   // --- Aggregate function ---
+  // Note: Visual floaters and visual snow variants are now rendered via React-based
+  // useVisualFieldOverlay hook. The aggregate function handles auras, hallucinations, etc.
   describe('createVisualDisturbanceOverlays', () => {
-    it('creates overlays for all enabled disturbance effects', () => {
+    it('creates overlays for enabled disturbance effects (hallucinations)', () => {
       const effects = new Map<string, VisualEffect>();
-      effects.set('visualFloaters', { ...makeEffect(0.5), id: 'visualFloaters' });
-      effects.set('visualSnow', { ...makeEffect(0.4), id: 'visualSnow' });
+      effects.set('hallucinations', { ...makeEffect(0.5), id: 'hallucinations' });
 
       createVisualDisturbanceOverlays(effects);
 
-      expect(document.getElementById('visual-field-overlay-visualFloaters')).not.toBeNull();
-      expect(document.getElementById('visual-field-overlay-visualSnow')).not.toBeNull();
+      expect(document.getElementById('visual-field-overlay-hallucinations')).not.toBeNull();
     });
 
     it('does not create overlays for missing effects', () => {
       createVisualDisturbanceOverlays(new Map());
 
-      expect(document.getElementById('visual-field-overlay-visualFloaters')).toBeNull();
-      expect(document.getElementById('visual-field-overlay-visualSnow')).toBeNull();
+      expect(document.getElementById('visual-field-overlay-hallucinations')).toBeNull();
     });
   });
 });

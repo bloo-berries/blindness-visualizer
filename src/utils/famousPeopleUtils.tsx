@@ -36,7 +36,7 @@ const simulationMapDef = {
     // ===== RETINITIS PIGMENTOSA (Tunnel Vision) =====
     'paul-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
     'casey-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
-    'molly-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
+    'molly-complete-blindness': ['mollyBurkeBlindness'],
     'chris-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
     'rachael-retinitis-pigmentosa': ['retinitisPigmentosa', 'nightBlindness'],
     'minkara-end-stage-complete': ['retinitisPigmentosa', 'nightBlindness', 'tunnelVision'],

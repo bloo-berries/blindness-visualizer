@@ -128,6 +128,7 @@ export type ConditionType =
   | 'stevieWonderROP'
   | 'andreaBocelliBlindness'
   | 'vedMehtaBlindness'
+  | 'mollyBurkeBlindness'
   // Infanta Margarita - Congenital Blindness (Light Perception Only)
   | 'margaritaLightPerceptionComplete'
   // Fujitora - Observation Haki

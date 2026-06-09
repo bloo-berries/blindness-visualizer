@@ -18,7 +18,7 @@ export function renderWithProviders(
   function Wrapper({ children }: { children: React.ReactNode }) {
     return (
       <HelmetProvider>
-        <MemoryRouter initialEntries={[route]}>
+        <MemoryRouter initialEntries={[route]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <AccessibilityProvider>{children}</AccessibilityProvider>
         </MemoryRouter>
       </HelmetProvider>

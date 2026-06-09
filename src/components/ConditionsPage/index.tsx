@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Container,
@@ -20,7 +20,8 @@ import '../../styles/FAQ.css';
 const ConditionsPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState(() => searchParams.get('tab') === 'faq' ? 1 : 0);
 
   const handleHomeClick = () => {
     navigate('/');
@@ -28,6 +29,11 @@ const ConditionsPage: React.FC = () => {
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
+    if (newValue === 1) {
+      setSearchParams({ tab: 'faq' }, { replace: true });
+    } else {
+      setSearchParams({}, { replace: true });
+    }
   };
 
   const conditionsJsonLd = useMemo(() => ({

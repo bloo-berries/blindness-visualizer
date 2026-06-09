@@ -8,7 +8,9 @@ export const generateBlurFilter = (effects: VisualEffect[]): string => {
   const nearSighted = effects.find(e => e.id === 'nearSighted' && e.enabled);
   const farSighted = effects.find(e => e.id === 'farSighted' && e.enabled);
   const astigmatism = effects.find(e => e.id === 'astigmatism' && e.enabled);
-  const blurEffect = nearSighted || farSighted || astigmatism;
+  // Astigmatism uses reduced isotropic blur (directional effects handled by overlay)
+  if (astigmatism) return `blur(${astigmatism.intensity * 5}px)`;
+  const blurEffect = nearSighted || farSighted;
   return blurEffect ? `blur(${blurEffect.intensity * 10}px)` : '';
 };
 

@@ -52,7 +52,7 @@ export const contemporaryFigures: Record<string, PersonData> = {
     condition: "Retinitis Pigmentosa",
     years: "Born 1994",
     onset: "Age 4, complete blindness by 14",
-    simulation: "molly-retinitis-pigmentosa",
+    simulation: "molly-complete-blindness",
     description: "Molly Burke lost her vision to retinitis pigmentosa, diagnosed at age 4 and progressing to complete blindness by age 14. The condition causes progressive loss of peripheral vision, night blindness, and eventual total vision loss.\n\n• Motivational speaker, YouTuber, and disability advocate\n\n• Uses her platform to educate millions about blindness and advocate for accessibility\n\n• Visit mollyburkeofficial.com",
     wikiUrl: "https://en.wikipedia.org/wiki/Molly_Burke",
     nationality: NATIONALITIES.CA

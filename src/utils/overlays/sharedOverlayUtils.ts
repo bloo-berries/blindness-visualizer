@@ -62,6 +62,8 @@ export function findOverlayContainer(): Element | null {
  */
 export function ensureRelativePositioning(container: Element | null): void {
   if (container && container instanceof HTMLElement) {
+    // Skip expensive getComputedStyle if inline position is already set
+    if (container.style.position) return;
     const computedStyle = window.getComputedStyle(container);
     if (computedStyle.position === 'static') {
       container.style.position = 'relative';

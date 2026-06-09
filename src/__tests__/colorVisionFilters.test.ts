@@ -356,3 +356,56 @@ describe('getColorVisionPrevalence', () => {
     expect(prev).toBe('Unknown prevalence');
   });
 });
+
+describe('intermediate intensity interpolation', () => {
+  afterEach(() => {
+    cleanupAllDOMFilters();
+  });
+
+  test('protanopia at 0.5 intensity blends with identity matrix', () => {
+    const data = getColorVisionFilterData('protanopia' as ConditionType, 0.5);
+    expect(data).not.toBeNull();
+    // Blended matrix should be between identity and full protanopia
+    const nums = data!.matrixValues.split(' ').map(Number);
+    // First element of identity is 1, first of protanopia is ~0.152
+    // At 0.5 blend: ~0.576
+    expect(nums[0]).toBeGreaterThan(0.1);
+    expect(nums[0]).toBeLessThan(1.0);
+  });
+
+  test('tritanomaly intermediate interpolation between keyframes', () => {
+    const at02 = getColorVisionMatrix('tritanomaly' as ConditionType, 0.2);
+    const at04 = getColorVisionMatrix('tritanomaly' as ConditionType, 0.4);
+    // These should be distinct intermediate values
+    expect(at02).not.toEqual(at04);
+    expect(at02).toHaveLength(9);
+    expect(at04).toHaveLength(9);
+  });
+
+  test('monochromacy at partial intensity returns CSS filter with adjusted values', () => {
+    const filter = getColorVisionFilter('monochromacy' as ConditionType, 0.5);
+    expect(filter).toContain('saturate(');
+    // At 0.5 intensity, saturate should not be 0% (full) — it should be partially desaturated
+    expect(filter).not.toBe('');
+  });
+});
+
+describe('cleanupAllDOMFilters edge cases', () => {
+  test('calling cleanup multiple times is safe', () => {
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    cleanupAllDOMFilters();
+    cleanupAllDOMFilters();
+    cleanupAllDOMFilters();
+    expect(document.getElementById('cvd-svg-filters')).toBeNull();
+  });
+
+  test('cleanup removes filters for multiple conditions', () => {
+    _resetMobileDetection();
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+    getColorVisionFilter('deuteranopia' as ConditionType, 1.0);
+    cleanupAllDOMFilters();
+    expect(document.getElementById('cvd-protanopia')).toBeNull();
+    expect(document.getElementById('cvd-deuteranopia')).toBeNull();
+    expect(document.getElementById('cvd-svg-filters')).toBeNull();
+  });
+});

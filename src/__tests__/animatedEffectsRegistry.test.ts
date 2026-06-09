@@ -54,7 +54,7 @@ describe('Animated Effects Registry', () => {
     expect(ANIMATED_EFFECTS.has('visualAuraRight')).toBe(true);
   });
 
-  test('total count matches expected (25 generators + 2 special)', () => {
-    expect(ANIMATED_EFFECTS.size).toBe(27);
+  test('total count matches expected (26 generators + 2 special)', () => {
+    expect(ANIMATED_EFFECTS.size).toBe(28);
   });
 });

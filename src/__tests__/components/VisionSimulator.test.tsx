@@ -70,7 +70,7 @@ function renderSimulator(options: {
 
   return render(
     <HelmetProvider>
-      <MemoryRouter initialEntries={[initialEntry]}>
+      <MemoryRouter initialEntries={[initialEntry]} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <AccessibilityProvider>
           <VisionSimulator />
         </AccessibilityProvider>

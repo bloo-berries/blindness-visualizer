@@ -57,6 +57,16 @@ export const artists: Record<string, PersonData> = {
     wikiUrl: "https://www.aa.com.tr/en/africa/tanzanias-blind-tailor-who-makes-clothes-for-politicians/2047453",
     nationality: NATIONALITIES.TZ
   },
+  joseGarciaAntonio: {
+    name: "Jose Garcia Antonio",
+    achievement: "Blind Master Sculptor from Oaxaca",
+    condition: "Complete Blindness",
+    years: "Born 1951",
+    onset: "Lost sight as a young man",
+    simulation: "complete-blindness",
+    description: "Jose Garcia Antonio is a master sculptor and artisan from Oaxaca, Mexico, who creates intricate pieces entirely from memory despite losing his sight.\n\nWorking with wood and other materials, he relies on touch and spatial memory to craft detailed figures and traditional Oaxacan art forms.\n\n• Creates sculptures and carvings by touch, guided by decades of visual memory\n\n• His work preserves traditional Oaxacan artistic traditions\n\n• Demonstrates extraordinary spatial awareness and craftsmanship without sight",
+    nationality: NATIONALITIES.MX
+  },
   borisDyozhkin: {
     name: "Boris Dyozhkin",
     achievement: "Soviet Animation Pioneer at Soyuzmultfilm",

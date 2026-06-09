@@ -12,6 +12,7 @@ export const traumaInfectionConditionsCategory: ConditionCategory = {
       id: 'sympatheticOphthalmia',
       name: 'Sympathetic Ophthalmia',
       description: 'An autoimmune response that can occur after injury to one eye, causing inflammation in both eyes. Can lead to complete blindness if not treated promptly.',
+      prevalence: 'Rare; ~0.03 per 100,000 per year',
       relatedPeople: ['Louis Braille'],
       treatments: {
         available: true,
@@ -68,6 +69,7 @@ export const traumaInfectionConditionsCategory: ConditionCategory = {
       id: 'retinopathyPrematurity',
       name: 'Retinopathy of Prematurity (ROP)',
       description: 'Abnormal blood vessel development in the retina of premature infants. Can cause retinal detachment and blindness if not treated.',
+      prevalence: 'Affects ~14,000-16,000 premature infants per year in the US',
       relatedPeople: ['Stevie Wonder'],
       treatments: {
         available: true,
@@ -87,6 +89,7 @@ export const traumaInfectionConditionsCategory: ConditionCategory = {
       id: 'neuromyelitisOptica',
       name: 'Neuromyelitis Optica (NMO)',
       description: 'Autoimmune disorder that attacks the optic nerves and spinal cord. Can cause severe vision loss and other neurological symptoms.',
+      prevalence: '~0.5-4 per 100,000 people',
       relatedPeople: ['Christine Ha'],
       treatments: {
         available: true,
@@ -105,6 +108,7 @@ export const traumaInfectionConditionsCategory: ConditionCategory = {
       id: 'juvenileRetinoschisis',
       name: 'Juvenile Retinoschisis',
       description: 'Genetic condition causing splitting of retinal layers, leading to progressive vision loss. Usually begins in childhood.',
+      prevalence: '~1 in 5,000-25,000 males',
       relatedPeople: ['Erik Weihenmayer'],
       treatments: {
         available: true,
@@ -124,6 +128,7 @@ export const traumaInfectionConditionsCategory: ConditionCategory = {
       id: 'incontinentiaPigmenti',
       name: 'Incontinentia Pigmenti',
       description: 'Rare genetic condition that can affect multiple body systems, including the eyes. Can cause vision loss from birth.',
+      prevalence: '~1 in 40,000 newborns; predominantly affects females',
       relatedPeople: ['Lucy Edwards'],
       treatments: {
         available: true,

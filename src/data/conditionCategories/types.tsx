@@ -9,8 +9,10 @@ export interface ConditionCategory {
     id: string;
     name: string;
     description: string;
+    prevalence?: string;
     relatedPeople?: string[];
     imagePath?: string;
+    resourceLinks?: Array<{ label: string; url: string }>;
     treatments?: {
       available: boolean;
       options: string[];

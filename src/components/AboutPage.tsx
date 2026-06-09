@@ -138,7 +138,6 @@ const AboutPage: React.FC = () => {
                         src="https://fast.wistia.com/embed/iframe/qjdv24o4kb?autoPlay=true&silentAutoPlay=true&muted=true&seo=true"
                         title="my-vision Video"
                         allow="autoplay; fullscreen"
-                        allowTransparency={true}
                         frameBorder="0"
                         scrolling="no"
                         className="wistia_embed"

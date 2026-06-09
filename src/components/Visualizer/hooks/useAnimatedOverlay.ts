@@ -25,6 +25,7 @@ import {
   generateFujitoraObservationHakiOverlay,
   generateChirrutForcePerceptionOverlay,
   generateJuliaCarpenterPsychicWebOverlay,
+  generateVisualTrailsOverlay,
 } from './animatedOverlays';
 
 type OverlayGenerator = (intensity: number, now: number) => React.CSSProperties;
@@ -45,6 +46,7 @@ const EFFECT_GENERATORS: Record<string, OverlayGenerator> = {
   persistentPositiveVisualPhenomenon: generatePersistentPositiveOverlay,
   palinopsia: generatePalinopsiaOverlay,
   starbursting: generateStarburstingOverlay,
+  trails: generateVisualTrailsOverlay,
   // Person-specific effects
   christineFluctuatingVision: generateChristineFluctuatingOverlay,
   sugarRetinalDetachmentComplete: generateSugarRetinalDetachmentOverlay,

@@ -2,7 +2,7 @@
 
 > https://theblind.spot
 
-The Blind Spot is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 209+ famous people with vision conditions and links each to an interactive simulation.
+The Blind Spot is a free, browser-based educational tool that simulates 42+ vision conditions in real-time. It helps sighted people understand what it's like to live with visual impairments—from color blindness to total blindness. It also profiles 210+ famous people with vision conditions and links each to an interactive simulation.
 
 Available in 26 languages. No account required.
 
@@ -10,7 +10,7 @@ Available in 26 languages. No account required.
 
 - [Home](https://theblind.spot/) — Landing page with overview and demo video
 - [Vision Simulator](https://theblind.spot/simulator) — Interactive simulator (YouTube video or image input)
-- [Famous People](https://theblind.spot/famous-people) — 209+ historical and contemporary figures with vision conditions
+- [Famous People](https://theblind.spot/famous-people) — 210+ historical and contemporary figures with vision conditions
 - [Conditions Glossary](https://theblind.spot/conditions) — Detailed glossary of all 42+ conditions with treatments
 - [FAQ](https://theblind.spot/faq) — Frequently asked questions
 - [About](https://theblind.spot/about) — Project background and mission
@@ -216,6 +216,7 @@ Available in 26 languages. No account required.
 - John Bramblitt (Born 1971) — Blindness from Epilepsy Complications — Blind Painter, Works in 120+ Countries
 - Eşref Armağan (Born 1953) — Congenital Blindness — Blind Painter Who Never Saw Light
 - Abdallah Nyangalio (Born ~1959) — Hypertension-Induced Blindness — Tanzania's Only Blind Tailor, Dresses Politicians
+- Jose Garcia Antonio (Born 1951) — Complete Blindness — Blind Master Sculptor from Oaxaca
 - Boris Dyozhkin (1914-1992) — Lost Left Eye (Bomb Fragment) + Prior Vision Loss — Soviet Animation Pioneer at Soyuzmultfilm
 
 ### Writers, Activists, Politicians

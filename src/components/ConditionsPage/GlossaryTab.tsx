@@ -22,7 +22,20 @@ import {
   IconButton,
   Tooltip,
   Divider,
-  Collapse
+  Collapse,
+  Checkbox,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Fab
 } from '@mui/material';
 import {
   ExpandMore as ExpandMoreIcon,
@@ -31,10 +44,17 @@ import {
   LocalHospital as LocalHospitalIcon,
   Info as InfoIcon,
   ChevronRight as ChevronRightIcon,
-  Visibility as VisibilityIcon
+  Visibility as VisibilityIcon,
+  OpenInNew as OpenInNewIcon,
+  MenuBook as MenuBookIcon,
+  CompareArrows as CompareArrowsIcon,
+  Close as CloseIcon
 } from '@mui/icons-material';
 import ThumbnailImage from '../ThumbnailImage';
 import { conditionCategories } from '../../data/conditionCategories';
+import type { ConditionCategory } from '../../data/conditionCategories/types';
+
+type Condition = ConditionCategory['conditions'][number];
 
 const CATEGORY_TRANSLATION_KEYS: Record<string, string> = {
   'visual-field': 'visualField',
@@ -59,6 +79,23 @@ const GlossaryTab: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | false>(false);
   const [expandedTreatments, setExpandedTreatments] = useState<Set<string>>(new Set());
   const [filteredCategories, setFilteredCategories] = useState(conditionCategories);
+  const [compareMode, setCompareMode] = useState(false);
+  const [selectedConditions, setSelectedConditions] = useState<Condition[]>([]);
+  const [compareDialogOpen, setCompareDialogOpen] = useState(false);
+
+  const handleCompareToggle = (condition: Condition) => {
+    setSelectedConditions(prev => {
+      const isSelected = prev.some(c => c.id === condition.id);
+      if (isSelected) {
+        return prev.filter(c => c.id !== condition.id);
+      }
+      if (prev.length >= 3) return prev;
+      return [...prev, condition];
+    });
+  };
+
+  const isConditionSelected = (conditionId: string) =>
+    selectedConditions.some(c => c.id === conditionId);
 
   const filterCategories = useCallback(() => {
     let filtered = conditionCategories;
@@ -149,9 +186,22 @@ const GlossaryTab: React.FC = () => {
           <Typography variant="body2" className="conditions-stats">
             {t('glossaryPage.conditionsFound', { count: filteredCategories.reduce((total, category) => total + category.conditions.length, 0) })}
           </Typography>
-          <Button onClick={clearFilters} variant="outlined" size="small" startIcon={<FilterListIcon />} className="conditions-clear-button">
-            {t('glossaryPage.clearFilters')}
-          </Button>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Button
+              onClick={() => {
+                setCompareMode(prev => !prev);
+                if (compareMode) setSelectedConditions([]);
+              }}
+              variant={compareMode ? 'contained' : 'outlined'}
+              size="small"
+              startIcon={<CompareArrowsIcon />}
+            >
+              Compare
+            </Button>
+            <Button onClick={clearFilters} variant="outlined" size="small" startIcon={<FilterListIcon />} className="conditions-clear-button">
+              {t('glossaryPage.clearFilters')}
+            </Button>
+          </Box>
         </Box>
       </Box>
 
@@ -186,6 +236,15 @@ const GlossaryTab: React.FC = () => {
               {category.conditions.map((condition, index) => (
                 <React.Fragment key={condition.id}>
                   <ListItem className="condition-item" sx={{ position: 'relative' }}>
+                    {compareMode && (
+                      <Checkbox
+                        checked={isConditionSelected(condition.id)}
+                        onChange={() => handleCompareToggle(condition)}
+                        disabled={!isConditionSelected(condition.id) && selectedConditions.length >= 3}
+                        sx={{ mr: 0.5 }}
+                        size="small"
+                      />
+                    )}
                     <ListItemIcon>
                       <Tooltip title={t('glossaryPage.viewInSimulator')}>
                         <IconButton
@@ -221,9 +280,16 @@ const GlossaryTab: React.FC = () => {
                           </Box>
                         }
                         secondary={
-                          <Typography variant="body2" className="condition-description">
-                            {condition.description}
-                          </Typography>
+                          <Box component="span">
+                            <Typography variant="body2" className="condition-description" component="span" display="block">
+                              {condition.description}
+                            </Typography>
+                            {condition.prevalence && (
+                              <Typography variant="body2" component="span" display="block" sx={{ mt: 0.5, fontStyle: 'italic', color: 'text.secondary', fontSize: '0.8125rem' }}>
+                                Prevalence: {condition.prevalence}
+                              </Typography>
+                            )}
+                          </Box>
                         }
                       />
                       {condition.treatments && (
@@ -296,6 +362,59 @@ const GlossaryTab: React.FC = () => {
                           </Collapse>
                         </Box>
                       )}
+                      {condition.resourceLinks && condition.resourceLinks.length > 0 && (
+                        <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid #e2e8f0' }}>
+                          <Box
+                            onClick={() => handleTreatmentToggle(`resources-${condition.id}`)}
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 1,
+                              cursor: 'pointer',
+                              userSelect: 'none',
+                              '&:hover': { opacity: 0.8 }
+                            }}
+                          >
+                            <MenuBookIcon sx={{ color: 'primary.main', fontSize: 20 }} />
+                            <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'primary.main', flexGrow: 1 }}>
+                              Learn More
+                            </Typography>
+                            <ChevronRightIcon
+                              sx={{
+                                color: 'primary.main',
+                                fontSize: 20,
+                                transform: expandedTreatments.has(`resources-${condition.id}`) ? 'rotate(90deg)' : 'rotate(0deg)',
+                                transition: 'transform 0.2s ease'
+                              }}
+                            />
+                          </Box>
+                          <Collapse in={expandedTreatments.has(`resources-${condition.id}`)}>
+                            <List dense sx={{ pl: 0, mt: 1 }}>
+                              {condition.resourceLinks.map((link, idx) => (
+                                <ListItem key={idx} sx={{ py: 0.25, pl: 2 }}>
+                                  <ListItemIcon sx={{ minWidth: 24 }}>
+                                    <OpenInNewIcon sx={{ fontSize: 14, color: 'primary.main' }} />
+                                  </ListItemIcon>
+                                  <ListItemText
+                                    primary={
+                                      <Typography
+                                        component="a"
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        variant="body2"
+                                        sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' }, fontSize: '0.875rem' }}
+                                      >
+                                        {link.label}
+                                      </Typography>
+                                    }
+                                  />
+                                </ListItem>
+                              ))}
+                            </List>
+                          </Collapse>
+                        </Box>
+                      )}
                     </Box>
                     {/* Thumbnail image on the right */}
                     {(condition.imagePath || getConditionImagePath(condition.name)) && (
@@ -356,6 +475,153 @@ const GlossaryTab: React.FC = () => {
           {t('glossaryPage.aboutGlossary.paragraph3')}
         </Typography>
       </Box>
+
+      {/* Floating Compare Button */}
+      {compareMode && selectedConditions.length >= 2 && (
+        <Fab
+          variant="extended"
+          color="primary"
+          onClick={() => setCompareDialogOpen(true)}
+          sx={{
+            position: 'fixed',
+            bottom: 24,
+            right: 24,
+            zIndex: 1100,
+            textTransform: 'none',
+            fontWeight: 600
+          }}
+        >
+          <CompareArrowsIcon sx={{ mr: 1 }} />
+          Compare Selected ({selectedConditions.length})
+        </Fab>
+      )}
+
+      {/* Comparison Dialog */}
+      <Dialog
+        open={compareDialogOpen}
+        onClose={() => setCompareDialogOpen(false)}
+        maxWidth="lg"
+        fullWidth
+      >
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <CompareArrowsIcon />
+            Compare Conditions
+          </Box>
+          <IconButton onClick={() => setCompareDialogOpen(false)} size="small">
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          <TableContainer component={Paper} variant="outlined">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 700, minWidth: 120 }}> </TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id} sx={{ fontWeight: 700, minWidth: 200 }}>
+                      {condition.name}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600 }}>Description</TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id}>
+                      <Typography variant="body2">{condition.description}</Typography>
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600 }}>Prevalence</TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id}>
+                      <Typography variant="body2">{condition.prevalence || 'Data not available'}</Typography>
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600 }}>Treatments</TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id}>
+                      {condition.treatments ? (
+                        <List dense disablePadding>
+                          {condition.treatments.options.slice(0, 5).map((opt, idx) => (
+                            <ListItem key={idx} disablePadding sx={{ py: 0.25 }}>
+                              <Typography variant="body2" sx={{ fontSize: '0.8125rem' }}>• {opt}</Typography>
+                            </ListItem>
+                          ))}
+                          {condition.treatments.options.length > 5 && (
+                            <Typography variant="body2" sx={{ fontSize: '0.8125rem', fontStyle: 'italic', color: 'text.secondary' }}>
+                              +{condition.treatments.options.length - 5} more...
+                            </Typography>
+                          )}
+                        </List>
+                      ) : (
+                        <Typography variant="body2" color="text.secondary">No treatment data</Typography>
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600 }}>Resources</TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id}>
+                      {condition.resourceLinks && condition.resourceLinks.length > 0 ? (
+                        condition.resourceLinks.map((link, idx) => (
+                          <Typography
+                            key={idx}
+                            component="a"
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="body2"
+                            display="block"
+                            sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' }, fontSize: '0.8125rem', mb: 0.5 }}
+                          >
+                            {link.label} ↗
+                          </Typography>
+                        ))
+                      ) : (
+                        <Typography variant="body2" color="text.secondary">No resources</Typography>
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 600 }}>Try in Simulator</TableCell>
+                  {selectedConditions.map(condition => (
+                    <TableCell key={condition.id}>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        startIcon={<VisibilityIcon />}
+                        onClick={() => {
+                          setCompareDialogOpen(false);
+                          navigate('/simulator', {
+                            state: {
+                              preconfiguredConditions: [condition.id],
+                              conditionName: condition.name
+                            }
+                          });
+                        }}
+                        sx={{ textTransform: 'none' }}
+                      >
+                        {t('glossaryPage.viewInSimulator')}
+                      </Button>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setCompareDialogOpen(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

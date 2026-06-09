@@ -4,7 +4,7 @@
  */
 
 import { VisualEffect } from '../../../types/visualEffects';
-import { createOverlayProcessor, processOverlayConfigs } from './overlayConfig';
+import { processOverlayConfigs } from './overlayConfig';
 import { createMiltonOverlays } from './miltonOverlays';
 import { galileoOverlays } from './galileoOverlays';
 import { vedMehtaOverlays } from './vedMehtaOverlays';
@@ -43,18 +43,6 @@ export { createAmadouBagayokoOverlays } from './amadouBagayokoOverlays';
 export { createDavidBrownOverlays } from './davidBrownOverlays';
 export { createLexGilletteOverlays } from './lexGilletteOverlays';
 export { joseCidOverlays } from './joseCidOverlays';
-
-// Wrap declarative configs as processor functions for backward compatibility
-export const createGalileoOverlays = createOverlayProcessor(galileoOverlays);
-export const createVedMehtaOverlays = createOverlayProcessor(vedMehtaOverlays);
-export const createLucyEdwardsOverlays = createOverlayProcessor(lucyEdwardsOverlays);
-export const createDavidPatersonOverlays = createOverlayProcessor(davidPatersonOverlays);
-export const createErikWeihenmayerOverlays = createOverlayProcessor(erikWeihenmayerOverlays);
-export const createMarlaRunyanOverlays = createOverlayProcessor(marlaRunyanOverlays);
-export const createMinkaraOverlays = createOverlayProcessor(minkaraOverlays);
-export const createJoshuaMieleOverlays = createOverlayProcessor(joshuaMieleOverlays);
-export const createMilaKunisOverlays = createOverlayProcessor(milaKunisOverlays);
-export const createJoseCidOverlays = createOverlayProcessor(joseCidOverlays);
 
 /** All declarative overlay configs combined */
 const allDeclarativeConfigs = [

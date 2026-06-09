@@ -24,6 +24,7 @@ export { generateMargaritaLightPerceptionOverlay } from './margaritaLightPercept
 export { generateFujitoraObservationHakiOverlay } from './fujitoraObservationHaki';
 export { generateChirrutForcePerceptionOverlay } from './chirrutForcePerception';
 export { generateJuliaCarpenterPsychicWebOverlay } from './juliaCarpenterPsychicWeb';
+export { generateVisualTrailsOverlay } from './visualTrails';
 
 // Shared overlay utility functions and types
 export {

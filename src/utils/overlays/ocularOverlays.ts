@@ -262,6 +262,35 @@ export const createOcularOverlays = (
     overlayElement.style.opacity = Math.min(0.95, 0.5 + intensity * 0.45).toString();
   }
 
+  // Astigmatism - Directional ghosting and meridional streaks
+  const astigmatism = getEffect('astigmatism');
+  if (astigmatism?.enabled) {
+    const intensity = astigmatism.intensity;
+    const ghostOffset = 2 + intensity * 6;
+    const ghostOpacity = 0.08 + intensity * 0.15;
+    const streakOpacity = 0.06 + intensity * 0.12;
+
+    const ghosts = [
+      `linear-gradient(to right, rgba(255,255,255,${ghostOpacity}) 0%, transparent 15%, transparent 85%, rgba(255,255,255,${ghostOpacity}) 100%)`,
+      `radial-gradient(ellipse 110% 80% at ${50 + ghostOffset}% 50%, rgba(255,255,255,${ghostOpacity * 0.7}) 0%, transparent 40%)`,
+      `radial-gradient(ellipse 110% 80% at ${50 - ghostOffset}% 50%, rgba(255,255,255,${ghostOpacity * 0.6}) 0%, transparent 35%)`,
+    ];
+    const streaks = [
+      `linear-gradient(0deg, transparent 0%, rgba(255,255,255,${streakOpacity}) 40%, rgba(255,255,255,${streakOpacity * 1.2}) 50%, rgba(255,255,255,${streakOpacity}) 60%, transparent 100%)`,
+      `linear-gradient(180deg, transparent 0%, rgba(255,255,255,${streakOpacity * 0.7}) 35%, rgba(255,255,255,${streakOpacity * 0.8}) 50%, rgba(255,255,255,${streakOpacity * 0.7}) 65%, transparent 100%)`,
+    ];
+
+    createOverlay(
+      'visual-field-overlay-astigmatism',
+      [...ghosts, ...streaks].join(', '),
+      'screen',
+      Math.min(1, 0.4 + intensity * 0.6).toString(),
+      undefined,
+      undefined,
+      'astigmatism'
+    );
+  }
+
   // Keratoconus - Progressive corneal thinning with irregular cone shape
   // Creates multiple focal points causing ghost images, streaking, and halos
   if (keratoconus?.enabled) {

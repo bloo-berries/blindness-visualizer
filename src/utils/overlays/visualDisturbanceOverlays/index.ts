@@ -1,14 +1,6 @@
 import { VisualEffect } from '../../../types/visualEffects';
 import { findOverlayContainer } from '../sharedOverlayUtils';
 
-import { createFloaterOverlay } from './floaterOverlays';
-import {
-  createVisualSnowOverlay,
-  createVisualSnowFlashingOverlay,
-  createVisualSnowColoredOverlay,
-  createVisualSnowTransparentOverlay,
-  createVisualSnowDenseOverlay
-} from './visualSnowOverlays';
 import {
   createVisualAuraOverlay,
   createVisualAuraLeftOverlay,
@@ -33,15 +25,7 @@ export const createVisualDisturbanceOverlays = (
     return findOverlayContainer();
   };
 
-  // Visual Floaters
-  createFloaterOverlay(getEffect('visualFloaters'), findContainer);
-
-  // Visual Snow variants
-  createVisualSnowOverlay(getEffect('visualSnow'), findContainer);
-  createVisualSnowFlashingOverlay(getEffect('visualSnowFlashing'), findContainer);
-  createVisualSnowColoredOverlay(getEffect('visualSnowColored'), findContainer);
-  createVisualSnowTransparentOverlay(getEffect('visualSnowTransparent'), findContainer);
-  createVisualSnowDenseOverlay(getEffect('visualSnowDense'), findContainer);
+  // Visual Floaters and Visual Snow variants are rendered via React-based useVisualFieldOverlay hook
 
   // Visual Hallucinations (CBS)
   createHallucinationsOverlay(getEffect('hallucinations'), findContainer);

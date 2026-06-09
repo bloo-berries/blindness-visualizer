@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
 import { EffectList } from './EffectList';
-import { orientationGroups } from './ControlPanelConstants';
+import { orientationGroups, CONDITION_STAGE_MARKS } from './ControlPanelConstants';
+import { ConditionType } from '../../types/visualEffects';
 
 interface ControlPanelProps {
   effects: VisualEffect[];
@@ -187,8 +188,19 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   onChange={(_, value) => onIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
                   valueLabelDisplay="auto"
                   valueLabelFormat={value => `${value}%`}
+                  marks={CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] || false}
                   aria-label={`Adjust ${currentHighlightedEffect.name} severity`}
-                  sx={{ width: '100%' }}
+                  sx={{
+                    width: '100%',
+                    ...(CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] && {
+                      mb: 3,
+                      '& .MuiSlider-markLabel': {
+                        fontSize: '0.65rem',
+                        color: 'text.secondary',
+                        whiteSpace: 'nowrap',
+                      },
+                    }),
+                  }}
                 />
               </Box>
             )}

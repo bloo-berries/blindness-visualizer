@@ -29,15 +29,15 @@ export const createVisualFieldLossOverlays = (
   if (tunnelVision?.enabled) {
     createOverlay(
       'visual-field-overlay-tunnelVision',
-      `radial-gradient(circle at 50% 50%, 
+      `radial-gradient(circle at 50% 50%,
         rgba(0,0,0,0) 0%,
         rgba(0,0,0,0) ${Math.max(20, 35 - tunnelVision.intensity * 20)}%,
-        rgba(0,0,0,${0.95 * tunnelVision.intensity}) ${Math.max(40, 55 - tunnelVision.intensity * 20)}%,
-        rgba(0,0,0,${0.95 * tunnelVision.intensity}) 100%
+        rgba(55,55,55,${0.85 * tunnelVision.intensity}) ${Math.max(40, 55 - tunnelVision.intensity * 20)}%,
+        rgba(35,35,35,${0.85 * tunnelVision.intensity}) 100%
       )`,
-      'multiply',
-      Math.min(0.95, tunnelVision.intensity).toString(),
-      undefined,
+      'normal',
+      Math.min(0.85, tunnelVision.intensity).toString(),
+      'blur(1px)',
       undefined,
       'tunnelVision'
     );
@@ -45,18 +45,19 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Left
   if (quadrantanopiaLeft?.enabled) {
+    const qli = quadrantanopiaLeft.intensity === 1 ? 1 : 0.85 * quadrantanopiaLeft.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaLeft',
-      `conic-gradient(from 0deg at 50% 50%, 
-        rgba(0,0,0,0) 0deg, 
-        rgba(0,0,0,0) 90deg, 
-        rgba(0,0,0,${0.95 * quadrantanopiaLeft.intensity}) 90deg, 
-        rgba(0,0,0,${0.95 * quadrantanopiaLeft.intensity}) 180deg, 
-        rgba(0,0,0,0) 180deg, 
-        rgba(0,0,0,0) 360deg
+      `conic-gradient(from 0deg at 50% 50%,
+        rgba(50,50,50,0) 0deg,
+        rgba(50,50,50,0) 90deg,
+        rgba(50,50,50,${qli}) 90deg,
+        rgba(50,50,50,${qli}) 180deg,
+        rgba(50,50,50,0) 180deg,
+        rgba(50,50,50,0) 360deg
       )`,
-      'multiply',
-      Math.min(0.95, quadrantanopiaLeft.intensity).toString(),
+      'normal',
+      (quadrantanopiaLeft.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaLeft.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaLeft'
@@ -65,16 +66,17 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Right
   if (quadrantanopiaRight?.enabled) {
+    const qri = quadrantanopiaRight.intensity === 1 ? 1 : 0.85 * quadrantanopiaRight.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaRight',
-      `radial-gradient(circle at 0% 100%, 
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) ${Math.max(25, 40 - quadrantanopiaRight.intensity * 20)}%,
-        rgba(0,0,0,1) ${Math.max(45, 60 - quadrantanopiaRight.intensity * 20)}%,
-        rgba(0,0,0,1) 100%
+      `radial-gradient(circle at 0% 100%,
+        rgba(50,50,50,0) 0%,
+        rgba(50,50,50,0) ${Math.max(25, 40 - quadrantanopiaRight.intensity * 20)}%,
+        rgba(50,50,50,1) ${Math.max(45, 60 - quadrantanopiaRight.intensity * 20)}%,
+        rgba(50,50,50,1) 100%
       )`,
       'normal',
-      '1',
+      (quadrantanopiaRight.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaRight.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaRight'
@@ -83,19 +85,18 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Inferior Left (bottom-left quadrant)
   if (quadrantanopiaInferiorLeft?.enabled) {
-    const inferiorLeftIntensity = quadrantanopiaInferiorLeft.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferiorLeft.intensity;
+    const inferiorLeftIntensity = quadrantanopiaInferiorLeft.intensity === 1 ? 1 : 0.85 * quadrantanopiaInferiorLeft.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaInferiorLeft',
       `radial-gradient(ellipse 100% 100% at 0% 100%,
-        rgba(0,0,0,${inferiorLeftIntensity}) 0%,
-        rgba(0,0,0,${inferiorLeftIntensity}) 65%,
-        rgba(0,0,0,${inferiorLeftIntensity * 0.8}) 70%,
-        rgba(0,0,0,${inferiorLeftIntensity * 0.5}) 75%,
-        rgba(0,0,0,${inferiorLeftIntensity * 0.2}) 80%,
-        rgba(0,0,0,0) 85%
+        rgba(50,50,50,${inferiorLeftIntensity}) 0%,
+        rgba(50,50,50,${inferiorLeftIntensity}) 65%,
+        rgba(50,50,50,${inferiorLeftIntensity * 0.6}) 72%,
+        rgba(50,50,50,${inferiorLeftIntensity * 0.2}) 80%,
+        rgba(50,50,50,0) 85%
       )`,
-      quadrantanopiaInferiorLeft.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaInferiorLeft.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferiorLeft.intensity).toString(),
+      'normal',
+      (quadrantanopiaInferiorLeft.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaInferiorLeft.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaInferiorLeft'
@@ -104,19 +105,18 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Inferior Right (bottom-right quadrant)
   if (quadrantanopiaInferiorRight?.enabled) {
-    const inferiorRightIntensity = quadrantanopiaInferiorRight.intensity === 1 ? 1 : 0.95 * quadrantanopiaInferiorRight.intensity;
+    const inferiorRightIntensity = quadrantanopiaInferiorRight.intensity === 1 ? 1 : 0.85 * quadrantanopiaInferiorRight.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaInferiorRight',
       `radial-gradient(ellipse 100% 100% at 100% 100%,
-        rgba(0,0,0,${inferiorRightIntensity}) 0%,
-        rgba(0,0,0,${inferiorRightIntensity}) 65%,
-        rgba(0,0,0,${inferiorRightIntensity * 0.8}) 70%,
-        rgba(0,0,0,${inferiorRightIntensity * 0.5}) 75%,
-        rgba(0,0,0,${inferiorRightIntensity * 0.2}) 80%,
-        rgba(0,0,0,0) 85%
+        rgba(50,50,50,${inferiorRightIntensity}) 0%,
+        rgba(50,50,50,${inferiorRightIntensity}) 65%,
+        rgba(50,50,50,${inferiorRightIntensity * 0.6}) 72%,
+        rgba(50,50,50,${inferiorRightIntensity * 0.2}) 80%,
+        rgba(50,50,50,0) 85%
       )`,
-      quadrantanopiaInferiorRight.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaInferiorRight.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaInferiorRight.intensity).toString(),
+      'normal',
+      (quadrantanopiaInferiorRight.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaInferiorRight.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaInferiorRight'
@@ -125,19 +125,18 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Superior Left (top-left quadrant)
   if (quadrantanopiaSuperiorLeft?.enabled) {
-    const superiorLeftIntensity = quadrantanopiaSuperiorLeft.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperiorLeft.intensity;
+    const superiorLeftIntensity = quadrantanopiaSuperiorLeft.intensity === 1 ? 1 : 0.85 * quadrantanopiaSuperiorLeft.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaSuperiorLeft',
       `radial-gradient(ellipse 100% 100% at 0% 0%,
-        rgba(0,0,0,${superiorLeftIntensity}) 0%,
-        rgba(0,0,0,${superiorLeftIntensity}) 65%,
-        rgba(0,0,0,${superiorLeftIntensity * 0.8}) 70%,
-        rgba(0,0,0,${superiorLeftIntensity * 0.5}) 75%,
-        rgba(0,0,0,${superiorLeftIntensity * 0.2}) 80%,
-        rgba(0,0,0,0) 85%
+        rgba(50,50,50,${superiorLeftIntensity}) 0%,
+        rgba(50,50,50,${superiorLeftIntensity}) 65%,
+        rgba(50,50,50,${superiorLeftIntensity * 0.6}) 72%,
+        rgba(50,50,50,${superiorLeftIntensity * 0.2}) 80%,
+        rgba(50,50,50,0) 85%
       )`,
-      quadrantanopiaSuperiorLeft.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaSuperiorLeft.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperiorLeft.intensity).toString(),
+      'normal',
+      (quadrantanopiaSuperiorLeft.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaSuperiorLeft.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaSuperiorLeft'
@@ -146,19 +145,18 @@ export const createVisualFieldLossOverlays = (
 
   // Quadrantanopia Superior Right (top-right quadrant)
   if (quadrantanopiaSuperiorRight?.enabled) {
-    const superiorRightIntensity = quadrantanopiaSuperiorRight.intensity === 1 ? 1 : 0.95 * quadrantanopiaSuperiorRight.intensity;
+    const superiorRightIntensity = quadrantanopiaSuperiorRight.intensity === 1 ? 1 : 0.85 * quadrantanopiaSuperiorRight.intensity;
     createOverlay(
       'visual-field-overlay-quadrantanopiaSuperiorRight',
       `radial-gradient(ellipse 100% 100% at 100% 0%,
-        rgba(0,0,0,${superiorRightIntensity}) 0%,
-        rgba(0,0,0,${superiorRightIntensity}) 65%,
-        rgba(0,0,0,${superiorRightIntensity * 0.8}) 70%,
-        rgba(0,0,0,${superiorRightIntensity * 0.5}) 75%,
-        rgba(0,0,0,${superiorRightIntensity * 0.2}) 80%,
-        rgba(0,0,0,0) 85%
+        rgba(50,50,50,${superiorRightIntensity}) 0%,
+        rgba(50,50,50,${superiorRightIntensity}) 65%,
+        rgba(50,50,50,${superiorRightIntensity * 0.6}) 72%,
+        rgba(50,50,50,${superiorRightIntensity * 0.2}) 80%,
+        rgba(50,50,50,0) 85%
       )`,
-      quadrantanopiaSuperiorRight.intensity === 1 ? 'normal' : 'multiply',
-      quadrantanopiaSuperiorRight.intensity === 1 ? '1' : Math.min(0.95, quadrantanopiaSuperiorRight.intensity).toString(),
+      'normal',
+      (quadrantanopiaSuperiorRight.intensity === 1 ? 1 : Math.min(0.85, quadrantanopiaSuperiorRight.intensity)).toString(),
       undefined,
       undefined,
       'quadrantanopiaSuperiorRight'
@@ -167,15 +165,16 @@ export const createVisualFieldLossOverlays = (
 
   // Hemianopia Left
   if (hemianopiaLeft?.enabled) {
+    const hlOpacity = hemianopiaLeft.intensity === 1 ? 1 : 0.85 * hemianopiaLeft.intensity;
     createOverlay(
       'visual-field-overlay-hemianopiaLeft',
-      `linear-gradient(to right, 
-        rgba(0,0,0,${hemianopiaLeft.intensity === 1 ? 1 : 0.95 * hemianopiaLeft.intensity}) 0%, 
-        rgba(0,0,0,${hemianopiaLeft.intensity === 1 ? 1 : 0.95 * hemianopiaLeft.intensity}) 45%, 
-        rgba(0,0,0,0) 50%
+      `linear-gradient(to right,
+        rgba(50,50,50,${hlOpacity}) 0%,
+        rgba(50,50,50,${hlOpacity}) 45%,
+        rgba(50,50,50,0) 50%
       )`,
-      hemianopiaLeft.intensity === 1 ? 'normal' : 'multiply',
-      hemianopiaLeft.intensity === 1 ? '1' : Math.min(0.95, hemianopiaLeft.intensity).toString(),
+      'normal',
+      (hemianopiaLeft.intensity === 1 ? 1 : Math.min(0.85, hemianopiaLeft.intensity)).toString(),
       undefined,
       undefined,
       'hemianopiaLeft'
@@ -184,15 +183,16 @@ export const createVisualFieldLossOverlays = (
 
   // Hemianopia Right
   if (hemianopiaRight?.enabled) {
+    const hrOpacity = hemianopiaRight.intensity === 1 ? 1 : 0.85 * hemianopiaRight.intensity;
     createOverlay(
       'visual-field-overlay-hemianopiaRight',
-      `linear-gradient(to left, 
-        rgba(0,0,0,${hemianopiaRight.intensity === 1 ? 1 : 0.95 * hemianopiaRight.intensity}) 0%, 
-        rgba(0,0,0,${hemianopiaRight.intensity === 1 ? 1 : 0.95 * hemianopiaRight.intensity}) 45%, 
-        rgba(0,0,0,0) 50%
+      `linear-gradient(to left,
+        rgba(50,50,50,${hrOpacity}) 0%,
+        rgba(50,50,50,${hrOpacity}) 45%,
+        rgba(50,50,50,0) 50%
       )`,
-      hemianopiaRight.intensity === 1 ? 'normal' : 'multiply',
-      hemianopiaRight.intensity === 1 ? '1' : Math.min(0.95, hemianopiaRight.intensity).toString(),
+      'normal',
+      (hemianopiaRight.intensity === 1 ? 1 : Math.min(0.85, hemianopiaRight.intensity)).toString(),
       undefined,
       undefined,
       'hemianopiaRight'
@@ -201,19 +201,21 @@ export const createVisualFieldLossOverlays = (
 
   // Blindness Left Eye
   if (blindnessLeftEye?.enabled) {
-    const leftEyeIntensity = blindnessLeftEye.intensity === 1 ? 1 : 0.95 * blindnessLeftEye.intensity;
+    const isTotal = blindnessLeftEye.intensity === 1;
+    const grayVal = isTotal ? 0 : 50;
+    const leftEyeIntensity = isTotal ? 1 : 0.85 * blindnessLeftEye.intensity;
     createOverlay(
       'visual-field-overlay-blindnessLeftEye',
-      `linear-gradient(to right, 
-        rgba(0,0,0,${leftEyeIntensity}) 0%, 
-        rgba(0,0,0,${leftEyeIntensity}) 47.5%, 
-        rgba(0,0,0,${leftEyeIntensity * 0.7}) 48.75%,
-        rgba(0,0,0,${leftEyeIntensity * 0.4}) 50%,
-        rgba(0,0,0,${leftEyeIntensity * 0.1}) 51.25%,
+      `linear-gradient(to right,
+        rgba(${grayVal},${grayVal},${grayVal},${leftEyeIntensity}) 0%,
+        rgba(${grayVal},${grayVal},${grayVal},${leftEyeIntensity}) 47.5%,
+        rgba(${grayVal},${grayVal},${grayVal},${leftEyeIntensity * 0.7}) 48.75%,
+        rgba(${grayVal},${grayVal},${grayVal},${leftEyeIntensity * 0.4}) 50%,
+        rgba(${grayVal},${grayVal},${grayVal},${leftEyeIntensity * 0.1}) 51.25%,
         rgba(0,0,0,0) 52.5%
       )`,
-      blindnessLeftEye.intensity === 1 ? 'normal' : 'multiply',
-      blindnessLeftEye.intensity === 1 ? '1' : Math.min(0.95, blindnessLeftEye.intensity).toString(),
+      'normal',
+      (isTotal ? 1 : Math.min(0.85, blindnessLeftEye.intensity)).toString(),
       undefined,
       undefined,
       'blindnessLeftEye'
@@ -222,19 +224,21 @@ export const createVisualFieldLossOverlays = (
 
   // Blindness Right Eye
   if (blindnessRightEye?.enabled) {
-    const rightEyeIntensity = blindnessRightEye.intensity === 1 ? 1 : 0.95 * blindnessRightEye.intensity;
+    const isTotal = blindnessRightEye.intensity === 1;
+    const grayVal = isTotal ? 0 : 50;
+    const rightEyeIntensity = isTotal ? 1 : 0.85 * blindnessRightEye.intensity;
     createOverlay(
       'visual-field-overlay-blindnessRightEye',
-      `linear-gradient(to left, 
-        rgba(0,0,0,${rightEyeIntensity}) 0%, 
-        rgba(0,0,0,${rightEyeIntensity}) 47.5%, 
-        rgba(0,0,0,${rightEyeIntensity * 0.7}) 48.75%,
-        rgba(0,0,0,${rightEyeIntensity * 0.4}) 50%,
-        rgba(0,0,0,${rightEyeIntensity * 0.1}) 51.25%,
+      `linear-gradient(to left,
+        rgba(${grayVal},${grayVal},${grayVal},${rightEyeIntensity}) 0%,
+        rgba(${grayVal},${grayVal},${grayVal},${rightEyeIntensity}) 47.5%,
+        rgba(${grayVal},${grayVal},${grayVal},${rightEyeIntensity * 0.7}) 48.75%,
+        rgba(${grayVal},${grayVal},${grayVal},${rightEyeIntensity * 0.4}) 50%,
+        rgba(${grayVal},${grayVal},${grayVal},${rightEyeIntensity * 0.1}) 51.25%,
         rgba(0,0,0,0) 52.5%
       )`,
-      blindnessRightEye.intensity === 1 ? 'normal' : 'multiply',
-      blindnessRightEye.intensity === 1 ? '1' : Math.min(0.95, blindnessRightEye.intensity).toString(),
+      'normal',
+      (isTotal ? 1 : Math.min(0.85, blindnessRightEye.intensity)).toString(),
       undefined,
       undefined,
       'blindnessRightEye'
@@ -243,25 +247,25 @@ export const createVisualFieldLossOverlays = (
 
   // Bitemporal Hemianopia
   if (bitemporalHemianopia?.enabled) {
-    const bitemporalIntensity = bitemporalHemianopia.intensity === 1 ? 1 : 0.95 * bitemporalHemianopia.intensity;
+    const bitemporalIntensity = bitemporalHemianopia.intensity === 1 ? 1 : 0.85 * bitemporalHemianopia.intensity;
     createOverlay(
       'visual-field-overlay-bitemporalHemianopia',
-      `linear-gradient(to right, 
-        rgba(0,0,0,${bitemporalIntensity}) 0%, 
-        rgba(0,0,0,${bitemporalIntensity}) 22.5%, 
-        rgba(0,0,0,${bitemporalIntensity * 0.7}) 23.75%,
-        rgba(0,0,0,${bitemporalIntensity * 0.4}) 25%,
-        rgba(0,0,0,${bitemporalIntensity * 0.1}) 26.25%,
-        rgba(0,0,0,0) 27.5%,
-        rgba(0,0,0,0) 72.5%,
-        rgba(0,0,0,${bitemporalIntensity * 0.1}) 73.75%,
-        rgba(0,0,0,${bitemporalIntensity * 0.4}) 75%,
-        rgba(0,0,0,${bitemporalIntensity * 0.7}) 76.25%,
-        rgba(0,0,0,${bitemporalIntensity}) 77.5%, 
-        rgba(0,0,0,${bitemporalIntensity}) 100%
+      `linear-gradient(to right,
+        rgba(50,50,50,${bitemporalIntensity}) 0%,
+        rgba(50,50,50,${bitemporalIntensity}) 22.5%,
+        rgba(50,50,50,${bitemporalIntensity * 0.7}) 23.75%,
+        rgba(50,50,50,${bitemporalIntensity * 0.4}) 25%,
+        rgba(50,50,50,${bitemporalIntensity * 0.1}) 26.25%,
+        rgba(50,50,50,0) 27.5%,
+        rgba(50,50,50,0) 72.5%,
+        rgba(50,50,50,${bitemporalIntensity * 0.1}) 73.75%,
+        rgba(50,50,50,${bitemporalIntensity * 0.4}) 75%,
+        rgba(50,50,50,${bitemporalIntensity * 0.7}) 76.25%,
+        rgba(50,50,50,${bitemporalIntensity}) 77.5%,
+        rgba(50,50,50,${bitemporalIntensity}) 100%
       )`,
-      bitemporalHemianopia.intensity === 1 ? 'normal' : 'multiply',
-      bitemporalHemianopia.intensity === 1 ? '1' : Math.min(0.95, bitemporalHemianopia.intensity).toString(),
+      'normal',
+      (bitemporalHemianopia.intensity === 1 ? 1 : Math.min(0.85, bitemporalHemianopia.intensity)).toString(),
       undefined,
       undefined,
       'bitemporalHemianopia'
@@ -272,14 +276,13 @@ export const createVisualFieldLossOverlays = (
   if (scotoma?.enabled) {
     const intensity = scotoma.intensity;
     const scotomaSize = Math.max(15, 10 + intensity * 20);
-    const blackIntensity = intensity;
-    
+
     createOverlay(
       'visual-field-overlay-scotoma',
-      `radial-gradient(circle at 50% 50%, rgba(0,0,0,${blackIntensity}) 0%, rgba(0,0,0,${blackIntensity * 0.9}) ${scotomaSize - 5}%, rgba(0,0,0,${blackIntensity * 0.6}) ${scotomaSize}%, rgba(0,0,0,${blackIntensity * 0.3}) ${scotomaSize + 5}%, transparent ${scotomaSize + 10}%)`,
-      'multiply',
-      Math.min(0.95, intensity).toString(),
-      undefined,
+      `radial-gradient(circle at 50% 50%, rgba(45,45,45,${0.85 * intensity}) 0%, rgba(45,45,45,${0.75 * intensity}) ${scotomaSize - 5}%, rgba(45,45,45,${0.5 * intensity}) ${scotomaSize}%, rgba(45,45,45,${0.25 * intensity}) ${scotomaSize + 5}%, transparent ${scotomaSize + 10}%)`,
+      'normal',
+      Math.min(0.85, intensity).toString(),
+      'blur(0.5px)',
       undefined,
       'scotoma'
     );

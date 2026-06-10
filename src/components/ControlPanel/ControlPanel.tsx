@@ -151,25 +151,28 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'flex-start', flex: 1 }}>
           {/* Left side: List of vision conditions */}
-          <EffectList
-            effects={effects}
-            highlightedEffect={highlightedEffect}
-            enabledEffectsCount={enabledEffectsCount}
-            diplopiaSeparation={diplopiaSeparation}
-            diplopiaDirection={diplopiaDirection}
-            onEffectClick={handleEffectClick}
-            onToggleAndSelect={handleToggleAndSelect}
-            onIntensityChange={onIntensityChange}
-            onDiplopiaSeparationChange={onDiplopiaSeparationChange}
-            onDiplopiaDirectionChange={onDiplopiaDirectionChange}
-            onOrientationChange={handleOrientationChange}
-          />
+          <Box sx={{ order: { xs: 2, md: 1 }, flex: '1', width: { xs: '100%', md: 'auto' } }}>
+            <EffectList
+              effects={effects}
+              highlightedEffect={highlightedEffect}
+              enabledEffectsCount={enabledEffectsCount}
+              diplopiaSeparation={diplopiaSeparation}
+              diplopiaDirection={diplopiaDirection}
+              onEffectClick={handleEffectClick}
+              onToggleAndSelect={handleToggleAndSelect}
+              onIntensityChange={onIntensityChange}
+              onDiplopiaSeparationChange={onDiplopiaSeparationChange}
+              onDiplopiaDirectionChange={onDiplopiaDirectionChange}
+              onOrientationChange={handleOrientationChange}
+            />
+          </Box>
 
           {/* Right side: Live visualizer + controls */}
           <Box sx={{
+            order: { xs: 1, md: 2 },
             flex: '1.5',
-            position: 'sticky',
-            top: 16,
+            position: { xs: 'static', md: 'sticky' },
+            top: { md: 16 },
             alignSelf: 'flex-start',
             width: { xs: '100%', md: 'auto' },
             minWidth: { md: '500px' },
@@ -183,7 +186,6 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                   {currentHighlightedEffect.name} {t('controlPanel.severity', 'Severity')}: {Math.round(currentHighlightedEffect.intensity * 100)}%
                 </Typography>
                 <Slider
-                  size="small"
                   value={currentHighlightedEffect.intensity * 100}
                   onChange={(_, value) => onIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
                   valueLabelDisplay="auto"

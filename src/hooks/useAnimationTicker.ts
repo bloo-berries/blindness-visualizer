@@ -14,6 +14,11 @@ export const useAnimationTicker = (enabled: boolean, interval: number = 100): nu
   useEffect(() => {
     if (!enabled) return;
 
+    const prefersReducedMotion =
+      (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+      document.documentElement.classList.contains('reduced-motion-mode');
+    if (prefersReducedMotion) return;
+
     const intervalId = setInterval(() => {
       setNow(Date.now());
     }, interval);

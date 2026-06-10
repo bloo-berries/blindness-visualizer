@@ -222,7 +222,8 @@ const FamousBlindPeople: React.FC = () => {
     hasPreloaded.current = true;
 
     const preloadImages = () => {
-      const firstBatch = PERSON_IDS.slice(0, 12);
+      const preloadCount = window.matchMedia('(max-width: 600px)').matches ? 6 : 12;
+      const firstBatch = PERSON_IDS.slice(0, preloadCount);
       firstBatch.forEach((personId) => {
         const img = new Image();
         img.src = getPersonImagePath(personId);
@@ -275,7 +276,7 @@ const FamousBlindPeople: React.FC = () => {
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
 
       <Container maxWidth={false} sx={{ maxWidth: '1000px', pt: 12, pb: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
+        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4, fontSize: { xs: '1.5rem', sm: '2rem', md: undefined } }}>
           {t('famousPeople.title')}
         </Typography>
         <Typography
@@ -305,7 +306,7 @@ const FamousBlindPeople: React.FC = () => {
                 variant="outlined"
               />
             </Grid>
-            <Grid item xs={12} md={2}>
+            <Grid item xs={6} md={2}>
               <FormControl fullWidth>
                 <InputLabel>{t('famousPeople.categoryLabel')}</InputLabel>
                 <Select
@@ -322,7 +323,7 @@ const FamousBlindPeople: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} md={2}>
+            <Grid item xs={6} md={2}>
               <FormControl fullWidth>
                 <InputLabel>{t('famousPeople.conditionLabel')}</InputLabel>
                 <Select
@@ -358,7 +359,7 @@ const FamousBlindPeople: React.FC = () => {
             </Grid>
           </Grid>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'center' }, flexWrap: 'wrap', gap: 1, mb: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
               <Typography variant="body2" className="famous-people-filter-text" sx={{ color: preferences.highContrast ? '#000000' : 'var(--color-text-primary)' }}>
                 {t('famousPeople.showingResults', { count: filteredPeople.length, total: PERSON_COUNT })}
@@ -400,7 +401,7 @@ const FamousBlindPeople: React.FC = () => {
                 />
               )}
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: { xs: '100%', sm: 'auto' }, flexWrap: 'wrap' }}>
               <FormControlLabel
                 control={
                   <Switch

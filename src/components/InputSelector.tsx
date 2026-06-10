@@ -270,7 +270,8 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
           variant="caption"
           onClick={() => setDataPolicyOpen(true)}
           sx={{
-            fontSize: '0.7rem',
+            fontSize: '0.75rem',
+            py: 0.5,
             color: 'text.secondary',
             textDecoration: 'underline',
             cursor: 'pointer',

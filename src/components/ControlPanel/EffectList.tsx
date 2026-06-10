@@ -179,7 +179,7 @@ export const EffectList: React.FC<EffectListProps> = ({
   }, []);
 
   return (
-    <Box data-tour-step="conditions" sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: '350px', md: '500px' }, width: { xs: '100%', md: 'auto' } }}>
+    <Box data-tour-step="conditions" sx={{ flex: '1', overflow: 'auto', maxHeight: { xs: 'none', md: '500px' }, width: { xs: '100%', md: 'auto' } }}>
       {/* Search Input */}
       <TextField
         fullWidth
@@ -221,6 +221,8 @@ export const EffectList: React.FC<EffectListProps> = ({
             onClick={() => handleFilterClick(filter.id)}
             sx={{
               cursor: 'pointer',
+              minHeight: '36px',
+              '& .MuiChip-label': { py: 0.5 },
               '&:hover': {
                 backgroundColor: activeFilter === filter.id ? undefined : 'rgba(33, 150, 243, 0.08)'
               }
@@ -237,7 +239,7 @@ export const EffectList: React.FC<EffectListProps> = ({
             <IconButton
               size="small"
               onClick={() => setActiveFilter(null)}
-              sx={{ ml: 1, p: 0.25 }}
+              sx={{ ml: 1, p: 0.75 }}
               aria-label="Clear filter"
             >
               <Clear fontSize="small" />

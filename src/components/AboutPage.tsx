@@ -3,17 +3,22 @@ import {
   Container,
   Typography,
   Box,
-  Paper
+  Grid,
+  Button,
+  Divider
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
+import { PERSON_COUNT } from '../data/famousPeople/constants';
 
 const AboutPage: React.FC = () => {
   const { t } = useTranslation();
   const { preferences } = useAccessibility();
+  const navigate = useNavigate();
 
   // Load Wistia player script if not already loaded
   useEffect(() => {
@@ -41,10 +46,15 @@ const AboutPage: React.FC = () => {
           <Box sx={{ textAlign: 'center', mb: 3 }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{
               fontWeight: 700,
-              background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              fontSize: { xs: '1.5rem', sm: '2rem', md: undefined },
+              ...(preferences.highContrast
+                ? { color: 'text.primary' }
+                : {
+                    background: 'linear-gradient(45deg, var(--color-primary-gradient-start), var(--color-primary-gradient-end))',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }),
               mb: 2
             }}>
               {t('about.title')}
@@ -52,51 +62,29 @@ const AboutPage: React.FC = () => {
           </Box>
 
           {/* Personal Story Section */}
-          <Paper elevation={3} className="personal-journey-section" sx={{ 
-            p: 4, 
-            mb: 6, 
-            background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
-            border: '1px solid #e2e8f0'
-          }}>
+          <Box sx={{ p: 4, mb: 6 }}>
             <Typography variant="h4" component="h2" className="personal-journey-title" gutterBottom sx={{
               fontWeight: 600,
-              color: '#1976d2',
+              color: 'primary.main',
               mb: 3
             }}>
               {t('about.personalJourney')}
             </Typography>
-            
+
+            {/* Greeting */}
             <Typography variant="body1" className="personal-journey-text" sx={{
               fontSize: '1.1rem',
               lineHeight: 1.8,
               mb: 2,
-              color: '#000000'
+              color: 'text.primary'
             }}>
               {t('about.greeting')}
             </Typography>
 
-            <Typography variant="body1" className="personal-journey-text" sx={{
-              fontSize: '1.1rem',
-              lineHeight: 1.8,
-              mb: 3,
-              color: '#000000'
-            }}>
-              {t('about.story')}
-            </Typography>
-
-            <Typography variant="body1" className="personal-journey-text personal-journey-highlight" sx={{
-              fontSize: '1.1rem',
-              lineHeight: 1.8,
-              fontWeight: 600,
-              color: '#1976d2'
-            }}>
-              {t('about.purpose')}
-            </Typography>
-
-            {/* Video Section */}
-            <Box sx={{ 
-              mt: 4, 
-              display: 'flex', 
+            {/* Video Section (moved up) */}
+            <Box sx={{
+              my: 4,
+              display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%'
@@ -106,9 +94,8 @@ const AboutPage: React.FC = () => {
                 maxWidth: '800px',
                 position: 'relative'
               }}>
-                {/* Wistia Video Player */}
-                <Box 
-                  sx={{ 
+                <Box
+                  sx={{
                     width: '100%',
                     borderRadius: '8px',
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
@@ -150,7 +137,7 @@ const AboutPage: React.FC = () => {
                     </Box>
                   </Box>
                 </Box>
-                
+
                 <Typography
                   variant="body2"
                   className="preview-how-i-see-text"
@@ -166,8 +153,75 @@ const AboutPage: React.FC = () => {
                 </Typography>
               </Box>
             </Box>
-          </Paper>
 
+            {/* Story */}
+            <Typography variant="body1" className="personal-journey-text" sx={{
+              fontSize: '1.1rem',
+              lineHeight: 1.8,
+              mb: 3,
+              color: 'text.primary'
+            }}>
+              {t('about.story')}
+            </Typography>
+
+            {/* Purpose */}
+            <Typography variant="body1" className="personal-journey-text personal-journey-highlight" sx={{
+              fontSize: '1.1rem',
+              lineHeight: 1.8,
+              fontWeight: 600,
+              color: 'primary.main',
+              mb: 4
+            }}>
+              {t('about.purpose')}
+            </Typography>
+
+            {/* CTA Button */}
+            <Box sx={{ textAlign: 'center', mb: 2 }}>
+              <Button
+                variant="contained"
+                size="large"
+                onClick={() => navigate('/simulator')}
+                sx={{ px: 3, py: 1, fontSize: '1rem', fontWeight: 600 }}
+              >
+                {t('home.card1Button')}
+              </Button>
+            </Box>
+          </Box>
+
+          {/* Stats Section */}
+          <Divider sx={{ my: 4 }} />
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                  {PERSON_COUNT}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Famous People
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                  144
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Vision Conditions
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Typography variant="h3" sx={{ fontWeight: 700 }}>
+                  26
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Languages
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
 
         </Container>
       </Box>

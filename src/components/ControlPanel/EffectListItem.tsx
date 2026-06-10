@@ -148,7 +148,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
                   valueLabelDisplay="auto"
                   valueLabelFormat={value => `${value}%`}
                   aria-label="Adjust diplopia separation"
-                  sx={{ width: '90%', mb: 2 }}
+                  sx={{ width: { xs: '100%', sm: '90%' }, mb: 2 }}
                 />
                 <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary' }}>
                   Direction
@@ -170,7 +170,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
                     return 'Diagonal';
                   }}
                   aria-label="Adjust diplopia direction"
-                  sx={{ width: '90%' }}
+                  sx={{ width: { xs: '100%', sm: '90%' } }}
                 />
               </Box>
             )}
@@ -183,7 +183,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
                 borderColor: 'info.main',
                 py: 0.5,
               }}>
-                <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary', fontStyle: 'italic', lineHeight: 1.4 }}>
+                <Typography variant="body2" sx={{ display: 'block', color: 'text.secondary', fontStyle: 'italic', lineHeight: 1.4, fontSize: '0.8125rem' }}>
                   {SIMULATION_NOTES[effect.id as ConditionType]}
                 </Typography>
               </Box>
@@ -231,6 +231,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
           size="small"
           aria-label={`Learn more about ${effect.name}`}
           onClick={stopPropagation}
+          sx={{ minWidth: 44, minHeight: 44 }}
         >
           <Info />
         </IconButton>

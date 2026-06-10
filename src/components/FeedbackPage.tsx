@@ -183,6 +183,7 @@ const FeedbackPage: React.FC = () => {
             gutterBottom
             sx={{
               fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: undefined },
               color: 'text.primary',
               mb: 2
             }}

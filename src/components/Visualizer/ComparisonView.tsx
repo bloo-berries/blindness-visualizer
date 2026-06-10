@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Box, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+import { Box, Typography, Button, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { YOUTUBE_EMBED_URL } from '../../utils/appConstants';
@@ -55,12 +55,15 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // Mobile: toggle between simulation and original (avoids dual iframes)
+  const [mobileActiveView, setMobileActiveView] = useState<'simulation' | 'original'>('simulation');
+
   return (
     <Box className="comparison-container" sx={{
       position: 'relative',
       width: '100%',
       height: '100%',
-      minHeight: '400px',
+      minHeight: { xs: '280px', sm: '400px' },
       backgroundColor: '#000',
       overflow: 'hidden'
     }}>
@@ -106,15 +109,50 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         </Box>
       )}
 
+      {/* Mobile toggle buttons */}
+      {isMobile && (
+        <Box sx={{
+          position: 'absolute',
+          top: '10px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1003,
+        }}>
+          <ToggleButtonGroup
+            value={mobileActiveView}
+            exclusive
+            onChange={(_, value) => { if (value) setMobileActiveView(value); }}
+            size="small"
+            sx={{
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              '& .MuiToggleButton-root': {
+                color: 'rgba(255, 255, 255, 0.7)',
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+                fontSize: '0.75rem',
+                px: 1.5,
+                py: 0.5,
+                '&.Mui-selected': {
+                  color: '#fff',
+                  backgroundColor: 'rgba(96, 165, 250, 0.4)',
+                },
+              },
+            }}
+          >
+            <ToggleButton value="simulation">{t('comparison.simulation', 'Simulation')}</ToggleButton>
+            <ToggleButton value="original">{t('comparison.original', 'Original')}</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+      )}
+
       {/* Top/Left side - Simulation video */}
+      {(!isMobile || mobileActiveView === 'simulation') && (
       <Box sx={{
         position: 'absolute',
         left: 0,
         top: 0,
         width: isMobile ? '100%' : '50%',
-        height: isMobile ? '50%' : '100%',
+        height: isMobile ? '100%' : '100%',
         borderRight: isMobile ? 'none' : '2px solid #fff',
-        borderBottom: isMobile ? '2px solid #fff' : 'none'
       }}>
         <Box sx={{
           position: 'absolute',
@@ -222,14 +260,16 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
         </div>
         {getDiplopiaOverlay()}
       </Box>
+      )}
 
       {/* Bottom/Right side - Original video */}
+      {(!isMobile || mobileActiveView === 'original') && (
       <Box sx={{
         position: 'absolute',
         right: 0,
-        top: isMobile ? '50%' : 0,
+        top: 0,
         width: isMobile ? '100%' : '50%',
-        height: isMobile ? '50%' : '100%'
+        height: isMobile ? '100%' : '100%'
       }}>
         <Box sx={{
           position: 'absolute',
@@ -300,6 +340,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
           </Box>
         )}
       </Box>
+      )}
 
       {/* Toggle button */}
       <Box sx={{

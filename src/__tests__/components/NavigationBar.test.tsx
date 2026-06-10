@@ -196,9 +196,9 @@ describe('NavigationBar', () => {
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });
 
-  test('does not show skip-to-content link on home page', () => {
+  test('shows skip-to-content link on all pages including home', () => {
     renderWithProviders(<NavigationBar />, { route: '/' });
-    expect(screen.queryByText('Skip to content')).not.toBeInTheDocument();
+    expect(screen.queryByText('Skip to content')).toBeInTheDocument();
   });
 
   test('renders The Blind Spot title text', () => {

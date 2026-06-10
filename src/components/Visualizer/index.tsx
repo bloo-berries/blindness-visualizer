@@ -226,6 +226,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
       position: 'relative',
       width: '100%',
       height: { xs: 'auto', md: '600px' },
+      minHeight: { xs: '300px', md: 'auto' },
       '@keyframes visualSnowAnimation': {
         '0%': { backgroundPosition: '0% 0%', opacity: 1 },
         '25%': { backgroundPosition: '100% 0%', opacity: 1.05 },
@@ -278,7 +279,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
       </div>
 
       {inputSource.type === 'image' && inputSource.url && (
-        <Box ref={imageContainerRef} sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#000' }}>
+        <Box ref={imageContainerRef} sx={{ position: 'relative', width: '100%', height: '100%', minHeight: { xs: '250px', md: 'auto' }, overflow: 'hidden', backgroundColor: '#000' }}>
           {!showComparison && (
             <Box sx={{ position: 'absolute', top: '10px', left: '10px', zIndex: 10000, display: 'flex', gap: 1 }}>
               <Button
@@ -292,7 +293,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   color: '#1e3a8a',
                   fontWeight: 600,
                   fontSize: '0.85rem',
-                  px: 2,
+                  minWidth: 'auto',
+                  px: { xs: 1, sm: 2 },
                   py: 0.75,
                   borderRadius: '8px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
@@ -302,7 +304,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   }
                 }}
               >
-                Compare
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Compare</Box>
               </Button>
             </Box>
           )}
@@ -320,7 +322,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
                 color: '#1e3a8a',
                 fontWeight: 600,
                 fontSize: '0.85rem',
-                px: 2,
+                minWidth: 'auto',
+                px: { xs: 1, sm: 2 },
                 py: 0.75,
                 borderRadius: '8px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
@@ -330,7 +333,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
                 }
               }}
             >
-              {isSaving ? 'Saving...' : 'Save'}
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>{isSaving ? 'Saving...' : 'Save'}</Box>
             </Button>
             <Button
               variant="contained"
@@ -342,18 +345,18 @@ const Visualizer: React.FC<VisualizerProps> = ({
                 color: '#1e3a8a',
                 fontWeight: 600,
                 fontSize: '0.85rem',
-                px: 2,
+                minWidth: 'auto',
+                px: { xs: 1, sm: 2 },
                 py: 0.75,
                 borderRadius: '8px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-                minWidth: 'auto',
                 '&:hover': {
                   backgroundColor: '#ffffff',
                   boxShadow: '0 4px 12px rgba(30,58,138,0.4)',
                 }
               }}
             >
-              Fullscreen
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Fullscreen</Box>
             </Button>
           </Box>
 
@@ -429,7 +432,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   color: '#1e3a8a',
                   fontWeight: 600,
                   fontSize: '0.85rem',
-                  px: 2,
+                  minWidth: 'auto',
+                  px: { xs: 1, sm: 2 },
                   py: 0.75,
                   borderRadius: '8px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
@@ -444,7 +448,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   }
                 }}
               >
-                Compare
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Compare</Box>
               </Button>
             </Box>
           )}

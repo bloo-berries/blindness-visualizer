@@ -24,6 +24,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -87,9 +88,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
   return (
     <>
-      {/* Skip Navigation Links - Only show on non-home pages */}
-      {location.pathname !== '/' && (
-        <Box
+      {/* Skip Navigation Links */}
+      <Box
           component="a"
           href="#main-content"
           sx={{
@@ -114,7 +114,6 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         >
           {t('accessibility.skipToContent')}
         </Box>
-      )}
       <AppBar 
       position="fixed" 
       elevation={0}
@@ -465,7 +464,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         role="presentation"
       >
         <Box sx={{ flex: 1 }}>
-          <Box sx={{ px: 2, pb: 2 }}>
+          <Box sx={{ px: 2, pb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Typography
               variant="h6"
               sx={{
@@ -476,6 +475,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             >
               {t('nav.navigation')}
             </Typography>
+            <IconButton
+              onClick={handleMobileMenuToggle}
+              aria-label={t('nav.closeMenu', 'Close menu')}
+              sx={{ color: 'white' }}
+            >
+              <CloseIcon />
+            </IconButton>
           </Box>
           <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
           <List>

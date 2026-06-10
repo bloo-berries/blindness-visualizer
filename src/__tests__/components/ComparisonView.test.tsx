@@ -146,8 +146,8 @@ describe('ComparisonView', () => {
     const props = defaultProps();
     props.effects = [makeEffect('completeBlindness', true, 1.0)];
     render(<ComparisonView {...props} />);
-    // Should still render
-    expect(screen.getByText('Simulation')).toBeInTheDocument();
-    expect(screen.getByText('Original')).toBeInTheDocument();
+    // Should still render — on mobile, toggle buttons show both labels
+    expect(screen.getAllByText('Simulation').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Original').length).toBeGreaterThanOrEqual(1);
   });
 });

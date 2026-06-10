@@ -191,6 +191,7 @@ const ResourcesPage: React.FC = () => {
           <Box sx={{ textAlign: 'center', mb: 6 }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{
               fontWeight: 700,
+              fontSize: { xs: '1.5rem', sm: '2rem', md: undefined },
               background: 'linear-gradient(45deg, var(--color-primary), var(--color-primary-accent, #42a5f5))',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',

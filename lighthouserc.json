@@ -1,15 +1,16 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./build",
+      "startServerCommand": "npx -y serve -s build -l 9222",
+      "startServerReadyPattern": "Accepting connections",
       "url": [
-        "/",
-        "/simulator",
-        "/famous-people",
-        "/conditions",
-        "/faq",
-        "/about",
-        "/resources"
+        "http://localhost:9222/",
+        "http://localhost:9222/simulator",
+        "http://localhost:9222/famous-people",
+        "http://localhost:9222/conditions",
+        "http://localhost:9222/faq",
+        "http://localhost:9222/about",
+        "http://localhost:9222/resources"
       ]
     },
     "assert": {

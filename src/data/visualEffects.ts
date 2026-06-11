@@ -7,6 +7,9 @@ import { allEffects } from './effects';
  */
 export const VISUAL_EFFECTS: VisualEffect[] = allEffects;
 
+/** Programmatically derived count of all vision conditions */
+export const CONDITION_COUNT = allEffects.length;
+
 /**
  * Creates a new visual effects array with default values
  *

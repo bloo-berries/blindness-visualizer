@@ -50,6 +50,7 @@ const NeoMatrixCodeVision: React.FC<NeoMatrixCodeVisionProps> = ({ intensity }) 
   const animationRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
   const glitchRef = useRef<{ active: boolean; endTime: number }>({ active: false, endTime: 0 });
+  const animatingRef = useRef(true);
 
   // Initialize columns
   const initColumns = useCallback((width: number, height: number) => {
@@ -200,7 +201,9 @@ const NeoMatrixCodeVision: React.FC<NeoMatrixCodeVisionProps> = ({ intensity }) 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    animationRef.current = requestAnimationFrame(render);
+    if (animatingRef.current) {
+      animationRef.current = requestAnimationFrame(render);
+    }
   }, [intensity, mutateColumn]);
 
   // Setup and resize handling
@@ -234,9 +237,21 @@ const NeoMatrixCodeVision: React.FC<NeoMatrixCodeVisionProps> = ({ intensity }) 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Start animation
+    // Check reduced-motion preference
+    const prefersReducedMotion =
+      (typeof window.matchMedia === 'function' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+      document.documentElement.classList.contains('reduced-motion-mode');
+
+    animatingRef.current = !prefersReducedMotion;
+
+    // Start animation (or render single frame)
     lastTimeRef.current = performance.now();
-    animationRef.current = requestAnimationFrame(render);
+    if (prefersReducedMotion) {
+      render(performance.now());
+    } else {
+      animationRef.current = requestAnimationFrame(render);
+    }
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);

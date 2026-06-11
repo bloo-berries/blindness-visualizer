@@ -10,12 +10,30 @@ export class AnimationManager {
   private isRunning = false;
   private callbacks: Array<() => void> = [];
   private optimizer = PerformanceOptimizer.getInstance();
+  private reducedMotionQuery: MediaQueryList | null = null;
+
+  private constructor() {
+    if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+      this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      this.reducedMotionQuery.addEventListener('change', this.handleReducedMotionChange);
+    }
+  }
 
   static getInstance(): AnimationManager {
     if (!AnimationManager.instance) {
       AnimationManager.instance = new AnimationManager();
     }
     return AnimationManager.instance;
+  }
+
+  /**
+   * Checks whether reduced motion is active (OS setting or in-app toggle).
+   */
+  isReducedMotion(): boolean {
+    return (
+      (this.reducedMotionQuery?.matches ?? false) ||
+      document.documentElement.classList.contains('reduced-motion-mode')
+    );
   }
 
   /**
@@ -48,6 +66,14 @@ export class AnimationManager {
     if (this.isRunning) return;
 
     this.isRunning = true;
+
+    if (this.isReducedMotion()) {
+      // Execute all callbacks once for a static frame, then stop
+      this.executeCallbacks();
+      this.isRunning = false;
+      return;
+    }
+
     this.animate();
   }
 
@@ -63,6 +89,36 @@ export class AnimationManager {
   }
 
   /**
+   * Execute all registered callbacks once
+   */
+  private executeCallbacks(): void {
+    this.callbacks.forEach(callback => {
+      try {
+        callback();
+      } catch (error) {
+        // Animation callback error - silently handle
+      }
+    });
+  }
+
+  /**
+   * Handle OS reduced-motion preference change mid-session
+   */
+  private handleReducedMotionChange = (): void => {
+    if (this.isReducedMotion()) {
+      // Stop the loop; execute once for a final static frame
+      this.stop();
+      if (this.callbacks.length > 0) {
+        this.executeCallbacks();
+      }
+    } else if (this.callbacks.length > 0 && !this.isRunning) {
+      // Preference turned off — restart animation
+      this.isRunning = true;
+      this.animate();
+    }
+  };
+
+  /**
    * Main animation loop
    */
   private animate = (): void => {
@@ -72,13 +128,7 @@ export class AnimationManager {
     this.optimizer.monitorPerformance();
 
     // Execute all callbacks
-    this.callbacks.forEach(callback => {
-      try {
-        callback();
-      } catch (error) {
-        // Animation callback error - silently handle
-      }
-    });
+    this.executeCallbacks();
 
     this.animationId = requestAnimationFrame(this.animate);
   };

@@ -14,6 +14,7 @@ import Footer from './Footer';
 import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 import { PERSON_COUNT } from '../data/famousPeople/constants';
+import { CONDITION_COUNT } from '../data/visualEffects';
 
 const AboutPage: React.FC = () => {
   const { t } = useTranslation();
@@ -204,7 +205,7 @@ const AboutPage: React.FC = () => {
             <Grid item xs={4}>
               <Box sx={{ textAlign: 'center' }}>
                 <Typography variant="h3" sx={{ fontWeight: 700 }}>
-                  144
+                  {CONDITION_COUNT}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Vision Conditions

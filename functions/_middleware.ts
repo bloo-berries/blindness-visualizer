@@ -34,7 +34,7 @@ const SITE_NAME = 'The Blind Spot';
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   '/': {
     title: SITE_NAME,
-    description: 'Free online vision simulator — experience 148+ conditions including color blindness, macular degeneration, and glaucoma. Profiles 214+ famous people with visual impairments.',
+    description: 'Free online vision simulator — experience 265+ conditions including color blindness, macular degeneration, and glaucoma. Profiles 210+ famous people with visual impairments.',
   },
   '/simulator': {
     title: `Live Vision Simulator | ${SITE_NAME}`,
@@ -46,7 +46,7 @@ const ROUTE_META: Record<string, { title: string; description: string }> = {
   },
   '/conditions': {
     title: `Vision Conditions Glossary | ${SITE_NAME}`,
-    description: 'Comprehensive glossary of 148+ vision conditions with descriptions, symptoms, causes, and treatments.',
+    description: 'Comprehensive glossary of 265+ vision conditions with descriptions, symptoms, causes, and treatments.',
   },
   '/faq': {
     title: `Frequently Asked Questions | ${SITE_NAME}`,

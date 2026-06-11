@@ -14,6 +14,7 @@ import PageMeta from '../PageMeta';
 import GlossaryTab from './GlossaryTab';
 import FAQTab from './FAQTab';
 import { conditionCategories } from '../../data/conditionCategories';
+import { CONDITION_COUNT } from '../../data/visualEffects';
 import '../../styles/Conditions.css';
 import '../../styles/FAQ.css';
 
@@ -40,7 +41,7 @@ const ConditionsPage: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Vision Conditions Glossary',
-    description: 'Comprehensive glossary of 148+ vision conditions with descriptions and treatment information.',
+    description: `Comprehensive glossary of ${CONDITION_COUNT}+ vision conditions with descriptions and treatment information.`,
     numberOfItems: conditionCategories.reduce((n, cat) => n + cat.conditions.length, 0),
     itemListElement: conditionCategories.flatMap((cat, catIdx) =>
       cat.conditions.map((condition, condIdx) => ({
@@ -65,7 +66,7 @@ const ConditionsPage: React.FC = () => {
     <Box className="conditions-glossary" sx={{ pb: 10 }}>
       <PageMeta
         title="Vision Conditions Glossary"
-        description="Browse a comprehensive glossary of 148+ vision conditions including color blindness, macular degeneration, glaucoma, cataracts, and retinitis pigmentosa."
+        description={`Browse a comprehensive glossary of ${CONDITION_COUNT}+ vision conditions including color blindness, macular degeneration, glaucoma, cataracts, and retinitis pigmentosa.`}
         path="/conditions"
         jsonLd={conditionsJsonLd}
       />

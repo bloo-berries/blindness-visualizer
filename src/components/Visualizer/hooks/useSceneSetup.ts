@@ -159,7 +159,27 @@ export function useSceneSetup(
     };
 
     if (!showComparison) {
-      animate();
+      // Check reduced-motion: render one static frame instead of looping
+      const prefersReducedMotion =
+        (typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+        document.documentElement.classList.contains('reduced-motion-mode');
+
+      if (prefersReducedMotion) {
+        // Single render pass — no rAF continuation
+        optimizer.current.monitorPerformance();
+        if (mesh && texture) {
+          const material = mesh.material as THREE.ShaderMaterial;
+          material.uniforms.tDiffuse.value = texture;
+          const { changed } = effectProcessor.current.updateEffects(effects);
+          if (changed) {
+            updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
+          }
+          renderer.render(scene, camera);
+        }
+      } else {
+        animate();
+      }
     }
 
     return () => {

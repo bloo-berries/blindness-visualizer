@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import {
   Box,
   Button,
@@ -6,9 +6,16 @@ import {
   Slider,
   Chip,
   Collapse,
-  Tooltip
+  Tooltip,
+  IconButton
 } from '@mui/material';
-import { KeyboardArrowDown, KeyboardArrowUp, Undo as UndoIcon } from '@mui/icons-material';
+import {
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  Undo as UndoIcon,
+  Remove as RemoveIcon,
+  Add as AddIcon
+} from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect, InputSource } from '../../types/visualEffects';
 import { ControlPanelStyles } from './ControlPanelStyles';
@@ -54,9 +61,13 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
   // Track if selected conditions summary is expanded
   const [showSelectedConditions, setShowSelectedConditions] = useState(false);
 
+  // Aria-live announcement for intensity changes (debounced)
+  const [intensityAnnouncement, setIntensityAnnouncement] = useState('');
+  const intensityTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   // Get all enabled effects for the combined preview (memoized)
-  const enabledEffects = useMemo(() => 
-    effects.filter(effect => effect.enabled), 
+  const enabledEffects = useMemo(() =>
+    effects.filter(effect => effect.enabled),
     [effects]
   );
 
@@ -115,6 +126,33 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     }
   }, [effects, onToggle]);
 
+  // Debounced intensity change handler that also announces to screen readers
+  const handleIntensityChange = useCallback((id: string, intensity: number) => {
+    onIntensityChange(id, intensity);
+
+    // Debounce the screen reader announcement
+    if (intensityTimerRef.current) {
+      clearTimeout(intensityTimerRef.current);
+    }
+    const effect = effects.find(e => e.id === id);
+    if (effect) {
+      intensityTimerRef.current = setTimeout(() => {
+        setIntensityAnnouncement(
+          `${effect.name} severity: ${Math.round(intensity * 100)}%`
+        );
+      }, 300);
+    }
+  }, [onIntensityChange, effects]);
+
+  // Cleanup debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (intensityTimerRef.current) {
+        clearTimeout(intensityTimerRef.current);
+      }
+    };
+  }, []);
+
   // Get enabled effects count for display
   const enabledEffectsCount = enabledEffects.length;
 
@@ -149,6 +187,22 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           }
         </Box>
 
+        {/* Screen Reader Announcements for Intensity Changes */}
+        <Box
+          component="div"
+          aria-live="polite"
+          aria-atomic="true"
+          sx={{
+            position: 'absolute',
+            left: '-10000px',
+            width: '1px',
+            height: '1px',
+            overflow: 'hidden'
+          }}
+        >
+          {intensityAnnouncement}
+        </Box>
+
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 2, alignItems: 'flex-start', flex: 1 }}>
           {/* Left side: List of vision conditions */}
           <Box sx={{ order: { xs: 2, md: 1 }, flex: '1', width: { xs: '100%', md: 'auto' } }}>
@@ -171,13 +225,16 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           <Box sx={{
             order: { xs: 1, md: 2 },
             flex: '1.5',
-            position: { xs: 'static', md: 'sticky' },
-            top: { md: 16 },
+            position: 'sticky',
+            top: { xs: 72, md: 16 },
+            zIndex: 10,
             alignSelf: 'flex-start',
             width: { xs: '100%', md: 'auto' },
             minWidth: { md: '500px' },
           }}>
-            {visualizerSlot}
+            <Box sx={{ maxHeight: { xs: '35vh', md: 'none' }, overflow: 'hidden' }}>
+              {visualizerSlot}
+            </Box>
 
             {/* Severity slider - shown when there's a highlighted effect that's enabled */}
             {currentHighlightedEffect?.enabled && (
@@ -185,25 +242,50 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
                 <Typography variant="body2" sx={{ mb: 1, fontWeight: 500, color: 'text.secondary' }}>
                   {currentHighlightedEffect.name} {t('controlPanel.severity', 'Severity')}: {Math.round(currentHighlightedEffect.intensity * 100)}%
                 </Typography>
-                <Slider
-                  value={currentHighlightedEffect.intensity * 100}
-                  onChange={(_, value) => onIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
-                  valueLabelDisplay="auto"
-                  valueLabelFormat={value => `${value}%`}
-                  marks={CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] || false}
-                  aria-label={`Adjust ${currentHighlightedEffect.name} severity`}
-                  sx={{
-                    width: '100%',
-                    ...(CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] && {
-                      mb: 3,
-                      '& .MuiSlider-markLabel': {
-                        fontSize: '0.65rem',
-                        color: 'text.secondary',
-                        whiteSpace: 'nowrap',
-                      },
-                    }),
-                  }}
-                />
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <IconButton
+                    aria-label={t('controlPanel.decreaseSeverity', 'Decrease severity')}
+                    onClick={() => {
+                      const newVal = Math.max(0, currentHighlightedEffect.intensity - 0.1);
+                      handleIntensityChange(currentHighlightedEffect.id, newVal);
+                    }}
+                    size="small"
+                    sx={{ minWidth: 44, minHeight: 44 }}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                  <Slider
+                    value={currentHighlightedEffect.intensity * 100}
+                    onChange={(_, value) => handleIntensityChange(currentHighlightedEffect.id, (value as number) / 100)}
+                    valueLabelDisplay="auto"
+                    valueLabelFormat={value => `${value}%`}
+                    getAriaValueText={(value) => `${value}%`}
+                    marks={CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] || false}
+                    aria-label={`Adjust ${currentHighlightedEffect.name} severity`}
+                    sx={{
+                      flex: 1,
+                      ...(CONDITION_STAGE_MARKS[currentHighlightedEffect.id as ConditionType] && {
+                        mb: 3,
+                        '& .MuiSlider-markLabel': {
+                          fontSize: '0.65rem',
+                          color: 'text.secondary',
+                          whiteSpace: 'nowrap',
+                        },
+                      }),
+                    }}
+                  />
+                  <IconButton
+                    aria-label={t('controlPanel.increaseSeverity', 'Increase severity')}
+                    onClick={() => {
+                      const newVal = Math.min(1, currentHighlightedEffect.intensity + 0.1);
+                      handleIntensityChange(currentHighlightedEffect.id, newVal);
+                    }}
+                    size="small"
+                    sx={{ minWidth: 44, minHeight: 44 }}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Box>
               </Box>
             )}
 
@@ -288,4 +370,3 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
 };
 
 export default ControlPanel;
-

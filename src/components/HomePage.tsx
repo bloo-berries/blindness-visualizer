@@ -23,6 +23,8 @@ import Footer from './Footer';
 import PageMeta from './PageMeta';
 import { useAccessibility } from '../contexts/AccessibilityContext';
 import { getPersonImagePath } from '../utils/imagePaths';
+import { CONDITION_COUNT } from '../data/visualEffects';
+import { PERSON_COUNT } from '../data/famousPeople/constants';
 
 const THUMBNAIL_PEOPLE = [
   { id: 'galileo', alt: 'Galileo Galilei', pos: 'center 20%' },
@@ -60,7 +62,7 @@ const HomePage: React.FC = () => {
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', pb: 10 }}>
       <PageMeta
         title="Vision Condition Simulator"
-        description="Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and 148+ vision conditions."
+        description={`Experience and understand blindness and visual impairments through real-time simulations. Explore color blindness, macular degeneration, glaucoma, cataracts, and ${CONDITION_COUNT}+ vision conditions. Profiles ${PERSON_COUNT}+ famous people.`}
         path="/"
       />
       <NavigationBar showHomeButton={false} onHomeClick={() => {}} />

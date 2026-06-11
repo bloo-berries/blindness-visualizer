@@ -307,7 +307,7 @@ async function generateSiteOG() {
     <rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#bg)"/>
     <text x="${OG_WIDTH / 2}" y="240" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="bold" fill="white" text-anchor="middle">The Blind Spot</text>
     <text x="${OG_WIDTH / 2}" y="310" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#94a3b8" text-anchor="middle">Vision Condition Simulator</text>
-    <text x="${OG_WIDTH / 2}" y="380" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#60a5fa" text-anchor="middle">214 famous people · 148 conditions · 26 languages</text>
+    <text x="${OG_WIDTH / 2}" y="380" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#60a5fa" text-anchor="middle">210+ famous people · 265+ conditions · 26 languages</text>
     <rect x="0" y="${OG_HEIGHT - 50}" width="${OG_WIDTH}" height="50" fill="#1e3a8a"/>
     <text x="${OG_WIDTH / 2}" y="${OG_HEIGHT - 18}" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">theblind.spot</text>
   </svg>`;

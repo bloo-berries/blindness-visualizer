@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
-import { Box, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+import { Box, Typography, Button, useTheme, useMediaQuery } from '@mui/material';
+import { PlayArrow as PlayArrowIcon } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { VisualEffect } from '../../types/visualEffects';
 import { VISUAL_EFFECTS } from '../../data/visualEffects';
@@ -29,6 +30,19 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
   personName
 }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  // Check reduced-motion preference
+  const prefersReducedMotion = useMemo(() =>
+    (typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+    document.documentElement.classList.contains('reduced-motion-mode'),
+    []
+  );
+
+  // On mobile, start with animation paused; on desktop, auto-animate
+  const [isAnimating, setIsAnimating] = useState(!isMobile && !prefersReducedMotion);
 
   // Create effects array with the person's conditions enabled
   const effects: VisualEffect[] = useMemo(() => {
@@ -47,8 +61,8 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
     [effects]
   );
 
-  // Animation ticker for animated effects
-  const now = useAnimationTicker(needsAnimation);
+  // Animation ticker for animated effects — disabled when not animating
+  const now = useAnimationTicker(needsAnimation && isAnimating);
 
   // Get visual field overlay styles
   const visualFieldOverlayStyles = useVisualFieldOverlay(effects);
@@ -132,6 +146,47 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           </Box>
         )}
 
+        {/* "Tap to preview" overlay for mobile / reduced-motion */}
+        {!isAnimating && needsAnimation && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              zIndex: 1003,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              cursor: 'pointer'
+            }}
+            onClick={() => setIsAnimating(true)}
+          >
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<PlayArrowIcon />}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsAnimating(true);
+              }}
+              sx={{
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                color: '#000',
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 1)',
+                }
+              }}
+            >
+              {t('famousPeople.dialog.tapToPreview', 'Tap to preview')}
+            </Button>
+          </Box>
+        )}
+
         {/* Video container with effects */}
         <Box
           sx={{
@@ -173,7 +228,7 @@ export const EmbeddedVisualization: React.FC<EmbeddedVisualizationProps> = ({
           )}
 
           {/* Neo Matrix Code Vision canvas overlay */}
-          {neoEffect && (
+          {neoEffect && isAnimating && (
             <NeoMatrixCodeVision intensity={neoEffect.intensity} />
           )}
         </Box>

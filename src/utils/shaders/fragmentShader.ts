@@ -23,6 +23,7 @@ export { MILTON_FUNCTIONS, GALILEO_FUNCTIONS } from './personShaders';
  */
 export const UNIFORM_DECLARATIONS = `
   uniform sampler2D tDiffuse;
+  uniform vec2 uResolution;
   uniform float protanopiaIntensity;
   uniform float deuteranopiaIntensity;
   uniform float tritanopiaIntensity;

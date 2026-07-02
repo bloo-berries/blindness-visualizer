@@ -10,15 +10,26 @@ export const UTILITY_FUNCTIONS = `
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
   }
 
+  float smoothNoise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float a = simpleNoise(i);
+    float b = simpleNoise(i + vec2(1.0, 0.0));
+    float c = simpleNoise(i + vec2(0.0, 1.0));
+    float d = simpleNoise(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+  }
+
   vec3 gaussianBlur(sampler2D tex, vec2 uv, float sigma) {
-    vec2 pixelSize = vec2(1.0) / vec2(textureSize(tex, 0));
+    vec2 pixelSize = vec2(1.0) / uResolution;
+    float scale = max(sigma / 3.0, 1.0);
     vec3 result = vec3(0.0);
     float total = 0.0;
-    int samples = int(sigma * 3.0);
-    for(int x = -samples; x <= samples; x++) {
-      for(int y = -samples; y <= samples; y++) {
-        vec2 offset = vec2(float(x), float(y)) * pixelSize;
-        float weight = exp(-(float(x*x + y*y)) / (2.0 * sigma * sigma));
+    for(int x = -3; x <= 3; x++) {
+      for(int y = -3; y <= 3; y++) {
+        vec2 offset = vec2(float(x), float(y)) * pixelSize * scale;
+        float weight = exp(-(float(x*x + y*y)) / 18.0);
         result += texture2D(tex, uv + offset).rgb * weight;
         total += weight;
       }
@@ -35,7 +46,6 @@ export const GLAUCOMA_FUNCTION = `
     if (intensity <= 0.0) return color;
     vec2 center = vec2(0.5, 0.5);
     float dist = distance(uv, center);
-    vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
     float blurAmount = mix(0.0, 8.0, intensity);
     vec3 result = color;
     if(blurAmount > 0.1) {
@@ -53,20 +63,15 @@ export const GLAUCOMA_FUNCTION = `
     float edgeDarkness = smoothstep(fadeStart, fieldRadius, dist);
     vec3 fadeColor = mix(vec3(0.3), vec3(0.15), edgeDarkness);
     result = mix(fadeColor, result, visibility);
-    float peripheralBlurAmount = smoothstep(0.0, fieldRadius, dist) * 4.0 * intensity;
-    if(peripheralBlurAmount > 0.5) {
-      vec3 blurred = gaussianBlur(tDiffuse, uv, peripheralBlurAmount);
-      result = mix(result, blurred, 0.5);
-    }
     if(intensity > 0.3) {
       vec2 scotomaSeed = vec2(1.234, 5.678);
-      float scotomaNoise = simpleNoise(uv * 4.0 + scotomaSeed);
+      float scotomaNoise = smoothNoise(uv * 4.0 + scotomaSeed);
       float scotomaThreshold = mix(1.0, 0.5, (intensity - 0.3) / 0.7);
       if(scotomaNoise > scotomaThreshold) {
         vec3 scotomaColor = mix(result, vec3(0.2), 0.8);
         float scotomaBlend = smoothstep(scotomaThreshold, scotomaThreshold + 0.1, scotomaNoise);
         result = mix(result, scotomaColor, scotomaBlend);
-        vec3 scotomaBlurred = gaussianBlur(tDiffuse, uv, 15.0);
+        vec3 scotomaBlurred = gaussianBlur(tDiffuse, uv, 6.0);
         result = mix(result, scotomaBlurred, scotomaBlend * 0.5);
       }
     }

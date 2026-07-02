@@ -111,14 +111,14 @@ describe('overlayManager - createVisualFieldOverlays', () => {
     expect((createFamousPeopleOverlays as jest.Mock).mock.calls[0][1]).toBe(container);
   });
 
-  test('ocularOverlays receives only the effect map (no container)', () => {
+  test('ocularOverlays receives both the effect map and container', () => {
     const effects = [createMockEffect('glaucoma', true, 0.5)];
 
     createVisualFieldOverlays(effects, container);
 
     const ocularArgs = (createOcularOverlays as jest.Mock).mock.calls[0];
-    expect(ocularArgs.length).toBe(1);
     expect(ocularArgs[0]).toBeInstanceOf(Map);
+    expect(ocularArgs[1]).toBe(container);
   });
 
   test('works with empty effects array', () => {

@@ -66,7 +66,7 @@ export const RETINAL_FUNCTIONS = `
     float blurAmount = intensity * 0.8;
     vec3 result = color;
     if (blurAmount > 0.0) {
-      vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
+      vec2 pixelSize = vec2(1.0) / uResolution;
       vec3 blurred = vec3(0.0);
       float total = 0.0;
       for(float x = -3.0; x <= 3.0; x++) {

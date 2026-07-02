@@ -2,7 +2,7 @@
 
 > https://theblind.spot
 
-This file contains comprehensive information about all 42+ vision conditions and 210+ famous people profiled on The Blind Spot. It is intended for AI agents and language models that need detailed information to answer user queries.
+This file contains comprehensive information about all 47+ vision conditions and 210+ famous people profiled on The Blind Spot. It is intended for AI agents and language models that need detailed information to answer user queries.
 
 ---
 
@@ -431,6 +431,42 @@ Difficulty seeing near objects clearly while distant objects appear normal. Caus
 
 ---
 
+#### Strabismus (Crossed Eyes)
+
+Misalignment of the eyes where they do not look in the same direction simultaneously. Can be constant or intermittent, and may cause diplopia (double vision), depth perception problems, and social difficulties. If untreated in childhood, the brain may suppress input from the misaligned eye, leading to amblyopia.
+
+**Treatment**: Available
+- Prescription glasses or prism lenses
+- Vision therapy and eye exercises (orthoptics)
+- Eye muscle surgery to realign the eyes
+- Botulinum toxin (Botox) injections into eye muscles
+- Eye patching or atropine drops to treat associated amblyopia
+- Treatment is most effective in early childhood
+
+*Early treatment is important to prevent amblyopia and allow normal binocular vision development. Surgery has high success rates. Adults can also benefit from treatment.*
+
+**Simulate**: [Experience Strabismus (Crossed Eyes) on The Blind Spot](https://theblind.spot/simulator)
+
+---
+
+#### Amblyopia (Lazy Eye)
+
+Reduced vision in one eye caused by abnormal visual development in childhood. The brain favors one eye over the other, and the weaker eye does not develop normal visual acuity. Most common cause of single-eye vision impairment in children and young adults. Can result from strabismus, unequal refractive errors, or visual deprivation.
+
+**Treatment**: Available
+- Eye patching of the stronger eye to force use of the weaker eye
+- Atropine eye drops in the stronger eye to blur its vision
+- Prescription glasses to correct refractive errors
+- Vision therapy exercises
+- Treatment of underlying cause (strabismus surgery, cataract removal)
+- Binocular vision therapy and perceptual learning (newer approaches)
+
+*Treatment is most effective before age 7 but can still help older children and some adults. Early detection through pediatric vision screening is crucial.*
+
+**Simulate**: [Experience Amblyopia (Lazy Eye) on The Blind Spot](https://theblind.spot/simulator)
+
+---
+
 ### Retinal Disorders
 
 Conditions affecting the retina and its specialized cells
@@ -490,6 +526,61 @@ Separation of the retina from the underlying tissue. Can cause sudden flashes of
 *Retinal detachment is a medical emergency requiring immediate treatment. Success rates are high if treated promptly (within days). Delayed treatment can result in permanent vision loss.*
 
 **Simulate**: [Experience Retinal Detachment on The Blind Spot](https://theblind.spot/simulator)
+
+---
+
+#### Central Retinal Artery Occlusion (CRAO)
+
+Sudden, painless vision loss caused by blockage of the central retinal artery, often called an "eye stroke." Results in ischemia of the inner retina and can cause permanent, severe vision loss within hours if untreated. Often presents with a classic "cherry red spot" on fundoscopic examination.
+
+**Treatment**: Available
+- Emergency treatment required within hours
+- Ocular massage to dislodge the embolus
+- Anterior chamber paracentesis to lower intraocular pressure
+- Intra-arterial thrombolysis (experimental)
+- Hyperbaric oxygen therapy
+- Evaluation for systemic vascular disease (stroke risk)
+- Long-term cardiovascular risk factor management
+
+*CRAO is a medical emergency. Vision loss is often permanent if not treated within 90 minutes. Patients with CRAO have a high risk of subsequent stroke and require urgent cardiovascular workup.*
+
+**Simulate**: [Experience Central Retinal Artery Occlusion (CRAO) on The Blind Spot](https://theblind.spot/simulator)
+
+---
+
+#### Central Retinal Vein Occlusion (CRVO)
+
+Blockage of the central retinal vein causing hemorrhages, retinal edema, and vision loss. The blocked vein leads to increased pressure in retinal capillaries, resulting in widespread hemorrhage and fluid leakage. Can be ischemic (severe) or non-ischemic (milder) forms.
+
+**Treatment**: Available
+- Anti-VEGF injections (ranibizumab, aflibercept, bevacizumab) for macular edema
+- Intravitreal corticosteroid implants (dexamethasone)
+- Panretinal laser photocoagulation for neovascularization
+- Management of underlying conditions (hypertension, diabetes, glaucoma)
+- Regular monitoring for complications
+- Blood pressure and cholesterol management
+
+*Non-ischemic CRVO has a better prognosis with ~65% of patients regaining useful vision. Ischemic CRVO has higher risk of neovascular complications. Regular follow-up is essential.*
+
+**Simulate**: [Experience Central Retinal Vein Occlusion (CRVO) on The Blind Spot](https://theblind.spot/simulator)
+
+---
+
+#### Leber Hereditary Optic Neuropathy (LHON)
+
+A mitochondrial genetic disorder causing rapid, painless central vision loss, typically affecting young adults aged 15-35. Usually begins in one eye, with the second eye affected within weeks to months. Caused by mutations in mitochondrial DNA affecting the optic nerve. Males are affected 4-5 times more often than females.
+
+**Treatment**: Available
+- Idebenone (Raxone) - approved in EU, may improve visual outcomes if started early
+- Gene therapy (lenadogene nolparvovec/Lumevoq) - approved in EU for specific mutations
+- Avoid tobacco and excessive alcohol (known to trigger onset)
+- Coenzyme Q10 and other mitochondrial supplements (limited evidence)
+- Low vision rehabilitation and aids
+- Genetic counseling for maternal inheritance pattern
+
+*LHON is maternally inherited through mitochondrial DNA. Spontaneous partial recovery occurs in ~20-25% of cases, usually within the first year. Early treatment with idebenone may improve outcomes.*
+
+**Simulate**: [Experience Leber Hereditary Optic Neuropathy (LHON) on The Blind Spot](https://theblind.spot/simulator)
 
 ---
 
@@ -5594,11 +5685,11 @@ The bitter, cynical blind veteran takes prep school student Charlie Simms on a f
 
 ## About The Blind Spot
 
-The Blind Spot (https://theblind.spot) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 42+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
+The Blind Spot (https://theblind.spot) is a free, open-source educational tool that simulates vision conditions in real-time using WebGL shaders and DOM overlays. Users can apply 47+ different vision conditions to YouTube videos or uploaded images to understand how people with those conditions see the world.
 
 ### Key Features
 - Real-time vision simulation with adjustable intensity
-- 42+ medically-researched vision conditions
+- 47+ medically-researched vision conditions
 - 210+ famous people profiles with personalized simulations
 - Detailed condition descriptions with treatment information
 - Available in 26 languages

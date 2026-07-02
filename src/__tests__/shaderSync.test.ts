@@ -46,6 +46,7 @@ describe('Shader Uniform Sync', () => {
     // Meta uniforms that are not driven by effects
     const metaUniforms = new Set([
       'tDiffuse',
+      'uResolution',
       'time',
       'diplopiaSeparation',
       'diplopiaDirection',
@@ -69,7 +70,7 @@ describe('Shader Uniform Sync', () => {
     expect(notWritten).toEqual([]);
   });
 
-  test('meta uniforms (time, diplopia params) are always updated', () => {
+  test('meta uniforms (diplopia params) are always updated', () => {
     const allDisabled = VISUAL_EFFECTS.map(e => ({
       ...e,
       enabled: false,
@@ -81,7 +82,7 @@ describe('Shader Uniform Sync', () => {
 
     updateShaderUniforms(material, allDisabled, 1.0, 0.0);
 
-    expect(written.has('time')).toBe(true);
+    // time is updated in the render loop (useSceneSetup.ts), not in updateShaderUniforms
     expect(written.has('diplopiaSeparation')).toBe(true);
     expect(written.has('diplopiaDirection')).toBe(true);
   });
@@ -98,7 +99,7 @@ describe('Shader Uniform Sync', () => {
 
     updateShaderUniforms(material, allDisabled, 1.0, 0.0);
 
-    const metaUniforms = new Set(['tDiffuse', 'time', 'diplopiaSeparation', 'diplopiaDirection']);
+    const metaUniforms = new Set(['tDiffuse', 'uResolution', 'time', 'diplopiaSeparation', 'diplopiaDirection']);
     for (const [name, uniform] of Object.entries(material.uniforms)) {
       if (metaUniforms.has(name)) continue;
       expect((uniform as any).value).toBe(0);

@@ -23,6 +23,9 @@ jest.mock('three', () => ({
       material: material,
     };
   }),
+  Vector2: jest.fn().mockImplementation(function (x: number, y: number) {
+    return { x, y, set: jest.fn() };
+  }),
   VideoTexture: jest.fn(),
   TextureLoader: jest.fn(),
   LinearFilter: 'LinearFilter',

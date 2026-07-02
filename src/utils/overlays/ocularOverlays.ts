@@ -8,7 +8,8 @@ import { findOverlayContainer, ensureRelativePositioning, seededRandom } from '.
  * Includes: cataracts (nuclear, cortical, posterior subcapsular), keratoconus
  */
 export const createOcularOverlays = (
-  effects: Map<string, VisualEffect>
+  effects: Map<string, VisualEffect>,
+  container?: HTMLElement
 ): void => {
   const getEffect = (id: string) => effects.get(id);
 

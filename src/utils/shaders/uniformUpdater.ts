@@ -63,10 +63,21 @@ export const updateShaderUniforms = (
 
   // Note: Myopia and Hyperopia are now handled by CSS filters
 
+  // Update texture resolution for blur/noise calculations (replaces textureSize
+  // which is WebGL2-only and would break on WebGL1 fallback devices)
+  const texture = material.uniforms.tDiffuse.value;
+  if (texture && texture.image) {
+    const img = texture.image;
+    material.uniforms.uResolution.value.set(
+      img.videoWidth || img.width || 1,
+      img.videoHeight || img.height || 1
+    );
+  }
+
   // Update diplopia parameters
   material.uniforms.diplopiaSeparation.value = diplopiaSeparation;
   material.uniforms.diplopiaDirection.value = diplopiaDirection;
 
-  // Update time for animated effects
-  material.uniforms.time.value = performance.now() * 0.001;
+  // Note: time uniform is updated every frame in the render loop (useSceneSetup.ts),
+  // not here, so animated effects keep running even when the effect set hasn't changed.
 };

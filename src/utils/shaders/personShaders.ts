@@ -173,14 +173,16 @@ export const GALILEO_FUNCTIONS = `
 
   vec3 applyGalileoSevereBlurring(vec3 color, vec2 uv, float intensity, float time) {
     if (intensity <= 0.0) return color;
-    vec2 pixelSize = vec2(1.0) / vec2(textureSize(tDiffuse, 0));
+    vec2 pixelSize = vec2(1.0) / uResolution;
+    float scale = max(intensity * 8.0 / 3.0, 1.0);
     vec3 blurred = vec3(0.0);
     float total = 0.0;
-    float blurRadius = intensity * 8.0;
-    for(float x = -blurRadius; x <= blurRadius; x += 1.0) {
-      for(float y = -blurRadius; y <= blurRadius; y += 1.0) {
-        float weight = 1.0 / (1.0 + (x * x + y * y) / (blurRadius * blurRadius));
-        blurred += texture2D(tDiffuse, uv + vec2(x, y) * pixelSize).rgb * weight;
+    for(int x = -3; x <= 3; x++) {
+      for(int y = -3; y <= 3; y++) {
+        float fx = float(x);
+        float fy = float(y);
+        float weight = exp(-(fx*fx + fy*fy) / 18.0);
+        blurred += texture2D(tDiffuse, uv + vec2(fx, fy) * pixelSize * scale).rgb * weight;
         total += weight;
       }
     }

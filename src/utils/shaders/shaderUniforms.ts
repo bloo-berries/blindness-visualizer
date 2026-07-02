@@ -5,6 +5,7 @@ import * as THREE from 'three';
  */
 export const createShaderUniforms = (): { [key: string]: THREE.IUniform } => ({
   tDiffuse: { value: null },
+  uResolution: { value: new THREE.Vector2(1, 1) },
   protanopiaIntensity: { value: 0.0 },
   deuteranopiaIntensity: { value: 0.0 },
   tritanopiaIntensity: { value: 0.0 },

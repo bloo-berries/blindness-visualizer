@@ -139,6 +139,11 @@ export function useSceneSetup(
         const material = mesh.material as THREE.ShaderMaterial;
         material.uniforms.tDiffuse.value = texture;
 
+        // Update time every frame so animated shader effects (RP wobble,
+        // glaucoma grain, Milton/Galileo time-driven functions) keep moving
+        // even when the enabled-effect set hasn't changed.
+        material.uniforms.time.value = performance.now() * 0.001;
+
         const { changed } = effectProcessor.current.updateEffects(effects);
         if (changed) {
           updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);
@@ -171,6 +176,7 @@ export function useSceneSetup(
         if (mesh && texture) {
           const material = mesh.material as THREE.ShaderMaterial;
           material.uniforms.tDiffuse.value = texture;
+          material.uniforms.time.value = performance.now() * 0.001;
           const { changed } = effectProcessor.current.updateEffects(effects);
           if (changed) {
             updateShaderUniforms(material, effects, diplopiaSeparation, diplopiaDirection);

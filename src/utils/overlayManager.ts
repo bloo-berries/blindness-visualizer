@@ -22,5 +22,5 @@ export const createVisualFieldOverlays = (effects: VisualEffect[], container?: H
   createVisualDisturbanceOverlays(effectMap, container);
   createRetinalDiseaseOverlays(effectMap, container);
   createFamousPeopleOverlays(effectMap, container);
-  createOcularOverlays(effectMap);
+  createOcularOverlays(effectMap, container);
 };

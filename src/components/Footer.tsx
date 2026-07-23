@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
             {t('buttons.support')}
           </Button>
           
-          {/* Right side - Resources & Feedback */}
+          {/* Right side - Resources, Feedback, Terms, Privacy */}
           <Box sx={{
             position: 'absolute',
             right: 0,
@@ -121,6 +121,58 @@ const Footer: React.FC = () => {
               }}
             >
               {t('footer.feedback')}
+            </Link>
+            <Link
+              href="/terms"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/terms');
+              }}
+              aria-label="Terms"
+              sx={{
+                color: 'var(--color-footer-text)',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              Terms
+            </Link>
+            <Link
+              href="/privacy"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/privacy');
+              }}
+              aria-label="Privacy"
+              sx={{
+                color: 'var(--color-footer-text)',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                whiteSpace: 'nowrap',
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              Privacy
             </Link>
           </Box>
         </Box>
@@ -233,6 +285,54 @@ const Footer: React.FC = () => {
               }}
             >
               {t('footer.feedback')}
+            </Link>
+            <Link
+              href="/terms"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/terms');
+              }}
+              aria-label="Terms"
+              sx={{
+                color: 'var(--color-footer-text)',
+                textDecoration: 'none',
+                fontWeight: 500,
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              Terms
+            </Link>
+            <Link
+              href="/privacy"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/privacy');
+              }}
+              aria-label="Privacy"
+              sx={{
+                color: 'var(--color-footer-text)',
+                textDecoration: 'none',
+                fontWeight: 500,
+                '&:hover': {
+                  color: 'primary.main',
+                  textDecoration: 'underline'
+                },
+                '&:focus-visible': {
+                  outline: '2px solid #1976d2',
+                  outlineOffset: '2px',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              Privacy
             </Link>
             <Tooltip title={t('nav.viewOnGithub')}>
               <IconButton

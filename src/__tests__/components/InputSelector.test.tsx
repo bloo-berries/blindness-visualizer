@@ -26,6 +26,8 @@ jest.mock('react-i18next', () => ({
         'inputSelector.gotIt': 'Got it',
         'inputSelector.invalidFileType': 'Please select a valid image file.',
         'inputSelector.fileTooLarge': 'File is too large. Maximum size is 20MB.',
+        'inputSelector.mobileApp': 'Mobile App',
+        'inputSelector.mobileAppDesc': 'Experience vision simulations on the go',
       };
       if (typeof fallback === 'string') return map[key] || fallback;
       return map[key] || key;

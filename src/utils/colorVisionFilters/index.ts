@@ -19,7 +19,7 @@
 
 import { ConditionType } from '../../types/visualEffects';
 import { isMobileBrowser, getMobileCSSFilter } from './mobileDetection';
-import { getColorVisionMatrix } from './colorVisionMatrices';
+import { getColorVisionMatrix, blendWithIdentity } from './colorVisionMatrices';
 import {
   applyDOMFilter,
   removeDOMFilter,
@@ -29,7 +29,7 @@ import {
 
 // Re-export everything for backwards compatibility
 export { _resetMobileDetection, isMobileBrowser, getMobileCSSFilter } from './mobileDetection';
-export { getColorVisionMatrix } from './colorVisionMatrices';
+export { getColorVisionMatrix, blendWithIdentity } from './colorVisionMatrices';
 export { cleanupAllDOMFilters } from './domSvgManager';
 
 /**
@@ -87,16 +87,8 @@ export const getColorVisionFilter = (type: ConditionType, intensity: number = 1.
   }
 
   // Desktop: use SVG feColorMatrix for accurate simulation
-  // Get the full matrix for this condition
   const fullMatrix = getColorVisionMatrix(type, 1.0);
-
-  // Identity matrix for normal vision
-  const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-
-  // Blend between identity and full matrix based on intensity
-  const blendedMatrix = fullMatrix.map((val, index) =>
-    val * intensity + identityMatrix[index] * (1 - intensity)
-  );
+  const blendedMatrix = blendWithIdentity(fullMatrix, intensity);
 
   return applyDOMFilter(type, blendedMatrix);
 };
@@ -120,10 +112,7 @@ export const getColorVisionFilterData = (
   if (intensity === 0) return null;
 
   const fullMatrix = getColorVisionMatrix(type, 1.0);
-  const identityMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-  const blended = fullMatrix.map((val, i) =>
-    val * intensity + identityMatrix[i] * (1 - intensity)
-  );
+  const blended = blendWithIdentity(fullMatrix, intensity);
 
   const filterId = `cvd-${type}`;
   const matrixValues = [

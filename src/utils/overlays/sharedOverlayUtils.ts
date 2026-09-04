@@ -70,3 +70,21 @@ export function ensureRelativePositioning(container: Element | null): void {
     }
   }
 }
+
+/**
+ * Clamps opacity so full intensity (1.0) passes through unchanged,
+ * while sub-max values are capped at `max`.
+ * Replaces the pattern: `intensity === 1 ? 1 : Math.min(max, intensity)`
+ */
+export function clampOpacity(intensity: number, max: number = 0.85): number {
+  return intensity === 1 ? 1 : Math.min(max, intensity);
+}
+
+/**
+ * Scales opacity so full intensity (1.0) passes through unchanged,
+ * while sub-max values are multiplied by `scale`.
+ * Replaces the pattern: `intensity === 1 ? 1 : scale * intensity`
+ */
+export function scaledOpacity(intensity: number, scale: number = 0.85): number {
+  return intensity === 1 ? 1 : scale * intensity;
+}

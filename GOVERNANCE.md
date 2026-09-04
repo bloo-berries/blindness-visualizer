@@ -15,7 +15,7 @@ Responsibilities:
 - Triaging issues and bug reports
 - Setting project direction and priorities
 - Managing releases and deployments
-- Responding to security vulnerability reports
+- Responding to security vulnerability reports (hello@theblind.spot)
 
 ### Contributors
 
@@ -29,7 +29,7 @@ Anyone who submits a pull request, opens an issue, or contributes translations. 
 
 ## Contributions
 
-All contributions are welcome via pull requests. See the [Contributing section](readme.md#contributing) in the README for guidelines.
+All contributions are welcome via pull requests. See the [Contributing section](README.md#contributing) in the README for guidelines.
 
 By submitting a contribution, you agree to the [Developer Certificate of Origin (DCO)](DCO) ([full text](https://developercertificate.org/)). All commits must include a `Signed-off-by` trailer to indicate DCO agreement. Add it automatically with:
 

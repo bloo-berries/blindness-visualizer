@@ -4,17 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
   Typography,
   Box,
-  Grid,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Chip,
   List,
   ListItem,
   ListItemText,
@@ -24,35 +13,28 @@ import {
   Divider,
   Collapse,
   Checkbox,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Chip,
+  Button,
   Fab
 } from '@mui/material';
 import {
   ExpandMore as ExpandMoreIcon,
-  Search as SearchIcon,
-  FilterList as FilterListIcon,
   LocalHospital as LocalHospitalIcon,
   Info as InfoIcon,
   ChevronRight as ChevronRightIcon,
   Visibility as VisibilityIcon,
   OpenInNew as OpenInNewIcon,
   MenuBook as MenuBookIcon,
-  CompareArrows as CompareArrowsIcon,
-  Close as CloseIcon
+  CompareArrows as CompareArrowsIcon
 } from '@mui/icons-material';
 import ThumbnailImage from '../ThumbnailImage';
 import { conditionCategories } from '../../data/conditionCategories';
 import type { ConditionCategory } from '../../data/conditionCategories/types';
+import SearchFilterBar from './SearchFilterBar';
+import ComparisonDialog from './ComparisonDialog';
 
 type Condition = ConditionCategory['conditions'][number];
 
@@ -142,68 +124,35 @@ const GlossaryTab: React.FC = () => {
     });
   };
 
+  const handleCompareModeToggle = () => {
+    setCompareMode(prev => !prev);
+    if (compareMode) setSelectedConditions([]);
+  };
+
+  const handleNavigateToSimulator = (conditionId: string, conditionName: string) => {
+    setCompareDialogOpen(false);
+    navigate('/simulator', {
+      state: {
+        preconfiguredConditions: [conditionId],
+        conditionName
+      }
+    });
+  };
+
+  const filteredCount = filteredCategories.reduce((total, category) => total + category.conditions.length, 0);
+
   return (
     <>
-      {/* Search and Filter Section */}
-      <Box className="conditions-search-section">
-        <Grid container spacing={1.5} sx={{ mb: 1 }}>
-          <Grid item xs={12} md={8}>
-            <TextField
-              fullWidth
-              label={t('glossaryPage.searchConditions')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              variant="outlined"
-              className="conditions-search-input"
-              InputProps={{
-                startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <FormControl fullWidth className="conditions-filter-select">
-              <InputLabel>{t('glossaryPage.category')}</InputLabel>
-              <Select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                label={t('glossaryPage.category')}
-              >
-                <MenuItem value="">{t('glossaryPage.allCategories')}</MenuItem>
-                {conditionCategories.map(category => (
-                  <MenuItem key={category.id} value={category.id}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      {category.icon}
-                      <Typography sx={{ ml: 1 }}>{t(`glossaryPage.conditionCategories.${getCategoryTranslationKey(category.id)}.name`, category.name)}</Typography>
-                    </Box>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-          <Typography variant="body2" className="conditions-stats">
-            {t('glossaryPage.conditionsFound', { count: filteredCategories.reduce((total, category) => total + category.conditions.length, 0) })}
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button
-              onClick={() => {
-                setCompareMode(prev => !prev);
-                if (compareMode) setSelectedConditions([]);
-              }}
-              variant={compareMode ? 'contained' : 'outlined'}
-              size="small"
-              startIcon={<CompareArrowsIcon />}
-            >
-              Compare
-            </Button>
-            <Button onClick={clearFilters} variant="outlined" size="small" startIcon={<FilterListIcon />} className="conditions-clear-button">
-              {t('glossaryPage.clearFilters')}
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+      <SearchFilterBar
+        searchTerm={searchTerm}
+        categoryFilter={categoryFilter}
+        compareMode={compareMode}
+        filteredCount={filteredCount}
+        onSearchChange={setSearchTerm}
+        onCategoryChange={setCategoryFilter}
+        onCompareModeToggle={handleCompareModeToggle}
+        onClearFilters={clearFilters}
+      />
 
       {/* Conditions by Category */}
       {filteredCategories.map((category) => (
@@ -286,7 +235,7 @@ const GlossaryTab: React.FC = () => {
                             </Typography>
                             {condition.prevalence && (
                               <Typography variant="body2" component="span" display="block" sx={{ mt: 0.5, fontStyle: 'italic', color: 'text.secondary', fontSize: '0.8125rem' }}>
-                                Prevalence: {condition.prevalence}
+                                {t('glossaryPage.prevalence', { value: condition.prevalence })}
                               </Typography>
                             )}
                           </Box>
@@ -377,7 +326,7 @@ const GlossaryTab: React.FC = () => {
                           >
                             <MenuBookIcon sx={{ color: 'primary.main', fontSize: 20 }} />
                             <Typography variant="subtitle2" sx={{ fontWeight: 600, color: 'primary.main', flexGrow: 1 }}>
-                              Learn More
+                              {t('glossaryPage.learnMore')}
                             </Typography>
                             <ChevronRightIcon
                               sx={{
@@ -492,136 +441,16 @@ const GlossaryTab: React.FC = () => {
           }}
         >
           <CompareArrowsIcon sx={{ mr: 1 }} />
-          Compare Selected ({selectedConditions.length})
+          {t('glossaryPage.compareSelected', { count: selectedConditions.length })}
         </Fab>
       )}
 
-      {/* Comparison Dialog */}
-      <Dialog
+      <ComparisonDialog
         open={compareDialogOpen}
         onClose={() => setCompareDialogOpen(false)}
-        maxWidth="lg"
-        fullWidth
-      >
-        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <CompareArrowsIcon />
-            Compare Conditions
-          </Box>
-          <IconButton onClick={() => setCompareDialogOpen(false)} size="small">
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent dividers>
-          <TableContainer component={Paper} variant="outlined">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 700, minWidth: 120 }}> </TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id} sx={{ fontWeight: 700, minWidth: 200 }}>
-                      {condition.name}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 600 }}>Description</TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id}>
-                      <Typography variant="body2">{condition.description}</Typography>
-                    </TableCell>
-                  ))}
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 600 }}>Prevalence</TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id}>
-                      <Typography variant="body2">{condition.prevalence || 'Data not available'}</Typography>
-                    </TableCell>
-                  ))}
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 600 }}>Treatments</TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id}>
-                      {condition.treatments ? (
-                        <List dense disablePadding>
-                          {condition.treatments.options.slice(0, 5).map((opt, idx) => (
-                            <ListItem key={idx} disablePadding sx={{ py: 0.25 }}>
-                              <Typography variant="body2" sx={{ fontSize: '0.8125rem' }}>• {opt}</Typography>
-                            </ListItem>
-                          ))}
-                          {condition.treatments.options.length > 5 && (
-                            <Typography variant="body2" sx={{ fontSize: '0.8125rem', fontStyle: 'italic', color: 'text.secondary' }}>
-                              +{condition.treatments.options.length - 5} more...
-                            </Typography>
-                          )}
-                        </List>
-                      ) : (
-                        <Typography variant="body2" color="text.secondary">No treatment data</Typography>
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 600 }}>Resources</TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id}>
-                      {condition.resourceLinks && condition.resourceLinks.length > 0 ? (
-                        condition.resourceLinks.map((link, idx) => (
-                          <Typography
-                            key={idx}
-                            component="a"
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variant="body2"
-                            display="block"
-                            sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' }, fontSize: '0.8125rem', mb: 0.5 }}
-                          >
-                            {link.label} ↗
-                          </Typography>
-                        ))
-                      ) : (
-                        <Typography variant="body2" color="text.secondary">No resources</Typography>
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 600 }}>Try in Simulator</TableCell>
-                  {selectedConditions.map(condition => (
-                    <TableCell key={condition.id}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        startIcon={<VisibilityIcon />}
-                        onClick={() => {
-                          setCompareDialogOpen(false);
-                          navigate('/simulator', {
-                            state: {
-                              preconfiguredConditions: [condition.id],
-                              conditionName: condition.name
-                            }
-                          });
-                        }}
-                        sx={{ textTransform: 'none' }}
-                      >
-                        {t('glossaryPage.viewInSimulator')}
-                      </Button>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setCompareDialogOpen(false)}>Close</Button>
-        </DialogActions>
-      </Dialog>
+        selectedConditions={selectedConditions}
+        onNavigateToSimulator={handleNavigateToSimulator}
+      />
     </>
   );
 };

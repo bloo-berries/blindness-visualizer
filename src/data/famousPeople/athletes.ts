@@ -107,16 +107,6 @@ export const athletes: Record<string, PersonData> = {
     wikiUrl: "https://en.wikipedia.org/wiki/Tofiri_Kibuuka",
     nationality: NATIONALITIES.UG
   },
-  ross: {
-    name: "Ross Minor",
-    achievement: "Para Swimmer & Accessibility Consultant",
-    condition: "Gunshot Wound",
-    years: "Born (Contemporary)",
-    onset: "Age 8",
-    simulation: "ross-complete-blindness",
-    description: "Ross Minor lost his sight at age 8 from a gunshot wound, resulting in complete blindness with no light perception.\n\n• Former para swimmer and competitive athlete\n\n• Accessibility consultant helping companies make products accessible to people with disabilities\n\n• Content creator raising awareness about blindness\n\n• Visit rossminor.com",
-    nationality: NATIONALITIES.US
-  },
   trischa: {
     name: "Trischa Zorn",
     achievement: "Most Decorated Paralympian: 55 Medals",

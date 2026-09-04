@@ -5,6 +5,7 @@
  */
 
 import { generatePuckeringWaves, STARGARDT_PUCKERING, AMD_PUCKERING, SCOTOMA_PUCKERING } from './puckeringUtils';
+import { clampOpacity, scaledOpacity } from '../../../../utils/overlays/sharedOverlayUtils';
 
 /** Base styles shared by all overlay generators */
 export const OVERLAY_BASE: Pick<React.CSSProperties, 'position' | 'top' | 'left' | 'right' | 'bottom' | 'width' | 'height' | 'pointerEvents' | 'zIndex'> = {
@@ -233,7 +234,7 @@ export function generateTunnelVisionOverlay(intensity: number): React.CSSPropert
  * Generate Hemianopia Left overlay
  */
 export function generateHemianopiaLeftOverlay(intensity: number): React.CSSProperties {
-  const maxOpacity = intensity === 1 ? 1 : 0.85 * intensity;
+  const maxOpacity = scaledOpacity(intensity);
   return {
     ...OVERLAY_BASE,
     background: `linear-gradient(to right,
@@ -242,7 +243,7 @@ export function generateHemianopiaLeftOverlay(intensity: number): React.CSSPrope
       rgba(50,50,50,0) 50%
     )`,
     mixBlendMode: 'normal' as const,
-    opacity: intensity === 1 ? 1 : Math.min(0.85, intensity)
+    opacity: clampOpacity(intensity)
   };
 }
 
@@ -250,7 +251,7 @@ export function generateHemianopiaLeftOverlay(intensity: number): React.CSSPrope
  * Generate Hemianopia Right overlay
  */
 export function generateHemianopiaRightOverlay(intensity: number): React.CSSProperties {
-  const maxOpacity = intensity === 1 ? 1 : 0.85 * intensity;
+  const maxOpacity = scaledOpacity(intensity);
   return {
     ...OVERLAY_BASE,
     background: `linear-gradient(to left,
@@ -259,7 +260,7 @@ export function generateHemianopiaRightOverlay(intensity: number): React.CSSProp
       rgba(50,50,50,0) 50%
     )`,
     mixBlendMode: 'normal' as const,
-    opacity: intensity === 1 ? 1 : Math.min(0.85, intensity)
+    opacity: clampOpacity(intensity)
   };
 }
 
@@ -293,7 +294,7 @@ export function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSPro
   // At full intensity, keep opaque black for total blindness; otherwise use gray
   const isTotal = intensity === 1;
   const grayVal = isTotal ? 0 : 50;
-  const eyeIntensity = isTotal ? 1 : 0.85 * intensity;
+  const eyeIntensity = scaledOpacity(intensity);
   return {
     ...OVERLAY_BASE,
     background: `linear-gradient(to right,
@@ -305,7 +306,7 @@ export function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSPro
       rgba(0,0,0,0) 52.5%
     )`,
     mixBlendMode: 'normal' as const,
-    opacity: isTotal ? 1 : Math.min(0.85, intensity)
+    opacity: clampOpacity(intensity)
   };
 }
 
@@ -315,7 +316,7 @@ export function generateBlindnessLeftEyeOverlay(intensity: number): React.CSSPro
 export function generateBlindnessRightEyeOverlay(intensity: number): React.CSSProperties {
   const isTotal = intensity === 1;
   const grayVal = isTotal ? 0 : 50;
-  const eyeIntensity = isTotal ? 1 : 0.85 * intensity;
+  const eyeIntensity = scaledOpacity(intensity);
   return {
     ...OVERLAY_BASE,
     background: `linear-gradient(to left,
@@ -327,7 +328,7 @@ export function generateBlindnessRightEyeOverlay(intensity: number): React.CSSPr
       rgba(0,0,0,0) 52.5%
     )`,
     mixBlendMode: 'normal' as const,
-    opacity: isTotal ? 1 : Math.min(0.85, intensity)
+    opacity: clampOpacity(intensity)
   };
 }
 
@@ -355,7 +356,7 @@ export function generateRetinalDetachmentOverlay(intensity: number): React.CSSPr
  * Generate Bitemporal Hemianopia overlay (loss of temporal/outer halves of both eyes)
  */
 export function generateBitemporalHemianopiaOverlay(intensity: number): React.CSSProperties {
-  const i = intensity === 1 ? 1 : 0.85 * intensity;
+  const i = scaledOpacity(intensity);
   return {
     ...OVERLAY_BASE,
     background: `linear-gradient(to right,
@@ -373,7 +374,7 @@ export function generateBitemporalHemianopiaOverlay(intensity: number): React.CS
       rgba(50,50,50,${i}) 100%
     )`,
     mixBlendMode: 'normal' as const,
-    opacity: intensity === 1 ? 1 : Math.min(0.85, intensity)
+    opacity: clampOpacity(intensity)
   };
 }
 
@@ -384,8 +385,8 @@ export function generateQuadrantanopiaOverlay(
   quadrant: 'left' | 'right' | 'inferiorLeft' | 'inferiorRight' | 'superiorLeft' | 'superiorRight',
   intensity: number
 ): React.CSSProperties {
-  const i = intensity === 1 ? 1 : 0.85 * intensity;
-  const opacity = intensity === 1 ? 1 : Math.min(0.85, intensity);
+  const i = scaledOpacity(intensity);
+  const opacity = clampOpacity(intensity);
 
   const gradientMap: Record<string, string> = {
     left: `conic-gradient(from 0deg at 50% 50%,

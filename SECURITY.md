@@ -18,7 +18,7 @@ If you discover a security vulnerability in this project, please report it respo
 2. Click "New draft security advisory"
 3. Fill in the details of the vulnerability
 
-Alternatively, you can email the maintainer directly via the contact information on their GitHub profile.
+Alternatively, you can email the maintainer at **hello@theblind.spot**.
 
 ### What to Include
 
@@ -37,6 +37,7 @@ Alternatively, you can email the maintainer directly via the contact information
 
 This policy covers:
 - The web application code in this repository
+- The VisionSim GitHub Action (`action/` directory and `action.yml`)
 - CI/CD pipeline configurations
 - Dependencies used by the project
 

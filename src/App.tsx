@@ -24,6 +24,7 @@ const FeedbackPage = React.lazy(() => import('./components/FeedbackPage'));
 const ResourcesPage = React.lazy(() => import('./components/ResourcesPage'));
 const TermsPage = React.lazy(() => import('./components/TermsPage'));
 const PrivacyPage = React.lazy(() => import('./components/PrivacyPage'));
+const HeadlessRenderer = React.lazy(() => import('./components/HeadlessRenderer'));
 const NotFoundPage = React.lazy(() => import('./components/NotFoundPage'));
 
 const getBasename = (): string => {
@@ -243,6 +244,7 @@ const ThemedApp: React.FC = () => {
             <Route path="/resources" element={<ErrorBoundary><ResourcesPage /></ErrorBoundary>} />
             <Route path="/terms" element={<ErrorBoundary><TermsPage /></ErrorBoundary>} />
             <Route path="/privacy" element={<ErrorBoundary><PrivacyPage /></ErrorBoundary>} />
+            <Route path="/headless" element={<HeadlessRenderer />} />
             <Route path="*" element={<ErrorBoundary><NotFoundPage /></ErrorBoundary>} />
           </Routes>
         </Router>

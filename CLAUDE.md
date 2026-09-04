@@ -22,7 +22,7 @@ npm run build:analyze  # Build and open webpack bundle analyzer
 
 This is a React 18 + TypeScript application built with Create React App that simulates various vision conditions in real-time. It uses Three.js for WebGL-based visual effects processing.
 
-**At a glance**: 209 famous people, 144 vision condition types, 27 animated effects, 26 languages, 9 pages.
+**At a glance**: 209 famous people, 144 vision condition types, 27 animated effects, 26 languages, 10 pages.
 
 ### Core Data Flow
 
@@ -145,10 +145,13 @@ Routes are defined in `App.tsx`:
 - `/simulator` - VisionSimulator
 - `/famous-people` - FamousBlindPeople
 - `/conditions` - ConditionsPage (Glossary)
-- `/faq` - FAQPage
+- `/faq` - Redirects to `/conditions?tab=faq`
 - `/about` - AboutPage
 - `/feedback` - FeedbackPage
 - `/resources` - ResourcesPage
+- `/terms` - TermsPage
+- `/privacy` - PrivacyPage
+- `/headless` - HeadlessRenderer (automated screenshot capture for the VisionSim GitHub Action)
 - `*` - NotFoundPage (404)
 
 ### Build Scripts (`scripts/`)
@@ -307,6 +310,36 @@ Allowed external domains:
 - **Cloudflare Analytics** (`static.cloudflareinsights.com`, `cloudflareinsights.com`) — web analytics
 
 When adding new external resources, update `public/_headers` or requests will be blocked.
+
+## VisionSim GitHub Action
+
+The repository includes a Docker-based GitHub Action (`action.yml`) that renders PR screenshots under simulated vision conditions.
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `action.yml` | Action definition (inputs, outputs, Docker entrypoint) |
+| `action/Dockerfile` | Multi-stage build: React app → Playwright runtime |
+| `action/src/main.ts` | Entry point: parse inputs, start server, orchestrate pipeline |
+| `action/src/renderer.ts` | Playwright: navigate `/headless`, inject image, capture screenshot |
+| `action/src/composite.ts` | Sharp: tile screenshots into labeled grid |
+| `action/src/github.ts` | Octokit: orphan branch upload, PR comment, check run |
+| `src/components/HeadlessRenderer.tsx` | Minimal route for automated rendering |
+
+### Headless Route
+
+`/headless` accepts URL search params:
+- `conditions` — comma-separated `ConditionType` IDs (e.g. `protanopia,glaucoma`)
+- `intensity` — 0–100 (or 0.0–1.0), default 100
+
+A hidden `<input type="file">` accepts an image via Playwright's `setInputFiles()`. Falls back to `/images/garden.png`. Sets `data-visionsim-ready="true"` when effects are painted.
+
+### Constraints
+
+- Action code in `action/src/` is Node-only (no DOM, no React). It drives Playwright against the built app.
+- The headless route imports the same hooks/filters as `EmbeddedVisualization.tsx` but strips all MUI chrome.
+- CI dogfoods the action on PRs via `uses: ./` in `.github/workflows/ci.yml`.
 
 ## Known Redundancies and Dead Code
 

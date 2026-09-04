@@ -9,6 +9,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  checks: write
 
 jobs:
   build:
@@ -34,27 +35,9 @@ jobs:
     - name: Run tests
       run: npm test -- --passWithNoTests --coverage --watchAll=false --coverageReporters=json-summary --coverageReporters=cobertura
 
-    - name: Extract coverage percentage
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      id: coverage
-      run: |
-        COVERAGE=$(node -e "const c = require('./coverage/coverage-summary.json'); console.log(c.total.statements.pct)")
-        echo "percentage=$COVERAGE" >> $GITHUB_OUTPUT
-
-    - name: Update coverage badge
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      continue-on-error: true
-      uses: schneegans/dynamic-badges-action@0e50b8bad39e7e1afd3e4e9c2b7dd145fad07501 # v1.8.0
-      with:
-        auth: ${{ secrets.GIST_SECRET }}
-        gistID: REPLACE_WITH_YOUR_GIST_ID
-        filename: coverage-badge.json
-        label: coverage
-        message: ${{ steps.coverage.outputs.percentage }}%
-        valColorRange: ${{ steps.coverage.outputs.percentage }}
-        minColorRange: 50
-        maxColorRange: 90
-        namedLogo: jest
+    # Coverage badge step removed — requires a manually-created gist.
+    # To restore: create a gist, add its ID below, and set GIST_SECRET.
+    # See: https://github.com/Schneegans/dynamic-badges-action
 
     - name: Generate coverage report
       if: github.event_name == 'pull_request'
@@ -72,3 +55,11 @@ jobs:
       with:
         recreate: true
         path: code-coverage-results.md
+
+    - name: VisionSim dogfood
+      if: github.event_name == 'pull_request'
+      uses: ./
+      with:
+        images: 'public/images/garden.png'
+        conditions: 'protanopia,deuteranopia,tritanopia,glaucoma,cataracts'
+        github-token: ${{ secrets.GITHUB_TOKEN }}

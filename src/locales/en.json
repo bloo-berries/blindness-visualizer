@@ -117,6 +117,9 @@
     "noConditionsFound": "No conditions found matching your search criteria.",
     "clearAllFilters": "Clear All Filters",
     "conditions": "conditions",
+    "prevalence": "Prevalence: {{value}}",
+    "learnMore": "Learn More",
+    "compareSelected": "Compare Selected ({{count}})",
     "aboutGlossary": {
       "title": "About This Glossary",
       "paragraph1": "This glossary contains comprehensive information about vision conditions and visual impairments. Each condition includes detailed descriptions of symptoms, causes, and effects on daily life.",
@@ -391,6 +394,8 @@
     "uploadImageDesc": "Upload from your device",
     "webcam": "Use Webcam",
     "webcamDesc": "Real-time camera feed",
+    "mobileApp": "Mobile App",
+    "mobileAppDesc": "Experience vision simulations on the go",
     "selected": "Selected",
     "recommended": "(Recommended)",
     "comingSoon": "Coming Soon: Premium Feature",
@@ -613,5 +618,16 @@
         "description": "Official resource for the Americans with Disabilities Act, providing guidance on civil rights protections for individuals with disabilities including visual impairments."
       }
     }
+  },
+  "simulator": {
+    "fieldLossNote": "This shows what visual information is lost. A real person typically doesn't perceive dark areas — the brain fills in missing regions, and many are unaware of their loss.",
+    "amdNote": "Metamorphopsia (wavy distortion) is shown, but the brain's filling-in of the central scotoma cannot be simulated on screen.",
+    "achromatopsiaNote": "Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.",
+    "separationDistance": "Separation Distance",
+    "direction": "Direction",
+    "directionHorizontal": "Horizontal",
+    "directionVertical": "Vertical",
+    "directionDiagonal": "Diagonal",
+    "prevalence": "Prevalence: {{value}}"
   }
 }

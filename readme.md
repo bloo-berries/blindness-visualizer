@@ -2,7 +2,6 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/12798/badge)](https://www.bestpractices.dev/projects/12798)
 [![CI](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/bloo-berries/REPLACE_WITH_YOUR_GIST_ID/raw/coverage-badge.json)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml/badge.svg)](https://github.com/bloo-berries/blindness-visualizer/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bloo-berries/blindness-visualizer/badge)](https://scorecard.dev/viewer/?uri=github.com/bloo-berries/blindness-visualizer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -153,6 +152,7 @@ src/
 ├── components/
 │   ├── HomePage.tsx              # Landing page
 │   ├── VisionSimulator.tsx       # Main simulator (2-step flow)
+│   ├── HeadlessRenderer.tsx      # Minimal page for automated screenshot capture
 │   ├── FamousBlindPeople.tsx     # Famous people section
 │   ├── FamousBlindPeople/        # Famous people sub-components
 │   │   ├── PersonCard.tsx        # Individual person card
@@ -161,17 +161,17 @@ src/
 │   ├── Visualizer/
 │   │   ├── Visualizer.tsx        # Real-time visualization engine
 │   │   └── hooks/
-│   │       ├── useMediaSetup.ts       # Input source initialization
-│   │       ├── useEffectProcessor.ts  # Effect processing pipeline
 │   │       ├── useAnimatedOverlay.ts  # 27 animated effect IDs
-│   │       ├── useVisualFieldOverlay.ts # Field loss overlays
+│   │       ├── useSceneSetup.ts       # Three.js scene initialization
+│   │       ├── useCSSFilters.ts       # CSS filter application
 │   │       ├── useScreenshot.ts       # Screenshot capture
-│   │       └── animatedOverlays/      # 20 animation generator files
+│   │       ├── animatedOverlays/      # 21 animation generator files
+│   │       └── visualFieldOverlays/   # Field loss overlay generators
 │   ├── ControlPanel.tsx          # Condition selection controls
 │   ├── InputSelector.tsx         # Input source selection
-│   └── NavigationBar.tsx         # Site navigation
+│   └── NavigationBar/            # Site navigation (index, MobileDrawer, ThemeToggle)
 ├── data/
-│   ├── famousPeople/             # 214 people across 8 category files
+│   ├── famousPeople/             # 209+ people across 8 category files
 │   │   ├── artists.ts
 │   │   ├── athletes.ts
 │   │   ├── contemporaryFigures.ts
@@ -192,9 +192,9 @@ src/
 ├── utils/
 │   ├── shaders/                  # WebGL/GLSL shader system
 │   ├── cssFilters/               # CSS filter pipeline
-│   │   └── famousPeopleFilters/  # 32 person-specific filter files
+│   │   └── famousPeopleFilters/  # 29 person-specific filter files
 │   ├── overlays/
-│   │   └── famousPeople/         # 18 person-specific DOM overlays
+│   │   └── famousPeople/         # 19 person-specific DOM overlays
 │   └── famousPeopleUtils.tsx     # Person → simulation mapping
 ├── contexts/
 │   └── AccessibilityContext.tsx   # Theme & accessibility state
@@ -206,7 +206,16 @@ src/
 │   ├── Visualizer.css            # Visualization styles
 │   └── Accessibility.css         # Accessibility feature styles
 └── types/
-    └── visualEffects.ts          # 148 ConditionType definitions
+    └── visualEffects.ts          # ConditionType definitions
+action/                           # VisionSim GitHub Action source
+├── Dockerfile                    # Multi-stage build (React app → Playwright)
+├── package.json
+├── tsconfig.json
+└── src/
+    ├── main.ts                   # Entry point: parse inputs, orchestrate pipeline
+    ├── renderer.ts               # Playwright screenshot capture
+    ├── composite.ts              # Sharp grid compositor
+    └── github.ts                 # GitHub API (PR comments, check runs)
 ```
 
 ## Key Technologies
@@ -217,6 +226,66 @@ src/
 - **React Router** for SPA navigation
 - **i18next** for internationalization (26 languages)
 - **YouTube IFrame API** for video integration
+
+## VisionSim GitHub Action
+
+This repository ships a Docker-based GitHub Action that renders PR screenshots under simulated vision conditions and posts the results as PR comments. Use it to catch accessibility issues early in your workflow.
+
+### Quick Start
+
+```yaml
+# .github/workflows/visionsim.yml
+name: VisionSim
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+jobs:
+  visionsim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Your screenshot step here — e.g., Playwright, Cypress, etc.
+
+      - name: Run VisionSim
+        uses: bloo-berries/blindness-visualizer@main
+        with:
+          images: 'screenshots/**/*.png'
+          conditions: 'protanopia,deuteranopia,glaucoma'
+          intensity: '0.8'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Inputs
+
+| Input | Default | Description |
+|-------|---------|-------------|
+| `images` | *(required)* | Glob pattern for screenshot images |
+| `conditions` | `protanopia,deuteranopia,tritanopia,glaucoma,cataracts` | Comma-separated condition IDs |
+| `intensity` | `0.8` | Effect intensity (0.0–1.0) |
+| `comment` | `true` | Post/update a PR comment with results |
+| `check` | `false` | Create a check run with results |
+| `max-renders` | `12` | Cap on total renders (images x conditions) |
+| `github-token` | `${{ github.token }}` | GitHub token for API access |
+
+### How It Works
+
+1. Builds the React app inside a Docker container with Playwright
+2. Serves the built app and navigates Playwright to the `/headless` route with condition parameters
+3. Injects each source image via a hidden file input
+4. Captures screenshots for each image x condition combination
+5. Composites results into a labeled grid using Sharp
+6. Uploads composites to a `visionsim-previews` orphan branch and posts a PR comment
+
+**Fork PRs**: When the action cannot push to the upstream repo (fork PRs), results are written to `$GITHUB_STEP_SUMMARY` instead.
+
+Condition IDs reference the full list in `src/types/visualEffects.ts` — the `ConditionType` union type.
 
 ## Development
 
@@ -263,6 +332,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you encounter any issues or have questions:
 
+- Email: hello@theblind.spot
 - Open an issue on GitHub
 - Check the existing issues for solutions
 - Review the documentation in this README

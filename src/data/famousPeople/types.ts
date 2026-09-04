@@ -9,6 +9,8 @@ export interface PersonData {
   simulation: SimulationKey;
   description: string;
   wikiUrl?: string;
+  /** Per-person URL map: domain → full URL, used for description link-ification */
+  links?: Record<string, string>;
   nationality: {
     country: string;
     flag: string;

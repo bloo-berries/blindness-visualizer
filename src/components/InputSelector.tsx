@@ -74,8 +74,8 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
     {
       type: 'app',
       icon: <PhoneIphone sx={{ fontSize: 36 }} aria-hidden="true" />,
-      title: 'Mobile App',
-      description: 'Experience vision simulations on the go',
+      title: t('inputSelector.mobileApp'),
+      description: t('inputSelector.mobileAppDesc'),
       isPremium: true
     }
   ];

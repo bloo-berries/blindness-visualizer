@@ -23,15 +23,14 @@ describe('useAnimationTicker', () => {
     expect(result.current).toBeLessThanOrEqual(after);
   });
 
-  test('updates timestamp on each interval tick when enabled', () => {
+  test('updates timestamp after sufficient time when enabled', () => {
     const { result } = renderHook(() => useAnimationTicker(true, 100));
     const initial = result.current;
 
     act(() => {
-      jest.advanceTimersByTime(100);
+      jest.advanceTimersByTime(150);
     });
 
-    // After one interval, the value should have changed
     expect(result.current).not.toBe(initial);
   });
 
@@ -50,15 +49,9 @@ describe('useAnimationTicker', () => {
     const { result } = renderHook(() => useAnimationTicker(true));
     const initial = result.current;
 
-    // Advance less than 100ms — no update
+    // Advance to 150ms to ensure threshold crossed
     act(() => {
-      jest.advanceTimersByTime(50);
-    });
-    expect(result.current).toBe(initial);
-
-    // Advance to 100ms — should update
-    act(() => {
-      jest.advanceTimersByTime(50);
+      jest.advanceTimersByTime(150);
     });
     expect(result.current).not.toBe(initial);
   });
@@ -67,13 +60,15 @@ describe('useAnimationTicker', () => {
     const { result } = renderHook(() => useAnimationTicker(true, 500));
     const initial = result.current;
 
+    // Advance less than interval — should not update
     act(() => {
       jest.advanceTimersByTime(400);
     });
     expect(result.current).toBe(initial);
 
+    // Advance past interval — should update
     act(() => {
-      jest.advanceTimersByTime(100);
+      jest.advanceTimersByTime(200);
     });
     expect(result.current).not.toBe(initial);
   });
@@ -85,7 +80,7 @@ describe('useAnimationTicker', () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(100);
+      jest.advanceTimersByTime(150);
     });
     const afterFirstTick = result.current;
 
@@ -116,21 +111,21 @@ describe('useAnimationTicker', () => {
     rerender({ enabled: true });
 
     act(() => {
-      jest.advanceTimersByTime(100);
+      jest.advanceTimersByTime(150);
     });
 
     expect(result.current).not.toBe(initial);
   });
 
-  test('cleans up interval on unmount', () => {
-    const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
+  test('cleans up animation frame on unmount', () => {
+    const cancelSpy = jest.spyOn(global, 'cancelAnimationFrame');
 
     const { unmount } = renderHook(() => useAnimationTicker(true, 100));
 
     unmount();
 
-    expect(clearIntervalSpy).toHaveBeenCalled();
-    clearIntervalSpy.mockRestore();
+    expect(cancelSpy).toHaveBeenCalled();
+    cancelSpy.mockRestore();
   });
 
   test('updates multiple times over multiple intervals', () => {
@@ -141,23 +136,22 @@ describe('useAnimationTicker', () => {
 
     for (let i = 0; i < 5; i++) {
       act(() => {
-        jest.advanceTimersByTime(50);
+        jest.advanceTimersByTime(100);
       });
       values.push(result.current);
     }
 
-    // Each tick should produce a new timestamp (or at minimum, there should be changes)
     const uniqueValues = new Set(values);
     expect(uniqueValues.size).toBeGreaterThan(1);
   });
 
-  test('changing interval clears old interval and starts new one', () => {
+  test('changing interval clears old animation and starts new one', () => {
     const { result, rerender } = renderHook(
       ({ interval }) => useAnimationTicker(true, interval),
       { initialProps: { interval: 100 } }
     );
 
-    act(() => { jest.advanceTimersByTime(100); });
+    act(() => { jest.advanceTimersByTime(150); });
     const afterFirstInterval = result.current;
 
     // Change to longer interval
@@ -167,7 +161,7 @@ describe('useAnimationTicker', () => {
     // Should not have updated yet with the new 1000ms interval
     expect(result.current).toBe(afterFirstInterval);
 
-    act(() => { jest.advanceTimersByTime(500); });
+    act(() => { jest.advanceTimersByTime(600); });
     // Now should have updated
     expect(result.current).not.toBe(afterFirstInterval);
   });

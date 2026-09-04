@@ -144,5 +144,15 @@ export const contemporaryFigures: Record<string, PersonData> = {
     description: "Ashcharya Peiris lost her sight at age 20 when a suicide bomb blast struck near her car in Rajagiriya, Sri Lanka, in March 2000. She was driving home from her banking job at HSBC when the explosion occurred. She spent days in the ICU, and it was months before she accepted that damage to her optic nerve had left her permanently blind.\n\nDespite her blindness, she reinvented herself as a fashion designer, founding the Christina Glory brand in 2016.\n\n• Sri Lanka's first visually impaired fashion designer\n\n• Named to BBC's 100 Women list of inspiring and influential women (2019) — the only Sri Lankan woman on the list\n\n• Listed in Top 10 Most Remarkable Women of Sri Lanka by Independent Television Network (2017)\n\n• Motivational speaker and volunteer assisting the Sri Lanka Army through the Arya Foundation",
     wikiUrl: "https://en.wikipedia.org/wiki/Ashcharya_Peiris",
     nationality: NATIONALITIES.LK
+  },
+  ross: {
+    name: "Ross Minor",
+    achievement: "Para Swimmer & Accessibility Consultant",
+    condition: "Gunshot Wound",
+    years: "Born (Contemporary)",
+    onset: "Age 8",
+    simulation: "ross-complete-blindness",
+    description: "Ross Minor lost his sight at age 8 from a gunshot wound, resulting in complete blindness with no light perception.\n\n• Former para swimmer and competitive athlete\n\n• Accessibility consultant helping companies make products accessible to people with disabilities\n\n• Content creator raising awareness about blindness\n\n• Visit rossminor.com",
+    nationality: NATIONALITIES.US
   }
 };

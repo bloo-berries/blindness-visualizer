@@ -142,3 +142,14 @@ export const getColorVisionMatrix = (type: ConditionType, severity: number = 1.0
   // The blending will be handled in getColorVisionFilter based on intensity
   return fullMatrix;
 };
+
+/** Identity matrix for normal vision (no color transformation) */
+const IDENTITY_MATRIX = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+
+/**
+ * Blends a color vision matrix with the identity matrix based on intensity.
+ * At intensity 0 the result is pure identity (normal vision);
+ * at intensity 1 the result is the full deficiency matrix.
+ */
+export const blendWithIdentity = (matrix: number[], intensity: number): number[] =>
+  matrix.map((val, i) => val * intensity + IDENTITY_MATRIX[i] * (1 - intensity));

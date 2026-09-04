@@ -11,36 +11,31 @@ import {
   IconButton
 } from '@mui/material';
 import { Info } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 import { VisualEffect } from '../../types/visualEffects';
 import { ConditionType } from '../../types/visualEffects';
 import { getColorVisionDescription, getColorVisionPrevalence, isColorVisionCondition } from '../../utils/colorVisionFilters';
 import { renderDescriptionWithLinks } from '../../utils/textRendering';
 
-const FIELD_LOSS_NOTE = 'This shows what visual information is lost. A real person typically doesn\'t perceive dark areas \u2014 the brain fills in missing regions, and many are unaware of their loss.';
+const FIELD_LOSS_CONDITIONS: ConditionType[] = [
+  'glaucoma', 'retinitisPigmentosa', 'tunnelVision',
+  'hemianopiaLeft', 'hemianopiaRight', 'bitemporalHemianopia',
+  'quadrantanopiaLeft', 'quadrantanopiaRight',
+  'quadrantanopiaInferiorLeft', 'quadrantanopiaInferiorRight',
+  'quadrantanopiaSuperiorLeft', 'quadrantanopiaSuperiorRight',
+  'scotoma', 'blindnessLeftEye', 'blindnessRightEye', 'retinalDetachment',
+];
 
-const SIMULATION_NOTES: Partial<Record<ConditionType, string>> = {
-  // Field loss conditions share the same note
-  glaucoma: FIELD_LOSS_NOTE,
-  retinitisPigmentosa: FIELD_LOSS_NOTE,
-  tunnelVision: FIELD_LOSS_NOTE,
-  hemianopiaLeft: FIELD_LOSS_NOTE,
-  hemianopiaRight: FIELD_LOSS_NOTE,
-  bitemporalHemianopia: FIELD_LOSS_NOTE,
-  quadrantanopiaLeft: FIELD_LOSS_NOTE,
-  quadrantanopiaRight: FIELD_LOSS_NOTE,
-  quadrantanopiaInferiorLeft: FIELD_LOSS_NOTE,
-  quadrantanopiaInferiorRight: FIELD_LOSS_NOTE,
-  quadrantanopiaSuperiorLeft: FIELD_LOSS_NOTE,
-  quadrantanopiaSuperiorRight: FIELD_LOSS_NOTE,
-  scotoma: FIELD_LOSS_NOTE,
-  blindnessLeftEye: FIELD_LOSS_NOTE,
-  blindnessRightEye: FIELD_LOSS_NOTE,
-  retinalDetachment: FIELD_LOSS_NOTE,
-  // Condition-specific notes
-  amd: 'Metamorphopsia (wavy distortion) is shown, but the brain\'s filling-in of the central scotoma cannot be simulated on screen.',
-  monochromacy: 'Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.',
-  monochromatic: 'Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.',
+const SIMULATION_NOTE_KEYS: Partial<Record<ConditionType, string>> = {
+  amd: 'simulator.amdNote',
+  monochromacy: 'simulator.achromatopsiaNote',
+  monochromatic: 'simulator.achromatopsiaNote',
 };
+
+// Add field loss conditions
+for (const id of FIELD_LOSS_CONDITIONS) {
+  SIMULATION_NOTE_KEYS[id] = 'simulator.fieldLossNote';
+}
 
 export interface EffectListItemProps {
   effect: VisualEffect;
@@ -69,6 +64,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
   onDiplopiaDirectionChange,
   highlightMatch
 }) => {
+  const { t } = useTranslation();
   const handleClick = useCallback(() => {
     onEffectClick(effect);
   }, [effect, onEffectClick]);
@@ -134,7 +130,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
             {(effect.id === 'diplopiaMonocular' || effect.id === 'diplopiaBinocular') && effect.enabled && (
               <Box sx={{ mt: 2, pl: 1 }}>
                 <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary' }}>
-                  Separation Distance
+                  {t('simulator.separationDistance')}
                 </Typography>
                 <Slider
                   size="small"
@@ -151,7 +147,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
                   sx={{ width: { xs: '100%', sm: '90%' }, mb: 2 }}
                 />
                 <Typography variant="caption" sx={{ display: 'block', mb: 1, color: 'text.secondary' }}>
-                  Direction
+                  {t('simulator.direction')}
                 </Typography>
                 <Slider
                   size="small"
@@ -165,9 +161,9 @@ export const EffectListItem = memo<EffectListItemProps>(({
                   valueLabelDisplay="auto"
                   valueLabelFormat={value => {
                     const direction = (value as number) / 100;
-                    if (direction < 0.33) return 'Horizontal';
-                    if (direction < 0.66) return 'Vertical';
-                    return 'Diagonal';
+                    if (direction < 0.33) return t('simulator.directionHorizontal');
+                    if (direction < 0.66) return t('simulator.directionVertical');
+                    return t('simulator.directionDiagonal');
                   }}
                   aria-label="Adjust diplopia direction"
                   sx={{ width: { xs: '100%', sm: '90%' } }}
@@ -175,7 +171,7 @@ export const EffectListItem = memo<EffectListItemProps>(({
               </Box>
             )}
             {/* Simulation disclaimer note */}
-            {effect.enabled && SIMULATION_NOTES[effect.id as ConditionType] && (
+            {effect.enabled && SIMULATION_NOTE_KEYS[effect.id as ConditionType] && (
               <Box sx={{
                 mt: 1.5,
                 pl: 1.5,
@@ -184,14 +180,14 @@ export const EffectListItem = memo<EffectListItemProps>(({
                 py: 0.5,
               }}>
                 <Typography variant="body2" sx={{ display: 'block', color: 'text.secondary', fontStyle: 'italic', lineHeight: 1.4, fontSize: '0.8125rem' }}>
-                  {SIMULATION_NOTES[effect.id as ConditionType]}
+                  {t(SIMULATION_NOTE_KEYS[effect.id as ConditionType]!)}
                 </Typography>
               </Box>
             )}
             {/* Show prevalence for color vision conditions */}
             {isColorVisionCondition(effect.id as ConditionType) && (
               <Typography variant="caption" sx={{ display: 'block', mt: 0.5, color: 'text.secondary' }}>
-                Prevalence: {getColorVisionPrevalence(effect.id as ConditionType)}
+                {t('simulator.prevalence', { value: getColorVisionPrevalence(effect.id as ConditionType) })}
               </Typography>
             )}
           </>

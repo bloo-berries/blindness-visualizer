@@ -1,0 +1,44 @@
+name: 'VisionSim'
+description: 'Render PR screenshots under simulated vision conditions and post results to pull requests'
+author: 'bloo-berries'
+
+branding:
+  icon: 'eye'
+  color: 'blue'
+
+inputs:
+  images:
+    description: 'Glob pattern for screenshot images to process (e.g. "screenshots/**/*.png")'
+    required: true
+  conditions:
+    description: 'Comma-separated vision condition IDs to simulate'
+    required: false
+    default: 'protanopia,deuteranopia,tritanopia,glaucoma,cataracts'
+  intensity:
+    description: 'Effect intensity from 0.0 to 1.0'
+    required: false
+    default: '0.8'
+  comment:
+    description: 'Post or update a PR comment with the results'
+    required: false
+    default: 'true'
+  check:
+    description: 'Create a check run with the results'
+    required: false
+    default: 'false'
+  max-renders:
+    description: 'Maximum number of renders (images x conditions) before stopping'
+    required: false
+    default: '12'
+  github-token:
+    description: 'GitHub token for API access. Defaults to the automatic GITHUB_TOKEN.'
+    required: false
+    default: '${{ github.token }}'
+
+outputs:
+  composites:
+    description: 'JSON array of composite image paths written to the runner'
+
+runs:
+  using: 'docker'
+  image: 'action/Dockerfile'

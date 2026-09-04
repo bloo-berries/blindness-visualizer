@@ -48,6 +48,16 @@ We welcome contributions! This document outlines the process for contributing to
 
 This project follows the [Create React App ESLint configuration](https://www.npmjs.com/package/eslint-config-react-app) with additional rules defined in `package.json`. TypeScript strict mode provides further enforcement. CI treats all ESLint warnings as errors (`CI=true`), so contributions must pass linting to be merged. Suppress intentional console statements with `// eslint-disable-next-line no-console`.
 
+## Developer Certificate of Origin (DCO)
+
+All commits must include a `Signed-off-by` trailer to indicate agreement with the [Developer Certificate of Origin](https://developercertificate.org/). Add it automatically with:
+
+```bash
+git commit -s -m "Your commit message"
+```
+
+A [GitHub Action](.github/workflows/dco.yml) enforces sign-off on every pull request.
+
 ## Areas for Contribution
 
 - **New vision conditions**: Add more realistic simulations
@@ -56,3 +66,4 @@ This project follows the [Create React App ESLint configuration](https://www.npm
 - **Performance optimization**: Improve rendering speed
 - **Mobile experience**: Enhance touch interactions
 - **New languages**: Add translation files for more locales
+- **VisionSim GitHub Action**: Improve the CI pipeline, add new composite layouts, or expand condition coverage

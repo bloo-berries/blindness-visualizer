@@ -18,7 +18,8 @@ import {
   AccordionDetails,
   Chip,
   Button,
-  Fab
+  Fab,
+  ButtonBase
 } from '@mui/material';
 import {
   ExpandMore as ExpandMoreIcon,
@@ -192,6 +193,7 @@ const GlossaryTab: React.FC = () => {
                         disabled={!isConditionSelected(condition.id) && selectedConditions.length >= 3}
                         sx={{ mr: 0.5 }}
                         size="small"
+                        inputProps={{ 'aria-label': `Compare ${condition.name}` } as React.InputHTMLAttributes<HTMLInputElement>}
                       />
                     )}
                     <ListItemIcon>
@@ -199,6 +201,7 @@ const GlossaryTab: React.FC = () => {
                         <IconButton
                           size="small"
                           className="condition-simulator-button"
+                          aria-label={`${t('glossaryPage.viewInSimulator')}: ${condition.name}`}
                           onClick={() => {
                             navigate('/simulator', {
                               state: {
@@ -243,14 +246,17 @@ const GlossaryTab: React.FC = () => {
                       />
                       {condition.treatments && (
                         <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid #e2e8f0' }}>
-                          <Box
+                          <ButtonBase
                             onClick={() => handleTreatmentToggle(condition.id)}
+                            aria-expanded={expandedTreatments.has(condition.id)}
+                            aria-label={`${t('glossaryPage.treatmentOptions')} — ${condition.name}`}
                             sx={{
                               display: 'flex',
                               alignItems: 'center',
                               gap: 1,
-                              cursor: 'pointer',
-                              userSelect: 'none',
+                              width: '100%',
+                              justifyContent: 'flex-start',
+                              textAlign: 'left',
                               '&:hover': {
                                 opacity: 0.8
                               }
@@ -268,7 +274,7 @@ const GlossaryTab: React.FC = () => {
                                 transition: 'transform 0.2s ease'
                               }}
                             />
-                          </Box>
+                          </ButtonBase>
                           <Collapse in={expandedTreatments.has(condition.id)}>
                             <Box sx={{ mt: 1.5 }}>
                               <List dense className="condition-treatment-list" sx={{ pl: 0, mb: 1 }}>
@@ -313,14 +319,17 @@ const GlossaryTab: React.FC = () => {
                       )}
                       {condition.resourceLinks && condition.resourceLinks.length > 0 && (
                         <Box sx={{ mt: 2, pt: 2, borderTop: '1px solid #e2e8f0' }}>
-                          <Box
+                          <ButtonBase
                             onClick={() => handleTreatmentToggle(`resources-${condition.id}`)}
+                            aria-expanded={expandedTreatments.has(`resources-${condition.id}`)}
+                            aria-label={`${t('glossaryPage.learnMore')} — ${condition.name}`}
                             sx={{
                               display: 'flex',
                               alignItems: 'center',
                               gap: 1,
-                              cursor: 'pointer',
-                              userSelect: 'none',
+                              width: '100%',
+                              justifyContent: 'flex-start',
+                              textAlign: 'left',
                               '&:hover': { opacity: 0.8 }
                             }}
                           >
@@ -336,7 +345,7 @@ const GlossaryTab: React.FC = () => {
                                 transition: 'transform 0.2s ease'
                               }}
                             />
-                          </Box>
+                          </ButtonBase>
                           <Collapse in={expandedTreatments.has(`resources-${condition.id}`)}>
                             <List dense sx={{ pl: 0, mt: 1 }}>
                               {condition.resourceLinks.map((link, idx) => (

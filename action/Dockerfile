@@ -19,7 +19,7 @@ COPY --from=builder /app/build /app/build
 # Copy and build action source
 WORKDIR /action
 COPY action/package.json action/tsconfig.json ./
-RUN npm ci
+RUN npm install --ignore-scripts
 COPY action/src ./src
 RUN npx tsc
 

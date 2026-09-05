@@ -2,7 +2,7 @@
 FROM node:18-slim AS builder
 
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json .npmrc ./
 RUN npm ci --ignore-scripts
 COPY . .
 RUN npm run build:prod

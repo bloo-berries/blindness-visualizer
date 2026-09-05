@@ -81,8 +81,12 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
+                minHeight: '24px',
+                minWidth: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
@@ -107,8 +111,12 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
+                minHeight: '24px',
+                minWidth: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
@@ -133,8 +141,12 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
+                minHeight: '24px',
+                minWidth: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'
@@ -159,8 +171,12 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.65rem', sm: '0.875rem' },
+                fontSize: { xs: '0.7rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
+                minHeight: '24px',
+                minWidth: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
                 '&:hover': {
                   color: 'primary.main',
                   textDecoration: 'underline'

@@ -140,7 +140,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
               onClick={handleHomeClick}
               role="button"
               tabIndex={0}
-              aria-label={t('nav.home')}
+              aria-label="The Blind Spot — home"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();

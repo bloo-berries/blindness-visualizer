@@ -184,14 +184,14 @@ describe('NavigationBar', () => {
   test('onHomeClick prop is called when clicking home logo', () => {
     const onHomeClick = jest.fn();
     renderWithProviders(<NavigationBar onHomeClick={onHomeClick} />);
-    const homeButton = screen.getByLabelText('Home');
+    const homeButton = screen.getByLabelText('The Blind Spot — home');
     fireEvent.click(homeButton);
     expect(onHomeClick).toHaveBeenCalledTimes(1);
   });
 
   test('clicking home logo navigates to / when no onHomeClick', () => {
     renderWithProviders(<NavigationBar />);
-    const homeButton = screen.getByLabelText('Home');
+    const homeButton = screen.getByLabelText('The Blind Spot — home');
     fireEvent.click(homeButton);
     expect(mockNavigate).toHaveBeenCalledWith('/');
   });

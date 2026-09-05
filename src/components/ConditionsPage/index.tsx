@@ -72,7 +72,7 @@ const ConditionsPage: React.FC = () => {
       />
       <NavigationBar showHomeButton={true} onHomeClick={handleHomeClick} />
 
-      <Container maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
+      <Container component="main" id="main-content" maxWidth="lg" sx={{ pt: 12, pb: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4, fontSize: { xs: '1.5rem', sm: '2rem', md: undefined } }}>
           {t('glossaryPage.title')}
         </Typography>

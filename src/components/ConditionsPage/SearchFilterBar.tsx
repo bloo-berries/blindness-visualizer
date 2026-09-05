@@ -71,8 +71,9 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         </Grid>
         <Grid item xs={12} md={4}>
           <FormControl fullWidth className="conditions-filter-select">
-            <InputLabel>{t('glossaryPage.category')}</InputLabel>
+            <InputLabel id="category-filter-label">{t('glossaryPage.category')}</InputLabel>
             <Select
+              labelId="category-filter-label"
               value={categoryFilter}
               onChange={(e) => onCategoryChange(e.target.value)}
               label={t('glossaryPage.category')}

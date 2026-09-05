@@ -168,12 +168,12 @@ const GlossaryTab: React.FC = () => {
             className="condition-category-header"
           >
             <Box sx={{ display: 'flex', alignItems: 'center', mr: 1.5 }}>
-              <Box className="condition-category-icon">
+              <Box className="condition-category-icon" aria-hidden="true">
                 {category.icon}
               </Box>
             </Box>
             <Box>
-              <Typography variant="h6" component="h3" className="condition-category-title">
+              <Typography variant="h6" component="h2" className="condition-category-title">
                 {t(`glossaryPage.conditionCategories.${getCategoryTranslationKey(category.id)}.name`, category.name)}
               </Typography>
               <Typography variant="body2" className="condition-category-subtitle">
@@ -219,7 +219,7 @@ const GlossaryTab: React.FC = () => {
                       <ListItemText
                         primary={
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                            <Typography variant="h6" component="h4" className="condition-name">
+                            <Typography variant="h6" component="h3" className="condition-name">
                               {condition.name}
                             </Typography>
                             {condition.relatedPeople && condition.relatedPeople.length > 0 && (
@@ -420,7 +420,7 @@ const GlossaryTab: React.FC = () => {
 
       {/* Additional Information */}
       <Box className="conditions-info-box">
-        <Typography variant="h5" gutterBottom className="conditions-info-title">
+        <Typography variant="h5" component="h2" gutterBottom className="conditions-info-title">
           {t('glossaryPage.aboutGlossary.title')}
         </Typography>
         <Typography variant="body1" paragraph className="conditions-info-text">

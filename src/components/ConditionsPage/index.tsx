@@ -106,13 +106,17 @@ const ConditionsPage: React.FC = () => {
               }
             }}
           >
-            <Tab label={t('glossaryPage.tabGlossary')} />
-            <Tab label={t('glossaryPage.tabFaq')} />
+            <Tab label={t('glossaryPage.tabGlossary')} id="tab-glossary" aria-controls="tabpanel-glossary" />
+            <Tab label={t('glossaryPage.tabFaq')} id="tab-faq" aria-controls="tabpanel-faq" />
           </Tabs>
         </Box>
 
-        {activeTab === 0 && <GlossaryTab />}
-        {activeTab === 1 && <FAQTab />}
+        <div role="tabpanel" id="tabpanel-glossary" aria-labelledby="tab-glossary" hidden={activeTab !== 0}>
+          {activeTab === 0 && <GlossaryTab />}
+        </div>
+        <div role="tabpanel" id="tabpanel-faq" aria-labelledby="tab-faq" hidden={activeTab !== 1}>
+          {activeTab === 1 && <FAQTab />}
+        </div>
       </Container>
 
       <Footer />

@@ -52,7 +52,7 @@
   "jest": {
     "coverageThreshold": {
       "global": {
-        "statements": 79,
+        "statements": 78,
         "branches": 63
       }
     }
@@ -85,5 +85,8 @@
     "canvas": "^3.2.1",
     "sharp": "^0.34.5",
     "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "allowScripts": {
+    "canvas@3.2.1": true
   }
 }

@@ -49,7 +49,7 @@ const ensureSVGContainer = (): SVGSVGElement => {
 const injectDOMFilter = (filterId: string, cssMatrix: string): void => {
   const container = ensureSVGContainer();
   const defs = container.querySelector('defs') || container;
-  let filterEl = document.getElementById(filterId) as unknown as SVGFilterElement;
+  let filterEl = defs.querySelector<SVGFilterElement>(`filter[id="${filterId}"]`);
 
   if (!filterEl) {
     filterEl = document.createElementNS(SVG_NS, 'filter') as unknown as SVGFilterElement;
@@ -71,7 +71,9 @@ const injectDOMFilter = (filterId: string, cssMatrix: string): void => {
 
 /** Removes a specific filter element from the DOM */
 export const removeDOMFilter = (filterId: string): void => {
-  const filterEl = document.getElementById(filterId);
+  // Only ever remove filters that live inside our own injected container.
+  const container = document.getElementById(SVG_CONTAINER_ID);
+  const filterEl = container?.querySelector(`filter[id="${filterId}"]`);
   if (filterEl) {
     filterEl.remove();
   }

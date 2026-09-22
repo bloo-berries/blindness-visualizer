@@ -3,8 +3,9 @@
  *
  * The hook computes CSS filter strings and combined effect styles
  * from active visual effects. It uses EffectProcessor for caching,
- * getColorVisionFilter / getColorVisionFilterData for color vision,
- * and generateCSSFilters for other effects.
+ * getColorVisionFilter for color vision (SVG mode for images),
+ * getMobileCSSFilter for CSS-only mode (YouTube iframes), and
+ * generateCSSFilters for other effects.
  */
 
 import { renderHook } from '@testing-library/react';
@@ -13,12 +14,14 @@ import { VisualEffect, InputSource } from '../../types/visualEffects';
 
 // Mock the color vision filters module
 jest.mock('../../utils/colorVisionFilters', () => {
-  let _cached: boolean | null = null;
   return {
-    getColorVisionFilter: jest.fn(() => 'url("#cvd-protanopia")'),
-    getColorVisionFilterData: jest.fn(() => ({ filterId: 'cvd-protanopia', matrixValues: '0.15 0.85 0 0 0.15 0.85 0 0 1' })),
-    isMobileBrowser: jest.fn(() => false),
-    _resetMobileDetection: jest.fn(() => { _cached = null; }),
+    getColorVisionFilter: jest.fn(() => 'url("http://localhost/simulator#cvd-protanopia")'),
+    getMobileCSSFilter: jest.fn(() => 'saturate(35%) sepia(15%) hue-rotate(345deg)'),
+    COLOR_VISION_IDS: [
+      'protanopia', 'deuteranopia', 'tritanopia',
+      'protanomaly', 'deuteranomaly', 'tritanomaly',
+      'monochromatic', 'monochromacy',
+    ],
   };
 });
 
@@ -64,43 +67,37 @@ describe('useCSSFilters', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    // Re-setup default return values after clearAllMocks resets them
     const cvf = require('../../utils/colorVisionFilters');
-    (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('url("#cvd-protanopia")');
-    (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue({
-      filterId: 'cvd-protanopia',
-      matrixValues: '0.15 0.85 0 0 0.15 0.85 0 0 1',
-    });
-    (cvf.isMobileBrowser as jest.Mock).mockReturnValue(false);
+    (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('url("http://localhost/simulator#cvd-protanopia")');
+    (cvf.getMobileCSSFilter as jest.Mock).mockReturnValue('saturate(35%) sepia(15%) hue-rotate(345deg)');
 
     const cssFilters = require('../../utils/cssFilters');
     (cssFilters.generateCSSFilters as jest.Mock).mockReturnValue('blur(2px) contrast(90%)');
   });
 
-  describe('computeFilterString', () => {
+  describe('computeFilterString (default SVG mode)', () => {
     test('returns null when no effects are enabled', () => {
       const effects: VisualEffect[] = [makeEffect('protanopia', false, 0.5)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
       expect(filterString).toBeNull();
     });
 
-    test('returns filter string for color vision effect on desktop', () => {
+    test('returns SVG filter string for color vision effect', () => {
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
       expect(filterString).not.toBeNull();
-      expect(typeof filterString).toBe('string');
       expect(filterString).toContain('cvd-protanopia');
     });
 
@@ -109,7 +106,7 @@ describe('useCSSFilters', () => {
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
@@ -125,12 +122,13 @@ describe('useCSSFilters', () => {
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
       expect(filterString).not.toBeNull();
-      expect(filterString!.length).toBeGreaterThan(0);
+      expect(filterString).toContain('cvd-protanopia');
+      expect(filterString).toContain('blur');
     });
 
     test('excludes diplopia effects from filter computation', () => {
@@ -140,39 +138,22 @@ describe('useCSSFilters', () => {
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 5, 45, processorRef)
+        useCSSFilters(effects, imageSource, 5, 45, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
       expect(filterString).toBeNull();
     });
 
-    test('handles mobile browser fallback', () => {
+    test('handles monochromacy via CSS filter', () => {
       const cvf = require('../../utils/colorVisionFilters');
-      (cvf.isMobileBrowser as jest.Mock).mockReturnValue(true);
-      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0.3) hue-rotate(30deg)');
-
-      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
-      const processorRef = createMockEffectProcessorRef();
-
-      const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
-      );
-
-      const filterString = result.current.computeFilterString();
-      expect(filterString).not.toBeNull();
-    });
-
-    test('handles monochromacy via CSS filter (no SVG)', () => {
-      const cvf = require('../../utils/colorVisionFilters');
-      (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue(null);
-      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0) contrast(1.1)');
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0%) contrast(85%) brightness(75%) blur(1.5px)');
 
       const effects: VisualEffect[] = [makeEffect('monochromacy', true, 0.9)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const filterString = result.current.computeFilterString();
@@ -180,26 +161,248 @@ describe('useCSSFilters', () => {
       expect(filterString).toContain('saturate');
     });
 
-    test('returns null when color vision filter functions return null', () => {
+    test('returns null when getColorVisionFilter returns empty string', () => {
       const cvf = require('../../utils/colorVisionFilters');
-      (cvf.getColorVisionFilterData as jest.Mock).mockReturnValue(null);
-      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue(null);
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('');
 
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString();
+      expect(filterString).toBeNull();
+    });
+
+    test('calls getColorVisionFilter (not getMobileCSSFilter) in default mode', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      result.current.computeFilterString();
+      expect(cvf.getColorVisionFilter).toHaveBeenCalledWith('protanopia', 0.8);
+      expect(cvf.getMobileCSSFilter).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('computeFilterString (cssOnly mode for YouTube)', () => {
+    test('uses getMobileCSSFilter in cssOnly mode', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
         useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
       );
 
-      const filterString = result.current.computeFilterString();
+      const filterString = result.current.computeFilterString(true);
+      expect(cvf.getMobileCSSFilter).toHaveBeenCalledWith('protanopia', 0.8);
+      expect(filterString).toContain('saturate');
+      expect(filterString).toContain('sepia');
+    });
+
+    test('falls back to getColorVisionFilter when getMobileCSSFilter returns null', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.getMobileCSSFilter as jest.Mock).mockReturnValue(null);
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue('saturate(0%) contrast(85%)');
+
+      const effects: VisualEffect[] = [makeEffect('monochromacy', true, 1.0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString(true);
+      expect(cvf.getMobileCSSFilter).toHaveBeenCalledWith('monochromacy', 1.0);
+      expect(cvf.getColorVisionFilter).toHaveBeenCalledWith('monochromacy', 1.0);
+      expect(filterString).toContain('saturate');
+    });
+
+    test('does not call getColorVisionFilter when getMobileCSSFilter returns a value', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('deuteranopia', true, 1.0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+      );
+
+      result.current.computeFilterString(true);
+      expect(cvf.getMobileCSSFilter).toHaveBeenCalled();
+      expect(cvf.getColorVisionFilter).not.toHaveBeenCalled();
+    });
+
+    test('combines CSS-only color vision filter with other effects', () => {
+      const effects: VisualEffect[] = [
+        makeEffect('protanopia', true, 0.8),
+        makeEffect('cataracts', true, 0.5),
+      ];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString(true);
+      expect(filterString).not.toBeNull();
+      expect(filterString).toContain('sepia');
+      expect(filterString).toContain('blur');
+    });
+
+    test('returns null in cssOnly mode when no effects enabled', () => {
+      const effects: VisualEffect[] = [makeEffect('protanopia', false, 0.5)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString(true);
+      expect(filterString).toBeNull();
+    });
+
+    test('cssOnly mode excludes diplopia effects', () => {
+      const effects: VisualEffect[] = [makeEffect('diplopiaMonocular', true, 0.8)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 5, 45, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString(true);
       expect(filterString).toBeNull();
     });
   });
 
+  describe('getColorVisionFilter delegation', () => {
+    test('calls getColorVisionFilter with correct type and intensity', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      result.current.computeFilterString();
+      expect(cvf.getColorVisionFilter).toHaveBeenCalledWith('protanopia', 0.8);
+    });
+
+    test('calls getColorVisionFilter for all SVG CVD types', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const svgTypes = ['protanopia', 'deuteranopia', 'tritanopia', 'protanomaly', 'deuteranomaly', 'tritanomaly'];
+      const processorRef = createMockEffectProcessorRef();
+
+      for (const type of svgTypes) {
+        jest.clearAllMocks();
+        (cvf.getColorVisionFilter as jest.Mock).mockReturnValue(`url("http://localhost/simulator#cvd-${type}")`);
+
+        const effects: VisualEffect[] = [makeEffect(type, true, 1.0)];
+        const { result } = renderHook(() =>
+          useCSSFilters(effects, imageSource, 0, 0, processorRef)
+        );
+
+        result.current.computeFilterString();
+        expect(cvf.getColorVisionFilter).toHaveBeenCalledWith(type, 1.0);
+      }
+    });
+
+    test('uses the return value from getColorVisionFilter as the filter string', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const absoluteUrl = 'url("http://localhost:3000/simulator#cvd-tritanopia")';
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue(absoluteUrl);
+
+      const effects: VisualEffect[] = [makeEffect('tritanopia', true, 1.0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString();
+      expect(filterString).toBe(absoluteUrl);
+    });
+
+    test('calls getColorVisionFilter exactly once per computeFilterString call', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('deuteranopia', true, 0.7)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      result.current.computeFilterString();
+      expect(cvf.getColorVisionFilter).toHaveBeenCalledTimes(1);
+    });
+
+    test('does not call getColorVisionFilter when no CVD effect is enabled', () => {
+      const cvf = require('../../utils/colorVisionFilters');
+      const effects: VisualEffect[] = [makeEffect('cataracts', true, 0.5)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      result.current.computeFilterString();
+      expect(cvf.getColorVisionFilter).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('all CVD types produce filter strings', () => {
+    const allCvdTypes = [
+      { type: 'protanopia', label: 'protanopia (red-blind)' },
+      { type: 'deuteranopia', label: 'deuteranopia (green-blind)' },
+      { type: 'tritanopia', label: 'tritanopia (blue-blind)' },
+      { type: 'protanomaly', label: 'protanomaly (red-weak)' },
+      { type: 'deuteranomaly', label: 'deuteranomaly (green-weak)' },
+      { type: 'tritanomaly', label: 'tritanomaly (blue-weak)' },
+    ];
+
+    test.each(allCvdTypes)('$label produces non-null filter string in SVG mode', ({ type }) => {
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.getColorVisionFilter as jest.Mock).mockReturnValue(`url("http://localhost/simulator#cvd-${type}")`);
+
+      const effects: VisualEffect[] = [makeEffect(type, true, 1.0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString();
+      expect(filterString).not.toBeNull();
+      expect(filterString).toContain(`cvd-${type}`);
+    });
+
+    test.each(allCvdTypes)('$label produces non-null filter string in cssOnly mode', ({ type }) => {
+      const cvf = require('../../utils/colorVisionFilters');
+      (cvf.getMobileCSSFilter as jest.Mock).mockReturnValue(`saturate(35%) sepia(15%) hue-rotate(345deg)`);
+
+      const effects: VisualEffect[] = [makeEffect(type, true, 1.0)];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+      );
+
+      const filterString = result.current.computeFilterString(true);
+      expect(filterString).not.toBeNull();
+      expect(filterString).toContain('saturate');
+    });
+  });
+
   describe('getEffectStyles', () => {
-    test('returns base styles for youtube source with no effects', () => {
-      const effects: VisualEffect[] = [];
+    test('returns base styles for youtube source (no filter — filter goes on iframe)', () => {
+      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result } = renderHook(() =>
@@ -210,22 +413,7 @@ describe('useCSSFilters', () => {
       expect(styles.position).toBe('absolute');
       expect(styles.top).toBe('50%');
       expect(styles.left).toBe('50%');
-      expect(styles.width).toBe('100%');
-      expect(styles.height).toBe('100%');
-      expect(styles.objectFit).toBe('contain');
-    });
-
-    test('includes filter in styles for youtube source with effects', () => {
-      const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
-      const processorRef = createMockEffectProcessorRef();
-
-      const { result } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
-      );
-
-      const styles = result.current.getEffectStyles();
-      expect(styles.filter).toBeDefined();
-      expect(typeof styles.filter).toBe('string');
+      expect(styles.filter).toBeUndefined();
     });
 
     test('includes filter in styles for image source', () => {
@@ -266,13 +454,36 @@ describe('useCSSFilters', () => {
     });
   });
 
+  describe('diplopia exclusion', () => {
+    test('excludes diplopiaBinocular from non-diplopia filter list', () => {
+      const cssFilters = require('../../utils/cssFilters');
+      const effects: VisualEffect[] = [
+        makeEffect('diplopiaBinocular', true, 0.8),
+        makeEffect('cataracts', true, 0.5),
+      ];
+      const processorRef = createMockEffectProcessorRef();
+
+      const { result } = renderHook(() =>
+        useCSSFilters(effects, imageSource, 5, 45, processorRef)
+      );
+
+      result.current.computeFilterString();
+
+      // generateCSSFilters should be called with only cataracts (not diplopia)
+      const callArgs = (cssFilters.generateCSSFilters as jest.Mock).mock.calls[0];
+      const passedEffects = callArgs[0] as VisualEffect[];
+      expect(passedEffects.some((e: VisualEffect) => e.id === 'diplopiaBinocular')).toBe(false);
+      expect(passedEffects.some((e: VisualEffect) => e.id === 'cataracts')).toBe(true);
+    });
+  });
+
   describe('memoization', () => {
     test('computeFilterString is a stable callback reference', () => {
       const effects: VisualEffect[] = [makeEffect('protanopia', true, 0.8)];
       const processorRef = createMockEffectProcessorRef();
 
       const { result, rerender } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const firstRef = result.current.computeFilterString;
@@ -286,7 +497,7 @@ describe('useCSSFilters', () => {
       const processorRef = createMockEffectProcessorRef();
 
       const { result, rerender } = renderHook(() =>
-        useCSSFilters(effects, youtubeSource, 0, 0, processorRef)
+        useCSSFilters(effects, imageSource, 0, 0, processorRef)
       );
 
       const firstRef = result.current.getEffectStyles;

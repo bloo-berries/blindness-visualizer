@@ -1,4 +1,4 @@
-import { getColorVisionFilter, getColorVisionMatrix, cleanupAllDOMFilters, isColorVisionCondition, getColorVisionFilterData, _resetMobileDetection, isMobileBrowser, getColorVisionDescription, getColorVisionPrevalence } from '../utils/colorVisionFilters';
+import { getColorVisionFilter, getColorVisionMatrix, cleanupAllDOMFilters, isColorVisionCondition, getColorVisionFilterData, _resetMobileDetection, isMobileBrowser, getColorVisionDescription, getColorVisionPrevalence, COLOR_VISION_IDS, SVG_COLOR_VISION_IDS, blendWithIdentity } from '../utils/colorVisionFilters';
 import { ConditionType } from '../types/visualEffects';
 
 describe('getColorVisionFilter', () => {
@@ -190,7 +190,10 @@ describe('isMobileBrowser', () => {
 
 describe('getColorVisionFilter mobile path', () => {
   const originalMatchMedia = window.matchMedia;
-  const originalUserAgent = Object.getOwnPropertyDescriptor(navigator, 'userAgent');
+  // JSDOM defines userAgent on Navigator.prototype, not on navigator itself,
+  // so getOwnPropertyDescriptor returns undefined. Capture it from the prototype.
+  const originalUserAgent = Object.getOwnPropertyDescriptor(navigator, 'userAgent')
+    || Object.getOwnPropertyDescriptor(Object.getPrototypeOf(navigator), 'userAgent');
 
   afterEach(() => {
     _resetMobileDetection();
@@ -407,5 +410,183 @@ describe('cleanupAllDOMFilters edge cases', () => {
     expect(document.getElementById('cvd-protanopia')).toBeNull();
     expect(document.getElementById('cvd-deuteranopia')).toBeNull();
     expect(document.getElementById('cvd-svg-filters')).toBeNull();
+  });
+});
+
+describe('COLOR_VISION_IDS and SVG_COLOR_VISION_IDS constants', () => {
+  test('COLOR_VISION_IDS contains all 8 CVD types', () => {
+    expect(COLOR_VISION_IDS).toHaveLength(8);
+    const expected: ConditionType[] = [
+      'protanopia', 'deuteranopia', 'tritanopia',
+      'protanomaly', 'deuteranomaly', 'tritanomaly',
+      'monochromatic', 'monochromacy',
+    ];
+    for (const id of expected) {
+      expect(COLOR_VISION_IDS).toContain(id);
+    }
+  });
+
+  test('SVG_COLOR_VISION_IDS contains 6 types (no monochromacy variants)', () => {
+    expect(SVG_COLOR_VISION_IDS).toHaveLength(6);
+    expect(SVG_COLOR_VISION_IDS).not.toContain('monochromatic');
+    expect(SVG_COLOR_VISION_IDS).not.toContain('monochromacy');
+  });
+
+  test('SVG_COLOR_VISION_IDS is a subset of COLOR_VISION_IDS', () => {
+    for (const id of SVG_COLOR_VISION_IDS) {
+      expect(COLOR_VISION_IDS).toContain(id);
+    }
+  });
+});
+
+describe('blendWithIdentity', () => {
+  const identity = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+
+  test('intensity 0 returns identity matrix', () => {
+    const matrix = [0.5, 0.5, 0, 0, 0.5, 0.5, 0, 0, 1];
+    const result = blendWithIdentity(matrix, 0);
+    expect(result).toEqual(identity);
+  });
+
+  test('intensity 1 returns the full matrix unchanged', () => {
+    const matrix = [0.152286, 1.052583, -0.204868, 0.114503, 0.786281, 0.099216, -0.003882, -0.048116, 1.051998];
+    const result = blendWithIdentity(matrix, 1.0);
+    for (let i = 0; i < 9; i++) {
+      expect(result[i]).toBeCloseTo(matrix[i], 6);
+    }
+  });
+
+  test('intensity 0.5 produces midpoint between identity and matrix', () => {
+    const matrix = [0, 1, 0, 1, 0, 0, 0, 0, 1];
+    const result = blendWithIdentity(matrix, 0.5);
+    // First element: 0 * 0.5 + 1 * 0.5 = 0.5
+    expect(result[0]).toBeCloseTo(0.5, 6);
+    // Second element: 1 * 0.5 + 0 * 0.5 = 0.5
+    expect(result[1]).toBeCloseTo(0.5, 6);
+    // Last element: 1 * 0.5 + 1 * 0.5 = 1.0
+    expect(result[8]).toBeCloseTo(1.0, 6);
+  });
+
+  test('result has same length as input', () => {
+    const matrix = [0.5, 0.5, 0, 0, 0.5, 0.5, 0, 0, 1];
+    const result = blendWithIdentity(matrix, 0.7);
+    expect(result).toHaveLength(9);
+  });
+});
+
+describe('getColorVisionFilterData for all SVG types', () => {
+  const svgTypes: ConditionType[] = [
+    'protanopia', 'deuteranopia', 'tritanopia',
+    'protanomaly', 'deuteranomaly', 'tritanomaly',
+  ] as ConditionType[];
+
+  test.each(svgTypes)('%s returns valid filter data at full intensity', (type) => {
+    const data = getColorVisionFilterData(type, 1.0);
+    expect(data).not.toBeNull();
+    expect(data!.filterId).toBe(`cvd-${type}`);
+    const nums = data!.matrixValues.split(' ').map(Number);
+    expect(nums).toHaveLength(20);
+    // Alpha row must be identity: 0 0 0 1 0
+    expect(nums[15]).toBe(0);
+    expect(nums[16]).toBe(0);
+    expect(nums[17]).toBe(0);
+    expect(nums[18]).toBe(1);
+    expect(nums[19]).toBe(0);
+  });
+
+  test.each(svgTypes)('%s returns blended data at partial intensity', (type) => {
+    const full = getColorVisionFilterData(type, 1.0);
+    const half = getColorVisionFilterData(type, 0.5);
+    expect(full).not.toBeNull();
+    expect(half).not.toBeNull();
+    // Different intensities must produce different matrices
+    expect(full!.matrixValues).not.toBe(half!.matrixValues);
+  });
+
+  test.each(svgTypes)('%s returns null at zero intensity', (type) => {
+    expect(getColorVisionFilterData(type, 0)).toBeNull();
+  });
+});
+
+describe('getColorVisionFilter for all SVG types', () => {
+  beforeEach(() => {
+    _resetMobileDetection();
+    cleanupAllDOMFilters();
+  });
+
+  afterEach(() => {
+    cleanupAllDOMFilters();
+  });
+
+  const svgTypes: ConditionType[] = [
+    'protanopia', 'deuteranopia', 'tritanopia',
+    'protanomaly', 'deuteranomaly', 'tritanomaly',
+  ] as ConditionType[];
+
+  test.each(svgTypes)('%s injects a DOM filter with correct feColorMatrix', (type) => {
+    getColorVisionFilter(type, 1.0);
+    const filterEl = document.getElementById(`cvd-${type}`);
+    expect(filterEl).not.toBeNull();
+    const feColorMatrix = filterEl?.querySelector('feColorMatrix');
+    expect(feColorMatrix).not.toBeNull();
+    expect(feColorMatrix?.getAttribute('type')).toBe('matrix');
+    const values = feColorMatrix?.getAttribute('values') ?? '';
+    const nums = values.split(' ').map(Number);
+    expect(nums).toHaveLength(20);
+    // Verify no NaN values
+    for (const n of nums) {
+      expect(Number.isNaN(n)).toBe(false);
+    }
+  });
+
+  test.each(svgTypes)('%s at partial intensity produces blended matrix in DOM', (type) => {
+    getColorVisionFilter(type, 0.5);
+    const filterEl = document.getElementById(`cvd-${type}`);
+    expect(filterEl).not.toBeNull();
+    const feColorMatrix = filterEl?.querySelector('feColorMatrix');
+    expect(feColorMatrix).not.toBeNull();
+    const values = feColorMatrix?.getAttribute('values') ?? '';
+    const nums = values.split(' ').map(Number);
+    expect(nums).toHaveLength(20);
+    // Blended matrix at 0.5 should differ from both identity and full matrix
+    const fullData = getColorVisionFilterData(type, 1.0);
+    const halfData = getColorVisionFilterData(type, 0.5);
+    expect(fullData).not.toBeNull();
+    expect(halfData).not.toBeNull();
+    expect(fullData!.matrixValues).not.toBe(halfData!.matrixValues);
+  });
+});
+
+describe('removeDOMFilter scoping', () => {
+  beforeEach(() => {
+    _resetMobileDetection();
+    cleanupAllDOMFilters();
+  });
+
+  afterEach(() => {
+    cleanupAllDOMFilters();
+    // Remove any non-container filters we injected
+    document.querySelectorAll('filter[id^="cvd-"]').forEach(el => el.remove());
+  });
+
+  test('removeDOMFilter only removes filters from the cvd-svg-filters container', () => {
+    // Create a filter outside the container (simulating the inline SVG)
+    const externalSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const externalFilter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+    externalFilter.setAttribute('id', 'cvd-protanopia');
+    externalSvg.appendChild(externalFilter);
+    document.body.appendChild(externalSvg);
+
+    // Also create one inside the container via getColorVisionFilter
+    getColorVisionFilter('protanopia' as ConditionType, 1.0);
+
+    // Now set intensity to 0 which triggers removeDOMFilter
+    getColorVisionFilter('protanopia' as ConditionType, 0);
+
+    // The external filter should still exist
+    expect(externalSvg.querySelector('filter[id="cvd-protanopia"]')).not.toBeNull();
+
+    // Clean up
+    externalSvg.remove();
   });
 });

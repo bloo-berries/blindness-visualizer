@@ -49,7 +49,16 @@
     "condition": "Condition: {{condition}}",
     "screenReaderStep1": "Step 1: Choose your input source - webcam, image upload, or YouTube video",
     "screenReaderStep2": "Step 2: Select vision conditions to simulate",
-    "goBack": "Go back to select conditions"
+    "goBack": "Go back to select conditions",
+    "fieldLossNote": "This shows what visual information is lost. A real person typically doesn't perceive dark areas — the brain fills in missing regions, and many are unaware of their loss.",
+    "amdNote": "Metamorphopsia (wavy distortion) is shown, but the brain's filling-in of the central scotoma cannot be simulated on screen.",
+    "achromatopsiaNote": "Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.",
+    "separationDistance": "Separation Distance",
+    "direction": "Direction",
+    "directionHorizontal": "Horizontal",
+    "directionVertical": "Vertical",
+    "directionDiagonal": "Diagonal",
+    "prevalence": "Prevalence: {{value}}"
   },
   "categories": {
     "visualFieldLoss": "Visual Field Loss",
@@ -618,16 +627,5 @@
         "description": "Official resource for the Americans with Disabilities Act, providing guidance on civil rights protections for individuals with disabilities including visual impairments."
       }
     }
-  },
-  "simulator": {
-    "fieldLossNote": "This shows what visual information is lost. A real person typically doesn't perceive dark areas — the brain fills in missing regions, and many are unaware of their loss.",
-    "amdNote": "Metamorphopsia (wavy distortion) is shown, but the brain's filling-in of the central scotoma cannot be simulated on screen.",
-    "achromatopsiaNote": "Real achromatopsia includes severe photophobia and nystagmus that cannot be fully captured.",
-    "separationDistance": "Separation Distance",
-    "direction": "Direction",
-    "directionHorizontal": "Horizontal",
-    "directionVertical": "Vertical",
-    "directionDiagonal": "Diagonal",
-    "prevalence": "Prevalence: {{value}}"
   }
 }

@@ -69,6 +69,7 @@ const defaultProps = () => ({
   inputSource: { type: 'youtube' as const } as InputSource,
   getVideoUrl: () => 'https://www.youtube.com/embed/test',
   getEffectStyles: () => ({ position: 'relative' as const, width: '100%', height: '100%' }),
+  computeFilterString: jest.fn(() => null) as jest.Mock & ((cssOnly?: boolean) => string | null),
   getDiplopiaOverlay: () => null,
   onToggleComparison: jest.fn(),
   simulationContainerRef: React.createRef<HTMLDivElement>(),

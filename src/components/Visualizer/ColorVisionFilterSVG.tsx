@@ -1,11 +1,6 @@
 import React, { useMemo } from 'react';
 import { VisualEffect } from '../../types/visualEffects';
-import { getColorVisionFilterData } from '../../utils/colorVisionFilters';
-
-const COLOR_VISION_IDS = [
-  'protanopia', 'deuteranopia', 'tritanopia',
-  'protanomaly', 'deuteranomaly', 'tritanomaly',
-];
+import { getColorVisionFilterData, SVG_COLOR_VISION_IDS } from '../../utils/colorVisionFilters';
 
 /**
  * Renders an inline SVG with the active color vision filter definition.
@@ -18,7 +13,7 @@ const COLOR_VISION_IDS = [
 const ColorVisionFilterSVG: React.FC<{ effects: VisualEffect[] }> = ({ effects }) => {
   const filterData = useMemo(() => {
     const colorEffect = effects.find(
-      e => e.enabled && COLOR_VISION_IDS.includes(e.id)
+      e => e.enabled && SVG_COLOR_VISION_IDS.includes(e.id)
     );
     if (!colorEffect) return null;
     return getColorVisionFilterData(colorEffect.id, colorEffect.intensity);

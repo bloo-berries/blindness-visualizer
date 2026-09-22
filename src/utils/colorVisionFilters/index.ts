@@ -32,6 +32,21 @@ export { _resetMobileDetection, isMobileBrowser, getMobileCSSFilter } from './mo
 export { getColorVisionMatrix, blendWithIdentity } from './colorVisionMatrices';
 export { cleanupAllDOMFilters } from './domSvgManager';
 
+/** All 8 color vision deficiency condition IDs */
+export const COLOR_VISION_IDS: readonly ConditionType[] = [
+  'protanopia', 'deuteranopia', 'tritanopia',
+  'protanomaly', 'deuteranomaly', 'tritanomaly',
+  'monochromatic', 'monochromacy',
+] as const;
+
+/** The 6 CVD types that use SVG feColorMatrix (excludes monochromacy variants which use pure CSS) */
+export const SVG_COLOR_VISION_IDS: readonly ConditionType[] = [
+  'protanopia', 'deuteranopia', 'tritanopia',
+  'protanomaly', 'deuteranomaly', 'tritanomaly',
+] as const;
+
+const COLOR_VISION_SET: ReadonlySet<ConditionType> = new Set(COLOR_VISION_IDS);
+
 /**
  * Generates CSS filter for color vision deficiency simulation.
  *
@@ -129,16 +144,7 @@ export const getColorVisionFilterData = (
  * Checks if a condition is a color vision deficiency type
  */
 export const isColorVisionCondition = (type: ConditionType): boolean => {
-  return [
-    'protanopia',
-    'deuteranopia',
-    'tritanopia',
-    'protanomaly',
-    'deuteranomaly',
-    'tritanomaly',
-    'monochromatic',
-    'monochromacy'
-  ].includes(type);
+  return COLOR_VISION_SET.has(type);
 };
 
 /**

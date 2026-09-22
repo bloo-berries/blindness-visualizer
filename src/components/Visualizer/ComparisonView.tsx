@@ -14,6 +14,7 @@ interface ComparisonViewProps {
   inputSource: InputSource;
   getVideoUrl: () => string;
   getEffectStyles: () => React.CSSProperties;
+  computeFilterString: (cssOnly?: boolean) => string | null;
   getDiplopiaOverlay: () => React.ReactNode;
   onToggleComparison: () => void;
   simulationContainerRef: React.RefObject<HTMLDivElement>;
@@ -27,6 +28,7 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
   inputSource,
   getVideoUrl,
   getEffectStyles,
+  computeFilterString,
   getDiplopiaOverlay,
   onToggleComparison,
   simulationContainerRef
@@ -198,7 +200,8 @@ const ComparisonView: React.FC<ComparisonViewProps> = ({
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    border: 'none'
+                    border: 'none',
+                    filter: computeFilterString(true) || 'none',
                   }}
                 />
                 {/* React-based visual field overlay for reliable rendering */}

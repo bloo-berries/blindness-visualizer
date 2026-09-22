@@ -214,6 +214,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
         inputSource={inputSource}
         getVideoUrl={getVideoUrl}
         getEffectStyles={getEffectStyles}
+        computeFilterString={computeFilterString}
         getDiplopiaOverlay={getDiplopiaOverlay}
         onToggleComparison={handleToggleComparison}
         simulationContainerRef={simulationContainerRef}
@@ -472,10 +473,7 @@ const Visualizer: React.FC<VisualizerProps> = ({
               maxWidth: '100%',
               maxHeight: '100%',
               overflow: 'hidden',
-              filter: computeFilterString() || 'none'
             }}>
-              {/* Inline SVG filter for mobile WebKit compatibility */}
-              <ColorVisionFilterSVG effects={effects} />
               <YouTubeEmbed
                 src={YOUTUBE_EMBED_URL}
                 title="YouTube video player"
@@ -485,7 +483,8 @@ const Visualizer: React.FC<VisualizerProps> = ({
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  border: 'none'
+                  border: 'none',
+                  filter: computeFilterString(true) || 'none',
                 }}
               />
               {/* React-based visual field overlays for reliable rendering */}

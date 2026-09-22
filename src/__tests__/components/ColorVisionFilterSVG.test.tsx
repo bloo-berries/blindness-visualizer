@@ -14,6 +14,10 @@ jest.mock('../../utils/colorVisionFilters', () => ({
     }
     return null;
   },
+  SVG_COLOR_VISION_IDS: [
+    'protanopia', 'deuteranopia', 'tritanopia',
+    'protanomaly', 'deuteranomaly', 'tritanomaly',
+  ],
 }));
 
 import ColorVisionFilterSVG from '../../components/Visualizer/ColorVisionFilterSVG';
@@ -99,5 +103,72 @@ describe('ColorVisionFilterSVG', () => {
     );
     const filter = container.querySelector('filter');
     expect(filter!.getAttribute('id')).toBe('cvd-protanopia');
+  });
+
+  test('returns null for monochromacy (uses pure CSS, not SVG)', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('monochromacy', true, 1.0)]} />
+    );
+    expect(container.querySelector('svg')).toBeNull();
+  });
+
+  test('returns null for monochromatic (uses pure CSS, not SVG)', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('monochromatic', true, 1.0)]} />
+    );
+    expect(container.querySelector('svg')).toBeNull();
+  });
+
+  test('filter element has colorInterpolationFilters="linearRGB"', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('protanopia', true, 1.0)]} />
+    );
+    const filter = container.querySelector('filter');
+    expect(filter).not.toBeNull();
+    // React renders SVG attributes in lowercase in the DOM
+    const ciFilters = filter!.getAttribute('colorInterpolationFilters')
+      || filter!.getAttribute('color-interpolation-filters');
+    expect(ciFilters).toBe('linearRGB');
+  });
+
+  test('SVG is visually hidden but present in DOM', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('protanopia', true)]} />
+    );
+    const svg = container.querySelector('svg');
+    expect(svg).not.toBeNull();
+    expect(svg!.style.position).toBe('absolute');
+    expect(svg!.style.pointerEvents).toBe('none');
+  });
+
+  test('feColorMatrix has non-empty values attribute', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('protanopia', true, 0.8)]} />
+    );
+    const feColorMatrix = container.querySelector('feColorMatrix');
+    expect(feColorMatrix).not.toBeNull();
+    const values = feColorMatrix!.getAttribute('values');
+    expect(values).toBeTruthy();
+    expect(values!.split(' ').length).toBe(20);
+  });
+
+  test('renders correct filter for deuteranopia', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[makeEffect('deuteranopia', true, 0.7)]} />
+    );
+    const filter = container.querySelector('filter');
+    expect(filter).not.toBeNull();
+    expect(filter!.getAttribute('id')).toBe('cvd-deuteranopia');
+  });
+
+  test('only renders one filter even with multiple color vision effects', () => {
+    const { container } = render(
+      <ColorVisionFilterSVG effects={[
+        makeEffect('protanopia', true, 0.5),
+        makeEffect('deuteranopia', true, 0.5),
+      ]} />
+    );
+    const filters = container.querySelectorAll('filter');
+    expect(filters).toHaveLength(1);
   });
 });

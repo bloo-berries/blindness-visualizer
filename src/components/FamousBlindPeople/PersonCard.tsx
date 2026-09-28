@@ -88,13 +88,12 @@ const getObjectPosition = (personId: string): string => {
 const cardStyles = {
   flex: 1,
   cursor: 'pointer',
-  transition: 'transform 0.2s, box-shadow 0.2s',
+  transition: 'border-color 0.2s',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column' as const,
   '&:hover': {
-    transform: 'translateY(-2px)',
-    boxShadow: 3
+    borderColor: 'var(--color-primary)',
   },
   '&:focus-visible': {
     outline: '3px solid #1976d2',
@@ -250,7 +249,7 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
               component="h4"
               sx={{
                 fontSize: '0.85rem',
-                fontWeight: 700,
+                fontWeight: 600,
                 lineHeight: 1.2,
                 mb: 0.25,
                 overflowWrap: 'break-word',
@@ -265,7 +264,7 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
               <Typography
                 variant="caption"
                 sx={{
-                  fontSize: '0.6rem',
+                  fontSize: '0.7rem',
                   lineHeight: 1.1,
                   display: 'block',
                   color: 'primary.main',
@@ -284,7 +283,7 @@ const PersonCardComponent: React.FC<PersonCardProps> = ({
             variant="caption"
             color="text.secondary"
             sx={{
-              fontSize: '0.65rem',
+              fontSize: '0.7rem',
               lineHeight: 1.1,
               display: 'block',
               pt: 1.5,

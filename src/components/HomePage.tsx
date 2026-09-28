@@ -42,13 +42,13 @@ const homeCardSx = {
   p: { xs: 2, md: 3 },
   background: 'var(--color-card-bg)',
   border: '1px solid var(--color-border)',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-  transition: 'transform 0.2s, box-shadow 0.2s',
+  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.12)',
+  transition: 'border-color 0.2s, box-shadow 0.2s',
   display: 'flex',
   flexDirection: 'column',
   '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
+    borderColor: 'var(--color-primary)',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
   }
 } as const;
 
@@ -85,7 +85,7 @@ const HomePage: React.FC = () => {
               id="main-heading"
               sx={{
                 fontSize: { xs: '1.6rem', md: '2.2rem' },
-                fontWeight: 700,
+                fontWeight: 600,
                 color: 'text.primary',
                 mb: 0
               }}
@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
                         gutterBottom
                         className="homepage-card-title homepage-card-title-left"
                         sx={{
-                          fontWeight: 600,
+                          fontWeight: 500,
                           color: preferences.highContrast ? '#ffffff' : 'text.primary',
                           mb: 1.5
                         }}
@@ -180,7 +180,7 @@ const HomePage: React.FC = () => {
                         gutterBottom
                         className="homepage-card-title homepage-card-title-right"
                         sx={{
-                          fontWeight: 600,
+                          fontWeight: 500,
                           color: preferences.highContrast ? '#ffffff' : 'text.primary',
                           mb: 1.5
                         }}
@@ -258,13 +258,13 @@ const HomePage: React.FC = () => {
               p: 2,
               background: preferences.highContrast ? '#ffffff' : 'var(--color-card-bg)',
               border: preferences.highContrast ? '2px solid #000000' : '1px solid var(--color-border)',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-              transition: 'transform 0.2s, box-shadow 0.2s',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.12)',
+              transition: 'border-color 0.2s, box-shadow 0.2s',
               textDecoration: 'none',
               cursor: 'pointer',
               '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)'
+                borderColor: 'var(--color-primary)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)'
               }
             }}
           >

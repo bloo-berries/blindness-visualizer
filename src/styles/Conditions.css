@@ -97,7 +97,6 @@
 .condition-simulator-button:active {
   background-color: #dbeafe !important;
   color: var(--color-primary) !important;
-  transform: scale(1.1);
 }
 
 .conditions-info-box {

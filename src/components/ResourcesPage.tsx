@@ -190,7 +190,7 @@ const ResourcesPage: React.FC = () => {
           {/* Hero Section */}
           <Box sx={{ textAlign: 'center', mb: 6 }}>
             <Typography variant="h2" component="h1" gutterBottom sx={{
-              fontWeight: 700,
+              fontWeight: 600,
               fontSize: { xs: '1.5rem', sm: '2rem', md: undefined },
               background: 'linear-gradient(45deg, var(--color-primary), var(--color-primary-accent, #42a5f5))',
               backgroundClip: 'text',
@@ -200,7 +200,7 @@ const ResourcesPage: React.FC = () => {
             }}>
               {t('resourcesPage.title')}
             </Typography>
-            <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto' }}>
+            <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto', fontWeight: 400 }}>
               {t('resourcesPage.subtitle')}
             </Typography>
           </Box>
@@ -220,10 +220,10 @@ const ResourcesPage: React.FC = () => {
                   sx={{
                     p: 3,
                     mb: 2,
-                    transition: 'all 0.2s ease-in-out',
+                    transition: 'border-color 0.2s ease-in-out',
+                    border: '1px solid transparent',
                     '&:hover': {
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                      borderColor: 'var(--color-primary)',
                     }
                   }}
                 >

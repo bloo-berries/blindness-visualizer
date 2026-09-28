@@ -195,8 +195,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                   aria-current={location.pathname === item.path ? 'page' : undefined}
                   sx={{
                     color: 'white',
-                    fontWeight: 600,
-                    fontSize: '0.8rem',
+                    fontWeight: 500,
+                    fontSize: '0.85rem',
                     textTransform: 'none',
                     padding: '6px 12px',
                     borderRadius: '6px',
@@ -204,16 +204,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                     '&:hover': {
                       color: '#60a5fa',
                       backgroundColor: 'rgba(96, 165, 250, 0.15)',
-                      transform: 'translateY(-1px)',
                     },
                     '&:focus-visible': {
                       outline: '2px solid #60a5fa',
                       outlineOffset: '2px'
                     },
-                    '&:active': {
-                      transform: 'translateY(0)',
-                    },
-                    transition: 'all 0.2s ease-in-out'
+                    transition: 'color 0.2s ease-in-out, background-color 0.2s ease-in-out'
                   }}
                 >
                   {item.label}

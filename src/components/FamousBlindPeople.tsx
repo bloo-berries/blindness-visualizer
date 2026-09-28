@@ -303,7 +303,7 @@ const FamousBlindPeople: React.FC = () => {
         {/* People Cards - Using pre-computed data */}
         {categoryCardsData.map(({ category, categoryPeople, startIndex }) => (
           <Box key={category.name} sx={{ mb: 4 }}>
-            <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 2 }}>
+            <Typography variant="h4" component="h3" gutterBottom sx={{ mb: 3 }}>
               {t(`famousPeople.categories.${category.id}`, category.name)}
             </Typography>
             {isMobile ? (
@@ -314,7 +314,7 @@ const FamousBlindPeople: React.FC = () => {
                   overflowX: 'auto',
                   scrollSnapType: 'x mandatory',
                   WebkitOverflowScrolling: 'touch',
-                  gap: 1.5,
+                  gap: 2,
                   pb: 1,
                   mx: -2,
                   px: 2,
@@ -349,7 +349,7 @@ const FamousBlindPeople: React.FC = () => {
               </Box>
             ) : (
               /* Desktop/Tablet: standard grid */
-              <Grid container spacing={2} sx={{ alignItems: 'stretch' }}>
+              <Grid container spacing={2.5} sx={{ alignItems: 'stretch' }}>
                 {categoryPeople.map((personId, categoryIndex) => {
                   const person = personData[personId];
                   const globalIndex = startIndex + categoryIndex;

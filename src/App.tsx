@@ -59,21 +59,21 @@ function buildTheme(mode: ThemeMode) {
     },
     dim: {
       background: { default: '#15202b', paper: '#1c2b3a' },
-      text: { primary: '#e7e9ea', secondary: '#8b98a5' },
+      text: { primary: '#e7e9ea', secondary: '#9babb8' },
       divider: '#38444d',
       // Inverted grey scale so grey.50 = lightest in dark contexts
       grey: {
-        50: '#e7e9ea', 100: '#d9dbde', 200: '#8b98a5', 300: '#6e7c87',
+        50: '#e7e9ea', 100: '#d9dbde', 200: '#9babb8', 300: '#6e7c87',
         400: '#536471', 500: '#38444d', 600: '#2c3a47', 700: '#253341',
         800: '#1c2b3a', 900: '#15202b',
       },
     },
     dark: {
       background: { default: '#000000', paper: '#16181c' },
-      text: { primary: '#e7e9ea', secondary: '#71767b' },
+      text: { primary: '#e7e9ea', secondary: '#8a8f94' },
       divider: '#2f3336',
       grey: {
-        50: '#e7e9ea', 100: '#d9dbde', 200: '#71767b', 300: '#536471',
+        50: '#e7e9ea', 100: '#d9dbde', 200: '#8a8f94', 300: '#536471',
         400: '#3d4144', 500: '#2f3336', 600: '#1e2023', 700: '#16181c',
         800: '#0e0f11', 900: '#000000',
       },
@@ -102,10 +102,10 @@ function buildTheme(mode: ThemeMode) {
     },
     typography: {
       fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      h1: { fontWeight: 700, fontSize: '2.5rem', lineHeight: 1.2 },
-      h2: { fontWeight: 600, fontSize: '2rem', lineHeight: 1.3 },
-      h3: { fontWeight: 600, fontSize: '1.5rem', lineHeight: 1.4 },
-      h4: { fontWeight: 600, fontSize: '1.25rem', lineHeight: 1.4 },
+      h1: { fontWeight: 600, fontSize: '2.5rem', lineHeight: 1.2 },
+      h2: { fontWeight: 500, fontSize: '2rem', lineHeight: 1.3 },
+      h3: { fontWeight: 500, fontSize: '1.5rem', lineHeight: 1.4 },
+      h4: { fontWeight: 500, fontSize: '1.25rem', lineHeight: 1.4 },
       h5: { fontWeight: 500, fontSize: '1.125rem', lineHeight: 1.4 },
       h6: { fontWeight: 500, fontSize: '1rem', lineHeight: 1.4 },
       body1: { fontSize: '1rem', lineHeight: 1.6 },
@@ -125,9 +125,9 @@ function buildTheme(mode: ThemeMode) {
             }
           },
           contained: {
-            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+            boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.08)',
             '&:hover': {
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              boxShadow: '0 2px 4px -1px rgba(0, 0, 0, 0.1)',
             }
           }
         }
@@ -149,7 +149,9 @@ function buildTheme(mode: ThemeMode) {
         styleOverrides: {
           root: {
             borderRadius: '12px',
-            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+            boxShadow: isDark
+              ? '0 0 0 1px rgba(255, 255, 255, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.2)'
+              : '0 1px 2px 0 rgba(0, 0, 0, 0.06)',
             border: `1px solid ${p.divider}`,
             backgroundColor: p.background.paper,
           }

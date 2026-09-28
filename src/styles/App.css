@@ -12,8 +12,8 @@
   --color-navbar-border: #334155;
   --color-footer-bg: #f8fafc;
   --color-footer-text: #374151;
-  --color-card-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  --color-info-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --color-card-bg: #f5f7fa;
+  --color-info-bg: #f5f7fa;
   --color-info-border: #cbd5e1;
   --color-info-text: #475569;
   --color-hover-bg: #f8fafc;
@@ -34,21 +34,21 @@
   --color-bg-default: #15202b;
   --color-bg-paper: #1c2b3a;
   --color-text-primary: #e7e9ea;
-  --color-text-secondary: #8b98a5;
+  --color-text-secondary: #9babb8;
   --color-border: #38444d;
   --color-border-light: #2c3a47;
   --color-navbar-bg: #1c2b3a;
   --color-navbar-border: #38444d;
   --color-footer-bg: #1c2b3a;
-  --color-footer-text: #8b98a5;
+  --color-footer-text: #9babb8;
   --color-card-bg: #1c2b3a;
   --color-info-bg: #1c2b3a;
   --color-info-border: #38444d;
-  --color-info-text: #8b98a5;
+  --color-info-text: #9babb8;
   --color-hover-bg: #253341;
   --color-drawer-bg: #1c2b3a;
   --color-condition-name: #e7e9ea;
-  --color-condition-desc: #8b98a5;
+  --color-condition-desc: #9babb8;
   --color-faq-details-bg: #1c2b3a;
   --color-faq-details-text: #d9dbde;
   --color-treatment-notes-bg: #253341;
@@ -63,21 +63,21 @@
   --color-bg-default: #000000;
   --color-bg-paper: #16181c;
   --color-text-primary: #e7e9ea;
-  --color-text-secondary: #71767b;
+  --color-text-secondary: #8a8f94;
   --color-border: #2f3336;
   --color-border-light: #1e2023;
   --color-navbar-bg: #000000;
   --color-navbar-border: #2f3336;
   --color-footer-bg: #16181c;
-  --color-footer-text: #71767b;
+  --color-footer-text: #8a8f94;
   --color-card-bg: #16181c;
   --color-info-bg: #16181c;
   --color-info-border: #2f3336;
-  --color-info-text: #71767b;
+  --color-info-text: #8a8f94;
   --color-hover-bg: #1e2023;
   --color-drawer-bg: #16181c;
   --color-condition-name: #e7e9ea;
-  --color-condition-desc: #71767b;
+  --color-condition-desc: #8a8f94;
   --color-faq-details-bg: #16181c;
   --color-faq-details-text: #d9dbde;
   --color-treatment-notes-bg: #1e2023;
@@ -257,29 +257,29 @@ a, button, [role="button"],
 
 /* Add keyframes for the visual aura scintillation effect */
 @keyframes scintillate {
-  0% { 
-    opacity: 0.7; 
-    filter: hue-rotate(0deg) brightness(100%) saturate(100%); 
+  0% {
+    opacity: 0.75;
+    filter: hue-rotate(0deg) brightness(100%) saturate(100%);
     transform: scale(1);
   }
-  25% { 
-    opacity: 0.9; 
-    filter: hue-rotate(90deg) brightness(130%) saturate(130%); 
-    transform: scale(1.02);
-  }
-  50% { 
-    opacity: 0.8; 
-    filter: hue-rotate(180deg) brightness(120%) saturate(110%); 
+  25% {
+    opacity: 0.85;
+    filter: hue-rotate(90deg) brightness(110%) saturate(130%);
     transform: scale(1.01);
   }
-  75% { 
-    opacity: 0.95; 
-    filter: hue-rotate(270deg) brightness(140%) saturate(120%); 
-    transform: scale(1.03);
+  50% {
+    opacity: 0.8;
+    filter: hue-rotate(180deg) brightness(105%) saturate(110%);
+    transform: scale(1.005);
   }
-  100% { 
-    opacity: 0.7; 
-    filter: hue-rotate(360deg) brightness(100%) saturate(100%); 
+  75% {
+    opacity: 0.88;
+    filter: hue-rotate(270deg) brightness(115%) saturate(120%);
+    transform: scale(1.015);
+  }
+  100% {
+    opacity: 0.75;
+    filter: hue-rotate(360deg) brightness(100%) saturate(100%);
     transform: scale(1);
   }
 }

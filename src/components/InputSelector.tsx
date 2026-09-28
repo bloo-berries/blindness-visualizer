@@ -97,21 +97,20 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                 sx={{
                   cursor: 'pointer',
                   height: '100%',
-                  transition: '0.3s',
+                  transition: 'border-color 0.2s',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 3
+                    borderColor: 'primary.main',
                   },
                   '&:focus-visible': {
                     outline: '3px solid #1976d2',
                     outlineOffset: '2px',
                     boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
                   },
-                  border: currentSource.type === 'youtube' ? 2 : 0,
-                  borderColor: 'primary.main',
+                  border: currentSource.type === 'youtube' ? 2 : 1,
+                  borderColor: currentSource.type === 'youtube' ? 'primary.main' : 'divider',
                   maxWidth: '500px',
                   mx: 'auto',
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                  background: '#f5f7fa',
                   ...(preferences.highContrast && {
                     backgroundColor: '#ffffff !important',
                     background: '#ffffff !important'
@@ -138,7 +137,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                     variant="h5"
                     component="div"
                     className="demo-video-title"
-                    sx={{ mt: 1, fontWeight: 700, color: '#1e293b' }}
+                    sx={{ mt: 1, fontWeight: 600, color: '#1e293b' }}
                   >
                     {option.title}
                   </Typography>
@@ -165,18 +164,17 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                 sx={{
                   cursor: 'pointer',
                   height: '100%',
-                  transition: '0.3s',
+                  transition: 'border-color 0.2s',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 3
+                    borderColor: 'primary.main',
                   },
                   '&:focus-visible': {
                     outline: '3px solid #1976d2',
                     outlineOffset: '2px',
                     boxShadow: '0 0 0 6px rgba(25, 118, 210, 0.2)'
                   },
-                  border: currentSource.type === 'image' ? 2 : 0,
-                  borderColor: 'primary.main',
+                  border: currentSource.type === 'image' ? 2 : 1,
+                  borderColor: currentSource.type === 'image' ? 'primary.main' : 'divider',
                   maxWidth: '500px',
                   mx: 'auto',
                 }}
@@ -197,7 +195,7 @@ const InputSelector: React.FC<InputSelectorProps> = ({ currentSource, onSourceCh
                   <Box sx={{ fontSize: '32px', mb: 1 }}>
                     {option.icon}
                   </Box>
-                  <Typography variant="body1" component="div" sx={{ mt: 1, fontWeight: 600 }}>
+                  <Typography variant="body1" component="div" sx={{ mt: 1, fontWeight: 500 }}>
                     {option.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary" id="image-description" sx={{ mt: 0.5, fontSize: '0.75rem' }}>

@@ -225,7 +225,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           <Box sx={{
             order: { xs: 1, md: 2 },
             flex: '1.5',
-            position: 'sticky',
+            position: { xs: 'static', md: 'sticky' },
             top: { xs: 72, md: 16 },
             zIndex: 10,
             alignSelf: 'flex-start',

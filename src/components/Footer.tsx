@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
             gap: { xs: 0.5, sm: 1 },
             py: 0,
             width: '100%',
-            position: 'relative'
+            flexWrap: 'wrap'
           }}
         >
           {/* Center - Support Button */}
@@ -64,11 +64,9 @@ const Footer: React.FC = () => {
           
           {/* Right side - Resources, Feedback, Terms, Privacy */}
           <Box sx={{
-            position: 'absolute',
-            right: 0,
             flexShrink: 0,
             display: 'flex',
-            gap: 1
+            gap: 1.5
           }}>
             <Link
               href="/resources"
@@ -81,7 +79,7 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.7rem', sm: '0.875rem' },
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
                 minHeight: '24px',
                 minWidth: '24px',
@@ -111,7 +109,7 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.7rem', sm: '0.875rem' },
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
                 minHeight: '24px',
                 minWidth: '24px',
@@ -141,7 +139,7 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.7rem', sm: '0.875rem' },
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
                 minHeight: '24px',
                 minWidth: '24px',
@@ -171,7 +169,7 @@ const Footer: React.FC = () => {
                 color: 'var(--color-footer-text)',
                 textDecoration: 'none',
                 fontWeight: 500,
-                fontSize: { xs: '0.7rem', sm: '0.875rem' },
+                fontSize: { xs: '0.75rem', sm: '0.875rem' },
                 whiteSpace: 'nowrap',
                 minHeight: '24px',
                 minWidth: '24px',
